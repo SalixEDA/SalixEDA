@@ -1,0 +1,43 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+*/
+
+#ifndef SDPNEWPROJECTITEM_SELECTTYPE_H
+#define SDPNEWPROJECTITEM_SELECTTYPE_H
+
+#include "objects/SdProjectItem.h"
+#include "objects/SdProject.h"
+#include <QWizardPage>
+#include <QListWidget>
+#include <QTextEdit>
+
+class SdPNewProjectItem_SelectType : public QWizardPage
+  {
+    Q_OBJECT
+
+    SdProjectItemPtr *mItemPtr;
+    SdProject        *mProject;
+    QListWidget      *mObjectType;
+    QListWidget      *mCreationOrder;
+    QTextEdit        *mDescription;
+    QStringList       mDescriptions;
+  public:
+    SdPNewProjectItem_SelectType( SdProjectItemPtr *item, SdProject *prj, QWidget *parent = nullptr);
+
+    virtual bool validatePage() override;
+    virtual int  nextId() const override;
+
+  public slots:
+    void classChanged( int index );
+    void orderChanged( int index );
+  };
+
+#endif // SDPNEWPROJECTITEM_SELECTTYPE_H

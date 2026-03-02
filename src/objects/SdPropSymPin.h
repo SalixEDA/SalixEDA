@@ -1,0 +1,68 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Symbol pin properties
+*/
+
+#ifndef SDSYMPINPROP_H
+#define SDSYMPINPROP_H
+
+#include "SdPvLayer.h"
+#include "SdPvInt.h"
+#include "objects/SdPvMulty.h"
+
+
+//!
+//! \brief The SdPropSymPin struct - Symbol pin properties for schematic components
+//!        Stores layer assignment and pin type for electrical modeling and simulation
+//!
+struct SdPropSymPin
+  {
+    SdPvLayer mLayer;   //!< Layer where pin is placed [Слой размещения вывода]
+    SdPvInt   mPinType; //!< Pin type for electrical modeling [Тип вывода для моделирования]
+
+    //!
+    //! \brief json Function to write object content into json writer
+    //! \param js   Json writer
+    //!
+    void json( SvJsonWriter &js ) const;
+
+    //!
+    //! \brief json Function to read object content from json reader
+    //! \param js   Json reader
+    //!
+    void json( const SdJsonReader &js);
+
+    //!
+    //! \brief swap Swap all symbol pin properties with another instance
+    //! \param other Other SdPropSymPin object to swap with
+    //!
+    void swap( SdPropSymPin &other );
+  };
+
+// using SdPropComposerSymPin = SdPropComposer<SdPropSymPin, &SdPropSymPin::mLayer, &SdPropSymPin::mPinType>;
+
+class SdPropComposerSymPin : public SdPropComposer<SdPropSymPin, &SdPropSymPin::mLayer, &SdPropSymPin::mPinType>
+  {
+  public:
+    // SdLayer *getSingleLayer( bool otherSide = false ) const
+    //   {
+    //   auto &propLayer = get<&SdPropSymPin::mLayer>();
+    //   return propLayer.isSingle() ? propLayer.value().layer(otherSide) : nullptr;
+    //   }
+
+    auto& layer() { return get<&SdPropSymPin::mLayer>(); }
+    const auto& layer() const { return get<&SdPropSymPin::mLayer>(); }
+
+    auto& pinType() { return get<&SdPropSymPin::mPinType>(); }
+    const auto& pinType() const { return get<&SdPropSymPin::mPinType>(); }
+  };
+
+#endif // SDSYMPINPROP_H

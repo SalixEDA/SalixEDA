@@ -1,0 +1,2 @@
+#include "NurbsParentCurve.h"
+

@@ -1,0 +1,175 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Graphical object Arc.
+*/
+#include "SdGraphLinearArc.h"
+#include "SdContext.h"
+#include "SdSelector.h"
+#include "SdRect.h"
+#include "SdSnapInfo.h"
+#include "SdJsonIO.h"
+
+SdGraphLinearArc::SdGraphLinearArc() :
+  SdGraphLinear()
+  {
+
+  }
+
+SdGraphLinearArc::SdGraphLinearArc(SdPoint center, SdPoint start, SdPoint stop, const SdPropLine &propLine) :
+  SdGraphLinear( propLine ),
+  mCenter(center),
+  mStart(start),
+  mStop(stop)
+  {
+
+  }
+
+
+
+
+//!
+//! \brief cloneFrom Overrided function. We copy object from source
+//! \param src       Source of object from which copy must be made
+//! \param copyMap   Structure for mapping copying substitutes
+//! \param next      Make simple or next copy. Next copy available not for all objects.
+//!                  For example: pin name A23 with next copy return A24
+//!
+void SdGraphLinearArc::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool next)
+  {
+  SdGraphLinear::cloneFrom( src, copyMap, next );
+  SdPtrConst<SdGraphLinearArc> arc(src);
+  Q_ASSERT( arc.isValid() );
+  mCenter  = arc->mCenter;
+  mStart   = arc->mStart;
+  mStop    = arc->mStop;
+  }
+
+
+
+
+//!
+//! \brief json Overloaded function to write object content into json writer
+//!             Overrided function
+//! \param js   Json writer
+//!
+void SdGraphLinearArc::json(SdJsonWriter &js) const
+  {
+  js.jsonPoint( QStringLiteral("Center"), mCenter );
+  js.jsonPoint( QStringLiteral("Start"), mStart );
+  js.jsonPoint( QStringLiteral("Stop"), mStop );
+  SdGraphLinear::json( js );
+  }
+
+
+
+
+//!
+//! \brief json Overloaded function to read object content from json reader
+//!             Overrided function
+//! \param js   Json reader
+//!
+void SdGraphLinearArc::json(const SdJsonReader &js)
+  {
+  js.jsonPoint( QStringLiteral("Center"), mCenter );
+  js.jsonPoint( QStringLiteral("Start"), mStart );
+  js.jsonPoint( QStringLiteral("Stop"), mStop );
+  SdGraphLinear::json( js );
+  }
+
+
+
+
+
+
+
+void SdGraphLinearArc::saveState(SdUndo *undo)
+  {
+  undo->prop( &mProp, &mCenter, &mStart, &mStop );
+  }
+
+
+
+
+void SdGraphLinearArc::transform(const QTransform &map, SdPvAngle)
+  {
+  mCenter = map.map(mCenter);
+  mStart  = map.map(mStart);
+  mStop   = map.map(mStop);
+  if( !(map.isRotating() || map.isScaling() || map.isTranslating()) ) {
+    //For mirror
+    mStart.swap( mStop );
+    }
+  }
+
+
+
+
+
+
+void SdGraphLinearArc::selectByPoint(const SdPoint p, SdSelector *selector)
+  {
+  if( mProp.mLayer.isEdited() ) {
+    if( !getSelector() && (p == mStart || p == mStop) )
+      selector->insert( this );
+    }
+  }
+
+
+
+void SdGraphLinearArc::selectByRect(const SdRect &r, SdSelector *selector)
+  {
+  if( mProp.mLayer.isEdited() ) {
+    if( !getSelector() && (r.isPointInside( mStart ) || r.isPointInside( mStop )) )
+      selector->insert( this );
+    }
+  }
+
+
+
+
+
+SdRect SdGraphLinearArc::getOverRect() const
+  {
+  return SdRect(mStart,mStop);
+  }
+
+
+
+void SdGraphLinearArc::draw(SdContext *dc)
+  {
+  dc->arc( mCenter, mStart, mStop, mProp );
+  }
+
+
+
+
+int SdGraphLinearArc::behindCursor(SdPoint p)
+  {
+  if( isVisible() ) {
+    if( p == mStart || p == mStop ) {
+      return getSelector() ? ELEM_SEL : ELEM_UNSEL;
+      }
+    }
+  return 0;
+  }
+
+
+
+//Find snap point on object
+void SdGraphLinearArc::snapPoint(SdSnapInfo *snap)
+  {
+  if( isVisible() ) {
+    if( snap->match(snapEndPoint) ) {
+      snap->test( this, mStart, snapEndPoint );
+      snap->test( this, mStop, snapEndPoint );
+      }
+    }
+  }

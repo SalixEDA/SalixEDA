@@ -1,0 +1,65 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Some common params:
+    - interface language
+*/
+#include "SdDOptionsPageCommon.h"
+#include "SdLanguage.h"
+#include "SdConfig.h"
+#include "objects/SdEnvir.h"
+
+#include <QSettings>
+#include <QVBoxLayout>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+
+
+SdDOptionsPageCommon::SdDOptionsPageCommon(QWidget *parent) :
+  QWidget(parent)
+  {
+  setWindowTitle( tr("Paths") );
+
+  QGridLayout *grid = new QGridLayout();
+
+  grid->addWidget( new QLabel(tr("Interface language:")), 0, 0 );
+  grid->addWidget( mLanguage = new QComboBox(), 0, 1 );
+
+
+  QString defLang = SdEnvir::languageGet();
+  QString defLangTitle;
+
+  //Get supported language list and fill language table
+  SdLanguage::SdLanguageList list = SdLanguage::languageList();
+  for( const SdLanguage &lang : list ) {
+    //Insert language title to combo box
+    mLanguage->addItem( lang.mTitle, lang.mId );
+    if( defLang == lang.mId )
+      defLangTitle = lang.mTitle;
+    }
+
+  //Set current language
+  if( defLangTitle.isEmpty() )
+    defLangTitle = list.at(0).mTitle;
+  mLanguage->setCurrentText( defLangTitle );
+
+  setLayout( grid );
+  }
+
+
+
+void SdDOptionsPageCommon::accept()
+  {
+  QString lang = mLanguage->currentData().toString();
+  QSettings s;
+  s.setValue( SDK_LANGUAGE, lang );
+  }
+

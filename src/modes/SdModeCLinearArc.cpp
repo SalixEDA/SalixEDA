@@ -1,0 +1,172 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Mode for draw arc's
+*/
+#include "SdModeCLinearArc.h"
+#include "objects/SdEnvir.h"
+#include "objects/SdGraphLinearArc.h"
+#include <QDebug>
+
+SdPoint
+SdModeCLinearArc::mStartOffset,
+SdModeCLinearArc::mStopOffset;
+
+
+SdModeCLinearArc::SdModeCLinearArc(SdWEditorGraph *editor, SdProjectItem *obj) :
+  SdModeCLinear( editor, obj )
+  {
+
+  }
+
+
+void SdModeCLinearArc::enterPoint( SdPoint enter )
+  {
+  switch( getStep() ) {
+    case sCenter :
+      mCenter = enter;
+      mPrev = mCenter;
+      setStep( sStart );
+      mSmartPoint = mCenter + mStartOffset;
+      mSmartType  = snapPrev;
+      break;
+    case sStart :
+      mStart = enter;
+      mPrev = enter;
+      setStep( sStop );
+      mSmartPoint = mCenter + mStopOffset;
+      mSmartType  = snapPrev;
+      break;
+    case sStop :
+      mPrev = calcArcStop( mCenter, mStart, enter );
+      addPic(  new SdGraphLinearArc( mCenter, mStart, mPrev, *sdGlobalProp->propLine( mObject->getClass() ) ), QObject::tr("Insert arc") );
+      setStep( sCenter );
+      mStartOffset = mStart - mCenter;
+      mStopOffset = mPrev - mCenter;
+      mSmartType  = 0;
+      break;
+    }
+  update();
+  }
+
+
+
+
+void SdModeCLinearArc::cancelPoint(SdPoint)
+  {
+  if( getStep() != sCenter ) setStep( sCenter );
+  else cancelMode();
+  }
+
+
+
+
+void SdModeCLinearArc::movePoint(SdPoint p)
+  {
+  if( p == mPrev )
+    return;
+
+  mPrev = p;
+
+  //Вычислить предполагаемую точку вывода
+  SdSnapInfo snap;
+  snap.mSour     = mPrev;
+  snap.mSnapMask = SdEnvir::instance()->mSmartMask | snapExcludeExcl;
+  snap.mExclude  = mCenter;
+  snap.scan( mObject );
+  mSmartType  = snap.mDestMask;
+  mSmartPoint = snap.mDest;
+
+  update();
+  }
+
+
+
+
+SdPoint SdModeCLinearArc::enterPrev()
+  {
+  if( SdEnvir::instance()->mIsSmart && mSmartType )
+    enterPoint( mSmartPoint );
+  return mSmartPoint;
+  }
+
+
+
+
+QString SdModeCLinearArc::getStepHelp() const
+  {
+  switch( getStep() ) {
+    default :
+    case sCenter : return QObject::tr("Enter center arc point");
+    case sStart  : return QObject::tr("Enter start arc point");
+    case sStop   : return QObject::tr("Enter stop arc point");
+    }
+  }
+
+
+
+
+QString SdModeCLinearArc::getModeThema() const
+  {
+  return QStringLiteral( MODE_HELP "ModeCLinearArc.htm" );
+  }
+
+
+
+
+QString SdModeCLinearArc::getStepThema() const
+  {
+  switch( getStep() ) {
+    default :
+    case sCenter : return QStringLiteral( MODE_HELP "ModeCLinearArc.htm#center" );
+    case sStart  : return QStringLiteral( MODE_HELP "ModeCLinearArc.htm#start" );
+    case sStop   : return QStringLiteral( MODE_HELP "ModeCLinearArc.htm#stop" );
+    }
+  }
+
+
+
+
+int SdModeCLinearArc::getCursor() const
+  {
+  return CUR_ARC;
+  }
+
+
+
+
+int SdModeCLinearArc::getIndex() const
+  {
+  return MD_ARC;
+  }
+
+
+
+
+void SdModeCLinearArc::drawDynamic(SdContext *ctx)
+  {
+  ctx->setPen( sdGlobalProp->propLine( mObject->getClass() )->mWidth, SdEnvir::instance()->getSysColor(scEnter),
+               sdGlobalProp->propLine( mObject->getClass() )->mType );
+  switch( getStep() ) {
+    case sStop :
+      //Выбор воторой точки
+      //First point selection
+      ctx->arc( mCenter, mStart, mPrev );
+      //break is absent purposefully
+
+      [[fallthrough]];
+    case sStart :
+      //
+      //В том числе выбор первой точки
+      ctx->line( mCenter, mPrev );
+    }
+  if( SdEnvir::instance()->mIsSmart && mSmartType )
+    ctx->smartPoint( mSmartPoint, mSmartType );
+  }

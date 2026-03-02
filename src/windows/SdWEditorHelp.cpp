@@ -1,0 +1,67 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Help system in editor space
+*/
+#include "SdWEditorHelp.h"
+#include "objects/SdPulsar.h"
+#include "SdWCommand.h"
+
+#include <QVBoxLayout>
+
+SdWEditorHelp::SdWEditorHelp() :
+  SdWEditor(nullptr)
+  {
+  //Create help widget
+  mHelp = new SdWHelp();
+
+  //And fit it to full editor space
+  QVBoxLayout *box = new QVBoxLayout;
+  box->addWidget( mHelp );
+  box->setContentsMargins( 0, 0, 0, 0 );
+
+  setLayout( box );
+
+  connect( SdPulsar::sdPulsar, &SdPulsar::helpTopic, mHelp, &SdWHelp::helpTopic );
+
+  connect( mHelp, &SdWHelp::backwardAvailable, SdWCommand::cmHelpBackward, &QAction::setEnabled );
+  connect( mHelp, &SdWHelp::forwardAvailable, SdWCommand::cmHelpForward, &QAction::setEnabled );
+  }
+
+
+
+void SdWEditorHelp::helpBackward()
+  {
+  mHelp->backward();
+  }
+
+
+
+
+void SdWEditorHelp::helpForward()
+  {
+  mHelp->forward();
+  }
+
+
+SdProjectItem *SdWEditorHelp::getProjectItem() const
+  {
+  return nullptr;
+  }
+
+
+void SdWEditorHelp::onActivateEditor()
+  {
+  //SdWEditor::onActivateEditor();
+
+  SdWCommand::barHelp->show();
+  SdWCommand::cmHelpBackward->setEnabled( mHelp->isBackwardAvailable() );
+  SdWCommand::cmHelpForward->setEnabled( mHelp->isForwardAvailable() );
+  }

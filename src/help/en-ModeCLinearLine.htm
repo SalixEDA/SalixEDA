@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>SalixEDA Line enter mode</title>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Line enter mode</h1>
+    <p><a href="contents.htm">Contents</a>=&gt;<a href="MModes.htm">Modes</a>=&gt;<a
+        href="MDraw.htm">Draw modes</a>=&gt;Line</p>
+    <p>Tool bar: <img src="drawLine.png" width="24" height="24" border="1"></p>
+    <p>Menu: Draw|Line</p>
+    <p>Cursor: <img src="cursorLine.png" width="30" height="30"></p>
+    <p>1. Setup line attributes</p>
+    <p>2. Enter start point of segment</p>
+    <p>3. (Optional) Change segment attributes</p>
+    <p>4. Enter end point of the segment. After you specify the end point of the
+      segment, it is entered into the project. Automatically, the end point of
+      the segment serves as the starting point of the next segment, thus
+      allowing the formation of a polyline.</p>
+    <p>5. Repeat steps 2-4 to enter the entire polyline.</p>
+    <ul>
+      <li><img src="mouseBLeft.png" width="32" height="48"> You can specify a
+        point by clicking the left mouse button or manually.</li>
+      <li><img src="mouseBRight.png" width="32" height="48"> The termination of
+        the input is done by pressing the right mouse button.</li>
+    </ul>
+    <p><b>"Smart" mode.</b></p>
+    <p>The relative input of the previous segment is performed. That is, you
+      have just entered a segment and want the new segment to be parallel to the
+      entered segment and have the same length. To do this, you specify the
+      beginning of a new segment, and smart mode does the rest of the work.</p>
+    <p><img src="smartLine1.png" width="96" height="64"></p>
+    <p>Here A is the initial segment, B is the segment formed by the smart mode.</p>
+    <p><br>
+    </p>
+    <p>This "smart" mode is especially useful for sequential input of identical
+      segments, for example, symbol pins.</p>
+    <p>If you move the mouse after specifying the first point, the smart mode
+      looks for the end point of the segment in the direction of the mouse
+      movement at the intersection with the already entered lines or rectangles.</p>
+    <p><img src="smartLine2.png" width="96" height="64"></p>
+    <p>Here A is the initial segment, B is the segment formed by the smart mode.</p>
+    <p><img src="mouseBMiddle.png" width="32" height="48"> Middle mouse button
+      or "space" - confirmation of "smart" input.</p>
+    <!--  <table width="100%" border="0">
+      <tbody>        <tr>          <td width="50%"><a href="PropLine.htm">Line properties</a></td>          <td width="50%"><a href="DLine.htm">Line</a></td>
+        </tr>      </tbody>    </table> -->
+  </body>
+</html>

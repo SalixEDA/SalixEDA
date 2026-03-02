@@ -1,0 +1,68 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+*/
+#include "SdConfig.h"
+#include "SdScaler.h"
+
+SdScaler::SdScaler(double scale) :
+  mScale(scale)
+  {
+
+  }
+
+void SdScaler::scaleStep(double step)
+  {
+  //Convert scale
+  scaleSet( mScale * step );
+  }
+
+
+void SdScaler::scaleSet(double scale)
+  {
+  mScale = scale;
+  //Check scale bounds
+  if( mScale > maxScale ) mScale = maxScale;
+  if( mScale < minScale ) mScale = minScale;
+  }
+
+
+
+int SdScaler::phys2pixel(int phys) const
+  {
+  return static_cast<int>( static_cast<double>(phys) * mScale );
+  }
+
+int SdScaler::pixel2phys(int pixel) const
+  {
+  return static_cast<int>( static_cast<double>(pixel) / mScale );
+  }
+
+SdPoint SdScaler::phys2pixel(SdPoint phys) const
+  {
+  return SdPoint( phys2pixel(phys.x()), phys2pixel(phys.y()) );
+  }
+
+SdPoint SdScaler::pixel2phys(SdPoint pixel) const
+  {
+  return SdPoint( pixel2phys(pixel.x()), pixel2phys(pixel.y()) );
+  }
+
+SdRect SdScaler::phys2pixel(SdRect phys) const
+  {
+  return SdRect( phys2pixel(phys.left()), phys2pixel(phys.top()), phys2pixel(phys.width()), phys2pixel(phys.height()) );
+  }
+
+SdRect SdScaler::pixel2phys(SdRect pixel) const
+  {
+  return SdRect( pixel2phys(pixel.left()), pixel2phys(pixel.top()), pixel2phys(pixel.width()), pixel2phys(pixel.height()) );
+  }
+
+

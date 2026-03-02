@@ -1,0 +1,211 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>SalixEDA 3d функции</title>
+  </head>
+  <body>
+    <h1 align="center">3d функции</h1>
+    <p><a href="contents.htm">Содержание</a>=&gt;<a href="script3d.htm">Скрипт
+        3d</a>=&gt;3d функции</p>
+    <hr>
+    <p>Здесь представлен полный перечень функций, которые можно использовать в
+      скриптах построения 3d моделей.</p>
+    <p>Непосредственные значения задаются прямо в тексте скрипта. При адаптации
+      скрипта под свою модель разработчик может изменять значения, например,
+      размеры корпуса компонента, количество его ножек и т.п. Числовые значения
+      вводятся несредственно. Однако, некоторые значения достаточно сложны для
+      ручного ввода. Для упрощения их построения используются мастера, которые
+      вызываются при нажатии кнопки F2 на клавиатуре когда курсор находится на
+      одной функций выбора. Эти функции перечислены ниже:</p>
+    <ul>
+      <li><a href="scriptFunSelectColor.htm">selectColor</a> диалоговый выбор
+        цвета</li>
+      <li><a href="scriptFunSelectPad.htm">selectPad</a> мастер создания
+        контактных площадок</li>
+    </ul>
+    <p>Функции работы с цветами </p>
+    <ul>
+      <li><a href="scriptFunColor.htm">color</a> построить цвет по rgba
+        составляющим</li>
+      <li><a href="scriptFunColorFromString.htm">colorFromString</a> построить
+        цвет из текстового описания цвета</li>
+    </ul>
+    <p>Некоторые компоненты корпусов должны быть представлены в виде строк,
+      например, описание контактных площадок или номер вывода компонента. Для
+      построения таких строк используются следующие функции:</p>
+    <ul>
+      <li><a href="scriptFunStringPadRectThrough.htm">stringPadRectThrough</a>
+        построить строку описания прямоугольной контактной площадки для
+        штыревого вывода</li>
+      <li><a href="scriptFunStringPadCircleThrough.htm">stringPadCircleThrough</a>
+        построить строку описания круглой контактной площадки для штыревого
+        вывода</li>
+      <li><a href="scriptFunStringPinIndex.htm">stringPinIndex</a> строит номер
+        вывода по его индексу</li>
+      <li><a href="scriptFunStringPinMatrix.htm">stringPinMatrix</a> строит
+        номер вывода матричного корпуса, например, bga, по двум индексам</li>
+    </ul>
+    <p>Для выполнения геометрических преобразований используются матрицы. В тех
+      местах, где нужна матрица, а само преобразование не нужно можно
+      использовать встроенную переменную единичной матрицы matrix1. Для
+      упрощения выполнения типовых преобразований служат следующие функции:</p>
+    <ul>
+      <li><a href="scriptFunMatrix.htm">matrix</a> строит матрицу поворота и
+        перемещения</li>
+      <li><a href="scriptFunMatrixRotate.htm">matrixRotate</a> строит новую
+        матрицу путем добавления с существующей матрице операции поворота</li>
+      <li><a href="scriptFunMatrixScale.htm">matrixScale</a> строит новую
+        матрицу путем добавления с существующей матрице операции масштабирования</li>
+      <li><a href="scriptFunMatrixTranslate.htm">matrixTranslate</a> строит
+        новую матрицу путем добавления с существующей матрице операции смещения</li>
+    </ul>
+    <p>Вершины описывают точки в 3d пространстве. Каждая вершина содержит тройку
+      чисел, представляющих собой координаты вершины в пространстве. Для работы
+      с вершинами служат следущие функции:</p>
+    <ul>
+      <li><a href="scriptFunVertex.htm">vertex</a> - служит для задания вершины
+        по трем координатам</li>
+      <li><a href="scriptFunVertexOffset.htm">vertexOffset</a> - создает вершину
+        путем задания смещения относительно другой вершины</li>
+    </ul>
+    <p>Поверхность представляет собой плоскую область, ограниченную ломаной
+      линией, образующей многоугольник. SalixEDA работает только с выпуклыми
+      многоугольниками. Простейшим выпуклым многоугольником является
+      треугольник. Многоугольники с количеством вершин более трех могут быть
+      невыпуклыми. Для решения этой проблемы имеется функция разбиения такого
+      многоугольника на треугольники.</p>
+    <ul>
+      <li><a href="scriptFunFaceBevelXY.htm">faceBevelXY</a> -генерит
+        поверхность масштабированную на радиус в плоскости xy и сдвинутую на
+        радиус по оси z. Используется для формирования фаски</li>
+      <li><a href="scriptFunFaceCircle.htm">faceCircle</a> - генерит
+        многоугольник с заданным шагом, вписанный в окружность. Служит для
+        аппроксимации окружностей</li>
+      <li><a href="scriptFunFaceCircleSide.htm">faceCircleSide</a> - генерит
+        многоугольник с заданным количеством граней, вписанный в окружность.
+        Служит для аппроксимации окружностей</li>
+      <li><a href="scriptFunFaceCurveXZ.htm">faceCurveXZ</a> - генерит
+        поверхность повернутую относительно исходной на некоторый угол.
+        Используется для формирования гнутых объектов, например выводов</li>
+      <li><a href="scriptFunFaceDuplicate.htm">faceDuplicate</a> - создает копию
+        исходной поверхности преобразованной с помощью матрицы</li>
+      <li><a href="scriptFunFaceDuplicateGrow.htm">faceDuplicateGrow</a> -
+        генерит поверхность масштабированную в плоскости xy на заданные
+        коэффициенты kx и ky. Результирующая поверхность преобразуется с помощью
+        матрицы</li>
+      <li><a href="scriptFunFaceDuplicateScale.htm">faceDuplicateScale</a> -
+        генерит поверхность масштабированную в плоскости xy на заданные
+        коэффициенты kx и ky. Результирующая поверхность сдвигается в
+        направлении оси z</li>
+      <li><a href="scriptFunFaceDuplicateShift.htm">faceDuplicateShift</a> -
+        генерит копию поверхности сдвинутой в направлении перпендикуляра к
+        поверхности</li>
+      <li><a href="scriptFunFaceEllipse.htm">faceEllipse</a> - генерит
+        многоугольник с заданным шагом, вписанный в элипс. Служит для
+        аппроксимации элипсов</li>
+      <li><a href="scriptFunFaceEllipseSide.htm">faceEllipseSide</a> - генерит
+        многоугольник с заданным количеством граней, вписанный в элипс. Служит
+        для аппроксимации элипс</li>
+      <li><a href="scriptFunFaceEquidistant.htm">faceEquidistantXY</a> - генерит
+        многоугльник в плоскости xy с гранями эквидистантными к граням исходного
+        многоугольника. Результат преобразуется с помощью матрицы</li>
+      <li><a href="scriptFunFaceFlat.htm">faceFlat</a> - создает многоугольник в
+        заданной плоскости по парам относительных координат</li>
+      <li><a href="scriptFunFaceFlatMatrix.htm">faceFlatMatrix</a> - создает
+        многоугольник в плоскости xy по парам относительных координат, а затем
+        преобразуется с помощью матрицы</li>
+      <li><a href="scriptFunFacePart.htm">facePart</a> - создает многоугольник
+        из заданного многоугольника по списку вершин</li>
+      <li><a href="scriptFunFaceRect.htm">faceRect</a> - создает прямоугольник</li>
+      <li><a href="scriptFunFaceRectRound.htm">faceRectRound</a> - создает
+        прямоугольник с закругленными углами</li>
+      <li><a href="scriptFunFaceRectSide.htm">faceRectSide</a> - создает
+        многоугольник с заданным количеством граней вписанный в прямоугольник</li>
+    </ul>
+    <p>Несколько поверхностей составляют модель. Следующие функции служат для
+      работы с набором поверхностей.</p>
+    <ul>
+      <li><a href="scriptFunFaceListAppend.htm">faceListAppend</a> - создает
+        набор, объединенный из двух наборов</li>
+      <li><a href="scriptFunFaceListBox.htm">faceListBox</a> - создает
+        параллелепипед</li>
+      <li><a href="scriptFunFaceListBoxMatrix.htm">faceListBoxMatrix</a> -
+        создает параллелепипед и преобразует его с помощью матрицы</li>
+      <li><a href="scriptFunFaceListCurveXY.htm">faceListCurveXZ</a> - строит
+        стены между повернутыми поверхностями, служит для формирования загиба,
+        например вывода</li>
+      <li><a href="scriptFunFaceListCylinder.htm">faceListCylinder</a> - создает
+        цилиндр с основание в плоскости xy</li>
+      <li><a href="scriptFunFaceListCylinderMatrix.htm">faceListCylinderMatrix</a>
+        - создает цилиндр и преобразует его с помощью матрицы</li>
+      <li><a href="scriptFunFaceListDuplicate.htm">faceListDuplicate</a> -
+        создает копию набора поверхностей преобразованную с помощью матрицы</li>
+      <li><a href="scriptFunFaceListExtrude.htm">faceListExtrude</a> - из
+        поверхности основания создает вытяжку с помощью матрицы</li>
+      <li><a href="scriptFunFaceListExtrudeShift.htm">faceListExtrudeShift</a> -
+        из поверхности основания создает вытяжку в направлении перпендикуляра к
+        основанию</li>
+      <li><a href="scriptFunFaceListHexagon.htm">faceListHexagon</a> - создает
+        хексагональный корпус</li>
+      <li><a href="scriptFunFaceListHolesXY.htm">faceListHolesXY</a> -
+        преобразует поверхность в плоскости xy в набор поверхностей при
+        добавлении окон (отверстий)</li>
+      <li><a href="scriptFunFaceListIndexed.htm">faceListIndexed</a> - создает
+        набор поверхностей по исходному набору и индексам</li>
+      <li><a href="scriptFunFaceListPinCurveOne.htm">faceListPinCurveOne</a> -
+        создает вывод на базе поверхности основания с одним изгибом, например,
+        выводы горизонтальных штыревых резисторов</li>
+      <li><a href="scriptFunFaceListPinCurveTwo.htm">faceListPinCurveTwo</a> -
+        создает вывод на базе поверхности основания с двумя изгибами, например,
+        вывод микросхемы tqfp</li>
+      <li><a href="scriptFunFaceListRotation.htm">faceListRotation</a> - создает
+        набор поверхностей поворота. Набор строится на основе исходной
+        поверхности путем последовательного поворота на заданный угол с заданным
+        шагом</li>
+      <li><a href="scriptFunFaceListSimplify.htm">faceListSimplify</a> - создает
+        набор поверхностей в плоскости xy из невыпуклой поверхности путем
+        разбиения ее на треугольники</li>
+      <li><a href="scriptFunFaceListUnion.htm">faceListUnion</a> - создает
+        набор, объединенный из двух наборов</li>
+      <li><a href="scriptFunFaceListWall.htm">faceListWall</a> - создает стены
+        между двумя поверхностями (пол и потолок)</li>
+      <li><a href="scriptFunFaceListWallBevelXY.htm">faceListWallBevelXY</a> -
+        создает стены между двумя поверхностями в плоскости xy с формированием
+        фаски на полу</li>
+      <li><a href="scriptFunFaceListWallDoubleBevelXY.htm">faceListWallDoubleBevelXY</a>-
+        создает стены между двумя поверхностями в плоскости xy с формированием
+        двух фасок: на полу и на потолке</li>
+      <li><a href="scriptFunFaceListWallIndexed.htm">faceListWallIndexed</a> -
+        создает стены между двумя поверхностями (пол и потолок). Создаются
+        только стены, соответствующие индексу</li>
+      <li><a href="scriptFunFaceListWallList.htm">faceListWallList</a> - создает
+        стены между наборами полов и потолков</li>
+      <li><a href="scriptFunFaceListWallRound.htm">faceListWallRound</a> -
+        создает закругленные стены между двумя поверхностями (пол и потолок)</li>
+      <li><a href="scriptFunFaceListWalls.htm">faceListWalls</a> - создает стены
+        между "этажами", которые представлены списком поверхностей</li>
+    </ul>
+    <p>Набор поверхностей вместе с цветами и матрицами копирования составляют
+      модель. Для работы с моделями служат следующие функции:</p>
+    <ul>
+      <li><a href="scriptFunModel.htm">model</a> - создает модель на базе списка
+        поверхностей, цветов этих поверхностей и матрицы копирования</li>
+      <li><a href="scriptFunModelAppend.htm">modelAppend</a> - добавляет к
+        модели новый список поверхностей с цветами этих поверхностей</li>
+      <li><a href="scriptFunModelCopy.htm">modelCopy</a> - добавляет матрицу
+        копирования к модели</li>
+    </ul>
+    <p>Функции работы с 2d объектами </p>
+    <ul>
+      <li><a href="scriptFunGraphCircle.htm">graphCircle</a> создать окружность</li>
+      <li><a href="scriptFunGraphLine.htm">graphLine</a> создать отрезок</li>
+      <li><a href="scriptFunGraphPin.htm">graphPin</a> создать вывод</li>
+      <li><a href="scriptFunGraphRect.htm">graphRect</a> создать прямоугольник</li>
+      <li><a href="scriptFunGraphRectFilled.htm">graphRectFilled</a> создать
+        закрашенный прямоугольник</li>
+    </ul>
+    <p><br>
+    </p>
+    <br>
+  </body>
+</html>

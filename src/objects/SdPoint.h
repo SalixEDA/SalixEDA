@@ -1,0 +1,179 @@
+﻿/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  2D point object
+*/
+
+#ifndef SDPOINT_H
+#define SDPOINT_H
+
+#include "SdPvAngle.h"
+#include "SvLib/SvJsonIO.h"
+
+#include <QJsonObject>
+#include <QPoint>
+#include <QTransform>
+
+//Line orientation
+enum SdOrientation {
+  sorNull,          //For p1 == p2
+  sorVertical,      //For p1.x == p2.x
+  sorHorizontal,    //For p1.y == p2.y
+  sorSlashForward,  //For dx == dy
+  sorSlashBackward, //For dx == -dy
+  sorAny
+  };
+
+
+class SdPoint : public QPoint
+  {
+  public:
+
+    static const int farCoord = 2000000000;
+
+    SdPoint() : QPoint() { }
+    SdPoint( int xpos, int ypos ) : QPoint(xpos,ypos) { }
+    SdPoint( QPoint p ) : QPoint(p) {}
+
+    void        operator /= (int i) { rx() /= i; ry() /= i; }
+    void        operator *= (int i) { rx() *= i; ry() *= i; }
+    void        operator -= (int i) { rx() -= i; ry() -= i; }
+    void        operator += (int i) { rx() += i; ry() += i; }
+    void        operator += ( SdPoint p ) { rx() += p.x(); ry() += p.y(); }
+    void        operator = ( QPoint p ) { setX(p.x()); setY(p.y()); }
+    void        set( int cx, int cy ) { setX(cx); setY(cy); }
+    void        moveOriented(int dx, int dy, SdOrientation orient );
+    SdPoint     complement() const { return SdPoint(-x(),-y()); }
+    SdPoint     sub( SdPoint b ) { return SdPoint( x() - b.x(), y() - b.y() ); }
+    SdPoint     operator - ( SdPoint b ) { return sub(b); }
+    SdPoint     operator + ( SdPoint b ) { return SdPoint( x() + b.x(), y() + b.y() ); }
+    SdPoint     getMiddle( SdPoint b ) { return SdPoint( (x() + b.x()) / 2, (y() + b.y()) / 2 ); }
+    SdPvAngle   getAngle( SdPoint center = SdPoint() ) const; //Угол поворота до точки относительно центра
+    double      getAngleDegree(SdPoint center) const;
+    QPointF     toPointF() const { return QPointF(x(),y()); }
+
+    float       xmm() const { return static_cast<float>(x()) / 1000.0; }
+    float       ymm() const { return static_cast<float>(y()) / 1000.0; }
+
+    //Return distance between two points - this and p
+    double      getDistance( SdPoint p ) const;
+
+    //Return distance as int between two points - this and p
+    int         getDistanceInt( SdPoint p ) const { return static_cast<int>(getDistance(p)); }
+
+    //Return square distance between two points - this and p
+    double      getSquareDistance( SdPoint p ) const;
+
+    double      getLenght() const;
+    bool        isEqual( SdPoint p ) const { return x() == p.x() && y() == p.y(); }
+
+    //Комплексное преобразование
+    SdPoint     convertImplement( SdPoint origin, SdPoint offset, SdPvAngle angle, bool mirror );
+    SdPoint     unConvertImplement( SdPoint origin, SdPoint offset, SdPvAngle angle, bool mirror );
+
+    //Проверка условий для точки
+    bool        isOnCircle( SdPoint center, int radius, int delta = 0 ) const ;         //На окружности?
+    bool        isInsideCircle( SdPoint center, int radius ) const;
+    bool        isOnArc( SdPoint center, SdPoint start, SdPoint stop, int delta = 0 ) const; //На дуге?
+    bool        isLeftHigh( SdPoint a ) const;                              //Левее или выше чем a?
+    bool        isOnSegment( SdPoint a, SdPoint b ) const;
+
+    void        swap( SdPoint &p );
+
+    auto        transformFromOffset() const { return QTransform::fromTranslate( x(), y() ); }
+
+    //!
+    //! \brief transformMoveFrom Constructs a transformation matrix that translates point p to the current position
+    //! \param p                 Source translation point
+    //! \return                  Transformation matrix
+    //!
+    QTransform  transformMoveFrom( SdPoint p ) const;
+
+    //!
+    //! \brief transformRotation Constructs a transformation matrix that performs a rotation by the specified angle around
+    //!                          a given point that serves as the center of rotation
+    //! \param angle             Rotation angle
+    //! \return                  Transformation matrix
+    //!
+    QTransform  transformRotation( SdPvAngle angle ) const;
+
+
+    //!
+    //! \brief json Overloaded function to write object content into json writer
+    //! \param js   Json writer
+    //!
+    void        json( SvJsonWriter &js ) const;
+
+    //!
+    //! \brief json Overloaded function to read object content from json reader
+    //! \param js   Json reader
+    //!
+    void        json( const SvJsonReader &js);
+
+    //Return far point, point with big coords
+    static SdPoint farPoint() { return SdPoint(farCoord,farCoord); }
+
+    inline static auto transformFromOffset( SdPoint offset ) { return offset.transformFromOffset(); }
+
+    //!
+    //! \brief angleVector Calculates the rotation angle from point a to point b around center point
+    //! \param a           First point (start)
+    //! \param center      Center point of rotation
+    //! \param b           Second point (end)
+    //! \return            Angle in degrees in range [0, 360) - counterclockwise rotation from a to b
+    //!                    Returns 0.0 if a or b coincides with center
+    //!
+    static double  angleVector( SdPoint a, SdPoint center, SdPoint b );
+
+    //Test if point is far
+    bool        isFar() const { return x() == farCoord && y() == farCoord; }
+  };
+
+
+
+//Interesting points calculation [Вычисление интересных точек]
+//Get intermediate point with 45 degree step vertex
+//    result  --------+ b
+//           /
+//          /
+//       a +
+SdPoint get45( SdPoint a, SdPoint b );
+
+//Get intermediate point with 45 degree step vertex
+//    result  --------+ b
+//           /
+//          /
+//       a +
+//Where orient is b-result orientation
+SdPoint get45oriented( SdPoint a, SdPoint b, SdOrientation first, SdOrientation second );
+
+//Get intermediate point with 90 degree step vertex
+// result  -----------+ b
+//         |
+//         |
+//       a +
+SdPoint get90( SdPoint a, SdPoint b );
+
+//Get intermediate point in according enter type
+SdPoint calcMiddlePoint(SdPoint a, SdPoint b, int enterType );
+
+//Calculate stop point of arc from sector point
+SdPoint calcArcStop( SdPoint center, SdPoint start, SdPoint sector );
+
+bool    calcFreeNearIntersect( SdPoint sour, SdPoint a, SdPoint b, SdPoint &dest );
+SdPvAngle calcDirection90( SdPoint sour, SdPoint dest );
+int     sred( int a, int b, int gridSize );
+bool    isSegmentYAccross( int y, int x1, int x2, SdPoint p1, SdPoint p2, bool inside, int *result = nullptr );
+bool    isSegmentYAccrossA( int y, int x1, int x2, SdPoint p1, SdPoint p2, bool inside );
+
+//Check if three points are all on one line
+bool    is3PointsOnLine( SdPoint p1, SdPoint p2, SdPoint p3 );
+
+#endif // SDPOINT_H

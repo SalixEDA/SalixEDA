@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>SalixEDA</DisplayName>
+    <Description>Multyfunctional electronics schematic and pcb layout EDA programm.</Description>
+    <Version>3.0</Version>
+    <ReleaseDate>2026-03-10</ReleaseDate>
+    <Default>true</Default>
+    <Script>installscript.qs</Script>
+</Package>

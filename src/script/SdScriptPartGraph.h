@@ -1,0 +1,53 @@
+/*
+Project "Electronic schematic and pcb CAD"
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Script language is C-style hi-level language for programming 3d models, 2d parametric graphics and
+  schematic calculations.
+
+  Special variable. When we assign to it then 2d elements appended to the PartItem.
+*/
+#ifndef SDSCRIPTPARTGRAPH_H
+#define SDSCRIPTPARTGRAPH_H
+
+#include "SdScriptValueVariable.h"
+#include "master/SdMasterPart.h"
+
+class SdPItemPart;
+
+class SdScriptPartGraph : public SdScriptValueVariable
+  {
+    SdMasterPart mMasterPart; //!< Intermediate object which contains defaults for 2d graphics attributes
+  public:
+    SdScriptPartGraph( SdPItemPart *part );
+
+    // SdM3dValue interface
+  public:
+    //!
+    //! \brief type Return type of object
+    //! \return     Type of object
+    //!
+    virtual char type() const override { return SD_SCRIPT_TYPE_GRAPH; }
+
+    // SdM3dVariable interface
+  public:
+    //!
+    //! \brief isWriteOnly Return true for special write-only variables with undefined value when read
+    //! \return            true for special write-only variables with undefined value when read
+    //!
+    virtual bool isWriteOnly() const override { return true; }
+
+    //!
+    //! \brief assign Assignment value to variable
+    //! \param src    source of value
+    //!
+    virtual void assign(SdScriptValuePtr src) override;
+  };
+
+#endif // SDSCRIPTPARTGRAPH_H
