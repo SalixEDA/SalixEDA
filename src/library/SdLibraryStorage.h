@@ -267,6 +267,8 @@ class SdLibraryStorage : public QObject
     //!
     QString          authorGlobalName( const QString &authorPublicKey ) const;
 
+    bool             authorIsRegistered( const QString &authorPublicKey ) const;
+
     QString          authorGlobalNameWithRank( const QString &authorPublicKey ) const;
 
     bool             authorGlobalNamePresent( const QString &authorName ) const;

@@ -794,5 +794,7 @@
         <file>pic/iconGlobalStorage.png</file>
         <file>pic/iconPrivateCloud.png</file>
         <file>pic/objectPublic.png</file>
+        <file>fonts/DejaVuSans.ttf</file>
+        <file>fonts/NotoColorEmoji.ttf</file>
     </qresource>
 </RCC>

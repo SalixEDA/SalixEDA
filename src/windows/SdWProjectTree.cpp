@@ -45,6 +45,7 @@ SdWProjectTree::SdWProjectTree(const QString fname, SdProject *prj, QWidget *par
   mFileName(fname)
   {
   //setColumnCount(2);
+  setFont( QFont( QStringList({"DejaVu Sans", "Noto Color Emoji"})) );
 
   if( fname.isEmpty() ) {
     //Creating empty project [Создаем пустой проект]

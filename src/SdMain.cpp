@@ -17,13 +17,14 @@ Description
 #include "objects/SdProp.h"
 #include "library/SdLibraryStorage.h"
 //#include "objects/Sd3dModel.h"
-#include "import/iges/IgesReader.h"
+
 #include <QApplication>
 #include <QSettings>
 #include <QTranslator>
 #include <QLocale>
 #include <QDebug>
 #include <QFile>
+#include <QFontDatabase>
 
 
 
@@ -54,6 +55,10 @@ int main(int argc, char *argv[])
 
   //Creating application
   QApplication a(argc, argv);
+
+  //Set fonts
+  QFontDatabase::addApplicationFont(":/fonts/NotoColorEmoji.ttf");
+  QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
 
   QSettings s;
   if( !s.contains(SDK_LANGUAGE) ) {

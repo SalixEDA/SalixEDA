@@ -453,6 +453,15 @@ QString SdLibraryStorage::authorGlobalName(const QString &authorPublicKey) const
 
 
 
+bool SdLibraryStorage::authorIsRegistered(const QString &authorPublicKey) const
+  {
+  QReadLocker locker( &mLock );
+  return mAuthorAssoc.contains(authorPublicKey);
+  }
+
+
+
+
 QString SdLibraryStorage::authorGlobalNameWithRank(const QString &authorPublicKey) const
   {
   QReadLocker locker( &mLock );

@@ -1094,8 +1094,16 @@ void SdWMain::cmObjectEditDisable()
 void SdWMain::cmObjectPublic()
   {
   if( SdWCommand::cmObjectPublic->isChecked() ) {
-    if( activeEditor() )
-      activeEditor()->cmObjectPublic();
+    //Test if author is registered
+    if( SdLibraryStorage::instance()->authorIsRegistered(SdLibraryStorage::authorPublicKey()) ) {
+      //Change object to public enabled only for registered authors
+      if( activeEditor() )
+        activeEditor()->cmObjectPublic();
+      }
+    else {
+      SdWCommand::cmObjectPublic->setChecked(false);
+      QMessageBox::warning( this, tr("Error"), tr("To make object public is enable only for registered authors. Register and retry.") );
+      }
     }
   else
     SdWCommand::cmObjectPublic->setChecked(true);
