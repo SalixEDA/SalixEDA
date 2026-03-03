@@ -12,6 +12,7 @@ Description
 
 History
   01.01.2026 v3.00 Rebrending from SaliCAD
+  03.03.2026 v3.1  Fix: crash in registration form. Not available to deal with ui from separate thread
 */
 
 #ifndef SDCONFIG
@@ -23,7 +24,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             0
+#define SD_VERSION_MINOR             1
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

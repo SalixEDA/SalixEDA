@@ -12,7 +12,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = SalixEDA
 TEMPLATE = app
 
-RC_ICONS = pic/main.ico
+#RC_ICONS = pic/main.ico
+RC_ICONS = pic/iconLogo.png
 
 #QMAKE_CXXFLAGS += -Wc++17-extensions
 

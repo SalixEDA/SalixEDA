@@ -32,6 +32,18 @@ SdPItemPart *SdPartVariant::extractFromFactory() const
 
 
 
+QString SdPartVariant::getPartTitle() const
+  {
+  //If part if present in library then build visual name from current libary status
+  SdLibraryHeader hdr;
+  if( SdLibraryStorage::instance()->header( mPartId, hdr) )
+    return QString( "%1 (%2)" ).arg( hdr.mName, hdr.authorGlobalName() );
+  //If no part in library then return default title
+  return mPartTitle;
+  }
+
+
+
 
 void SdPartVariant::setPartId(const QString id, SdUndo *undo)
   {
@@ -118,6 +130,9 @@ void SdPartVariant::json(const SdJsonReader &js)
   js.jsonBool( QString("Default"), mDefault );
   if( js.property()->mVersion == SD_BASE_VERSION_2 ) {
     mPartId = SdLibraryStorage::convertSaliCadUidToHash( mPartId );
+    SdLibraryHeader hdr;
+    if( SdLibraryStorage::instance()->header( mPartId, hdr) )
+      mPartTitle = QString( "%1 (%2)" ).arg( hdr.mName, hdr.authorGlobalName() );
     }
   SdObject::json( js );
   }

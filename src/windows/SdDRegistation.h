@@ -28,6 +28,10 @@ class SdDRegistation : public QDialog
     Q_OBJECT
     bool              mFromHelp;
     int               mNameStatus; //0-empty, 1-sali, 2-other
+
+    QString           mEmailText;
+    QString           mStatusText;
+    QString           mPublicNameText;
   public:
     explicit SdDRegistation( bool fromHelp = true, QWidget *parent = nullptr);
     ~SdDRegistation();

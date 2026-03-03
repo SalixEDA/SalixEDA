@@ -35,7 +35,7 @@ class SdPartVariant : public SdObject
     bool         isDefault() const { return mDefault; }
     void         setDefault( bool def ) { mDefault = def; }
     SdPItemPart *extractFromFactory() const;
-    QString      getPartTitle() const { return mPartTitle; }
+    QString      getPartTitle() const;
     QString      getPartId() const { return mPartId; }
     void         setPartId( const QString id, SdUndo *undo );
 

@@ -104,7 +104,9 @@ void SdDRegistation::cmRegistration()
 
     ui->mRegistrationStatus->setText( tr("Query server...") );
     //Perform sync with remote storage
-    auto f = QtConcurrent::run( SdDRegistation::performRegistration, this );
+    QtConcurrent::run( SdDRegistation::performRegistration, this ).then( this, [this] () {
+      ui->mRegistrationStatus->setText( mStatusText );
+      });
     }
 
   }
@@ -144,7 +146,11 @@ void SdDRegistation::cmGetStatus()
 
     ui->mRegistrationStatus->setText( tr("Query server...") );
     //Perform sync with remote storage
-    auto f = QtConcurrent::run( SdDRegistation::performGetStatus, this );
+    QtConcurrent::run( SdDRegistation::performGetStatus, this ).then( this, [this] () {
+      ui->mRegistrationStatus->setText( mStatusText );
+      ui->mEmail->setText( mEmailText );
+      ui->mPublicName->setText( mPublicNameText );
+      });
     }
   }
 
@@ -223,17 +229,16 @@ void SdDRegistation::performRegistration(SdDRegistation *reg)
     map = client.transferMap( map );
 
     if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_INVALID_KEY_PAIR )
-      reg->ui->mRegistrationStatus->setText( tr("Author public key and author private key not equals recorded in db.") );
+      reg->mStatusText = tr("Author public key and author private key not equals recorded in db.");
     else if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_INVALID_NAME )
-      reg->ui->mRegistrationStatus->setText( tr("Assigned name always used by other author.") );
+      reg->mStatusText = tr("Assigned name always used by other author.");
     else if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_OK )
-      reg->ui->mRegistrationStatus->setText( tr("Registration successfull.") );
+      reg->mStatusText = tr("Registration successfull.");
     else
-      reg->ui->mRegistrationStatus->setText( tr("Registration fail. Try later.") );
+      reg->mStatusText = tr("Registration fail. Try later.");
     }
   catch(const std::exception& e) {
-    qDebug() << "Error occured" << e.what();
-    reg->ui->mRegistrationStatus->setText( e.what() );
+    reg->mStatusText = tr("Error occured. ") + QString(e.what());
     }
   }
 
@@ -255,18 +260,17 @@ void SdDRegistation::performGetStatus(SdDRegistation *reg)
     map = client.transferMap( map );
 
     if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_OK ) {
-      reg->ui->mRegistrationStatus->setText( tr("Registered.") );
-      reg->ui->mEmail->setText( map[SDRM_AUTHOR_EMAIL].toString() );
-      reg->ui->mPublicName->setText( map[SDRM_AUTHOR_NAME].toString() );
+      reg->mStatusText = tr("Registered.");
+      reg->mEmailText  = map[SDRM_AUTHOR_EMAIL].toString();
+      reg->mPublicNameText = map[SDRM_AUTHOR_NAME].toString();
       }
     else if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_FAIL )
-      reg->ui->mRegistrationStatus->setText( tr("Not registered.") );
+      reg->mStatusText = tr("Not registered.");
     else
-      reg->ui->mRegistrationStatus->setText( tr("Registration status fail. Try later.") );
+      reg->mStatusText = tr("Registration status fail. Try later.");
     }
   catch(const std::exception& e) {
-    qDebug() << "Error occured" << e.what();
-    reg->ui->mRegistrationStatus->setText( e.what() );
+    reg->mStatusText = tr("Error occured. ") + QString(e.what());
     }
   }
 
