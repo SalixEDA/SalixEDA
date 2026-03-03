@@ -17,6 +17,8 @@ Description
 */
 #include "SdPItemVariant.h"
 #include "SdJsonIO.h"
+#include "objects/SdSection.h"
+#include "library/SdLibraryStorage.h"
 
 SdPItemVariant::SdPItemVariant() :
   SdProjectItem(),
@@ -60,6 +62,30 @@ bool SdPItemVariant::isFieldPresent(const QString fieldName) const
   for( int i = 0; i < mVariantFieldCount; i++ )
     if( mVariantTable.at(i) == fieldName ) return true;
   return false;
+  }
+
+
+
+
+bool SdPItemVariant::isPartSymbolPublic() const
+  {
+  //Return false if no part defined or part is not in library or part is not public
+  if( !partIsPresent() || !SdLibraryStorage::instance()->isLibraryObjectPresentAndPublic( partIdGet() ) )
+    return false;
+
+  //For symbols
+  bool allSectionsPublic = true;
+  //Scan all objects and count SdSection
+  forEachConst( dctSection, [&allSectionsPublic] (SdObject *obj) -> bool {
+    SdPtrConst<SdSection> section( obj );
+    Q_ASSERT( section.isValid() );
+    if( !SdLibraryStorage::instance()->isLibraryObjectPresentAndPublic( section->getSymbolId() ) ) {
+      allSectionsPublic = false;
+      return false;
+      }
+    return true;
+    });
+  return allSectionsPublic;
   }
 
 

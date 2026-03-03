@@ -69,6 +69,7 @@ class SdPartVariant : public SdObject
     //! \param js   Json reader
     //!
     virtual void    json( const SdJsonReader &js ) override;
+
   };
 
 typedef SdPartVariant *SdPartVariantPtr;

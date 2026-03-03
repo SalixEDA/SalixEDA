@@ -99,6 +99,7 @@ SdWEditorComponent::SdWEditorComponent(SdPItemComponent *comp, QWidget *parent) 
       hbox = new QHBoxLayout();
         hbox->addWidget( new QLabel(tr("Part:")) );
         hbox->addWidget( mPart = new QLineEdit() );
+        mPart->setFont( QFont( QStringList({"DejaVu Sans", "Noto Color Emoji"})) );
         hbox->addWidget( mPartSelect = new QPushButton( tr("Select part")) );
       lay->addLayout( hbox );
 
@@ -189,6 +190,17 @@ void SdWEditorComponent::onActivateEditor()
     SdWCommand::cmObjectPublic->setVisible(true);
     SdWCommand::cmObjectPublic->setChecked( mComponent != nullptr && mComponent->isPublic() );
     }
+  }
+
+
+
+void SdWEditorComponent::cmObjectPublic()
+  {
+  //Check if all child objects are public
+  if( mComponent->isPartSymbolPublic() )
+    SdWEditor::cmObjectPublic();
+  else
+    QMessageBox::warning( this, tr("Error"), tr("Not all sections or part are public. Can't make component public") );
   }
 
 
@@ -464,7 +476,7 @@ void SdWEditorComponent::paramAddDefault()
   if( def.exec() ) {
     mUndo->begin( tr("Append default params"), mComponent, false );
     QStringList paramList = def.defParamList();
-    for( const QString &param : paramList )
+    for( const QString &param : std::as_const(paramList) )
       if( !mComponent->paramContains(param) )
         paramAddInt( param, SdDParamEditor::defParamValue(param, mComponent, this) );
     }
@@ -649,6 +661,10 @@ QString SdWEditorComponent::packetPin(int section, const QString pinName)
   {
   return QString("%1:%2").arg(section+1).arg(pinName);
   }
+
+
+
+
 
 
 

@@ -41,7 +41,7 @@ class SdSection : public SdObject
     SdSection();
 
     QString          getPinNumber( const QString name ) const { return mAssociationTable.value(name); }
-    QString          getSymbolTitle() const { return mSymbolTitle; }
+    QString          getSymbolTitle() const;
     QString          getSymbolId() const { return mSymbolId; }
     SdPinAssociation getPins() const { return mAssociationTable; }
     //Set new symbol id or update previously setuped

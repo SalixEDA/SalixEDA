@@ -31,6 +31,19 @@ SdSection::SdSection() :
 
 
 
+QString SdSection::getSymbolTitle() const
+  {
+  //If symbol if present in library then build visual name from current libary status
+  SdLibraryHeader hdr;
+  if( SdLibraryStorage::instance()->header( mSymbolId, hdr) )
+    return QString( "%1 %3(%2)" ).arg( hdr.mName, hdr.authorGlobalName(), publicString(hdr.isPublic()) );
+  //If no symbol in library then return default title
+  return mSymbolTitle;
+  }
+
+
+
+
 
 
 
@@ -45,7 +58,7 @@ void SdSection::setSymbolId(const QString id, SdUndo *undo)
     undo->prop( &mSymbolId, &mSymbolTitle, &mAssociationTable );
     //Setup new symbol info
     mSymbolId = symbol->hashUidName();
-    mSymbolTitle = QString( "%1 (%2)" ).arg(symbol->getTitle()).arg(symbol->authorGlobalName());
+    mSymbolTitle = QString( "%1 (%2)" ).arg(symbol->getTitle(), symbol->authorGlobalName());
     //Accum pins
     SdPinAssociation pins;
     symbol->forEach( dctSymPin, [&pins, this] (SdObject *obj) -> bool {

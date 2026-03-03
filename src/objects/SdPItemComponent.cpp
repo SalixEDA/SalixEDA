@@ -193,6 +193,7 @@ void SdPItemComponent::sectionPinNumberSet(int sectionIndex, const QString pinNa
 
 
 
+
 QString SdPItemComponent::getType() const
   {
   return QString(SD_TYPE_COMPONENT);

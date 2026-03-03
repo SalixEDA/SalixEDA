@@ -58,7 +58,7 @@ QString SdContainerFile::getUidName() const
 
 QString SdContainerFile::getExtendTitle() const
   {
-  return QString("%1 [%4%2] (%3)").arg( mTitle, SvTime2x::toLocalString(getTime()), authorGlobalName( mAuthorKey ), isPublic() ? QString("🌐") : QString("") );
+  return QString("%1 [%4%2] (%3)").arg( mTitle, SvTime2x::toLocalString(getTime()), authorGlobalName( mAuthorKey ), publicString(isPublic()) );
   }
 
 

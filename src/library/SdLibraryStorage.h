@@ -224,12 +224,15 @@ class SdLibraryStorage : public QObject
     //!
     bool               isLibraryObjectOlderOrNone( const SdContainerFile *item ) const;
 
+    bool               isLibraryObjectPresentAndPublic( const QString &hashUidName ) const;
+
     //!
     //! \brief cfObjectContains Return true if object contains in library
     //! \param hashUidName      hashUidName of object
     //! \return                 True if object contains in library
     //!
     bool               cfObjectContains( const QString hashUidName ) const;
+
 
 
     SdLibraryReference cfReference( const QString &hashUidName ) const;

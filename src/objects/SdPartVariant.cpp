@@ -40,7 +40,7 @@ QString SdPartVariant::getPartTitle() const
   //If part if present in library then build visual name from current libary status
   SdLibraryHeader hdr;
   if( SdLibraryStorage::instance()->header( mPartId, hdr) )
-    return QString( "%1 (%2)" ).arg( hdr.mName, hdr.authorGlobalName() );
+    return QString( "%1 %3(%2)" ).arg( hdr.mName, hdr.authorGlobalName(), publicString(hdr.isPublic()) );
   //If no part in library then return default title
   return mPartTitle;
   }
@@ -139,6 +139,10 @@ void SdPartVariant::json(const SdJsonReader &js)
     }
   SdObject::json( js );
   }
+
+
+
+
 
 
 

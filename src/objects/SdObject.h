@@ -169,6 +169,7 @@ class SdObject
     static  SdObject* buildFromJson( const SdJsonReader &js );
 
 
+    inline static  QString   publicString( bool isPublic ) { return isPublic ? QString("🌐") : QString(""); }
   };
 
 

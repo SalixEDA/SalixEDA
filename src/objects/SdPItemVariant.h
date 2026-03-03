@@ -45,6 +45,7 @@ class SdPItemVariant : public SdProjectItem
     bool             isFieldPresent( const QString fieldName ) const;
 
 
+    bool             isPartSymbolPublic() const;
 
 
     //Part

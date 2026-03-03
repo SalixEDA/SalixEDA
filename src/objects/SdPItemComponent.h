@@ -85,7 +85,6 @@ class SdPItemComponent : public SdPItemVariant
     //Setup new pin number for desired pin name for section
     void                   sectionPinNumberSet( int sectionIndex, const QString pinName, const QString pinNumber, SdUndo *undo );
 
-
     // SdObject interface
   public:
     virtual QString getType() const override;

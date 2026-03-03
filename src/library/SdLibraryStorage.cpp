@@ -347,6 +347,15 @@ bool SdLibraryStorage::isLibraryObjectOlderOrNone(const SdContainerFile *item) c
 
 
 
+
+bool SdLibraryStorage::isLibraryObjectPresentAndPublic(const QString &hashUidName) const
+  {
+  QReadLocker locker( &mLock );
+  return mReferenceMap.contains(hashUidName) && mReferenceMap.value(hashUidName).isPublic();
+  }
+
+
+
 bool SdLibraryStorage::cfObjectContains(const QString hashUidName) const
   {
   QReadLocker locker( &mLock );
