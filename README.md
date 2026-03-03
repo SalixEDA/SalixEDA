@@ -68,14 +68,14 @@ SalixEDA - это кроссплатформенная самостоятель�
 
 # Comparison
 
-| Feature                      | SalixEda  | KiCad   |
-| ---------------------------- |:---------:|:-------:|
-| Single-file project          | ✓         | ✗       |
-| Immutable component versions | ✓         | Partial |
-| Real-time schematic-PCB sync | ✓         | Manual  |
-| Auto-router                  | Semi-auto | ✓       |
-| Impedance control            | ✗         | ✓       |
-| Hierarchical design          | ✗         | ✓       |
+| Feature                      | SalixEda       | KiCad   |
+| ---------------------------- |:--------------:|:-------:|
+| Single-file project          | ✓              | ✗       |
+| Immutable component versions | ✓              | Partial |
+| Real-time schematic-PCB sync | ✓              | Manual  |
+| Auto-router                  | Auto completer | ✓       |
+| Impedance control            | ✗              | ✓       |
+| Hierarchical design          | ✗              | ✓       |
 
 SalixEDA ориентирован на embedded и промышленную электронику, а не на высокочастотную или высокоинтегрированную электронику типа IPhone.
 
@@ -112,6 +112,12 @@ SalixEDA написан с C++ 20. В качестве фреймворка ис
 
 
 # Contributing
+
+
+
+# Third-party licenses
+
+- Qt6 - LGPL
 
 
 
