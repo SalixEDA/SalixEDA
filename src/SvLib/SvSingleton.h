@@ -1,15 +1,20 @@
 /*
-  Project "SvLib common library."
-  Author
-    Alexander Sibilev
-  Internet
-    www.salilab.com
+Project "SvLib common library."
+Copyright (c) 2026 Alexander Sibilev
 
-  Description
-    Singleton pattern
+SPDX-License-Identifier: GPL-3.0-or-later
 
-    We make constructor for some class private but public svInstance fuction which contains
-    and return single pointer to class object
+Author
+  Alexander Sibilev
+
+Internet
+  www.SalixEDA.org
+
+Description
+  Singleton pattern
+
+  We make constructor for some class private but public svInstance fuction which contains
+  and return single pointer to class object
 
     class SomeClass {
         //SomeClass constructor is private to disable create class object outside svInstance function
@@ -19,11 +24,11 @@
         static SomeClass *instance() { static SomeClass obj; return &obj; }
       };
 
-  History
-    24.08.2022 Append SV_SINGLETON macro to simplify singleton declaration
-               Refactor singleton as object and object ptr
-    17.03.2023 v1 Append version macro
-    27.08.2024 v2 Fix error: function template is wrong way
+History
+  24.08.2022 Append SV_SINGLETON macro to simplify singleton declaration
+             Refactor singleton as object and object ptr
+  17.03.2023 v1 Append version macro
+  27.08.2024 v2 Fix error: function template is wrong way
 */
 #ifndef SVSINGLETON_H
 #define SVSINGLETON_H

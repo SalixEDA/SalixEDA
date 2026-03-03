@@ -1,14 +1,20 @@
 /*
-  Project "SvLib common library."
-  Author
-    Alexander Sibilev
-  Internet
-    www.salilab.com
+Project "SvLib common library."
+Copyright (c) 2026 Alexander Sibilev
 
-  Description
-    Extends SvJsonIO to support some 3d objects
-  History
-    25.07.2022 v1 Begin version support
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Author
+  Alexander Sibilev
+
+Internet
+  www.SalixEDA.org
+
+Description
+  Extends SvJsonIO to support some 3d objects
+
+History
+  25.07.2022 v1 Begin version support
 */
 #ifndef SVJSON3DIO_H
 #define SVJSON3DIO_H

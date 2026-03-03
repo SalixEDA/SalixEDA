@@ -1,12 +1,17 @@
 /*
-  Project "SvLib common library."
-  Author
-    Alexander Sibilev
-  Internet
-    www.salilab.com
+Project "SvLib common library."
+Copyright (c) 2026 Alexander Sibilev
 
-  Description
-    SvDir string which contains directory path
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Author
+  Alexander Sibilev
+
+Internet
+  www.SalixEDA.org
+
+Description
+  SvDir string which contains directory path
 */
 #ifndef SVDIR_H
 #define SVDIR_H

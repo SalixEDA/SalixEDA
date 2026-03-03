@@ -1,14 +1,19 @@
 /*
-  Project  "SvLib - common library"
-  Author
-    Alexander Sibilev
-  Internet
-    www.saliLab.com
+Project "SvLib common library."
+Copyright (c) 2026 Alexander Sibilev
 
-  Description
-    Common short time
+SPDX-License-Identifier: GPL-3.0-or-later
 
-    All time in seconds 32-bit from begin of year 2018.
+Author
+  Alexander Sibilev
+
+Internet
+  www.SalixEDA.org
+
+Description
+  Common short time
+
+  All time in seconds 32-bit from begin of year 2018.
 */
 #ifndef SVTIME2X_H
 #define SVTIME2X_H

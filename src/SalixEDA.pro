@@ -42,7 +42,6 @@ docs.CONFIG += recursive  # Позволяет цели зависеть от д
 
 
 SOURCES += \
-    SvLib/SvNetClient.cpp \
     import/iges/IgesEntityCurveOnParametricSurface.cpp \
     import/iges/IgesEntityFaceGenerator.cpp \
     import/iges/IgesEntityRationalBSplineCurve.cpp \
@@ -427,7 +426,6 @@ SOURCES += \
 
 HEADERS  += \
     SvLib/SvJson3dIO.h \
-    SvLib/SvNetClient.h \
     import/iges/IgesEntityCurveOnParametricSurface.h \
     import/iges/IgesEntityFaceGenerator.h \
     import/iges/IgesEntityRationalBSplineCurve.h \

@@ -1,31 +1,36 @@
 /*
-  Project "SvLib common library."
-  Author
-    Alexander Sibilev
-  Internet
-    www.salilab.com
+Project "SvLib common library."
+Copyright (c) 2026 Alexander Sibilev
 
-  Description
-    Improving the visibility of json io
-    There are two classes here: writer and reader. Signatures of calling read and write functions in
-    both classes are completely identical, so calls can be copied to both the write and read functions.
-  History
-    05.02.2022 v1 Begin version support
-    05.03.2022 v2 Append QPoint support
-    06.04.2022 v3 Append value of any class support which must be have jsonWrite and jsonRead members
-    21.04.2022 v4 Append map of list of any class support
-    26.04.2022 v5 Full English remark
-    24.05.2022 v6 Replace all const char* on QString which support both using with const char* and QString
-    25.05.2022 v7 Append contains member in SvJsonWriter
-    25.05.2022 v8 Refactor compound member-functions to support deriving writer and reader from base classes
-    08.07.2022 v9 Append possibility to select output format for json file intended or compressed
-    16.08.2022 v10 Append helper class SvObjectMap which help to save and restore single hierarhy objects
-    15.09.2022 v11 Fix: jsonListCrossPtr, jsonArray, jsonArrayPtr
-               v12 Fix: jsonCrossPtr writer with nullptr
-    17.02.2023 v13 Append transfer binary data with function jsonHex
-    17.03.2023 v14 Append transfer binary void data with function jsonHex
-    30.08.2023 v15 Append transfer QByteArray with function jsonHex
-    16.02.2026 v16 Append quint32 and quint64 transfer as jsonHexNN
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Author
+  Alexander Sibilev
+
+Internet
+  www.SalixEDA.org
+
+Description
+  Improving the visibility of json io
+  There are two classes here: writer and reader. Signatures of calling read and write functions in
+  both classes are completely identical, so calls can be copied to both the write and read functions.
+History
+  05.02.2022 v1 Begin version support
+  05.03.2022 v2 Append QPoint support
+  06.04.2022 v3 Append value of any class support which must be have jsonWrite and jsonRead members
+  21.04.2022 v4 Append map of list of any class support
+  26.04.2022 v5 Full English remark
+  24.05.2022 v6 Replace all const char* on QString which support both using with const char* and QString
+  25.05.2022 v7 Append contains member in SvJsonWriter
+  25.05.2022 v8 Refactor compound member-functions to support deriving writer and reader from base classes
+  08.07.2022 v9 Append possibility to select output format for json file intended or compressed
+  16.08.2022 v10 Append helper class SvObjectMap which help to save and restore single hierarhy objects
+  15.09.2022 v11 Fix: jsonListCrossPtr, jsonArray, jsonArrayPtr
+             v12 Fix: jsonCrossPtr writer with nullptr
+  17.02.2023 v13 Append transfer binary data with function jsonHex
+  17.03.2023 v14 Append transfer binary void data with function jsonHex
+  30.08.2023 v15 Append transfer QByteArray with function jsonHex
+  16.02.2026 v16 Append quint32 and quint64 transfer as jsonHexNN
 */
 #ifndef SVJSONIO_H
 #define SVJSONIO_H
