@@ -76,6 +76,7 @@ SdWEditorComponent::SdWEditorComponent(SdPItemComponent *comp, QWidget *parent) 
         QVBoxLayout *vbox = new QVBoxLayout();
           vbox->addWidget( new QLabel(tr("Sections list")) );
           vbox->addWidget( mSectionList = new QListWidget() );
+          mSectionList->setFont( QFont( QStringList({"DejaVu Sans", "Noto Color Emoji"})) );
         hbox->addLayout( vbox );
 
         //Pin pack info
