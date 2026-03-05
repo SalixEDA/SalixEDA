@@ -19,11 +19,14 @@ import (
 // ========== ГЛОБАЛЬНЫЕ КОНСТАНТЫ ==========
 
 const (
-	// CompanyName - название компании (используется в пути к конфигурации)
-	CompanyName = "YourCompany"
+  // CompanyName - название компании (используется в пути к конфигурации)
+  CompanyName = "YourCompany"
 
-	// ApplicationName - название приложения (используется в пути к конфигурации)
-	ApplicationName = "YourApp"
+  // ApplicationName - название приложения (используется в пути к конфигурации)
+  ApplicationName = "YourApp"
+
+  // ServerURL - базовый URL сервера с файлами для скачивания
+  ServerURL = "http://your-server.com/download/data"
 )
 
 // ZipFiles - список ZIP-файлов для мониторинга и обновления
@@ -36,20 +39,29 @@ var ZipFiles = []string{
 
 // ========== СТРУКТУРА КОНФИГУРАЦИИ ==========
 
+// FileInfo структура для хранения информации о загруженных файлах
+type FileInfo struct {
+  Name    string    `json:"name"`
+  ModTime time.Time `json:"mod_time"`
+}
+
 // Config структура конфигурации установки приложения
 // Сохраняется в JSON-файл и доступна как установщику, так и основной программе
 type Config struct {
-	// Период проверки обновлений в днях
-	CheckPeriodDays int `json:"check_period_days"`
+  // Период проверки обновлений в днях
+  CheckPeriodDays int `json:"check_period_days"`
 
-	// Время последней проверки обновлений (RFC3339)
-	LastCheck string `json:"last_check"`
+  // Время последней проверки обновлений (RFC3339)
+  LastCheck string `json:"last_check"`
 
-	// Путь к установленной программе
-	InstallPath string `json:"install_path"`
+  // Путь к установленной программе
+  InstallPath string `json:"install_path"`
 
-	// Создавать ли ярлыки (только для первой установки)
-	CreateShortcuts bool `json:"create_shortcuts"`
+  // Создавать ли ярлыки (только для первой установки)
+  CreateShortcuts bool `json:"create_shortcuts"`
+
+  // Список загруженных файлов с их датами
+  DownloadedFiles []FileInfo `json:"downloaded_files,omitempty"`
 }
 
 // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С ПУТЯМИ ==========
@@ -147,15 +159,31 @@ func LoadConfig() (*Config, error) {
 	return &config, nil
 }
 
+
+
+
 // DefaultConfig возвращает конфигурацию по умолчанию
 func DefaultConfig() *Config {
-	return &Config{
-		CheckPeriodDays:  7,  // проверка раз в неделю
-		LastCheck:        "", // никогда не проверяли
-		InstallPath:      "",
-		CreateShortcuts:  true,
-	}
+  // Создаем список файлов из глобального списка ZipFiles с нулевыми датами
+  downloadedFiles := make([]FileInfo, len(ZipFiles))
+  for i, name := range ZipFiles {
+    downloadedFiles[i] = FileInfo{
+      Name:    name,
+      ModTime: time.Time{}, // нулевое время
+    }
+  }
+
+  return &Config{
+    CheckPeriodDays:  7,
+    LastCheck:        "",
+    InstallPath:      "",
+    CreateShortcuts:  true,
+    DownloadedFiles:  downloadedFiles,
+  }
 }
+
+
+
 
 // Save сохраняет конфигурацию в файл
 func (c *Config) Save() error {

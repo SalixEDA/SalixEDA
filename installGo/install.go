@@ -1,0 +1,415 @@
+// install.go
+package main
+
+import (
+  "archive/zip"
+  "fmt"
+  "io"
+  "log"
+  "net/http"
+  "os"
+  "path/filepath"
+  "time"
+
+  "fyne.io/fyne/v2"
+)
+
+
+
+func showErrorAndExit(ui *InstallUI, msg string) {
+  // Создаем канал для ожидания закрытия
+  done := make(chan struct{})
+
+  fyne.Do(func() {
+    // Устанавливаем текст сообщения об ошибке
+    ui.errorScreen.messageLabel.SetText(msg)
+
+    // Переключаем на экран ошибки
+    ui.ShowScreen(ScreenError)
+
+    // Переопределяем кнопку закрытия
+    oldOnTapped := ui.errorScreen.closeBtn.OnTapped
+    ui.errorScreen.closeBtn.OnTapped = func() {
+      oldOnTapped() // вызовет os.Exit(1)
+      close(done)
+    }
+  })
+
+  // Блокируем текущий поток до закрытия
+  <-done
+}
+
+
+
+
+// doSetup выполняет установку приложения с графическим интерфейсом
+func doSetup(cfg *Config) {
+  // Проверяем поле с каталогом установки
+  if cfg.InstallPath == "" {
+    // Если пустое, заменяем ВСЮ конфигурацию на конфигурацию по умолчанию
+    *cfg = *DefaultConfig()
+    log.Printf("Путь установки не указан, использую конфигурацию по умолчанию")
+  }
+
+  // Создаем интерфейс
+  ui := NewInstallUI(cfg)
+
+  // Показываем экран установки
+  ui.ShowScreen(ScreenSetup)
+
+  // Запускаем окно (блокируется до закрытия)
+  ui.window.ShowAndRun()
+}
+
+
+
+
+
+
+
+
+// performInstallation выполняет установку или обновление с визуальным интерфейсом
+func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
+  // Определяем режим работы
+  isInstall := len(filesToUpdate) == 0
+
+  if isInstall {
+    // Если установка, берем все файлы из глобального списка
+    filesToUpdate = ZipFiles
+    // Создаем каталог установки, если его нет
+    if err := os.MkdirAll(cfg.InstallPath, 0755); err != nil {
+      showErrorAndExit(ui, fmt.Sprintf("Не удалось создать каталог установки: %v", err))
+      return
+    }
+    log.Println("Режим: установка")
+  } else {
+    log.Printf("Режим: обновление (%d файлов)", len(filesToUpdate))
+  }
+
+  // Показываем экран прогресса
+  fyne.Do(func() {
+    ui.ShowScreen(ScreenProgress)
+    ui.progressScreen.stageLabel.SetText(ui.texts.ProgressPrepare)
+    ui.progressScreen.percentLabel.SetText("0%")
+    ui.progressScreen.progressBar.SetValue(0)
+    ui.progressScreen.downloadInfoLabel.SetText("")
+  })
+
+  // Переменная для отслеживания прогресса
+  var currentProgress float64 = 0
+
+  // ===== ЭТАП 1: Скачивание ZIP файлов (40%) =====
+  // Сколько процентов на каждый файл
+  percentPerFile := 40.0 / float64(len(filesToUpdate))
+
+  for _, fileName := range filesToUpdate {
+    // Обновляем информацию о текущем файле
+    fyne.Do(func() {
+      ui.progressScreen.stageLabel.SetText(fmt.Sprintf(ui.texts.ProgressDownload, fileName))
+    })
+
+    // Формируем URL для скачивания
+    fileURL := fmt.Sprintf("%s/%s", ServerURL, fileName)
+    destPath := filepath.Join(cfg.InstallPath, fileName)
+
+    // Получаем информацию о файле на сервере
+    client := &http.Client{Timeout: 30 * time.Second}
+    resp, err := client.Head(fileURL)
+    if err != nil {
+      showErrorAndExit(ui, fmt.Sprintf("Ошибка подключения к серверу: %v", err))
+      return
+    }
+
+    // Получаем размер файла и дату модификации
+    fileSize := resp.ContentLength
+    var modTime time.Time
+    if lastMod := resp.Header.Get("Last-Modified"); lastMod != "" {
+      modTime, _ = http.ParseTime(lastMod)
+    }
+    resp.Body.Close()
+
+    if fileSize <= 0 {
+      showErrorAndExit(ui, fmt.Sprintf("Не удалось определить размер файла %s", fileName))
+      return
+    }
+
+    // Создаем файл для записи
+    outFile, err := os.Create(destPath)
+    if err != nil {
+      showErrorAndExit(ui, fmt.Sprintf("Не удалось создать файл: %v", err))
+      return
+    }
+
+    // Скачиваем с отображением прогресса
+    resp, err = client.Get(fileURL)
+    if err != nil {
+      outFile.Close()
+      showErrorAndExit(ui, fmt.Sprintf("Ошибка скачивания: %v", err))
+      return
+    }
+
+    // Создаем reader с отслеживанием прогресса
+    var downloaded int64
+    buf := make([]byte, 256*1024) // 256KB буфер
+
+    for {
+      n, err := resp.Body.Read(buf)
+      if n > 0 {
+        _, writeErr := outFile.Write(buf[:n])
+        if writeErr != nil {
+          resp.Body.Close()
+          outFile.Close()
+          showErrorAndExit(ui, fmt.Sprintf("Ошибка записи: %v", writeErr))
+          return
+        }
+
+        downloaded += int64(n)
+
+        // Обновляем прогресс
+        progress := currentProgress + (float64(downloaded)/float64(fileSize))*percentPerFile
+
+        // Обновляем информацию о скачивании
+        downloadInfo := fmt.Sprintf(ui.texts.ProgressDownloadOf,
+          formatBytes(downloaded), formatBytes(fileSize))
+
+        fyne.Do(func() {
+          ui.progressScreen.progressBar.SetValue(progress)
+          ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(progress)))
+          ui.progressScreen.downloadInfoLabel.SetText(downloadInfo)
+        })
+      }
+
+      if err != nil {
+        if err.Error() == "EOF" {
+          break
+        }
+        resp.Body.Close()
+        outFile.Close()
+        showErrorAndExit(ui, fmt.Sprintf("Ошибка чтения: %v", err))
+        return
+      }
+    }
+
+    resp.Body.Close()
+    outFile.Close()
+
+    // Обновляем время в конфигурации для этого файла
+    for i := range cfg.DownloadedFiles {
+      if cfg.DownloadedFiles[i].Name == fileName {
+        cfg.DownloadedFiles[i].ModTime = modTime
+        break
+      }
+    }
+
+    // Обновляем общий прогресс
+    currentProgress += percentPerFile
+    fyne.Do(func() {
+      ui.progressScreen.progressBar.SetValue(currentProgress)
+      ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
+    })
+  }
+
+  // Сохраняем конфигурацию с обновленными временами файлов
+  if err := cfg.Save(); err != nil {
+    showErrorAndExit(ui, fmt.Sprintf("Ошибка сохранения конфигурации: %v", err))
+    return
+  }
+
+  // ===== ЭТАП 2: Распаковка ZIP файлов (40%) =====
+  fyne.Do(func() {
+    ui.progressScreen.stageLabel.SetText(ui.texts.ProgressExtract)
+  })
+  percentPerFile = 40.0 / float64(len(filesToUpdate))
+  currentProgress = 40.0
+
+  for _, fileName := range filesToUpdate {
+    zipPath := filepath.Join(cfg.InstallPath, fileName)
+    fyne.Do(func() {
+      ui.progressScreen.stageLabel.SetText(fmt.Sprintf(ui.texts.ProgressExtract, fileName))
+    })
+
+    // Открываем ZIP архив
+    zipReader, err := zip.OpenReader(zipPath)
+    if err != nil {
+      showErrorAndExit(ui, fmt.Sprintf("Не удалось открыть ZIP архив: %v", err))
+      return
+    }
+
+    // Подсчитываем общий размер распаковываемых файлов для прогресса
+    var totalUnpackSize int64
+    for _, f := range zipReader.File {
+      totalUnpackSize += int64(f.UncompressedSize64)
+    }
+
+    var unpacked int64
+    for _, f := range zipReader.File {
+      // Распаковываем файл
+      fpath := filepath.Join(cfg.InstallPath, f.Name)
+
+      // Создаем директории
+      if f.FileInfo().IsDir() {
+        os.MkdirAll(fpath, os.ModePerm)
+        continue
+      }
+
+      os.MkdirAll(filepath.Dir(fpath), os.ModePerm)
+
+      // Открываем файл в архиве
+      rc, err := f.Open()
+      if err != nil {
+        zipReader.Close()
+        showErrorAndExit(ui, fmt.Sprintf("Не удалось открыть файл в архиве: %v", err))
+        return
+      }
+
+      // Проверяем, является ли файл символической ссылкой
+      if f.Mode()&os.ModeSymlink != 0 {
+        // Читаем цель ссылки
+        linkTarget, err := io.ReadAll(rc)
+        rc.Close()
+        if err != nil {
+          zipReader.Close()
+          showErrorAndExit(ui, fmt.Sprintf("Ошибка чтения ссылки: %v", err))
+          return
+        }
+
+        // Создаем символическую ссылку
+        if err := os.Symlink(string(linkTarget), fpath); err != nil {
+          zipReader.Close()
+          showErrorAndExit(ui, fmt.Sprintf("Ошибка создания ссылки: %v", err))
+          return
+        }
+      } else {
+        // Обычный файл - создаем и копируем
+        outFile, err := os.Create(fpath)
+        if err != nil {
+          rc.Close()
+          zipReader.Close()
+          showErrorAndExit(ui, fmt.Sprintf("Не удалось создать файл: %v", err))
+          return
+        }
+
+        // Копируем с подсчетом прогресса
+        written, err := io.Copy(outFile, rc)
+        outFile.Close()
+        rc.Close()
+
+        if err != nil {
+          zipReader.Close()
+          showErrorAndExit(ui, fmt.Sprintf("Ошибка при распаковке: %v", err))
+          return
+        }
+
+        unpacked += written
+      }
+
+      // Обновляем прогресс
+      fileProgress := float64(unpacked) / float64(totalUnpackSize) * percentPerFile
+      totalProgress := currentProgress + fileProgress
+
+      fyne.Do(func() {
+        ui.progressScreen.progressBar.SetValue(totalProgress)
+        ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(totalProgress)))
+        ui.progressScreen.downloadInfoLabel.SetText(fmt.Sprintf(ui.texts.ProgressExtractedOf,
+          formatBytes(unpacked), formatBytes(totalUnpackSize)))
+      })
+    }
+
+    zipReader.Close()
+
+    // Удаляем ZIP файл после распаковки
+    os.Remove(zipPath)
+
+    // Обновляем прогресс после завершения файла
+    currentProgress += percentPerFile
+    fyne.Do(func() {
+      ui.progressScreen.progressBar.SetValue(currentProgress)
+      ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
+    })
+  }
+
+  // Если это обновление, то заканчиваем здесь
+  if !isInstall {
+    fyne.Do(func() {
+      ui.window.Close()
+    })
+    return
+  }
+
+  // ===== ЭТАП 3: Создание ярлыков (10%) =====
+  fyne.Do(func() {
+    ui.progressScreen.stageLabel.SetText(ui.texts.ProgressShortcuts)
+    ui.progressScreen.downloadInfoLabel.SetText("")
+  })
+
+  if cfg.CreateShortcuts {
+    if err := InstallShortcuts(cfg.InstallPath); err != nil {
+      showErrorAndExit(ui, fmt.Sprintf("Ошибка создания ярлыков: %v", err))
+      return
+    }
+  }
+
+  currentProgress += 10
+  fyne.Do(func() {
+    ui.progressScreen.progressBar.SetValue(currentProgress)
+    ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
+  })
+
+  // ===== ЭТАП 4: Копирование установщика (10%) =====
+  fyne.Do(func() {
+    ui.progressScreen.stageLabel.SetText(ui.texts.ProgressCopy)
+  })
+
+  // Получаем путь к текущему исполняемому файлу
+  execPath, err := os.Executable()
+  if err != nil {
+    showErrorAndExit(ui, fmt.Sprintf("Ошибка копирования установщика: %v", err))
+    return
+  }
+
+  // Определяем имя установщика в целевой папке
+  installerName := filepath.Base(execPath)
+  destInstallerPath := filepath.Join(cfg.InstallPath, installerName)
+
+  // Копируем файл
+  sourceData, err := os.ReadFile(execPath)
+  if err != nil {
+    showErrorAndExit(ui, fmt.Sprintf("Ошибка чтения установщика: %v", err))
+    return
+  }
+
+  if err := os.WriteFile(destInstallerPath, sourceData, 0755); err != nil {
+    showErrorAndExit(ui, fmt.Sprintf("Ошибка записи установщика: %v", err))
+    return
+  }
+
+  currentProgress += 10
+  fyne.Do(func() {
+    ui.progressScreen.progressBar.SetValue(currentProgress)
+    ui.progressScreen.percentLabel.SetText("100%")
+  })
+
+  // ===== ЗАВЕРШЕНИЕ =====
+  fyne.Do(func() {
+    ui.ShowScreen(ScreenComplete)
+  })
+}
+
+
+
+
+// Вспомогательные функции
+func formatBytes(bytes int64) string {
+  const unit = 1024
+  if bytes < unit {
+    return fmt.Sprintf("%d B", bytes)
+  }
+  div, exp := int64(unit), 0
+  for n := bytes / unit; n >= unit; n /= unit {
+    div *= unit
+    exp++
+  }
+  return fmt.Sprintf("%.1f %cB", float64(bytes)/float64(div), "KMGTPE"[exp])
+}
+
+

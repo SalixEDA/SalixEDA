@@ -200,8 +200,10 @@ void SdWEditorComponent::cmObjectPublic()
   //Check if all child objects are public
   if( mComponent->isPartSymbolPublic() )
     SdWEditor::cmObjectPublic();
-  else
+  else {
+    SdWCommand::cmObjectPublic->setChecked(false);
     QMessageBox::warning( this, tr("Error"), tr("Not all sections or part are public. Can't make component public") );
+    }
   }
 
 
