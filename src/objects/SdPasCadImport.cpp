@@ -250,8 +250,22 @@ bool SdPasCadImport::project()
 bool SdPasCadImport::projectItem(SdProjectItem *item)
   {
   //DContainerPic::Read
+  if( !readContainer(item) )
+    return false;
   //DOwnerPic::Read( is );
 
+  //DPoint origin;
+  item->setOrigin( readPoint(), nullptr );
+  //DBool  orgPresent;
+  readBool();
+  return true;
+  }
+
+
+
+
+bool SdPasCadImport::readContainer(SdProjectItem *item)
+  {
   //param.Read( is );
   QString params = readNString();
   //Separate on lines
@@ -269,10 +283,6 @@ bool SdPasCadImport::projectItem(SdProjectItem *item)
   //DInt32  lockCount;   //Счетчик блокировок
   readInt32();
   //DBool   handCreate;  //Истина если объект создан вручную и не подлежит удалению
-  readBool();
-  //DPoint origin;
-  item->setOrigin( readPoint(), nullptr );
-  //DBool  orgPresent;
   readBool();
   return true;
   }
@@ -308,7 +318,8 @@ SdObject *SdPasCadImport::buildObject(int id)
 //#define pasCadObjSymImpPic     13 //Вхождение символа в схему
     case pasCadObjSymbolPic     : //Символ (схемное изображение компоненты)
       return new SdPItemSymbol();
-//#define pasCadObjAliasPic      15 //Компонент (связывает воедино символ, корпус и параметры)
+    case pasCadObjAliasPic      : //Компонент (связывает воедино символ, корпус и параметры)
+      return new SdPItemComponent();
 //#define pasCadObjPrtImpPic     16 //Вхождение корпуса в печатную плату
     case pasCadObjPrtPinPic     : //Ножка корпуса
       return new SdGraphPartPin();
@@ -482,7 +493,8 @@ bool SdPasCadImport::readSingleObject(SdContainer *container)
 //#define pasCadObjSymImpPic     13 //Вхождение символа в схему
     case pasCadObjSymbolPic      : //Символ (схемное изображение компоненты)
       return readSymbol( obj );
-//#define pasCadObjAliasPic      15 //Компонент (связывает воедино символ, корпус и параметры)
+    case pasCadObjAliasPic      : //Компонент (связывает воедино символ, корпус и параметры)
+      return readComponent( obj );
 //#define pasCadObjPrtImpPic     16 //Вхождение корпуса в печатную плату
     case pasCadObjPrtPinPic      : //Ножка корпуса
       return readPartPin( obj );
@@ -536,6 +548,8 @@ bool SdPasCadImport::readSymbol(SdObject *obj)
   //pins.Read( is, this );
   if( !readObjectTable( sym ) ) return false;
 
+  //Append pin association to pin map. It will be used when component will be created
+  mSymbolsPinMap.insert( sym->hashUidName(), mPinsPack );
 
   //Create associated component
 //  SdPItemComponent *comp = new SdPItemComponent();
@@ -549,7 +563,12 @@ bool SdPasCadImport::readSymbol(SdObject *obj)
   // DIdent    ident (NConstString)
   // DRect     overRect
   SdGraphIdent *ident = sym->identGet();
-  return readIdent( ident );
+  bool res = readIdent( ident );
+
+  //Lock symbol
+  sym->setEditEnable( false, "" );
+
+  return res;
   }
 
 
@@ -569,15 +588,20 @@ bool SdPasCadImport::readPart(SdObject *obj)
   int reserv = readInt32();
   Q_UNUSED(reserv)
 
-//  picture.Read( is, this );
+  //  picture.Read( is, this );
   if( !readObjectTable( part ) ) return false;
 
-//  pins.Read( is, this );
+  //  pins.Read( is, this );
   if( !readObjectTable( part ) ) return false;
 
-//  ident.Read( is );
+  //  ident.Read( is );
   SdGraphIdent *ident = part->identGet();
-  return readIdent( ident );
+  bool res = readIdent( ident );
+
+  //Lock part
+  part->setEditEnable( false, "" );
+
+  return res;
   }
 
 
@@ -837,6 +861,53 @@ bool SdPasCadImport::readPartPin(SdObject *obj)
   if( !readTextProp( &(pin->mNameProp), &(pin->mNamePos) )  ) return false;
   pin->mNumber = readName();
 
+  return true;
+  }
+
+
+
+
+bool SdPasCadImport::readComponent(SdObject *obj)
+  {
+  SdPItemComponent *comp = dynamic_cast<SdPItemComponent*>( obj );
+  if( comp == nullptr )
+    return error( QObject::tr("Internal error component") );
+  if( !readContainer(comp) )
+    return false;
+
+
+  //is.ReadPtr( symbol );
+  readInt8(); //Object id (symbol)
+  int symbolIndex = readInt32(); //Object index
+  //is.ReadPtr( part );
+  readInt8(); //Object id (part)
+  int partIndex = readInt32(); //Object index
+
+  SdUndo *undo = comp->getUndo();
+
+  //Append symbol sections
+  SdPItemSymbol *section = dynamic_cast<SdPItemSymbol*>( mObjectMap.value(symbolIndex) );
+  if( section != nullptr ) {
+    auto const &list = mSymbolsPinMap.value( section->hashUidName() );
+    int sectionCount = list.count();
+    for( int i = 0; i < sectionCount; i++ ) {
+      comp->sectionAppend( section->hashUidName(), undo );
+      SdSection *sect = comp->sectionGet(i);
+      auto const &map = list.at(i);
+      for( auto it = map.constBegin(); it != map.constEnd(); it++ ) {
+        sect->setPinNumber( it.key(), it.value(), undo );
+        }
+      }
+    }
+
+  //Append part
+  SdPItemPart *part = dynamic_cast<SdPItemPart*>( mObjectMap.value(partIndex) );
+  if( part != nullptr ) {
+    comp->partIdSet( part->hashUidName(), undo );
+    }
+
+  //Lock component
+  //comp->setEditEnable( false, "" );
   return true;
   }
 
