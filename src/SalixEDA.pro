@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 CONFIG += c++20
+QMAKE_CXXFLAGS += -fconcepts
 
 QT       += core gui network sql printsupport texttospeech opengl svg openglwidgets core5compat
 
