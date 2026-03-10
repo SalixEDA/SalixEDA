@@ -266,15 +266,23 @@ bool SdPasCadImport::projectItem(SdProjectItem *item)
 
 bool SdPasCadImport::readContainer(SdProjectItem *item)
   {
+  //Param name remapping
+  static QMap<QString,QString> paramNameMap;
+  if( paramNameMap.empty() ) {
+    paramNameMap.insert( "ЦЕПИ", "nets" );
+    paramNameMap.insert( "Перечень", "bom" );
+    }
   //param.Read( is );
   QString params = readNString();
-  //Separate on lines
-  QStringList lines = params.split( QChar('\r') );
-  //Insert params by lines
-  for( QString line : lines ) {
-    QStringList param = line.split( QChar('=') );
-    if( param.count() >= 2 )
-      item->paramSet( param.at(0), param.at(1), nullptr );
+  if( !params.isEmpty() ) {
+    //Separate on lines
+    QStringList lines = params.split( QChar('\r') );
+    //Insert params by lines
+    for( const QString &line : std::as_const(lines) ) {
+      QStringList param = line.simplified().split( QChar('=') );
+      if( param.count() >= 2 )
+        item->paramSet( paramNameMap.value(param.at(0), param.at(0)), param.at(1), nullptr );
+      }
     }
 
   //is.Read( &info, sizeof(DContainerInfo) );
