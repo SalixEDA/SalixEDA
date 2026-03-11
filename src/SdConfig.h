@@ -110,8 +110,8 @@ History
 #define SD_GET_OBJECT_MAX_FIND_LIST  300
 
 //Default IP for global storage and private cloud
-#define SD_DEFAULT_GLOBAL_STORAGE_IP "127.000.000.001"
-#define SD_DEFAULT_PRIVATE_CLOUD_IP  "127.000.000.001"
+#define SD_DEFAULT_GLOBAL_STORAGE_IP "178.212.013.179"
+#define SD_DEFAULT_PRIVATE_CLOUD_IP  "178.212.013.179"
 
 //Settings key names
 #define SDK_WMAIN_MAX                "WMainMax"

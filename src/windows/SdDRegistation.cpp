@@ -53,7 +53,7 @@ SdDRegistation::SdDRegistation(bool fromHelp, QWidget *parent) :
   );
 
   ui->mServer->setText( s.value( QStringLiteral(SDK_GLOBAL_STORAGE_IP) ).toString() );
-  ui->mServer->setInputMask( "999.999.999.999;#" );
+  //ui->mServer->setInputMask( "999.999.999.999;#" );
   ui->mServer->setValidator( new QRegularExpressionValidator(regex, ui->mServer ) );
 
   ui->mPrivateKey->setText( SdLibraryStorage::authorPrivateKey() );
