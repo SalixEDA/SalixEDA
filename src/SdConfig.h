@@ -16,6 +16,7 @@ Description
 History
   01.01.2026 v3.00 Rebrending from SaliCAD
   03.03.2026 v3.1  Fix: crash in registration form. Not available to deal with ui from separate thread
+  13.03.2026 v3.2  Append visual object group id, which allow to group many visual objects into single object
 */
 
 #ifndef SDCONFIG
@@ -27,7 +28,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             1
+#define SD_VERSION_MINOR             2
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

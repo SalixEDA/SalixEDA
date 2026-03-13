@@ -34,7 +34,11 @@ class SdProjectItem;
 class SdGraph : public SdObject
   {
   protected:
-    SdSelector *mSelector;
+    //Saved in file
+    int         mGroupId;  //!< Object group id
+
+    //Not saved in file
+    SdSelector *mSelector; //!< Current visual editor selector
   public:
     SdGraph();
 
@@ -42,14 +46,32 @@ class SdGraph : public SdObject
     SdSelector*    getSelector() { return mSelector; }
     bool           isSelected() const { return mSelector != nullptr; }
 
+    //Visual object grouping
+    //!
+    //! \brief groupId Returns current group id
+    //! \return        Current group id, 0 if no group assigned
+    //!
+    int            groupId() const { return mGroupId; }
+
+    //!
+    //! \brief groupIdSet Sets new group id for object, 0 for remove group id
+    //! \param newGroupId New group id or 0 for remove group id
+    //! \param undo       Undo object to save previous group id
+    //!
+    void           groupIdSet( int newGroupId, SdUndo *undo );
+
+    //!
+    //! \brief groupIdNew Returns new group id
+    //! \return           New unical group id
+    //!
+    static int     groupIdNew();
+
     //Save object state
     virtual void   saveState( SdUndo *undo );
     virtual void   moveComplete( SdPoint grid, SdUndo *undo );
 
     //Изменение перемещением, вращением, зеркальностью и др.
     virtual void   transform( const QTransform &map, SdPvAngle angle = SdPvAngle(0) );
-            // void   move( SdPoint offset );
-            // void   rotate( SdPoint center, SdPvAngle angle );
 
     //Изменение свойствами
     virtual void   setProp( SdPropSelected &prop );
@@ -121,6 +143,36 @@ class SdGraph : public SdObject
     virtual bool   getInfo( SdPoint p, QString &info, bool extInfo );
     //Find snap point on object
     virtual void   snapPoint( SdSnapInfo *snap );
+
+
+    //!
+    //! \brief cloneFrom Clone contents object except mParent field. This must be overrided in all subclasses to
+    //!                  generate right copy of object
+    //!                  Cloned object has no parent
+    //! \param src       Source of object from which copy must be made
+    //! \param copyMap   Structure for mapping copying substitutes
+    //! \param next      Make simple or next copy. Next copy available not for all objects.
+    //!                  For example: pin name A23 with next copy return A24
+    //!
+    virtual void   cloneFrom( const SdObject *src, SdCopyMap &copyMap, bool next ) override;
+
+
+
+    //Write and read object
+
+    //!
+    //! \brief json Overloaded function to write object content into json writer
+    //! \param js   Json writer
+    //!
+    virtual void   json( SdJsonWriter &js ) const override;
+
+    //!
+    //! \brief json Overloaded function to read object content from json reader
+    //! \param js   Json reader
+    //!
+    virtual void   json( const SdJsonReader &js ) override;
+
+    static QMap<int,int> mGroupMap;
 
     friend class SdSelector;
   };

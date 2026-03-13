@@ -16,13 +16,50 @@ Description
 
 #include "SdGraph.h"
 #include "SdSelector.h"
+#include "SvLib/SvTime2x.h"
+
+QMap<int,int> SdGraph::mGroupMap;
 
 SdGraph::SdGraph() :
   SdObject(),
+  mGroupId(0),
   mSelector(nullptr)
   {
 
   }
+
+
+
+
+//!
+//! \brief groupIdSet Sets new group id for object, 0 for remove group id
+//! \param newGroupId New group id or 0 for remove group id
+//! \param undo       Undo object to save previous group id
+//!
+void SdGraph::groupIdSet(int newGroupId, SdUndo *undo)
+  {
+  if( mGroupId != newGroupId ) {
+    if( undo != nullptr )
+      undo->prop( &mGroupId );
+    mGroupId = newGroupId;
+    }
+  }
+
+
+
+//!
+//! \brief groupIdNew Returns new group id
+//! \return           New unical group id
+//!
+int SdGraph::groupIdNew()
+  {
+  static int groupIdCount = 0;
+  if( groupIdCount + 1000 < SvTime2x::current() )
+    groupIdCount = SvTime2x::current();
+  return groupIdCount++;
+  }
+
+
 
 void SdGraph::saveState(SdUndo *undo)
   {
@@ -45,21 +82,6 @@ void SdGraph::transform(const QTransform &map, SdPvAngle angle)
   Q_UNUSED(map)
   Q_UNUSED(angle)
   }
-
-
-
-// void SdGraph::move(SdPoint offset)
-//   {
-//   transform( offset.transformFromOffset(), SdPvAngle(0) );
-//   }
-
-
-
-// void SdGraph::rotate(SdPoint center, SdPvAngle angle)
-//   {
-//   transform( center.transformRotation(angle), angle );
-//   }
-
 
 
 
@@ -195,6 +217,54 @@ bool SdGraph::getInfo(SdPoint p, QString &info, bool extInfo)
 void SdGraph::snapPoint(SdSnapInfo *snap)
   {
   Q_UNUSED(snap)
+  }
+
+
+
+//!
+//! \brief cloneFrom Clone contents object except mParent field. This must be overrided in all subclasses to
+//!                  generate right copy of object
+//!                  Cloned object has no parent
+//! \param src       Source of object from which copy must be made
+//! \param copyMap   Structure for mapping copying substitutes
+//! \param next      Make simple or next copy. Next copy available not for all objects.
+//!                  For example: pin name A23 with next copy return A24
+//!
+void SdGraph::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool next)
+  {
+  SdObject::cloneFrom( src, copyMap, next );
+  SdPtrConst<SdGraph> graph(src);
+  if( graph.isValid() && graph->mGroupId ) {
+    //If current map not contains source group id then we append new association
+    if( !mGroupMap.contains( graph->mGroupId ) )
+      mGroupMap.insert( graph->mGroupId, groupIdNew() );
+    mGroupId = mGroupMap.value( graph->mGroupId );
+    }
+  else mGroupId = 0;
+  }
+
+
+
+//!
+//! \brief json Overloaded function to write object content into json writer
+//! \param js   Json writer
+//!
+void SdGraph::json(SdJsonWriter &js) const
+  {
+  js.jsonInt( "GroupId", mGroupId );
+  SdObject::json( js );
+  }
+
+
+
+//!
+//! \brief json Overloaded function to read object content from json reader
+//! \param js   Json reader
+//!
+void SdGraph::json(const SdJsonReader &js)
+  {
+  js.jsonInt( "GroupId", mGroupId, 0 );
+  SdObject::json( js );
   }
 
 
