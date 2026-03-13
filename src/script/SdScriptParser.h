@@ -99,6 +99,7 @@ class SdScriptParser
     SdScriptOperator *parseOperator();
     SdScriptOperator *parseOperatorIf();
     SdScriptOperator *parseOperatorWhile();
+    SdScriptOperator *parseOperatorFor();
     SdScriptValue    *parseExpression();
     SdScriptValue    *parseAnd();
     SdScriptValue    *parseOr();

@@ -24,6 +24,7 @@ Description
 #include "SdScriptOperatorAssign.h"
 #include "SdScriptOperatorIf.h"
 #include "SdScriptOperatorWhile.h"
+#include "SdScriptOperatorFor.h"
 
 #include "SdScriptValueVariableBool.h"
 #include "SdScriptValueVariableFloat.h"
@@ -144,10 +145,8 @@ SdScriptOperator *SdScriptParser::parseOperator()
   if( variableName == QStringLiteral("while") )
     return parseOperatorWhile();
 
-  if( variableName == QStringLiteral("for") ) {
-    mScaner.error( QObject::tr("for is reserved keyword") );
-    return nullptr;
-    }
+  if( variableName == QStringLiteral("for") )
+    return parseOperatorFor();
 
   if( !mScaner.tokenNeed('=', QObject::tr("Need assign =") )  )
     return nullptr;
@@ -271,6 +270,58 @@ SdScriptOperator *SdScriptParser::parseOperatorWhile()
     }
 
   return new SdScriptOperatorWhile( condition, opTrue );
+  }
+
+
+
+
+SdScriptOperator *SdScriptParser::parseOperatorFor()
+  {
+  if( !mScaner.tokenNeed('(', QStringLiteral("Need assign (") )  )
+    return nullptr;
+
+  QString variableName = mScaner.tokenNeedValue('n');
+  if( variableName.isEmpty() )
+    return nullptr;
+
+  if( !mVariables.contains(variableName) )
+    mVariables.insert( variableName, new SdScriptValueVariableFloat() );
+  SdScriptValueVariable *var = mVariables.value(variableName);
+  if( var->type() != SD_SCRIPT_TYPE_FLOAT ) {
+    //Illegal type
+    mScaner.error( QObject::tr("Illegal type of index variable") );
+    return nullptr;
+    }
+
+  if( var->isReadOnly() ) {
+    //Impossible to assign value to read-only variable
+    mScaner.error( QObject::tr("Unable use as loop index read-only variable") );
+    return nullptr;
+    }
+
+  if( !mScaner.tokenNeed(':', QStringLiteral("Need loop index and loop count delimiter :") )  )
+    return nullptr;
+
+  SdScriptValue *loopCount = parseExpression();
+  if( loopCount->type() != SD_SCRIPT_TYPE_FLOAT ) {
+    mScaner.error( QObject::tr("Loop count must be float expression") );
+    delete loopCount;
+    return nullptr;
+    }
+
+  if( !mScaner.tokenNeed( ')', QObject::tr("No closing )") ) ) {
+    delete loopCount;
+    return nullptr;
+    }
+
+  SdScriptOperator *opTrue = parseOperator();
+  if( opTrue == nullptr ) {
+    mScaner.error( QObject::tr("Need while operator") );
+    delete loopCount;
+    return nullptr;
+    }
+
+  return new SdScriptOperatorFor( dynamic_cast<SdScriptValueVariableFloat*>(var), loopCount, opTrue );
   }
 
 

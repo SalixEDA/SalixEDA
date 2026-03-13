@@ -141,6 +141,7 @@ SOURCES += \
     objects/SdPvLayer.cpp \
     objects/SdPvStratum.cpp \
     script/SdScriptOperatorBlock.cpp \
+    script/SdScriptOperatorFor.cpp \
     script/SdScriptOperatorIf.cpp \
     script/SdScriptOperatorWhile.cpp \
     script/SdScriptParamRef.cpp \
@@ -534,6 +535,7 @@ HEADERS  += \
     script/SdScriptOperator.h \
     script/SdScriptOperatorAssign.h \
     script/SdScriptOperatorBlock.h \
+    script/SdScriptOperatorFor.h \
     script/SdScriptOperatorIf.h \
     script/SdScriptOperatorWhile.h \
     script/SdScriptParamRef.h \
