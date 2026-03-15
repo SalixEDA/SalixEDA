@@ -34,12 +34,14 @@ Description
 class SdProjectItem;
 class SdWProjectTree;
 class SdGuiderCapture;
+class SdGuiderDialog;
 
 class SdWMain : public QMainWindow
   {
     Q_OBJECT
 
     SdGuiderCapture *mGuiderCapture; //Object for capture guider movie
+    SdGuiderDialog  *mGuiderDialog;  //!< Guider scena build dialog
 
     QSplitter       *mWSplitter;     //Central part of programm windows - is splitter with projects and redactors
     SdWProjectList  *mWProjectList;  //Project list
@@ -57,6 +59,13 @@ class SdWMain : public QMainWindow
     QToolButton     *mRemote;        //Remote status
   public:
     explicit SdWMain( QStringList args, QWidget *parent = nullptr );
+
+    template <void (SdWEditor::*Method)()>
+    void cmDelegate()
+      {
+      if( SdWEditor *ed = activeEditor() )
+        (ed->*Method)();
+      }
 
   signals:
 
@@ -275,6 +284,7 @@ class SdWMain : public QMainWindow
     void cmHelpIndex();
     void cmHelpAbout();
     void cmHelpRegistration();
+    void cmGuiderDialog();
     void cmGuiderCapture();
     void cmGuiderPause();
     void cmHelpBackward();
@@ -288,6 +298,10 @@ class SdWMain : public QMainWindow
     void cmEnterPosition();
 
     void cmHelpTopic( const QString topic );
+
+    void snapshotSave(const QString &path, int index);
+
+    void snapshotLoad( const QString &path, int index );
 
     // QWidget interface
   protected:

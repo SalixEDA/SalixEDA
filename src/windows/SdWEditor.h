@@ -29,6 +29,13 @@ Description
 class SdProjectItem;
 class SdProject;
 
+struct SdSnapshotEditor
+  {
+  SdPoint mGrid;
+  SdPoint mOrigin;
+  double  mScale;
+  };
+
 class SdWEditor : public QAbstractScrollArea
   {
     Q_OBJECT
@@ -208,6 +215,8 @@ class SdWEditor : public QAbstractScrollArea
     virtual void cmPropChanged() {}
 
     virtual void cmEnterPosition() {}
+
+    virtual void snapshotGet( QString &projectName, QString &itemName, SdPoint &grid, SdPoint &origin, double &scale ) {}
 
   signals:
 

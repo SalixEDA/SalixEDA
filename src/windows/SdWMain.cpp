@@ -42,6 +42,7 @@ Description
 #include "objects/SdPulsar.h"
 #include "objects/SdEnvir.h"
 #include "guider/SdGuiderCapture.h"
+#include "guider/SdGuiderDialog.h"
 #include "library/SdLibraryStorage.h"
 #include "library/SdLibraryIndicator.h"
 #include "import/kicad/SdScanerKiCad.h"
@@ -72,6 +73,8 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   {
   //Setup guider capture object
   mGuiderCapture = new SdGuiderCapture( this, this );
+  mGuiderDialog  = new SdGuiderDialog( this );
+  mGuiderDialog->hide();
 
   //Set window icon
   setWindowIcon( QIcon(QStringLiteral(":/pic/iconMain.png")) );
@@ -2172,6 +2175,25 @@ void SdWMain::cmHelpRegistration()
 
 
 
+void SdWMain::cmGuiderDialog()
+  {
+  //Dialog for loading scena
+  QString scenaFile = QFileDialog::getOpenFileName(this, tr("Open guider scena file"), QString(),
+                                                   tr("Scena text files (*.txt)") );
+  if( !scenaFile.isEmpty() ) {
+    if( mGuiderDialog->setScenaFile( scenaFile ) ) {
+      //Made fixed window size
+      resize( 1600, 700 );
+      mGuiderDialog->show();
+      }
+    else
+      QMessageBox::warning( this, tr("Error"), tr("Can't read scena file %1").arg(scenaFile) );
+    }
+  }
+
+
+
+
 void SdWMain::cmGuiderCapture()
   {
   if( mGuiderCapture->isCapture() ) {
@@ -2285,6 +2307,16 @@ void SdWMain::cmHelpTopic(const QString topic)
     sizes[2] = 300;
     mWSplitter->setSizes( sizes );
     }
+  }
+
+void SdWMain::snapshotSave(const QString &path, int index )
+  {
+
+  }
+
+void SdWMain::snapshotLoad(const QString &path, int index)
+  {
+
   }
 
 
