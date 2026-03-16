@@ -2175,6 +2175,28 @@ void SdWMain::cmHelpRegistration()
 
 
 
+
+
+void SdWMain::cmHelpBackward()
+  {
+  SdWEditorHelp *help = dynamic_cast<SdWEditorHelp*>( helpWidget() );
+  help->helpBackward();
+  }
+
+
+
+
+
+void SdWMain::cmHelpForward()
+  {
+  SdWEditorHelp *help = dynamic_cast<SdWEditorHelp*>( helpWidget() );
+  help->helpForward();
+  }
+
+
+
+
+
 void SdWMain::cmGuiderDialog()
   {
   //Dialog for loading scena
@@ -2189,6 +2211,65 @@ void SdWMain::cmGuiderDialog()
     else
       QMessageBox::warning( this, tr("Error"), tr("Can't read scena file %1").arg(scenaFile) );
     }
+  }
+
+
+
+
+void SdWMain::cmGuiderSnapshotSave()
+  {
+  //Get script path and snapshot index
+  QString scriptPath = mGuiderDialog->scriptPath();
+  if( !scriptPath.isEmpty() ) {
+    int snapshotIndex = mGuiderDialog->snapshotIndex();
+    if( snapshotIndex >= 0 ) {
+      //Get snapshot project list
+      //Assign internal names to projects into list, save projects in scriptPath directory
+      QStringList projectList;
+      int currentProject;
+      mWProjectList->snapshotSave( scriptPath, snapshotIndex, projectList, currentProject );
+
+      //Build open editor list
+      SdGuiderSnapshotList editorSnapshotList;
+      SdGuiderSnapshot snapshot;
+      int currentEditor = 0;
+      for( int i = 0; i < mWEditors->count(); i++ ) {
+        SdWEditor *editor = getEditor(i);
+        if( editor == activeEditor() ) currentEditor = editorSnapshotList.count();
+        snapshot.mProjectName.clear();
+        if( editor != nullptr ) {
+          editor->snapshotGet( snapshot );
+          if( !snapshot.mProjectName.isEmpty() ) {
+            editorSnapshotList.append( snapshot );
+            }
+          }
+        }
+
+      //Store snapshot
+      SdJsonWriter js;
+      js.jsonString( "AType", QString("Guider snapshot file") );
+      js.jsonInt( "AVersion", 1 );
+      js.jsonListString( "Projects", projectList );
+      js.jsonInt( "Project current", currentProject );
+      js.jsonList( js, "Open editor list", editorSnapshotList );
+      js.jsonInt( "Current editor", currentEditor );
+
+      QString snapshotName("scena-%1.snapshot");
+      QFile snapshotFile( scriptPath + snapshotName.arg(snapshotIndex) );
+      if( snapshotFile.open(QIODevice::WriteOnly) ) {
+        snapshotFile.write( svJsonObjectToByteArray( js.object() ) );
+        snapshotFile.close();
+        }
+      }
+    }
+  }
+
+
+
+
+void SdWMain::cmGuiderSnapshotLoad(const QString &path, int index)
+  {
+
   }
 
 
@@ -2224,28 +2305,6 @@ void SdWMain::cmGuiderPause()
     mCapture->setToolTip( tr("Show status of guide capture video system: paused") );
     }
   }
-
-
-
-
-
-
-void SdWMain::cmHelpBackward()
-  {
-  SdWEditorHelp *help = dynamic_cast<SdWEditorHelp*>( helpWidget() );
-  help->helpBackward();
-  }
-
-
-
-
-
-void SdWMain::cmHelpForward()
-  {
-  SdWEditorHelp *help = dynamic_cast<SdWEditorHelp*>( helpWidget() );
-  help->helpForward();
-  }
-
 
 
 

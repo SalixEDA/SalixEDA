@@ -173,6 +173,8 @@ class SdWEditorGraph : public SdWEditor
 
     virtual void           cmEnterPosition() override;
 
+    virtual void           snapshotGet( SdGuiderSnapshot &snapshot ) const override;
+
   public slots:
 
     //Print dialog

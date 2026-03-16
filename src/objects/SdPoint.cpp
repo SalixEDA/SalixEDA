@@ -350,6 +350,32 @@ void SdPoint::json(const SvJsonReader &js)
 
 
 
+//!
+//! \brief json      Function to write SdPoint into json writer with keyPrefix
+//! \param keyPrefix Prefix to key of SdPoint fields
+//! \param js        Json writer
+//!
+void SdPoint::json(const QString &keyPrefix, SvJsonWriter &js) const
+  {
+  js.jsonInt( keyPrefix + QStringLiteral("x"), x() );
+  js.jsonInt( keyPrefix + QStringLiteral("y"), y() );
+  }
+
+
+
+//!
+//! \brief json      Function to read SdPoint from json reader with keyPrefix
+//! \param keyPrefix Prefix to key of SdPoint fields
+//! \param js        Json reader
+//!
+void SdPoint::json(const QString &keyPrefix, const SvJsonReader &js)
+  {
+  js.jsonInt( keyPrefix + QStringLiteral("x"), rx() );
+  js.jsonInt( keyPrefix + QStringLiteral("y"), ry() );
+  }
+
+
+
 
 //!
 //! \brief angleVector Calculates the rotation angle from point a to point b around center point

@@ -180,6 +180,18 @@ void SdWEditor::cmObjectPublic()
 
 
 
+void SdWEditor::snapshotGet(SdGuiderSnapshot &snapshot) const
+  {
+  if( getProjectItem() ) {
+    snapshot.mProjectName = getProjectItem()->getProject()->getTitle();
+    snapshot.mObjectName  = getProjectItem()->getTitle();
+    snapshot.mIs3d        = is3d();
+    }
+  }
+
+
+
+
 
 
 ////Show dialog with error msg

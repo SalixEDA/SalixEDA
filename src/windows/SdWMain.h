@@ -284,11 +284,14 @@ class SdWMain : public QMainWindow
     void cmHelpIndex();
     void cmHelpAbout();
     void cmHelpRegistration();
-    void cmGuiderDialog();
-    void cmGuiderCapture();
-    void cmGuiderPause();
     void cmHelpBackward();
     void cmHelpForward();
+
+    void cmGuiderDialog();
+    void cmGuiderSnapshotSave();
+    void cmGuiderSnapshotLoad( const QString &path, int index );
+    void cmGuiderCapture();
+    void cmGuiderPause();
 
     void cmRemoteStatus( const QString info );
 

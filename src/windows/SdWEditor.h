@@ -23,18 +23,14 @@ Description
 #include "objects/SdPoint.h"
 #include "objects/SdRect.h"
 #include "objects/SdScaler.h"
+#include "guider/SdGuiderSnapshot.h"
+
 #include <QAbstractScrollArea>
 #include <QString>
 
 class SdProjectItem;
 class SdProject;
 
-struct SdSnapshotEditor
-  {
-  SdPoint mGrid;
-  SdPoint mOrigin;
-  double  mScale;
-  };
 
 class SdWEditor : public QAbstractScrollArea
   {
@@ -216,7 +212,7 @@ class SdWEditor : public QAbstractScrollArea
 
     virtual void cmEnterPosition() {}
 
-    virtual void snapshotGet( QString &projectName, QString &itemName, SdPoint &grid, SdPoint &origin, double &scale ) {}
+    virtual void snapshotGet( SdGuiderSnapshot &snapshot ) const;
 
   signals:
 

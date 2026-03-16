@@ -23,8 +23,10 @@ Description
 */
 
 #include "SdGuiderDialog.h"
+#include "SvLib/SvDir.h"
 
 #include <QFile>
+#include <QFileInfo>
 #include <QTextStream>
 #include <QDebug>
 #include <QCryptographicHash>
@@ -114,6 +116,10 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
 
 bool SdGuiderDialog::setScenaFile(const QString &fname)
   {
+  QFileInfo info(fname);
+  SvDir dir(info.absolutePath());
+  mScriptPath = dir.slashedPath();
+
   QFile file(fname);
   if( !file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
     qDebug() << "Cannot open file:" << fname;
@@ -278,9 +284,22 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
   mTreeWidget->expandAll();
 
   // Обновляем подсказку
-  mHintLabel->setText( "Выберите сцену для выполнения" );
+  mHintLabel->setText( "F12 - save snapshot" );
 
   return true;
+  }
+
+
+
+int SdGuiderDialog::snapshotIndex() const
+  {
+  int scena = getCurrentScenaIndex();
+  if( scena >= 0 ) {
+    int step = getCurrentStepIndex();
+    if( step == 0 ) return scena;
+    return scena + 1;
+    }
+  return -1;
   }
 
 

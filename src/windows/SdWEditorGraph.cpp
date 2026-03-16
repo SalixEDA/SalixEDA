@@ -618,6 +618,19 @@ void SdWEditorGraph::cmEnterPosition()
 
 
 
+void SdWEditorGraph::snapshotGet(SdGuiderSnapshot &snapshot) const
+  {
+  if( getProjectItem() ) {
+    SdWEditor::snapshotGet( snapshot );
+    snapshot.mGrid   = gridGet();
+    snapshot.mOrigin = originGet();
+    snapshot.mScale  = scaleGet();
+    }
+  }
+
+
+
+
 
 void SdWEditorGraph::printDialog(SdRect wnd)
   {

@@ -315,6 +315,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmTools  = menuInstruments->addAction( QIcon(QString(":/pic/instrumTools.png")), QObject::tr("Tools"), frame, &SdWMain::cmTools );
   menuInstruments->addSeparator();
   cmGuiderDialog     = menuInstruments->addAction( QObject::tr("Guider scene builder..."), frame, &SdWMain::cmGuiderDialog );
+                       menuInstruments->addAction( QObject::tr("Guider snapshot save"), QKeySequence(Qt::Key_F12), frame, &SdWMain::cmGuiderSnapshotSave );
   cmGuiderCapture    = menuInstruments->addAction( QObject::tr("Capture start-stop"), QKeySequence(Qt::Key_F10), frame, &SdWMain::cmGuiderCapture );
   cmGuiderPause      = menuInstruments->addAction( QObject::tr("Capture pause-resume"), QKeySequence(Qt::Key_F11), frame, &SdWMain::cmGuiderPause );
 

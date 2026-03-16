@@ -120,6 +120,20 @@ class SdPoint : public QPoint
     //!
     void        json( const SvJsonReader &js);
 
+    //!
+    //! \brief json      Function to write SdPoint into json writer with keyPrefix
+    //! \param keyPrefix Prefix to key of SdPoint fields
+    //! \param js        Json writer
+    //!
+    void        json( const QString &keyPrefix, SvJsonWriter &js ) const;
+
+    //!
+    //! \brief json      Function to read SdPoint from json reader with keyPrefix
+    //! \param keyPrefix Prefix to key of SdPoint fields
+    //! \param js        Json reader
+    //!
+    void        json( const QString &keyPrefix, const SvJsonReader &js );
+
     //Return far point, point with big coords
     static SdPoint farPoint() { return SdPoint(farCoord,farCoord); }
 

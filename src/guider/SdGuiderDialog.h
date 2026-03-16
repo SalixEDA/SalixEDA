@@ -63,15 +63,23 @@ class SdGuiderDialog : public QDialog
     QTreeWidgetItem      *mCurrentStepItem = nullptr;
 
     SdWMain              *mWMain;
+
+    QString               mScriptPath;   //!< Path to script
   public:
     explicit SdGuiderDialog( SdWMain *wmain );
 
     bool setScenaFile( const QString &fname );
 
+    QString scriptPath() const { return mScriptPath; }
+    int     snapshotIndex() const;
+
     int  getCurrentScenaIndex() const;
     int  getCurrentStepIndex() const;
     void goToNextStep();
     void clearSelection();
+
+  signals:
+    void snapshotLoad( const QString &scriptPath, int snapshotIndex );
 
   private slots:
     void onItemClicked( QTreeWidgetItem *item, int column );

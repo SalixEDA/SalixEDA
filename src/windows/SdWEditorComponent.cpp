@@ -696,3 +696,7 @@ void SdWEditorComponent::cmEditRedo()
   {
   cmEditUndo();
   }
+
+
+
+
