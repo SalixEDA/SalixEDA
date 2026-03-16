@@ -46,6 +46,11 @@ class SdWProjectList : public QWidget
     void projectNameChanged( SdProject *project );
 
   public slots:
+    void            snapshotSave( const QString &path, int index, QStringList &list, int &current );
+
+    void            snapshotLoad( const QString &path, const QStringList &list, int current );
+
+
     //Close all projects
     void            fileCloseAll();
 

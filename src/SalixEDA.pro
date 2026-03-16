@@ -43,6 +43,7 @@ docs.CONFIG += recursive  # Позволяет цели зависеть от д
 
 
 SOURCES += \
+    guider/SdGuiderDialog.cpp \
     import/iges/IgesEntityCurveOnParametricSurface.cpp \
     import/iges/IgesEntityFaceGenerator.cpp \
     import/iges/IgesEntityRationalBSplineCurve.cpp \
@@ -141,6 +142,7 @@ SOURCES += \
     objects/SdPvLayer.cpp \
     objects/SdPvStratum.cpp \
     script/SdScriptOperatorBlock.cpp \
+    script/SdScriptOperatorFor.cpp \
     script/SdScriptOperatorIf.cpp \
     script/SdScriptOperatorWhile.cpp \
     script/SdScriptParamRef.cpp \
@@ -427,6 +429,8 @@ SOURCES += \
 
 HEADERS  += \
     SvLib/SvJson3dIO.h \
+    guider/SdGuideMonitor.h \
+    guider/SdGuiderDialog.h \
     import/iges/IgesEntityCurveOnParametricSurface.h \
     import/iges/IgesEntityFaceGenerator.h \
     import/iges/IgesEntityRationalBSplineCurve.h \
@@ -534,6 +538,7 @@ HEADERS  += \
     script/SdScriptOperator.h \
     script/SdScriptOperatorAssign.h \
     script/SdScriptOperatorBlock.h \
+    script/SdScriptOperatorFor.h \
     script/SdScriptOperatorIf.h \
     script/SdScriptOperatorWhile.h \
     script/SdScriptParamRef.h \

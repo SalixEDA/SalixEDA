@@ -71,6 +71,81 @@ SdWProjectTree *SdWProjectList::project(int index)
 
 
 
+void SdWProjectList::snapshotSave(const QString &path, int index, QStringList &list, int &current)
+  {
+  list.clear();
+  //Save all open projects with projectSnapshot_index_number
+  for( int i = 0; i < mWProjectStack->count(); i++ ) {
+    SdWProjectTree *prj = dynamic_cast<SdWProjectTree*>( mWProjectStack->widget(i) );
+    if( prj ) {
+      //Build file name
+      QString fileName( QString("projectSnapshot-%1-%2" ).arg(index).arg(i) );
+      prj->getProject()->titleSet( fileName );
+      //Append file name to list
+      list.append( fileName );
+      //Build full path
+      QString fullPath( path + fileName + QString(SD_BINARY_EXTENSION) );
+      prj->getProject()->save( fullPath );
+      }
+    }
+  //Set current project
+  current = mWProjectStack->currentIndex();
+  }
+
+
+
+
+void SdWProjectList::snapshotLoad(const QString &path, const QStringList &list, int current)
+  {
+  //At first, we close all current open
+  while( activeProject() ) {
+    SdWProjectTree *active = activeProject();
+    if( active ) {
+      //Remove name from drop down box
+      mProjectTitles->removeItem( mWProjectStack->currentIndex() );
+      //Remove tree window
+      mWProjectStack->removeWidget( active );
+      //B035 When close project incorect deleting from comboBox
+      //I move signal sending AFTER remove project from visual widgets
+      //Send signal before deleting
+      SdPulsar::sdPulsar->emitCloseProject( active->getProject() );
+      active->deleteLater();
+      //Activate other project
+      onProjectActivated( mProjectTitles->currentIndex() );
+      }
+    }
+
+  //Continuously open projects
+  for( const QString &fileName : std::as_const(list) ) {
+    QString filePath( path + fileName );
+
+    //Creating project window [Создаем окно проекта]
+    SdWProjectTree *prj = new SdWProjectTree( filePath, nullptr );
+
+    //Check if project is created (valid) [Проверяем, создался ли проект]
+    if( prj->isProjectValid() ) {
+      mProjectTitles->addItem( prj->fileName() );
+      mWProjectStack->addWidget( prj );
+
+      if( mWProjectStack->count() == 1 ) {
+        //Выключить пункты меню
+        SdWCommand::projectState(true);
+        mCloseProject->setEnabled(true);
+        }
+      mProjectTitles->setCurrentIndex( mProjectTitles->count() - 1 );
+      onProjectActivated( mProjectTitles->count() - 1 );
+      }
+    else {
+      delete prj;
+      }
+    }
+
+  //Select current project
+  bringProjectUp( current );
+  }
+
+
+
 
 //Close all projects
 void SdWProjectList::fileCloseAll()

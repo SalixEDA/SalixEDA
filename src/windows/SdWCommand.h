@@ -184,6 +184,7 @@ class SdWCommand
     static QActionPtr   cmHelpBackward;
     static QActionPtr   cmHelpForward;
 
+    static QActionPtr   cmGuiderDialog;
     static QActionPtr   cmGuiderCapture;
     static QActionPtr   cmGuiderPause;
 

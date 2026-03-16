@@ -69,7 +69,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmFileImport    = menuFile->addAction( QIcon(QString(":/pic/fileImport.png")), QObject::tr("Import..."), frame, &SdWMain::cmFileImport );
   cmFileExport    = menuFile->addAction( QIcon(QString(":/pic/fileExport.png")), QObject::tr("Export..."), frame, &SdWMain::cmFileExport );
   menuFile->addSeparator();
-  cmFilePrint = menuFile->addAction( QIcon(QString(":/pic/filePrint.png")), QObject::tr("Print..."), frame, &SdWMain::cmFilePrint );
+  cmFilePrint = menuFile->addAction( QIcon(QString(":/pic/filePrint.png")), QObject::tr("Print..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmFilePrint> );
   menuFile->addSeparator();
   cmFileExit = menuFile->addAction( QIcon(QString(":/pic/exit.png")), QObject::tr("Exit programm"), frame, &SdWMain::cmFileExit );
 
@@ -314,6 +314,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuInstruments->addSeparator();
   cmTools  = menuInstruments->addAction( QIcon(QString(":/pic/instrumTools.png")), QObject::tr("Tools"), frame, &SdWMain::cmTools );
   menuInstruments->addSeparator();
+  cmGuiderDialog     = menuInstruments->addAction( QObject::tr("Guider scene builder..."), frame, &SdWMain::cmGuiderDialog );
   cmGuiderCapture    = menuInstruments->addAction( QObject::tr("Capture start-stop"), QKeySequence(Qt::Key_F10), frame, &SdWMain::cmGuiderCapture );
   cmGuiderPause      = menuInstruments->addAction( QObject::tr("Capture pause-resume"), QKeySequence(Qt::Key_F11), frame, &SdWMain::cmGuiderPause );
 
@@ -915,6 +916,7 @@ QActionPtr SdWCommand::cmHelpHome;
 QActionPtr SdWCommand::cmHelpBackward;
 QActionPtr SdWCommand::cmHelpForward;
 
+QActionPtr SdWCommand::cmGuiderDialog;
 QActionPtr SdWCommand::cmGuiderCapture;
 QActionPtr SdWCommand::cmGuiderPause;
 
