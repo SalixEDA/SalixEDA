@@ -2,6 +2,7 @@ package main
 
 
 /*
+#cgo linux LDFLAGS: -L/usr/lib/X11 -lX11 -lm
 #include "graphics.h"
 */
 import "C"
@@ -9,6 +10,32 @@ import "C"
 import (
   "unsafe"
   )
+
+
+
+// Коды клавиш (можно расширить)
+type KeyCode int
+
+const (
+  KeyNone KeyCode = iota
+  KeyBackspace = 0x0e
+  KeyEnter     = 0x1c
+  KeyEscape    = 0x01
+  KeyTab       = 0x0f
+  KeyLeft      = 0x4b
+  KeyRight     = 0x4d
+  KeyUp        = 0x48
+  KeyPgUp      = 0x49
+  KeyDown      = 0x50
+  KeyPgDn      = 0x51
+  KeyHome      = 0x47
+  KeyEnd       = 0x4f
+  KeyDelete    = 0x53
+
+)
+
+
+
 
 func goDrawText( align C.int, x C.int, y C.int, size C.int, str string, color C.uint32_t ) {
   runes := []rune(str)           // 1. Создается срез runes
@@ -23,41 +50,57 @@ func goDrawText( align C.int, x C.int, y C.int, size C.int, str string, color C.
 }                                  // 5. runes выходит из области видимости
                                    //    и становится доступен для GC
 
+
+
+func goTextWidth( size int, str string, len int ) int {
+  runes := []rune(str)           // 1. Создается срез runes
+                                 //    Память выделена в Go
+
+  return int( C.textWidth( C.int(size), (*C.int)(unsafe.Pointer(&runes[0])), C.int(len) ) )
+  }
+
+
+
 // ItemInterface - базовый интерфейс для всех виджетов
 type ItemInterface interface {
   draw(x int, y int)
   resizeW(parentWidth int)
   resizeH(parentHeight int)
   isHit(localX int, localY int) bool
-  mouse(localX int, localY int, leftButton bool, rightButton bool)
-  keyDown(code int) bool
-  keyUp(code int) bool
-  keyChar(code int) bool
-  setFocus(focus bool)
-  hasFocus() bool
-  getRect() (x, y, w, h int)
-  setParent(parent Item)
+  mouseClick(localX int, localY int) bool
+  isHoverEnabled() bool
+  hover( enter bool )
+  keyDown(code int)
+  keyChar(code int)
+  setParent(parent ItemInterface)
+
+  left(base ItemInterface) int
+  right(base ItemInterface) int
+  top(base ItemInterface) int
+  bottom(base ItemInterface) int
+  hCenter(base ItemInterface) int
+  vCenter(base ItemInterface) int
   }
+
+
+
 
 type Item struct {
   x,y int
   w,h int
   visible bool
-  focused bool
-  hover   bool
   parent  ItemInterface
   child []ItemInterface
 
   onResizeW  func(item *Item, parentWidth int )
   onResizeH  func(item *Item, parentHeight int )
   onClick    func(item *Item, localX int, localY int )
-  onKeyDown  func(item *Item, code int) bool
-  onKeyChar  func(item *Item, code int) bool
-  onFocus    func(item *Item, focused bool)
   }
 
+
+
 func NewItem(x, y, w, h int) *Item {
-  return &ItemImpl{
+  return &Item{
     x:      x,
     y:      y,
     w:      w,
@@ -67,26 +110,41 @@ func NewItem(x, y, w, h int) *Item {
     }
   }
 
-func (i *ItemImpl) add(item Item) {
-  item.parent = i
+
+
+
+func (i *Item) add(item ItemInterface) {
+  item.setParent( i )
   i.child = append(i.child, item)
   }
 
-func (i *ItemImpl) setPos(x int, y int) {
+
+
+
+func (i *Item) setPos(x int, y int) {
   i.x = x
   i.y = y
   }
 
-func (i *ItemImpl) setSize(w int, h int) {
+
+
+
+func (i *Item) setSize(w int, h int) {
   i.w = w
   i.h = h
   }
 
-func (i *ItemImpl) setVisible(vis bool) {
+
+
+
+func (i *Item) setVisible(vis bool) {
   i.visible = vis
   }
 
-func (i *ItemImpl) drawChild( bx int, by int ) {
+
+
+
+func (i *Item) drawChild( bx int, by int ) {
   if i.visible {
     bx += i.x
     by += i.y
@@ -96,209 +154,287 @@ func (i *ItemImpl) drawChild( bx int, by int ) {
     }
   }
 
-func (i *ItemImpl) resize( parentWidth int, parentHeight int ) {
-  if i.resizeFunc != nil {
-    oldW := i.w
-    oldH := i.h
-    i.resizeFunc( i, parentWidth, parentHeight )
 
-    if oldW != i.w || oldH != i.h {
+func (i *Item) draw(x int, y int) {
+  i.drawChild( x, y )
+  }
+
+
+func (i *Item) resizeW(parentWidth int) {
+  if i.onResizeW != nil {
+    oldW := i.w
+    i.onResizeW( i, parentWidth )
+
+    if oldW != i.w {
       for _, child := range i.child {
-        child.resize( i.w, i.h )
+        child.resizeW( i.w )
         }
       }
     }
   }
 
-func (i *ItemImpl) mouse(localX int, localY int, leftButton bool, rightButton bool) bool {
+func (i *Item) resizeH(parentHeight int) {
+  if i.onResizeH != nil {
+    oldH := i.h
+    i.onResizeH( i, parentHeight )
+
+    if oldH != i.h {
+      for _, child := range i.child {
+        child.resizeH( i.h )
+        }
+      }
+    }
+  }
+
+
+var mouseItem ItemInterface
+
+func (i *Item) isHit(localX int, localY int) bool {
   // Проверяем, попадает ли мышь в область элемента
   localX -= i.x
   localY -= i.y
-  if localX >= 0 && localX < i.w && localY >= 0 && localY < i.h {
+  if i.visible && localX >= 0 && localX < i.w && localY >= 0 && localY < i.h {
     // Мышь внутри элемента
     for j := len(i.child) - 1; j >= 0; j-- {
-      if i.child[j].mouse( localX, localY, leftButton, rightButton ) {
+      if i.child[j].isHit( localX, localY ) {
         return true
         }
       }
     //Execute own mouse function
-    if mouseFunc != nil {
-      mouseFunc( localX, localY, leftButton, rightButton )
+    if i.isHoverEnabled() {
+      if mouseItem != i {
+        if mouseItem != nil {
+          mouseItem.hover( false )
+          }
+        mouseItem = i
+        mouseItem.hover( true )
+        }
       return true
       }
     }
   return false
   }
 
+
+
+func (i *Item) mouseClick(localX int, localY int) bool {
+  // Проверяем, попадает ли мышь в область элемента
+  localX -= i.x
+  localY -= i.y
+  if i.visible && localX >= 0 && localX < i.w && localY >= 0 && localY < i.h {
+    // Мышь внутри элемента
+    for j := len(i.child) - 1; j >= 0; j-- {
+      if i.child[j].mouseClick( localX, localY ) {
+        return true
+        }
+      }
+    //Execute own mouse function
+    if i.onClick != nil {
+      i.onClick( i, localX, localY )
+      return true
+      }
+    }
+  return false
+  }
+
+
+func (i *Item) isHoverEnabled() bool {
+  return false
+  }
+
+
+func (i *Item) hover( enter bool ) {
+  }
+
+
+func (i *Item) keyDown(code int) {
+  }
+
+func (i *Item) keyChar(code int) {
+  }
+
+
+var focusItem ItemInterface
+
+func (i *Item) setFocus(focus bool) {
+  if focus {
+    focusItem = i
+    } else {
+    focusItem = nil
+    }
+  }
+
+
+func (i *Item) setParent(parent ItemInterface) {
+  i.parent = parent
+  }
+
+
+
+
+
+
+
 //Вернуть левую позицию в координатах объекта base
-func (i *ItemImpl) Left( base *ItemImpl) int {
+func (i *Item) left(base ItemInterface) int {
   //Если текущий объект и есть базовый, то возвращаем 0
   if( i == base ) {
     return 0
     }
-  return i.parent.Left(base) + i.x
+  return i.parent.left(base) + i.x
   }
 
+
+
 //Вернуть правую позицию в координатах объекта base
-func (i *ItemImpl) Right( base *ItemImpl) int {
+func (i *Item) right(base ItemInterface) int {
   //Если текущий объект и есть базовый, то возвращаем i.w
   if( i == base ) {
     return i.w
     }
-  return i.parent.Left(base) + i.x + i.w
+  return i.parent.left(base) + i.x + i.w
   }
+
+
+
 
 //Вернуть верхнюю позицию в координатах объекта base
-func (i *ItemImpl) Top( base *ItemImpl) int {
+func (i *Item) top(base ItemInterface) int {
   //Если текущий объект и есть базовый, то возвращаем 0
   if( i == base ) {
     return 0
     }
-  return i.parent.Top(base) + i.y
+  return i.parent.top(base) + i.y
   }
+
+
+
 
 //Вернуть нижнюю позицию в координатах объекта base
-func (i *ItemImpl) Bottom( base *ItemImpl) int {
+func (i *Item) bottom(base ItemInterface) int {
   //Если текущий объект и есть базовый, то возвращаем 0
   if( i == base ) {
     return 0
     }
-  return i.parent.Top(base) + i.y + i.h
+  return i.parent.top(base) + i.y + i.h
   }
 
+
+
 //Вернуть центр по горизонтали
-func (i *ItemImpl) HCenter( base *ItemImpl) int {
+func (i *Item) hCenter(base ItemInterface) int {
   //Если текущий объект и есть базовый, то возвращаем 0
   if( i == base ) {
     return i.w / 2
     }
-  return i.parent.Left(base) + i.x + i.w / 2
+  return i.parent.left(base) + i.x + i.w / 2
   }
 
+
+
 //Вернуть центр по вертикали
-func (i *ItemImpl) VCenter( base *ItemImpl) int {
+func (i *Item) vCenter(base ItemInterface) int {
   //Если текущий объект и есть базовый, то возвращаем 0
   if( i == base ) {
     return i.h / 2
     }
-  return i.parent.Top(base) + i.y + i.h / 2
+  return i.parent.top(base) + i.y + i.h / 2
   }
 
 
 
 
-type ItemRect struct {
-  ItemImpl
-  r     int
-  color C.uint32_t
-  }
 
-func (ir *ItemRect) draw(x int, y int) {
-  // Проверка видимости - обращаемся через ir
-  if !ir.visible {
-    return
-    }
-
-  // Вычисляем абсолютные координаты с учетом родительских
-  absX := x + ir.x
-  absY := y + ir.y
-
-  // Рисуем прямоугольник
-  C.drawRoundRectangle(C.int(absX), C.int(absY), C.int(ir.w), C.int(ir.h), C.int(ir.r), ir.color )
-
-  // Рисуем все дочерние элементы
-  ir.drawChild( absX, absY )
-  }
-
-
-
-type ItemText struct {
-  ItemImpl
-  text  string
-  size  int
-  align int
-  color C.uint32_t
-  }
-
-
-func (it *ItemText) draw(x int, y int) {
-  // Проверка видимости - обращаемся через it
-  if !it.visible {
-    return
-    }
-
-  // Вычисляем абсолютные координаты с учетом родительских
-  absX := x + it.x
-  absY := y + it.y
-
-  // Рисуем
-  goDrawText( C.int(it.align), C.int(absX), C.int(absY), C.int(it.size), it.text, it.color )
-
-  // Рисуем все дочерние элементы
-  it.drawChild( absX, absY )
-  }
-
-
-func fillParent( item *ItemImpl, parentWidth int, parentHeight int ) {
+func fillParentW( item *Item, parentWidth int ) {
+  item.x = 0
   item.w = parentWidth
+  }
+
+func fillParentH( item *Item, parentHeight int ) {
+  item.y = 0
   item.h = parentHeight
   }
 
-func centerInParent( item *ItemImpl, parentWidth int, parentHeight int ) {
+func centerInParentW( item *Item, parentWidth int ) {
   item.x = (parentWidth - item.w) / 2
+  }
+
+func centerInParentH( item *Item, parentHeight int ) {
   item.y = (parentHeight - item.h) / 2
   }
 
 
 
-var screen = ItemImpl {
+
+
+
+var screen = Item {
   x: 0,
   y: 0,
   w: 0,
   h: 0,
   visible: true,
-  child: make( []Item, 0 ),
-  resizeFunc: fillParent,
+  child: make( []ItemInterface, 0 ),
+  onResizeW: fillParentW,
+  onResizeH: fillParentH,
   }
 
 
 
 //export goPaint
 func goPaint( width C.int, height C.int ) {
-  screen.resize( int(width), int(height) )
+  screen.resizeW( int(width) )
+  screen.resizeH( int(height) )
   screen.drawChild( 0, 0 )
   }
 
+
+
+
+var mousePrevLeftButton bool
+
 //export goMouse
 func goMouse( x C.int, y C.int, leftButton C.int, rightButton C.int ) {
-  screen.mouse( int(x), int(y), bool(leftButton), bool(rightButton) )
+  //Move mouse
+  screen.isHit( int(x), int(y) )
+  if !mousePrevLeftButton && bool(leftButton != 0) {
+    screen.mouseClick( int(x), int(y) )
+    }
+  mousePrevLeftButton = bool(leftButton != 0)
   }
+
+
+
 
 //export goKeyDown
 func goKeyDown( code C.int ) {
-}
+  if focusItem != nil {
+    focusItem.keyDown( int(code) )
+    }
+  }
+
+
 
 //export goKeyUp
 func goKeyUp( code C.int ) {
 }
 
+
+
+
 //export goKeyChar
 func goKeyChar( code C.int ) {
-}
+  if focusItem != nil {
+    focusItem.keyChar( int(code) )
+    }
+  }
 
 
 func main() {
-  back := &ItemRect {
-    ItemImpl: ItemImpl {
-      w: 200,
-      h: 70,
-      resizeFunc: centerInParent,
-      child: make( []Item, 0 ),
-      visible: true,
-      },
-    color: 0xf00000,
-    }
-  screen.Add( back )
+  back := NewItemRect( 0, 0, 200, 70, 0xf000 )
+  back.onResizeW = centerInParentW
+  back.onResizeH = centerInParentH
+  screen.add( back )
 
   C.winStart()
 }

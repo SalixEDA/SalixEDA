@@ -1,3 +1,5 @@
+#ifdef _WIN64
+
 #include <windows.h>
 #include <stdint.h>
 #include <memory.h>
@@ -196,3 +198,4 @@ void winRepaint()
   UpdateWindow( hMainWindow );
   }
 
+#endif
