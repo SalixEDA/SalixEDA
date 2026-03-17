@@ -65,6 +65,8 @@ class SdGuiderDialog : public QDialog
     SdWMain              *mWMain;
 
     QString               mScriptPath;   //!< Path to script
+    int                   mScenaIndex;
+    int                   mStepIndex;
   public:
     explicit SdGuiderDialog( SdWMain *wmain );
 
@@ -73,10 +75,10 @@ class SdGuiderDialog : public QDialog
     QString scriptPath() const { return mScriptPath; }
     int     snapshotIndex() const;
 
-    int  getCurrentScenaIndex() const;
-    int  getCurrentStepIndex() const;
-    void goToNextStep();
-    void clearSelection();
+    int     getCurrentScenaIndex() const { return mScenaIndex; }
+    int     getCurrentStepIndex() const { return mStepIndex; }
+    void    goToNextStep();
+    void    clearSelection();
 
   signals:
     void snapshotLoad( const QString &scriptPath, int snapshotIndex );

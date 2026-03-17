@@ -22,6 +22,7 @@ struct SdGuiderSnapshot
   {
     QString mProjectName; //!< Project name for object
     QString mObjectName;  //!< Object name itself
+    quint64 mObjectClass; //!< Object class, because objects of different classes may have same names
     //2d graphics editors
     SdPoint mGrid;        //!< Editor grid
     SdPoint mOrigin;      //!< Editor view origin

@@ -51,7 +51,7 @@ SdWEditorGraphPlate::SdWEditorGraphPlate(SdPItemPlate *pcb, QWidget *parent) :
   mRuleErrorIndex(-1) //Current rule error index
   {
   mGrid.set( 2500, 2500 );
-  mScale.scaleSet( 0.01 );
+  //mScale.scaleSet( 0.01 );
   }
 
 

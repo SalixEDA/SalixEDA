@@ -27,7 +27,6 @@ Description
 #include "SdWEditorIntro.h"
 #include "SdWEditorProject.h"
 #include "SdWEditorRich.h"
-#include "SdWEditor3d.h"
 #include "SdWEditor3dPart.h"
 #include "SdWEditor3dPartView.h"
 #include "SdWEditor3dPlate.h"
@@ -75,6 +74,7 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   mGuiderCapture = new SdGuiderCapture( this, this );
   mGuiderDialog  = new SdGuiderDialog( this );
   mGuiderDialog->hide();
+  connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, this, &SdWMain::cmGuiderSnapshotLoad );
 
   //Set window icon
   setWindowIcon( QIcon(QStringLiteral(":/pic/iconMain.png")) );
@@ -1488,83 +1488,6 @@ void SdWMain::cmModeBinder()
 
 
 
-void SdWMain::cmModeLine()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeLine();
-  }
-
-
-
-
-void SdWMain::cmModeRect()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeRect();
-  }
-
-
-
-
-void SdWMain::cmModeFilledRect()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeFilledRect();
-  }
-
-
-
-
-void SdWMain::cmModeRegion()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeRegion();
-  }
-
-
-
-
-void SdWMain::cmModeFilledRegion()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeFilledRegion();
-  }
-
-
-
-
-void SdWMain::cmModeCircle()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeCircle();
-  }
-
-
-
-
-void SdWMain::cmModeFilledCircle()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeFilledCircle();
-  }
-
-
-
-
-void SdWMain::cmModeArc()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeArc();
-  }
-
-
-
-
-void SdWMain::cmModeText()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeText();
-  }
 
 
 
@@ -1716,54 +1639,6 @@ void SdWMain::cmShowPads(bool st)
 
 
 
-void SdWMain::cmModePin()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModePin();
-  }
-
-
-
-
-void SdWMain::cmModeReference()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeReference();
-  }
-
-
-
-
-void SdWMain::cmModeOrigin()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeOrigin();
-  }
-
-
-
-
-void SdWMain::cmModeValue()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeValue();
-  }
-
-
-
-void SdWMain::cmModeSymbolFragment()
-  {
-  if( activeEditor() )
-    activeEditor()->cmModeSymbolFragment();
-  }
-
-
-
-void SdWMain::cmSymbolPartAndParam()
-  {
-  if( activeEditor() )
-    activeEditor()->cmSymbolPartParam();
-  }
 
 
 
@@ -2267,9 +2142,63 @@ void SdWMain::cmGuiderSnapshotSave()
 
 
 
-void SdWMain::cmGuiderSnapshotLoad(const QString &path, int index)
+void SdWMain::cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex)
   {
+  QString snapshotName("scena-%1.snapshot");
+  QFile snapshotFile( scriptPath + snapshotName.arg(snapshotIndex) );
+  if( snapshotFile.open(QIODevice::ReadOnly) ) {
+    QJsonObject obj( svJsonObjectFromByteArray(snapshotFile.readAll()) );
+    SdJsonReader js( obj, nullptr );
+    QString              atype;
+    int                  aversion;
+    QStringList          projectList;
+    int                  currentProject;
+    SdGuiderSnapshotList editorSnapshotList;
+    int                  currentEditor;
 
+    js.jsonString( "AType", atype );
+    js.jsonInt( "AVersion", aversion );
+    js.jsonListString( "Projects", projectList );
+    js.jsonInt( "Project current", currentProject );
+    js.jsonList( js, "Open editor list", editorSnapshotList );
+    js.jsonInt( "Current editor", currentEditor );
+
+    if( atype == QString("Guider snapshot file") && aversion == 1 ) {
+      //Reload all snapshot projects
+      mWProjectList->snapshotLoad( scriptPath, projectList, currentProject );
+      int currentEditorIndex = 0;
+      //Open editors
+      for( const auto &snapshot : std::as_const(editorSnapshotList) ) {
+        //For each editor snapshot we perform:
+        //Find project with name
+        SdProject *prj = mWProjectList->projectByName( snapshot.mProjectName );
+        if( prj != nullptr ) {
+          //In project find object with name and class
+          SdProjectItem *item = prj->getItem( snapshot.mObjectClass, snapshot.mObjectName );
+          if( item != nullptr ) {
+            if( currentEditor == 0 )
+              currentEditorIndex = mWEditors->count();
+            //Object found. Open editor
+            if( snapshot.mIs3d )
+              onActivateProjectItem3d( item );
+            else
+              onActivateProjectItem( item );
+
+            //Tune graph editor
+            SdWEditorGraph *graphEditor = dynamic_cast<SdWEditorGraph*>( activeEditor() );
+            if( graphEditor != nullptr ) {
+              graphEditor->update();
+              graphEditor->scaleSet( snapshot.mScale );
+              graphEditor->originSet( snapshot.mOrigin );
+              graphEditor->gridSet( snapshot.mGrid );
+              }
+            }
+          }
+        currentEditor--;
+        }
+      mWEditors->setCurrentIndex( currentEditorIndex );
+      }
+    }
   }
 
 
@@ -2366,16 +2295,6 @@ void SdWMain::cmHelpTopic(const QString topic)
     sizes[2] = 300;
     mWSplitter->setSizes( sizes );
     }
-  }
-
-void SdWMain::snapshotSave(const QString &path, int index )
-  {
-
-  }
-
-void SdWMain::snapshotLoad(const QString &path, int index)
-  {
-
   }
 
 

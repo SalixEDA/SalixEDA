@@ -71,6 +71,26 @@ SdWProjectTree *SdWProjectList::project(int index)
 
 
 
+SdProject *SdWProjectList::projectByName(const QString &title) const
+  {
+  //In project list we find project with "title" name
+  for( int index = 0; index < mWProjectStack->count(); index++ ) {
+    //Get project tree widget
+    SdWProjectTree *projectTree = dynamic_cast<SdWProjectTree*>( mWProjectStack->widget(index) );
+    if( projectTree != nullptr ) {
+      //Get project itself from prject tree widget
+      SdProject *prj = projectTree->getProject();
+      //Compare project title and title from param
+      if( prj->getTitle() == title )
+        //Project found, return it
+        return prj;
+      }
+    }
+  return nullptr;
+  }
+
+
+
 void SdWProjectList::snapshotSave(const QString &path, int index, QStringList &list, int &current)
   {
   list.clear();
@@ -117,7 +137,7 @@ void SdWProjectList::snapshotLoad(const QString &path, const QStringList &list, 
 
   //Continuously open projects
   for( const QString &fileName : std::as_const(list) ) {
-    QString filePath( path + fileName );
+    QString filePath( path + fileName + SD_BINARY_EXTENSION );
 
     //Creating project window [Создаем окно проекта]
     SdWProjectTree *prj = new SdWProjectTree( filePath, nullptr );

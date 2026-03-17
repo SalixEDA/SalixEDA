@@ -60,10 +60,15 @@ class SdWMain : public QMainWindow
   public:
     explicit SdWMain( QStringList args, QWidget *parent = nullptr );
 
+    //!
+    //! \brief cmDelegate This template simple translate command to active editor
+    //!
     template <void (SdWEditor::*Method)()>
     void cmDelegate()
       {
+      //Get active editor ...
       if( SdWEditor *ed = activeEditor() )
+        //... and translate command to its method
         (ed->*Method)();
       }
 
@@ -197,15 +202,6 @@ class SdWMain : public QMainWindow
 
     void cmModeBinder();
 
-    void cmModeLine();
-    void cmModeRect();
-    void cmModeFilledRect();
-    void cmModeRegion();
-    void cmModeFilledRegion();
-    void cmModeCircle();
-    void cmModeFilledCircle();
-    void cmModeArc();
-    void cmModeText();
     void cmModeParam();
     void cmModeScript();
 
@@ -226,12 +222,6 @@ class SdWMain : public QMainWindow
 
     //Symbol Part
     void cmShowPads(bool st);
-    void cmModePin();
-    void cmModeReference();
-    void cmModeOrigin();
-    void cmModeValue();
-    void cmModeSymbolFragment();
-    void cmSymbolPartAndParam();
 
     //Sheet and pcb
     void cmRenumeration();
@@ -289,7 +279,7 @@ class SdWMain : public QMainWindow
 
     void cmGuiderDialog();
     void cmGuiderSnapshotSave();
-    void cmGuiderSnapshotLoad( const QString &path, int index );
+    void cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex );
     void cmGuiderCapture();
     void cmGuiderPause();
 
@@ -301,10 +291,6 @@ class SdWMain : public QMainWindow
     void cmEnterPosition();
 
     void cmHelpTopic( const QString topic );
-
-    void snapshotSave(const QString &path, int index);
-
-    void snapshotLoad( const QString &path, int index );
 
     // QWidget interface
   protected:

@@ -65,7 +65,7 @@ SdWEditorGraph::SdWEditorGraph(SdProjectItem *item, QWidget *parent) :
   mPrevMode(nullptr),       //Previous active mode for return to it [Предыдущий режим]
   mStack(nullptr),          //Temporary mode aka zoom [Временный режим]
   mSelect(nullptr),   //Режим выделения
-  mScale(),           //Текущий масштаб изображения
+  mScale(-1),           //Текущий масштаб изображения
   mOrigin(),          //Логическая точка центра изображения
   mClientSize(),      //Размер клиентской области в пикселах
   mGrid(),            //Размер сетки
@@ -109,7 +109,12 @@ SdWEditorGraph::SdWEditorGraph(SdProjectItem *item, QWidget *parent) :
       mMode = new SdModeView( this, item );
       modeActivate( mMode );
       }
-    QTimer::singleShot( 200, this, &SdWEditorGraph::cmViewFit );
+    QTimer::singleShot( 200, this, [this] () {
+      //If scale less then 0 then editor shown first
+      if( mScale.scaleGet() < 0 )
+        //... so at first show we fit into view
+        cmViewFit();
+      } );
     }
 
   }
@@ -166,6 +171,18 @@ void SdWEditorGraph::originSet(SdPoint org)
 //Window zoom
 void SdWEditorGraph::zoomWindow(SdRect r)
   {
+  if( mClientSize.x() == 0 ) {
+    //Client size yet not assigned
+    //Try set from viewport size
+    if( viewport() == nullptr )
+      //No viewport, set default
+      mClientSize.set( 1000, 700 );
+    else {
+      //Viewport accessible, take size from it
+      QSize s = viewport()->size();
+      mClientSize.set( s.width(), s.height() );
+      }
+    }
   //qDebug() << "zoomWindow" << r;
   originSet( r.center() );
   //Вычислить новый масштаб
@@ -869,6 +886,7 @@ void SdWEditorGraph::paintEvent(QPaintEvent *event)
   {
   event->accept();
   paintProcess( false );
+  //qDebug() << "Scale=" << scaleGet();
   }
 
 

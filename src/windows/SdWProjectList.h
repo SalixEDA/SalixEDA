@@ -40,6 +40,7 @@ class SdWProjectList : public QWidget
 
     SdWProjectTree* activeProject();
     SdWProjectTree* project( int index );
+    SdProject*      projectByName( const QString &title ) const;
 
   signals:
     //Name of active project changed or other project selected

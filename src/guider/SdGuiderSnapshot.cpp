@@ -24,6 +24,7 @@ void SdGuiderSnapshot::json(SdJsonWriter &js) const
   {
   js.jsonString( "ProjectName", mProjectName );
   js.jsonString( "ObjectName",  mObjectName );
+  js.jsonHex64( "ObjectClass", mObjectClass );
   mGrid.json( "Grid-", js );
   mOrigin.json( "Origin-", js );
   js.jsonDouble( "Scale", mScale );
@@ -40,6 +41,7 @@ void SdGuiderSnapshot::json(const SdJsonReader &js)
   {
   js.jsonString( "ProjectName", mProjectName );
   js.jsonString( "ObjectName",  mObjectName );
+  js.jsonHex64( "ObjectClass", mObjectClass );
   mGrid.json( "Grid-", js );
   mOrigin.json( "Origin-", js );
   js.jsonDouble( "Scale", mScale );

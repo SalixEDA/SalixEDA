@@ -164,15 +164,15 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmModeTable[MD_SELECT]      = menuDraw->addAction( QIcon(QString(":/pic/select.png")), QObject::tr("Select and edit"), frame, &SdWMain::cmModeSelect );
   cmModeTable[MD_BINDER]      = menuDraw->addAction( QIcon(QString(":/pic/objPrtPin.png")), QObject::tr("Binder"), frame, &SdWMain::cmModeBinder );
   menuDraw->addSeparator();
-  cmModeTable[MD_LINE]        = menuDraw->addAction( QIcon(QString(":/pic/drawLine.png")), QObject::tr("Line"), frame, &SdWMain::cmModeLine );
-  cmModeTable[MD_RECT]        = menuDraw->addAction( QIcon(QString(":/pic/drawRect.png")), QObject::tr("Rect"), frame, &SdWMain::cmModeRect );
-  cmModeTable[MD_FILL_RECT]   = menuDraw->addAction( QIcon(QString(":/pic/drawFRect.png")), QObject::tr("Filled rect"), frame, &SdWMain::cmModeFilledRect );
-  cmModeTable[MD_REGION]      = menuDraw->addAction( QIcon(QString(":/pic/drawRegion.png")), QObject::tr("Region"), frame, &SdWMain::cmModeRegion );
-  cmModeTable[MD_FILL_REGION] = menuDraw->addAction( QIcon(QString(":/pic/drawFRegion.png")), QObject::tr("Filled region"), frame, &SdWMain::cmModeFilledRegion );
-  cmModeTable[MD_CIRCLE]      = menuDraw->addAction( QIcon(QString(":/pic/drawCircle.png")), QObject::tr("Circle"), frame, &SdWMain::cmModeCircle );
-  cmModeTable[MD_FILL_CIRCLE] = menuDraw->addAction( QIcon(QString(":/pic/drawFCircle.png")), QObject::tr("Filled circle"), frame, &SdWMain::cmModeFilledCircle );
-  cmModeTable[MD_ARC]         = menuDraw->addAction( QIcon(QString(":/pic/drawArc.png")), QObject::tr("Arc"), frame, &SdWMain::cmModeArc );
-  cmModeTable[MD_TEXT]        = menuDraw->addAction( QIcon(QString(":/pic/drawText.png")), QObject::tr("Text"), frame, &SdWMain::cmModeText );
+  cmModeTable[MD_LINE]        = menuDraw->addAction( QIcon(QString(":/pic/drawLine.png")), QObject::tr("Line"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeLine> );
+  cmModeTable[MD_RECT]        = menuDraw->addAction( QIcon(QString(":/pic/drawRect.png")), QObject::tr("Rect"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeRect> );
+  cmModeTable[MD_FILL_RECT]   = menuDraw->addAction( QIcon(QString(":/pic/drawFRect.png")), QObject::tr("Filled rect"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeFilledRect> );
+  cmModeTable[MD_REGION]      = menuDraw->addAction( QIcon(QString(":/pic/drawRegion.png")), QObject::tr("Region"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeRegion> );
+  cmModeTable[MD_FILL_REGION] = menuDraw->addAction( QIcon(QString(":/pic/drawFRegion.png")), QObject::tr("Filled region"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeFilledRegion> );
+  cmModeTable[MD_CIRCLE]      = menuDraw->addAction( QIcon(QString(":/pic/drawCircle.png")), QObject::tr("Circle"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeCircle> );
+  cmModeTable[MD_FILL_CIRCLE] = menuDraw->addAction( QIcon(QString(":/pic/drawFCircle.png")), QObject::tr("Filled circle"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeFilledCircle> );
+  cmModeTable[MD_ARC]         = menuDraw->addAction( QIcon(QString(":/pic/drawArc.png")), QObject::tr("Arc"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeArc> );
+  cmModeTable[MD_TEXT]        = menuDraw->addAction( QIcon(QString(":/pic/drawText.png")), QObject::tr("Text"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeText> );
   cmShowField = menuDraw->addAction( QIcon(QStringLiteral(":/pic/showField.png")), QObject::tr("Show fields or values") );
   cmShowField->setCheckable(true);
   cmShowField->setChecked( SdEnvir::instance()->mShowFields );
@@ -183,13 +183,13 @@ void SdWCommand::createMenu(SdWMain *frame)
   //Symbol editor menu
   menuInsertSymbol = new QMenu( QObject::tr("Symbol") );
 
-  cmModeTable[MD_SYM_PIN]         = menuInsertSymbol->addAction( QIcon(QString(":/pic/objPin.png")), QObject::tr("Insert pin"), frame, &SdWMain::cmModePin );
-  cmModeTable[MD_SYM_IDENT]       = menuInsertSymbol->addAction( QIcon(QString(":/pic/objIdent.png")), QObject::tr("Edit reference"), frame, &SdWMain::cmModeReference );
-  cmModeTable[MD_SYM_ORIGIN]      = menuInsertSymbol->addAction( QIcon(QString(":/pic/objOrigin.png")), QObject::tr("Edit origin"), frame, &SdWMain::cmModeOrigin );
-  cmModeTable[MD_SYM_VALUE]       = menuInsertSymbol->addAction( QIcon(QString(":/pic/objValue.png")), QObject::tr("Edit value"), frame, &SdWMain::cmModeValue );
-  cmModeTable[MD_SYMBOL_FRAGMENT] = menuInsertSymbol->addAction( QIcon(QString(":/pic/symbolFragment.png")), QObject::tr("Enter symbol fragment"), frame, &SdWMain::cmModeSymbolFragment );
+  cmModeTable[MD_SYM_PIN]         = menuInsertSymbol->addAction( QIcon(QString(":/pic/objPin.png")), QObject::tr("Insert pin"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModePin> );
+  cmModeTable[MD_SYM_IDENT]       = menuInsertSymbol->addAction( QIcon(QString(":/pic/objIdent.png")), QObject::tr("Edit reference"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeReference> );
+  cmModeTable[MD_SYM_ORIGIN]      = menuInsertSymbol->addAction( QIcon(QString(":/pic/objOrigin.png")), QObject::tr("Edit origin"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeOrigin> );
+  cmModeTable[MD_SYM_VALUE]       = menuInsertSymbol->addAction( QIcon(QString(":/pic/objValue.png")), QObject::tr("Edit value"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeValue> );
+  cmModeTable[MD_SYMBOL_FRAGMENT] = menuInsertSymbol->addAction( QIcon(QString(":/pic/symbolFragment.png")), QObject::tr("Enter symbol fragment"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeSymbolFragment> );
   menuInsertSymbol->addSeparator();
-  cmSymbolPartParam               = menuInsertSymbol->addAction( QIcon(QString(":/pic/objSymbolPartParam.png")), QObject::tr("Default part and params"), frame, &SdWMain::cmSymbolPartAndParam );
+  cmSymbolPartParam               = menuInsertSymbol->addAction( QIcon(QString(":/pic/objSymbolPartParam.png")), QObject::tr("Default part and params"), frame, &SdWMain::cmDelegate<&SdWEditor::cmSymbolPartParam> );
 
 
 
@@ -200,10 +200,10 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmShowPads->setCheckable(true);
   cmShowPads->setChecked( SdEnvir::instance()->mShowPads );
   cmShowPads->connect( cmShowPads, &QAction::toggled, frame, &SdWMain::cmShowPads );
-  cmModeTable[MD_PART_PIN]       = menuInsertPart->addAction( QIcon(QString(":/pic/objPrtPin.png")), QObject::tr("Insert pin"), frame, &SdWMain::cmModePin );
-  cmModeTable[MD_PART_IDENT]     = menuInsertPart->addAction( QIcon(QString(":/pic/objIdent.png")), QObject::tr("Edit reference"), frame, &SdWMain::cmModeReference );
-  cmModeTable[MD_PART_ORIGIN]    = menuInsertPart->addAction( QIcon(QString(":/pic/objOrigin.png")), QObject::tr("Edit origin"), frame, &SdWMain::cmModeOrigin );
-  cmModeTable[MD_PART_VALUE]     = menuInsertPart->addAction( QIcon(QString(":/pic/objPrtValue.png")), QObject::tr("Edit value"), frame, &SdWMain::cmModeValue );
+  cmModeTable[MD_PART_PIN]       = menuInsertPart->addAction( QIcon(QString(":/pic/objPrtPin.png")), QObject::tr("Insert pin"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModePin> );
+  cmModeTable[MD_PART_IDENT]     = menuInsertPart->addAction( QIcon(QString(":/pic/objIdent.png")), QObject::tr("Edit reference"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeReference> );
+  cmModeTable[MD_PART_ORIGIN]    = menuInsertPart->addAction( QIcon(QString(":/pic/objOrigin.png")), QObject::tr("Edit origin"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeOrigin> );
+  cmModeTable[MD_PART_VALUE]     = menuInsertPart->addAction( QIcon(QString(":/pic/objPrtValue.png")), QObject::tr("Edit value"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeValue> );
 
 
 
@@ -292,7 +292,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   //  cmModePad        = menuInsert->addAction( QIcon(QString(":/pic/.png")), QObject::tr(""), frame, SLO );
   cmModeTable[MD_PLATE_IDENT] = menuInsertPcb->addAction( QIcon(QString(":/pic/objIdent.png")), QObject::tr("Move ident of components"), frame, &SdWMain::cmModeReferenceMove );
   cmModeTable[MD_PLATE_VALUE] = menuInsertPcb->addAction( QIcon(QString(":/pic/objPrtValue.png")), QObject::tr("Move value of components"), frame, &SdWMain::cmModeValueMove );
-  cmModeTable[MD_PLATE_ORIGIN]= menuInsertPcb->addAction( QIcon(QString(":/pic/objPlateOrigin.png")), QObject::tr("Edit plate origin"), frame, &SdWMain::cmModeOrigin );
+  cmModeTable[MD_PLATE_ORIGIN]= menuInsertPcb->addAction( QIcon(QString(":/pic/objPlateOrigin.png")), QObject::tr("Edit plate origin"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeOrigin> );
   cmModeTable[MD_PART_HIGHLIGHT] = menuInsertPcb->addAction( QIcon(QString(":/pic/objPartHighlight.png")), QObject::tr("Highlight components"), frame, &SdWMain::cmModePartHighlight );
 
 

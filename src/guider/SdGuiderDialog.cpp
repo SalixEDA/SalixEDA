@@ -251,10 +251,13 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
 
   mTreeWidget->clear();
 
+  QTreeWidgetItem *scenaFirst = nullptr;
+
   // Заполняем дерево
   for( const auto &scena : std::as_const(mScenaList) ) {
     // Создаем элемент сцены (верхний уровень)
     QTreeWidgetItem *scenaItem = new QTreeWidgetItem( mTreeWidget );
+    if( scenaFirst == nullptr ) scenaFirst = scenaItem;
     scenaItem->setText( 0, scena.mTitle );
     scenaItem->setData( 0, Qt::UserRole, "scena" );
 
@@ -286,6 +289,10 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
   // Обновляем подсказку
   mHintLabel->setText( "F12 - save snapshot" );
 
+  //Устанавливаем активным первую сцену
+  mScenaIndex = mStepIndex = 0;
+  mTreeWidget->setCurrentItem( scenaFirst );
+
   return true;
   }
 
@@ -302,37 +309,6 @@ int SdGuiderDialog::snapshotIndex() const
   return -1;
   }
 
-
-
-
-int SdGuiderDialog::getCurrentScenaIndex() const {
-  QList<QTreeWidgetItem *> selected = mTreeWidget->selectedItems();
-  if( selected.isEmpty() )
-    return -1;
-
-  QTreeWidgetItem *item = selected.first();
-
-  // Если выбран шаг, берем его родителя (сцену)
-  if( item->data( 0, Qt::UserRole ).toString() == "step" )
-    item = item->parent();
-
-  // Находим индекс сцены
-  return mTreeWidget->indexOfTopLevelItem( item );
-  }
-
-
-
-
-int SdGuiderDialog::getCurrentStepIndex() const {
-  if( !mCurrentStepItem )
-    return -1;
-
-  QTreeWidgetItem *parent = mCurrentStepItem->parent();
-  if( !parent )
-    return -1;
-
-  return parent->indexOfChild( mCurrentStepItem );
-  }
 
 
 
@@ -432,5 +408,6 @@ void SdGuiderDialog::onBuildClicked() {
 
 void SdGuiderDialog::onScenaSelected(int index)
   {
-
+  mScenaIndex = index;
+  emit snapshotLoad( mScriptPath, mScenaIndex );
   }

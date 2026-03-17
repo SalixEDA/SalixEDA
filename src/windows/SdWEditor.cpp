@@ -185,6 +185,7 @@ void SdWEditor::snapshotGet(SdGuiderSnapshot &snapshot) const
   if( getProjectItem() ) {
     snapshot.mProjectName = getProjectItem()->getProject()->getTitle();
     snapshot.mObjectName  = getProjectItem()->getTitle();
+    snapshot.mObjectClass = getProjectItem()->getClass();
     snapshot.mIs3d        = is3d();
     }
   }

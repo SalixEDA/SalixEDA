@@ -30,7 +30,7 @@ SdWEditorGraphPart::SdWEditorGraphPart(SdPItemPart *part, QWidget *parent) :
   mPart( part )
   {
   mGrid.set( 2500, 2500 );
-  mScale.scaleSet( 0.01 );
+  //mScale.scaleSet( 0.01 );
   }
 
 

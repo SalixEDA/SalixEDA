@@ -30,11 +30,11 @@ SdWEditorGraphView::SdWEditorGraphView(SdProjectItem *item, QWidget *parent) :
   {
   if( item != nullptr && item->getClass() & (dctPart | dctPlate) ) {
     mGrid.set( 2500, 2500 );
-    mScale.scaleSet( 0.01 );
+    //mScale.scaleSet( 0.01 );
     }
   else {
     mGrid.set( 25, 25 );
-    mScale.scaleSet( 1.0 );
+    //mScale.scaleSet( 1.0 );
     }
   //Fill item in view
   //cmViewFit();
