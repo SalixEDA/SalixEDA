@@ -75,6 +75,7 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   mGuiderDialog  = new SdGuiderDialog( this );
   mGuiderDialog->hide();
   connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, this, &SdWMain::cmGuiderSnapshotLoad );
+  connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, mGuiderCapture, &SdGuiderCapture::setScena );
 
   //Set window icon
   setWindowIcon( QIcon(QStringLiteral(":/pic/iconMain.png")) );
@@ -2207,6 +2208,7 @@ void SdWMain::cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex)
 void SdWMain::cmGuiderCapture()
   {
   if( mGuiderCapture->isCapture() ) {
+    SdWCommand::cmGuiderCapture->
     mGuiderCapture->captureStop();
     mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOff.png")) );
     mCapture->setToolTip( tr("Show status of guide capture video system: stopped") );

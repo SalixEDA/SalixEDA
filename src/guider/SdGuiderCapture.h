@@ -18,18 +18,17 @@ Description
 #include <QObject>
 #include <QTimer>
 
-class SdGuiderFile;
-
 class SdGuiderCapture : public QObject
   {
     Q_OBJECT
 
     QTimer        mTimer;
-    SdGuiderFile *mFile;
     QWidget      *mMainWindow;
     int           mTime;
   public:
     explicit SdGuiderCapture(QWidget *main, QObject *parent = nullptr);
+
+    void setScena( const QString &scriptPath, int scenaIndex );
 
     bool isCapture() const { return mFile != nullptr; }
 
