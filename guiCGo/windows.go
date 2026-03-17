@@ -146,8 +146,6 @@ func (i *Item) setVisible(vis bool) {
 
 func (i *Item) drawChild( bx int, by int ) {
   if i.visible {
-    bx += i.x
-    by += i.y
     for _, child := range i.child {
       child.draw( bx, by )
       }
@@ -156,33 +154,27 @@ func (i *Item) drawChild( bx int, by int ) {
 
 
 func (i *Item) draw(x int, y int) {
-  i.drawChild( x, y )
+  i.drawChild( x + i.x, y + i.y )
   }
 
 
 func (i *Item) resizeW(parentWidth int) {
   if i.onResizeW != nil {
-    oldW := i.w
     i.onResizeW( i, parentWidth )
-
-    if oldW != i.w {
-      for _, child := range i.child {
-        child.resizeW( i.w )
-        }
-      }
+    //println("x:", i.x, "y:", i.y, "w:", i.w, "h:", i.h)
+    }
+  for _, child := range i.child {
+    child.resizeW( i.w )
     }
   }
 
 func (i *Item) resizeH(parentHeight int) {
   if i.onResizeH != nil {
-    oldH := i.h
     i.onResizeH( i, parentHeight )
-
-    if oldH != i.h {
-      for _, child := range i.child {
-        child.resizeH( i.h )
-        }
-      }
+    //println("x:", i.x, "y:", i.y, "w:", i.w, "h:", i.h)
+    }
+  for _, child := range i.child {
+    child.resizeH( i.h )
     }
   }
 
@@ -342,6 +334,18 @@ func (i *Item) vCenter(base ItemInterface) int {
   }
 
 
+func (i *Item) fillParent() {
+  i.onResizeW = fillParentW
+  i.onResizeH = fillParentH
+  }
+
+
+func (i *Item) centerInParent() {
+  i.onResizeW = centerInParentW
+  i.onResizeH = centerInParentH
+  }
+
+
 
 
 
@@ -431,10 +435,67 @@ func goKeyChar( code C.int ) {
 
 
 func main() {
-  back := NewItemRect( 0, 0, 200, 70, 0xf000 )
-  back.onResizeW = centerInParentW
-  back.onResizeH = centerInParentH
-  screen.add( back )
+ // back := NewItemRect( 0, 0, 200, 70, 0xf000 )
+ // back.onResizeW = centerInParentW
+ // back.onResizeH = centerInParentH
+ // screen.add( back )
+
+// Создаем фон
+  background := NewItemRect(0, 0, 0, 0, 0x202020)
+  background.fillParent()
+  screen.add(background)
+
+  // Создаем панель в центре
+  panel := NewItemRect(0, 0, 400, 300, 0x303030)
+  panel.centerInParent()
+  panel.r = 10
+  screen.add(panel)
+                       /*
+  rc := NewItemRect( 0, 0, 150, 20, 0x606060 )
+  rc.centerInParent()
+  rc.r = 5
+  panel.add( rc )
+                     */
+  // Заголовок
+  title := NewItemText(0, 20, "Настройка системы", 24, 0xFFFFFF)
+  title.align = AlignHCenter
+  title.onResizeW = func( item *Item, parentWidth int ) {
+    item.x = parentWidth / 2
+    }
+  panel.add(title)
+
+  // Поле ввода
+  input := NewItemInputLine(0, 70, 360, 30)
+  input.onResizeW = centerInParentW
+  panel.add(input)
+
+  // Полоса прогресса
+  progress := NewItemProgressBar(0, 120, 360, 20)
+  progress.onResizeW = centerInParentW
+  progress.SetValue(0.66)
+  panel.add(progress)
+
+  // Кнопки
+  okButton := NewItemButton(0, 160, 100, 30, "OK")
+  okButton.onResizeW = func(item *Item, pw int) {
+    item.x = pw - item.w - 10
+    }
+  okButton.onResizeH = func(item *Item, ph int) {
+    item.y = ph - item.h - 10
+    }
+  okButton.onClick = func(item *Item, localX int, localY int) {
+    println("OK clicked!")
+    }
+  panel.add(okButton)
+
+  cancelButton := NewItemButton(10, 160, 100, 30, "Отмена")
+  cancelButton.onResizeH = func(item *Item, ph int) {
+    item.y = ph - item.h - 10
+    }
+  cancelButton.onClick = func(item *Item, localX int, localY int) {
+    println("Cancel clicked!")
+    }
+  panel.add(cancelButton)
 
   C.winStart()
 }

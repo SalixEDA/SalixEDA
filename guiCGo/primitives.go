@@ -14,13 +14,13 @@ import (
 const (
   //Горизонтальное выравнивание
   AlignLeft    = 0
-  AlignRight   = 1
-  AlignHCenter = 2
+  AlignHCenter = 1
+  AlignRight   = 2
 
   //Вертикальное выравнивание
   AlignBottom  = 0
-  AlignVCenter = 1
-  AlignTop     = 2
+  AlignVCenter = 4
+  AlignTop     = 8
 )
 
 
@@ -52,7 +52,7 @@ func (ir *ItemRect) draw(x int, y int) {
   // Вычисляем абсолютные координаты с учетом родительских
   absX := x + ir.x
   absY := y + ir.y
-
+  //println("draw x:", absX, "y:", absY, "w:", ir.w, "h:", ir.h)
   // Рисуем прямоугольник
   C.drawRoundRectangle(C.int(absX), C.int(absY), C.int(ir.w), C.int(ir.h), C.int(ir.r), ir.color )
 
@@ -116,7 +116,6 @@ type ItemButton struct {
   pressedColor C.uint32_t
   radius       int
   state        int // 0 - normal, 1 - hover, 2 - pressed
-  onClick      func(button *ItemButton)
   }
 
 const (
@@ -175,8 +174,8 @@ func (b *ItemButton) draw(x, y int) {
   // Рисуем текст
   if b.text != "" {
     textX := absX + b.w/2
-    textY := absY + (b.h-b.textSize)/2
-    goDrawText(C.int(AlignHCenter), C.int(textX), C.int(textY), C.int(b.textSize), b.text, b.textColor)
+    textY := absY + b.h/2
+    goDrawText(C.int(AlignHCenter|AlignVCenter), C.int(textX), C.int(textY), C.int(b.textSize), b.text, b.textColor)
     }
 
   b.drawChild(absX, absY)
@@ -206,7 +205,7 @@ func NewItemProgressBar(x, y, w, h int) *ItemProgressBar {
     bgColor:     0x404040,
     fgColor:     0x00A000,
     borderColor: 0x808080,
-    radius:      3,
+    radius:      5,
     showText:    true,
     textSize:    12,
     textColor:   0xFFFFFF,
@@ -226,6 +225,9 @@ func (p *ItemProgressBar) SetValue(value float64) {
   p.value = value
   C.winRepaint()
   }
+
+
+
 
 func (p *ItemProgressBar) draw(x, y int) {
   if !p.visible {
@@ -253,8 +255,8 @@ func (p *ItemProgressBar) draw(x, y int) {
     percent := int(p.value * 100)
     text := itoa(percent) + "%"
     textX := absX + p.w/2
-    textY := absY + (p.h-p.textSize)/2
-    goDrawText(C.int(AlignHCenter), C.int(textX), C.int(textY), C.int(p.textSize), text, p.textColor)
+    textY := absY + p.h/2
+    goDrawText(C.int(AlignHCenter|AlignVCenter), C.int(textX), C.int(textY), C.int(p.textSize), text, p.textColor)
     }
 
   p.drawChild(absX, absY)

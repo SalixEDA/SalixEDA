@@ -295,6 +295,6 @@ void drawRoundRect( int px, int py, int w, int h, int r, uint32_t color )
     }
 
   //Fill central part
-  drawHLine2( xc, xc + w, py, py + h + 2 * r - 1, color );
-  drawVLine2( xc, px + w + 2 * r - 1, yc, yc + h, color );
+  drawHLine2( xc, xc + w, py, py + h + 2 * r, color );
+  drawVLine2( px, px + w + 2 * r, yc, yc + h, color );
   }
