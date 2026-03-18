@@ -4,12 +4,6 @@ import (
   "log"
   "os"
   "time"
-
-  "fyne.io/fyne/v2"
-  "fyne.io/fyne/v2/app"
-  "fyne.io/fyne/v2/container"
-  "fyne.io/fyne/v2/dialog"
-  "fyne.io/fyne/v2/widget"
 )
 
 // ========== СТРУКТУРА ИНТЕРФЕЙСА ==========
@@ -24,65 +18,56 @@ const (
 )
 
 type InstallUI struct {
-  app    fyne.App
-  window fyne.Window
   texts  *Texts
   cfg    *Config
-  stack  *fyne.Container  // Стек для переключения экранов
+  stack  *ItemContainer  // Стек для переключения экранов
 
   // Экран установки
   setupScreen struct {
-    view           fyne.CanvasObject
-    pathLabel      *widget.Label
-    selectFolderBtn *widget.Button
-    cancelBtn      *widget.Button
-    installBtn     *widget.Button
-    infoText       *widget.Label
-    pathRow        *fyne.Container
-    mainContent    *fyne.Container
-    buttonBox      *fyne.Container
-    content        *fyne.Container
+    view           *Item
+    pathLabel      *ItemInputText
+    cancelBtn      *ItemButton
+    installBtn     *ItemButton
+    infoText       *ItemTextMulty
   }
 
   // Экран прогресса
   progressScreen struct {
-    view             fyne.CanvasObject
-    progressBar       *widget.ProgressBar
-    percentLabel      *widget.Label
-    stageLabel        *widget.Label
-    downloadInfoLabel *widget.Label
-    cancelBtn         *widget.Button
-    container         *fyne.Container
+    view              *Item
+    progressBar       *ItemProgressBar
+    stageLabel        *ItemText
+    downloadInfoLabel *ItemText
+    cancelBtn         *ItemButton
   }
 
   // Экран завершения
   completeScreen struct {
-    view           fyne.CanvasObject
-    completeLabel *widget.Label
-    finishBtn     *widget.Button
-    container     *fyne.Container
+    view          *Item
+    completeLabel *ItemText
+    finishBtn     *ItemButton
   }
 
   // Экран ошибки
   errorScreen struct {
-    view          fyne.CanvasObject
-    titleLabel    *widget.Label
-    messageLabel  *widget.Label
-    closeBtn      *widget.Button
-    container     *fyne.Container
+    view          *Item
+    titleLabel    *ItemText
+    messageLabel  *ItemTextMulty
+    closeBtn      *ItemButton
   }
 
   // Экран запроса обновления
   updateScreen struct {
-    view          fyne.CanvasObject
-    titleLabel    *widget.Label
-    messageLabel  *widget.Label
-    cancelBtn     *widget.Button
-    laterBtn      *widget.Button
-    updateBtn     *widget.Button
-    container     *fyne.Container
+    view          *Item
+    titleLabel    *ItemText
+    messageLabel  *ItemTextMulty
+    cancelBtn     *ItemButton
+    laterBtn      *ItemButton
+    updateBtn     *ItemButton
   }
 }
+
+
+
 
 func NewInstallUI(cfg *Config) *InstallUI {
   ui := &InstallUI{
@@ -93,11 +78,6 @@ func NewInstallUI(cfg *Config) *InstallUI {
   ui.texts = TransStringRu() // По умолчанию русский
   // Здесь будет логика выбора языка по системе
 
-  // Создаем приложение
-  ui.app = app.NewWithID("com.yourcompany.installer")
-  ui.window = ui.app.NewWindow(ui.texts.AppTitle)
-  ui.window.Resize(fyne.NewSize(600, 500))
-
   // Создаем все экраны
   ui.createSetupScreen()
   ui.createProgressScreen()
@@ -106,32 +86,20 @@ func NewInstallUI(cfg *Config) *InstallUI {
   ui.createUpdateScreen()
 
   // Создаем стек и добавляем все экраны
-  ui.stack = container.NewStack(
-    ui.setupScreen.view,
-    ui.progressScreen.view,
-    ui.completeScreen.view,
-    ui.errorScreen.view,
-    ui.updateScreen.view,
-  )
+  ui.stack = NewItemContainer( 0,0, 100, 100 )
+  ui.stack.anchorFillDef( screen )
+  ui.stack.add( ui.setupScreen.view,
+                ui.progressScreen.view,
+                ui.completeScreen.view,
+                ui.errorScreen.view,
+                ui.updateScreen.view,
+              )
 
-  ui.window.SetContent(ui.stack)
+  screen.add( ui.stack )
 
   return ui
 }
 
-// Метод для переключения экранов по индексу
-func (ui *InstallUI) ShowScreen(index int) {
-  fyne.Do(func() {
-    for i, obj := range ui.stack.Objects {
-      if i == index {
-        obj.Show()
-      } else {
-        obj.Hide()
-      }
-    }
-    ui.stack.Refresh()
-  })
-}
 
 
 
