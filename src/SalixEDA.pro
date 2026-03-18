@@ -44,6 +44,7 @@ docs.CONFIG += recursive  # Позволяет цели зависеть от д
 
 SOURCES += \
     guider/SdGuiderDialog.cpp \
+    guider/SdGuiderEvent.cpp \
     guider/SdGuiderMonitor.cpp \
     guider/SdGuiderSnapshot.cpp \
     import/iges/IgesEntityCurveOnParametricSurface.cpp \
@@ -432,6 +433,7 @@ SOURCES += \
 HEADERS  += \
     SvLib/SvJson3dIO.h \
     guider/SdGuiderDialog.h \
+    guider/SdGuiderEvent.h \
     guider/SdGuiderMacro.h \
     guider/SdGuiderMonitor.h \
     guider/SdGuiderSnapshot.h \
