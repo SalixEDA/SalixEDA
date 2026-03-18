@@ -10,6 +10,8 @@
 #include <stdatomic.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <wchar.h>
+#include <locale.h>
 
 #include "graphics.h"
 
@@ -83,9 +85,27 @@ void onMouse( int x, int y, int leftButton, int rightButton )
 
 
 
+// Преобразует UTF-8 в wide character
+wchar_t utf8ToPointCode(const char* utf8) {
+  mbstate_t state;
+  memset(&state, 0, sizeof(state));
+  wchar_t wc[32];
+
+  size_t result = mbrtowc(wc, utf8, 4, &state);
+  if( result == (size_t)-1 || result == (size_t)-2 ) {
+    return 0; // Ошибка
+    }
+  return wc[0];
+  }
+
+
+
+
+
 
 void winStart() {
   initFont();
+  setlocale(LC_ALL, "");
 
   // Открываем соединение с X сервером
   display = XOpenDisplay(NULL);
@@ -111,6 +131,11 @@ void winStart() {
 
   // Устанавливаем заголовок окна
   XStoreName(display, window, "SalixEDA setup program");
+
+  // При инициализации
+  XIM xim = XOpenIM(display, NULL, NULL, NULL);
+  XIC xic = XCreateIC(xim, XNInputStyle, XIMPreeditNothing | XIMStatusNothing,
+                    XNClientWindow, window, NULL);
 
   // Подписываемся на события
   XSelectInput(display, window,
@@ -187,7 +212,9 @@ void winStart() {
         {
         KeySym key;
         char buffer[32];
-        XLookupString(&event.xkey, buffer, sizeof(buffer), &key, NULL);
+        Status status;
+        //XLookupString(&event.xkey, buffer, sizeof(buffer), &key, NULL);
+        int len = XmbLookupString(xic, &event.xkey, buffer, sizeof(buffer), &key, &status);
         int keyCode = 0;
         switch(key) {
           case XK_Home      : keyCode = 0x47; break;
@@ -206,6 +233,10 @@ void winStart() {
           }
         if( keyCode )
           goKeyDown( keyCode );
+        if( buffer[0] )
+          goKeyChar( utf8ToPointCode(buffer) );
+        //printf( "KeyCode %d ch0 %x  ch1 %x   ch2 %x   ch3 %x\n", keyCode,
+        //  (int)(buffer[0]) & 0xff, (int)(buffer[1]) & 0xff, (int)(buffer[2]) & 0xff, (int)(buffer[3]) & 0xff );
         }
         break;
 

@@ -30,7 +30,7 @@ static void fillLine( int x1, int x2, int y, uint32_t color )
 
 void drawRectangle( int x, int y, int w, int h, uint32_t color )
   {
-  for( int i = y; i < h; i++ )
+  for( int i = 0; i < h; i++ )
     fillLine( x, x + w, y + i, color );
   }
 
@@ -109,6 +109,10 @@ int textWidth( int size, const int *str, int len )
   float scale = stbtt_ScaleForPixelHeight(&font, size);
   //Calculate string box width
   int w = 0;
+  if( len < 0 ) {
+    //Calculate len
+    for( len = 0; str[len]; len++ );
+    }
   for( int i = 0; i < len; i++ ) {
     int advance,lsb;
     stbtt_GetCodepointHMetrics(&font, str[i], &advance, &lsb);
@@ -118,6 +122,27 @@ int textWidth( int size, const int *str, int len )
       w += scale * advance;
     }
   return w;
+  }
+
+
+int textLimit( int width, int size, const int *str, int len )
+  {
+  float scale = stbtt_ScaleForPixelHeight(&font, size);
+  //Calculate string box width
+  int i = 0;
+  if( len < 0 ) {
+    //Calculate len
+    for( len = 0; str[len]; len++ );
+    }
+  for( int w = 0; i < len && w < width; i++ ) {
+    int advance,lsb;
+    stbtt_GetCodepointHMetrics(&font, str[i], &advance, &lsb);
+    if( i+1 < len )
+      w += scale * (advance + stbtt_GetCodepointKernAdvance( &font, str[i], str[i+1] ) );
+    else
+      w += scale * advance;
+    }
+  return i ? i - 1 : 0;
   }
 
 
