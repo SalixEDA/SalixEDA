@@ -13,29 +13,27 @@
 #include <wchar.h>
 #include <locale.h>
 
-#include "guiGraphics.h"
+#include "sgCGraphics.h"
 
 void initFont();
 
-uint32_t *screenBuffer;
-int gWindowWidth;
-int gWindowHeight;
+//Draw pixel buffer
+uint32_t   *screenBuffer;
+int         gWindowWidth;
+int         gWindowHeight;
 
-int nWindowWidth = 640;
-int nWindowHeight = 480;
+//New size of main window
+int         nWindowWidth = 640;
+int         nWindowHeight = 480;
 
 
-Display* display;
-Window window;
-GC gc;
-XImage* image;
-atomic_int needRedraw;
+Display    *display;
+Window      window;
+GC          gc;
+XImage     *image;
+atomic_int  needRedraw;
+atomic_int  needExit;
 
-/*    int mouse_x;
-    int mouse_y;
-    int mouse_button;
-    char key_pressed[256];
-*/
 
 void onWindowSize( int windowWidth, int windowHeight )
   {
@@ -103,14 +101,14 @@ wchar_t utf8ToPointCode(const char* utf8) {
 
 
 
-void winStart() {
+void winStart( int posx, int posy, int width, int height, const char *title ) {
   initFont();
   setlocale(LC_ALL, "");
 
   // Открываем соединение с X сервером
   display = XOpenDisplay(NULL);
   if( display == NULL ) {
-    fprintf(stderr, "Не удалось открыть X display\n");
+    fprintf(stderr, "Can't open X display\n");
     return;
     }
 
@@ -122,15 +120,15 @@ void winStart() {
   window = XCreateSimpleWindow(
     display,           // соединение с X сервером
     root,              // родительское окно
-    100, 100,          // позиция x, y
-    640, 480,          // ширина, высота
+    posx, posy,        // позиция x, y
+    width, height,     // ширина, высота
     1,                 // ширина границы
     BlackPixel(display, screen),  // цвет границы
     WhitePixel(display, screen)   // цвет фона
     );
 
   // Устанавливаем заголовок окна
-  XStoreName(display, window, "SalixEDA setup program");
+  XStoreName( display, window, title );
 
   // При инициализации
   XIM xim = XOpenIM(display, NULL, NULL, NULL);
@@ -154,10 +152,24 @@ void winStart() {
   XMapWindow(display, window);
 
   atomic_init( &needRedraw, 0 );
+  atomic_init( &needExit, 0 );
 
   // Обрабатываем события
   XEvent event;
   while (1) {
+    //Test if need to exit
+    if( atomic_exchange( &needExit, 0 ) ) {
+      //Close window and exit main loop
+
+      //Destroy main window
+      XDestroyWindow( display, window );
+
+      //Close X server connection
+      XCloseDisplay( display );
+
+      //Exit loop
+      return;
+      }
 
     if( atomic_exchange( &needRedraw, 0 ) ) {
       //Redraw widnow if need
@@ -248,16 +260,24 @@ void winStart() {
         XLookupString(&event.xkey, buffer, sizeof(buffer), &key, NULL);
         }
         break;
+
+      case DestroyNotify :
+        //Окно закрыто пользователем
+        XCloseDisplay(display);
+        return;
       }
     }
   }
 
-// Выход по нажатию любой клавиши
-// XCloseDisplay(display);
 
 void winRepaint()
   {
   atomic_store( &needRedraw, 1 );
+  }
+
+void winClose()
+  {
+  atomic_store( &needExit, 1 );
   }
 
 #endif

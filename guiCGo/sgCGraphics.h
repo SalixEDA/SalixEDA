@@ -1,8 +1,9 @@
 #include <stdint.h>
 
 //Window system init and start event loop
-extern void winStart();
+extern void winStart( int posx, int posy, int width, int height, const char *title );
 extern void winRepaint();
+extern void winClose();
 
 //Drawing primitives
 extern void drawHLine2( int x1, int x2, int yt, int yb, uint32_t color );

@@ -9,53 +9,54 @@ func main() {
  // screen.add( back )
 
 // Создаем фон
-  background := NewItemRect(0, 0, 0, 0, 0x202020)
-  background.anchorFill( &screen, 0 )
-  screen.add(background)
+  background := NewSgItemRect(0, 0, 0, 0, 0x202020)
+  background.AnchorFill( &SgScreen, 0 )
+  SgScreen.Add(background)
 
   // Создаем панель в центре
-  panel := NewItemRect(0, 0, 400, 300, 0x303030)
-  panel.anchorFill( &screen, 50 )
-  panel.r = 10
-  screen.add(panel)
+  panel := NewSgItemRect(0, 0, 400, 300, 0x303030)
+  panel.AnchorFill( &SgScreen, 50 )
+  panel.Radius = 10
+  SgScreen.Add(panel)
 
   // Заголовок
-  title := NewItemText(0, 20, "Настройка системы", 24, 0xFFFFFF)
-  title.align = AlignHCenter
-  title.anchorHorzCenter( panel.hCenterEdge(), 0 )
-  panel.add(title)
+  title := NewSgItemText(0, 20, "Настройка системы", 24, 0xFFFFFF)
+  title.Align = AlignHCenter
+  title.AnchorHorzCenter( panel.HCenterEdge(), 0 )
+  panel.Add(title)
 
   // Поле ввода
-  input := NewItemInputLine(0, 70, 360, 30)
-  input.anchorHorzCenter( panel.hCenterEdge(), 0 )
-  input.textSet( "Primer" )
-  panel.add(input)
-  setFocus(input)
+  input := NewSgItemInputLine(0, 70, 360, 30)
+  input.AnchorHorzCenter( panel.HCenterEdge(), 0 )
+  input.TextSet( "Primer" )
+  panel.Add(input)
+  SetFocus(input)
 
   // Полоса прогресса
-  progress := NewItemProgressBar(0, 120, 360, 20)
-  progress.anchorHorzCenter( panel.hCenterEdge(), 0 )
+  progress := NewSgItemProgressBar(0, 120, 360, 20)
+  progress.AnchorHorzCenter( panel.HCenterEdge(), 0 )
   progress.SetValue(0.66)
-  panel.add(progress)
+  panel.Add(progress)
 
   // Кнопки
-  okButton := NewItemButton(0, 160, 100, 30, "OK")
-  okButton.anchorHorzRight( panel.rightEdge(), 10 )
-  okButton.anchorVertBottom( panel.bottomEdge(), 10 )
-  okButton.onClick = func(item *Item, localX int, localY int) {
+  okButton := NewSgItemButton(0, 160, 100, 30, "OK")
+  okButton.AnchorHorzRight( panel.RightEdge(), 10 )
+  okButton.AnchorVertBottom( panel.BottomEdge(), 10 )
+  okButton.OnClick = func(item *SgItem, localX int, localY int) {
     println("OK clicked!")
+    SgWinClose()
     }
-  panel.add(okButton)
+  panel.Add(okButton)
 
-  cancelButton := NewItemButton(10, 160, 100, 30, "Отмена")
-  cancelButton.anchorVertBottom( okButton.bottomEdge(), 0 )
-  cancelButton.onClick = func(item *Item, localX int, localY int) {
+  cancelButton := NewSgItemButton(10, 160, 100, 30, "Отмена")
+  cancelButton.AnchorVertBottom( okButton.BottomEdge(), 0 )
+  cancelButton.OnClick = func(item *SgItem, localX int, localY int) {
     println("Cancel clicked!")
     }
-  panel.add(cancelButton)
+  panel.Add(cancelButton)
 
-  goWinStart()
-}
+  SgWinStart( 300, 600, 800, 500, "SalixEDA setup program" )
+  }
 
 
 

@@ -151,7 +151,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 HWND hMainWindow;
 
-void winStart() {
+void winStart( int posx, int posy, int width, int height, const char *title ) {
   initFont();
   HINSTANCE hInstance = GetModuleHandle(NULL); // Получаем hInstance
   const char CLASS_NAME[] = "MainWindowClass";
@@ -169,10 +169,10 @@ void winStart() {
   hMainWindow = CreateWindowEx(
                 0,
                 CLASS_NAME,
-                "SalixEDA setup",
+                title,
                 WS_OVERLAPPEDWINDOW,
-                CW_USEDEFAULT, CW_USEDEFAULT,
-                400, 300,
+                posx, posy,
+                width, height,
                 NULL,
                 NULL,
                 hInstance,
@@ -184,7 +184,7 @@ void winStart() {
   ShowWindow( hMainWindow, SW_SHOWDEFAULT );
   UpdateWindow( hMainWindow );
 
-  // Цикл сообщений
+  // Main event loop
   MSG msg = {0};
   while (GetMessage(&msg, NULL, 0, 0)) {
     TranslateMessage(&msg);
@@ -196,6 +196,11 @@ void winStart() {
 void winRepaint()
   {
   UpdateWindow( hMainWindow );
+  }
+
+void winClose()
+  {
+  PostMessage( hMainWindow, WM_CLOSE, 0, 0 );
   }
 
 #endif

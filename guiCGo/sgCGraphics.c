@@ -141,8 +141,9 @@ int textLimit( int width, int size, const int *str, int len )
       w += scale * (advance + stbtt_GetCodepointKernAdvance( &font, str[i], str[i+1] ) );
     else
       w += scale * advance;
+    if( w >= width ) return i - 1;
     }
-  return i ? i - 1 : 0;
+  return i;
   }
 
 
