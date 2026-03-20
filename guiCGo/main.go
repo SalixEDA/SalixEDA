@@ -2,7 +2,7 @@ package main
 
 
 
-func main() {
+func mainnn() {
  // back := NewItemRect( 0, 0, 200, 70, 0xf000 )
  // back.onResizeW = centerInParentW
  // back.onResizeH = centerInParentH
@@ -51,6 +51,8 @@ func main() {
   //Dialog
   dialog := NewSgItemModal( 0, 0, 400, 300, 8, 0x808030, 0xa0a050 )
 
+  messageBox := NewSgItemMessageBox( 400, 150 )
+
   cancelButton := NewSgItemButton(10, 160, 100, 30, "Отмена")
   cancelButton.AnchorVertBottom( okButton.BottomEdge(), 0 )
   cancelButton.OnClick = func(item *SgItem, localX int, localY int) {
@@ -58,6 +60,7 @@ func main() {
     go func() {
       res := dialog.Exec()
       println("Dialog completed with ", res )
+      messageBox.Message( "Ошибка!", "Пример очень длинного текста, который не помещается в одну строку" )
       } ()
     }
   panel.Add(cancelButton)
@@ -75,8 +78,17 @@ func main() {
     }
   dialog.Add( dialogButton )
 
+  messageBox.AnchorCenterIn( &SgScreen, 0, 0 )
+  SgScreen.Add( messageBox )
+
   SgWinStart( 300, 600, 800, 500, "SalixEDA setup program" )
   }
 
+var installUi *InstallUI
 
+func main() {
+  cfg := DefaultConfig()
+  installUi = NewInstallUI( cfg )
 
+  SgWinStart( 300, 600, 800, 500, "SalixEDA setup program" )
+  }

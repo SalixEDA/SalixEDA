@@ -69,7 +69,7 @@ func (it *SgItemTextMulty) TextSet(str string) {
 
   for _, word := range words {
     // Измеряем слово
-    wordWidth := SgTextWidth( it.Size, word, -1 )
+    wordWidth := SgTextWidth( it.Size, word, word.Length() )
 
     if currentWidth + wordWidth < it.Width {
       //This word filled into line
@@ -78,7 +78,7 @@ func (it *SgItemTextMulty) TextSet(str string) {
       } else {
       //Word not filled into line
       it.addLine( currentLine, currentWidth )
-      currentLine = word
+      currentLine = word.Trimmed()
       currentWidth = wordWidth
       }
     }

@@ -4,8 +4,11 @@ package main
 // SgItemRect - rectangle widget
 type SgItemRect struct {
   SgItem
-  Radius  int
-  Color   uint32
+  Radius      int
+  UpRound     bool
+  Color       uint32
+  Border      bool
+  BorderColor uint32
   }
 
 
@@ -25,10 +28,19 @@ func NewSgItemRect(x, y, w, h int, color uint32) *SgItemRect {
   ir := &SgItemRect{
     SgItem: *NewSgItem(x, y, w, h),
     Radius:  0,
+    UpRound: false,
     Color:   color,
+    Border:  false,
+    BorderColor: 0,
     }
-
   return ir
+  }
+
+
+
+func (ir *SgItemRect) SetBorderColor( color uint32 ) {
+  ir.Border      = true
+  ir.BorderColor = color
   }
 
 
@@ -51,8 +63,27 @@ func (ir *SgItemRect) Draw(x int, y int) {
   absX := x + ir.PosX
   absY := y + ir.PosY
 
-  // Draw the rectangle with current dimensions, radius and color
-  SgDrawRoundRectangle( absX, absY, ir.Width, ir.Height, ir.Radius, ir.Color )
+  if ir.Radius == 0 {
+    SgDrawRectangle( absX, absY, ir.Width, ir.Height, ir.Color )
+    //Border
+    if ir.Border {
+      SgDrawRect( absX, absY, ir.Width, ir.Height, ir.BorderColor )
+      }
+    } else if ir.UpRound {
+    // Draw the rectangle with current dimensions, radius and color
+    SgDrawUpRoundRectangle( absX, absY, ir.Width, ir.Height, ir.Radius, ir.Color )
+    //Border
+    if ir.Border {
+      SgDrawUpRoundRect( absX, absY, ir.Width, ir.Height, ir.Radius, ir.BorderColor )
+      }
+    } else {
+    // Draw the rectangle with current dimensions, radius and color
+    SgDrawRoundRectangle( absX, absY, ir.Width, ir.Height, ir.Radius, ir.Color )
+    //Border
+    if ir.Border {
+      SgDrawRoundRect( absX, absY, ir.Width, ir.Height, ir.Radius, ir.BorderColor )
+      }
+    }
 
   // Draw all child elements recursively
   ir.DrawChild( absX, absY )

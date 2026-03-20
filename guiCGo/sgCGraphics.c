@@ -327,6 +327,144 @@ void drawRoundRect( int px, int py, int w, int h, int r, uint32_t color )
 
 
 
+void drawUpRoundRectangle( int px, int py, int w, int h, int r, uint32_t color )
+  {
+  if( 2*r > w || 2*r > h ) return;
+  int xc = px + r;
+  int yc = py + r;
+  int x = 0;
+  int y = r;
+  w -= r * 2;
+  h -= r * 2;
+  float d = 1.0f - r;  // начальное значение для определения расстояния до окружности
+
+  ColorUInt exColor;
+  exColor.mUInt = color;
+
+  while (x <= y) {
+    // Рисуем 8 октантов с антиалиасингом
+
+    // Основные точки (с полной яркостью)
+    fillLine( xc - x, xc + x + w, yc - y, color );
+    //fillLine( xc - x, xc + x + w, yc + y + h, color );
+    fillLine( xc - y, xc + y + w, yc - x, color );
+    //fillLine( xc - y, xc + y + w, yc + x + h, color );
+
+    // Вычисляем альфу для сглаживания следующего пикселя
+    float alpha = d - 0.5f;
+    if( alpha < 0 ) alpha = -alpha;
+    if( alpha < 1.0f ) {
+      // Сглаживаем переход
+      uint8_t weight = 255 * alpha;
+      if (x < y) {
+        //blendPixel(xc + x + 1 + w, yc + y + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight );
+        //blendPixel(xc - x - 1, yc + y + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc + x + 1 + w, yc - y, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc - x - 1, yc - y, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        }
+      if (x != y) {
+        //blendPixel(xc + y + 1 + w, yc + x + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        //blendPixel(xc - y - 1, yc + x + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc + y + 1 + w, yc - x, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc - y - 1, yc - x, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        }
+      }
+
+    x++;
+
+    if (d < 0) {
+      d += 2.0f * x + 1.0f;
+      }
+    else {
+      y--;
+      d += 2.0f * (x - y) + 1.0f;
+      }
+    }
+
+  //Fill central part
+  for( int i = 0; i < (h + r); i++ )
+    fillLine( xc - r, xc + r + w, yc + i, color );
+  }
+
+
+
+
+
+void drawUpRoundRect( int px, int py, int w, int h, int r, uint32_t color )
+  {
+  if( 2*r > w || 2*r > h ) return;
+  int xc = px + r;
+  int yc = py + r;
+  int x = 0;
+  int y = r;
+  w -= r * 2;
+  h -= r * 2;
+  float d = 1.0f - r;  // начальное значение для определения расстояния до окружности
+
+  ColorUInt exColor;
+  exColor.mUInt = color;
+
+  while (x <= y) {
+    // Рисуем 8 октантов с антиалиасингом
+
+    // Основные точки (с полной яркостью)
+    putPixel( xc - x, yc - y, color );
+    putPixel( xc + x + w, yc - y, color );
+
+    //putPixel( xc - x, yc + y + h, color );
+    //putPixel( xc + x + w, yc + y + h, color );
+
+    putPixel( xc - y, yc - x, color );
+    putPixel( xc + y + w, yc - x, color );
+
+    //putPixel( xc - y, yc + x + h, color );
+    //putPixel( xc + y + w, yc + x + h, color );
+
+    // Вычисляем альфу для сглаживания следующего пикселя
+    float alpha = d - 0.5f;
+    if( alpha < 0 ) alpha = -alpha;
+    if( alpha < 1.0f ) {
+      // Сглаживаем переход
+      uint8_t weight = 255 * alpha;
+      if (x < y) {
+        //blendPixel(xc + x + 1 + w, yc + y + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight );
+        //blendPixel(xc - x - 1, yc + y + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc + x + 1 + w, yc - y, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc - x - 1, yc - y, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        }
+      if (x != y) {
+        //blendPixel(xc + y + 1 + w, yc + x + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        //blendPixel(xc - y - 1, yc + x + h, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc + y + 1 + w, yc - x, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        blendPixel(xc - y - 1, yc - x, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, weight);
+        }
+      }
+
+    x++;
+
+    if (d < 0) {
+      d += 2.0f * x + 1.0f;
+      }
+    else {
+      y--;
+      d += 2.0f * (x - y) + 1.0f;
+      }
+    }
+
+  //Fill central part
+  //drawHLine2( xc, xc + w, py, py + h + 2 * r, color );
+  fillLine( xc, xc + w, py, color );
+  fillLine( xc - r, xc + r + w, yc + h + r, color );
+  drawVLine2( px, px + w + 2 * r, yc, yc + h + r, color );
+  }
+
+
+
+
+
+
+
+
 void drawImage( int x, int y, int w, int h, const int *image, int imgX, int imgY, int imgWidth, int imgHeight )
   {
   if( imgX < 0 || imgY < 0 || imgWidth <= 0 || imgHeight <= 0 || w <= 0 || h <= 0 )

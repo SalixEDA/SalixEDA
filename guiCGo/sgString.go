@@ -415,6 +415,21 @@ func (s SgString) IndexOfString(from int, str string) int {
 
 
 
+func (s SgString) Trimmed() SgString {
+  slen := s.Length()
+  i := 0
+  // Skip all delimiters
+  for i < slen && s[i] == 0x20 {
+    i++
+    }
+  if i < slen {
+    return s[i:]
+    }
+  return SgString{}
+  }
+
+
+
 
 //!
 //! \brief splitUChar splits the SgString by the specified Unicode character

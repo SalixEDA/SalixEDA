@@ -51,6 +51,16 @@ func NewSgItemText(x, y int, text string, size int, color uint32) *SgItemText {
   }
 
 
+func (it *SgItemText) AlignSet( align int ) {
+  it.Align = align
+  }
+
+
+func (it *SgItemText) TextSet( str string ) {
+  it.Text = SgStringFromUtf8(str)
+  }
+
+
 
 //!
 //! \brief Draw renders the text widget at specified coordinates

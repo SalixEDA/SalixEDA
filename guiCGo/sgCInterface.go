@@ -232,6 +232,39 @@ func SgDrawRoundRect(px int, py int, w int, h int, r int, color uint32) {
   }
 
 
+
+
+
+
+//!
+//! \brief SgDrawUpRoundRectangle calls C.drawRoundRectangle which draws a filled rectangle with rounded corners
+//! \param px           X coordinate of top-left corner
+//! \param py           Y coordinate of top-left corner
+//! \param w            Width of the rectangle
+//! \param h            Height of the rectangle
+//! \param r            Corner radius in pixels
+//! \param color        Color value (e.g., 0xRRGGBB or 0xAARRGGBB)
+//!
+func SgDrawUpRoundRectangle(px int, py int, w int, h int, r int, color uint32) {
+  C.drawUpRoundRectangle(C.int(px), C.int(py), C.int(w), C.int(h), C.int(r), C.uint32_t(color))
+  }
+
+
+
+//!
+//! \brief SgDrawUpRoundRect calls C.drawRoundRect which draws a 1-pixel wide outline of a rectangle with rounded corners
+//! \param px           X coordinate of top-left corner
+//! \param py           Y coordinate of top-left corner
+//! \param w            Width of the rectangle
+//! \param h            Height of the rectangle
+//! \param r            Corner radius in pixels
+//! \param color        Color value (e.g., 0xRRGGBB or 0xAARRGGBB)
+//!
+func SgDrawUpRoundRect(px int, py int, w int, h int, r int, color uint32) {
+  C.drawUpRoundRect(C.int(px), C.int(py), C.int(w), C.int(h), C.int(r), C.uint32_t(color))
+  }
+
+
 //!
 //! \brief SgDrawImage  calls C.drawImage which draws a image
 //! \param px           X coordinate of top-left corner

@@ -18,7 +18,7 @@ func NewSgItemContainer(x, y, w, h int) *SgItemContainer {
 func (i *SgItemContainer) Add(items ...SgItemInterface) {
   // Проходим по всем
   for _, item := range items {
-    item.SetParent( i )
+    item.ParentSet( i.This() )
     i.Child = append(i.Child, item)
     item.AnchorFillDef( i )
     if len(i.Child) == 1 {
