@@ -15,6 +15,7 @@ extern int  textLimit( int width, int size, const int *str, int len );
 extern void drawText( int align, int px, int py, int size, const int *str, int len, uint32_t color );
 extern void drawRoundRectangle( int px, int py, int w, int h, int r, uint32_t color );
 extern void drawRoundRect( int px, int py, int w, int h, int r, uint32_t color );
+extern void drawImage( int x, int y, int w, int h, const int *image, int imgX, int imgY, int imgWidth, int imgHeight );
 
 //Functions must be declared in go part. They calling from window system event loop as event handler
 extern void goPaint( int width, int height );

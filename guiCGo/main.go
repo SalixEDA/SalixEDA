@@ -48,12 +48,32 @@ func main() {
     }
   panel.Add(okButton)
 
+  //Dialog
+  dialog := NewSgItemModal( 0, 0, 400, 300, 8, 0x808030, 0xa0a050 )
+
   cancelButton := NewSgItemButton(10, 160, 100, 30, "Отмена")
   cancelButton.AnchorVertBottom( okButton.BottomEdge(), 0 )
   cancelButton.OnClick = func(item *SgItem, localX int, localY int) {
     println("Cancel clicked!")
+    go func() {
+      res := dialog.Exec()
+      println("Dialog completed with ", res )
+      } ()
     }
   panel.Add(cancelButton)
+
+  testImage := NewSgItemImage( 5, 5, "3dHorzMove.png" )
+  panel.Add( testImage )
+
+  dialog.AnchorCenterIn( &SgScreen, 0, 0 )
+  SgScreen.Add( dialog )
+
+  dialogButton := NewSgItemButton( 50, 40, 100, 30, "Закрыть" )
+  dialogButton.OnClick = func( item *SgItem, localX int, localY int ) {
+    println("Dialog cancel")
+    dialog.Done( 5 )
+    }
+  dialog.Add( dialogButton )
 
   SgWinStart( 300, 600, 800, 500, "SalixEDA setup program" )
   }

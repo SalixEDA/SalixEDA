@@ -181,24 +181,17 @@ func (it *SgItemTextMulty) Resize() {
   oldW := it.Width
   oldH := it.Height
 
-  if it.OnResizeW != nil {
-    it.OnResizeW(&it.SgItem)
-    }
-  if it.OnResizeH != nil {
-    it.OnResizeH(&it.SgItem)
-    }
+  it.ResizeBind()
 
   // Если ширина изменилась - перестраиваем строки заново
   if it.Width != oldW {
     it.TextSet(it.text)
-  } else if it.Height != oldH {
+    } else if it.Height != oldH {
     // Если изменилась только высота - пересчитываем вертикальное выравнивание
     it.calcHeight()
     }
 
-  for _, child := range it.Child {
-    child.Resize()
-    }
+  it.ResizeChild()
   }
 
 

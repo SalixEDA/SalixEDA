@@ -232,7 +232,19 @@ func SgDrawRoundRect(px int, py int, w int, h int, r int, color uint32) {
   }
 
 
-
+//!
+//! \brief SgDrawImage  calls C.drawImage which draws a image
+//! \param px           X coordinate of top-left corner
+//! \param py           Y coordinate of top-left corner
+//! \param w            Width of the rectangle
+//! \param h            Height of the rectangle
+//! \param image        Image data
+//! \param imgWidth     Image width in pixel
+//! \param imgHeight    Image height in pixel
+//!
+func SgDrawImage( px int, py int, w int, h int, image []uint32, imgWidth int, imgHeight int ) {
+  C.drawImage( C.int(px), C.int(py), C.int(w), C.int(h), (*C.int)(unsafe.Pointer(&image[0])), C.int(0), C.int(0), C.int(imgWidth), C.int(imgHeight) )
+  }
 
 //===============================================
 //  Go callback functions

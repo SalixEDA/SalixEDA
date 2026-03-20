@@ -324,3 +324,19 @@ void drawRoundRect( int px, int py, int w, int h, int r, uint32_t color )
   drawHLine2( xc, xc + w, py, py + h + 2 * r, color );
   drawVLine2( px, px + w + 2 * r, yc, yc + h, color );
   }
+
+
+
+void drawImage( int x, int y, int w, int h, const int *image, int imgX, int imgY, int imgWidth, int imgHeight )
+  {
+  if( imgX < 0 || imgY < 0 || imgWidth <= 0 || imgHeight <= 0 || w <= 0 || h <= 0 )
+    return;
+  ColorUInt exColor;
+  for( int cy = 0; cy < h && cy < (imgHeight - imgY); cy++ ) {
+    for( int cx = 0; cx < w && cx < (imgWidth - imgX); cx++ ) {
+      exColor.mUInt = image[ (cx + imgX) + (cy + imgY) * imgWidth ];
+      blendPixel( cx + x, cy + y, exColor.mColor.r, exColor.mColor.g, exColor.mColor.b, exColor.mColor.a );
+      }
+    }
+  }
+

@@ -6,11 +6,15 @@ package main
 type SgItemInterface interface {
   Add(items ...SgItemInterface)
   SetPos(x int, y int)
+  GetPos() (x int, y int)
   SetSize(w int, h int)
+  GetSize() (w int, h int)
   SetVisible(vis bool)
+  IsVisible() bool
   DrawChild( bx int, by int )
   Draw(x int, y int)
   Resize()
+  ResizeChild()
   IsHit(localX int, localY int) bool
   MouseClick(localX int, localY int) bool
   IsHoverEnabled() bool
@@ -107,6 +111,10 @@ func (i *SgItem) SetPos(x int, y int) {
   }
 
 
+func (i *SgItem) GetPos() (x int, y int) {
+  return i.PosX, i.PosY
+  }
+
 
 
 func (i *SgItem) SetSize(w int, h int) {
@@ -117,8 +125,20 @@ func (i *SgItem) SetSize(w int, h int) {
 
 
 
+func (i *SgItem) GetSize() (w int, h int) {
+  return i.Width, i.Height
+  }
+
+
+
+
 func (i *SgItem) SetVisible(vis bool) {
   i.Visible = vis
+  }
+
+
+func (i *SgItem) IsVisible() bool {
+  return i.Visible
   }
 
 
@@ -142,16 +162,29 @@ func (i *SgItem) Resize() {
   if !i.Visible {
     return
     }
+  i.ResizeBind()
+  i.ResizeChild()
+  }
+
+
+
+func (i *SgItem) ResizeBind() {
   if i.OnResizeW != nil {
     i.OnResizeW( i )
     }
   if i.OnResizeH != nil {
     i.OnResizeH( i )
     }
+  }
+
+
+
+func (i *SgItem) ResizeChild() {
   for _, child := range i.Child {
     child.Resize()
     }
   }
+
 
 
 
