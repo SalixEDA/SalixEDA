@@ -1,10 +1,14 @@
 package main
 
+import (
+  "sync/atomic"
+  )
 
 
 // SgItemInterface - базовый интерфейс для всех виджетов
 type SgItemInterface interface {
   Add(items ...SgItemInterface)
+  ClearChild()
   SetPos(x int, y int)
   GetPos() (x int, y int)
   SetSize(w int, h int)
@@ -24,7 +28,7 @@ type SgItemInterface interface {
   setFocus(focus bool)
   ParentSet(parent SgItemInterface)
   ParentGet() SgItemInterface
-  This() SgItemInterface
+  Ident() int
 
   Left(base SgItemInterface) int
   Right(base SgItemInterface) int
@@ -69,6 +73,7 @@ type SgItemInterface interface {
 
 
 type SgItem struct {
+  ident        int
   PosX,PosY    int
   Width,Height int
   Visible      bool
@@ -82,9 +87,11 @@ type SgItem struct {
   }
 
 
+var globalIdCounter int32
 
 func NewSgItem(x, y, w, h int) *SgItem {
-  return &SgItem{
+  return &SgItem {
+    ident:    int(atomic.AddInt32( &globalIdCounter, 1 )),
     PosX:     x,
     PosY:     y,
     Width:    w,
@@ -97,13 +104,25 @@ func NewSgItem(x, y, w, h int) *SgItem {
 
 
 
+func (i *SgItem) Ident() int {
+  return i.ident
+  }
+
+
 
 func (i *SgItem) Add(items ...SgItemInterface) {
   // Iterate through all provided items
   for _, item := range items {
-    item.ParentSet( i.This() )
+    item.ParentSet( i )
     i.Child = append(i.Child, item)
     }
+  }
+
+
+
+
+func (i *SgItem) ClearChild() {
+  i.Child = make([]SgItemInterface, 0)
   }
 
 
@@ -207,7 +226,7 @@ func (i *SgItem) IsHit(localX int, localY int) bool {
       }
     // Execute own mouse function
     if i.IsHoverEnabled() {
-      if mouseItem != i {
+      if mouseItem == nil || mouseItem.Ident() != i.Ident() {
         if mouseItem != nil {
           mouseItem.Hover( false )
           }
@@ -285,9 +304,6 @@ func (i *SgItem) ParentGet() SgItemInterface {
   }
 
 
-func (i *SgItem) This() SgItemInterface {
-  return i
-  }
 
 
 
@@ -304,7 +320,7 @@ func (i *SgItem) This() SgItemInterface {
 //! Otherwise recursively calculates position through parent chain.
 func (i *SgItem) Left(base SgItemInterface) int {
   // If current item is the base, return 0
-  if( i.This() == base ) {
+  if( i.Ident() == base.Ident() ) {
     return 0
     }
   return i.Parent.Left(base) + i.PosX
@@ -321,7 +337,7 @@ func (i *SgItem) Left(base SgItemInterface) int {
 //! Otherwise recursively calculates position through parent chain.
 func (i *SgItem) Right(base SgItemInterface) int {
   // If current item is the base, return i.Width
-  if( i.This() == base ) {
+  if( i.Ident() == base.Ident() ) {
     return i.Width
     }
   return i.Parent.Left(base) + i.PosX + i.Width
@@ -339,7 +355,7 @@ func (i *SgItem) Right(base SgItemInterface) int {
 //! Otherwise recursively calculates position through parent chain.
 func (i *SgItem) Top(base SgItemInterface) int {
   // If current item is the base, return 0
-  if( i.This() == base ) {
+  if( i.Ident() == base.Ident() ) {
     return 0
     }
   return i.Parent.Top(base) + i.PosY
@@ -357,7 +373,7 @@ func (i *SgItem) Top(base SgItemInterface) int {
 //! Otherwise recursively calculates position through parent chain.
 func (i *SgItem) Bottom(base SgItemInterface) int {
   // If current item is the base, return 0
-  if( i.This() == base ) {
+  if( i.Ident() == base.Ident() ) {
     return i.Height
     }
   return i.Parent.Top(base) + i.PosY + i.Height
@@ -374,7 +390,7 @@ func (i *SgItem) Bottom(base SgItemInterface) int {
 //! Otherwise recursively calculates position through parent chain.
 func (i *SgItem) HCenter(base SgItemInterface) int {
   // If current item is the base, return i.Width / 2
-  if( i.This() == base ) {
+  if( i.Ident() == base.Ident() ) {
     return i.Width / 2
     }
   return i.Parent.Left(base) + i.PosX + i.Width / 2
@@ -391,7 +407,7 @@ func (i *SgItem) HCenter(base SgItemInterface) int {
 //! Otherwise recursively calculates position through parent chain.
 func (i *SgItem) VCenter(base SgItemInterface) int {
   // If current item is the base, return i.Height / 2
-  if( i.This() == base ) {
+  if( i.Ident() == base.Ident() ) {
     return i.Height / 2
     }
   return i.Parent.Top(base) + i.PosY + i.Height / 2
@@ -468,7 +484,7 @@ func (i *SgItem) VCenterEdge() func(base SgItemInterface) int {
 //! Sets OnResizeW to position item's left edge relative to anchor.
 func (i *SgItem) AnchorHorzLeft( anchor func(base SgItemInterface) int, gap int ) {
   i.OnResizeW = func( item *SgItem ) {
-    item.PosX = anchor(item.Parent) + gap
+    item.PosX = anchor(item.ParentGet()) + gap
     }
   }
 
@@ -483,7 +499,7 @@ func (i *SgItem) AnchorHorzLeft( anchor func(base SgItemInterface) int, gap int 
 //! Sets OnResizeW to position item's right edge relative to anchor.
 func (i *SgItem) AnchorHorzRight( anchor func(base SgItemInterface) int, gap int ) {
   i.OnResizeW = func( item *SgItem ) {
-    item.PosX = anchor(item.Parent) - gap - item.Width
+    item.PosX = anchor(item.ParentGet()) - gap - item.Width
     }
   }
 
@@ -498,7 +514,7 @@ func (i *SgItem) AnchorHorzRight( anchor func(base SgItemInterface) int, gap int
 //! Sets OnResizeW to center item relative to anchor.
 func (i *SgItem) AnchorHorzCenter( anchor func(base SgItemInterface) int, gap int ) {
   i.OnResizeW = func( item *SgItem ) {
-    item.PosX = anchor(item.Parent) + gap - item.Width/2
+    item.PosX = anchor(item.ParentGet()) + gap - item.Width/2
     }
   }
 
@@ -522,8 +538,8 @@ func (i *SgItem) AnchorHorzCenterIn( ref SgItemInterface, gap int ) {
 //! Sets OnResizeW to stretch item between two anchors.
 func (i *SgItem) AnchorHorzLeftRight( anchorLeft func(base SgItemInterface) int, gapLeft int, anchorRight func(base SgItemInterface) int, gapRight int ) {
   i.OnResizeW = func( item *SgItem ) {
-    item.PosX = anchorLeft(item.Parent) + gapLeft
-    item.Width = anchorRight(item.Parent) - gapRight - item.PosX
+    item.PosX = anchorLeft(item.ParentGet()) + gapLeft
+    item.Width = anchorRight(item.ParentGet()) - gapRight - item.PosX
     }
   }
 
@@ -539,7 +555,7 @@ func (i *SgItem) AnchorHorzLeftRight( anchorLeft func(base SgItemInterface) int,
 //! Sets OnResizeW to fill between reference item's left and right edges.
 func (i *SgItem) AnchorHorzFill( ref SgItemInterface, gapLeft int, gapRight int ) {
   i.OnResizeW = func( item *SgItem ) {
-    left,right := ref.HorzEdges(item.Parent)
+    left,right := ref.HorzEdges(item.ParentGet())
     item.PosX = left + gapLeft
     item.Width = right - gapRight - item.PosX
     }
@@ -559,7 +575,7 @@ func (i *SgItem) AnchorHorzFill( ref SgItemInterface, gapLeft int, gapRight int 
 //! Sets OnResizeH to position item's top edge relative to anchor.
 func (i *SgItem) AnchorVertTop( anchor func(base SgItemInterface) int, gap int ) {
   i.OnResizeH = func( item *SgItem ) {
-    item.PosY = anchor(item.Parent) + gap
+    item.PosY = anchor(item.ParentGet()) + gap
     }
   }
 
@@ -574,7 +590,7 @@ func (i *SgItem) AnchorVertTop( anchor func(base SgItemInterface) int, gap int )
 //! Sets OnResizeH to position item's bottom edge relative to anchor.
 func (i *SgItem) AnchorVertBottom( anchor func(base SgItemInterface) int, gap int ) {
   i.OnResizeH = func( item *SgItem ) {
-    item.PosY = anchor(item.Parent) - gap - item.Height
+    item.PosY = anchor(item.ParentGet()) - gap - item.Height
     }
   }
 
@@ -589,7 +605,7 @@ func (i *SgItem) AnchorVertBottom( anchor func(base SgItemInterface) int, gap in
 //! Sets OnResizeH to center item vertically relative to anchor.
 func (i *SgItem) AnchorVertCenter( anchor func(base SgItemInterface) int, gap int ) {
   i.OnResizeH = func( item *SgItem ) {
-    item.PosY = anchor(item.Parent) + gap - item.Height/2
+    item.PosY = anchor(item.ParentGet()) + gap - item.Height/2
     }
   }
 
@@ -612,8 +628,8 @@ func (i *SgItem) AnchorVertCenterIn( ref SgItemInterface, gap int ) {
 //! Sets OnResizeH to stretch item between two anchors.
 func (i *SgItem) AnchorVertTopBottom( anchorTop func(base SgItemInterface) int, gapTop int, anchorBottom func(base SgItemInterface) int, gapBottom int ) {
   i.OnResizeH = func( item *SgItem ) {
-    item.PosY = anchorTop(item.Parent) + gapTop
-    item.Height = anchorBottom(item.Parent) - gapBottom - item.PosY
+    item.PosY = anchorTop(item.ParentGet()) + gapTop
+    item.Height = anchorBottom(item.ParentGet()) - gapBottom - item.PosY
     }
   }
 
@@ -629,7 +645,7 @@ func (i *SgItem) AnchorVertTopBottom( anchorTop func(base SgItemInterface) int, 
 //! Sets OnResizeH to fill between reference item's top and bottom edges.
 func (i *SgItem) AnchorVertFill( ref SgItemInterface, gapTop int, gapBottom int ) {
   i.OnResizeH = func( item *SgItem ) {
-    top,bottom := ref.VertEdges(item.Parent)
+    top,bottom := ref.VertEdges(item.ParentGet())
     item.PosY = top + gapTop
     item.Height = bottom - gapBottom - item.PosY
     }
@@ -709,7 +725,8 @@ func (i *SgItem) AnchorCenterInDef( ref SgItemInterface ) {
 
 
 
-var SgScreen = SgItem {
+var SgScreen = &SgItem {
+  ident:  -1,
   PosX:    0,
   PosY:    0,
   Width:   0,

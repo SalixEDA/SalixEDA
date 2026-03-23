@@ -110,8 +110,14 @@ func (s *SgString) AppendUChar(ch int) SgString {
 //! Provides safe access to individual runes with bounds checking.
 func (s SgString) At(index int) int {
   // Check if index is within valid range
-  if index < 0 || index >= len(s) {
+  if index >= len(s) {
     return 0 // Return 0 (null character) for invalid index
+    }
+  if index < 0 {
+    if -index >= s.Length() {
+      return 0
+      }
+    return int(s[s.Length() + index])
     }
   // Return the rune at specified index as int
   return int(s[index])

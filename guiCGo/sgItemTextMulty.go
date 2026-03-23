@@ -52,14 +52,16 @@ func (it *SgItemTextMulty) TextSet(str string) {
   it.text = str
   it.lines = []textLine{}
 
-  if str == "" || it.Width <= 0 {
+  if str == "" || it.Width <= 300 {
     it.Height = 0
     return
     }
 
   // Разбиваем на слова
   sgString := SgStringFromUtf8(str)
+  //println( "Source", str )
   words :=  sgString.SplitUChar( 0x20 )
+  //println( "words", words )
   if len(words) == 0 {
     return
     }
@@ -69,7 +71,9 @@ func (it *SgItemTextMulty) TextSet(str string) {
 
   for _, word := range words {
     // Измеряем слово
+    //println( "word lenght", word.ToUtf8(), word.Length() )
     wordWidth := SgTextWidth( it.Size, word, word.Length() )
+    //println( "word width", word, wordWidth )
 
     if currentWidth + wordWidth < it.Width {
       //This word filled into line
@@ -99,7 +103,7 @@ func (it *SgItemTextMulty) TextSet(str string) {
 // addLine - добавление строки с учетом выравнивания
 func (it *SgItemTextMulty) addLine(lineText SgString, lineWidth int) {
   x := it.calcX(lineWidth)
-  y := (len(it.lines) + 1) * it.lineHeight
+  y := (len(it.lines) ) * it.lineHeight
 
   it.lines = append(it.lines, textLine{
     text:  lineText,
@@ -190,7 +194,6 @@ func (it *SgItemTextMulty) Resize() {
     // Если изменилась только высота - пересчитываем вертикальное выравнивание
     it.calcHeight()
     }
-
   it.ResizeChild()
   }
 

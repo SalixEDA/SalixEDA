@@ -3,6 +3,7 @@ package main
 
 
 func mainnn() {
+
  // back := NewItemRect( 0, 0, 200, 70, 0xf000 )
  // back.onResizeW = centerInParentW
  // back.onResizeH = centerInParentH
@@ -10,12 +11,12 @@ func mainnn() {
 
 // Создаем фон
   background := NewSgItemRect(0, 0, 0, 0, 0x202020)
-  background.AnchorFill( &SgScreen, 0 )
+  background.AnchorFill( SgScreen, 0 )
   SgScreen.Add(background)
 
   // Создаем панель в центре
   panel := NewSgItemRect(0, 0, 400, 300, 0x303030)
-  panel.AnchorFill( &SgScreen, 50 )
+  panel.AnchorFill( SgScreen, 50 )
   panel.Radius = 10
   SgScreen.Add(panel)
 
@@ -68,7 +69,7 @@ func mainnn() {
   testImage := NewSgItemImage( 5, 5, "3dHorzMove.png" )
   panel.Add( testImage )
 
-  dialog.AnchorCenterIn( &SgScreen, 0, 0 )
+  dialog.AnchorCenterIn( SgScreen, 0, 0 )
   SgScreen.Add( dialog )
 
   dialogButton := NewSgItemButton( 50, 40, 100, 30, "Закрыть" )
@@ -78,7 +79,7 @@ func mainnn() {
     }
   dialog.Add( dialogButton )
 
-  messageBox.AnchorCenterIn( &SgScreen, 0, 0 )
+  messageBox.AnchorCenterIn( SgScreen, 0, 0 )
   SgScreen.Add( messageBox )
 
   SgWinStart( 300, 600, 800, 500, "SalixEDA setup program" )

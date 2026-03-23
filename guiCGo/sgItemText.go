@@ -40,7 +40,7 @@ type SgItemText struct {
 //! Width and height are initially set to 0 and should be calculated based on text metrics.
 func NewSgItemText(x, y int, text string, size int, color uint32) *SgItemText {
   it := &SgItemText{
-    SgItem: *NewSgItem(x, y, 0, 0), // Size will be calculated later
+    SgItem: *NewSgItem(x, y, 0, size), // Size will be calculated later
     Text:   SgStringFromUtf8(text),
     Size:   size,
     Align:  AlignLeft | AlignBottom, // Default alignment
@@ -79,8 +79,26 @@ func (it *SgItemText) Draw(x int, y int) {
   absX := x + it.PosX
   absY := y + it.PosY
 
+  vAlign := it.Align & 0x0C // берем только вертикальную часть (4,8)
+
+  switch vAlign {
+    case AlignTop:
+      // По умолчанию строки идут сверху - ничего не меняем
+
+    case AlignVCenter:
+      // Центрируем по вертикали относительно it.h
+      absY += it.Height / 2
+
+    case AlignBottom:
+      // Прижимаем к низу
+      absY += it.Height
+    }
+
+
   // Draw text with current settings
-  SgDrawText( it.Align, absX, absY, it.Size, it.Text, it.Color )
+  if it.Text.Length() > 0 {
+    SgDrawText( it.Align, absX, absY, it.Size, it.Text, it.Color )
+    }
 
   // Draw all child elements recursively
   it.DrawChild( absX, absY )
