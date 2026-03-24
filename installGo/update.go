@@ -69,26 +69,25 @@ func doUpdate(cfg *Config) {
   ui := NewInstallUI(cfg)
 
   // Настраиваем кнопку "Обновить"
-  //oldOnTapped := ui.updateScreen.updateBtn.OnTapped
-  ui.updateScreen.updateBtn.OnTapped = func() {
+  ui.updateScreen.updateBtn.OnClick = func(item *SgItem, localX int, localY int) {
     // Запускаем обновление с найденными файлами
     go performInstallation(ui, cfg, filesToUpdate)
-  }
+    }
 
   // Настраиваем кнопку "Позднее"
-  ui.updateScreen.laterBtn.OnTapped = func() {
+  ui.updateScreen.laterBtn.OnClick = func(item *SgItem, localX int, localY int) {
     // Сдвигаем время проверки на период+1 день
     lastCheck, _ := time.Parse(time.RFC3339, cfg.LastCheck)
     newLastCheck := lastCheck.AddDate(0, 0, cfg.CheckPeriodDays+1)
     cfg.LastCheck = newLastCheck.Format(time.RFC3339)
     cfg.Save()
-    ui.window.Close()
-  }
+    SgWinClose()
+    }
 
   // Показываем экран обновления
-  ui.ShowScreen(ScreenUpdate)
+  ui.stack.SetCurrent(3)
 
   // Запускаем окно (блокируется до закрытия)
-  ui.window.ShowAndRun()
-}
+  SgWinStart( 300, 600, 800, 300, "SalixEDA update program" )
+  }
 

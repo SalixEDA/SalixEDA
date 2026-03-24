@@ -16,6 +16,7 @@ type Texts struct {
   SetupInstallBtn  string
 
   // Экран прогресса
+  ProgressTitle       string
   ProgressPrepare     string
   ProgressCancelBtn   string
   ProgressDownload    string
@@ -26,12 +27,13 @@ type Texts struct {
   ProgressExtractedOf string
 
   // Экран завершения
-  CompleteMessage string
-  CompleteFinishBtn string
+  CompleteTitle       string
+  CompleteMessage     string
+  CompleteFinishBtn   string
 
   // Экран ошибки
-  ErrorTitle       string
-  ErrorCloseBtn    string
+  ErrorTitle          string
+  ErrorCloseBtn       string
 
   // Экран запроса обновления
   UpdateTitle      string
@@ -48,15 +50,16 @@ func TransStringRu() *Texts {
 
     // Экран установки
     SetupTitle:       "Установка программы",
-    SetupInfo:        "Эта программа установит приложение на ваш компьютер.\n\n" +
-                      "Пожалуйста, выберите папку для установки и нажмите кнопку 'Установить'.\n" +
-                      "Вы можете изменить папку, нажав 'Обзор...'.",
+    SetupInfo:        "Эта программа установит приложение на ваш компьютер." +
+                      "Пожалуйста, введите папку для установки и нажмите кнопку 'Установить'." +
+                      "Вы можете изменить папку с помощью клавиатуры.",
     SetupFolderLabel: "Папка установки:",
     SetupBrowseBtn:   "Обзор...",
     SetupExitBtn:     "Выход",
     SetupInstallBtn:  "Установить",
 
     // Экран прогресса
+    ProgressTitle:       "Установка",
     ProgressPrepare:     "Подготовка...",
     ProgressCancelBtn:   "Прервать",
     ProgressDownload:    "Этап 1: Скачивание %s",
@@ -67,8 +70,9 @@ func TransStringRu() *Texts {
     ProgressExtractedOf: "Распаковано %s из %s",
 
     // Экран завершения
-    CompleteMessage:  "Установка завершена успешно!",
-    CompleteFinishBtn: "Завершить",
+    CompleteTitle:       "Установка завершена",
+    CompleteMessage:     "Установка завершена успешно!",
+    CompleteFinishBtn:   "Завершить",
 
     // Экран ошибки
     ErrorTitle:       "Ошибка",

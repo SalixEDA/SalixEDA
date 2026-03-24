@@ -1,10 +1,9 @@
 package main
 
 import (
-  "log"
+  //"log"
   "os"
-  "time"
-)
+  )
 
 // ========== СТРУКТУРА ИНТЕРФЕЙСА ==========
 
@@ -18,51 +17,44 @@ const (
 )
 
 type InstallUI struct {
-  texts  *Texts
-  cfg    *Config
-  stack  *ItemContainer  // Стек для переключения экранов
+  texts      *Texts
+  cfg        *Config
+  stack      *SgItemContainer  // Стек для переключения экранов
+  messageBox *SgItemMessageBox //Модальное окно сообщений
 
   // Экран установки
   setupScreen struct {
-    view           *Item
-    pathLabel      *ItemInputText
-    cancelBtn      *ItemButton
-    installBtn     *ItemButton
-    infoText       *ItemTextMulty
+    view           *SgItemPage
+    pathLabel      *SgItemInputLine
+    cancelBtn      *SgItemButton
+    installBtn     *SgItemButton
+    infoText       *SgItemTextMulty
   }
 
   // Экран прогресса
   progressScreen struct {
-    view              *Item
-    progressBar       *ItemProgressBar
-    stageLabel        *ItemText
-    downloadInfoLabel *ItemText
-    cancelBtn         *ItemButton
+    view              *SgItemPage
+    progressBar       *SgItemProgressBar
+    stageLabel        *SgItemText
+    downloadInfoLabel *SgItemText
+    cancelBtn         *SgItemButton
   }
 
   // Экран завершения
   completeScreen struct {
-    view          *Item
-    completeLabel *ItemText
-    finishBtn     *ItemButton
-  }
-
-  // Экран ошибки
-  errorScreen struct {
-    view          *Item
-    titleLabel    *ItemText
-    messageLabel  *ItemTextMulty
-    closeBtn      *ItemButton
+    view          *SgItemPage
+    completeLabel *SgItemTextMulty
+    finishBtn     *SgItemButton
   }
 
   // Экран запроса обновления
   updateScreen struct {
-    view          *Item
-    titleLabel    *ItemText
-    messageLabel  *ItemTextMulty
-    cancelBtn     *ItemButton
-    laterBtn      *ItemButton
-    updateBtn     *ItemButton
+    view          *SgItemPage
+    titleLabel    *SgItemText
+    messageLabel  *SgItemTextMulty
+    cancelBtn     *SgItemButton
+    laterBtn      *SgItemButton
+    updateBtn     *SgItemButton
   }
 }
 
@@ -78,27 +70,23 @@ func NewInstallUI(cfg *Config) *InstallUI {
   ui.texts = TransStringRu() // По умолчанию русский
   // Здесь будет логика выбора языка по системе
 
+  // Создаем стек и добавляем все экраны
+  ui.stack = NewSgItemContainer( 0,0, 300, 300 )
+  ui.stack.AnchorFillDef( SgScreen )
+  SgScreen.Add( ui.stack )
+
   // Создаем все экраны
   ui.createSetupScreen()
   ui.createProgressScreen()
   ui.createCompleteScreen()
-  ui.createErrorScreen()
   ui.createUpdateScreen()
 
-  // Создаем стек и добавляем все экраны
-  ui.stack = NewItemContainer( 0,0, 100, 100 )
-  ui.stack.anchorFillDef( screen )
-  ui.stack.add( ui.setupScreen.view,
-                ui.progressScreen.view,
-                ui.completeScreen.view,
-                ui.errorScreen.view,
-                ui.updateScreen.view,
-              )
-
-  screen.add( ui.stack )
+  //Создаем модальное окно сообщений
+  ui.messageBox = NewSgItemMessageBox( 500, 200 )
+  SgScreen.Add( ui.messageBox )
 
   return ui
-}
+  }
 
 
 
@@ -106,87 +94,42 @@ func NewInstallUI(cfg *Config) *InstallUI {
 
 
 func (ui *InstallUI) createSetupScreen() {
+  ui.setupScreen.view = NewSgItemPage( 0xf0f0f0, ui.texts.SetupTitle, 30, 0x202020 )
+
+  column := NewSgItemColumn( 0, 0, 10, 10, 10 )
+
+  //Текст приглашения
+  ui.setupScreen.infoText = NewSgItemTextMulty( 0, 0, 0, ui.texts.SetupInfo, 20, 0x202020 )
+  ui.setupScreen.infoText.Align = AlignLeft | AlignTop
+  ui.setupScreen.infoText.AnchorHorzFill( column, 5, 5 )
+  column.Add( ui.setupScreen.infoText )
+
   // Переменная для хранения выбранного пути
-  selectedPath := ui.cfg.InstallPath
-  ui.setupScreen.pathLabel = widget.NewLabel(selectedPath)
+  ui.setupScreen.pathLabel = NewSgItemInputLine( 0, 0, 100, 30 )
+  ui.setupScreen.pathLabel.AnchorHorzFill( column, 5, 5 )
+  ui.setupScreen.pathLabel.TextSet( ui.cfg.InstallPath )
+  column.Add( ui.setupScreen.pathLabel )
 
-  // Кнопка выбора директории
-  ui.setupScreen.selectFolderBtn = widget.NewButton(ui.texts.SetupBrowseBtn, func() {
-    dialog.ShowFolderOpen(func(list fyne.ListableURI, err error) {
-      if err != nil {
-        dialog.ShowError(err, ui.window)
-        return
-      }
-      if list == nil {
-        return
-      }
-      selectedPath = list.Path()
-      ui.setupScreen.pathLabel.SetText(selectedPath)
-    }, ui.window)
-  })
-
-  // Поясняющий текст
-  ui.setupScreen.infoText = widget.NewLabel(ui.texts.SetupInfo)
-  ui.setupScreen.infoText.Wrapping = fyne.TextWrapWord
-
-  // Контейнер для поля выбора пути
-  ui.setupScreen.pathRow = container.NewBorder(
-    nil, nil,
-    widget.NewLabel(ui.texts.SetupFolderLabel),
-    ui.setupScreen.selectFolderBtn,
-    ui.setupScreen.pathLabel,
-  )
+  ui.setupScreen.view.CentralSet( column )
 
   // Кнопки
-  ui.setupScreen.cancelBtn = &widget.Button{
-    Text: ui.texts.SetupExitBtn,
-    OnTapped: func() {
-      ui.app.Quit()
-    },
-  }
+  ui.setupScreen.cancelBtn = NewSgItemButton ( 0, 0, 100, 30, ui.texts.SetupExitBtn )
+  ui.setupScreen.cancelBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    SgWinClose()
+    //os.Exit(0)
+    }
+  ui.setupScreen.view.AddFooter( ui.setupScreen.cancelBtn )
 
-  ui.setupScreen.installBtn = &widget.Button{
-    Text:       ui.texts.SetupInstallBtn,
-    Importance: widget.HighImportance,
-    OnTapped: func() {
-      log.Printf("Начинаем установку в: %s", selectedPath)
-      ui.cfg.InstallPath = selectedPath
-      go performInstallation(ui, ui.cfg, []string{})
-    },
-  }
-
-  // Основной контент
-  ui.setupScreen.mainContent = container.NewVBox(
-    ui.setupScreen.infoText,
-    widget.NewSeparator(),
-    ui.setupScreen.pathRow,
-    widget.NewLabel(""),
-  )
-
-  // Контейнер для кнопок
-  ui.setupScreen.buttonBox = container.NewVBox(
-    widget.NewSeparator(),
-    container.NewHBox(
-      widget.NewLabel(""),
-      ui.setupScreen.cancelBtn,
-      widget.NewLabel("  "),
-      ui.setupScreen.installBtn,
-    ),
-    widget.NewLabel(""),
-  )
-
-  // BorderLayout: кнопки внизу, основной контент заполняет остальное
-  ui.setupScreen.content = container.NewBorder(
-    nil,
-    ui.setupScreen.buttonBox,
-    nil,
-    nil,
-    ui.setupScreen.mainContent,
-  )
+  ui.setupScreen.installBtn = NewSgItemButton ( 0, 0, 100, 30, ui.texts.SetupInstallBtn )
+  ui.setupScreen.installBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    ui.cfg.InstallPath = ui.setupScreen.pathLabel.TextGet()
+    //go performInstallation(ui, ui.cfg, []string{})
+    }
+  ui.setupScreen.view.AddFooter( ui.setupScreen.installBtn )
 
   // В конце сохраняем view
-  ui.setupScreen.view = ui.setupScreen.content
-}
+  ui.stack.Add( ui.setupScreen.view )
+  }
 
 
 
@@ -194,186 +137,102 @@ func (ui *InstallUI) createSetupScreen() {
 
 
 func (ui *InstallUI) createProgressScreen() {
+  ui.progressScreen.view = NewSgItemPage( 0xf0f0f0, ui.texts.ProgressTitle, 30, 0x202020 )
+
+  column := NewSgItemColumn( 0, 0, 10, 10, 10 )
+
   // Прогресс-бар
-  ui.progressScreen.progressBar = widget.NewProgressBar()
-  ui.progressScreen.progressBar.Min = 0
-  ui.progressScreen.progressBar.Max = 100
+  ui.progressScreen.progressBar = NewSgItemProgressBar( 0, 0, 100, 30 )
+  ui.progressScreen.progressBar.AnchorHorzFill( column, 5, 5 )
+  //ui.progressScreen.progressBar.Min = 0
+  //ui.progressScreen.progressBar.Max = 100
+  column.Add( ui.progressScreen.progressBar )
 
   // Проценты
-  ui.progressScreen.percentLabel = widget.NewLabel("0%")
-  ui.progressScreen.percentLabel.Alignment = fyne.TextAlignCenter
+  //ui.progressScreen.percentLabel = widget.NewLabel("0%")
+  //ui.progressScreen.percentLabel.Alignment = fyne.TextAlignCenter
 
   // Этап
-  ui.progressScreen.stageLabel = widget.NewLabel(ui.texts.ProgressPrepare)
-  ui.progressScreen.stageLabel.Alignment = fyne.TextAlignCenter
+  ui.progressScreen.stageLabel = NewSgItemText( 0, 0, ui.texts.ProgressPrepare, 20, 0x202020 )
+  ui.progressScreen.stageLabel.Align = AlignLeft | AlignBottom
+  column.Add( ui.progressScreen.stageLabel )
+
 
   // Информация о загрузке
-  ui.progressScreen.downloadInfoLabel = widget.NewLabel("")
-  ui.progressScreen.downloadInfoLabel.Alignment = fyne.TextAlignCenter
+  ui.progressScreen.downloadInfoLabel = NewSgItemText( 0, 0, "Uli", 20, 0x202020 )
+  ui.progressScreen.downloadInfoLabel.Align = AlignLeft | AlignBottom
+  column.Add( ui.progressScreen.downloadInfoLabel )
+  ui.progressScreen.view.CentralSet( column )
+
 
   // Кнопка прерывания
-  ui.progressScreen.cancelBtn = &widget.Button{
-    Text:       ui.texts.ProgressCancelBtn,
-    Importance: widget.LowImportance,
-    OnTapped: func() {
-      ui.window.Close()
-    },
+  ui.progressScreen.cancelBtn = NewSgItemButton( 0, 0, 100, 30, ui.texts.ProgressCancelBtn )
+  ui.progressScreen.cancelBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    SgWinClose()
+    }
+  ui.progressScreen.view.AddFooter( ui.progressScreen.cancelBtn )
+
+  ui.stack.Add( ui.progressScreen.view )
   }
-
-  // Собираем контейнер
-  ui.progressScreen.container = container.NewVBox(
-    widget.NewLabel(""),
-    ui.progressScreen.percentLabel,
-    ui.progressScreen.progressBar,
-    ui.progressScreen.stageLabel,
-    ui.progressScreen.downloadInfoLabel,
-    widget.NewLabel(""),
-    container.NewHBox(
-      widget.NewLabel(""),
-      ui.progressScreen.cancelBtn,
-    ),
-  )
-
-  // В конце сохраняем view
-  ui.progressScreen.view = ui.progressScreen.container
-}
 
 
 
 
 
 func (ui *InstallUI) createCompleteScreen() {
+  ui.completeScreen.view = NewSgItemPage( 0xf0f0f0, ui.texts.CompleteTitle, 30, 0x202020 )
+
   // Финальное сообщение
-  ui.completeScreen.completeLabel = widget.NewLabel(ui.texts.CompleteMessage)
-  ui.completeScreen.completeLabel.TextStyle = fyne.TextStyle{Bold: true}
-  ui.completeScreen.completeLabel.Alignment = fyne.TextAlignCenter
+  ui.completeScreen.completeLabel = NewSgItemTextMulty( 0, 0, 0, ui.texts.CompleteMessage, 23, 0x202020 )
+  ui.completeScreen.completeLabel.Align = AlignLeft | AlignVCenter
+
+  ui.completeScreen.view.CentralSet( ui.completeScreen.completeLabel )
 
   // Кнопка завершения
-  ui.completeScreen.finishBtn = &widget.Button{
-    Text:       ui.texts.CompleteFinishBtn,
-    Importance: widget.HighImportance,
-    OnTapped: func() {
-      ui.window.Close()
-    },
+  ui.completeScreen.finishBtn = NewSgItemButton( 0, 0, 100, 30, ui.texts.CompleteFinishBtn )
+  ui.completeScreen.finishBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    SgWinClose()
+    }
+  ui.completeScreen.view.AddFooter( ui.completeScreen.finishBtn )
+
+  ui.stack.Add( ui.completeScreen.view )
   }
 
-  // Собираем контейнер
-  ui.completeScreen.container = container.NewVBox(
-    widget.NewLabel(""),
-    ui.completeScreen.completeLabel,
-    widget.NewLabel(""),
-    container.NewHBox(
-      widget.NewLabel(""),
-      ui.completeScreen.finishBtn,
-    ),
-  )
-
-  // В конце сохраняем view
-  ui.completeScreen.view = ui.completeScreen.container
-}
 
 
-
-
-
-func (ui *InstallUI) createErrorScreen() {
-  // Заголовок
-  ui.errorScreen.titleLabel = widget.NewLabel(ui.texts.ErrorTitle)
-  ui.errorScreen.titleLabel.TextStyle = fyne.TextStyle{Bold: true}
-  ui.errorScreen.titleLabel.Alignment = fyne.TextAlignCenter
-
-  // Сообщение об ошибке
-  ui.errorScreen.messageLabel = widget.NewLabel("")
-  ui.errorScreen.messageLabel.Wrapping = fyne.TextWrapWord
-  ui.errorScreen.messageLabel.Alignment = fyne.TextAlignCenter
-
-  // Кнопка закрытия
-  ui.errorScreen.closeBtn = &widget.Button{
-    Text: ui.texts.ErrorCloseBtn,
-    OnTapped: func() {
-      os.Exit(1)
-    },
-  }
-
-  // Собираем контейнер
-  ui.errorScreen.container = container.NewVBox(
-    widget.NewLabel(""),
-    ui.errorScreen.titleLabel,
-    widget.NewLabel(""),
-    ui.errorScreen.messageLabel,
-    widget.NewLabel(""),
-    container.NewHBox(
-      widget.NewLabel(""),
-      ui.errorScreen.closeBtn,
-    ),
-  )
-
-  // В конце сохраняем view
-  ui.errorScreen.view = ui.errorScreen.container
-}
 
 
 
 
 
 func (ui *InstallUI) createUpdateScreen() {
-  // Заголовок
-  ui.updateScreen.titleLabel = widget.NewLabel(ui.texts.UpdateTitle)
-  ui.updateScreen.titleLabel.TextStyle = fyne.TextStyle{Bold: true}
-  ui.updateScreen.titleLabel.Alignment = fyne.TextAlignCenter
+  ui.updateScreen.view = NewSgItemPage( 0xf0f0f0, ui.texts.UpdateTitle, 30, 0x202020 )
 
-  // Сообщение
-  ui.updateScreen.messageLabel = widget.NewLabel(ui.texts.UpdateMessage)
-  ui.updateScreen.messageLabel.Wrapping = fyne.TextWrapWord
-  ui.updateScreen.messageLabel.Alignment = fyne.TextAlignCenter
+  ui.updateScreen.messageLabel = NewSgItemTextMulty( 0, 0, 0, ui.texts.UpdateMessage, 23, 0x202020 )
+  ui.updateScreen.messageLabel.Align = AlignLeft | AlignVCenter
+
+  ui.updateScreen.view.CentralSet( ui.updateScreen.messageLabel )
+
 
   // Кнопки
-  ui.updateScreen.cancelBtn = &widget.Button{
-    Text: ui.texts.UpdateCancelBtn,
-    OnTapped: func() {
-      os.Exit(0)
-    },
+  ui.updateScreen.updateBtn = NewSgItemButton( 0, 0, 100, 30, ui.texts.UpdateNowBtn )
+  ui.updateScreen.updateBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    //ui.ShowScreen( ScreenProgress )
+    //  go performInstallation(ui, ui.cfg, ZipFiles) // Обновляем все файлы
+    }
+  ui.updateScreen.view.AddFooter( ui.updateScreen.updateBtn )
+
+  ui.updateScreen.laterBtn = NewSgItemButton( 0, 0, 100, 30, ui.texts.UpdateLaterBtn )
+  ui.updateScreen.view.AddFooter( ui.updateScreen.laterBtn )
+
+
+  ui.updateScreen.cancelBtn = NewSgItemButton( 20, 160, 100, 30, ui.texts.UpdateCancelBtn )
+  ui.updateScreen.cancelBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    SgWinClose()
+    os.Exit(0)
+    }
+  ui.updateScreen.view.AddFooter( ui.updateScreen.cancelBtn )
+
+  ui.stack.Add( ui.updateScreen.view )
   }
-
-  ui.updateScreen.laterBtn = &widget.Button{
-    Text: ui.texts.UpdateLaterBtn,
-    OnTapped: func() {
-      // Прибавляем день к времени последней проверки
-      lastCheck, _ := time.Parse(time.RFC3339, ui.cfg.LastCheck)
-      newLastCheck := lastCheck.AddDate(0, 0, ui.cfg.CheckPeriodDays+1)
-      ui.cfg.LastCheck = newLastCheck.Format(time.RFC3339)
-      ui.cfg.Save()
-      ui.window.Close()
-    },
-  }
-
-  ui.updateScreen.updateBtn = &widget.Button{
-    Text:       ui.texts.UpdateNowBtn,
-    Importance: widget.HighImportance,
-    OnTapped: func() {
-      ui.ShowScreen( ScreenProgress )
-      go performInstallation(ui, ui.cfg, ZipFiles) // Обновляем все файлы
-    },
-  }
-
-  // Собираем контейнер
-  ui.updateScreen.container = container.NewVBox(
-    widget.NewLabel(""),
-    ui.updateScreen.titleLabel,
-    widget.NewLabel(""),
-    ui.updateScreen.messageLabel,
-    widget.NewLabel(""),
-    container.NewHBox(
-      widget.NewLabel(""),
-      ui.updateScreen.cancelBtn,
-      widget.NewLabel("  "),
-      ui.updateScreen.laterBtn,
-      widget.NewLabel("  "),
-      ui.updateScreen.updateBtn,
-    ),
-  )
-
-  // В конце сохраняем view
-  ui.updateScreen.view = ui.updateScreen.container
-}
 
