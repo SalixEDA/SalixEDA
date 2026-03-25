@@ -79,8 +79,8 @@ void SdGuiderEvent::inject(const SdGuiderEvent &next)
                                                        local,
                                                        global,
                                                        Qt::NoButton,
-                                                       mMouseButtons,
-                                                       mKeyModifier ) );
+                                                       (Qt::MouseButton)mMouseButtons,
+                                                       (Qt::KeyboardModifier)mKeyModifier ) );
       mMousePosX = next.mMousePosX;
       mMousePosY = next.mMousePosY;
       }
@@ -104,7 +104,7 @@ void SdGuiderEvent::inject(const SdGuiderEvent &next)
         //Key release
         QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyRelease,
                                                        mKeyCode,
-                                                       mKeyModifier,
+                                                       (Qt::KeyboardModifier)mKeyModifier,
                                                        mKeyChar ? QString( QChar(mKeyChar) ) : QString{}
                                                        ));
         mKeyCode = next.mKeyCode;
@@ -116,7 +116,7 @@ void SdGuiderEvent::inject(const SdGuiderEvent &next)
         mKeyChar = next.mKeyChar;
         QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyPress,
                                                        mKeyCode,
-                                                       mKeyModifier,
+                                                       (Qt::KeyboardModifier)mKeyModifier,
                                                        mKeyChar ? QString( QChar(mKeyChar) ) : QString{}
                                                        ));
         }
@@ -138,9 +138,9 @@ void SdGuiderEvent::mouseEvent(QWidget *w, QPoint global, QPoint local, const Sd
       QCoreApplication::postEvent( w, new QMouseEvent( QEvent::MouseButtonPress,
                                                        local,
                                                        global,
-                                                       buttonMask,
-                                                       mMouseButtons,
-                                                       mKeyModifier ) );
+                                                       (Qt::MouseButton)buttonMask,
+                                                       (Qt::MouseButton)mMouseButtons,
+                                                       (Qt::KeyboardModifier)mKeyModifier ) );
       }
     else {
       //Mouse released
@@ -148,9 +148,9 @@ void SdGuiderEvent::mouseEvent(QWidget *w, QPoint global, QPoint local, const Sd
       QCoreApplication::postEvent( w, new QMouseEvent( QEvent::MouseButtonRelease,
                                                        local,
                                                        global,
-                                                       buttonMask,
-                                                       mMouseButtons,
-                                                       mKeyModifier ) );
+                                                       (Qt::MouseButton)buttonMask,
+                                                       (Qt::MouseButton)mMouseButtons,
+                                                       (Qt::KeyboardModifier)mKeyModifier ) );
       }
     }
   }

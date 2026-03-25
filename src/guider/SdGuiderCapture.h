@@ -30,7 +30,7 @@ class SdGuiderCapture : public QObject
 
     void setScena( const QString &scriptPath, int scenaIndex );
 
-    bool isCapture() const { return mFile != nullptr; }
+    bool isCapture() const { return false; /*mFile != nullptr*/; }
 
     bool isPaused() const { return !mTimer.isActive(); }
 

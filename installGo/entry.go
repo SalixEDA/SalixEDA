@@ -10,6 +10,8 @@ import (
 )
 
 func main() {
+  addOSPrefix()
+
   // ===== 1. ЗАГРУЗКА КОНФИГУРАЦИИ =====
   loadedConfig, loadConfigErr := LoadConfig()
 
@@ -37,7 +39,7 @@ func main() {
     }
 
   // ===== 5. ЗАПУСК ОСНОВНОГО ПРИЛОЖЕНИЯ =====
-  appName := ApplicationName
+  appName := ApplicationName + "int"
   if runtime.GOOS == "windows" {
     appName += ".exe"
     }
@@ -59,10 +61,12 @@ func main() {
       newLDLibraryPath = currentLDLibraryPath + ":" + libPath
       }
     env = append(env, "LD_LIBRARY_PATH="+newLDLibraryPath)
+    println( "Path lib", newLDLibraryPath )
     }
 
   pluginsPath := filepath.Join(loadedConfig.InstallPath, "plugins")
   env = append(env, "QT_PLUGIN_PATH="+pluginsPath)
+  println( "Path plugins", pluginsPath )
 
   if runtime.GOOS == "windows" {
     currentPath := os.Getenv("PATH")

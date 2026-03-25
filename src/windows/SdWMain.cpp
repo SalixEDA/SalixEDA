@@ -2208,7 +2208,7 @@ void SdWMain::cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex)
 void SdWMain::cmGuiderCapture()
   {
   if( mGuiderCapture->isCapture() ) {
-    SdWCommand::cmGuiderCapture->
+    //SdWCommand::cmGuiderCapture->
     mGuiderCapture->captureStop();
     mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOff.png")) );
     mCapture->setToolTip( tr("Show status of guide capture video system: stopped") );

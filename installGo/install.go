@@ -40,6 +40,7 @@ func doSetup(cfg *Config) {
 
   // Показываем экран установки
   ui.stack.SetCurrent( 0 )
+  ui.setupScreen.pathLabel.SetFocus()
 
   // Запускаем окно (блокируется до закрытия)
   SgWinStart( 300, 600, 800, 300, "SalixEDA setup program" )
@@ -152,7 +153,7 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
         downloadInfo := fmt.Sprintf(ui.texts.ProgressDownloadOf,
           formatBytes(downloaded), formatBytes(fileSize))
 
-        ui.progressScreen.progressBar.SetValue(progress)
+        ui.progressScreen.progressBar.SetValue(progress/100)
         //  ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(progress)))
         ui.progressScreen.downloadInfoLabel.TextSet(downloadInfo)
         }
@@ -181,7 +182,7 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
 
     // Обновляем общий прогресс
     currentProgress += percentPerFile
-    ui.progressScreen.progressBar.SetValue(currentProgress)
+    ui.progressScreen.progressBar.SetValue(currentProgress/100)
 //    ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
     }
 
@@ -220,7 +221,7 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
 
       // Создаем директории
       if f.FileInfo().IsDir() {
-        os.MkdirAll(fpath, os.ModePerm)
+        os.MkdirAll(fpath, f.Mode())
         continue
         }
 
@@ -253,7 +254,7 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
           }
         } else {
         // Обычный файл - создаем и копируем
-        outFile, err := os.Create(fpath)
+        outFile, err := os.OpenFile(fpath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, f.Mode())
         if err != nil {
           rc.Close()
           zipReader.Close()
@@ -279,7 +280,7 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
       fileProgress := float64(unpacked) / float64(totalUnpackSize) * percentPerFile
       totalProgress := currentProgress + fileProgress
 
-      ui.progressScreen.progressBar.SetValue(totalProgress)
+      ui.progressScreen.progressBar.SetValue(totalProgress/100)
 //        ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(totalProgress)))
       ui.progressScreen.downloadInfoLabel.TextSet(fmt.Sprintf(ui.texts.ProgressExtractedOf,
           formatBytes(unpacked), formatBytes(totalUnpackSize)))
@@ -292,7 +293,7 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
 
     // Обновляем прогресс после завершения файла
     currentProgress += percentPerFile
-    ui.progressScreen.progressBar.SetValue(currentProgress)
+    ui.progressScreen.progressBar.SetValue(currentProgress/100)
 //      ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
     }
 
@@ -302,22 +303,9 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
     return
     }
 
-  // ===== ЭТАП 3: Создание ярлыков (10%) =====
-  ui.progressScreen.stageLabel.TextSet(ui.texts.ProgressShortcuts)
-  ui.progressScreen.downloadInfoLabel.TextSet("")
 
-  if cfg.CreateShortcuts {
-    if err := InstallShortcuts(cfg.InstallPath); err != nil {
-      showErrorAndExit(ui, fmt.Sprintf("Ошибка создания ярлыков: %v", err))
-      return
-      }
-    }
 
-  currentProgress += 10
-  ui.progressScreen.progressBar.SetValue(currentProgress)
-//  ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
-
-  // ===== ЭТАП 4: Копирование установщика (10%) =====
+  // ===== ЭТАП 3: Копирование установщика (10%) =====
   ui.progressScreen.stageLabel.TextSet(ui.texts.ProgressCopy)
 
   // Получаем путь к текущему исполняемому файлу
@@ -344,8 +332,25 @@ func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
     }
 
   currentProgress += 10
-  ui.progressScreen.progressBar.SetValue(currentProgress)
+  ui.progressScreen.progressBar.SetValue(currentProgress/100)
 //    ui.progressScreen.percentLabel.SetText("100%")
+
+
+  // ===== ЭТАП 4: Создание ярлыков (10%) =====
+  ui.progressScreen.stageLabel.TextSet(ui.texts.ProgressShortcuts)
+  ui.progressScreen.downloadInfoLabel.TextSet("")
+
+  if cfg.CreateShortcuts {
+    if err := InstallShortcuts(cfg.InstallPath); err != nil {
+      showErrorAndExit(ui, fmt.Sprintf("Ошибка создания ярлыков: %v", err))
+      return
+      }
+    }
+
+  currentProgress += 10
+  ui.progressScreen.progressBar.SetValue(currentProgress/100)
+//  ui.progressScreen.percentLabel.SetText(fmt.Sprintf("%d%%", int(currentProgress)))
+
 
   // ===== ЗАВЕРШЕНИЕ =====
   ui.messageBox.Message( ui.texts.CompleteTitle, ui.texts.CompleteMessage )

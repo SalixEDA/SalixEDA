@@ -83,6 +83,7 @@ func NewInstallUI(cfg *Config) *InstallUI {
 
   //Создаем модальное окно сообщений
   ui.messageBox = NewSgItemMessageBox( 500, 200 )
+  ui.messageBox.AnchorCenterIn( SgScreen, 0, 0 )
   SgScreen.Add( ui.messageBox )
 
   return ui
@@ -116,14 +117,14 @@ func (ui *InstallUI) createSetupScreen() {
   ui.setupScreen.cancelBtn = NewSgItemButton ( 0, 0, 100, 30, ui.texts.SetupExitBtn )
   ui.setupScreen.cancelBtn.OnClick = func(item *SgItem, localX int, localY int) {
     SgWinClose()
-    //os.Exit(0)
+    os.Exit(0)
     }
   ui.setupScreen.view.AddFooter( ui.setupScreen.cancelBtn )
 
   ui.setupScreen.installBtn = NewSgItemButton ( 0, 0, 100, 30, ui.texts.SetupInstallBtn )
   ui.setupScreen.installBtn.OnClick = func(item *SgItem, localX int, localY int) {
     ui.cfg.InstallPath = ui.setupScreen.pathLabel.TextGet()
-    //go performInstallation(ui, ui.cfg, []string{})
+    go performInstallation(ui, ui.cfg, []string{})
     }
   ui.setupScreen.view.AddFooter( ui.setupScreen.installBtn )
 

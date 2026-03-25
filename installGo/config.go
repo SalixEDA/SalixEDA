@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+        "os/user"
 	"path/filepath"
 	"runtime"
 	"time"
@@ -20,21 +21,22 @@ import (
 
 const (
   // CompanyName - название компании (используется в пути к конфигурации)
-  CompanyName = "YourCompany"
+  CompanyName = "SalixEDA"
 
   // ApplicationName - название приложения (используется в пути к конфигурации)
-  ApplicationName = "YourApp"
+  ApplicationName = "SalixEDA"
 
   // ServerURL - базовый URL сервера с файлами для скачивания
-  ServerURL = "http://your-server.com/download/data"
+  ServerURL = "https://salixeda.org/data"
 )
 
 // ZipFiles - список ZIP-файлов для мониторинга и обновления
 // Это константы, так как набор файлов известен на этапе компиляции
 var ZipFiles = []string{
-	"core.zip",
-	"assets.zip",
-	"plugins.zip",
+	"Core.zip",
+	"Libs.zip",
+        "Plugins.zip",
+//	"Examples.zip",
 }
 
 // ========== СТРУКТУРА КОНФИГУРАЦИИ ==========
@@ -65,6 +67,19 @@ type Config struct {
 }
 
 // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С ПУТЯМИ ==========
+
+func addOSPrefix() {
+  prefix := "lin"
+  if runtime.GOOS == "windows" {
+    prefix = "win_"
+    }
+
+  for i, file := range ZipFiles {
+    ZipFiles[i] = prefix + file
+    }
+  }
+
+
 
 // getConfigDir возвращает путь к директории конфигурации для текущей ОС
 func getConfigDir() (string, error) {
@@ -160,6 +175,27 @@ func LoadConfig() (*Config, error) {
 }
 
 
+// getHomeDirFromUser получает домашний каталог через пакет os/user
+func getHomeDirFromUser() (string, error) {
+  usr, err := user.Current()
+  if err != nil {
+    return "", fmt.Errorf("не удалось получить текущего пользователя: %v", err)
+    }
+  return usr.HomeDir, nil
+  }
+
+
+
+// buildMyPath строит путь "myPath" относительно домашнего каталога
+func buildSubPath( subPath string ) string {
+  home, err := getHomeDirFromUser()
+  if err != nil {
+    return ""
+    }
+
+  myPath := filepath.Join(home, subPath)
+  return myPath
+  }
 
 
 // DefaultConfig возвращает конфигурацию по умолчанию
@@ -176,7 +212,7 @@ func DefaultConfig() *Config {
   return &Config{
     CheckPeriodDays:  7,
     LastCheck:        "",
-    InstallPath:      "",
+    InstallPath:      buildSubPath("SalixEDA/"),
     CreateShortcuts:  true,
     DownloadedFiles:  downloadedFiles,
   }
@@ -187,54 +223,60 @@ func DefaultConfig() *Config {
 
 // Save сохраняет конфигурацию в файл
 func (c *Config) Save() error {
-	// Убеждаемся, что директория существует
-	if err := ensureConfigDir(); err != nil {
-		return err
-	}
+  // Убеждаемся, что директория существует
+  if err := ensureConfigDir(); err != nil {
+    return err
+    }
 
-	configPath, err := getConfigPath()
-	if err != nil {
-		return err
-	}
+  configPath, err := getConfigPath()
+  if err != nil {
+    return err
+    }
 
-	// Сериализуем в JSON с отступами для читаемости
-	data, err := json.MarshalIndent(c, "", "  ")
-	if err != nil {
-		return fmt.Errorf("failed to marshal config: %w", err)
-	}
+  // Сериализуем в JSON с отступами для читаемости
+  data, err := json.MarshalIndent(c, "", "  ")
+  if err != nil {
+    return fmt.Errorf("failed to marshal config: %w", err)
+    }
 
-	// Записываем файл с правами 0644 (rw-r--r--)
-	if err := os.WriteFile(configPath, data, 0644); err != nil {
-		return fmt.Errorf("failed to write config file: %w", err)
-	}
+  // Записываем файл с правами 0644 (rw-r--r--)
+  if err := os.WriteFile(configPath, data, 0644); err != nil {
+    return fmt.Errorf("failed to write config file: %w", err)
+    }
 
-	return nil
-}
+  return nil
+  }
+
+
 
 // ========== ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ==========
 
 // UpdateLastCheck обновляет время последней проверки на текущее
 func (c *Config) UpdateLastCheck() {
-	c.LastCheck = time.Now().Format(time.RFC3339)
-}
+  c.LastCheck = time.Now().Format(time.RFC3339)
+  }
+
+
 
 // NeedCheck определяет, нужно ли проверить обновления
 func (c *Config) NeedCheck() bool {
-	if c.LastCheck == "" {
-		return true // никогда не проверяли
-	}
+  if c.LastCheck == "" {
+    return true // никогда не проверяли
+    }
 
-	last, err := time.Parse(time.RFC3339, c.LastCheck)
-	if err != nil {
-		return true // ошибочная дата - проверяем
-	}
+  last, err := time.Parse(time.RFC3339, c.LastCheck)
+  if err != nil {
+    return true // ошибочная дата - проверяем
+    }
 
-	daysSince := int(time.Since(last).Hours() / 24)
-	return daysSince >= c.CheckPeriodDays
-}
+  daysSince := int(time.Since(last).Hours() / 24)
+  return daysSince >= c.CheckPeriodDays
+  }
+
+
 
 // Reset сбрасывает конфигурацию к значениям по умолчанию
 func (c *Config) Reset() {
-	*c = *DefaultConfig()
-}
+  *c = *DefaultConfig()
+  }
 

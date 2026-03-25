@@ -26,6 +26,7 @@ type SgItemInterface interface {
   KeyDown(code int)
   KeyChar(code int)
   setFocus(focus bool)
+  SetFocus()
   ParentSet(parent SgItemInterface)
   ParentGet() SgItemInterface
   Ident() int
@@ -290,6 +291,10 @@ func SetFocus( item SgItemInterface ) {
 
 func (i *SgItem) setFocus(focus bool) {
   i.Focus = focus
+  }
+
+func (i *SgItem) SetFocus() {
+  SetFocus( i )
   }
 
 

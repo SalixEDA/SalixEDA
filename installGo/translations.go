@@ -21,8 +21,8 @@ type Texts struct {
   ProgressCancelBtn   string
   ProgressDownload    string
   ProgressExtract     string
-  ProgressShortcuts   string
   ProgressCopy        string
+  ProgressShortcuts   string
   ProgressDownloadOf  string
   ProgressExtractedOf string
 
@@ -64,8 +64,8 @@ func TransStringRu() *Texts {
     ProgressCancelBtn:   "Прервать",
     ProgressDownload:    "Этап 1: Скачивание %s",
     ProgressExtract:     "Этап 2: Распаковка %s",
-    ProgressShortcuts:   "Этап 3: Создание ярлыков",
-    ProgressCopy:        "Этап 4: Копирование установщика",
+    ProgressCopy:        "Этап 3: Копирование установщика",
+    ProgressShortcuts:   "Этап 4: Создание ярлыков",
     ProgressDownloadOf:  "Скачано %s из %s",
     ProgressExtractedOf: "Распаковано %s из %s",
 
