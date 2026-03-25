@@ -24,6 +24,14 @@ func main() {
 
   log.Printf("Директория установщика: %s", execDir)
 
+
+  if loadConfigErr == nil && len(os.Args) == 2 && os.Args[1] == "--delete" {
+    // Режим удаления
+    removeSelf( loadedConfig )
+    return
+    }
+
+
   // ===== 3. ПРОВЕРКА НЕОБХОДИМОСТИ УСТАНОВКИ =====
   if loadConfigErr != nil || !strings.EqualFold(filepath.Clean(execDir), filepath.Clean(loadedConfig.InstallPath)) {
     log.Println("=== НАЧАЛО УСТАНОВКИ ===")
@@ -82,6 +90,7 @@ func main() {
       }
     env = append(env, "DYLD_LIBRARY_PATH="+newDyldPath)
     }
+
 
   // ===== 7. ЗАПУСК ПРИЛОЖЕНИЯ =====
   args := os.Args[1:]

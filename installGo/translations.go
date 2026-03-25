@@ -41,6 +41,18 @@ type Texts struct {
   UpdateCancelBtn  string
   UpdateLaterBtn   string
   UpdateNowBtn     string
+
+  // Экран подтверждения удаления
+  DeleteTitle      string
+  DeleteMessage    string
+  DeleteCancelBtn  string
+  DeleteAccBtn     string
+
+  DeleteProgress   string
+  DeleteFile       string
+
+  DeleteInfo       string
+  DeleteComplete   string
 }
 
 func TransStringRu() *Texts {
@@ -84,6 +96,17 @@ func TransStringRu() *Texts {
     UpdateCancelBtn:  "Отмена",
     UpdateLaterBtn:   "Позднее",
     UpdateNowBtn:     "Обновить",
+
+    DeleteTitle:      "Подтверждение удаления",
+    DeleteMessage:    "Вы действительно хотите удалить программу SalixEDA и все ее компоненты и данные?",
+    DeleteCancelBtn:  "Отмена",
+    DeleteAccBtn:     "Да, удалить",
+
+    DeleteProgress:   "Удаление SalixEDA",
+    DeleteFile:       "Удаляется %s",
+
+    DeleteInfo:       "Информация",
+    DeleteComplete:   "Программа SalixEDA успешно удалена с вашего компьютера",
   }
 }
 

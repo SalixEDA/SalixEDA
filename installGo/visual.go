@@ -56,6 +56,23 @@ type InstallUI struct {
     laterBtn      *SgItemButton
     updateBtn     *SgItemButton
   }
+
+  //Экран подтверждения удаления
+  deleteScreen struct {
+    view          *SgItemPage
+    messageLabel  *SgItemTextMulty
+    cancelBtn     *SgItemButton
+    deleteBtn     *SgItemButton
+  }
+
+  //Экран прогресса удаления
+  deleteProgress struct {
+    view              *SgItemPage
+    progressBar       *SgItemProgressBar
+    stageLabel        *SgItemText
+    cancelBtn         *SgItemButton
+  }
+
 }
 
 
@@ -76,10 +93,12 @@ func NewInstallUI(cfg *Config) *InstallUI {
   SgScreen.Add( ui.stack )
 
   // Создаем все экраны
-  ui.createSetupScreen()
-  ui.createProgressScreen()
-  ui.createCompleteScreen()
-  ui.createUpdateScreen()
+  ui.createSetupScreen()       //0
+  ui.createProgressScreen()    //1
+  ui.createCompleteScreen()    //2
+  ui.createUpdateScreen()      //3
+  ui.createDeleteScreen()      //4
+  ui.createDeleteProgress()    //5
 
   //Создаем модальное окно сообщений
   ui.messageBox = NewSgItemMessageBox( 500, 200 )
@@ -237,3 +256,57 @@ func (ui *InstallUI) createUpdateScreen() {
   ui.stack.Add( ui.updateScreen.view )
   }
 
+
+func (ui *InstallUI) createDeleteScreen() {
+  ui.deleteScreen.view = NewSgItemPage( 0xf0f0f0, ui.texts.DeleteTitle, 30, 0x202020 )
+
+  ui.deleteScreen.messageLabel = NewSgItemTextMulty( 0, 0, 0, ui.texts.DeleteMessage, 23, 0x202020 )
+  ui.deleteScreen.messageLabel.Align = AlignLeft | AlignVCenter
+
+  ui.deleteScreen.view.CentralSet( ui.deleteScreen.messageLabel )
+
+
+  // Кнопки
+  ui.deleteScreen.deleteBtn = NewSgItemButton( 0, 0, 100, 30, ui.texts.DeleteAccBtn )
+  ui.deleteScreen.view.AddFooter( ui.deleteScreen.deleteBtn )
+
+
+  ui.deleteScreen.cancelBtn = NewSgItemButton( 20, 160, 100, 30, ui.texts.DeleteCancelBtn )
+  ui.deleteScreen.cancelBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    SgWinClose()
+    os.Exit(0)
+    }
+  ui.deleteScreen.view.AddFooter( ui.deleteScreen.cancelBtn )
+
+  ui.stack.Add( ui.deleteScreen.view )
+  }
+
+
+
+func (ui *InstallUI) createDeleteProgress() {
+  ui.deleteProgress.view = NewSgItemPage( 0xf0f0f0, ui.texts.DeleteProgress, 30, 0x202020 )
+
+  column := NewSgItemColumn( 0, 0, 10, 10, 10 )
+
+  // Прогресс-бар
+  ui.deleteProgress.progressBar = NewSgItemProgressBar( 0, 0, 100, 30 )
+  ui.deleteProgress.progressBar.AnchorHorzFill( column, 5, 5 )
+  column.Add( ui.deleteProgress.progressBar )
+
+  // Удаляемый файл
+  ui.deleteProgress.stageLabel = NewSgItemText( 0, 0, "Uli", 20, 0x202020 )
+  ui.deleteProgress.stageLabel.Align = AlignLeft | AlignBottom
+  column.Add( ui.deleteProgress.stageLabel )
+
+  ui.deleteProgress.view.CentralSet( column )
+
+
+  // Кнопка прерывания
+  ui.deleteProgress.cancelBtn = NewSgItemButton( 0, 0, 100, 30, ui.texts.ProgressCancelBtn )
+  ui.deleteProgress.cancelBtn.OnClick = func(item *SgItem, localX int, localY int) {
+    SgWinClose()
+    }
+  ui.deleteProgress.view.AddFooter( ui.deleteProgress.cancelBtn )
+
+  ui.stack.Add( ui.deleteProgress.view )
+  }
