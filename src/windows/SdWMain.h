@@ -280,8 +280,10 @@ class SdWMain : public QMainWindow
     void cmGuiderDialog();
     void cmGuiderSnapshotSave();
     void cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex );
+    void cmGuiderRecord();
+    void cmGuiderNextStep();
+    void cmGuiderPlay();
     void cmGuiderCapture();
-    void cmGuiderPause();
 
     void cmRemoteStatus( const QString info );
 

@@ -30,6 +30,7 @@ Description
 #include <QGuiApplication>
 #include <QPainter>
 #include <QSettings>
+#include <QMessageBox>
 
 SdGuiderCapture::SdGuiderCapture(QWidget *main, QObject *parent) :
   QObject(parent),
@@ -37,6 +38,9 @@ SdGuiderCapture::SdGuiderCapture(QWidget *main, QObject *parent) :
   mMainWindow(main)
   {
   QCoreApplication::instance()->installEventFilter( this );
+
+  connect( &mRecordTimer, &QTimer::timeout, this, &SdGuiderCapture::periodicRecord );
+  connect( &mPlayerTimer, &QTimer::timeout, this, &SdGuiderCapture::periodicPayer );
 
   // connect( &mTimer, &QTimer::timeout, this, [this] () {
   //   if( mFile ) {
@@ -200,6 +204,19 @@ void SdGuiderCapture::periodicPayer()
   mPlayer.inject( mEventList.at(mEventIndex++) );
   //Get
   if( mCapture ) {
+    static QImage mouse[8];
+
+    if( mouse[0].isNull() ) {
+      mouse[0] = QImage(QString(":/pic/mouse0.png"));
+      mouse[1] = QImage(QString(":/pic/mouse1.png"));
+      mouse[2] = QImage(QString(":/pic/mouse2.png"));
+      mouse[3] = QImage(QString(":/pic/mouse3.png"));
+      mouse[4] = QImage(QString(":/pic/mouse4.png"));
+      mouse[5] = QImage(QString(":/pic/mouse5.png"));
+      mouse[6] = QImage(QString(":/pic/mouse6.png"));
+      mouse[7] = QImage(QString(":/pic/mouse7.png"));
+      }
+
     QPixmap pixmap = mMainWindow->grab();
     QImage image = pixmap.toImage();
 
@@ -211,6 +228,14 @@ void SdGuiderCapture::periodicPayer()
     // Копируем исходное изображение в верхнюю часть
     QPainter painter(&newImage);
     painter.drawImage(0, 0, image);
+
+    int mouseIndex = 0;
+    if( mPlayer.mMouseButtons & Qt::LeftButton ) mouseIndex |= 1;
+    if( mPlayer.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
+    if( mPlayer.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
+    //Draw mouse
+    painter.drawImage( QPoint( mPlayer.mMousePosX - 16, mPlayer.mMousePosY - 4 ), mouse[mouseIndex] );
+
 
     // Настройка для текста
     if( mPlayer.mStepIndex < mStepList.size() ) {
@@ -253,6 +278,7 @@ void SdGuiderCapture::periodicPayer()
     }
   if( mEventIndex >= mEventList.size() ) {
     mPlayerTimer.stop();
+    QMessageBox::information( mMainWindow, tr("Info"), tr("Play completed") );
     }
   }
 
