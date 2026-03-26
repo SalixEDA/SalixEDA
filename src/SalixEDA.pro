@@ -437,6 +437,7 @@ HEADERS  += \
     guider/SdGuiderMacro.h \
     guider/SdGuiderMonitor.h \
     guider/SdGuiderSnapshot.h \
+    guider/SdGuiderStep.h \
     import/iges/IgesEntityCurveOnParametricSurface.h \
     import/iges/IgesEntityFaceGenerator.h \
     import/iges/IgesEntityRationalBSplineCurve.h \

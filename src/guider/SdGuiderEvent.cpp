@@ -28,12 +28,13 @@ Description
 //!
 void SdGuiderEvent::json(SvJsonWriter &js) const
   {
-  js.jsonInt( "PosX",     mMousePosX );
-  js.jsonInt( "PosY",     mMousePosY );
-  js.jsonInt( "Buttons",  mMouseButtons );
-  js.jsonInt( "Modifier", mKeyModifier );
-  js.jsonInt( "KeyCode",  mKeyCode );
-  js.jsonInt( "KeyChar",  mKeyChar );
+  js.jsonInt( "StepIndex", mStepIndex );
+  js.jsonInt( "PosX",      mMousePosX );
+  js.jsonInt( "PosY",      mMousePosY );
+  js.jsonInt( "Buttons",   mMouseButtons );
+  js.jsonInt( "Modifier",  mKeyModifier );
+  js.jsonInt( "KeyCode",   mKeyCode );
+  js.jsonInt( "KeyChar",   mKeyChar );
   }
 
 
@@ -45,12 +46,13 @@ void SdGuiderEvent::json(SvJsonWriter &js) const
 //!
 void SdGuiderEvent::json(const SvJsonReader &js)
   {
-  js.jsonInt( "PosX",     mMousePosX );
-  js.jsonInt( "PosY",     mMousePosY );
-  js.jsonInt( "Buttons",  mMouseButtons );
-  js.jsonInt( "Modifier", mKeyModifier );
-  js.jsonInt( "KeyCode",  mKeyCode );
-  js.jsonInt( "KeyChar",  mKeyChar );
+  js.jsonInt( "StepIndex", mStepIndex );
+  js.jsonInt( "PosX",      mMousePosX );
+  js.jsonInt( "PosY",      mMousePosY );
+  js.jsonInt( "Buttons",   mMouseButtons );
+  js.jsonInt( "Modifier",  mKeyModifier );
+  js.jsonInt( "KeyCode",   mKeyCode );
+  js.jsonInt( "KeyChar",   mKeyChar );
   }
 
 

@@ -30,6 +30,7 @@ Description
 //!
 struct SdGuiderEvent
   {
+    int mStepIndex;    //!< Current step index for title generation
     int mMousePosX;    //!< Mouse position X coordinate in screen space
     int mMousePosY;    //!< Mouse position Y coordinate in screen space
     int mMouseButtons; //!< Mouse buttons state. Bits 0,1,2 for left, right and middle buttons

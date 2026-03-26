@@ -24,6 +24,8 @@ Description
 #ifndef SDGUIDERDIALOG_H
 #define SDGUIDERDIALOG_H
 
+#include "SdGuiderStep.h"
+
 #include <QDialog>
 #include <QTreeWidget>
 #include <QLabel>
@@ -33,18 +35,11 @@ Description
 
 class SdWMain;
 
-struct SdGuiderStep
-  {
-    int     mDuration = 3; //!< Step duration in sec. Default value is 3 sec
-    QString mTiter;        //!< Step titer
-  };
-
-
 
 struct SdGuiderScena
   {
-    QString             mTitle; //!< Scena title
-    QList<SdGuiderStep> mSteps; //!< Scena steps list
+    QString          mTitle; //!< Scena title
+    SdGuiderStepList mSteps; //!< Scena steps list
 
     QString hash() const;
   };
@@ -70,7 +65,7 @@ class SdGuiderDialog : public QDialog
   public:
     explicit SdGuiderDialog( SdWMain *wmain );
 
-    bool setScenaFile( const QString &fname );
+    bool    setScenaFile( const QString &fname );
 
     QString scriptPath() const { return mScriptPath; }
     int     snapshotIndex() const;

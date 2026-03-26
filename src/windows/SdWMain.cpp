@@ -68,14 +68,10 @@ Description
 
 
 SdWMain::SdWMain(QStringList args, QWidget *parent) :
-  QMainWindow(parent)
+  QMainWindow(parent),
+  mGuiderCapture(nullptr),
+  mGuiderDialog(nullptr)
   {
-  //Setup guider capture object
-  mGuiderCapture = new SdGuiderCapture( this, this );
-  mGuiderDialog  = new SdGuiderDialog( this );
-  mGuiderDialog->hide();
-  connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, this, &SdWMain::cmGuiderSnapshotLoad );
-  connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, mGuiderCapture, &SdGuiderCapture::setScena );
 
   //Set window icon
   setWindowIcon( QIcon(QStringLiteral(":/pic/iconMain.png")) );
@@ -2079,6 +2075,15 @@ void SdWMain::cmGuiderDialog()
   QString scenaFile = QFileDialog::getOpenFileName(this, tr("Open guider scena file"), QString(),
                                                    tr("Scena text files (*.txt)") );
   if( !scenaFile.isEmpty() ) {
+    //Setup guider capture object
+    if( mGuiderCapture == nullptr ) {
+      mGuiderCapture = new SdGuiderCapture( this, this );
+      mGuiderDialog  = new SdGuiderDialog( this );
+      mGuiderDialog->hide();
+      connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, this, &SdWMain::cmGuiderSnapshotLoad );
+      connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, mGuiderCapture, &SdGuiderCapture::setScena );
+      }
+
     if( mGuiderDialog->setScenaFile( scenaFile ) ) {
       //Made fixed window size
       resize( 1600, 700 );
@@ -2094,6 +2099,7 @@ void SdWMain::cmGuiderDialog()
 
 void SdWMain::cmGuiderSnapshotSave()
   {
+  if( mGuiderDialog == nullptr ) return;
   //Get script path and snapshot index
   QString scriptPath = mGuiderDialog->scriptPath();
   if( !scriptPath.isEmpty() ) {
