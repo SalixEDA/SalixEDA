@@ -45,7 +45,6 @@ docs.CONFIG += recursive  # Позволяет цели зависеть от д
 SOURCES += \
     guider/SdGuiderDialog.cpp \
     guider/SdGuiderEvent.cpp \
-    guider/SdGuiderMonitor.cpp \
     guider/SdGuiderSnapshot.cpp \
     import/iges/IgesEntityCurveOnParametricSurface.cpp \
     import/iges/IgesEntityFaceGenerator.cpp \
@@ -403,8 +402,6 @@ SOURCES += \
     windows/SdDStringFromList.cpp \
     windows/SdDHelp.cpp \
     guider/SdGuiderCapture.cpp \
-    guider/SdGuiderPlayer.cpp \
-    guider/SdGuiderFile.cpp \
     windows/SdDParamDefault.cpp \
     windows/SdWEditorProject.cpp \
     master/SdDMasterPartDoubleRound.cpp \
@@ -434,8 +431,6 @@ HEADERS  += \
     SvLib/SvJson3dIO.h \
     guider/SdGuiderDialog.h \
     guider/SdGuiderEvent.h \
-    guider/SdGuiderMacro.h \
-    guider/SdGuiderMonitor.h \
     guider/SdGuiderSnapshot.h \
     guider/SdGuiderStep.h \
     import/iges/IgesEntityCurveOnParametricSurface.h \
@@ -911,8 +906,6 @@ HEADERS  += \
     windows/SdDStringFromList.h \
     windows/SdDHelp.h \
     guider/SdGuiderCapture.h \
-    guider/SdGuiderPlayer.h \
-    guider/SdGuiderFile.h \
     objects/SdProjectSharedPtr.h \
     windows/SdDParamDefault.h \
     windows/SdWEditorProject.h \

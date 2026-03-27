@@ -139,7 +139,6 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   mCapture = new QToolButton();
   mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOff.png")) );
   mCapture->setToolTip( tr("Show status of guide capture video system: stopped") );
-  connect( mCapture, &QToolButton::toggled, this, &SdWMain::cmGuiderRecord );
   sbar->addWidget( mCapture );
   SdLibraryIndicator::instance()->addToStatusBar( sbar );
 
@@ -2082,6 +2081,18 @@ void SdWMain::cmGuiderDialog()
       mGuiderDialog->hide();
       connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, this, &SdWMain::cmGuiderSnapshotLoad );
       connect( mGuiderDialog, &SdGuiderDialog::snapshotLoad, mGuiderCapture, &SdGuiderCapture::setScena );
+      connect( mGuiderCapture, &SdGuiderCapture::stepIndexChanged, mGuiderDialog, &SdGuiderDialog::stepIndexChanged );
+      connect( mGuiderCapture, &SdGuiderCapture::recordStatus, this, [this] ( bool isRecord ) {
+        if( isRecord ) {
+          mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOn.png")) );
+          mCapture->setToolTip( tr("Show status of guide capture video system: running") );
+          }
+        else {
+          mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOff.png")) );
+          mCapture->setToolTip( tr("Show status of guide capture video system: stopped") );
+          }
+
+        });
       }
 
     if( mGuiderDialog->setScenaFile( scenaFile ) ) {
@@ -2149,7 +2160,7 @@ void SdWMain::cmGuiderSnapshotSave()
 
 
 
-void SdWMain::cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex)
+void SdWMain::cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex, const SdGuiderStepList &)
   {
   QString snapshotName("scena-%1.snapshot");
   QFile snapshotFile( scriptPath + snapshotName.arg(snapshotIndex) );
@@ -2211,30 +2222,6 @@ void SdWMain::cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex)
 
 
 
-void SdWMain::cmGuiderRecord()
-  {
-  if( mGuiderCapture != nullptr ) {
-    mGuiderCapture->recordPauseResume();
-    if( mGuiderCapture->isRecord() ) {
-      mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOn.png")) );
-      mCapture->setToolTip( tr("Show status of guide capture video system: running") );
-      }
-    else {
-      mCapture->setIcon( QIcon(QString(":/pic/iconCaptureOff.png")) );
-      mCapture->setToolTip( tr("Show status of guide capture video system: stopped") );
-      }
-    }
-  }
-
-
-
-
-void SdWMain::cmGuiderNextStep()
-  {
-  if( mGuiderCapture != nullptr ) {
-    mGuiderCapture->nextStep();
-    }
-  }
 
 
 

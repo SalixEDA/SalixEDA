@@ -23,88 +23,130 @@ Description
 */
 
 #include "SdGuiderDialog.h"
+#include "SdGuiderCapture.h"
 #include "SvLib/SvDir.h"
+#include "windows/SdWMain.h"
 
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
 #include <QDebug>
 #include <QCryptographicHash>
+#include <QSettings>
+#include <QMessageBox>
+#include <QTemporaryFile>
 
 QString SdGuiderScena::hash() const {
   QCryptographicHash hasher( QCryptographicHash::Blake2s_128 );
 
-  // Добавляем название сцены в хэш
+  // Add scene title to hash
   hasher.addData( mTitle.toUtf8() );
 
-  // Добавляем количество шагов для контроля структуры
+  // Add step count to control structure integrity
   hasher.addData( QByteArray::number( mSteps.size() ) );
 
-  // Добавляем каждый шаг в хэш
+  // Add each step to hash
   for( const auto &step : std::as_const(mSteps) ) {
-    // Добавляем текст шага
-    hasher.addData( step.mTiter.toUtf8() );
+    // Add step text
+    hasher.addData( step.mTitle.toUtf8() );
 
-    // Добавляем длительность шага
+    // Add step duration
     hasher.addData( QByteArray::number( step.mDuration ) );
 
-    // Добавляем разделитель для надежности (чтобы избежать коллизий
-    // при конкатенации, например "ab"+"c" vs "a"+"bc")
+    // Add separator for reliability (to avoid collisions
+    // during concatenation, e.g. "ab"+"c" vs "a"+"bc")
     hasher.addData( "|" );
     }
 
-  // Возвращаем результат в виде hex-строки
+  // Return result as hex string
   return QString::fromLatin1( hasher.result().toHex() );
   }
 
 
+
+
+
+
+
+//!
+//! \brief SdGuiderDialog Constructor
+//! \param wmain          Pointer to the main application window
+//!
 SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
   : QDialog( nullptr )
   , mWMain(wmain) {
-  // Устанавливаем флаг автоматического удаления при закрытии
-  //setAttribute( Qt::WA_DeleteOnClose );
-
-  // Создаем основной layout
+  // Create main layout
   QVBoxLayout *mainLayout = new QVBoxLayout( this );
 
-  // Создаем и настраиваем QLabel для подсказки
+  // Create and configure QLabel for hint
   mHintLabel = new QLabel( this );
   mHintLabel->setWordWrap( true );
   mHintLabel->setStyleSheet( "QLabel { background-color: #f0f0f0; padding: 5px; }" );
   mainLayout->addWidget( mHintLabel );
 
-  // Создаем и настраиваем QTreeWidget
+  //Current titer
+  mCurrentStepTiter = new QLabel( this );
+  mCurrentStepTiter->setWordWrap( true );
+  mainLayout->addWidget( mCurrentStepTiter );
+
+  // Create and configure QTreeWidget
   mTreeWidget = new QTreeWidget( this );
   mTreeWidget->setHeaderLabel( tr("Script") );
   mTreeWidget->setAlternatingRowColors( true );
   mTreeWidget->setIndentation( 20 );
 
-  // Запрет сворачивания (все элементы всегда развернуты)
+  // Disable collapsing (all items always expanded)
   mTreeWidget->setItemsExpandable( false );
   mTreeWidget->setExpandsOnDoubleClick( false );
 
-  // Разрешаем выбор только сцен (строк верхнего уровня)
+  // Allow selection of scenes only (top-level items)
   mTreeWidget->setSelectionMode( QAbstractItemView::SingleSelection );
 
-  // Настройка внешнего вида
+  // Configure appearance
   QHeaderView *header = mTreeWidget->header();
   header->setStretchLastSection( true );
   header->setSectionResizeMode( QHeaderView::ResizeToContents );
 
   mainLayout->addWidget( mTreeWidget );
 
-  // Создаем кнопку Build
-  mBuildButton = new QPushButton( tr("Build"), this );
-  mBuildButton->setMinimumHeight( 30 );
-  mainLayout->addWidget( mBuildButton );
+  QHBoxLayout *buttons = new QHBoxLayout();
+  // Create Build button
+  QPushButton *but = new QPushButton( tr("Build"), this );
+  but->setToolTip( tr("Builds full movie from all scenas") );
+  but->setMinimumHeight( 30 );
+  connect( but, &QPushButton::pressed, this, &SdGuiderDialog::onBuildClicked );
+  buttons->addWidget( but );
 
-  // Настройка свойств диалога
+  but = new QPushButton( tr("Play"), this );
+  but->setToolTip( tr("Start play current scena") );
+  but->setMinimumHeight( 30 );
+  connect( but, &QPushButton::pressed, this, [this] () {
+    if( mScenaIndex < mScenaList.size() ) {
+      onScenaSelected( mScenaIndex );
+      mWMain->cmGuiderPlay();
+      }
+    });
+  buttons->addWidget( but );
+
+  but = new QPushButton( tr("Capture"), this );
+  but->setToolTip( tr("Start capture current scena") );
+  but->setMinimumHeight( 30 );
+  connect( but, &QPushButton::pressed, this, [this] () {
+    if( mScenaIndex < mScenaList.size() ) {
+      onScenaSelected( mScenaIndex );
+      mWMain->cmGuiderCapture();
+      }
+    });
+  buttons->addWidget( but );
+
+  mainLayout->addLayout( buttons );
+
+  // Configure dialog properties
   setWindowTitle( tr("The script") );
   setMinimumSize( 800, 300 );
 
-  // Подключаем сигналы
+  // Connect signals
   connect( mTreeWidget, &QTreeWidget::itemClicked, this, &SdGuiderDialog::onItemClicked );
-  connect( mBuildButton, &QPushButton::clicked, this, &SdGuiderDialog::onBuildClicked );
   }
 
 
@@ -113,12 +155,17 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
 
 
 
-
+//!
+//! \brief setScenaFile Loads and sets the scena file
+//! \param fname        Path to the scena file
+//! \return             true if file loaded successfully, false otherwise
+//!
 bool SdGuiderDialog::setScenaFile(const QString &fname)
   {
   QFileInfo info(fname);
   SvDir dir(info.absolutePath());
   mScriptPath = dir.slashedPath();
+  mScriptName = info.baseName();
 
   QFile file(fname);
   if( !file.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -139,60 +186,60 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
   while( !in.atEnd() ) {
     currentLine = in.readLine();
 
-    // Убираем лишние пробелы в начале и конце, но сохраняем внутренние
+    // Remove extra spaces at the beginning and end, but preserve internal spaces
     QString trimmedLine = currentLine.trimmed();
 
-    // Пропускаем пустые строки
+    // Skip empty lines
     if( trimmedLine.isEmpty() )
       continue;
 
-    // Проверяем начало строки
+    // Check line start
     if( trimmedLine.startsWith("--") ) {
-      // Это шаг (начинается с двух тире)
+      // This is a step (starts with two dashes)
 
-      // Сохраняем предыдущий шаг, если он был
+      // Save previous step if it existed
       if( inStep ) {
-        currentStep.mTiter = currentStepText.trimmed();
+        currentStep.mTitle = currentStepText.trimmed();
         currentScena.mSteps.append(currentStep);
         currentStepText.clear();
         }
 
-      // Убираем два тире в начале
+      // Remove two dashes from the beginning
       QString stepContent = trimmedLine.mid(2).trimmed();
 
-      // Создаем новый шаг
+      // Create a new step
       currentStep = SdGuiderStep();
-      currentStep.mDuration = 3; // Значение по умолчанию
+      currentStep.mDuration = 3; // Default value
 
-      // Проверяем, есть ли число после тире (длительность)
+      // Check if there is a number after the dash (duration)
       int spacePos = stepContent.indexOf(' ');
       if (spacePos > 0) {
-        // Пробуем распарсить число в начале
+        // Try to parse the number at the beginning
         QString firstPart = stepContent.left(spacePos);
         bool ok;
         int duration = firstPart.toInt(&ok);
         if (ok) {
-          // Нашли число - это длительность
+          // Found a number - this is the duration
           currentStep.mDuration = duration;
-          // Остаток строки - текст шага
+          // The rest of the line is the step text
           currentStepText = stepContent.mid(spacePos + 1);
           }
         else {
-          // Нет числа - вся строка текст шага
+          // No number - the entire line is the step text
           currentStepText = stepContent;
           }
         }
       else {
-        // Нет пробела - возможно только число или только текст
+        // No space - possibly just a number or just text
         bool ok;
         int duration = stepContent.toInt(&ok);
         if (ok) {
-          // Только число - это длительность без текста
+          // Only a number - this is the duration without text
           currentStep.mDuration = duration;
           currentStepText = "";
           }
         else {
-          // Только текст без длительности
+          // Only text without duration
           currentStepText = stepContent;
           }
         }
@@ -200,13 +247,13 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
       inStep = true;
       }
     else if( trimmedLine.startsWith("-") ) {
-      // Это название сцены (начинается с одного тире)
+      // This is a scene title (starts with a single dash)
 
-      // Сохраняем предыдущую сцену, если она не пустая
+      // Save previous scene if it's not empty
       if( !currentScena.mTitle.isEmpty() || !currentScena.mSteps.isEmpty() ) {
-        // Сохраняем последний шаг текущей сцены
+        // Save the last step of the current scene
         if( inStep ) {
-          currentStep.mTiter = currentStepText.trimmed();
+          currentStep.mTitle = currentStepText.trimmed();
           currentScena.mSteps.append(currentStep);
           currentStepText.clear();
           inStep = false;
@@ -214,35 +261,35 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
         mScenaList.append(currentScena);
         }
 
-      // Начинаем новую сцену
+      // Start a new scene
       currentScena = SdGuiderScena();
-      // Убираем один дефис в начале
+      // Remove one dash from the beginning
       currentScena.mTitle = trimmedLine.mid(1).trimmed();
       currentScena.mSteps.clear();
       inStep = false;
       }
     else {
-      // Это продолжение предыдущего шага (многострочный текст)
+      // This is a continuation of the previous step (multi-line text)
       if( inStep ) {
         if( !currentStepText.isEmpty() )
           currentStepText += " ";
         currentStepText += trimmedLine;
         }
       else {
-        // Строка без маркера, но не в шаге - игнорируем или можно добавить в заголовок?
-        // По спецификации таких строк быть не должно
+        // Line without marker, but not in a step - ignore or add to title?
+        // According to the specification, such lines should not exist
         qDebug() << "Warning: Line without marker outside step:" << trimmedLine;
         }
       }
     }
 
-  // Сохраняем последний шаг, если он был
+  // Save the last step if it existed
   if( inStep ) {
-    currentStep.mTiter = currentStepText.trimmed();
+    currentStep.mTitle = currentStepText.trimmed();
     currentScena.mSteps.append(currentStep);
     }
 
-  // Сохраняем последнюю сцену
+  // Save the last scene
   if( !currentScena.mTitle.isEmpty() || !currentScena.mSteps.isEmpty() ) {
     mScenaList.append(currentScena);
     }
@@ -253,43 +300,43 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
 
   QTreeWidgetItem *scenaFirst = nullptr;
 
-  // Заполняем дерево
+  // Fill the tree
   for( const auto &scena : std::as_const(mScenaList) ) {
-    // Создаем элемент сцены (верхний уровень)
+    // Create scene item (top level)
     QTreeWidgetItem *scenaItem = new QTreeWidgetItem( mTreeWidget );
     if( scenaFirst == nullptr ) scenaFirst = scenaItem;
     scenaItem->setText( 0, scena.mTitle );
     scenaItem->setData( 0, Qt::UserRole, "scena" );
 
-    // Запрещаем сворачивание этого элемента
+    // Disable collapsing of this item
     scenaItem->setFlags( scenaItem->flags() & ~Qt::ItemIsUserCheckable );
 
-    // Добавляем шаги
+    // Add steps
     for( const auto &step : std::as_const(scena.mSteps) ) {
       QTreeWidgetItem *stepItem = new QTreeWidgetItem( scenaItem );
 
-      // Формируем текст шага с длительностью
-      QString stepText = step.mTiter;
+      // Format step text with duration
+      QString stepText = step.mTitle;
       if( !stepText.isEmpty() )
-        stepText = QString( tr("[%1 sec] %2") ).arg( step.mDuration ).arg( step.mTiter );
+        stepText = QString( tr("[%1 sec] %2") ).arg( step.mDuration ).arg( step.mTitle );
       else
         stepText = QString( tr("[%1 sec]") ).arg( step.mDuration );
 
       stepItem->setText( 0, stepText );
       stepItem->setData( 0, Qt::UserRole, "step" );
 
-      // Шаги нельзя выбирать
+      // Steps cannot be selected
       stepItem->setFlags( stepItem->flags() & ~Qt::ItemIsSelectable );
       }
     }
 
-  // Разворачиваем все элементы
+  // Expand all items
   mTreeWidget->expandAll();
 
-  // Обновляем подсказку
-  mHintLabel->setText( "F12 - save snapshot" );
+  // Update hint
+  mHintLabel->setText( "F12 - save snapshot, F11 - record start-stop, F10 - next step" );
 
-  //Устанавливаем активным первую сцену
+  //Set the first scene as active
   mScenaIndex = mStepIndex = 0;
   mTreeWidget->setCurrentItem( scenaFirst );
 
@@ -297,7 +344,10 @@ bool SdGuiderDialog::setScenaFile(const QString &fname)
   }
 
 
-
+//!
+//! \brief snapshotIndex Returns the current snapshot index
+//! \return              Snapshot index
+//!
 int SdGuiderDialog::snapshotIndex() const
   {
   int scena = getCurrentScenaIndex();
@@ -313,38 +363,28 @@ int SdGuiderDialog::snapshotIndex() const
 
 
 
-void SdGuiderDialog::goToNextStep() {
-  if( !mCurrentStepItem )
-    return;
 
-  QTreeWidgetItem *parent = mCurrentStepItem->parent();
-  if( !parent )
-    return;
 
-  int currentIndex = parent->indexOfChild( mCurrentStepItem );
-  int nextIndex = currentIndex + 1;
 
-  // Снимаем выделение с текущего шага
-  if( mCurrentStepItem ) {
-    mCurrentStepItem->setSelected( false );
-    mCurrentStepItem->setBackground( 0, QBrush() ); // Сбрасываем фон
-    }
 
-  if( nextIndex < parent->childCount() ) {
-    // Переходим к следующему шагу
-    mCurrentStepItem = parent->child( nextIndex );
-    mCurrentStepItem->setSelected( true );
 
-    // Визуально выделяем текущий шаг
-    mCurrentStepItem->setBackground( 0, QBrush( QColor( 200, 230, 255 ) ) );
 
-    // Прокручиваем до текущего шага
-    mTreeWidget->scrollToItem( mCurrentStepItem );
-    }
-  else {
-    // Это был последний шаг, снимаем выделение
-    mCurrentStepItem = nullptr;
-    clearSelection();
+
+//!
+//! \brief stepIndexChanged Called when step index changes
+//! \param stepIndex        New step index
+//!
+void SdGuiderDialog::stepIndexChanged(int stepIndex)
+  {
+  if( mScenaIndex < mScenaList.size() ) {
+    const SdGuiderScena &scena = mScenaList.at(mScenaIndex);
+    if( stepIndex < scena.mSteps.size() ) {
+      mStepIndex = stepIndex;
+      mCurrentStepTiter->setText( QString("%1.").arg(mStepIndex+1) + scena.mSteps.at(mStepIndex).mTitle );
+      }
+    else {
+      mCurrentStepTiter->setText( tr("All steps completed") );
+      }
     }
   }
 
@@ -352,62 +392,91 @@ void SdGuiderDialog::goToNextStep() {
 
 
 
-void SdGuiderDialog::clearSelection() {
-  if( mCurrentStepItem ) {
-    mCurrentStepItem->setBackground( 0, QBrush() );
-    mCurrentStepItem = nullptr;
-    }
-  mTreeWidget->clearSelection();
-  }
-
-
-
-
-
+//!
+//! \brief onItemClicked Handles tree widget item click
+//! \param item          Clicked tree widget item
+//! \param column        Column index of the click
+//!
 void SdGuiderDialog::onItemClicked( QTreeWidgetItem *item, int column ) {
   Q_UNUSED( column );
 
   if( !item ) return;
 
-  // Проверяем, является ли элемент сценой
+  // Check if the item is a scene
   if( item->data( 0, Qt::UserRole ).toString() == "scena" ) {
-    // Находим индекс сцены
+    // Find the scene index
     int index = mTreeWidget->indexOfTopLevelItem( item );
     if( index >= 0 ) {
-      // Снимаем выделение с шага при выборе новой сцены
-      clearSelection();
+      mScenaIndex = index;
+      // Clear step selection when selecting a new scene
+      //clearSelection();
 
-      // Вызываем сигнал
+      // Emit signal
       onScenaSelected( index );
 
       qDebug() << "Scene selected:" << index << item->text( 0 );
       }
     }
   else {
-    // Если попытались выбрать шаг - снимаем выделение
+    // If a step was attempted to be selected, deselect it
     item->setSelected( false );
     }
   }
 
 
 
-void SdGuiderDialog::onBuildClicked() {
-  // Здесь можно добавить логику для кнопки Build
-  qDebug() << "Build button clicked";
 
-  // Например, начать выполнение сценария с текущей выбранной сцены
-  int scenaIndex = getCurrentScenaIndex();
-  if( scenaIndex >= 0 )
-    qDebug() << "Building scena:" << scenaIndex;
-  else
-    qDebug() << "No scene selected";
+
+//!
+//! \brief onBuildClicked Handles build button click
+//!
+void SdGuiderDialog::onBuildClicked() {
+
+  // Create a temporary file with the list
+  QTemporaryFile listFile;
+  if( !listFile.open() )
+    return;
+
+  // Write the list of files
+  QTextStream stream(&listFile);
+  for( int sceneIndex = 0; sceneIndex < mScenaList.size(); ++sceneIndex ) {
+    //Full path to the scene file considering the language
+    QString path = SdGuiderCapture::moviePath( mScriptPath, sceneIndex );
+    //Check if it exists, then add it to the list
+    if( QFile::exists( path ) )
+      stream << "file '" << path << "'\n";
+    }
+  listFile.close();
+
+
+  // Output file
+  QSettings s;
+  QString outputPath = mScriptPath + mScriptName + QString("-%1.mp4").arg( s.value(SDK_LANGUAGE).toString() );
+
+  // Remove existing output file
+  QFile::remove(outputPath);
+
+  // FFmpeg arguments
+  QStringList args;
+  args << "-f" << "concat"
+       << "-safe" << "0"
+       << "-i" << listFile.fileName()
+       << "-c" << "copy"
+       << outputPath;
+
+  // Run FFmpeg
+  QProcess::execute("ffmpeg", args);
   }
 
 
 
-
+//!
+//! \brief onScenaSelected Handles scena selection change
+//! \param index           Index of the selected scena
+//!
 void SdGuiderDialog::onScenaSelected(int index)
   {
   mScenaIndex = index;
-  emit snapshotLoad( mScriptPath, mScenaIndex );
+  stepIndexChanged( 0 );
+  emit snapshotLoad( mScriptPath, mScenaIndex, mScenaList.at( mScenaIndex ).mSteps );
   }

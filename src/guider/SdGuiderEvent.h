@@ -19,7 +19,7 @@ Description
 #ifndef SDGUIDEREVENT_H
 #define SDGUIDEREVENT_H
 
-#include "objects/SdJsonIO.h"
+#include "SvLib/SvJsonIO.h"
 
 //!
 //! \brief The SdGuiderEvent struct Represents a user input event in the guiding system

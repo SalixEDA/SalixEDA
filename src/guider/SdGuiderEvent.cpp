@@ -67,6 +67,8 @@ void SdGuiderEvent::json(const SvJsonReader &js)
 //!
 void SdGuiderEvent::inject(const SdGuiderEvent &next)
   {
+  mStepIndex = next.mStepIndex;
+
   QPoint global( next.pos() );
 
   QWidget *w = QApplication::widgetAt( global );

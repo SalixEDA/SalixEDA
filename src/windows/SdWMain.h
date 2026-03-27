@@ -22,6 +22,7 @@ Description
 #include "SdWEditor.h"
 #include "SdWLabel.h"
 #include "SdWHelp.h"
+#include "guider/SdGuiderStep.h"
 
 #include <QMainWindow>
 #include <QSplitter>
@@ -279,9 +280,7 @@ class SdWMain : public QMainWindow
 
     void cmGuiderDialog();
     void cmGuiderSnapshotSave();
-    void cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex );
-    void cmGuiderRecord();
-    void cmGuiderNextStep();
+    void cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex , const SdGuiderStepList&);
     void cmGuiderPlay();
     void cmGuiderCapture();
 
