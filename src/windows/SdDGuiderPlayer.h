@@ -16,45 +16,25 @@ Description
 #ifndef SDDGUIDERPLAYER_H
 #define SDDGUIDERPLAYER_H
 
-#include "guider/SdGuiderFile.h"
-
 #include <QDialog>
 #include <QLabel>
 #include <QTimer>
+
+class QMediaPlayer;
+class QVideoWidget;
 
 class SdDGuiderPlayer : public QDialog
   {
     Q_OBJECT
 
-    SdGuiderFile  mFile;
-    QTimer        mTimer;
-    int           mCurrentTime;
-    int           mCurrentFrame;
-    QLabel       *mView;
-    QLabel       *mTiter;
-    QString       mFileName;
-    QString       mLanguage;
-//    bool          mLock;
-//    SdGuiderTiter mTiter;
+    QMediaPlayer *mPlayer; //!< Media player
+    QVideoWidget *mVideo;  //!< Video widget
   public:
     SdDGuiderPlayer( const QString fname, QWidget *parent = nullptr );
 
     static QString guiderPath();
 
     static bool    guiderExist( const QString fname );
-  signals:
-    void sgPlay( bool start );
-
-  public slots:
-    void cmPlayRestart();
-    void cmPlayStart();
-    void cmPlayPause();
-    void cmPlayStop();
-
-    void play();
-
-  private:
-    void titerChanged();
   };
 
 #endif // SDDGUIDERPLAYER_H

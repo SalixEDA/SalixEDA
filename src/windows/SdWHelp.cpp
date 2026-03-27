@@ -45,6 +45,9 @@ SdWHelp::SdWHelp() :
     //In intro page we can open project, create new project or open previously file
     QString path = url.fileName();
     if( path.endsWith( QStringLiteral(".guide")) ) {
+      //Remove .guide from end
+      path = path.left( path.length() - 6 );
+      qDebug() << path;
       if( SdDGuiderPlayer::guiderExist( path ) ) {
         //Show guide player dialog
         SdDGuiderPlayer player( path, this );
@@ -85,6 +88,8 @@ SdWHelp::SdWHelp(SdWMain *main) :
       }
     if( path.endsWith( QStringLiteral(".guide")) ) {
       path = url.fileName();
+      //Remove .guide from end
+      path = path.left( path.length() - 6 );
       if( SdDGuiderPlayer::guiderExist( path ) ) {
         //Show guide player dialog
         SdDGuiderPlayer player( path, this );

@@ -18,42 +18,41 @@ Description
 #include "SdWHelp.h"
 #include "objects/SdEnvir.h"
 
-#include <QTextToSpeech>
 #include <QVBoxLayout>
 #include <QToolBar>
 #include <QToolButton>
 #include <QCoreApplication>
 #include <QFile>
 #include <QSettings>
+#include <QMediaPlayer>
+#include <QVideoWidget>
+#include <QDebug>
 
-static QTextToSpeech *speech;
 
 
 SdDGuiderPlayer::SdDGuiderPlayer(const QString fname, QWidget *parent) :
-  QDialog( parent ),
-  mCurrentTime(0)
+  QDialog( parent )
   {
   //Setup titer and speach language
-  mLanguage = SdEnvir::languageGet();
+  mPlayer = new QMediaPlayer(this);
+  mVideo  = new QVideoWidget(this);
 
-  mFile.load( guiderPath() + fname );
-  mFile.play(0);
-  mCurrentTime = 0;
-  mCurrentFrame = 0;
+  QString fileName = guiderPath() + fname + QString("-%1.mp4").arg( SdEnvir::languageGet() );
+  if( !QFile::exists(fileName) )
+    fileName = guiderPath() + fname + QString("-en.mp4");
 
-  if( speech == nullptr )
-    speech = new QTextToSpeech();
-  mFile.mTiterChanged = [this] () { titerChanged(); };
+  qDebug() << fileName;
 
-  resize( 1000, 800 );
+  mPlayer->setSource( QUrl::fromLocalFile(fileName) );
+  mPlayer->setVideoOutput( mVideo );
+
+  resize( 1600, 950 );
 
   //Construct help window
   setWindowTitle( tr("Guider") );
   QVBoxLayout *box = new QVBoxLayout();
   QToolBar *bar = new QToolBar();
   box->addWidget( bar );
-
-  mView = new QLabel;
 
   QToolButton *tool = new QToolButton();
   tool->setToolTip( tr("Close") );
@@ -65,50 +64,37 @@ SdDGuiderPlayer::SdDGuiderPlayer(const QString fname, QWidget *parent) :
   tool->setToolTip( tr("Restart") );
   tool->setIcon( QIcon(QStringLiteral(":/pic/guiderBackward.png")) );
   bar->addWidget( tool );
-  connect( tool, &QToolButton::clicked, this, &SdDGuiderPlayer::cmPlayRestart );
-
-//  tool = new QToolButton();
-//  tool->setToolTip( tr("Fast backward") );
-//  tool->setIcon( QIcon(QStringLiteral(":/pic/guiderFastBackward.png")) );
-//  bar->addWidget( tool );
-
-//  tool = new QToolButton();
-//  tool->setToolTip( tr("Fast forward") );
-//  tool->setIcon( QIcon(QStringLiteral(":/pic/guiderFastForward.png")) );
-//  bar->addWidget( tool );
+  connect( tool, &QToolButton::clicked, this, [this]() {
+    mPlayer->stop();
+    mPlayer->setPosition(0);
+    mPlayer->play();
+    } );
 
   tool = new QToolButton();
   tool->setToolTip( tr("Start play") );
   tool->setIcon( QIcon(QStringLiteral(":/pic/guiderStart.png")) );
   bar->addWidget( tool );
-  connect( tool, &QToolButton::clicked, this, &SdDGuiderPlayer::cmPlayStart );
-  connect( this, &SdDGuiderPlayer::sgPlay, tool, &QToolButton::setDisabled );
+  connect( tool, &QToolButton::clicked, mPlayer, &QMediaPlayer::play );
+  connect( mPlayer, &QMediaPlayer::playingChanged, tool, &QToolButton::setDisabled );
 
   tool = new QToolButton();
   tool->setToolTip( tr("Pause") );
   tool->setIcon( QIcon(QStringLiteral(":/pic/guiderPause.png")) );
   bar->addWidget( tool );
-  connect( tool, &QToolButton::clicked, this, &SdDGuiderPlayer::cmPlayPause );
-  connect( this, &SdDGuiderPlayer::sgPlay, tool, &QToolButton::setEnabled );
+  connect( tool, &QToolButton::clicked, mPlayer, &QMediaPlayer::pause );
+  connect( mPlayer, &QMediaPlayer::playingChanged, tool, &QToolButton::setEnabled );
 
   tool = new QToolButton();
   tool->setToolTip( tr("Stop") );
   tool->setIcon( QIcon(QStringLiteral(":/pic/guiderStop.png")) );
   bar->addWidget( tool );
-  connect( tool, &QToolButton::clicked, this, &SdDGuiderPlayer::cmPlayStop );
-  connect( this, &SdDGuiderPlayer::sgPlay, tool, &QToolButton::setEnabled );
+  connect( tool, &QToolButton::clicked, mPlayer, &QMediaPlayer::stop );
+  connect( mPlayer, &QMediaPlayer::playingChanged, tool, &QToolButton::setEnabled );
 
 
-  box->addWidget( mView );
-  mTiter = new QLabel();
-  mTiter->setMinimumHeight( 80 );
-  mTiter->setWordWrap(true);
-  mTiter->setAlignment( Qt::AlignHCenter | Qt::AlignTop );
-  box->addWidget( mTiter );
+  box->addWidget( mVideo );
   setLayout( box );
-
-  connect( &mTimer, &QTimer::timeout, this, &SdDGuiderPlayer::play );
-  cmPlayStart();
+  mPlayer->play();
   }
 
 
@@ -116,7 +102,7 @@ SdDGuiderPlayer::SdDGuiderPlayer(const QString fname, QWidget *parent) :
 
 QString SdDGuiderPlayer::guiderPath()
   {
-  return SdWHelp::helpPath() + QString("guide/");
+  return QCoreApplication::applicationDirPath() + QString("/guide/");
   }
 
 
@@ -126,75 +112,6 @@ QString SdDGuiderPlayer::guiderPath()
 
 bool SdDGuiderPlayer::guiderExist(const QString fname)
   {
-  return QFile::exists( guiderPath() + fname );
+  return QFile::exists( guiderPath() + fname + QString("-%1.mp4").arg( SdEnvir::languageGet() ) );
   }
-
-
-
-
-
-void SdDGuiderPlayer::cmPlayRestart()
-  {
-  mCurrentTime = 0;
-  mCurrentFrame = 0;
-  cmPlayStart();
-  }
-
-
-
-
-void SdDGuiderPlayer::cmPlayStart()
-  {
-  mTimer.start(100);
-  emit sgPlay(true);
-  }
-
-
-
-
-void SdDGuiderPlayer::cmPlayPause()
-  {
-  cmPlayStop();
-  }
-
-
-
-
-void SdDGuiderPlayer::cmPlayStop()
-  {
-  mTimer.stop();
-  emit sgPlay(false);
-  }
-
-
-
-
-void SdDGuiderPlayer::play()
-  {
-  mCurrentTime++;
-  while( mCurrentFrame < mFile.mFile.count() && mFile.mFile.at(mCurrentFrame).mTime < mCurrentTime )
-    mFile.play( mCurrentFrame++ );
-  mView->clear();
-  mView->setPixmap( mFile.build() );
-  if( mCurrentFrame >= mFile.mFile.count() )
-    cmPlayStop();
-  }
-
-
-
-
-void SdDGuiderPlayer::titerChanged()
-  {
-  if( mFile.mTiterIndex >= 0 ) {
-    QString val;
-    if( mFile.mTiter.mContents.contains(mLanguage) )
-      val = mFile.mTiter.mContents.value(mLanguage);
-    else
-      val = mFile.mTiter.mContents.value( QStringLiteral("en") );
-    speech->say( val );
-    mTiter->setText( QStringLiteral("<h1>%1</h1>").arg(val) );
-    }
-  else mTiter->clear();
-  }
-
 

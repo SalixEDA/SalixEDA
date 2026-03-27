@@ -6,7 +6,7 @@
 CONFIG += c++20
 QMAKE_CXXFLAGS += -fconcepts
 
-QT       += core gui network sql printsupport texttospeech opengl svg openglwidgets core5compat
+QT       += core gui network sql printsupport multimedia opengl svg openglwidgets multimediawidgets core5compat
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

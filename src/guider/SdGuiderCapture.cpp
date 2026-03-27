@@ -18,6 +18,7 @@ Description
   Record, playback, and video generation operations are performed
   for a single scene.
 */
+#include "SdConfig.h"
 #include "SdGuiderCapture.h"
 #include "SvLib/SvJsonIO.h"
 
