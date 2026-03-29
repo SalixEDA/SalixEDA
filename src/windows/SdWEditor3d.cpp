@@ -107,6 +107,14 @@ void SdWEditor3d::cmEditUndo()
 
 
 
+
+void SdWEditor3d::cm3dTopView()
+  {
+  mView->setTopView();
+  }
+
+
+
 void SdWEditor3d::keyPressEvent(QKeyEvent *event)
   {
   if( mView ) mView->keyPressEvent(event);

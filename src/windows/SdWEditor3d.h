@@ -45,6 +45,7 @@ class SdWEditor3d : public SdWEditor
     virtual bool           is3d() const override;
     virtual void           onActivateEditor() override;
     virtual void           cmEditUndo() override;
+    virtual void           cm3dTopView() override;
 
 
     // QWidget interface

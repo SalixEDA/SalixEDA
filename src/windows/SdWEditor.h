@@ -148,6 +148,7 @@ class SdWEditor : public QAbstractScrollArea
     virtual void cm3dImportIges() {}
     virtual void cm3dShow2d() {}
     virtual void cm3dShowPads() {}
+    virtual void cm3dTopView() {}
     virtual void cm3dModeView() {}
     virtual void cm3dModeHorzMove() {}
     virtual void cm3dModeHorzRotate() {}

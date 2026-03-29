@@ -143,7 +143,7 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
 
   // Configure dialog properties
   setWindowTitle( tr("The script") );
-  setMinimumSize( 800, 300 );
+  setMinimumSize( 800, 200 );
 
   // Connect signals
   connect( mTreeWidget, &QTreeWidget::itemClicked, this, &SdGuiderDialog::onItemClicked );
@@ -440,11 +440,19 @@ void SdGuiderDialog::onBuildClicked() {
   // Write the list of files
   QTextStream stream(&listFile);
   for( int sceneIndex = 0; sceneIndex < mScenaList.size(); ++sceneIndex ) {
+    //At first we try file with audio
     //Full path to the scene file considering the language
-    QString path = SdGuiderCapture::moviePath( mScriptPath, sceneIndex );
+    QString path = SdGuiderCapture::moviePath( mScriptPath, sceneIndex, true );
     //Check if it exists, then add it to the list
     if( QFile::exists( path ) )
       stream << "file '" << path << "'\n";
+    else {
+      //Try file without audio
+      path = SdGuiderCapture::moviePath( mScriptPath, sceneIndex, false );
+      //Check if it exists, then add it to the list
+      if( QFile::exists( path ) )
+        stream << "file '" << path << "'\n";
+      }
     }
   listFile.close();
 

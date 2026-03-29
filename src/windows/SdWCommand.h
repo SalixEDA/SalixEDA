@@ -150,6 +150,7 @@ class SdWCommand
     static QActionPtr   cm3dImportVrml;
     static QActionPtr   cm3dShow2d;
     static QActionPtr   cm3dShowPads;
+    static QActionPtr   cm3dTopView;
 
     static QActionPtr   cmNetSetup;
     static QActionPtr   cmModeLink;

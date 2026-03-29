@@ -21,6 +21,7 @@ Description
 #include "SdConfig.h"
 #include "SdGuiderCapture.h"
 #include "SvLib/SvJsonIO.h"
+#include "objects/SdEnvir.h"
 
 #include <QGuiApplication>
 #include <QScreen>
@@ -36,7 +37,6 @@ Description
 #include <QCursor>
 #include <QGuiApplication>
 #include <QPainter>
-#include <QSettings>
 #include <QMessageBox>
 
 #define RECORD_PERIOD 40
@@ -95,7 +95,9 @@ void SdGuiderCapture::setScena(const QString &scriptPath, int scenaIndex, const 
   mStepList   = list;
   QString eventName("scena-%1.events");
   mEventPath = scriptPath + eventName.arg(scenaIndex);
-  mVideoPath = moviePath( scriptPath, scenaIndex );
+  mVideoPath = moviePath( scriptPath, scenaIndex, false );
+  mAVPath    = moviePath( scriptPath, scenaIndex, true );
+  mAudioPattern = scriptPath + QString("scena-%1-stp-%3-%2.wav").arg(scenaIndex).arg( SdEnvir::languageGet() );
   QFile eventFile( mEventPath );
   mEventList.clear();
   if( eventFile.exists() ) {
@@ -224,10 +226,11 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
 //! \param scenaIndex Index of the scene
 //! \return           Full path to the video file
 //!
-QString SdGuiderCapture::moviePath(const QString &scriptPath, int scenaIndex)
+QString SdGuiderCapture::moviePath(const QString &scriptPath, int scenaIndex, bool withAudio)
   {
-  QSettings s;
-  return scriptPath + QString("scena-%1-%2.mp4").arg(scenaIndex).arg( s.value(SDK_LANGUAGE).toString() );
+  if( withAudio )
+    return scriptPath + QString("avScena-%1-%2.mp4").arg(scenaIndex).arg( SdEnvir::languageGet() );
+  return scriptPath + QString("scena-%1-%2.mp4").arg(scenaIndex).arg( SdEnvir::languageGet() );
   }
 
 
@@ -265,11 +268,15 @@ void SdGuiderCapture::periodicRecord()
 //!
 void SdGuiderCapture::periodicPayer()
   {
-  mPlayer.inject( mEventList.at(mEventIndex++) );
-  //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
-  QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) );
-  //Get
   if( mCapture ) {
+    mPlayer.inject( mEventList.at(mEventIndex++) );
+    mStepDuration--;
+    if( ((mEventIndex >= mEventList.size()) || (mPlayer.mStepIndex != mEventList.at(mEventIndex).mStepIndex)) && mStepDuration > 0 )
+      //Here we extend the video by repeating the last frame.
+      mEventIndex--;
+    //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
+    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) );
+
     static QImage mouse[8];
 
     if( mouse[0].isNull() ) {
@@ -344,7 +351,49 @@ void SdGuiderCapture::periodicPayer()
       //Stop capture
       mFfmpeg.closeWriteChannel();
       mFfmpeg.waitForFinished(3000);
+
+      //Conversion to audio mixed
+      QStringList attr;
+      attr << "-i" << mVideoPath;
+      QString filterComplex;
+      int audioCount = 0;
+      int positionMs = 0;
+      for( int stepIndex = 0; stepIndex < mStepList.count(); ++stepIndex ) {
+        QString audioFile( mAudioPattern.arg( stepIndex ) );
+        if( QFile::exists( audioFile ) ) {
+          //Audio file exists
+          attr << "-i" << audioFile;
+          filterComplex.append( QString("[%1:a]adelay=%2|%2[a%1];").arg(++audioCount).arg(positionMs) );
+          }
+        positionMs += mStepList.at(stepIndex).mDuration * 1000;
+        }
+
+      //Complete filterComplex
+      for( int i = 1; i <= audioCount; ++i )
+        filterComplex.append( QString("[a%1]").arg(i) );
+      filterComplex.append( QString("amix=inputs=%1[aout]").arg(audioCount) );
+
+      attr << "-filter_complex" << filterComplex
+           << "-map" << "0:v"
+           << "-map" << "[aout]"
+           << "-c:v" << "copy"
+           << "-c:a" << "aac"
+           << "-y"
+           << mAVPath;
+
+      qDebug() << "Audio mixing" << attr;
+      QProcess ffmpeg;
+      ffmpeg.start( "ffmpeg", attr );
+      if( !ffmpeg.waitForStarted(5000) )
+        return;
+
+      ffmpeg.waitForFinished(35000);
       }
+    }
+  else {
+    mPlayer.inject( mEventList.at(mEventIndex++) );
+    //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
+    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) );
     }
   if( mEventIndex >= mEventList.size() ) {
     mPlayerTimer.stop();
@@ -369,6 +418,25 @@ void SdGuiderCapture::playStart()
 
 
 
+struct WavHeader
+  {
+    char  riff[4];
+    int   size;
+    char  wave[4];
+    char  fmt[4];
+    int   fmtSize;
+    short audioFormat;
+    short channels;
+    int   sampleRate;
+    int   byteRate;
+    short blockAlign;
+    short bitsPerSample;
+    char  data[4];
+    int   dataSize;
+  };
+
+
+
 
 //!
 //! \brief captureStart Starts the macro sequence playback process with video recording
@@ -376,8 +444,74 @@ void SdGuiderCapture::playStart()
 void SdGuiderCapture::captureStart()
   {
   if( mEventList.count() > 3 ) {
+    //Сначала посчитаем длительность видео
+    int stepIndex = 0;
+    int stepDuration = 0;
+    for( int i = 0; i < mEventList.size(); ++i ) {
+      if( mEventList.at(i).mStepIndex == stepIndex )
+        stepDuration++;
+      else {
+        if( stepIndex < mStepList.size() ) {
+          //Set fact duration of video
+          mStepList[stepIndex].mDuration = stepDuration / (1000/RECORD_PERIOD);
+          qDebug() << "Step " << stepIndex << " duration is " << mStepList[stepIndex].mDuration << "sec";
+          }
+        //Start next duration calculation
+        stepDuration = 1;
+        stepIndex = mEventList.at(i).mStepIndex;
+        }
+      }
+    //Set last step duration
+    mStepList.last().mDuration = stepDuration / (1000/RECORD_PERIOD);
+    qDebug() << "Step " << stepIndex << " duration is " << mStepList.last().mDuration << "sec";
+
+    //Сначала пройдем по фразам и сгенерим звуки
+    QString piperBase("/home/usik/info/piper/piper/");
+    QString piperProg( piperBase + "piper" );
+    QString piperModel;
+    if( SdEnvir::languageGet() == QString("ru") )
+      piperModel = piperBase + QString("ru_RU-irina-medium.onnx");
+    else
+      piperModel = piperBase + QString("en_US-amy-medium.onnx");
+    for( int stepIndex = 0; stepIndex < mStepList.count(); ++stepIndex ) {
+      QString audioFile( mAudioPattern.arg( stepIndex ) );
+      QProcess ap;
+      ap.start( piperProg, {
+                  "--model", piperModel,
+                  "--output_file", audioFile
+                });
+      if( !ap.waitForStarted(5000) )
+        break;
+
+      QString text = mStepList.at(stepIndex).mTitle;
+      if( SdEnvir::languageGet() == QString("ru") && text.contains("SalixEDA") )
+        text = text.replace( "SalixEDA", "саликс еда" );
+      ap.write( text.toUtf8() );
+      ap.closeWriteChannel();
+
+      if( !ap.waitForFinished(15000) )
+        break;
+
+      //Audio file ready
+      QFile wav(audioFile);
+      //We open it and read header
+      if( wav.open(QIODevice::ReadOnly) ) {
+        WavHeader header;
+        wav.read( (char*)&header, sizeof(header) );
+        //Calculation fact audio duration
+        int duration = (header.dataSize + header.byteRate - 1) / header.byteRate;
+        //If audio duration greater than video duration
+        // than replace video duration with audio duration
+        if( mStepList.at(stepIndex).mDuration < duration )
+          mStepList[stepIndex].mDuration = duration;
+        qDebug() << "Audio generated " << audioFile << "with duration " << duration << "sec" ;
+        }
+      }
+
+
     mEventIndex = 1;
     mPlayer = mEventList.at(0);
+    mStepDuration = stepEventDuration(0);
     QRect r = mMainWindow->frameGeometry();
     QSize s = mMainWindow->size();
     // Формируем аргументы для FFmpeg
@@ -435,4 +569,24 @@ void SdGuiderCapture::nextStep()
     }
   emit stepIndexChanged( mEvent.mStepIndex );
   }
+
+
+
+
+
+//!
+//! \brief stepEventDuration Returns step duration in events (how mutch events within step)
+//! \param stepIndex         Step index of calculated step
+//! \return                  Step duration in events
+//!
+int SdGuiderCapture::stepEventDuration(int stepIndex)
+  {
+  if( stepIndex < mStepList.size() )
+    return mStepList.at(stepIndex).mDuration * 1000/RECORD_PERIOD;
+  return 0;
+  }
+
+
+
+
 

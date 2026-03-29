@@ -219,6 +219,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   cm3dShow2d->setCheckable(true);
   cm3dShowPads                   = menuInsertPart3d->addAction( QIcon(QString(":/pic/objVia.png")), QObject::tr("Show/hide pads"), frame, &SdWMain::cm3dShowPads );
   cm3dShowPads->setCheckable(true);
+  cm3dTopView                    = menuInsertPart3d->addAction( QIcon(QString(":/pic/3dTopView.png")), QObject::tr("Set top view orientation"), frame, &SdWMain::cmDelegate<&SdWEditor::cm3dTopView> );
   menuInsertPart3d->addSeparator();
   cmModeTable[MD_3D_VIEW]        = menuInsertPart3d->addAction( QIcon(QString(":/pic/select.png")), QObject::tr("View 3d scene with no edit"), frame, &SdWMain::cm3dModeView );
   cmModeTable[MD_3D_HORZ_MOVE]   = menuInsertPart3d->addAction( QIcon(QString(":/pic/3dHorzMove.png")), QObject::tr("Horizontal moving 3d object"), frame, &SdWMain::cm3dModeHorzMove );
@@ -228,12 +229,14 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmModeTable[MD_3D_FACE_COLOR]  = menuInsertPart3d->addAction( QIcon(QString(":/pic/colors.png")), QObject::tr("Change face color"), frame, &SdWMain::cm3dModeFaceColor );
 
 
+
   //3D part view menu
   menuViewPart3d = new QMenu( QObject::tr("3d part view") );
   menuViewPart3d->addAction( cm3dProgram );
   menuViewPart3d->addSeparator();
   menuViewPart3d->addAction( cm3dShow2d );
   menuViewPart3d->addAction( cm3dShowPads );
+  menuViewPart3d->addAction( cm3dTopView );
 
 
   menuInsertComp = new QMenu( QObject::tr("Insert comp") );
@@ -600,6 +603,7 @@ void SdWCommand::createToolBars(SdWMain *frame)
   barPart3d = new QToolBar( QString("Part3d") );
   barPart3d->insertAction( nullptr, cm3dShowPads );
   barPart3d->insertAction( nullptr, cm3dShow2d );
+  barPart3d->insertAction( nullptr, cm3dTopView );
   barPart3d->addSeparator();
   barPart3d->insertAction( nullptr, cmModeTable[MD_3D_VIEW] );
   barPart3d->addSeparator();
@@ -615,6 +619,7 @@ void SdWCommand::createToolBars(SdWMain *frame)
   barPart3dView = new QToolBar( QString("Part3dView") );
   barPart3dView->insertAction( nullptr, cm3dShowPads );
   barPart3dView->insertAction( nullptr, cm3dShow2d );
+  barPart3dView->insertAction( nullptr, cm3dTopView );
   barPart3dView->addSeparator();
   barPart3dView->insertAction( nullptr, cm3dProgram );
   frame->addToolBar( barPart3dView );
@@ -887,6 +892,7 @@ QActionPtr SdWCommand::cm3dImportStep;
 QActionPtr SdWCommand::cm3dImportVrml;
 QActionPtr SdWCommand::cm3dShow2d;
 QActionPtr SdWCommand::cm3dShowPads;
+QActionPtr SdWCommand::cm3dTopView;
 
 QActionPtr SdWCommand::cmNetSetup;
 QActionPtr SdWCommand::cmModeLink;

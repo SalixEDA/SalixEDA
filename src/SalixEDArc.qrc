@@ -793,5 +793,6 @@
         <file>pic/objectPublic.png</file>
         <file>fonts/DejaVuSans.ttf</file>
         <file>fonts/NotoColorEmoji.ttf</file>
+        <file>pic/3dTopView.png</file>
     </qresource>
 </RCC>

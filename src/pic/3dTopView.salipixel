@@ -1,0 +1,45 @@
+{
+    "command": [
+        {
+            "color": "#0000ff",
+            "first": {
+                "x": 8,
+                "y": 8
+            },
+            "id": "Rect",
+            "second": {
+                "x": 24,
+                "y": 24
+            },
+            "visible": true
+        },
+        {
+            "color": "#26a269",
+            "first": {
+                "x": 0,
+                "y": 16
+            },
+            "id": "Rect",
+            "second": {
+                "x": 31,
+                "y": 16
+            },
+            "visible": true
+        },
+        {
+            "color": "#26a269",
+            "first": {
+                "x": 16,
+                "y": 0
+            },
+            "id": "Rect",
+            "second": {
+                "x": 16,
+                "y": 31
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

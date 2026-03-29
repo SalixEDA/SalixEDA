@@ -148,6 +148,18 @@ float SdWView3d::scale() const
 
 
 
+//!
+//! \brief setTopView Set view from top
+//!
+void SdWView3d::setTopView()
+  {
+  mAngleZ = 0.0;
+  mAngleXY = 0.0;
+  update();
+  }
+
+
+
 
 
 

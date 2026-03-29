@@ -45,12 +45,15 @@ class SdGuiderCapture : public QObject
     SdGuiderEventList mEventList;   //!< Event list for current scenaIndex
     QString           mEventPath;   //!< Full path to event list for current scenaIndex
     QString           mVideoPath;   //!< Full path to video file
+    QString           mAVPath;      //!< Full path to video with audio
+    QString           mAudioPattern;//!< Pattern for audio files
     SdGuiderStepList  mStepList;    //!< Step list for current scene
     QTimer            mRecordTimer; //!< Periodic timer for generating record events
     QTimer            mPlayerTimer; //!< Periodic timer for generating playback events and capture
     QWidget          *mMainWindow;  //!< Main application window
     QProcess          mFfmpeg;      //!< FFmpeg process for video encoding
     int               mEventIndex;  //!< Current event index during playback
+    int               mStepDuration;//!< Step duration in events
     bool              mCapture;     //!< Flag indicating whether video capture is active
   public:
     //!
@@ -90,7 +93,7 @@ class SdGuiderCapture : public QObject
     //! \param scenaIndex Index of the scene
     //! \return           Full path to the video file
     //!
-    static QString moviePath( const QString &scriptPath, int scenaIndex );
+    static QString moviePath( const QString &scriptPath, int scenaIndex, bool withAudio );
   signals:
     //!
     //! \brief stepIndexChanged Emitted when the current step index changes
@@ -136,5 +139,12 @@ class SdGuiderCapture : public QObject
     //! \brief nextStep Advances to the next step within the scene
     //!
     void nextStep();
+
+    //!
+    //! \brief stepEventDuration Returns step duration in events (how mutch events within step)
+    //! \param stepIndex         Step index of calculated step
+    //! \return                  Step duration in events
+    //!
+    int  stepEventDuration( int stepIndex );
   };
 #endif // SDGUIDERCAPTURE_H

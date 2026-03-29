@@ -86,6 +86,12 @@ class SdWView3d : public QOpenGLWidget
     //! \return      Scale coef
     //!
     float            scale() const;
+
+    //!
+    //! \brief setTopView Set view from top
+    //!
+    void             setTopView();
+
     // QWidget interface
   public:
     virtual void mousePressEvent(QMouseEvent *event) override;

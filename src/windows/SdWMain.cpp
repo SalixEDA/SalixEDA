@@ -397,12 +397,11 @@ void SdWMain::onCloseEditView(SdProjectItem *item)
   {
   if( item == nullptr ) return;
   //Find if item already open
-  for( int i = 0; i < mWEditors->count(); i++ ) {
+  for( int i = mWEditors->count() - 1; i >= 0 ; --i ) {
     SdWEditor *editor = getEditor(i);
     if( editor && editor->getProjectItem() == item ) {
       //Item is open, close editor
       mWEditors->removeTab( i );
-      return;
       }
     }
   }
@@ -2076,6 +2075,8 @@ void SdWMain::cmGuiderDialog()
   if( !scenaFile.isEmpty() ) {
     //Setup guider capture object
     if( mGuiderCapture == nullptr ) {
+      if( QMessageBox::question( this, tr("Warning"), tr("This mode is only for guider creators. Are you sure you want to create guide?")) != QMessageBox::Yes )
+        return;
       mGuiderCapture = new SdGuiderCapture( this, this );
       mGuiderDialog  = new SdGuiderDialog( this );
       mGuiderDialog->hide();
@@ -2098,6 +2099,8 @@ void SdWMain::cmGuiderDialog()
     if( mGuiderDialog->setScenaFile( scenaFile ) ) {
       //Made fixed window size
       resize( 1600, 700 );
+      //And move it to fixed screen position
+      move(0,0);
       mGuiderDialog->show();
       }
     else
