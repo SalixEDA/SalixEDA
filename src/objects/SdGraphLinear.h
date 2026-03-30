@@ -43,7 +43,7 @@ class SdGraphLinear : public SdGraph
     virtual void getProp(SdPropSelected &prop) override;
 
     //Проверить доступность объекта
-    virtual bool isVisible() override;
+    virtual bool isVisible() const override;
 
     virtual void setLayerUsage() override;
 

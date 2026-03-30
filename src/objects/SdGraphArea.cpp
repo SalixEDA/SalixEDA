@@ -255,7 +255,7 @@ void SdGraphArea::setLayerUsage()
 
 
 
-bool SdGraphArea::isVisible()
+bool SdGraphArea::isVisible() const
   {
   return mRegionProp.mLayer.isVisible();
   }

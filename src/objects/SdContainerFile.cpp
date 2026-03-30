@@ -20,6 +20,7 @@ Description
 
 #include <QSettings>
 #include <QCryptographicHash>
+#include <QImage>
 
 
 SdContainerFile::SdContainerFile() :
@@ -187,6 +188,24 @@ void SdContainerFile::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool ne
     mEditEnable  = sour->mEditEnable;
     mIsPublic    = sour->mIsPublic;
     }
+  }
+
+
+
+
+//!
+//! \brief drawImage     Build illustration
+//! \param width         Width of illustration image
+//! \param height        Height of illustration image
+//! \param currentLayers Use current layers settings or default
+//! \return              Image of illustration
+//!
+QImage SdContainerFile::drawImage(int width, int height, bool currentLayers)
+  {
+  Q_UNUSED(width)
+  Q_UNUSED(height)
+  Q_UNUSED(currentLayers)
+  return QImage{};
   }
 
 

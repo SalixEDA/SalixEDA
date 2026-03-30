@@ -66,7 +66,7 @@ class SdGraphNetName : public SdGraphNet
     virtual void    setProp(SdPropSelected &prop) override;
     virtual void    getProp(SdPropSelected &prop) override;
     virtual void    setLayerUsage() override;
-    virtual bool    isVisible() override;
+    virtual bool    isVisible() const override;
     virtual SdRect  getOverRect() const override;
     virtual void    draw(SdContext *dc) override;
     virtual int     behindCursor(SdPoint p) override;

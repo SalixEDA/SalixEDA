@@ -25,8 +25,11 @@ Description
 #include "SdUtil.h"
 #include "Sd3dGraph.h"
 #include "SdJsonIO.h"
+#include "SdContext.h"
+#include "SdConverterView.h"
 
 #include <QDateTime>
+#include <QPainter>
 #include <QDebug>
 
 
@@ -446,6 +449,63 @@ void SdProjectItem::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool next
     mAuto       = true;
     mOrigin     = sour->mOrigin;
     }
+  }
+
+
+
+
+
+//!
+//! \brief drawImage     Build illustration
+//! \param width         Width of illustration image
+//! \param height        Height of illustration image
+//! \param currentLayers Use current layers settings or default
+//! \return              Image of illustration
+//!
+QImage SdProjectItem::drawImage(int width, int height, bool currentLayers)
+  {
+  Q_UNUSED(currentLayers)
+  //Collect fit rect
+  SdRect fit;
+  forEach( dctAll, [&fit](SdObject *obj) {
+    SdPtrConst<SdGraph> graph(obj);
+    if( graph.isValid() && graph->isVisible() ) {
+      //qDebug() << graph->getOverRect();
+      if( fit.isEmpty() )
+        fit = graph->getOverRect();
+      else
+        fit.grow( graph->getOverRect() );
+      }
+    return true;
+    } );
+
+
+  if( fit.width() > 10 && fit.height() > 10 ) {
+    //There objects, draw them
+
+    //Calculate scale
+    double scale = static_cast<double>(width) / static_cast<double>(fit.width());
+    double scaleY = static_cast<double>(height) / static_cast<double>(fit.height());
+    if( scale > scaleY ) scale = scaleY;
+
+    //Image for draw on
+    QImage image( width, height, QImage::Format_ARGB32 );
+    image.fill(Qt::white);
+
+    //Painter and context
+    QPainter painter( &image );
+    SdContext context( SdPoint(1000,1000), &painter );
+    context.setShowFields( false );
+    //View converter
+    SdConverterView cv( QSize(width,height), fit.center(), scale, false );
+    context.setConverter( &cv );
+
+    //Draw
+    draw( &context );
+
+    return image;
+    }
+  return QImage{};
   }
 
 

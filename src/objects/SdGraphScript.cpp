@@ -289,7 +289,7 @@ void SdGraphScript::setLayerUsage()
 
 
 
-bool SdGraphScript::isVisible()
+bool SdGraphScript::isVisible() const
   {
   return mProp.mLayer.isVisible();
   }

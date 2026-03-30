@@ -206,7 +206,7 @@ void SdGraphTracedVia::prepareMove(SdUndo *undo)
 
 
 
-bool SdGraphTracedVia::isVisible()
+bool SdGraphTracedVia::isVisible() const
   {
   return true;
   }

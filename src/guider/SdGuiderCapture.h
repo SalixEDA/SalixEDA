@@ -17,6 +17,11 @@ Description
   and generating video during playback.
   Record, playback, and video generation operations are performed
   for a single scene.
+  We store mouse coordinates relative to the application window.
+  During recording, after obtaining global coordinates, we convert
+  them to coordinates relative to the application window, and during
+  playback, we restore global coordinates by shifting them by the
+  window position value.
 */
 #ifndef SDGUIDERCAPTURE_H
 #define SDGUIDERCAPTURE_H

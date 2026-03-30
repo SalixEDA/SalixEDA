@@ -56,8 +56,9 @@ struct SdGuiderEvent
     //!          and injects the transition into the application's event queue.
     //!          Used for replaying recorded sequences.
     //! \param next Next event to transition to
+    //! \param windowPos root application window position
     //!
-    void   inject( const SdGuiderEvent &next );
+    void   inject( const SdGuiderEvent &next, QPoint windowPos );
 
     //!
     //! \brief pos Returns global mouse position

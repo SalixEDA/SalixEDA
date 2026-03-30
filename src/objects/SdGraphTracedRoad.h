@@ -106,7 +106,7 @@ class SdGraphTracedRoad : public SdGraphTraced
     virtual void       select(SdSelector *selector) override;
     virtual void       prepareMove(SdUndo *undo) override;
     virtual void       setLayerUsage() override;
-    virtual bool       isVisible() override;
+    virtual bool       isVisible() const override;
     virtual SdRect     getOverRect() const override;
     virtual int        behindCursor(SdPoint p) override;
     virtual bool       getInfo(SdPoint p, QString &info, bool extInfo) override;

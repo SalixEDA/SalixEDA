@@ -192,7 +192,7 @@ class SdGraphSymImp : public SdGraphParam
     virtual void      getProp(SdPropSelected &prop) override;
     virtual void      selectByPoint(const SdPoint p, SdSelector *selector) override;
     virtual void      selectByRect(const SdRect &r, SdSelector *selector) override;
-    virtual bool      isVisible() override;
+    virtual bool      isVisible() const override;
     virtual SdRect    getOverRect() const override;
     virtual void      draw(SdContext *dc) override;
     virtual int       behindCursor(SdPoint p) override;

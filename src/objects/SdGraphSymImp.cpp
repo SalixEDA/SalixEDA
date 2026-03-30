@@ -492,7 +492,7 @@ void SdGraphSymImp::selectByRect(const SdRect &r, SdSelector *selector)
 
 
 
-bool SdGraphSymImp::isVisible()
+bool SdGraphSymImp::isVisible() const
   {
   return true;
   }

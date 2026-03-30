@@ -142,7 +142,7 @@ void SdGraphNetName::setLayerUsage()
 
 
 
-bool SdGraphNetName::isVisible()
+bool SdGraphNetName::isVisible() const
   {
   return mProp.mLayer.isVisible();
   }

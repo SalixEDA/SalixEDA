@@ -299,7 +299,7 @@ void SdGraphPartPin::select(SdSelector *selector)
 
 
 
-bool SdGraphPartPin::isVisible()
+bool SdGraphPartPin::isVisible() const
   {
   return mPinProp.mLayer.isVisible() || mNameProp.mLayer.isVisible() || mNumberProp.mLayer.isVisible();
   }

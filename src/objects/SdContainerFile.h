@@ -102,6 +102,15 @@ class SdContainerFile : public SdContainer
     //!
     virtual void           cloneFrom( const SdObject *src, SdCopyMap &copyMap, bool next ) override;
 
+    //!
+    //! \brief drawImage     Build illustration
+    //! \param width         Width of illustration image
+    //! \param height        Height of illustration image
+    //! \param currentLayers Use current layers settings or default
+    //! \return              Image of illustration
+    //!
+    virtual QImage         drawImage( int width, int height, bool currentLayers );
+
 
     //Return current registered author
     static QString         getDefaultAuthor();

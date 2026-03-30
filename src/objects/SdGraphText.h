@@ -76,7 +76,7 @@ class SdGraphText : public SdGraph
     virtual void    setText(int index, QString sour, SdPropText &prop, QWidget *parent) override;
     virtual void    selectByPoint(const SdPoint p, SdSelector *selector) override;
     virtual void    selectByRect(const SdRect &r, SdSelector *selector) override;
-    virtual bool    isVisible() override;
+    virtual bool    isVisible() const override;
     virtual SdRect  getOverRect() const override;
     virtual void    draw(SdContext *dc) override;
     virtual int     behindCursor(SdPoint p) override;

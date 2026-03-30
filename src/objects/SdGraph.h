@@ -88,7 +88,7 @@ class SdGraph : public SdObject
     //Layer maintance
     virtual void   setLayerUsage();
     //Check if object is visible
-    virtual bool   isVisible() { return false; }
+    virtual bool   isVisible() const { return false; }
     //Get over rect for visible
     virtual SdRect getOverRect() const = 0;
 

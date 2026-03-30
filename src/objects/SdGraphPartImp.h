@@ -274,7 +274,7 @@ class SdGraphPartImp : public SdGraphTraced
     virtual void         selectByPoint(const SdPoint p, SdSelector *selector) override;
     virtual void         selectByRect(const SdRect &r, SdSelector *selector) override;
     virtual void         setLayerUsage() override;
-    virtual bool         isVisible() override;
+    virtual bool         isVisible() const override;
     virtual SdRect       getOverRect() const override;
     virtual int          behindCursor(SdPoint p) override;
     virtual bool         getInfo(SdPoint p, QString &info, bool extInfo) override;

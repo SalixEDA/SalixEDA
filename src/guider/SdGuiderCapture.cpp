@@ -128,6 +128,7 @@ void SdGuiderCapture::setScena(const QString &scriptPath, int scenaIndex, const 
 bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
   {
   Q_UNUSED(watched)
+  QPoint mousePos = QCursor::pos( QGuiApplication::primaryScreen() ) - mMainWindow->pos();
   switch (event->type()) {
     case QEvent::MouseMove:
     case QEvent::MouseButtonPress:
@@ -136,8 +137,8 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
       QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
       //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
       if( mouseEvent->pointCount() ) {
-        mEvent.mMousePosX = mouseEvent->globalPosition().x();
-        mEvent.mMousePosY = mouseEvent->globalPosition().y();
+        mEvent.mMousePosX = mousePos.x();
+        mEvent.mMousePosY = mousePos.y();
         mEvent.mMouseButtons = mouseEvent->buttons();
         mEvent.mKeyModifier = mouseEvent->modifiers();
         }
@@ -171,9 +172,8 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
         mEvent.mKeyModifier = keyEvent->modifiers();
 
         // Для событий клавиатуры также обновляем позицию мыши
-        QPoint globalPos = QCursor::pos();
-        mEvent.mMousePosX = globalPos.x();
-        mEvent.mMousePosY = globalPos.y();
+        mEvent.mMousePosX = mousePos.x();
+        mEvent.mMousePosY = mousePos.y();
         mEvent.mMouseButtons = QGuiApplication::mouseButtons();
         }
       break;
@@ -268,14 +268,15 @@ void SdGuiderCapture::periodicRecord()
 //!
 void SdGuiderCapture::periodicPayer()
   {
+  QPoint mainWindowPos = mMainWindow->pos();
   if( mCapture ) {
-    mPlayer.inject( mEventList.at(mEventIndex++) );
+    mPlayer.inject( mEventList.at(mEventIndex++), mainWindowPos );
     mStepDuration--;
     if( ((mEventIndex >= mEventList.size()) || (mPlayer.mStepIndex != mEventList.at(mEventIndex).mStepIndex)) && mStepDuration > 0 )
       //Here we extend the video by repeating the last frame.
       mEventIndex--;
     //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
-    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) );
+    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) + mainWindowPos );
 
     static QImage mouse[8];
 
@@ -311,7 +312,7 @@ void SdGuiderCapture::periodicPayer()
     if( mPlayer.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
     if( mPlayer.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
     //Draw mouse
-    painter.drawImage( QPoint( mPlayer.mMousePosX - 48, mPlayer.mMousePosY - 36 ), mouse[mouseIndex] );
+    painter.drawImage( QPoint( mPlayer.mMousePosX - 16, mPlayer.mMousePosY ), mouse[mouseIndex] );
 
 
     // Настройка для текста
@@ -391,9 +392,9 @@ void SdGuiderCapture::periodicPayer()
       }
     }
   else {
-    mPlayer.inject( mEventList.at(mEventIndex++) );
+    mPlayer.inject( mEventList.at(mEventIndex++), mainWindowPos );
     //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
-    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) );
+    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) + mainWindowPos );
     }
   if( mEventIndex >= mEventList.size() ) {
     mPlayerTimer.stop();

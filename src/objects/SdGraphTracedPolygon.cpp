@@ -254,7 +254,7 @@ void SdGraphTracedPolygon::setLayerUsage()
 
 
 
-bool SdGraphTracedPolygon::isVisible()
+bool SdGraphTracedPolygon::isVisible() const
   {
   //Layer of polygon
   SdLayer *layer = getLayer();

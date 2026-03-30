@@ -86,7 +86,7 @@ void SdGraphLinear::getProp(SdPropSelected &prop)
   }
 
 
-bool SdGraphLinear::isVisible()
+bool SdGraphLinear::isVisible() const
   {
   return mProp.mLayer.isVisible();
   }

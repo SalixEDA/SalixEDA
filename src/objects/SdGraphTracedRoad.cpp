@@ -358,7 +358,7 @@ void SdGraphTracedRoad::setLayerUsage()
 
 
 
-bool SdGraphTracedRoad::isVisible()
+bool SdGraphTracedRoad::isVisible() const
   {
   //Layer of road
   SdLayer *layer = getLayer();

@@ -300,7 +300,7 @@ void SdGraphSymPin::select(SdSelector *selector)
 
 
 
-bool SdGraphSymPin::isVisible()
+bool SdGraphSymPin::isVisible() const
   {
   return mPinProp.mLayer.isVisible() || mNameProp.mLayer.isVisible() || mNumberProp.mLayer.isVisible();
   }

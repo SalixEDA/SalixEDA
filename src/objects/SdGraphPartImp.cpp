@@ -948,7 +948,7 @@ void SdGraphPartImp::setLayerUsage()
 
 
 
-bool SdGraphPartImp::isVisible()
+bool SdGraphPartImp::isVisible() const
   {
   return true;
   }

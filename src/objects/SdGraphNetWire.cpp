@@ -576,7 +576,7 @@ void SdGraphNetWire::setLayerUsage()
 
 
 
-bool SdGraphNetWire::isVisible()
+bool SdGraphNetWire::isVisible() const
   {
   return mProp.mLayer.isVisible();
   }

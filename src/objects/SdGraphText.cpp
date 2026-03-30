@@ -204,7 +204,7 @@ void SdGraphText::selectByRect(const SdRect &r, SdSelector *selector)
 
 
 
-bool SdGraphText::isVisible()
+bool SdGraphText::isVisible() const
   {
   return mProp.mLayer.isVisible();
   }

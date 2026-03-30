@@ -65,11 +65,11 @@ void SdGuiderEvent::json(const SvJsonReader &js)
 //!          Used for replaying recorded sequences.
 //! \param next Next event to transition to
 //!
-void SdGuiderEvent::inject(const SdGuiderEvent &next)
+void SdGuiderEvent::inject( const SdGuiderEvent &next, QPoint windowPos )
   {
   mStepIndex = next.mStepIndex;
 
-  QPoint global( next.pos() );
+  QPoint global( next.pos() + windowPos );
 
   QWidget *w = QApplication::widgetAt( global );
 
