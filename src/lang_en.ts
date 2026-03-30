@@ -4,1791 +4,1969 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="307"/>
+        <location filename="modes/SdModeCBus.cpp" line="309"/>
         <source>Enter first point of path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="308"/>
+        <location filename="modes/SdModeCBus.cpp" line="310"/>
         <source>Enter second point of path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="309"/>
+        <location filename="modes/SdModeCBus.cpp" line="311"/>
         <source>Enter next point of path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="310"/>
+        <location filename="modes/SdModeCBus.cpp" line="312"/>
         <source>Enter wire name placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="311"/>
+        <location filename="modes/SdModeCBus.cpp" line="313"/>
         <source>Enter connection point of next wire path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="399"/>
-        <location filename="modes/SdModeCPartPin.cpp" line="302"/>
-        <location filename="modes/SdModeCPartPin.cpp" line="315"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="304"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="317"/>
-        <location filename="objects/SdGraphPartPin.cpp" line="240"/>
-        <location filename="objects/SdGraphSymPin.cpp" line="228"/>
+        <location filename="modes/SdModeCBus.cpp" line="401"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="304"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="317"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="306"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="319"/>
+        <location filename="objects/SdGraphPartPin.cpp" line="223"/>
+        <location filename="objects/SdGraphSymPin.cpp" line="218"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="399"/>
+        <location filename="modes/SdModeCBus.cpp" line="401"/>
         <source>Bus wire vertex is on other wire. Select other point.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="413"/>
+        <location filename="modes/SdModeCBus.cpp" line="415"/>
         <source>Insert bus wire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="77"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="115"/>
-        <location filename="windows/SdWCommand.cpp" line="233"/>
+        <location filename="modes/SdModeCFragment.cpp" line="79"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="117"/>
+        <location filename="windows/SdWCommand.cpp" line="250"/>
         <source>Insert fragment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="105"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="173"/>
+        <location filename="modes/SdModeCFragment.cpp" line="107"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="175"/>
         <source>Enter fragment place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="149"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="317"/>
+        <location filename="modes/SdModeCFragment.cpp" line="151"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="319"/>
         <source>Select fragment to insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="158"/>
-        <location filename="modes/SdModeCFragment.cpp" line="172"/>
-        <location filename="modes/SdModeCNetWire.cpp" line="298"/>
-        <location filename="modes/SdModeCPartImp.cpp" line="204"/>
-        <location filename="modes/SdModeCPartImp.cpp" line="209"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="226"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="236"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="243"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="247"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="254"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="326"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="340"/>
+        <location filename="modes/SdModeCFragment.cpp" line="160"/>
+        <location filename="modes/SdModeCFragment.cpp" line="174"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="306"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="206"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="211"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="228"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="238"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="245"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="249"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="256"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="328"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="342"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="158"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="326"/>
+        <location filename="modes/SdModeCFragment.cpp" line="160"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="328"/>
         <source>No sheets to insert. Try another fragment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="172"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="340"/>
+        <location filename="modes/SdModeCFragment.cpp" line="174"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="342"/>
         <source>No objects to insert. Source sheet is empty. Select another fragment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCIdent.cpp" line="86"/>
+        <location filename="modes/SdModeCIdent.cpp" line="88"/>
         <source>Edit ident</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCIdent.cpp" line="116"/>
+        <location filename="modes/SdModeCIdent.cpp" line="118"/>
         <source>Enter ident position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArc.cpp" line="50"/>
+        <location filename="modes/SdModeCLinearArc.cpp" line="52"/>
         <source>Insert arc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArc.cpp" line="108"/>
+        <location filename="modes/SdModeCLinearArc.cpp" line="110"/>
         <source>Enter center arc point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArc.cpp" line="109"/>
+        <location filename="modes/SdModeCLinearArc.cpp" line="111"/>
         <source>Enter start arc point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArc.cpp" line="110"/>
+        <location filename="modes/SdModeCLinearArc.cpp" line="112"/>
         <source>Enter stop arc point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArea.cpp" line="103"/>
+        <location filename="modes/SdModeCLinearArea.cpp" line="104"/>
         <source>Enter next point of area region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArea.cpp" line="103"/>
+        <location filename="modes/SdModeCLinearArea.cpp" line="104"/>
         <source>Enter first point of area region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArea.cpp" line="144"/>
+        <location filename="modes/SdModeCLinearArea.cpp" line="145"/>
         <source>Select plate this area for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearArea.cpp" line="146"/>
+        <location filename="modes/SdModeCLinearArea.cpp" line="147"/>
         <source>Insert area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearCircle.cpp" line="96"/>
+        <location filename="modes/SdModeCLinearCircle.cpp" line="98"/>
         <source>Enter center circle point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearCircle.cpp" line="97"/>
+        <location filename="modes/SdModeCLinearCircle.cpp" line="99"/>
         <source>Enter point on circle to define circle radius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearCircle.cpp" line="141"/>
-        <location filename="modes/SdModeCLinearCircleFilled.cpp" line="76"/>
+        <location filename="modes/SdModeCLinearCircle.cpp" line="143"/>
+        <location filename="modes/SdModeCLinearCircleFilled.cpp" line="78"/>
         <source>Insert circle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearLine.cpp" line="58"/>
+        <location filename="modes/SdModeCLinearLine.cpp" line="60"/>
         <source>Insert line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearLine.cpp" line="130"/>
+        <location filename="modes/SdModeCLinearLine.cpp" line="132"/>
         <source>Enter next point of polyline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearLine.cpp" line="130"/>
+        <location filename="modes/SdModeCLinearLine.cpp" line="132"/>
         <source>Enter first line point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRect.cpp" line="106"/>
+        <location filename="modes/SdModeCLinearRect.cpp" line="108"/>
         <source>Enter second corner rect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRect.cpp" line="106"/>
+        <location filename="modes/SdModeCLinearRect.cpp" line="108"/>
         <source>Enter first corner rect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRect.cpp" line="148"/>
+        <location filename="modes/SdModeCLinearRect.cpp" line="150"/>
         <source>Insert rect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRectFilled.cpp" line="68"/>
+        <location filename="modes/SdModeCLinearRectFilled.cpp" line="70"/>
         <source>Insert filled rect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRegion.cpp" line="120"/>
+        <location filename="modes/SdModeCLinearRegion.cpp" line="122"/>
         <source>Enter next point of region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRegion.cpp" line="120"/>
+        <location filename="modes/SdModeCLinearRegion.cpp" line="122"/>
         <source>Enter first point of region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRegion.cpp" line="177"/>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="122"/>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="187"/>
+        <location filename="modes/SdModeCLinearRegion.cpp" line="179"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="124"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="189"/>
         <source>Insert region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRegionFilled.cpp" line="28"/>
+        <location filename="modes/SdModeCLinearRegionFilled.cpp" line="30"/>
         <source>Enter next point of filled region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRegionFilled.cpp" line="28"/>
+        <location filename="modes/SdModeCLinearRegionFilled.cpp" line="30"/>
         <source>Enter first point of filled region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCLinearRegionFilled.cpp" line="60"/>
+        <location filename="modes/SdModeCLinearRegionFilled.cpp" line="62"/>
         <source>Insert filled region</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetName.cpp" line="110"/>
+        <location filename="modes/SdModeCNetName.cpp" line="112"/>
         <source>Insert sheet net name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetName.cpp" line="158"/>
+        <location filename="modes/SdModeCNetName.cpp" line="160"/>
         <source>Enter net name place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetName.cpp" line="158"/>
+        <location filename="modes/SdModeCNetName.cpp" line="160"/>
         <source>Select net for name placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="169"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="177"/>
         <source>Insert wire segment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="225"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="233"/>
         <source>Insert smart net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="250"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="258"/>
         <source>Enter next point of wire polyline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="250"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="258"/>
         <source>Enter first wire point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="298"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="306"/>
         <source>Union net &apos;%1&apos; and net &apos;%2&apos;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="305"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="313"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="205"/>
         <source>Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="305"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="313"/>
         <source>Rename nets in all other sheets?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCOrigin.cpp" line="76"/>
+        <location filename="modes/SdModeCOrigin.cpp" line="78"/>
         <source>Enter new origin point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="102"/>
-        <location filename="windows/SdWCommand.cpp" line="266"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="104"/>
+        <location filename="windows/SdWCommand.cpp" line="284"/>
         <source>Insert part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="150"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="152"/>
         <source>Enter part place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="193"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="195"/>
         <source>Select part to insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="204"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="206"/>
         <source>Can&apos;t load selected part. Select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="209"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="254"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="211"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="256"/>
         <source>Part is in editing state. Switch it to lock state or select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="173"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="175"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="175"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="177"/>
         <source>Enter sym pin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="236"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="238"/>
-        <source>Enter pin place point</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="237"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="239"/>
-        <source>Enter pin name place</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="modes/SdModeCPartPin.cpp" line="238"/>
-        <source>Type pin number text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="modes/SdModeCSymPin.cpp" line="240"/>
-        <source>Type pin name text</source>
-        <oldsource>Type text</oldsource>
+        <source>Enter pin place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCPartPin.cpp" line="239"/>
         <location filename="modes/SdModeCSymPin.cpp" line="241"/>
+        <source>Enter pin name place</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeCPartPin.cpp" line="240"/>
+        <source>Type pin number text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeCSymPin.cpp" line="242"/>
+        <source>Type pin name text</source>
+        <oldsource>Type text</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeCPartPin.cpp" line="241"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="243"/>
         <source>Enter pin number place</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="302"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="304"/>
         <source>Pin number can&apos;t be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="315"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="317"/>
         <source>Duplicate pin number. Change number or cancel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="257"/>
-        <location filename="modes/SdModeCPartPlace.cpp" line="288"/>
-        <location filename="modes/SdModeCPartPlace.cpp" line="493"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="259"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="290"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="506"/>
         <source>Moving components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="518"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="531"/>
         <source>Point second corner for selection components group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="521"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="534"/>
         <source>Place components! Left button - at cursor position, middle - smart position, right - cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="525"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="538"/>
         <source>Left button: %1;   Middle button: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="530"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="543"/>
         <source>Press left button to go to sheet to select component, middle button: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="532"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="545"/>
         <source>Press left button on component to select for placing, middle button: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPlateIdentMove.cpp" line="31"/>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="207"/>
+        <location filename="modes/SdModeCPlateIdentMove.cpp" line="33"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="209"/>
         <source>Enter new ident or value position.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPlateIdentMove.cpp" line="36"/>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="212"/>
+        <location filename="modes/SdModeCPlateIdentMove.cpp" line="38"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="214"/>
         <source>Left button: %1; F6 - switch to next component behind cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPlateIdentMove.cpp" line="39"/>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="215"/>
+        <location filename="modes/SdModeCPlateIdentMove.cpp" line="41"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="217"/>
         <source>Select component to move ident or value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="219"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="221"/>
         <source>Enter next point of polygon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="219"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="221"/>
         <source>Enter first point of polygon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="250"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="252"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="261"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="310"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="312"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="333"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="335"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="338"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="205"/>
+        <source>Change width for full net?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="272"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="274"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="283"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="332"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="334"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="355"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="357"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="360"/>
         <source>Insert trace road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="431"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="453"/>
         <source>Enter next point of road polyline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="431"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="453"/>
         <source>Select point to start road. Left button &apos;%1&apos; net.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="817"/>
-        <location filename="modes/SdModeCViaEnter.cpp" line="108"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="840"/>
+        <location filename="modes/SdModeCViaEnter.cpp" line="110"/>
         <source>Insert trace via</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="913"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="936"/>
         <source>Deletion loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadMove.cpp" line="350"/>
-        <location filename="modes/SdModeSelect.cpp" line="801"/>
+        <location filename="modes/SdModeCRoadMove.cpp" line="352"/>
+        <location filename="modes/SdModeSelect.cpp" line="830"/>
         <source>Move begin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadMove.cpp" line="880"/>
+        <location filename="modes/SdModeCRoadMove.cpp" line="882"/>
         <source>Move road to new position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadMove.cpp" line="880"/>
+        <location filename="modes/SdModeCRoadMove.cpp" line="882"/>
         <source>Select road segment to move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="96"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="98"/>
         <source>Move ident or value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="123"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="125"/>
         <source>Insert symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="174"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="176"/>
         <source>Enter symbol section place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="215"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="217"/>
         <source>Select component to insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="226"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="228"/>
         <source>Can&apos;t load selected component. Select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="236"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="238"/>
         <source>Can&apos;t load selected component section. Select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="243"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="245"/>
         <source>Component is in editing state. Switch it to lock state or select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="247"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="249"/>
         <source>Section is in editing state. Switch it to lock state or select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="314"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="316"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="314"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="316"/>
         <source>There at least one fragment with this component. Do You want to select it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymPin.cpp" line="304"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="306"/>
         <source>Pin name can&apos;t be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymPin.cpp" line="317"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="319"/>
         <source>Duplicate pin name. Change name or cancel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCText.cpp" line="117"/>
+        <location filename="modes/SdModeCText.cpp" line="118"/>
         <source>Enter point to insert or edit text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCText.cpp" line="118"/>
+        <location filename="modes/SdModeCText.cpp" line="119"/>
         <source>Enter text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCText.cpp" line="119"/>
+        <location filename="modes/SdModeCText.cpp" line="120"/>
         <source>Edit text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCText.cpp" line="168"/>
+        <location filename="modes/SdModeCText.cpp" line="169"/>
         <source>Text insertion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCText.cpp" line="171"/>
+        <location filename="modes/SdModeCText.cpp" line="172"/>
         <source>Text edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCValue.cpp" line="104"/>
-        <location filename="windows/SdWCommand.cpp" line="177"/>
-        <location filename="windows/SdWCommand.cpp" line="192"/>
+        <location filename="modes/SdModeCValue.cpp" line="106"/>
+        <location filename="windows/SdWCommand.cpp" line="189"/>
+        <location filename="windows/SdWCommand.cpp" line="206"/>
         <source>Edit value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCValue.cpp" line="138"/>
+        <location filename="modes/SdModeCValue.cpp" line="140"/>
         <source>Enter value position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCViaEnter.cpp" line="129"/>
+        <location filename="modes/SdModeCViaEnter.cpp" line="131"/>
         <source>Enter position to add via to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModePrintWindow.cpp" line="79"/>
+        <location filename="modes/SdModePrintWindow.cpp" line="81"/>
         <source>Enter second corner print window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModePrintWindow.cpp" line="79"/>
+        <location filename="modes/SdModePrintWindow.cpp" line="81"/>
         <source>Enter first corner print window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="129"/>
+        <location filename="modes/SdModeSelect.cpp" line="131"/>
         <source>Properties changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="449"/>
+        <location filename="modes/SdModeSelect.cpp" line="448"/>
         <source>No selected elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="451"/>
+        <location filename="modes/SdModeSelect.cpp" line="450"/>
         <source>Enter second corner for selection objects group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="453"/>
+        <location filename="modes/SdModeSelect.cpp" line="452"/>
         <source>There selected elements. You may them move, copy and edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="455"/>
+        <location filename="modes/SdModeSelect.cpp" line="454"/>
         <source>Enter position for new elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="457"/>
+        <location filename="modes/SdModeSelect.cpp" line="456"/>
         <source>Enter new position for selected elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="459"/>
+        <location filename="modes/SdModeSelect.cpp" line="458"/>
         <source>Enter center point for elements group rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="461"/>
+        <location filename="modes/SdModeSelect.cpp" line="460"/>
         <source>Enter point to define angle of rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="463"/>
+        <location filename="modes/SdModeSelect.cpp" line="462"/>
         <source>Enter position for pasted elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="983"/>
+        <location filename="modes/SdModeSelect.cpp" line="1013"/>
         <source>Group rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCTraceDelete.cpp" line="62"/>
-        <location filename="modes/SdModeSelect.cpp" line="643"/>
+        <location filename="modes/SdModeCTraceDelete.cpp" line="88"/>
+        <location filename="modes/SdModeSelect.cpp" line="672"/>
         <source>Deletion elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="911"/>
+        <location filename="modes/SdModeCTraceDelete.cpp" line="182"/>
+        <source>Click trace object to delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeSelect.cpp" line="941"/>
         <source>Insert from clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="947"/>
+        <location filename="modes/SdModeSelect.cpp" line="977"/>
         <source>Copy insertion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTBrowseSheetPart.cpp" line="35"/>
+        <location filename="modes/SdModeTBrowseSheetPart.cpp" line="37"/>
         <source>Select part to place. On left button will selected: %1%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTBrowseSheetPart.cpp" line="37"/>
+        <location filename="modes/SdModeTBrowseSheetPart.cpp" line="39"/>
         <source>Select part to place.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTRuller.cpp" line="75"/>
+        <location filename="modes/SdModeTRuller.cpp" line="77"/>
         <source>Move to dest point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTRuller.cpp" line="75"/>
+        <location filename="modes/SdModeTRuller.cpp" line="77"/>
         <source>Enter point to measure from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTZoomWindow.cpp" line="88"/>
+        <location filename="modes/SdModeTZoomWindow.cpp" line="90"/>
         <source>Enter second corner window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTZoomWindow.cpp" line="88"/>
+        <location filename="modes/SdModeTZoomWindow.cpp" line="90"/>
         <source>Enter first corner window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTZoomer.cpp" line="49"/>
+        <location filename="modes/SdModeTZoomer.cpp" line="51"/>
         <source>Press mouse left button to zoom-in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeTZoomer.cpp" line="50"/>
+        <location filename="modes/SdModeTZoomer.cpp" line="52"/>
         <source>Press mouse left button to zoom-out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeView.cpp" line="71"/>
+        <location filename="modes/SdModeView.cpp" line="73"/>
         <source>Select point to pan view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeView.cpp" line="71"/>
+        <location filename="modes/SdModeView.cpp" line="73"/>
         <source>Drag to pan view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeWireDisconnect.cpp" line="101"/>
+        <location filename="modes/SdModeWireDisconnect.cpp" line="103"/>
         <source>Drag cursor to over need disconnected pins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeWireDisconnect.cpp" line="101"/>
+        <location filename="modes/SdModeWireDisconnect.cpp" line="103"/>
         <source>Enter connected pin to disconnect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeWireDisconnect.cpp" line="140"/>
+        <location filename="modes/SdModeWireDisconnect.cpp" line="142"/>
         <source>Unconnect pin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdGraphNetWire.cpp" line="640"/>
-        <location filename="objects/SdGraphTracedPolygon.cpp" line="302"/>
-        <location filename="objects/SdGraphTracedRoad.cpp" line="386"/>
-        <location filename="objects/SdGraphTracedVia.cpp" line="225"/>
+        <location filename="objects/SdGraphNetWire.cpp" line="627"/>
+        <location filename="objects/SdGraphTracedPolygon.cpp" line="299"/>
+        <location filename="objects/SdGraphTracedRoad.cpp" line="392"/>
+        <location filename="objects/SdGraphTracedVia.cpp" line="242"/>
         <source>Net: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdGraphPartPin.cpp" line="240"/>
+        <location filename="objects/SdGraphPartPin.cpp" line="223"/>
         <source>Pin with number &apos;%1&apos; already present. Number must be unical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdGraphSymImp.cpp" line="654"/>
-        <location filename="objects/SdGraphSymImp.cpp" line="690"/>
+        <location filename="objects/SdGraphSymImp.cpp" line="645"/>
+        <location filename="objects/SdGraphSymImp.cpp" line="680"/>
         <source>No pack info in %1 for section %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdGraphSymImp.cpp" line="666"/>
-        <location filename="objects/SdGraphSymImp.cpp" line="703"/>
+        <location filename="objects/SdGraphSymImp.cpp" line="657"/>
+        <location filename="objects/SdGraphSymImp.cpp" line="693"/>
         <source>Duplicated pin name %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdGraphSymPin.cpp" line="228"/>
+        <location filename="objects/SdGraphSymPin.cpp" line="218"/>
         <source>Pin with name &apos;%1&apos; already present. Name must be unical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPad.cpp" line="225"/>
-        <source>Planar circle diam pad%1 mask%2 stencil%3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdPad.cpp" line="230"/>
-        <source>Throgh circle diam hole%3 pad%1 mask%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdPad.cpp" line="239"/>
-        <source>Planar rect pad%1x%2 mask%3x%4 stencil ar%5x%6 of%7x%8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdPad.cpp" line="250"/>
-        <source>Planar rect pad%1x%2 mask%3x%4 stencil%5x%6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdPad.cpp" line="264"/>
-        <source>Through rect hole%5x%6a%7 pad%1x%2 mask%3x%4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdPad.cpp" line="274"/>
-        <source>Through rect hole%5 pad%1x%2 mask%3x%4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdPasCadImport.cpp" line="145"/>
+        <location filename="objects/SdPasCadImport.cpp" line="147"/>
         <source>File has version %1, but only v11 supported.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="155"/>
+        <location filename="objects/SdPasCadImport.cpp" line="157"/>
         <source>Project structure fail. Wrong layer number %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="194"/>
+        <location filename="objects/SdPasCadImport.cpp" line="196"/>
         <source>Project structure fail. Wrong font number %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="207"/>
+        <location filename="objects/SdPasCadImport.cpp" line="209"/>
         <source>Can&apos;t open file %1 to import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="209"/>
+        <location filename="objects/SdPasCadImport.cpp" line="211"/>
         <source>Can&apos;t find file %1 to import</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="420"/>
+        <location filename="objects/SdPasCadImport.cpp" line="441"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="430"/>
+        <location filename="objects/SdPasCadImport.cpp" line="451"/>
         <source>Wrong objects number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="518"/>
+        <location filename="objects/SdPasCadImport.cpp" line="540"/>
         <source>Internal error symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPasCadImport.cpp" line="561"/>
         <location filename="objects/SdPasCadImport.cpp" line="590"/>
+        <location filename="objects/SdPasCadImport.cpp" line="624"/>
         <source>Internal error part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdProject.cpp" line="612"/>
+        <location filename="objects/SdPasCadImport.cpp" line="882"/>
+        <source>Internal error component</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdProject.cpp" line="614"/>
         <source>Upgrading newer objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdProjectItem.cpp" line="48"/>
+        <location filename="objects/SdProjectItem.cpp" line="53"/>
         <source>There new object. Use upgrade menu. &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdProjectItem.cpp" line="49"/>
+        <location filename="objects/SdProjectItem.cpp" line="55"/>
+        <source>Object locked and public. Unlock to edit. &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdProjectItem.cpp" line="56"/>
         <source>Object locked. Unlock to edit. &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdProjectItem.cpp" line="289"/>
+        <location filename="objects/SdProjectItem.cpp" line="313"/>
         <source>Origin position changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="139"/>
+        <location filename="windows/SdDPadMaster.cpp" line="141"/>
         <source>PCB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="143"/>
+        <location filename="windows/SdDPadMaster.cpp" line="145"/>
         <source>Solder mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="150"/>
+        <location filename="windows/SdDPadMaster.cpp" line="152"/>
         <source>Pad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="156"/>
+        <location filename="windows/SdDPadMaster.cpp" line="158"/>
         <source>Hole</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="162"/>
+        <location filename="windows/SdDPadMaster.cpp" line="164"/>
         <source>Stensil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdValueSelector.cpp" line="51"/>
+        <location filename="windows/SdValueSelector.cpp" line="53"/>
         <source>Allow select value of resistors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdValueSelector.cpp" line="59"/>
+        <location filename="windows/SdValueSelector.cpp" line="61"/>
         <source>Allow select value of capacitor</source>
         <oldsource>Allow select value of condensator</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="46"/>
+        <location filename="windows/SdWCommand.cpp" line="48"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="51"/>
+        <location filename="windows/SdWCommand.cpp" line="53"/>
         <source>New project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="52"/>
-        <location filename="windows/SdWCommand.cpp" line="89"/>
+        <location filename="windows/SdWCommand.cpp" line="54"/>
+        <location filename="windows/SdWCommand.cpp" line="91"/>
         <source>Load from library...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="53"/>
+        <location filename="windows/SdWCommand.cpp" line="55"/>
         <source>Open project ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="54"/>
+        <location filename="windows/SdWCommand.cpp" line="56"/>
         <source>Previous files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="56"/>
+        <location filename="windows/SdWCommand.cpp" line="58"/>
         <source>Close project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="57"/>
+        <location filename="windows/SdWCommand.cpp" line="59"/>
         <source>Close all projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="59"/>
+        <location filename="windows/SdWCommand.cpp" line="61"/>
         <source>Save project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="60"/>
+        <location filename="windows/SdWCommand.cpp" line="62"/>
         <source>Save project as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="61"/>
+        <location filename="windows/SdWCommand.cpp" line="63"/>
         <source>Save all projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="62"/>
+        <location filename="windows/SdWCommand.cpp" line="64"/>
         <source>Store to library...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="63"/>
+        <location filename="windows/SdWCommand.cpp" line="65"/>
         <source>Project stored in library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="66"/>
+        <location filename="windows/SdWCommand.cpp" line="68"/>
         <source>Import PasCAD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="67"/>
+        <location filename="windows/SdWCommand.cpp" line="69"/>
         <source>Import...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="68"/>
+        <location filename="windows/SdWCommand.cpp" line="70"/>
         <source>Export...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="70"/>
+        <location filename="windows/SdWCommand.cpp" line="72"/>
         <source>Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="72"/>
+        <location filename="windows/SdWCommand.cpp" line="74"/>
         <source>Exit programm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="87"/>
+        <location filename="windows/SdWCommand.cpp" line="89"/>
         <source>Objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="88"/>
+        <location filename="windows/SdWCommand.cpp" line="90"/>
         <source>Create...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="90"/>
+        <location filename="windows/SdWCommand.cpp" line="92"/>
         <source>Rename...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="91"/>
+        <location filename="windows/SdWCommand.cpp" line="93"/>
         <source>Edit object param...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="92"/>
-        <location filename="windows/SdWCommand.cpp" line="116"/>
+        <location filename="windows/SdWCommand.cpp" line="94"/>
+        <location filename="windows/SdWCommand.cpp" line="120"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="93"/>
-        <location filename="windows/SdWCommand.cpp" line="113"/>
+        <location filename="windows/SdWCommand.cpp" line="95"/>
+        <location filename="windows/SdWCommand.cpp" line="117"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="94"/>
-        <location filename="windows/SdWCommand.cpp" line="114"/>
+        <location filename="windows/SdWCommand.cpp" line="96"/>
+        <location filename="windows/SdWCommand.cpp" line="118"/>
         <source>Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="95"/>
-        <location filename="windows/SdWCommand.cpp" line="115"/>
+        <location filename="windows/SdWCommand.cpp" line="97"/>
+        <location filename="windows/SdWCommand.cpp" line="119"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="96"/>
+        <location filename="windows/SdWCommand.cpp" line="98"/>
         <source>Duplicate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="97"/>
+        <location filename="windows/SdWCommand.cpp" line="99"/>
         <source>Sort</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="98"/>
+        <location filename="windows/SdWCommand.cpp" line="100"/>
         <source>Enable edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="99"/>
+        <location filename="windows/SdWCommand.cpp" line="101"/>
         <source>Finish edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="100"/>
+        <location filename="windows/SdWCommand.cpp" line="102"/>
+        <source>Make an object public</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="104"/>
         <source>Edit project param...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="101"/>
+        <location filename="windows/SdWCommand.cpp" line="105"/>
         <source>Upgrade with new versions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="107"/>
+        <location filename="windows/SdWCommand.cpp" line="111"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="108"/>
+        <location filename="windows/SdWCommand.cpp" line="112"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="110"/>
+        <location filename="windows/SdWCommand.cpp" line="114"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="118"/>
-        <source>Select All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="119"/>
-        <source>UnSelect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="120"/>
-        <source>Find</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="121"/>
-        <source>Replace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="131"/>
-        <source>View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="132"/>
-        <source>Show-hide project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="136"/>
-        <source>Nets</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="137"/>
-        <source>Grid</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="138"/>
-        <source>Show grid tune dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="139"/>
-        <source>Layers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="140"/>
-        <source>Show layers editor dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="142"/>
-        <source>Zoom to fit view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="143"/>
-        <source>Zoom in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="144"/>
-        <source>Zoom out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="145"/>
-        <source>Zoom area</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="147"/>
-        <source>Measurement</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="152"/>
-        <source>Draw</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="153"/>
-        <source>Select and edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="155"/>
-        <source>Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="156"/>
-        <source>Rect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="157"/>
-        <source>Filled rect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="158"/>
-        <source>Region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="159"/>
-        <source>Filled region</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="160"/>
-        <source>Circle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="161"/>
-        <source>Filled circle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="162"/>
-        <source>Arc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="163"/>
-        <source>Text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="164"/>
-        <source>Show fields or values</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="172"/>
-        <source>Symbol</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="174"/>
-        <location filename="windows/SdWCommand.cpp" line="189"/>
-        <source>Insert pin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="175"/>
-        <location filename="windows/SdWCommand.cpp" line="190"/>
-        <source>Edit reference</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="176"/>
-        <location filename="windows/SdWCommand.cpp" line="191"/>
-        <source>Edit origin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="178"/>
-        <source>Enter symbol fragment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="183"/>
-        <source>Part</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="185"/>
-        <source>Show pads</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="windows/SdWCommand.cpp" line="122"/>
-        <source>Rotate group 90 degree [F7]</source>
+        <source>Copy SVG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="123"/>
+        <source>Copy WEB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="124"/>
-        <source>Params of selection...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="125"/>
-        <source>Calculations...</source>
+        <source>Save selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="126"/>
-        <source>Fragments...</source>
+        <source>Select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="134"/>
-        <source>3d-2d switch</source>
+        <location filename="windows/SdWCommand.cpp" line="127"/>
+        <source>UnSelect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="128"/>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="129"/>
+        <source>Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="139"/>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="140"/>
+        <source>Show-hide project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="144"/>
+        <source>Mirror</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="147"/>
+        <source>Nets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="148"/>
+        <source>Grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="149"/>
+        <source>Show grid tune dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="150"/>
+        <source>Layers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="151"/>
+        <source>Show layers editor dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="153"/>
+        <source>Zoom to fit view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="154"/>
+        <source>Zoom in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="155"/>
+        <source>Zoom out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="156"/>
+        <source>Zoom area</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="158"/>
+        <source>Measurement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="163"/>
+        <source>Draw</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="164"/>
+        <source>Select and edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="165"/>
+        <source>Binder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="167"/>
+        <source>Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="168"/>
+        <source>Rect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="169"/>
+        <source>Filled rect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="170"/>
+        <source>Region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="171"/>
+        <source>Filled region</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="172"/>
+        <source>Circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="173"/>
+        <source>Filled circle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="174"/>
+        <source>Arc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="175"/>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="176"/>
+        <source>Show fields or values</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="184"/>
+        <source>Symbol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="186"/>
+        <location filename="windows/SdWCommand.cpp" line="203"/>
+        <source>Insert pin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="187"/>
+        <location filename="windows/SdWCommand.cpp" line="204"/>
+        <source>Edit reference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="188"/>
+        <location filename="windows/SdWCommand.cpp" line="205"/>
+        <source>Edit origin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="190"/>
+        <source>Enter symbol fragment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="192"/>
+        <source>Default part and params</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="197"/>
-        <source>3d part</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="198"/>
-        <source>Master of 3d form</source>
+        <source>Part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="199"/>
-        <source>Edit 3d model script</source>
+        <source>Show pads</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="200"/>
-        <source>Import from stl file</source>
+        <location filename="windows/SdWCommand.cpp" line="320"/>
+        <source>Guider scene builder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="202"/>
-        <source>Import from vrml file</source>
+        <location filename="windows/SdWCommand.cpp" line="321"/>
+        <source>Guider snapshot save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="204"/>
-        <source>Show/hide 2d graphics in 3d scene</source>
+        <location filename="windows/SdWCommand.cpp" line="130"/>
+        <source>Rotate group 90 degree [F7]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="206"/>
-        <source>Show/hide pads</source>
+        <location filename="windows/SdWCommand.cpp" line="132"/>
+        <source>Params of selection...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="209"/>
-        <source>View 3d scene with no edit</source>
+        <location filename="windows/SdWCommand.cpp" line="133"/>
+        <source>Calculations...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="210"/>
-        <source>Horizontal moving 3d object</source>
+        <location filename="windows/SdWCommand.cpp" line="134"/>
+        <source>Fragments...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="142"/>
+        <source>3d-2d switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="211"/>
-        <source>Horizontal rotation 3d object</source>
+        <source>3d part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="212"/>
-        <source>Vertical moving 3d object</source>
+        <source>Master of 3d form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="213"/>
-        <source>Vertical rotation 3d object</source>
+        <source>Edit 3d model script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="214"/>
-        <source>Change face color</source>
+        <source>Import from stl file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="216"/>
+        <source>Import from vrml file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="218"/>
-        <source>3d part view</source>
+        <source>Show/hide 2d graphics in 3d scene</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="220"/>
+        <source>Show/hide pads</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="222"/>
+        <source>Set top view orientation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="224"/>
+        <source>View 3d scene with no edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="225"/>
-        <source>Insert comp</source>
+        <source>Horizontal moving 3d object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="230"/>
-        <source>Sheet</source>
+        <location filename="windows/SdWCommand.cpp" line="226"/>
+        <source>Horizontal rotation 3d object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="231"/>
-        <source>Renumeration</source>
+        <location filename="windows/SdWCommand.cpp" line="227"/>
+        <source>Vertical moving 3d object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="228"/>
+        <source>Vertical rotation 3d object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="229"/>
+        <source>Change face color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="234"/>
-        <source>Insert component</source>
+        <source>3d part view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="235"/>
-        <source>Insert net wire</source>
+        <location filename="windows/SdWCommand.cpp" line="242"/>
+        <source>Insert comp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="236"/>
-        <source>Insert net name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="237"/>
-        <source>Insert bus (many net)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="238"/>
-        <source>Disconnect net</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="239"/>
-        <location filename="windows/SdWCommand.cpp" line="277"/>
-        <source>Move ident of components</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="240"/>
-        <location filename="windows/SdWCommand.cpp" line="278"/>
-        <source>Move value of components</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="241"/>
-        <source>Script insert and edit</source>
+        <location filename="windows/SdWCommand.cpp" line="247"/>
+        <source>Sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="248"/>
-        <source>Plate</source>
+        <source>Renumeration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="251"/>
-        <source>Show rat net</source>
+        <source>Insert component</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="252"/>
+        <source>Insert net wire</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="253"/>
+        <source>Insert net name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="254"/>
+        <source>Insert bus (many net)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="255"/>
-        <source>Pads association</source>
+        <source>Disconnect net</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="256"/>
+        <location filename="windows/SdWCommand.cpp" line="296"/>
+        <source>Move ident of components</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="257"/>
+        <location filename="windows/SdWCommand.cpp" line="297"/>
+        <source>Move value of components</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="258"/>
+        <source>Script insert and edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="265"/>
+        <source>Plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="267"/>
-        <source>Move part</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="268"/>
-        <source>Road enter</source>
+        <source>PCB layer count...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="269"/>
-        <source>Road move</source>
+        <source>Show rat net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="270"/>
-        <source>Polygon enter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="271"/>
-        <source>Via enter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="279"/>
-        <source>Edit plate origin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="280"/>
-        <source>Highlight components</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="284"/>
-        <source>Rules</source>
+        <location filename="windows/SdWCommand.cpp" line="273"/>
+        <source>Pads association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="285"/>
-        <source>Edit rules dialog</source>
+        <source>Move part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="286"/>
-        <source>Show rule errors</source>
+        <source>Road enter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="287"/>
+        <source>Road move</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="288"/>
+        <source>Polygon enter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="289"/>
+        <source>Via enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="290"/>
-        <source>Check all rules</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="291"/>
-        <source>Center next rules error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="295"/>
-        <source>Instruments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="296"/>
-        <source>Options</source>
+        <source>Delete trace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="298"/>
-        <source>Tools</source>
+        <source>Edit plate origin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="300"/>
-        <source>Capture start-stop</source>
+        <location filename="windows/SdWCommand.cpp" line="299"/>
+        <source>Highlight components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="301"/>
-        <source>Capture pause-resume</source>
+        <location filename="windows/SdWCommand.cpp" line="303"/>
+        <source>Rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="304"/>
+        <source>Edit rules dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="305"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="306"/>
-        <source>Contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="307"/>
-        <source>Index</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="308"/>
-        <source>About</source>
+        <source>Show rule errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="309"/>
-        <source>Registration</source>
+        <source>Check all rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="310"/>
-        <source>Home help page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCommand.cpp" line="312"/>
-        <source>Backward help page</source>
+        <source>Center next rules error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="314"/>
+        <source>Instruments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="315"/>
+        <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="316"/>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="318"/>
+        <source>Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="331"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="332"/>
+        <source>Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="333"/>
+        <source>Index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="334"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="335"/>
+        <source>Registration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="336"/>
+        <source>Home help page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="338"/>
+        <source>Backward help page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="340"/>
         <source>Forward help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="319"/>
+        <location filename="windows/SdWCommand.cpp" line="345"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="import/vrml/Sd3dReaderVrml.cpp" line="45"/>
+        <location filename="import/vrml/Sd3dReaderVrml.cpp" line="47"/>
         <source>Error happens when read VRML file!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeFaceColor.cpp" line="44"/>
+        <location filename="modes/Sd3dModeFaceColor.cpp" line="58"/>
         <source>Click face color name to view selected face and click color cell to select new face color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeHorzMove.cpp" line="102"/>
+        <location filename="modes/Sd3dModeHorzMove.cpp" line="104"/>
         <source>Press Left button and move to horizontal moving model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeHorzRotate.cpp" line="102"/>
+        <location filename="modes/Sd3dModeHorzRotate.cpp" line="104"/>
         <source>Press Left button and move to rotate model around Z and X axis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeVertMove.cpp" line="104"/>
+        <location filename="modes/Sd3dModeVertMove.cpp" line="106"/>
         <source>Press Left button and move to vertical moving model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeVertRotate.cpp" line="104"/>
+        <location filename="modes/Sd3dModeVertRotate.cpp" line="106"/>
         <source>Press Left button and move to rotate model around Y and X axis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeView.cpp" line="44"/>
+        <location filename="modes/Sd3dModeView.cpp" line="46"/>
         <source>Press left button and move to rotate, middle button - for origin move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartHighlight.cpp" line="127"/>
+        <location filename="modes/SdModeCPartHighlight.cpp" line="141"/>
         <source>Click on component to highlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartHighlight.cpp" line="130"/>
+        <location filename="modes/SdModeCPartHighlight.cpp" line="144"/>
         <source>Left button: %1 (%2);   F6 to roll components behind cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCScript.cpp" line="230"/>
+        <location filename="modes/SdModeCScript.cpp" line="252"/>
         <source>Enter point to insert or edit script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCScript.cpp" line="231"/>
+        <location filename="modes/SdModeCScript.cpp" line="253"/>
         <source>Select component or other script to link with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCScript.cpp" line="232"/>
+        <location filename="modes/SdModeCScript.cpp" line="254"/>
         <source>Select group of components to find the right one calculation script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdPItemPart.cpp" line="36"/>
+        <location filename="objects/SdPItemPart.cpp" line="38"/>
         <source>3d model position and/orientation changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="146"/>
-        <source>for is reserved keyword</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="script/SdScriptParser.cpp" line="150"/>
+        <location filename="script/SdScriptParser.cpp" line="151"/>
         <source>Need assign =</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="159"/>
+        <location filename="script/SdScriptParser.cpp" line="160"/>
         <source>Illegal type of assignment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="166"/>
+        <location filename="script/SdScriptParser.cpp" line="167"/>
         <source>Unable to assign to read-only variable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="192"/>
+        <location filename="script/SdScriptParser.cpp" line="195"/>
         <source>Can&apos;t create variable with this type %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="212"/>
+        <location filename="script/SdScriptParser.cpp" line="215"/>
         <source>Need assign (</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="217"/>
-        <location filename="script/SdScriptParser.cpp" line="252"/>
+        <location filename="script/SdScriptParser.cpp" line="220"/>
+        <location filename="script/SdScriptParser.cpp" line="255"/>
         <source>Condition must be bool expression</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="222"/>
-        <location filename="script/SdScriptParser.cpp" line="257"/>
-        <location filename="script/SdScriptParser.cpp" line="546"/>
+        <location filename="script/SdScriptParser.cpp" line="225"/>
+        <location filename="script/SdScriptParser.cpp" line="260"/>
+        <location filename="script/SdScriptParser.cpp" line="312"/>
+        <location filename="script/SdScriptParser.cpp" line="601"/>
         <source>No closing )</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="229"/>
+        <location filename="script/SdScriptParser.cpp" line="232"/>
         <source>Need if-else operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="264"/>
+        <location filename="script/SdScriptParser.cpp" line="267"/>
+        <location filename="script/SdScriptParser.cpp" line="319"/>
         <source>Need while operator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="291"/>
+        <location filename="script/SdScriptParser.cpp" line="292"/>
+        <source>Illegal type of index variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="script/SdScriptParser.cpp" line="298"/>
+        <source>Unable use as loop index read-only variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="script/SdScriptParser.cpp" line="307"/>
+        <source>Loop count must be float expression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="script/SdScriptParser.cpp" line="346"/>
         <source>Invalid types of AND operation. Both must be bool.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="314"/>
+        <location filename="script/SdScriptParser.cpp" line="369"/>
         <source>Invalid types of OR operation. Both must be bool.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="334"/>
+        <location filename="script/SdScriptParser.cpp" line="389"/>
         <source>Invalid type of unary not operation. Must be bool.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="353"/>
-        <location filename="script/SdScriptParser.cpp" line="363"/>
+        <location filename="script/SdScriptParser.cpp" line="408"/>
+        <location filename="script/SdScriptParser.cpp" line="418"/>
         <source>Invalid types of less operation. Both must be float.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="388"/>
+        <location filename="script/SdScriptParser.cpp" line="443"/>
         <source>Invalid types of add operation. Both must be float.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="423"/>
+        <location filename="script/SdScriptParser.cpp" line="478"/>
         <source>Invalid types of multiply operation. Both must be float.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="433"/>
+        <location filename="script/SdScriptParser.cpp" line="488"/>
         <source>Invalid types of divide operation. Both must be float.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="454"/>
+        <location filename="script/SdScriptParser.cpp" line="509"/>
         <source>Invalid type of unary minus operation. Must be float.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="487"/>
+        <location filename="script/SdScriptParser.cpp" line="542"/>
         <source>Unable read write-only variable &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="493"/>
+        <location filename="script/SdScriptParser.cpp" line="548"/>
         <source>Undefined variable &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="523"/>
+        <location filename="script/SdScriptParser.cpp" line="578"/>
         <source>Invalid element type of array. Must be vertex, segment or face</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="534"/>
+        <location filename="script/SdScriptParser.cpp" line="589"/>
         <source>Illegal type of array element</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="539"/>
+        <location filename="script/SdScriptParser.cpp" line="594"/>
         <source>No closing ]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="563"/>
+        <location filename="script/SdScriptParser.cpp" line="618"/>
         <source>Invalid function param %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="571"/>
+        <location filename="script/SdScriptParser.cpp" line="626"/>
         <source>Need comma</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="577"/>
+        <location filename="script/SdScriptParser.cpp" line="632"/>
         <source>Need closing )</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="script/SdScriptParser.cpp" line="586"/>
+        <location filename="script/SdScriptParser.cpp" line="641"/>
         <source>No function &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="112"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="115"/>
         <source>Select form to insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSymbolFragment.cpp" line="63"/>
+        <location filename="modes/SdModeSymbolFragment.cpp" line="65"/>
         <source>Enter position of insertion for fragment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSymbolFragment.cpp" line="88"/>
+        <location filename="modes/SdModeSymbolFragment.cpp" line="90"/>
         <source>Select symbol for insertion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/Sd3dModelScript.cpp" line="264"/>
+        <location filename="windows/Sd3dModelScript.cpp" line="604"/>
         <source>smd resistor 3d model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/Sd3dModelScript.cpp" line="265"/>
+        <location filename="windows/Sd3dModelScript.cpp" line="605"/>
         <source>This master creates smd resistor 3d part model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/Sd3dModelScript.cpp" line="269"/>
+        <location filename="windows/Sd3dModelScript.cpp" line="609"/>
         <source>leaded polar electrolytic capacitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/Sd3dModelScript.cpp" line="270"/>
+        <location filename="windows/Sd3dModelScript.cpp" line="610"/>
         <source>This master builds 3d model for polar electrolytic capacitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/Sd3dModelScript.cpp" line="274"/>
+        <location filename="windows/Sd3dModelScript.cpp" line="614"/>
         <source>soic 2-row chip</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/Sd3dModelScript.cpp" line="275"/>
+        <location filename="windows/Sd3dModelScript.cpp" line="615"/>
         <source>This master builds 3d model of soic chip with 2 rows of pins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/Sd3dModelScript.cpp" line="619"/>
+        <source>module on pcb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/Sd3dModelScript.cpp" line="620"/>
+        <source>This master builds 3d model and 2d graphics for pcb modules like esp32 wifi</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="import/kicad/SdScanerKiCad.h" line="65"/>
+        <source>Need token name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="import/kicad/kicadFootprint.cpp" line="26"/>
+        <source>Need footprint name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="import/kicad/kicadFootprint.cpp" line="31"/>
+        <source>Set part title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="import/kicad/kicadPadPart.cpp" line="28"/>
+        <source>Need pad number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="import/kicad/kicadPadPart.cpp" line="31"/>
+        <source>Need pad type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="import/kicad/kicadPadPart.cpp" line="34"/>
+        <source>Need pad form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeTBinder.cpp" line="108"/>
+        <source>Enter binding point or enter offset from previous point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="335"/>
+        <source>Circle diam %1mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="338"/>
+        <source>Ellipse %1*%2mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="343"/>
+        <source>Rounded rect %1*%2mm ratio %3mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="347"/>
+        <source>Rect %1*%2mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="353"/>
+        <source> off %1*%2mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="358"/>
+        <source> rotate %1°</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="363"/>
+        <source> slot %1*%2mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="366"/>
+        <source> hole %1mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="372"/>
+        <source> mask=pad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="374"/>
+        <source> mask %1mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="376"/>
+        <source> mask %1*%2mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="383"/>
+        <source> stencil=pad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="385"/>
+        <source> stencil arr %1*%2 of %3*%4mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="391"/>
+        <source> stencil %1mm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdPad.cpp" line="393"/>
+        <source> stencil %1*%2mm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Sd3dModeFaceColorPrivate</name>
     <message>
-        <location filename="modes/Sd3dModeFaceColor.cpp" line="79"/>
+        <location filename="modes/Sd3dModeFaceColor.cpp" line="93"/>
         <source>Color code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeFaceColor.cpp" line="79"/>
+        <location filename="modes/Sd3dModeFaceColor.cpp" line="93"/>
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeFaceColor.cpp" line="80"/>
+        <location filename="modes/Sd3dModeFaceColor.cpp" line="94"/>
         <source>Press to highlight colored part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/Sd3dModeFaceColor.cpp" line="81"/>
+        <location filename="modes/Sd3dModeFaceColor.cpp" line="95"/>
         <source>Press to select color for this part</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1796,27 +1974,27 @@
 <context>
     <name>SdD3dMaster</name>
     <message>
-        <location filename="windows/SdD3dMaster.cpp" line="26"/>
+        <location filename="windows/SdD3dMaster.cpp" line="40"/>
         <source>Select master to 3d model creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dMaster.cpp" line="30"/>
+        <location filename="windows/SdD3dMaster.cpp" line="44"/>
         <source>Select master type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dMaster.cpp" line="37"/>
+        <location filename="windows/SdD3dMaster.cpp" line="51"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dMaster.cpp" line="42"/>
+        <location filename="windows/SdD3dMaster.cpp" line="56"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dMaster.cpp" line="69"/>
+        <location filename="windows/SdD3dMaster.cpp" line="83"/>
         <source>Replace 3d model</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1824,12 +2002,12 @@
 <context>
     <name>SdD3dModelMaster</name>
     <message>
-        <location filename="windows/SdD3dModelMaster.cpp" line="85"/>
+        <location filename="windows/SdD3dModelMaster.cpp" line="87"/>
         <source>Parametr name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelMaster.cpp" line="85"/>
+        <location filename="windows/SdD3dModelMaster.cpp" line="87"/>
         <source>Parametr value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1837,79 +2015,79 @@
 <context>
     <name>SdD3dModelProgrammEditor</name>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="110"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="112"/>
         <source>Programm title:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="117"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="119"/>
         <source>Programm description:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="151"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="273"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="153"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="275"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="158"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="280"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="160"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="282"/>
         <source>Build</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="159"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="281"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="161"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="283"/>
         <source>Compile source text 3d model programm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="234"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="236"/>
         <source>3d model editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="240"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="242"/>
         <source>Part title: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="358"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="360"/>
         <source>Parametr name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="358"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="360"/>
         <source>Parametr value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="433"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="438"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="492"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="508"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="435"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="440"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="494"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="510"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="433"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="435"/>
         <source>Programm title not defined! Enter programm title and repeate saving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="438"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="440"/>
         <source>Programm description not defined! Enter programm description and repeate saving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="447"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="449"/>
         <source>Update 3d programm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="492"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="508"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="494"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="510"/>
         <source>Programm text changed! Do You want save edited text before closing?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1968,17 +2146,17 @@
 <context>
     <name>SdDExpressionEdit</name>
     <message>
-        <location filename="windows/SdDExpressionEdit.cpp" line="80"/>
+        <location filename="windows/SdDExpressionEdit.cpp" line="82"/>
         <source>Error:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDExpressionEdit.cpp" line="113"/>
+        <location filename="windows/SdDExpressionEdit.cpp" line="115"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDExpressionEdit.cpp" line="113"/>
+        <location filename="windows/SdDExpressionEdit.cpp" line="115"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2041,12 +2219,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetBus.cpp" line="194"/>
+        <location filename="windows/SdDGetBus.cpp" line="196"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetBus.cpp" line="194"/>
+        <location filename="windows/SdDGetBus.cpp" line="196"/>
         <source>Wrong net list syntax. Use: netA,netB,net&lt;0:2&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2060,25 +2238,22 @@
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="47"/>
-        <location filename="windows/SdDGetObject.cpp" line="212"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="74"/>
-        <location filename="windows/SdDGetObject.cpp" line="222"/>
         <source>Fields filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="94"/>
-        <location filename="windows/SdDGetObject.cpp" line="223"/>
         <source>Clear all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="125"/>
-        <location filename="windows/SdDGetObject.cpp" line="245"/>
+        <location filename="windows/SdDGetObject.cpp" line="101"/>
         <source>Enter object to find:</source>
         <oldsource>Enter object to find</oldsource>
         <translation type="unfinished"></translation>
@@ -2090,7 +2265,7 @@
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="145"/>
-        <location filename="windows/SdDGetObject.cpp" line="247"/>
+        <location filename="windows/SdDGetObject.cpp" line="103"/>
         <source>Find</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2106,19 +2281,19 @@
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="184"/>
-        <location filename="windows/SdDGetObject.cpp" line="260"/>
+        <location filename="windows/SdDGetObject.cpp" line="125"/>
         <source>Sections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="203"/>
-        <location filename="windows/SdDGetObject.cpp" line="269"/>
+        <location filename="windows/SdDGetObject.cpp" line="134"/>
         <source>Symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="210"/>
-        <location filename="windows/SdDGetObject.cpp" line="275"/>
+        <location filename="windows/SdDGetObject.cpp" line="140"/>
         <source>Part</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2138,52 +2313,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="233"/>
-        <source>Show</source>
+        <location filename="windows/SdDGetObject.cpp" line="107"/>
+        <source>With part only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="233"/>
-        <source>Field</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDGetObject.cpp" line="233"/>
-        <source>Filtr</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDGetObject.cpp" line="281"/>
+        <location filename="windows/SdDGetObject.cpp" line="146"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="478"/>
+        <location filename="windows/SdDGetObject.cpp" line="341"/>
         <source>Section %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="690"/>
+        <location filename="windows/SdDGetObject.cpp" line="473"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="691"/>
+        <location filename="windows/SdDGetObject.cpp" line="474"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="692"/>
+        <location filename="windows/SdDGetObject.cpp" line="475"/>
         <source>Created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="754"/>
+        <location filename="windows/SdDGetObject.cpp" line="533"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="754"/>
+        <location filename="windows/SdDGetObject.cpp" line="533"/>
         <source>You must select element or press Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2347,32 +2512,32 @@
 <context>
     <name>SdDGuiderPlayer</name>
     <message>
-        <location filename="windows/SdDGuiderPlayer.cpp" line="49"/>
+        <location filename="windows/SdDGuiderPlayer.cpp" line="52"/>
         <source>Guider</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGuiderPlayer.cpp" line="57"/>
+        <location filename="windows/SdDGuiderPlayer.cpp" line="58"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGuiderPlayer.cpp" line="63"/>
+        <location filename="windows/SdDGuiderPlayer.cpp" line="64"/>
         <source>Restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGuiderPlayer.cpp" line="79"/>
+        <location filename="windows/SdDGuiderPlayer.cpp" line="74"/>
         <source>Start play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGuiderPlayer.cpp" line="86"/>
+        <location filename="windows/SdDGuiderPlayer.cpp" line="81"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGuiderPlayer.cpp" line="93"/>
+        <location filename="windows/SdDGuiderPlayer.cpp" line="88"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2380,27 +2545,27 @@
 <context>
     <name>SdDHelp</name>
     <message>
-        <location filename="windows/SdDHelp.cpp" line="34"/>
+        <location filename="windows/SdDHelp.cpp" line="36"/>
         <source>Dialog help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDHelp.cpp" line="42"/>
+        <location filename="windows/SdDHelp.cpp" line="44"/>
         <source>Help contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDHelp.cpp" line="48"/>
+        <location filename="windows/SdDHelp.cpp" line="50"/>
         <source>Base page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDHelp.cpp" line="54"/>
+        <location filename="windows/SdDHelp.cpp" line="56"/>
         <source>Previous page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDHelp.cpp" line="62"/>
+        <location filename="windows/SdDHelp.cpp" line="64"/>
         <source>Next page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2454,7 +2619,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayerCreate.cpp" line="28"/>
+        <location filename="windows/SdDLayerCreate.cpp" line="30"/>
         <source>User id</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2492,12 +2657,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayerList.cpp" line="102"/>
+        <location filename="windows/SdDLayerList.cpp" line="106"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayerList.cpp" line="102"/>
+        <location filename="windows/SdDLayerList.cpp" line="106"/>
         <source>Pair not selected to assign. Select it and repeate assigning.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2511,208 +2676,209 @@
     </message>
     <message>
         <location filename="windows/SdDLayers.ui" line="24"/>
-        <source>Tracing layers count in plate (1-30):</source>
+        <source>Tracing layers count in plate (2-30):</source>
+        <oldsource>Tracing layers count in plate (1-30):</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="56"/>
+        <location filename="windows/SdDLayers.ui" line="80"/>
         <source>Layers list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="76"/>
+        <location filename="windows/SdDLayers.ui" line="100"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="83"/>
+        <location filename="windows/SdDLayers.ui" line="107"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="103"/>
+        <location filename="windows/SdDLayers.ui" line="127"/>
         <source>Create...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="110"/>
+        <location filename="windows/SdDLayers.ui" line="134"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="117"/>
+        <location filename="windows/SdDLayers.ui" line="141"/>
         <source>Show actual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="124"/>
+        <location filename="windows/SdDLayers.ui" line="148"/>
         <source>Show used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="131"/>
+        <location filename="windows/SdDLayers.ui" line="155"/>
         <source>Show all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="138"/>
+        <location filename="windows/SdDLayers.ui" line="162"/>
         <source>Hide all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="145"/>
+        <location filename="windows/SdDLayers.ui" line="169"/>
         <source>Switch all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="152"/>
+        <location filename="windows/SdDLayers.ui" line="176"/>
         <source>Layer view set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="158"/>
+        <location filename="windows/SdDLayers.ui" line="182"/>
         <source>Load...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.ui" line="165"/>
+        <location filename="windows/SdDLayers.ui" line="189"/>
         <source>Save...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="83"/>
+        <location filename="windows/SdDLayers.cpp" line="94"/>
         <source>Lyaer name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="83"/>
+        <location filename="windows/SdDLayers.cpp" line="94"/>
         <source>Trace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="83"/>
+        <location filename="windows/SdDLayers.cpp" line="94"/>
         <source>State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="83"/>
+        <location filename="windows/SdDLayers.cpp" line="94"/>
         <source>Visible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="83"/>
+        <location filename="windows/SdDLayers.cpp" line="94"/>
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="83"/>
+        <location filename="windows/SdDLayers.cpp" line="94"/>
         <source>Pair name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="270"/>
+        <location filename="windows/SdDLayers.cpp" line="312"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="270"/>
+        <location filename="windows/SdDLayers.cpp" line="312"/>
         <source>Are You sure to delete layer &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="276"/>
-        <location filename="windows/SdDLayers.cpp" line="287"/>
+        <location filename="windows/SdDLayers.cpp" line="318"/>
+        <location filename="windows/SdDLayers.cpp" line="328"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="276"/>
+        <location filename="windows/SdDLayers.cpp" line="318"/>
         <source>Layer &quot;%1&quot; is used in some projects. It can&apos;t be deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="287"/>
+        <location filename="windows/SdDLayers.cpp" line="328"/>
         <source>Select layer to delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="360"/>
+        <location filename="windows/SdDLayers.cpp" line="401"/>
         <source>Select file name to load layer state list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="386"/>
+        <location filename="windows/SdDLayers.cpp" line="423"/>
         <source>Enter file name to save layer state list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="481"/>
+        <location filename="windows/SdDLayers.cpp" line="520"/>
         <source>Select layer color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="538"/>
+        <location filename="windows/SdDLayers.cpp" line="594"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="539"/>
+        <location filename="windows/SdDLayers.cpp" line="595"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="540"/>
+        <location filename="windows/SdDLayers.cpp" line="596"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="552"/>
-        <location filename="windows/SdDLayers.cpp" line="572"/>
+        <location filename="windows/SdDLayers.cpp" line="608"/>
+        <location filename="windows/SdDLayers.cpp" line="628"/>
         <source>---</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="554"/>
+        <location filename="windows/SdDLayers.cpp" line="610"/>
         <source>pad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="556"/>
+        <location filename="windows/SdDLayers.cpp" line="612"/>
         <source>mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="558"/>
-        <source>stensil</source>
+        <location filename="windows/SdDLayers.cpp" line="614"/>
+        <source>stencil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="560"/>
+        <location filename="windows/SdDLayers.cpp" line="616"/>
         <source>hole</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="562"/>
+        <location filename="windows/SdDLayers.cpp" line="618"/>
         <source>road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="564"/>
+        <location filename="windows/SdDLayers.cpp" line="620"/>
         <source>polygon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="566"/>
+        <location filename="windows/SdDLayers.cpp" line="622"/>
         <source>bound</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="568"/>
+        <location filename="windows/SdDLayers.cpp" line="624"/>
         <source>keepout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="570"/>
+        <location filename="windows/SdDLayers.cpp" line="626"/>
         <source>last</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3005,6 +3171,29 @@
     </message>
     <message>
         <location filename="master/SdDMasterPartDoubleSideLR.ui" line="207"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdDMasterPartModule</name>
+    <message>
+        <location filename="master/SdDMasterPartModule.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterPartModule.ui" line="36"/>
+        <source>Plate size X:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterPartModule.ui" line="43"/>
+        <source>Plate size Y:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterPartModule.ui" line="55"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3343,14 +3532,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="master/SdDMasterSymbolIc.cpp" line="40"/>
-        <location filename="master/SdDMasterSymbolIc.cpp" line="48"/>
+        <location filename="master/SdDMasterSymbolIc.cpp" line="42"/>
+        <location filename="master/SdDMasterSymbolIc.cpp" line="50"/>
         <source>Pin name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="master/SdDMasterSymbolIc.cpp" line="40"/>
-        <location filename="master/SdDMasterSymbolIc.cpp" line="48"/>
+        <location filename="master/SdDMasterSymbolIc.cpp" line="42"/>
+        <location filename="master/SdDMasterSymbolIc.cpp" line="50"/>
         <source>Alternative names</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3385,52 +3574,70 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDNetUnion.cpp" line="27"/>
-        <location filename="windows/SdDNetUnion.cpp" line="28"/>
+        <location filename="windows/SdDNetUnion.cpp" line="29"/>
+        <location filename="windows/SdDNetUnion.cpp" line="30"/>
         <source>Assign &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDNetUnion.cpp" line="45"/>
+        <location filename="windows/SdDNetUnion.cpp" line="47"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDNetUnion.cpp" line="45"/>
+        <location filename="windows/SdDNetUnion.cpp" line="47"/>
         <source>You must select one variant or cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdDOffset</name>
+    <message>
+        <location filename="windows/SdDOffset.cpp" line="159"/>
+        <source>Offset X:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOffset.cpp" line="164"/>
+        <source>Offset Y:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOffset.cpp" line="190"/>
+        <source>Enter offset from smart point</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOffset.cpp" line="192"/>
+        <source>Enter offset from previous point</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdDOptions</name>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="30"/>
-        <location filename="windows/SdDOptions.cpp" line="75"/>
+        <location filename="windows/SdDOptions.cpp" line="36"/>
+        <location filename="windows/SdDOptions.cpp" line="81"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="52"/>
+        <location filename="windows/SdDOptions.cpp" line="58"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="57"/>
+        <location filename="windows/SdDOptions.cpp" line="63"/>
         <source>Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="62"/>
-        <source>Paths</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDOptions.cpp" line="67"/>
+        <location filename="windows/SdDOptions.cpp" line="73"/>
         <source>Editors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="72"/>
+        <location filename="windows/SdDOptions.cpp" line="78"/>
         <source>Library</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3438,87 +3645,87 @@
 <context>
     <name>SdDOptionsPageColors</name>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="28"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="30"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="28"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="30"/>
         <source>Color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="31"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="33"/>
         <source>Locked objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="32"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="34"/>
         <source>Selected objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="33"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="35"/>
         <source>Object color when entered</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="34"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="36"/>
         <source>Smart mode remarks when entering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="35"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="37"/>
         <source>Graph editor background color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="36"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="38"/>
         <source>Rat net color in pcb editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="37"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="39"/>
         <source>Cursor color when cross-hair mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="38"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="40"/>
         <source>Tracing net color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="39"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="41"/>
         <source>Grid color in graph editors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="40"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="42"/>
         <source>Color for rule errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="41"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="43"/>
         <source>Catch point color in road enter mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="42"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="44"/>
         <source>Color of top pad for 3d view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="43"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="45"/>
         <source>Color of bottom pad for 3d view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="44"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="46"/>
         <source>Color of pad holes for 3d view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageColors.cpp" line="45"/>
+        <location filename="windows/SdDOptionsPageColors.cpp" line="47"/>
         <source>Color of pcb for 3d view</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3526,12 +3733,12 @@
 <context>
     <name>SdDOptionsPageCommon</name>
     <message>
-        <location filename="windows/SdDOptionsPageCommon.cpp" line="30"/>
+        <location filename="windows/SdDOptionsPageCommon.cpp" line="32"/>
         <source>Paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageCommon.cpp" line="34"/>
+        <location filename="windows/SdDOptionsPageCommon.cpp" line="36"/>
         <source>Interface language:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3539,72 +3746,72 @@
 <context>
     <name>SdDOptionsPageEditors</name>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="27"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="29"/>
         <source>show rat net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="29"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="31"/>
         <source>show remarks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="31"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="33"/>
         <source>show message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="33"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="35"/>
         <source>move cursor to center when zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="38"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="40"/>
         <source>Symbol pin size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="42"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="44"/>
         <source>Part pin size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="46"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="48"/>
         <source>Wire dot size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="50"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="52"/>
         <source>Wire dot width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="54"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="56"/>
         <source>Via default type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="59"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="61"/>
         <source>Width step size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="62"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="64"/>
         <source>Text step size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="65"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="67"/>
         <source>Minimal view grid size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="68"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="70"/>
         <source>Cursor view size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageEditors.cpp" line="71"/>
+        <location filename="windows/SdDOptionsPageEditors.cpp" line="73"/>
         <source>Trace dot size:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3612,99 +3819,105 @@
 <context>
     <name>SdDOptionsPageLibrary</name>
     <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="16"/>
-        <source>Remote library</source>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="29"/>
+        <source>Component library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="23"/>
-        <source>Remote library IP:</source>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="36"/>
+        <source>Local library path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="27"/>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="38"/>
+        <source>Select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="40"/>
+        <source>Local library path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="52"/>
+        <source>Global storage IP:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="56"/>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="66"/>
         <source>Resync</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="33"/>
-        <source>Enable automatic object upload:</source>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="62"/>
+        <source>Private cloud IP:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="42"/>
-        <source>Author name:</source>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="72"/>
+        <source>Private cloud ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="46"/>
-        <source>Registration...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="57"/>
-        <source>Objects in library:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDOptionsPageLibrary.cpp" line="61"/>
-        <source>Rescan</source>
+        <location filename="windows/SdDOptionsPageLibrary.cpp" line="76"/>
+        <source>Get new</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdDOptionsPagePath</name>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="29"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="31"/>
         <source>Paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="34"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="36"/>
         <source>Current user home path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="37"/>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="48"/>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="59"/>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="70"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="39"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="50"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="61"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="72"/>
         <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="39"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="41"/>
         <source>Current user home path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="45"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="47"/>
         <source>Library path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="50"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="52"/>
         <source>Library path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="56"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="58"/>
         <source>Pattern path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="61"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="63"/>
         <source>Pattern path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="67"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="69"/>
         <source>Category hierarchy path:</source>
         <oldsource>Category hierarchy file:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptionsPagePath.cpp" line="72"/>
+        <location filename="windows/SdDOptionsPagePath.cpp" line="74"/>
         <source>Category hierarchy path</source>
         <oldsource>Category hierarchy file</oldsource>
         <translation type="unfinished"></translation>
@@ -3872,12 +4085,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="283"/>
+        <location filename="windows/SdDPadMaster.cpp" line="285"/>
         <source>Pad diametr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="288"/>
+        <location filename="windows/SdDPadMaster.cpp" line="290"/>
         <source>Pad witdh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3935,66 +4148,286 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="112"/>
+        <location filename="windows/SdDPads.cpp" line="126"/>
         <source>Pin type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="112"/>
+        <location filename="windows/SdDPads.cpp" line="126"/>
         <source>Pad description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="175"/>
+        <location filename="windows/SdDPads.cpp" line="189"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="175"/>
+        <location filename="windows/SdDPads.cpp" line="189"/>
         <source>Not selected pin to delete. Select one and retry.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="181"/>
-        <location filename="windows/SdDPads.cpp" line="198"/>
+        <location filename="windows/SdDPads.cpp" line="195"/>
+        <location filename="windows/SdDPads.cpp" line="212"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="181"/>
+        <location filename="windows/SdDPads.cpp" line="195"/>
         <source>Are you sure to delete pin &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="198"/>
+        <location filename="windows/SdDPads.cpp" line="212"/>
         <source>Are you sure to delete all pins?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="226"/>
+        <location filename="windows/SdDPads.cpp" line="240"/>
         <source>Enter name for save pad association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="233"/>
+        <location filename="windows/SdDPads.cpp" line="247"/>
         <source>Pad association saved successfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="235"/>
+        <location filename="windows/SdDPads.cpp" line="249"/>
         <source>Fail to save pad association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="245"/>
-        <location filename="windows/SdDPads.cpp" line="272"/>
+        <location filename="windows/SdDPads.cpp" line="259"/>
+        <location filename="windows/SdDPads.cpp" line="286"/>
         <source>Select pad association file to load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="233"/>
-        <location filename="windows/SdDPads.cpp" line="235"/>
+        <location filename="windows/SdDPads.cpp" line="247"/>
+        <location filename="windows/SdDPads.cpp" line="249"/>
         <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdDParamBase</name>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="103"/>
+        <source>This parameter define component line representation in bill of material report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="104"/>
+        <source>Component article representation. Can be used in component name and also in bom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="105"/>
+        <source>This parametr define component name without value for example smd 0805</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="106"/>
+        <source>This parameter define concrete component value for example 1kOm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="107"/>
+        <source>Minimum for value parameter, for example 1 Om</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="108"/>
+        <source>Maximum for value parameter, for example 10 MOm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="109"/>
+        <source>Row with which forms all intermediate values, for example E12</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="110"/>
+        <source>This param define component ident prefix for example prefix DD will construct ident DD4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="111"/>
+        <source>This param define used value selector for example &apos;resistor&apos; will select resistor values, i.e. 1.2kOm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="112"/>
+        <source>Manufacturer of component</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="113"/>
+        <source>Tolerance of value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="114"/>
+        <source>Local path to pdf file with datasheet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="115"/>
+        <source>www page address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="116"/>
+        <source>Device marking code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="118"/>
+        <source>Capacitor dielectric type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="119"/>
+        <source>Capacitor working voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="121"/>
+        <source>Diod forvard voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="122"/>
+        <source>Forvard continuous current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="123"/>
+        <source>Diod reverce voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="125"/>
+        <source>LED angle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="126"/>
+        <source>LED brightness</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="127"/>
+        <source>LED color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="128"/>
+        <source>LED wavelength</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="130"/>
+        <source>Inductor saturated current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="131"/>
+        <source>Inductor resistance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="132"/>
+        <source>Inductor self resonant frequency</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="134"/>
+        <source>MOSFET dest current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="135"/>
+        <source>MOSFET dest power or transistor power</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="136"/>
+        <source>MOSFET source-dest resistance when ON state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="137"/>
+        <source>MOSFET source-dest voltage when OFF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="138"/>
+        <source>MOSFET gate-source voltage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="140"/>
+        <source>Transistor collector current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="141"/>
+        <source>Transistor maximum Voltage which it can withstand on its collector measured relative to its base with the emitter open circuit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="142"/>
+        <source>Transistor maximum voltage which it can withstand on its collector measured relative to its emitter with the base open circuit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="143"/>
+        <source>Transistor current-gain koef</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="145"/>
+        <source>Description for 3d model programm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="190"/>
+        <location filename="windows/SdDParamBase.cpp" line="265"/>
+        <source>Param name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="190"/>
+        <source>Enter param name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="193"/>
+        <location filename="windows/SdDParamBase.cpp" line="225"/>
+        <source>Warning!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="193"/>
+        <source>Param with this name already exist. Enter another name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="225"/>
+        <source>Select param to delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="233"/>
+        <source>Select component to copy param from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDParamBase.cpp" line="265"/>
+        <source>Param value</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4006,17 +4439,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamDefault.cpp" line="33"/>
+        <location filename="windows/SdDParamDefault.cpp" line="35"/>
         <source>Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamDefault.cpp" line="33"/>
+        <location filename="windows/SdDParamDefault.cpp" line="35"/>
         <source>Param name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamDefault.cpp" line="33"/>
+        <location filename="windows/SdDParamDefault.cpp" line="35"/>
         <source>Param description</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4024,260 +4457,58 @@
 <context>
     <name>SdDParamEditor</name>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="50"/>
+        <location filename="windows/SdDParamEditor.cpp" line="53"/>
         <source>Param table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="56"/>
+        <location filename="windows/SdDParamEditor.cpp" line="59"/>
         <source>Add param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="57"/>
+        <location filename="windows/SdDParamEditor.cpp" line="60"/>
         <source>Add defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="58"/>
+        <location filename="windows/SdDParamEditor.cpp" line="61"/>
         <source>Copy param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="59"/>
+        <location filename="windows/SdDParamEditor.cpp" line="62"/>
         <source>Delete param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="60"/>
+        <location filename="windows/SdDParamEditor.cpp" line="63"/>
         <source>Select value...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="62"/>
+        <location filename="windows/SdDParamEditor.cpp" line="65"/>
         <source>Accum sheet fields</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="175"/>
-        <source>This parameter define component line representation in bill of material report</source>
+        <location filename="windows/SdDParamEditor.cpp" line="69"/>
+        <source>stm32 pins import...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="176"/>
-        <source>Component article representation. Can be used in component name and also in bom</source>
+        <location filename="windows/SdDParamEditor.cpp" line="70"/>
+        <source>stm32 pins remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="177"/>
-        <source>This parametr define component name without value for example smd 0805</source>
+        <location filename="windows/SdDParamEditor.cpp" line="165"/>
+        <source>STM32CubeIde MX configuration file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="178"/>
-        <source>This parameter define concrete component value for example 1kOm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="179"/>
-        <source>Minimum for value parameter, for example 1 Om</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="180"/>
-        <source>Maximum for value parameter, for example 10 MOm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="181"/>
-        <source>Row with which forms all intermediate values, for example E12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="182"/>
-        <source>This param define component ident prefix for example prefix DD will construct ident DD4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="183"/>
-        <source>This param define used value selector for example &apos;resistor&apos; will select resistor values, i.e. 1.2kOm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="184"/>
-        <source>Manufacturer of component</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="185"/>
-        <source>Tolerance of value</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="186"/>
-        <source>Local path to pdf file with datasheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="187"/>
-        <source>www page address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="188"/>
-        <source>Device marking code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="189"/>
-        <source>Path to element in category tree</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="191"/>
-        <source>Capacitor dielectric type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="192"/>
-        <source>Capacitor working voltage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="194"/>
-        <source>Diod forvard voltage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="195"/>
-        <source>Forvard continuous current</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="196"/>
-        <source>Diod reverce voltage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="198"/>
-        <source>LED angle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="199"/>
-        <source>LED brightness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="200"/>
-        <source>LED color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="201"/>
-        <source>LED wavelength</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="203"/>
-        <source>Inductor saturated current</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="204"/>
-        <source>Inductor resistance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="205"/>
-        <source>Inductor self resonant frequency</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="207"/>
-        <source>MOSFET dest current</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="208"/>
-        <source>MOSFET dest power or transistor power</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="209"/>
-        <source>MOSFET source-dest resistance when ON state</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="210"/>
-        <source>MOSFET source-dest voltage when OFF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="211"/>
-        <source>MOSFET gate-source voltage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="213"/>
-        <source>Transistor collector current</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="214"/>
-        <source>Transistor maximum Voltage which it can withstand on its collector measured relative to its base with the emitter open circuit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="215"/>
-        <source>Transistor maximum voltage which it can withstand on its collector measured relative to its emitter with the base open circuit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="216"/>
-        <source>Transistor current-gain koef</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="218"/>
-        <source>Description for 3d model programm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="265"/>
-        <location filename="windows/SdDParamEditor.cpp" line="372"/>
-        <source>Param name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="265"/>
-        <source>Enter param name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="268"/>
-        <location filename="windows/SdDParamEditor.cpp" line="300"/>
-        <source>Warning!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="268"/>
-        <source>Param with this name already exist. Enter another name.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="300"/>
-        <source>Select param to delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="309"/>
-        <source>Select component to copy param from</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDParamEditor.cpp" line="372"/>
-        <source>Param value</source>
+        <location filename="windows/SdDParamEditor.cpp" line="165"/>
+        <source>STM32CubeIde MX Files (*%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4405,36 +4636,41 @@
         <source>Color print</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="windows/SdDPrint.ui" line="259"/>
+        <source>Mirror horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SdDProjectStore</name>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="31"/>
+        <location filename="windows/SdDProjectStore.cpp" line="33"/>
         <source>Enter library name for project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="59"/>
+        <location filename="windows/SdDProjectStore.cpp" line="61"/>
         <source>&lt;font color=&quot;blue&quot;&gt;Name is empty. You must enter correct name at least one symbol.&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="62"/>
+        <location filename="windows/SdDProjectStore.cpp" line="64"/>
         <source>&lt;font color=&quot;red&quot;&gt;This name already exist and will be overwritted! If You dont want to then enter another name.&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="65"/>
+        <location filename="windows/SdDProjectStore.cpp" line="67"/>
         <source>Name is correct and free.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="78"/>
+        <location filename="windows/SdDProjectStore.cpp" line="80"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="78"/>
+        <location filename="windows/SdDProjectStore.cpp" line="80"/>
         <source>Library name of project is empty. Enter name to store project or press cancel.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4448,18 +4684,12 @@
     </message>
     <message>
         <location filename="windows/SdDRegistation.ui" line="20"/>
-        <source>This is first start of SaliCAD. Programm yet not registered. You need to register. Registration allow global element database access and nothing more.</source>
+        <source>You can work freely without any restrictions and without registration. Registration only allows you to publish components you’ve created for use by the community. Within a group, all members can use each other’s components even without registration.</source>
+        <oldsource>This is first start of SaliCAD. Programm yet not registered. You need to register. Registration allow global element database access and nothing more.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.ui" line="32"/>
-        <source>SaliCAD server:</source>
-        <oldsource>SaliCAD server IP:</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDRegistation.ui" line="42"/>
-        <location filename="windows/SdDRegistation.cpp" line="163"/>
+        <location filename="windows/SdDRegistation.cpp" line="189"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4469,18 +4699,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="windows/SdDRegistation.ui" line="32"/>
+        <source>Private key:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.ui" line="42"/>
+        <source>Public name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="windows/SdDRegistation.ui" line="62"/>
-        <source>Password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDRegistation.ui" line="86"/>
-        <source>Automatic upload:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDRegistation.ui" line="125"/>
-        <source>Generate password</source>
+        <source>SalixEDA server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4489,73 +4719,117 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.ui" line="111"/>
+        <location filename="windows/SdDRegistation.ui" line="97"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.ui" line="118"/>
+        <location filename="windows/SdDRegistation.ui" line="104"/>
+        <source>Get status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.ui" line="111"/>
         <source>Registration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.ui" line="132"/>
+        <location filename="windows/SdDRegistation.ui" line="118"/>
+        <source>Generate private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.ui" line="125"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="windows/SdDRegistation.cpp" line="88"/>
         <location filename="windows/SdDRegistation.cpp" line="92"/>
         <location filename="windows/SdDRegistation.cpp" line="96"/>
-        <location filename="windows/SdDRegistation.cpp" line="100"/>
-        <location filename="windows/SdDRegistation.cpp" line="105"/>
-        <location filename="windows/SdDRegistation.cpp" line="176"/>
-        <location filename="windows/SdDRegistation.cpp" line="183"/>
+        <location filename="windows/SdDRegistation.cpp" line="101"/>
+        <location filename="windows/SdDRegistation.cpp" line="138"/>
+        <location filename="windows/SdDRegistation.cpp" line="143"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="96"/>
-        <source>Enter user name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDRegistation.cpp" line="100"/>
-        <source>Enter your email needed to resore key at later</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDRegistation.cpp" line="73"/>
-        <source>Not registered!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdDRegistation.cpp" line="92"/>
+        <location filename="windows/SdDRegistation.cpp" line="88"/>
+        <location filename="windows/SdDRegistation.cpp" line="138"/>
         <source>Enter repository server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="105"/>
-        <source>Enter password for your name</source>
+        <location filename="windows/SdDRegistation.cpp" line="92"/>
+        <source>Enter public author name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="159"/>
+        <location filename="windows/SdDRegistation.cpp" line="96"/>
+        <source>Enter your email needed to restore key at later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="101"/>
+        <location filename="windows/SdDRegistation.cpp" line="143"/>
+        <source>Enter private key for your account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="108"/>
+        <location filename="windows/SdDRegistation.cpp" line="150"/>
+        <source>Query server...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="185"/>
         <source>Name (empty):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="161"/>
+        <location filename="windows/SdDRegistation.cpp" line="187"/>
         <source>Name (unavailable):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="176"/>
-        <source>You not registered. You will not be able to save your components in a global repository and share them with society, but you will be able to use components created by others. This dialog allowed in later with Help menu.</source>
+        <location filename="windows/SdDRegistation.cpp" line="235"/>
+        <source>Author public key and author private key not equals recorded in db.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="183"/>
-        <source>This dialog allowed in later with Help menu.</source>
+        <location filename="windows/SdDRegistation.cpp" line="237"/>
+        <source>Assigned name always used by other author.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="239"/>
+        <source>Registration successfull.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="241"/>
+        <source>Registration fail. Try later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="244"/>
+        <location filename="windows/SdDRegistation.cpp" line="276"/>
+        <source>Error occured. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="266"/>
+        <source>Registered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="271"/>
+        <source>Not registered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDRegistation.cpp" line="273"/>
+        <source>Registration status fail. Try later.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4636,7 +4910,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDRuleEditor.cpp" line="199"/>
+        <location filename="windows/SdDRuleEditor.cpp" line="201"/>
         <source>Rule setup</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4646,6 +4920,59 @@
     <message>
         <location filename="windows/SdDStringFromList.ui" line="14"/>
         <source>Sring list</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdDSymbolPartParam</name>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="61"/>
+        <source>Part name (empty for none):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="63"/>
+        <source>Select part...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="80"/>
+        <source>Param table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="86"/>
+        <source>Add param</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="87"/>
+        <source>Add defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="88"/>
+        <source>Copy param</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="89"/>
+        <source>Delete param</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="90"/>
+        <source>Select value...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="111"/>
+        <source>Select part for component</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="135"/>
+        <source>Param and/or part are changed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4668,7 +4995,7 @@
     </message>
     <message>
         <location filename="windows/SdDVariantTable.ui" line="74"/>
-        <location filename="windows/SdDVariantTable.cpp" line="72"/>
+        <location filename="windows/SdDVariantTable.cpp" line="74"/>
         <source>Append field</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4679,7 +5006,7 @@
     </message>
     <message>
         <location filename="windows/SdDVariantTable.ui" line="88"/>
-        <location filename="windows/SdDVariantTable.cpp" line="104"/>
+        <location filename="windows/SdDVariantTable.cpp" line="106"/>
         <source>Rename field</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4699,61 +5026,61 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="72"/>
+        <location filename="windows/SdDVariantTable.cpp" line="74"/>
         <source>Enter field name for append</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="86"/>
-        <location filename="windows/SdDVariantTable.cpp" line="91"/>
-        <location filename="windows/SdDVariantTable.cpp" line="109"/>
-        <location filename="windows/SdDVariantTable.cpp" line="164"/>
-        <location filename="windows/SdDVariantTable.cpp" line="184"/>
+        <location filename="windows/SdDVariantTable.cpp" line="88"/>
+        <location filename="windows/SdDVariantTable.cpp" line="93"/>
+        <location filename="windows/SdDVariantTable.cpp" line="111"/>
+        <location filename="windows/SdDVariantTable.cpp" line="166"/>
+        <location filename="windows/SdDVariantTable.cpp" line="186"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="86"/>
+        <location filename="windows/SdDVariantTable.cpp" line="88"/>
         <source>Are You sure to delete field &apos;%1&apos;? This operation is not undoable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="91"/>
+        <location filename="windows/SdDVariantTable.cpp" line="93"/>
         <source>No selected field for deletion. Select partial field and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="104"/>
+        <location filename="windows/SdDVariantTable.cpp" line="106"/>
         <source>Enter new field name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="109"/>
+        <location filename="windows/SdDVariantTable.cpp" line="111"/>
         <source>No selected field for renaming. Select partial field and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="164"/>
+        <location filename="windows/SdDVariantTable.cpp" line="166"/>
         <source>Are You sure to delete ALL rows? This is non undoing operation. Are You sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="184"/>
+        <location filename="windows/SdDVariantTable.cpp" line="186"/>
         <source>You attempting delete field &apos;%1&apos; from variant table. All field column contents will be loss. This is non undoing operation. Are You sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="223"/>
+        <location filename="windows/SdDVariantTable.cpp" line="225"/>
         <source>Has variant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="223"/>
+        <location filename="windows/SdDVariantTable.cpp" line="225"/>
         <source>Param name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="223"/>
+        <location filename="windows/SdDVariantTable.cpp" line="225"/>
         <source>Param value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4761,452 +5088,574 @@
 <context>
     <name>SdGuiderCapture</name>
     <message>
-        <location filename="guider/SdGuiderCapture.cpp" line="67"/>
-        <source>File for captured movie save</source>
+        <location filename="guider/SdGuiderCapture.cpp" line="401"/>
+        <source>Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderCapture.cpp" line="401"/>
+        <source>Play completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdGuiderDialog</name>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="94"/>
+        <source>Script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="114"/>
+        <source>Build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="115"/>
+        <source>Builds full movie from all scenas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="120"/>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="121"/>
+        <source>Start play current scena</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="131"/>
+        <source>Capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="132"/>
+        <source>Start capture current scena</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="145"/>
+        <source>The script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="321"/>
+        <source>[%1 sec] %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="323"/>
+        <source>[%1 sec]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="386"/>
+        <source>All steps completed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdLayer</name>
     <message>
-        <location filename="objects/SdLayer.cpp" line="81"/>
+        <location filename="objects/SdLayer.cpp" line="281"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="82"/>
+        <location filename="objects/SdLayer.cpp" line="282"/>
         <source>Invisible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="85"/>
+        <location filename="objects/SdLayer.cpp" line="283"/>
+        <source>Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="288"/>
         <source>Schematic net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="86"/>
+        <location filename="objects/SdLayer.cpp" line="289"/>
         <source>Schematic net name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="87"/>
+        <location filename="objects/SdLayer.cpp" line="290"/>
         <source>Schematic net bus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="88"/>
-        <source>Schematic pcb area contour</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdLayer.cpp" line="91"/>
+        <location filename="objects/SdLayer.cpp" line="304"/>
         <source>PCB contour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="92"/>
+        <location filename="objects/SdLayer.cpp" line="310"/>
         <source>PCB wire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="93"/>
+        <location filename="objects/SdLayer.cpp" line="311"/>
         <source>PCB polygon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="94"/>
+        <location filename="objects/SdLayer.cpp" line="312"/>
         <source>PCB pad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="95"/>
+        <location filename="objects/SdLayer.cpp" line="305"/>
         <source>PCB hole</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="96"/>
+        <location filename="objects/SdLayer.cpp" line="291"/>
+        <source>Schematic PCB area contour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="292"/>
+        <source>Drawing form and frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="293"/>
+        <source>Navigation grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="307"/>
         <source>PCB trace clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="97"/>
+        <location filename="objects/SdLayer.cpp" line="313"/>
         <source>PCB solder mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="98"/>
+        <location filename="objects/SdLayer.cpp" line="314"/>
         <source>PCB stencil aperture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="99"/>
-        <source>PCB stencil reper</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdLayer.cpp" line="100"/>
+        <location filename="objects/SdLayer.cpp" line="306"/>
         <source>PCB trace exclusion area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="101"/>
-        <source>PCB trace area</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdLayer.cpp" line="102"/>
-        <source>PCB trace default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdLayer.cpp" line="105"/>
+        <location filename="objects/SdLayer.cpp" line="296"/>
         <source>Component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="106"/>
+        <location filename="objects/SdLayer.cpp" line="297"/>
         <source>Pin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="107"/>
+        <location filename="objects/SdLayer.cpp" line="298"/>
         <source>Pin name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="108"/>
+        <location filename="objects/SdLayer.cpp" line="299"/>
         <source>Pin number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="109"/>
+        <location filename="objects/SdLayer.cpp" line="300"/>
         <source>Component ident</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="110"/>
+        <location filename="objects/SdLayer.cpp" line="284"/>
         <source>Picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="111"/>
+        <location filename="objects/SdLayer.cpp" line="285"/>
         <source>Remark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="112"/>
+        <location filename="objects/SdLayer.cpp" line="301"/>
         <source>Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="113"/>
-        <source>Contour</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdLayer.cpp" line="120"/>
+        <location filename="objects/SdLayer.cpp" line="327"/>
         <source>---</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="121"/>
+        <location filename="objects/SdLayer.cpp" line="328"/>
         <source>on top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="122"/>
+        <location filename="objects/SdLayer.cpp" line="329"/>
         <source>on bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="123"/>
-        <source>on internal 1</source>
+        <location filename="objects/SdLayer.cpp" line="315"/>
+        <source>PCB stencil fiducial</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="124"/>
+        <location filename="objects/SdLayer.cpp" line="316"/>
+        <source>PCB silkscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="317"/>
+        <source>PCB adhesive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="318"/>
+        <source>PCB dimension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="319"/>
+        <source>PCB construction guide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="320"/>
+        <source>PCB component courtyard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="330"/>
         <source>on internal 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="125"/>
+        <location filename="objects/SdLayer.cpp" line="331"/>
         <source>on internal 3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="126"/>
+        <location filename="objects/SdLayer.cpp" line="332"/>
         <source>on internal 4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="127"/>
+        <location filename="objects/SdLayer.cpp" line="333"/>
         <source>on internal 5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="128"/>
+        <location filename="objects/SdLayer.cpp" line="334"/>
         <source>on internal 6</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="129"/>
+        <location filename="objects/SdLayer.cpp" line="335"/>
         <source>on internal 7</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="130"/>
+        <location filename="objects/SdLayer.cpp" line="336"/>
         <source>on internal 8</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="131"/>
+        <location filename="objects/SdLayer.cpp" line="337"/>
         <source>on internal 9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="132"/>
+        <location filename="objects/SdLayer.cpp" line="338"/>
         <source>on internal 10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="133"/>
+        <location filename="objects/SdLayer.cpp" line="339"/>
         <source>on internal 11</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="134"/>
+        <location filename="objects/SdLayer.cpp" line="340"/>
         <source>on internal 12</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="135"/>
+        <location filename="objects/SdLayer.cpp" line="341"/>
         <source>on internal 13</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="136"/>
+        <location filename="objects/SdLayer.cpp" line="342"/>
         <source>on internal 14</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="137"/>
+        <location filename="objects/SdLayer.cpp" line="343"/>
         <source>on internal 15</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="138"/>
+        <location filename="objects/SdLayer.cpp" line="344"/>
         <source>on internal 16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="139"/>
+        <location filename="objects/SdLayer.cpp" line="345"/>
         <source>on internal 17</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="140"/>
+        <location filename="objects/SdLayer.cpp" line="346"/>
         <source>on internal 18</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="141"/>
+        <location filename="objects/SdLayer.cpp" line="347"/>
         <source>on internal 19</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="142"/>
+        <location filename="objects/SdLayer.cpp" line="348"/>
         <source>on internal 20</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="143"/>
+        <location filename="objects/SdLayer.cpp" line="349"/>
         <source>on internal 21</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="144"/>
+        <location filename="objects/SdLayer.cpp" line="350"/>
         <source>on internal 22</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="145"/>
+        <location filename="objects/SdLayer.cpp" line="351"/>
         <source>on internal 23</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="146"/>
+        <location filename="objects/SdLayer.cpp" line="352"/>
         <source>on internal 24</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="147"/>
+        <location filename="objects/SdLayer.cpp" line="353"/>
         <source>on internal 25</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="148"/>
+        <location filename="objects/SdLayer.cpp" line="354"/>
         <source>on internal 26</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="149"/>
+        <location filename="objects/SdLayer.cpp" line="355"/>
         <source>on internal 27</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="150"/>
+        <location filename="objects/SdLayer.cpp" line="356"/>
         <source>on internal 28</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="357"/>
+        <source>on prev bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="359"/>
+        <source>on custom 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="360"/>
+        <source>on custom 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="361"/>
+        <source>on custom 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="362"/>
+        <source>on custom 4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="363"/>
+        <source>on custom 5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="364"/>
+        <source>on custom 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="365"/>
+        <source>on custom 7</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="366"/>
+        <source>on custom 8</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="367"/>
+        <source>on custom 9</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdLibraryIndicator</name>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="36"/>
+        <source>Prepare remote global storage server connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="42"/>
+        <source>Prepare remote private cloud server connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="48"/>
+        <source>Prepare local library scan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="66"/>
+        <source>&lt;b&gt;🌐 Global storage&lt;/b&gt;&lt;br&gt;Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="71"/>
+        <source>&lt;b&gt;🌐 Global storage&lt;/b&gt;&lt;br&gt;Transfer in: %1&lt;br&gt;Transfer out: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="91"/>
+        <source>&lt;b&gt;☁️ Private cloud&lt;/b&gt;&lt;br&gt;Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="96"/>
+        <source>&lt;b&gt;☁️ Private cloud&lt;/b&gt;&lt;br&gt;Transfer in: %1&lt;br&gt;Transfer out: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="116"/>
+        <source>&lt;b&gt;📚 Local library&lt;/b&gt;&lt;br&gt;Error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryIndicator.cpp" line="121"/>
+        <source>&lt;b&gt;📚 Local library&lt;/b&gt;&lt;br&gt;Objects in library: %1&lt;br&gt;Appended: %2, Removed: %3&lt;br&gt;Updated: %4</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdLibraryStorage</name>
     <message>
-        <location filename="library/SdLibraryStorage.cpp" line="443"/>
-        <source>Older object removed %1</source>
+        <location filename="library/SdLibraryStorage.cpp" line="462"/>
+        <source>Anonim</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="library/SdLibraryStorage.cpp" line="467"/>
-        <source>Remove external deleted objects %1</source>
+        <location filename="library/SdLibraryStorage.cpp" line="482"/>
+        <source>Anonim [○□]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="library/SdLibraryStorage.cpp" line="528"/>
+        <location filename="library/SdLibraryStorage.cpp" line="686"/>
+        <source>Fail scan local library directory&lt;br&gt;Check library path in settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="library/SdLibraryStorage.cpp" line="775"/>
         <source>Older object replaced %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="library/SdLibraryStorage.cpp" line="532"/>
+        <location filename="library/SdLibraryStorage.cpp" line="779"/>
         <source>Object appended %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SdObjectNetClient</name>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="126"/>
-        <source>Register start...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="221"/>
-        <location filename="objects/SdObjectNetClient.cpp" line="228"/>
-        <source>Error when transfer: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="278"/>
-        <source>Registration successfully</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="281"/>
-        <source>Internal data. Check repo address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="284"/>
-        <source>Failure data base connection. Try later</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="287"/>
-        <source>Can&apos;t insert this name into data base. Try another name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="290"/>
-        <source>This name already present in data base with different password. Try another name or restore password.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="293"/>
-        <source>Unresponsible code %1. Check repo address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="298"/>
-        <source>Unresponsible reply. Check repo address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="338"/>
-        <source>Sync list received %1 objects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="388"/>
-        <source>Downloaded &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="objects/SdObjectNetClient.cpp" line="518"/>
-        <source>Upload &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdPExportPlate_Assembler</name>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="42"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="44"/>
         <source>SMT assemble</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="42"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="44"/>
         <source>Creates smt assemblion automat files for plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="46"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="48"/>
         <source>Options for SMT assemble file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="48"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="50"/>
         <source>Use referenced positions by plate origin, else global</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="50"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="52"/>
         <source>Export components, else no components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="52"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="54"/>
         <source>Perform for bottom side</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="54"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="56"/>
         <source>Perform dispence code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="56"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="58"/>
         <source>Columt table delimiter for file result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="67"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="70"/>
         <source>Select file name for save assemble file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="73"/>
-        <source>;SaliCAD V%1.%2 smt assemble export file
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="78"/>
+        <source>;SalixEDA V%1.%2 smt assemble export file
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="85"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="90"/>
         <source>;Components list:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="112"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="119"/>
         <source>
 
 
@@ -5218,144 +5667,149 @@
 <context>
     <name>SdPExportPlate_Gerber</name>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="351"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="375"/>
         <source>Gerber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="351"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="375"/>
         <source>Creates gerber files for plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="358"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="379"/>
+        <source>Enable pcb grid (panel)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="427"/>
         <source>Signle file creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="360"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="429"/>
         <source>Gerber file name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="365"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="400"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="434"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="469"/>
         <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="372"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="441"/>
         <source>Layers for gerber:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="373"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="442"/>
         <source>Layers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="380"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="449"/>
         <source>Generate single gerber:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="381"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="412"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="431"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="450"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="481"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="533"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="393"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="462"/>
         <source>Multiple file creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="395"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="464"/>
         <source>Gerber files path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="411"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="480"/>
         <source>Generate gerber group:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="431"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="533"/>
         <source>File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="431"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="533"/>
         <source>Layer list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="449"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="556"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="545"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="658"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="470"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="566"/>
         <source>Enter or select gerber file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="483"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="514"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="579"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="611"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="483"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="579"/>
         <source>File name field is empty. Enter file name gerber generate to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="514"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="611"/>
         <source>Group path field is empty. Enter path to witch files will be generate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="521"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="555"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="558"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="620"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="657"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="660"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="541"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="643"/>
         <source>Open Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="644"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="765"/>
         <source>Info!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="644"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="765"/>
         <source>Gerber file &apos;%1&apos; successfully created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="647"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="768"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="647"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="768"/>
         <source>Can&apos;t create Gerber file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="658"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="798"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="658"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="798"/>
         <source>Press generate button to generate one or more gerber files or press Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5363,13 +5817,13 @@
 <context>
     <name>SdPExport_Bom</name>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="198"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="205"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="200"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="207"/>
         <source>Reports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="198"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="200"/>
         <source>Creates report files:
 - BOM
 - specification
@@ -5379,90 +5833,90 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="208"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="210"/>
         <source>If checked info collected only from current item, otherwise - from all project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="216"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="218"/>
         <source>BOM or specification generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="218"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="220"/>
         <source>Generate BOM or specification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="219"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="221"/>
         <source>Bom/specification patterns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="221"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="246"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="223"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="248"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="239"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="241"/>
         <source>Component registry generation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="241"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="243"/>
         <source>Generate component registry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="243"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="245"/>
         <source>Group consistently the same components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="244"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="246"/>
         <source>Registry patterns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="368"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="542"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="370"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="544"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="368"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="542"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="370"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="544"/>
         <source>Can&apos;t read pattern file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="455"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="629"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="457"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="631"/>
         <source>Enter file name to save report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="461"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="635"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="463"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="637"/>
         <source>Info!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="461"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="635"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="463"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="637"/>
         <source>Report successfully created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="466"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="640"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="468"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="642"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="466"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="640"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="468"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="642"/>
         <source>You not selected pattern to generation. Select pattern in list and repeate.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5470,47 +5924,47 @@
 <context>
     <name>SdPExport_Dxf</name>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="422"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="438"/>
         <source>DXF file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="422"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="438"/>
         <source>Creates DXF file from current object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="428"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="444"/>
         <source>Layers for DXF:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="429"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="445"/>
         <source>Layers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="446"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="462"/>
         <source>Enter or select DXF file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="452"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="468"/>
         <source>Info!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="452"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="468"/>
         <source>DXF file &apos;%1&apos; successfully created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="455"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="471"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="455"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="471"/>
         <source>Can&apos;t create DXF file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5518,12 +5972,12 @@
 <context>
     <name>SdPMasterList</name>
     <message>
-        <location filename="windows/SdPMasterList.cpp" line="34"/>
+        <location filename="windows/SdPMasterList.cpp" line="36"/>
         <source>Select master type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPMasterList.cpp" line="44"/>
+        <location filename="windows/SdPMasterList.cpp" line="46"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5531,27 +5985,27 @@
 <context>
     <name>SdPNewProjectItem_3dMaster</name>
     <message>
-        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="45"/>
+        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="47"/>
         <source>Creation new project object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="46"/>
+        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="48"/>
         <source>Select master to object creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="50"/>
+        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="52"/>
         <source>Select master type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="57"/>
+        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="59"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="62"/>
+        <location filename="windows/SdPNewProjectItem_3dMaster.cpp" line="64"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5559,97 +6013,92 @@
 <context>
     <name>SdPNewProjectItem_Copy</name>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="45"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="47"/>
         <source>Creation new project object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="46"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="48"/>
         <source>Select object to copy new object from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="49"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="51"/>
         <source>Name of object for copy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="56"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="58"/>
         <source>Select from current project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="60"/>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="73"/>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="157"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="62"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="75"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="159"/>
         <source>Select object for copy from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="69"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="71"/>
         <source>Select from library</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="82"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="84"/>
         <source>Select from file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="152"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="154"/>
         <source>File for loading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="152"/>
-        <source>SaliCAD 3D Files (*%1)</source>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="154"/>
+        <source>SalixEDA 3D Files (*%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdPNewProjectItem_EnterName</name>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="28"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="29"/>
         <source>Enter name for object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="29"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="30"/>
         <source>Enter unical name inside project for object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="35"/>
-        <source>Element category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="63"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="50"/>
         <source>&lt;font color=&quot;blue&quot;&gt;Name is empty. You must enter correct name at least one symbol.&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="67"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="54"/>
         <source>&lt;font color=&quot;red&quot;&gt;This name already exist. Enter another name or this override existing.&lt;/font&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="71"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="58"/>
         <source>Name is correct and free.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="82"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="69"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="82"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="69"/>
         <source>Object with this name and author already exist in base. Overwrite existing object?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="86"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="73"/>
         <source>Set object title</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5657,118 +6106,118 @@
 <context>
     <name>SdPNewProjectItem_Master</name>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="47"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="50"/>
         <source>Creation new project object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="48"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="51"/>
         <source>Select master to object creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="52"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="55"/>
         <source>Select master type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="62"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="65"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="108"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="111"/>
         <source>Sheet decorator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="108"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="111"/>
         <source>Creates empty schematic sheet with inserted sheet form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="138"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="141"/>
         <source>Connectors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="138"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="141"/>
         <source>Creates symbol for connector</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="144"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="147"/>
         <source>Integrated circuits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="144"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="147"/>
         <source>Creates symbol for integrated circuit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="157"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="160"/>
         <source>Two pins rectangle part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="157"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="160"/>
         <source>Creates part with exact two pins and rectangle body (resistor, capacitor and so on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="163"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="166"/>
         <source>Two pins round part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="163"/>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="169"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="166"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="172"/>
         <source>Creates part with exact two pins and round body</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="169"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="172"/>
         <source>Two through pins round part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="175"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="178"/>
         <source>Single row pins part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="175"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="178"/>
         <source>Creates part with rectangle body and single row of pins at middle of part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="181"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="184"/>
         <source>Two sided pins part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="181"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="184"/>
         <source>Creates part with rectangle body and two pins rows by top and bottom sides</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="187"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="190"/>
         <source>Two sided pins part left-right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="187"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="190"/>
         <source>Creates part with rectangle body and two pins columns by left and right sides</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="193"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="196"/>
         <source>Four sided pins part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="193"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="196"/>
         <source>Creates part with rectangle body and pins on all four sides</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5776,264 +6225,264 @@
 <context>
     <name>SdPNewProjectItem_SelectType</name>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="37"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="39"/>
         <source>Creation new project object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="38"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="40"/>
         <source>Select object type then object creation order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="42"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="44"/>
         <source>1.Select object type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="48"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="50"/>
         <source>2.Select creation order</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="53"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="55"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="60"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="62"/>
         <source>Sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="61"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="63"/>
         <source>Construction (PCB)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="62"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="64"/>
         <source>Symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="63"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="65"/>
         <source>Part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="64"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="66"/>
         <source>Component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="65"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="67"/>
         <source>Text doc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="85"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="87"/>
         <source>Sheet%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="89"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="91"/>
         <source>PCB%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="93"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="95"/>
         <source>Symbol%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="97"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="99"/>
         <source>Part%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="101"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="103"/>
         <source>Component%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="105"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="107"/>
         <source>Text doc%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="112"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="114"/>
         <source>Set object title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="153"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="155"/>
         <source>Empty sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="154"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="156"/>
         <source>Creates empty schematic sheet with no any component or graphics.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="155"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="157"/>
         <source>Sheet master</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="156"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="158"/>
         <source>Start master which guide you to create schematic sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="166"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="168"/>
         <source>Empty construction</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="167"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="169"/>
         <source>Creates empty construction or pcb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="172"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="174"/>
         <source>Empty symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="173"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="175"/>
         <source>Creates empty schematic component section symbol with no any pins or graphics.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="174"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="176"/>
         <source>Copy existing symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="175"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="177"/>
         <source>Creates copy of existing schematic component section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="176"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="178"/>
         <source>Symbol master</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="177"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="179"/>
         <source>Start master which guide you to create symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="182"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="184"/>
         <source>Empty part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="183"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="185"/>
         <source>Creates empty component part with no any pins or graphics.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="184"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="186"/>
         <source>Copy existing part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="185"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="187"/>
         <source>Creates copy of existing component part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="186"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="188"/>
         <source>Part master</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="187"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="189"/>
         <source>Start master which guide you to create part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="188"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="190"/>
         <source>3D part master</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="189"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="191"/>
         <source>Start master which guide you to create part and its 3d model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="194"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="196"/>
         <source>Empty component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="195"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="197"/>
         <source>Creates empty component as pair schematic and part with no any schematic or part.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="196"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="198"/>
         <source>Copy existing component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="197"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="199"/>
         <source>Creates copy of existing component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="202"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="204"/>
         <source>Empty text</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SdPropBar</name>
-    <message>
-        <location filename="windows/SdPropBar.cpp" line="32"/>
-        <source>Current layer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdPropBarDefault</name>
     <message>
-        <location filename="windows/SdPropBarDefault.cpp" line="21"/>
+        <location filename="windows/SdPropBarDefault.cpp" line="23"/>
         <source>Do not tought components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarDefault.cpp" line="28"/>
+        <location filename="windows/SdPropBarDefault.cpp" line="30"/>
         <source>Do not tought nets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarDefault.cpp" line="35"/>
+        <location filename="windows/SdPropBarDefault.cpp" line="37"/>
         <source>Do not tought picture elements</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdPropBarLay</name>
+    <message>
+        <location filename="windows/SdPropBarLay.cpp" line="36"/>
+        <source>Current layer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdPropBarLinear</name>
     <message>
-        <location filename="windows/SdPropBarLinear.cpp" line="61"/>
+        <location filename="windows/SdPropBarLinear.cpp" line="63"/>
         <source>lines connects orthogonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarLinear.cpp" line="69"/>
+        <location filename="windows/SdPropBarLinear.cpp" line="71"/>
         <source>lines connects at 45 degree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarLinear.cpp" line="77"/>
-        <location filename="windows/SdPropBarLinear.cpp" line="89"/>
-        <location filename="windows/SdPropBarLinear.cpp" line="97"/>
-        <location filename="windows/SdPropBarLinear.cpp" line="105"/>
+        <location filename="windows/SdPropBarLinear.cpp" line="79"/>
+        <location filename="windows/SdPropBarLinear.cpp" line="91"/>
+        <location filename="windows/SdPropBarLinear.cpp" line="99"/>
+        <location filename="windows/SdPropBarLinear.cpp" line="107"/>
         <source>lines connects at any degree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6041,22 +6490,22 @@
 <context>
     <name>SdPropBarPartImp</name>
     <message>
-        <location filename="windows/SdPropBarPartImp.cpp" line="31"/>
+        <location filename="windows/SdPropBarPartImp.cpp" line="33"/>
         <source>Direction:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartImp.cpp" line="72"/>
+        <location filename="windows/SdPropBarPartImp.cpp" line="74"/>
         <source>Align cursor to grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartImp.cpp" line="78"/>
+        <location filename="windows/SdPropBarPartImp.cpp" line="80"/>
         <source>Part at top side</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartImp.cpp" line="88"/>
+        <location filename="windows/SdPropBarPartImp.cpp" line="90"/>
         <source>Part at bottom side</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6064,22 +6513,22 @@
 <context>
     <name>SdPropBarPartPin</name>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="33"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
         <source>---</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="33"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
         <source>Top smd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="33"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
         <source>Bottom smd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="33"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
         <source>Through</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6087,32 +6536,32 @@
 <context>
     <name>SdPropBarPartPlace</name>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="23"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="25"/>
         <source>Take component from both side top and bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="35"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="37"/>
         <source>Smart mode on middle button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="45"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="47"/>
         <source>Selection consistently components on middle button</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="55"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="57"/>
         <source>Selection from schematic sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="60"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="62"/>
         <source>Sheets:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="72"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="74"/>
         <source>Component:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6120,17 +6569,17 @@
 <context>
     <name>SdPropBarPolygon</name>
     <message>
-        <location filename="windows/SdPropBarPolygon.cpp" line="68"/>
+        <location filename="windows/SdPropBarPolygon.cpp" line="70"/>
         <source>lines connects orthogonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPolygon.cpp" line="76"/>
+        <location filename="windows/SdPropBarPolygon.cpp" line="78"/>
         <source>lines connects at 45 degree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPolygon.cpp" line="84"/>
+        <location filename="windows/SdPropBarPolygon.cpp" line="86"/>
         <source>lines connects at any degree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6138,62 +6587,62 @@
 <context>
     <name>SdPropBarRoad</name>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="35"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="37"/>
         <source>Road width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="36"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="38"/>
         <source>Activate road width editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="40"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="42"/>
         <source>Current road width editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="75"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="77"/>
         <source>Current road net name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="84"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="86"/>
         <source>Align cursor to grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="91"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="93"/>
         <source>On-off automatic road loop detection and removing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="100"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="102"/>
         <source>lines connects orthogonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="108"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="110"/>
         <source>lines connects at 45 degree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="116"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="118"/>
         <source>lines connects at any degree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="130"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="132"/>
         <source>Via through or blind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="142"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="144"/>
         <source>Via pad type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="162"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="164"/>
         <source>Edit via pad type</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6201,27 +6650,27 @@
 <context>
     <name>SdPropBarSymImp</name>
     <message>
-        <location filename="windows/SdPropBarSymImp.cpp" line="27"/>
+        <location filename="windows/SdPropBarSymImp.cpp" line="29"/>
         <source>Symbol angle 0 grad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymImp.cpp" line="35"/>
+        <location filename="windows/SdPropBarSymImp.cpp" line="37"/>
         <source>Symbol angle 90 grad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymImp.cpp" line="43"/>
+        <location filename="windows/SdPropBarSymImp.cpp" line="45"/>
         <source>Symbol angle 180 grad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymImp.cpp" line="51"/>
+        <location filename="windows/SdPropBarSymImp.cpp" line="53"/>
         <source>Symbol angle 270 grad</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymImp.cpp" line="61"/>
+        <location filename="windows/SdPropBarSymImp.cpp" line="63"/>
         <source>Symbol mirroring</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6229,42 +6678,42 @@
 <context>
     <name>SdPropBarSymPin</name>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="23"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="25"/>
         <source>undefined</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="24"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="26"/>
         <source>input</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="25"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="27"/>
         <source>output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="26"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="28"/>
         <source>in-out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="27"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="29"/>
         <source>analog in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="28"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="30"/>
         <source>analog out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="29"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="31"/>
         <source>analog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="30"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="32"/>
         <source>power</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6272,54 +6721,54 @@
 <context>
     <name>SdPropBarTextual</name>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="73"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="74"/>
         <source>Text aligned to top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="81"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="82"/>
         <source>Text aligned to vertical middle</source>
         <oldsource>Text aligned to middle</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="89"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="90"/>
         <source>Text aligned to bottom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="101"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="102"/>
         <source>Text aligned to left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="109"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="110"/>
         <source>Text aligned to horizontal center</source>
         <oldsource>Text aligned to center</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="117"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="118"/>
         <source>Text aligned to right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="128"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="129"/>
         <source>Text direction left to right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="136"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="137"/>
         <source>Text direction bottom to top</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="144"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="145"/>
         <source>Text direction right to left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="152"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="153"/>
         <source>Text direction top to bottom</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6327,260 +6776,119 @@
 <context>
     <name>SdPropBarWire</name>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="31"/>
+        <location filename="windows/SdPropBarWire.cpp" line="33"/>
         <source>Wire line width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="32"/>
+        <location filename="windows/SdPropBarWire.cpp" line="34"/>
         <source>Activate width editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="35"/>
+        <location filename="windows/SdPropBarWire.cpp" line="37"/>
         <source>Wire line width editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="67"/>
+        <location filename="windows/SdPropBarWire.cpp" line="69"/>
         <source>Wire name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="68"/>
+        <location filename="windows/SdPropBarWire.cpp" line="70"/>
         <source>Activate wire name editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="72"/>
+        <location filename="windows/SdPropBarWire.cpp" line="74"/>
         <source>Wire name editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="103"/>
+        <location filename="windows/SdPropBarWire.cpp" line="105"/>
         <source>lines connects orthogonal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="111"/>
+        <location filename="windows/SdPropBarWire.cpp" line="113"/>
         <source>lines connects at 45 degree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="119"/>
-        <location filename="windows/SdPropBarWire.cpp" line="131"/>
-        <location filename="windows/SdPropBarWire.cpp" line="139"/>
-        <location filename="windows/SdPropBarWire.cpp" line="147"/>
+        <location filename="windows/SdPropBarWire.cpp" line="121"/>
+        <location filename="windows/SdPropBarWire.cpp" line="133"/>
+        <location filename="windows/SdPropBarWire.cpp" line="141"/>
+        <location filename="windows/SdPropBarWire.cpp" line="149"/>
         <source>lines connects at any degree</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SdWCategoryList</name>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="75"/>
-        <location filename="windows/SdWCategoryList.cpp" line="152"/>
-        <location filename="windows/SdWCategoryList.cpp" line="219"/>
-        <source>Warning!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="75"/>
-        <source>Category tree changed. Do you want to save it?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="90"/>
-        <source>Append category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="90"/>
-        <source>Enter category title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="130"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="130"/>
-        <source>Are You sure to delete &apos;%1&apos; category and all its subcategories</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="128"/>
-        <location filename="windows/SdWCategoryList.cpp" line="142"/>
-        <location filename="windows/SdWCategoryList.cpp" line="169"/>
-        <location filename="windows/SdWCategoryList.cpp" line="181"/>
-        <location filename="windows/SdWCategoryList.cpp" line="194"/>
-        <location filename="windows/SdWCategoryList.cpp" line="206"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="128"/>
-        <source>This item can&apos;t be deleted. Select another.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="142"/>
-        <source>No selected item to delete. Select and reply.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="152"/>
-        <source>Are You sure to delete ALL categories? This operation can not be undo!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="172"/>
-        <source>Category title edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="172"/>
-        <source>Enter new category title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="169"/>
-        <location filename="windows/SdWCategoryList.cpp" line="194"/>
-        <source>This item can&apos;t be edited. Select another.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="181"/>
-        <location filename="windows/SdWCategoryList.cpp" line="206"/>
-        <source>No selected item to edit. Select and reply.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="197"/>
-        <source>Category key edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="197"/>
-        <source>Enter new category key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="219"/>
-        <source>Current category list not saved. If You continue then all changed will be lost. Continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="222"/>
-        <location filename="windows/SdWCategoryList.cpp" line="246"/>
-        <source>Category hierarchy file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="127"/>
-        <location filename="windows/SdWCategoryList.cpp" line="168"/>
-        <location filename="windows/SdWCategoryList.cpp" line="193"/>
-        <location filename="windows/SdWCategoryList.cpp" line="314"/>
-        <source>All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="396"/>
-        <source>Category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="398"/>
-        <source>Add new category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="399"/>
-        <source>Edit title...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="400"/>
-        <source>Edit category key...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="401"/>
-        <source>Delete category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="407"/>
-        <source>Load category tree...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="409"/>
-        <source>Save category tree as...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWCategoryList.cpp" line="412"/>
-        <source>Delete ALL categories</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdWEditor</name>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="120"/>
+        <location filename="windows/SdWEditor.cpp" line="124"/>
         <source>Object edit disable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="129"/>
+        <location filename="windows/SdWEditor.cpp" line="133"/>
         <source>with default part and edit it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="129"/>
+        <location filename="windows/SdWEditor.cpp" line="133"/>
         <source>without part and edit it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="132"/>
+        <location filename="windows/SdWEditor.cpp" line="136"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="133"/>
+        <location filename="windows/SdWEditor.cpp" line="137"/>
         <source>Create</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="137"/>
+        <location filename="windows/SdWEditor.cpp" line="141"/>
         <source>Do You want to create default component:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="203"/>
-        <location filename="windows/SdWEditor.cpp" line="212"/>
+        <location filename="windows/SdWEditor.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditor.cpp" line="171"/>
+        <source>You can made public only your own objects, but this object of another author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditor.cpp" line="237"/>
+        <location filename="windows/SdWEditor.cpp" line="246"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="203"/>
+        <location filename="windows/SdWEditor.cpp" line="237"/>
         <source>Object was created by another author &apos;%1&apos;. Change to your name?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="207"/>
+        <location filename="windows/SdWEditor.cpp" line="241"/>
         <source>Set unical object name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="212"/>
+        <location filename="windows/SdWEditor.cpp" line="246"/>
         <source>Remove &apos;%1&apos; from database?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor.cpp" line="216"/>
+        <location filename="windows/SdWEditor.cpp" line="250"/>
         <source>Object edit enable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6588,24 +6896,24 @@
 <context>
     <name>SdWEditor3dPart</name>
     <message>
-        <location filename="windows/SdWEditor3dPart.cpp" line="135"/>
-        <location filename="windows/SdWEditor3dPart.cpp" line="139"/>
+        <location filename="windows/SdWEditor3dPart.cpp" line="137"/>
+        <location filename="windows/SdWEditor3dPart.cpp" line="141"/>
         <source>Import STL model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor3dPart.cpp" line="135"/>
+        <location filename="windows/SdWEditor3dPart.cpp" line="137"/>
         <source>STL model files (*%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor3dPart.cpp" line="165"/>
-        <location filename="windows/SdWEditor3dPart.cpp" line="169"/>
+        <location filename="windows/SdWEditor3dPart.cpp" line="167"/>
+        <location filename="windows/SdWEditor3dPart.cpp" line="171"/>
         <source>Import VRML model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditor3dPart.cpp" line="165"/>
+        <location filename="windows/SdWEditor3dPart.cpp" line="167"/>
         <source>VRML model files (*%1)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6613,260 +6921,266 @@
 <context>
     <name>SdWEditorComponent</name>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="54"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="56"/>
         <source>Symbol preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="61"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="63"/>
         <source>Part preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="75"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="77"/>
         <source>Sections list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="81"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="84"/>
         <source>Pin pack info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="87"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="90"/>
         <source>Add section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="88"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="91"/>
         <source>Dubl section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="89"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="92"/>
         <source>Select symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="90"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="93"/>
         <source>Update section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="91"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="94"/>
         <source>Delete section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="92"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="267"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="95"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="284"/>
         <source>Delete all sections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="98"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="101"/>
         <source>Part:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="100"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="104"/>
         <source>Select part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="107"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="111"/>
         <source>Param table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="113"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="117"/>
         <source>Category...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="114"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="118"/>
         <source>Add param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="115"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="119"/>
         <source>Add defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="116"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="120"/>
         <source>Copy param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="117"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="479"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="121"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="496"/>
         <source>Delete param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="118"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="122"/>
         <source>Variant table...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="198"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="236"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="205"/>
+        <source>Not all sections or part are public. Can&apos;t make component public</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditorComponent.cpp" line="215"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="253"/>
         <source>Select symbol for section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="202"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="219"/>
         <source>Append section for component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="218"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="235"/>
         <source>Duplicate section for component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="235"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="252"/>
         <source>Set section for component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="252"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="266"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="269"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="283"/>
         <source>Attention!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="252"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="269"/>
         <source>You attempting to delete section %1. Delete?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="253"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="270"/>
         <source>Delete component section</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="266"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="283"/>
         <source>Are You sure delete All sections?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="291"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="308"/>
         <source>Pin name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="291"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="308"/>
         <source>Pin number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="310"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="356"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="327"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="373"/>
         <source>No pin with this number in part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="314"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="331"/>
         <source>Duplicate pin number assignment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="333"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="350"/>
         <source>Update section for component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="351"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="368"/>
         <source>Edit pin pack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="354"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="359"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="205"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="371"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="376"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="354"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="371"/>
         <source>Component part has no pin with this number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="359"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="376"/>
         <source>This number always assigned to %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="361"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="378"/>
         <source>Duplicate pin number assignition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="399"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="416"/>
         <source>Edit param value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="412"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="429"/>
         <source>Select part for component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="415"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="432"/>
         <source>Part select for component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="445"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="590"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="462"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="608"/>
         <source>Param name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="445"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="462"/>
         <source>Enter param name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="448"/>
-        <location filename="windows/SdWEditorComponent.cpp" line="486"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="465"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="503"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="448"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="465"/>
         <source>Param with this name already exist. Enter another name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="450"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="467"/>
         <source>Append param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="463"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="480"/>
         <source>Append default params</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="486"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="503"/>
         <source>Select param to delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="497"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="514"/>
         <source>Select component to copy param from</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="500"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="517"/>
         <source>Copy params from other component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorComponent.cpp" line="590"/>
+        <location filename="windows/SdWEditorComponent.cpp" line="608"/>
         <source>Param value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6874,20 +7188,30 @@
 <context>
     <name>SdWEditorGraph</name>
     <message>
-        <location filename="windows/SdWEditorGraph.cpp" line="650"/>
+        <location filename="windows/SdWEditorGraph.cpp" line="741"/>
         <source>No object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditorGraph.cpp" line="1206"/>
+        <source>Enter file name for save image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditorGraph.cpp" line="1206"/>
+        <source>PNG files (*.png);;SVG files (*.svg)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdWEditorGraphPart</name>
     <message>
-        <location filename="windows/SdWEditorGraphPart.cpp" line="118"/>
+        <location filename="windows/SdWEditorGraphPart.cpp" line="120"/>
         <source>Export part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPart.cpp" line="118"/>
+        <location filename="windows/SdWEditorGraphPart.cpp" line="120"/>
         <source>Select export master</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6895,43 +7219,53 @@
 <context>
     <name>SdWEditorGraphPlate</name>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="205"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="212"/>
+        <source>PCB signal layer count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="212"/>
+        <source>Enter PCB signal layer count:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="222"/>
         <source>Checking rules...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="205"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="222"/>
         <source>Abort check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="251"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="268"/>
         <source>Component params</source>
         <oldsource>Plate params</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="255"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="272"/>
         <source>Param change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="265"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="282"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="265"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="282"/>
         <source>Parameters edit available only for component. No component selected. Select components and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="358"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="375"/>
         <source>Export plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphPlate.cpp" line="358"/>
+        <location filename="windows/SdWEditorGraphPlate.cpp" line="375"/>
         <source>Select export master</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6939,33 +7273,33 @@
 <context>
     <name>SdWEditorGraphSheet</name>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="184"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="186"/>
         <source>Component params</source>
         <oldsource>Sheet params</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="188"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="190"/>
         <source>Param change</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="198"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="200"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="198"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="200"/>
         <source>Parameters edit available only for component. No component selected. Select components and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="272"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="274"/>
         <source>Export sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="272"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="274"/>
         <source>Select export master</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6973,12 +7307,12 @@
 <context>
     <name>SdWEditorGraphSymbol</name>
     <message>
-        <location filename="windows/SdWEditorGraphSymbol.cpp" line="110"/>
+        <location filename="windows/SdWEditorGraphSymbol.cpp" line="122"/>
         <source>Export symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSymbol.cpp" line="110"/>
+        <location filename="windows/SdWEditorGraphSymbol.cpp" line="122"/>
         <source>Select export master</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6986,12 +7320,12 @@
 <context>
     <name>SdWEditorGraphView</name>
     <message>
-        <location filename="windows/SdWEditorGraphView.cpp" line="130"/>
+        <location filename="windows/SdWEditorGraphView.cpp" line="136"/>
         <source>Export object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphView.cpp" line="130"/>
+        <location filename="windows/SdWEditorGraphView.cpp" line="136"/>
         <source>Select export master</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6999,22 +7333,22 @@
 <context>
     <name>SdWEditorProject</name>
     <message>
-        <location filename="windows/SdWEditorProject.cpp" line="134"/>
+        <location filename="windows/SdWEditorProject.cpp" line="136"/>
         <source>Edit parameters table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorProject.cpp" line="138"/>
+        <location filename="windows/SdWEditorProject.cpp" line="140"/>
         <source>Project parameters table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorProject.cpp" line="139"/>
+        <location filename="windows/SdWEditorProject.cpp" line="141"/>
         <source>Parameter name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorProject.cpp" line="140"/>
+        <location filename="windows/SdWEditorProject.cpp" line="142"/>
         <source>Parameter value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7022,171 +7356,190 @@
 <context>
     <name>SdWHelp</name>
     <message>
-        <location filename="windows/SdWHelp.cpp" line="55"/>
-        <location filename="windows/SdWHelp.cpp" line="95"/>
+        <location filename="windows/SdWHelp.cpp" line="57"/>
+        <location filename="windows/SdWHelp.cpp" line="99"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWHelp.cpp" line="55"/>
-        <location filename="windows/SdWHelp.cpp" line="95"/>
-        <source>Guider file &apos;%1&apos; not exist. Try reinstall SaliCAD</source>
+        <location filename="windows/SdWHelp.cpp" line="57"/>
+        <location filename="windows/SdWHelp.cpp" line="99"/>
+        <source>Guider file &apos;%1&apos; not exist. Try reinstall SalixEDA</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdWMain</name>
     <message>
-        <location filename="windows/SdWMain.cpp" line="117"/>
+        <location filename="windows/SdWMain.cpp" line="121"/>
         <source>Current cursor position X coord</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="119"/>
+        <location filename="windows/SdWMain.cpp" line="123"/>
         <source>Current cursor position Y coord</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="121"/>
+        <location filename="windows/SdWMain.cpp" line="125"/>
         <source>Enter...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="124"/>
+        <location filename="windows/SdWMain.cpp" line="128"/>
         <source>When press this button, You can enter cursor coord</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="129"/>
+        <location filename="windows/SdWMain.cpp" line="133"/>
         <source>Current trace status: unconnected nets and rules errors count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="132"/>
+        <location filename="windows/SdWMain.cpp" line="136"/>
         <source>Short guide to current mode step or other messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="137"/>
-        <location filename="windows/SdWMain.cpp" line="2053"/>
+        <location filename="windows/SdWMain.cpp" line="141"/>
+        <location filename="windows/SdWMain.cpp" line="2093"/>
         <source>Show status of guide capture video system: stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="144"/>
-        <location filename="windows/SdWMain.cpp" line="154"/>
-        <source>Remote repository status: registered and link ok</source>
+        <location filename="windows/SdWMain.cpp" line="779"/>
+        <source>SalixEDA Files (*%1 *%2);;SaliCAD files (*%3 *%4);;KiCad files (*.kicad_mod)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="148"/>
-        <location filename="windows/SdWMain.cpp" line="158"/>
-        <source>Remote repository status: unregistered or can&apos;t connect to repository. Check Help-&gt;Registration.</source>
+        <location filename="windows/SdWMain.cpp" line="791"/>
+        <location filename="windows/SdWMain.cpp" line="1106"/>
+        <location filename="windows/SdWMain.cpp" line="2107"/>
+        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="162"/>
-        <source>Remote repository status: sync being processed</source>
+        <location filename="windows/SdWMain.cpp" line="791"/>
+        <source>Can&apos;t read file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="242"/>
+        <location filename="windows/SdWMain.cpp" line="2026"/>
+        <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Version %1.%2, &lt;/p&gt;&lt;p&gt;Copyright SalixEDA&lt;/p&gt;&lt;p&gt;Author: %3&lt;/p&gt;&lt;p&gt;Web:&lt;br&gt;&lt;a href=&quot;http://SalixEDA.org&quot;&gt;SalixEDA.org&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="2073"/>
+        <source>Open guider scena file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="2074"/>
+        <source>Scena text files (*.txt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="2078"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="2078"/>
+        <source>This mode is only for guider creators. Are you sure you want to create guide?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="2107"/>
+        <source>Can&apos;t read scena file %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="246"/>
         <source>Unconnected: %1  Errors: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="601"/>
-        <location filename="windows/SdWMain.cpp" line="881"/>
-        <location filename="windows/SdWMain.cpp" line="897"/>
+        <location filename="windows/SdWMain.cpp" line="604"/>
+        <location filename="windows/SdWMain.cpp" line="902"/>
+        <location filename="windows/SdWMain.cpp" line="918"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="601"/>
+        <location filename="windows/SdWMain.cpp" line="604"/>
         <source>Available new version %1.%2! And your version is %3.%4. Update?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="702"/>
+        <location filename="windows/SdWMain.cpp" line="705"/>
         <source>Help system</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="759"/>
+        <location filename="windows/SdWMain.cpp" line="762"/>
         <source>Select project to load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="775"/>
+        <location filename="windows/SdWMain.cpp" line="778"/>
         <source>Open project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="775"/>
-        <source>SaliCAD Files (*%1 *%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWMain.cpp" line="881"/>
+        <location filename="windows/SdWMain.cpp" line="902"/>
         <source>This project also is in the library. It automatic upgrade when save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="897"/>
+        <location filename="windows/SdWMain.cpp" line="918"/>
         <source>Do You want to delete project from library?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="930"/>
+        <location filename="windows/SdWMain.cpp" line="951"/>
         <source>Import PasCAD project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="930"/>
+        <location filename="windows/SdWMain.cpp" line="951"/>
         <source>PasCAD Files (*%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="1988"/>
+        <location filename="windows/SdWMain.cpp" line="1106"/>
+        <source>To make object public is enable only for registered authors. Register and retry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWMain.cpp" line="1989"/>
         <source>Intro help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2025"/>
+        <location filename="windows/SdWMain.cpp" line="2026"/>
         <source>About %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2025"/>
-        <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Version %1.%2, &lt;/p&gt;&lt;p&gt;Copyright SaliLAB&lt;/p&gt;&lt;p&gt;Author: &lt;a href=&quot;http://salilab.ru&quot;&gt;%3&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Web:&lt;br&gt;&lt;a href=&quot;http://salicad.salilab.com&quot;&gt;SaliCAD.salilab.com&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://salicad.ru&quot;&gt;SaliCAD.ru&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWMain.cpp" line="2058"/>
-        <location filename="windows/SdWMain.cpp" line="2070"/>
+        <location filename="windows/SdWMain.cpp" line="2089"/>
         <source>Show status of guide capture video system: running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWMain.cpp" line="2075"/>
-        <source>Show status of guide capture video system: paused</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SdWProjectList</name>
     <message>
-        <location filename="windows/SdWProjectList.cpp" line="35"/>
+        <location filename="windows/SdWProjectList.cpp" line="37"/>
         <source>Close active project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectList.cpp" line="121"/>
+        <location filename="windows/SdWProjectList.cpp" line="218"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectList.cpp" line="121"/>
+        <location filename="windows/SdWProjectList.cpp" line="218"/>
         <source>Error on file reading [%1]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7194,220 +7547,230 @@
 <context>
     <name>SdWProjectTree</name>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="118"/>
-        <location filename="windows/SdWProjectTree.cpp" line="139"/>
-        <location filename="windows/SdWProjectTree.cpp" line="250"/>
-        <location filename="windows/SdWProjectTree.cpp" line="251"/>
-        <location filename="windows/SdWProjectTree.cpp" line="344"/>
+        <location filename="windows/SdWProjectTree.cpp" line="120"/>
+        <location filename="windows/SdWProjectTree.cpp" line="141"/>
+        <location filename="windows/SdWProjectTree.cpp" line="259"/>
+        <location filename="windows/SdWProjectTree.cpp" line="260"/>
+        <location filename="windows/SdWProjectTree.cpp" line="353"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="119"/>
+        <location filename="windows/SdWProjectTree.cpp" line="121"/>
         <source>Project &quot;%1&quot; changed! Save it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="139"/>
+        <location filename="windows/SdWProjectTree.cpp" line="141"/>
         <source>This project is library project and created another author. You can not edit it. Change author to You to enable editing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="152"/>
+        <location filename="windows/SdWProjectTree.cpp" line="155"/>
+        <source>SalixEDA binary Files (*%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWProjectTree.cpp" line="156"/>
+        <source>SalixEDA text Files (*%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWProjectTree.cpp" line="157"/>
         <source>Save project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="152"/>
-        <source>SaliCAD binary Files (*%1);; SaliCAD text Files (%2)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="windows/SdWProjectTree.cpp" line="186"/>
+        <location filename="windows/SdWProjectTree.cpp" line="195"/>
         <source>Creating object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="205"/>
+        <location filename="windows/SdWProjectTree.cpp" line="214"/>
         <source>Select object to load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="207"/>
+        <location filename="windows/SdWProjectTree.cpp" line="216"/>
         <source>Load object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="232"/>
-        <location filename="windows/SdWProjectTree.cpp" line="235"/>
-        <location filename="windows/SdWProjectTree.cpp" line="259"/>
-        <location filename="windows/SdWProjectTree.cpp" line="286"/>
-        <location filename="windows/SdWProjectTree.cpp" line="353"/>
-        <location filename="windows/SdWProjectTree.cpp" line="370"/>
-        <location filename="windows/SdWProjectTree.cpp" line="747"/>
+        <location filename="windows/SdWProjectTree.cpp" line="241"/>
+        <location filename="windows/SdWProjectTree.cpp" line="244"/>
+        <location filename="windows/SdWProjectTree.cpp" line="268"/>
+        <location filename="windows/SdWProjectTree.cpp" line="295"/>
+        <location filename="windows/SdWProjectTree.cpp" line="362"/>
+        <location filename="windows/SdWProjectTree.cpp" line="379"/>
+        <location filename="windows/SdWProjectTree.cpp" line="756"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="232"/>
+        <location filename="windows/SdWProjectTree.cpp" line="241"/>
         <source>To rename object it must be edit enable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="235"/>
+        <location filename="windows/SdWProjectTree.cpp" line="244"/>
         <source>This is not object. Select object to rename.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="250"/>
+        <location filename="windows/SdWProjectTree.cpp" line="259"/>
         <source>Object is used by other objects. You can not delete it until dereferenced.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="251"/>
+        <location filename="windows/SdWProjectTree.cpp" line="260"/>
         <source>Do You realy want to delete &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="252"/>
+        <location filename="windows/SdWProjectTree.cpp" line="261"/>
         <source>Deleting object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="259"/>
+        <location filename="windows/SdWProjectTree.cpp" line="268"/>
         <source>This is not object. Select object to delete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="286"/>
-        <location filename="windows/SdWProjectTree.cpp" line="353"/>
+        <location filename="windows/SdWProjectTree.cpp" line="295"/>
+        <location filename="windows/SdWProjectTree.cpp" line="362"/>
         <source>You can copy only symbols, parts and components. Select some from that object to copy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="310"/>
+        <location filename="windows/SdWProjectTree.cpp" line="319"/>
         <source>Paste from clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="344"/>
+        <location filename="windows/SdWProjectTree.cpp" line="353"/>
         <source>Object is used by other objects. You can not cut it until dereferenced, only copy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="364"/>
+        <location filename="windows/SdWProjectTree.cpp" line="373"/>
         <source>Duplicate object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="370"/>
-        <location filename="windows/SdWProjectTree.cpp" line="747"/>
+        <location filename="windows/SdWProjectTree.cpp" line="379"/>
+        <location filename="windows/SdWProjectTree.cpp" line="756"/>
         <source>You can duplicate only symbols, parts and components. Select some from that object to copy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="403"/>
-        <source>Edit param</source>
+        <location filename="windows/SdWProjectTree.cpp" line="157"/>
+        <source>%1;;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="419"/>
+        <location filename="windows/SdWProjectTree.cpp" line="412"/>
+        <source>Edit param for [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWProjectTree.cpp" line="428"/>
         <source>Edit project param</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="506"/>
-        <location filename="windows/SdWProjectTree.cpp" line="669"/>
+        <location filename="windows/SdWProjectTree.cpp" line="515"/>
+        <location filename="windows/SdWProjectTree.cpp" line="678"/>
         <source>3d view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="691"/>
+        <location filename="windows/SdWProjectTree.cpp" line="700"/>
         <source>Symbols</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="691"/>
+        <location filename="windows/SdWProjectTree.cpp" line="700"/>
         <source>Project symbols list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="691"/>
+        <location filename="windows/SdWProjectTree.cpp" line="700"/>
         <source>Contains project symbols list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="692"/>
+        <location filename="windows/SdWProjectTree.cpp" line="701"/>
         <source>Parts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="692"/>
+        <location filename="windows/SdWProjectTree.cpp" line="701"/>
         <source>Project parts list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="692"/>
+        <location filename="windows/SdWProjectTree.cpp" line="701"/>
         <source>Contains project parts list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="693"/>
+        <location filename="windows/SdWProjectTree.cpp" line="702"/>
         <source>Components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="693"/>
+        <location filename="windows/SdWProjectTree.cpp" line="702"/>
         <source>Project components list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="693"/>
+        <location filename="windows/SdWProjectTree.cpp" line="702"/>
         <source>Contains project components list, each of them is agregation symbols width appropriate part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="694"/>
+        <location filename="windows/SdWProjectTree.cpp" line="703"/>
         <source>Sheets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="694"/>
+        <location filename="windows/SdWProjectTree.cpp" line="703"/>
         <source>Project shematic sheets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="694"/>
+        <location filename="windows/SdWProjectTree.cpp" line="703"/>
         <source>Contains project shematic sheet list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="695"/>
+        <location filename="windows/SdWProjectTree.cpp" line="704"/>
         <source>Construct</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="695"/>
+        <location filename="windows/SdWProjectTree.cpp" line="704"/>
         <source>Project constructs and pcb list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="695"/>
+        <location filename="windows/SdWProjectTree.cpp" line="704"/>
         <source>Contains project construct and pcb list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="696"/>
+        <location filename="windows/SdWProjectTree.cpp" line="705"/>
         <source>Other docs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="696"/>
+        <location filename="windows/SdWProjectTree.cpp" line="705"/>
         <source>Project text and table docs list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectTree.cpp" line="696"/>
+        <location filename="windows/SdWProjectTree.cpp" line="705"/>
         <source>Contains project text, table and others docs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7415,7 +7778,7 @@
 <context>
     <name>SdWRemoteStatus</name>
     <message>
-        <location filename="windows/SdWRemoteStatus.cpp" line="28"/>
+        <location filename="windows/SdWRemoteStatus.cpp" line="29"/>
         <source>Remote link messages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7423,7 +7786,7 @@
 <context>
     <name>SdWScriptEditor</name>
     <message>
-        <location filename="windows/SdWScriptEditor.cpp" line="1298"/>
+        <location filename="windows/SdWScriptEditor.cpp" line="1301"/>
         <source>Select color</source>
         <translation type="unfinished"></translation>
     </message>
