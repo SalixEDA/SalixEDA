@@ -224,6 +224,20 @@ Sd3drFace Sd3drModel::faceRectangle(float lenght, float width, const QMatrix4x4 
 
 
 
+
+Sd3drFace Sd3drModel::faceRectangleRight(float lenght, float width, const QMatrix4x4 &map)
+  {
+  width /= 2.0;
+  lenght /= 2.0;
+  QVector3D p0( -lenght, -width, 0 );
+  QVector3D p1(  lenght, -width, 0 );
+  QVector3D p2(  lenght,  width, 0 );
+  QVector3D p3( -lenght,  width, 0 );
+  return Sd3drFace( { vertexAppend( map.map(p3) ), vertexAppend( map.map(p2)), vertexAppend( map.map(p1) ), vertexAppend( map.map(p0) ) } );
+  }
+
+
+
 Sd3drFace Sd3drModel::faceRectangleRound(float lenght, float width, float radius, float stepDegree, const QMatrix4x4 &map)
   {
   Sd3drFace region;
@@ -813,11 +827,12 @@ QList<float> Sd3drModel::afloatArc(float radius, float angleStart, float angleSt
 //! \param map             Direction of extruding
 //! \return                Solid model: floor, roof and walls
 //!
-Sd3drFaceList Sd3drModel::faceListExtrude(const Sd3drFace &face, const QMatrix4x4 &map)
+Sd3drFaceList Sd3drModel::faceListExtrude(const Sd3drFace &face, const QMatrix4x4 &map, bool addBot, bool addTop)
   {
   Sd3drFaceList faceList;
-  //Append bottom
-  faceList.append( face );
+  if( addBot )
+    //Append bottom
+    faceList.append( face );
 
   //Create top
   Sd3drFace other = faceDuplicate( face, map );
@@ -825,11 +840,14 @@ Sd3drFaceList Sd3drModel::faceListExtrude(const Sd3drFace &face, const QMatrix4x
   //Append walls
   faceList.append( faceListWall( face, other, true ) );
 
-  //Append top
-  faceList.append( other );
+  if( addTop )
+    //Append top
+    faceList.append( other );
 
   return faceList;
   }
+
+
 
 
 
@@ -841,11 +859,13 @@ Sd3drFaceList Sd3drModel::faceListExtrude(const Sd3drFace &face, const QMatrix4x
 //!                             Middle faces are walls.
 //! \param face                 Region of bottom of model
 //! \param shift                Shift amount of extrude
+//! \param addBot               Add bottom face to result face list
+//! \param addTop               Add top face to result face list
 //! \return                     Solid model extruded from region in the direction of the normal vector
 //!
-Sd3drFaceList Sd3drModel::faceListExtrudeShift(const Sd3drFace &face, float shift)
+Sd3drFaceList Sd3drModel::faceListExtrudeShift(const Sd3drFace &face, float shift, bool addBot, bool addTop)
   {
-  return faceListExtrude( face, matrixShift( face, shift )   );
+  return faceListExtrude( face, matrixShift( face, shift ), addBot, addTop );
   }
 
 

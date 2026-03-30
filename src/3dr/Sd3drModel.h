@@ -124,6 +124,8 @@ class Sd3drModel
     //!
     Sd3drFace     faceRectangle( float lenght, float width, const QMatrix4x4 &map );
 
+    Sd3drFace     faceRectangleRight( float lenght, float width, const QMatrix4x4 &map );
+
     Sd3drFace     faceRectangleRound( float lenght, float width, float radius, float stepDegree, const QMatrix4x4 &map );
 
     //!
@@ -192,9 +194,11 @@ class Sd3drModel
     //! \brief faceListExtrude Extrudes model from source face in direction specified by map
     //! \param face            Source face of model
     //! \param map             Direction of extruding
+    //! \param addBot          Add bottom face to result face list
+    //! \param addTop          Add top face to result face list
     //! \return                Solid model: floor, roof and walls
     //!
-    Sd3drFaceList faceListExtrude( const Sd3drFace &face, const QMatrix4x4 &map );
+    Sd3drFaceList faceListExtrude( const Sd3drFace &face, const QMatrix4x4 &map, bool addBot, bool addTop );
 
     //!
     //! \brief faceListExtrudeShift Extrudes model from region in the direction of the normal vector with
@@ -203,9 +207,11 @@ class Sd3drModel
     //!                             Middle faces are walls.
     //! \param face                 Region of bottom of model
     //! \param shift                Shift amount of extrude
+    //! \param addBot               Add bottom face to result face list
+    //! \param addTop               Add top face to result face list
     //! \return                     Solid model extruded from region in the direction of the normal vector
     //!
-    Sd3drFaceList faceListExtrudeShift( const Sd3drFace &face, float shift );
+    Sd3drFaceList faceListExtrudeShift( const Sd3drFace &face, float shift, bool addBot, bool addTop);
 
 
     //!
