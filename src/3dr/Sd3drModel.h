@@ -237,7 +237,7 @@ class Sd3drModel
     //! \param addTop          Add top face to result face list
     //! \return                Solid model: floor, roof and walls
     //!
-    Sd3drFaceList faceListExtrude( const Sd3drFace &face, const QMatrix4x4 &map, bool addBot, bool addTop );
+    Sd3drFaceList faceListExtrude( const Sd3drFace &face, const QMatrix4x4 &map, bool addBot = true, bool addTop = true );
 
     //!
     //! \brief faceListExtrudeShift Extrudes model from region in the direction of the normal vector with
@@ -250,7 +250,7 @@ class Sd3drModel
     //! \param addTop               Add top face to result face list
     //! \return                     Solid model extruded from region in the direction of the normal vector
     //!
-    Sd3drFaceList faceListExtrudeShift( const Sd3drFace &face, float shift, bool addBot, bool addTop);
+    Sd3drFaceList faceListExtrudeShift( const Sd3drFace &face, float shift, bool addBot = true, bool addTop = true);
 
 
     //!

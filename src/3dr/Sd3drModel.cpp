@@ -1407,7 +1407,7 @@ Sd3drFaceList Sd3drModel::solidTubeBeveledBox(float lenght, float width, float h
   {
   thickness *= 2.0;
   return solidTube( flatRectangleBevel( lenght, width, bevelSize, bevelCount ),
-                    flatRectangleRound( lenght - thickness, width - thickness, bevelSize - thickness/2.0, bevelCount ), height, map, addBot );
+                    flatRectangleBevel( lenght - thickness, width - thickness, bevelSize - thickness/2.0, bevelCount ), height, map, addBot );
   }
 
 
@@ -1821,7 +1821,7 @@ Sd3drFaceList Sd3drModel::faceListExtrude(const Sd3drFace &face, const QMatrix4x
 //! \param addTop               Add top face to result face list
 //! \return                     Solid model extruded from region in the direction of the normal vector
 //!
-Sd3drFaceList Sd3drModel::faceListExtrudeShift(const Sd3drFace &face, float shift, bool addBot, bool addTop)
+Sd3drFaceList Sd3drModel::faceListExtrudeShift(const Sd3drFace &face, float shift, bool addBot, bool addTop )
   {
   return faceListExtrude( face, matrixShift( face, shift ), addBot, addTop );
   }
