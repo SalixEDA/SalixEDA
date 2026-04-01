@@ -35,6 +35,8 @@ void SdGuiderEvent::json(SvJsonWriter &js) const
   js.jsonInt( "Modifier",  mKeyModifier );
   js.jsonInt( "KeyCode",   mKeyCode );
   js.jsonInt( "KeyChar",   mKeyChar );
+  js.jsonInt( "WheelX",    mWheelX );
+  js.jsonInt( "WheelY",    mWheelY );
   }
 
 
@@ -53,6 +55,8 @@ void SdGuiderEvent::json(const SvJsonReader &js)
   js.jsonInt( "Modifier",  mKeyModifier );
   js.jsonInt( "KeyCode",   mKeyCode );
   js.jsonInt( "KeyChar",   mKeyChar );
+  js.jsonInt( "WheelX",    mWheelX );
+  js.jsonInt( "WheelY",    mWheelY );
   }
 
 
@@ -94,11 +98,28 @@ void SdGuiderEvent::inject( const SdGuiderEvent &next, QPoint windowPos )
       mouseEvent( w, global, local, next, Qt::RightButton );
       mouseEvent( w, global, local, next, Qt::MiddleButton );
       }
+
+    if( mWheelX != next.mWheelX || mWheelY != next.mWheelY ) {
+      //Mouse wheel event
+      QCoreApplication::postEvent( w, new QWheelEvent( local,
+                                                       global,
+                                                       QPoint(0,0), //pixel data
+                                                       QPoint(next.mWheelX-mWheelX, next.mWheelY-mWheelY),
+                                                       (Qt::MouseButton)mMouseButtons,
+                                                       (Qt::KeyboardModifier)mKeyModifier,
+                                                       Qt::NoScrollPhase,
+                                                       false) );
+
+      mWheelX       = next.mWheelX;
+      mWheelY       = next.mWheelY;
+      }
     }
   else {
-    mMousePosX = next.mMousePosX;
-    mMousePosY = next.mMousePosY;
+    mMousePosX    = next.mMousePosX;
+    mMousePosY    = next.mMousePosY;
     mMouseButtons = next.mMouseButtons;
+    mWheelX       = next.mWheelX;
+    mWheelY       = next.mWheelY;
     }
 
   if( mKeyCode != next.mKeyCode || mKeyChar != next.mKeyChar ) {

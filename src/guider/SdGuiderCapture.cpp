@@ -179,17 +179,17 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
       break;
       }
 
-    // case QEvent::Wheel: {
-    //   QWheelEvent *wheelEvent = static_cast<QWheelEvent*>(event);
-    //   mEvent.mMousePosX = wheelEvent->globalX();
-    //   mEvent.mMousePosY = wheelEvent->globalY();
-    //   mEvent.mMouseButtons = wheelEvent->buttons();
-    //   mEvent.mKeyModifier = wheelEvent->modifiers();
-    //   // Для колесика мыши можно установить специальный код клавиши
-    //   mEvent.mKeyCode = 0;
-    //   mEvent.mKeyChar = 0;
-    //   break;
-    //   }
+    case QEvent::Wheel: {
+      QWheelEvent *wheelEvent = static_cast<QWheelEvent*>(event);
+      mEvent.mMousePosX = mousePos.x();
+      mEvent.mMousePosY = mousePos.y();
+      mEvent.mMouseButtons = wheelEvent->buttons();
+      mEvent.mKeyModifier = wheelEvent->modifiers();
+      // Для колесика мыши можно установить специальный код клавиши
+      mEvent.mWheelX += wheelEvent->angleDelta().x();
+      mEvent.mWheelY += wheelEvent->angleDelta().y();
+      break;
+      }
 
     // case QEvent::Enter:
     // case QEvent::Leave: {

@@ -382,6 +382,18 @@ class Sd3drModel
     //! Uses the last face from the list as the source face
     QMatrix4x4    matrixBot( const Sd3drFaceList &faceList, float height );
 
+    //!
+    //! \brief matrixNew Build complex matrix of rotation and offset
+    //! \param angX      Rotation angle around axis X in degree
+    //! \param angY      Rotation angle around axis Y in degree
+    //! \param angZ      Rotation angle around axis Z in degree
+    //! \param offX      Offset by X after rotation
+    //! \param offY      Offset by Y after rotation
+    //! \param offZ      Offset by Z after rotation
+    //! \return          Complex matrix
+    //!
+    QMatrix4x4    matrixNew( float angX, float angY, float angZ, float offX, float offY, float offZ );
+
 
     //!
     //! \brief solidBox Builds a rectangular box, optionally without bottom
@@ -488,7 +500,7 @@ class Sd3drModel
     Sd3drFaceList solidTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const QMatrix4x4 &map, bool addBot );
 
     //!
-    //! \brief solidRoundTrapezoid Builds a trapezoid in the XY plane with rounded vertical edges
+    //! \brief solidTrapezoidRound Builds a trapezoid in the XY plane with rounded vertical edges
     //! \param lenghtTop           Length of the top edge
     //! \param lenghtBot           Length of the bottom edge
     //! \param width               Width of the trapezoid
@@ -498,7 +510,7 @@ class Sd3drModel
     //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
     //! \return                    List of faces forming the solid
     //!
-    Sd3drFaceList solidRoundTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot );
 
 
     //!
@@ -514,7 +526,7 @@ class Sd3drModel
     Sd3drFaceList solidTubeBox(float lenght, float width, float height, float thickness, const QMatrix4x4 &map, bool addBot );
 
     //!
-    //! \brief solidTubeRoundBox Builds a tube with rectangular cross-section and rounded corners
+    //! \brief solidTubeBoxRound Builds a tube with rectangular cross-section and rounded corners
     //! \param lenght            Outer length
     //! \param width             Outer width
     //! \param height            Tube height
@@ -525,10 +537,10 @@ class Sd3drModel
     //! \param addBot            If true, adds bottom face; if false, bottom face is omitted
     //! \return                  List of faces forming the solid
     //!
-    Sd3drFaceList solidTubeRoundBox(float lenght, float width, float height, float roundRadius, float roundCount, float thickness, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidTubeBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, float thickness, const QMatrix4x4 &map, bool addBot );
 
     //!
-    //! \brief solidTubeBeveledBox Builds a tube with rectangular cross-section and beveled corners
+    //! \brief solidTubeBoxBevel   Builds a tube with rectangular cross-section and beveled corners
     //! \param lenght              Outer length
     //! \param width               Outer width
     //! \param height              Tube height
@@ -539,7 +551,7 @@ class Sd3drModel
     //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
     //! \return                    List of faces forming the solid
     //!
-    Sd3drFaceList solidTubeBeveledBox(float lenght, float width, float height, float bevelSize, float bevelCount, float thickness, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidTubeBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, float thickness, const QMatrix4x4 &map, bool addBot );
 
     //!
     //! \brief solidTubeCylinder Builds a tube with circular cross-section
@@ -590,7 +602,7 @@ class Sd3drModel
     Sd3drFaceList solidTubeTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float thickness, const QMatrix4x4 &map, bool addBot );
 
     //!
-    //! \brief solidTubeRoundTrapezoid Builds a tube with trapezoidal cross-section and rounded corners
+    //! \brief solidTubeTrapezoidRound Builds a tube with trapezoidal cross-section and rounded corners
     //! \param lenghtTop               Length of the top edge
     //! \param lenghtBot               Length of the bottom edge
     //! \param width                   Width
@@ -601,7 +613,7 @@ class Sd3drModel
     //! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
     //! \return                        List of faces forming the solid
     //!
-    Sd3drFaceList solidTubeRoundTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, float thickness, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidTubeTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, float thickness, const QMatrix4x4 &map, bool addBot );
 
 
     //!
@@ -708,10 +720,11 @@ class Sd3drModel
     //!
     //! \brief solidAddRoofRound Creates a rounded top face (roof)
     //! \param faceList          Existing solid face list (top face will be removed)
-    //! \param roundRadius       Radius of the rounding
+    //! \param roundRadius       Radius of the rounding, >0 - convex, <0 - concave
+    //! \param great             true - top size greater than source, false = top size less than source
     //! \return                  New solid face list with rounded roof
     //!
-    Sd3drFaceList solidAddRoofRound( const Sd3drFaceList &faceList, float roundRadius );
+    Sd3drFaceList solidAddRoofRound( const Sd3drFaceList &faceList, float roundRadius, bool great );
 
     //!
     //! \brief solidAddFloorRound Creates a rounded bottom face (floor)

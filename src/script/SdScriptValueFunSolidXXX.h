@@ -121,9 +121,6 @@ struct SdScriptResultInvoker<QMatrix4x4>
     static QMatrix4x4 call( F&& f ) { return f(); }
   };
 
-// template<>
-// struct SdScriptResultInvoker<const QMatrix4x4&> :
-//     SdScriptResultInvoker<QMatrix4x4> {};
 
 
 
@@ -188,92 +185,5 @@ class SdScriptValueMethod : public SdScriptValueFunction
 
 
 
-class SdScriptValueFunSolidBox : public SdScriptValueFunction
-  {
-    Sd3drModel *mModel;
-  public:
-    SdScriptValueFunSolidBox( Sd3drModel *model ) :
-      SdScriptValueFunction( SD_SCRIPT_TYPE_FACE_LIST, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_MATRIX, SD_SCRIPT_TYPE_BOOL ),
-      mModel(model)
-      {
-      }
-
-    //!
-    //! \brief toFaceList Convert object to list of face each of which is list of vertex index
-    //! \return           List of face each of which is list of vertex index
-    //!
-    virtual Sd3drFaceList toFaceList() const override { return mModel->solidBox( mParamList[0]->toFloat(), mParamList[1]->toFloat(), mParamList[2]->toFloat(),
-                                                                                 mParamList[3]->toMatrix(), mParamList[4]->toBool() ); }
-
-  };
-
-
-
-
-class SdScriptValueFunSolidBoxWithCone : public SdScriptValueFunction
-  {
-    Sd3drModel *mModel;
-  public:
-    SdScriptValueFunSolidBoxWithCone( Sd3drModel *model ) :
-      SdScriptValueFunction( SD_SCRIPT_TYPE_FACE_LIST, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_MATRIX, SD_SCRIPT_TYPE_BOOL ),
-      mModel(model)
-      {
-      }
-
-    //!
-    //! \brief toFaceList Convert object to list of face each of which is list of vertex index
-    //! \return           List of face each of which is list of vertex index
-    //!
-    virtual Sd3drFaceList toFaceList() const override { return mModel->solidBoxWithCone( mParamList[0]->toFloat(), mParamList[1]->toFloat(),
-                                                                                         mParamList[2]->toFloat(), mParamList[3]->toFloat(),
-                                                                                         mParamList[4]->toMatrix(), mParamList[5]->toBool() ); }
-
-  };
-
-
-class SdScriptValueFunSolidBoxBevel : public SdScriptValueFunction
-  {
-    Sd3drModel *mModel;
-  public:
-    SdScriptValueFunSolidBoxBevel( Sd3drModel *model ) :
-      SdScriptValueFunction( SD_SCRIPT_TYPE_FACE_LIST, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_MATRIX, SD_SCRIPT_TYPE_BOOL ),
-      mModel(model)
-      {
-      }
-
-    //!
-    //! \brief toFaceList Convert object to list of face each of which is list of vertex index
-    //! \return           List of face each of which is list of vertex index
-    //!
-    virtual Sd3drFaceList toFaceList() const override { return mModel->solidBoxBevel( mParamList[0]->toFloat(), mParamList[1]->toFloat(),
-                                                                                      mParamList[2]->toFloat(), mParamList[3]->toFloat(),
-                                                                                      mParamList[4]->toFloat(),
-                                                                                      mParamList[5]->toMatrix(), mParamList[6]->toBool() ); }
-
-  };
-
-
-
-
-class SdScriptValueFunSolidBoxRound : public SdScriptValueFunction
-  {
-    Sd3drModel *mModel;
-  public:
-    SdScriptValueFunSolidBoxRound( Sd3drModel *model ) :
-      SdScriptValueFunction( SD_SCRIPT_TYPE_FACE_LIST, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_FLOAT, SD_SCRIPT_TYPE_MATRIX, SD_SCRIPT_TYPE_BOOL ),
-      mModel(model)
-      {
-      }
-
-    //!
-    //! \brief toFaceList Convert object to list of face each of which is list of vertex index
-    //! \return           List of face each of which is list of vertex index
-    //!
-    virtual Sd3drFaceList toFaceList() const override { return mModel->solidBoxRound( mParamList[0]->toFloat(), mParamList[1]->toFloat(),
-                                                                                      mParamList[2]->toFloat(), mParamList[3]->toFloat(),
-                                                                                      mParamList[4]->toFloat(),
-                                                                                      mParamList[5]->toMatrix(), mParamList[6]->toBool() ); }
-
-  };
 
 #endif // SDSCRIPTVALUEFUNSOLIDXXX_H

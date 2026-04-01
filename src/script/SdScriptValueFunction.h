@@ -56,12 +56,7 @@ class SdScriptValueFunction : public SdScriptValue
     SdScriptValuePtr param(int i) const { return mParamList[i]; }
 
     template<typename T>
-    std::remove_cvref_t<T> paramAs(int i) const;
-// {
-//       using CleanT = std::remove_cv_t<std::remove_reference_t<T>>;
-//       if constexpr (std::is_reference_v<T>)
-//         return paramAs<CleanT>(i);
-//       }
+    T paramAs(int i) const;
 
     //!
     //! \brief paramSet Set param for function

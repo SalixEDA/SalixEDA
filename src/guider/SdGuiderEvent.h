@@ -37,6 +37,8 @@ struct SdGuiderEvent
     int mKeyModifier;  //!< Keyboard modifier key code (Qt::KeyboardModifier). Ctrl, Shift, Alt and so on
     int mKeyCode;      //!< Pressed key code (Qt::Key). One of Qt::Key_...
     int mKeyChar;      //!< Unicode character of pressed key
+    int mWheelX;
+    int mWheelY;
 
     //!
     //! \brief Serializes event data to JSON writer
