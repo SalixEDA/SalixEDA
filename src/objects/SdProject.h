@@ -44,7 +44,11 @@ class SdProject : public SdContainerFile
     SdProject();
     ~SdProject() override;
 
-    void              setEditEnable( bool ena ) { mEditEnable = ena; }
+    //!
+    //! \brief setEditEnable set or clear indicator to show that this project is library object
+    //! \param ena           false - project is library object, true - project is not library object
+    //!
+    void              setEditEnable( bool ena );
 
     SdUndo           *getUndo() { return &mUndo; }
 

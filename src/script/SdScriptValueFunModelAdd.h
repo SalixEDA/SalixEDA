@@ -15,15 +15,14 @@ Description
 
   Append Body with its color to Instance
 */
-#ifndef SDSCRIPTVALUEFUNMODELAPPEND_H
-#define SDSCRIPTVALUEFUNMODELAPPEND_H
-
+#ifndef SDSCRIPTVALUEFUNMODELADD_H
+#define SDSCRIPTVALUEFUNMODELADD_H
 #include "SdScriptValueFunction.h"
 
-class SdScriptValueFunModelAppend : public SdScriptValueFunction
+class SdScriptValueFunModelAdd : public SdScriptValueFunction
   {
   public:
-    SdScriptValueFunModelAppend() : SdScriptValueFunction( SD_SCRIPT_TYPE_MODEL, SD_SCRIPT_TYPE_MODEL, SD_SCRIPT_TYPE_COLOR, SD_SCRIPT_TYPE_COLOR, SD_SCRIPT_TYPE_COLOR, SD_SCRIPT_TYPE_FACE_LIST ) { }
+    SdScriptValueFunModelAdd() : SdScriptValueFunction( SD_SCRIPT_TYPE_MODEL, SD_SCRIPT_TYPE_MODEL, SD_SCRIPT_TYPE_COLOR, SD_SCRIPT_TYPE_FACE_LIST ) { }
 
     //!
     //! \brief toModel Convert object to model which is compound of some bodies
@@ -31,9 +30,9 @@ class SdScriptValueFunModelAppend : public SdScriptValueFunction
     //!
     virtual Sd3drInstance toModel() const override {
       Sd3drBody body;
-      Sd3drMaterial color( mParamList[1]->toColor(), mParamList[2]->toColor(), mParamList[3]->toColor() );
+      Sd3drMaterial color( mParamList[1]->toColor(), mParamList[1]->toColor(), mParamList[1]->toColor() );
       body.colorListSet( color );
-      body.faceAppend( mParamList[4]->toFaceList() );
+      body.faceAppend( mParamList[2]->toFaceList() );
       Sd3drInstance inst = mParamList[0]->toModel();
       inst.add( body );
       return inst;
@@ -41,5 +40,4 @@ class SdScriptValueFunModelAppend : public SdScriptValueFunction
 
   };
 
-
-#endif // SDSCRIPTVALUEFUNMODELAPPEND_H
+#endif // SDSCRIPTVALUEFUNMODELADD_H

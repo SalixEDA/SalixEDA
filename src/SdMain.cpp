@@ -19,7 +19,7 @@ Description
 #include "objects/SdEnvir.h"
 #include "objects/SdProp.h"
 #include "library/SdLibraryStorage.h"
-//#include "objects/Sd3dModel.h"
+//#include "3dr/Sd3drModel.h"
 
 #include <QApplication>
 #include <QSettings>
@@ -49,6 +49,10 @@ int main(int argc, char *argv[])
   // SdScanerKiCad reader;
   // reader.readFile( "/home/asibilev/info/kikad/SOT-23_MCC.kicad_mod" );
   // reader.parseTop( new SdProject() );
+
+  //Sd3drModel model;
+  // Sd2dRegion r( {QVector2D(-100,0), QVector2D(-100,50), QVector2D(0,50), QVector2D(100,50), QVector2D(100,0)} );
+  // qDebug() << Sd3drModel::flatEquidistant( r, 5 );
 
 
   //Setups for settings

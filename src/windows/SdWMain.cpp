@@ -756,7 +756,9 @@ void SdWMain::cmFileNew()
 
 
 
-
+//!
+//! \brief cmFileLoad Load file from library
+//!
 void SdWMain::cmFileLoad()
   {
   QString uid = SdDGetObject::getObjectUid( dctProject, tr("Select project to load"), this );

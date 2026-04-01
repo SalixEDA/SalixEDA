@@ -83,12 +83,15 @@ Description
 #include "SdScriptValueFunLFaceWallList.h"
 #include "SdScriptValueFunLFaceWallRound.h"
 #include "SdScriptValueFunLFaceWalls.h"
+#include "SdScriptValueFunSolidXXX.h"
 
 
 
 #include "SdScriptValueFunModelAppend.h"
+#include "SdScriptValueFunModelAdd.h"
 #include "SdScriptValueFunModelCopy.h"
 #include "SdScriptValueFunModelBuild.h"
+#include "SdScriptValueFunModelNew.h"
 #include "SdScriptValueFunModelPinTqfp.h"
 
 #include "SdScriptValueFunGraphLine.h"
@@ -167,8 +170,13 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("faceListWalls"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunLFaceWalls(); }, QStringLiteral("faceListWalls( faceList layers, bool close )") );
   addFunction( QStringLiteral("faceListPinTqfp"), [model] () -> SdScriptValueFunction* { return new SdScriptValueFunModelPinTqfp(model); }, QStringLiteral("") );
 
+  addFunction( QStringLiteral("solidBox"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBox); }, QStringLiteral("solidBox( float lenght, float width, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidBoxBevel"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBoxBevel); }, QStringLiteral("solidBox( float lenght, float width, float height, float bevelSize, float bevelCount, matrix transfer, bool addBottom )") );
+
   addFunction( QStringLiteral("model"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelBuild(); }, QStringLiteral("model( color ambient, color diffuse, color specular, faceList faces[], matrix transfer )") );
+  addFunction( QStringLiteral("modelNew"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelNew(); }, QStringLiteral("model( color bodyColor, faceList faces[], matrix transfer )") );
   addFunction( QStringLiteral("modelAppend"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelAppend(); }, QStringLiteral("modelAppend( model src, color ambient, color diffuse, color specular, faceList faces[] )") );
+  addFunction( QStringLiteral("modelAdd"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelAdd(); }, QStringLiteral("modelAdd( model src, color bodyColor, faceList faces[] )") );
   addFunction( QStringLiteral("modelCopy"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelCopy(); }, QStringLiteral("modelCopy( model src, matrix trasfer )") );
 
   addFunction( QStringLiteral("graphLine"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunGraphLine(); }, QStringLiteral("graphLine( float [startX,startY], float [stopX,xtopY] )") );

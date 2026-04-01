@@ -52,6 +52,18 @@ SdProject::~SdProject()
 
 
 
+//!
+//! \brief setEditEnable set or clear indicator to show that this project is library object
+//! \param ena           false - project is library object, true - project is not library object
+//!
+void SdProject::setEditEnable(bool ena)
+  {
+  mEditEnable = ena;
+  mIsPublic = !ena;
+  }
+
+
+
 
 
 //!
@@ -456,7 +468,12 @@ SdProject *SdProject::load(const QString fname)
 bool SdProject::save(const QString fname)
   {
   //Save project to file
-  if( fileJsonSave(fname) ) {
+  //When fname equals to title then it is library object
+  // and we don't need to save it into file
+  //So we first compare fname and title and if equals then file save skeep
+  if( fname == getTitle() || fileJsonSave(fname) ) {
+    if( mDirty )
+      updateCreationTime();
     //Update library for project content
     libraryUpdate();
     //Clear dirty flag
@@ -488,6 +505,7 @@ void SdProject::libraryUpdate() const
     return true;
     } );
 
+  //Save project itself as library object
   if( !isEditEnable() )
     lib->cfObjectInsert( this );
   }

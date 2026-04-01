@@ -141,6 +141,7 @@ bool SdWProjectTree::cmFileSave()
       if( QMessageBox::question( this, tr("Warning!"), tr("This project is library project and created another author. You can not edit it. Change author to You to enable editing?") ) != QMessageBox::Yes )
         return false;
       }
+    mProject->setEditEnable(true);
     mProject->titleSet( mProject->getTitle() );
     }
   return mProject->save( mFileName );
@@ -165,6 +166,10 @@ bool SdWProjectTree::cmFileSaveAs()
     else
       mFileName.append( SD_BINARY_EXTENSION );
     }
+
+  QFileInfo info(mFileName);
+  mProject->setEditEnable(true);
+  mProject->titleSet( info.completeBaseName() );
 
   SdWCommand::addToPreviousMenu( mFileName );
   SdPulsar::sdPulsar->emitRenameProject( mProject, fileName() );

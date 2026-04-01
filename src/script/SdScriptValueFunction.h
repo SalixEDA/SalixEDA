@@ -42,7 +42,26 @@ class SdScriptValueFunction : public SdScriptValue
     SdScriptValueFunction( char resultType, char paramType0, char paramType1, char paramType2, char paramType3, char paramType4, char paramType5 );
     SdScriptValueFunction( char resultType, char paramType0, char paramType1, char paramType2, char paramType3, char paramType4, char paramType5, char paramType6 );
     SdScriptValueFunction( char resultType, char paramType0, char paramType1, char paramType2, char paramType3, char paramType4, char paramType5, char paramType6, char paramType7 );
+    SdScriptValueFunction( char resultType, std::initializer_list<char> types ) :
+      mResultType(resultType),
+      mParamCount( static_cast<int>(types.size()) )
+      {
+      int i = 0;
+      for( char t : types )
+        mParamTypes[i++] = t;
+      clearParamList();
+      }
     ~SdScriptValueFunction();
+
+    SdScriptValuePtr param(int i) const { return mParamList[i]; }
+
+    template<typename T>
+    std::remove_cvref_t<T> paramAs(int i) const;
+// {
+//       using CleanT = std::remove_cv_t<std::remove_reference_t<T>>;
+//       if constexpr (std::is_reference_v<T>)
+//         return paramAs<CleanT>(i);
+//       }
 
     //!
     //! \brief paramSet Set param for function
@@ -76,5 +95,16 @@ class SdScriptValueFunction : public SdScriptValue
   private:
     void clearParamList();
   };
+
+template<> inline float         SdScriptValueFunction::paramAs<float>(int i) const { return mParamList[i]->toFloat(); }
+
+template<> inline bool          SdScriptValueFunction::paramAs<bool>(int i) const { return mParamList[i]->toBool(); }
+
+template<> inline QMatrix4x4    SdScriptValueFunction::paramAs<QMatrix4x4>(int i) const { return mParamList[i]->toMatrix(); }
+
+template<> inline Sd3drFace     SdScriptValueFunction::paramAs<Sd3drFace>(int i) const { return mParamList[i]->toFace(); }
+
+template<> inline Sd3drFaceList SdScriptValueFunction::paramAs<Sd3drFaceList>(int i) const { return mParamList[i]->toFaceList(); }
+
 
 #endif // SDSCRIPTVALUEFUNCTION_H

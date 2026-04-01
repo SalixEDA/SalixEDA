@@ -616,15 +616,18 @@ HEADERS  += \
     script/SdScriptValueFunMatrixRotate.h \
     script/SdScriptValueFunMatrixScale.h \
     script/SdScriptValueFunMatrixTranslate.h \
+    script/SdScriptValueFunModelAdd.h \
     script/SdScriptValueFunModelAppend.h \
     script/SdScriptValueFunModelBuild.h \
     script/SdScriptValueFunModelCopy.h \
     script/SdScriptValueFunModelCurve.h \
     script/SdScriptValueFunModelHole.h \
+    script/SdScriptValueFunModelNew.h \
     script/SdScriptValueFunModelPinTqfp.h \
     script/SdScriptValueFunRef.h \
     script/SdScriptValueFunSelectColor.h \
     script/SdScriptValueFunSelectPad.h \
+    script/SdScriptValueFunSolidXXX.h \
     script/SdScriptValueFunStringPadCircleThrou.h \
     script/SdScriptValueFunStringPadRectThrou.h \
     script/SdScriptValueFunStringPinIndex.h \

@@ -322,10 +322,280 @@ Sd2dRegion Sd3drModel::flatTrapezoidRound(float lenghtTop, float lenghtBot, floa
 
 
 
-Sd3drFaceList Sd3drModel::ring(const Sd2dRegion &r1, const Sd2dRegion &d2)
-  {
 
+static const double EPSILON = 1e-10;
+
+// Сравнение чисел с плавающей точкой
+static bool isZero(double val)
+  {
+  return fabs(val) < EPSILON;
   }
+
+
+
+static bool isEqual(double a, double b)
+  {
+  return isZero(a - b);
+  }
+
+
+
+static bool isEqual(const QVector2D& p1, const QVector2D& p2)
+  {
+  return isZero(p1.x() - p2.x()) && isZero(p1.y() - p2.y());
+  }
+
+
+// Нормализация вектора
+static QVector2D normalize(const QVector2D& v)
+  {
+  double len = sqrt(v.x() * v.x() + v.y() * v.y());
+  if (len < EPSILON) return QVector2D(0, 0);
+  return QVector2D(v.x() / len, v.y() / len);
+  }
+
+
+// Поворот вектора на 90 градусов против часовой стрелки
+static QVector2D rotate90(const QVector2D& v)
+  {
+  return QVector2D(-v.y(), v.x());
+  }
+
+// Получение нормали к ребру
+static QVector2D getEdgeNormal(const QVector2D& p1, const QVector2D& p2)
+  {
+  QVector2D edge = p2 - p1;
+  if( isZero(edge.x()) && isZero(edge.y()) ) {
+    return QVector2D(0, 0);  // Ребро нулевой длины
+    }
+  return rotate90(normalize(edge));
+  }
+
+// Определение ориентации полигона
+static bool isCounterClockwise(const Sd2dRegion& polygon)
+  {
+  double area = 0;
+  int n = polygon.size();
+  for( int i = 0; i < n; ++i ) {
+    int j = (i + 1) % n;
+    area += polygon[i].x() * polygon[j].y() - polygon[j].x() * polygon[i].y();
+    }
+  return area > 0;
+  }
+
+// Проверка, лежит ли точка между двумя другими на прямой
+static bool isPointBetween(const QVector2D& p, const QVector2D& a, const QVector2D& b)
+  {
+  if( !isZero((b.x() - a.x()) * (p.y() - a.y()) - (b.y() - a.y()) * (p.x() - a.x())) ) {
+    return false;  // Точка не на прямой
+    }
+
+  double dot = (p.x() - a.x()) * (b.x() - a.x()) + (p.y() - a.y()) * (b.y() - a.y());
+  if( dot < -EPSILON ) return false;
+
+  double squaredLength = (b.x() - a.x()) * (b.x() - a.x()) + (b.y() - a.y()) * (b.y() - a.y());
+  if (isZero(squaredLength)) return isEqual(p, a);
+
+  return dot <= squaredLength + EPSILON;
+  }
+
+// Вычисление угла между векторами в градусах
+static double angleBetween(const QVector2D& v1, const QVector2D& v2)
+  {
+  double dot = QVector2D::dotProduct(v1, v2);
+  double len1 = sqrt(v1.x() * v1.x() + v1.y() * v1.y());
+  double len2 = sqrt(v2.x() * v2.x() + v2.y() * v2.y());
+
+  if( isZero(len1) || isZero(len2) ) return 0;
+
+  double cosAngle = dot / (len1 * len2);
+  cosAngle = qMax(-1.0, qMin(1.0, cosAngle));
+
+  return acos(cosAngle) * 180.0 / M_PI;
+  }
+
+
+
+struct EdgeInfo
+  {
+    QVector2D p1, p2;   // Исходные точки
+    QVector2D op1, op2; // Смещенные точки
+    bool      isValid;  // Ребро валидно (ненулевой длины)
+    QVector2D normal;   // Нормаль к ребру
+
+    EdgeInfo() : isValid(false) {}
+  };
+
+Sd2dRegion Sd3drModel::flatEquidistant(const Sd2dRegion &r, float distance)
+  {
+  if( r.size() < 3 ) {
+    return Sd2dRegion{};  // Пустой регион для неправильного полигона
+    }
+
+  int n = r.size();
+
+  //Определяем направление смещения
+  bool isCCW = isCounterClockwise(r);
+  double sign = isCCW ? 1.0 : -1.0;
+
+  //Собираем информацию о ребрах, пропуская ребра нулевой длины
+  QList<EdgeInfo> edges;
+  QList<int> validIndices;  // Индексы вершин, где начинаются валидные ребра
+
+  for( int i = 0; i < n; ++i ) {
+    int next = (i + 1) % n;
+
+    EdgeInfo edge;
+    edge.p1 = r[i];
+    edge.p2 = r[next];
+
+    //Проверка на ребро нулевой длины
+    if( isEqual(edge.p1, edge.p2) ) {
+      edge.isValid = false;
+      }
+    else {
+      edge.isValid = true;
+      edge.normal = getEdgeNormal(edge.p1, edge.p2);
+      edge.op1 = edge.p1 + edge.normal * distance * sign;
+      edge.op2 = edge.p2 + edge.normal * distance * sign;
+      validIndices.append(i);
+      }
+
+    edges.append(edge);
+    }
+
+  // Если нет ни одного валидного ребра
+  if( validIndices.isEmpty() ) {
+    return Sd2dRegion{};
+    }
+
+  // Если только одно валидное ребро
+  if( validIndices.size() == 1 ) {
+    Sd2dRegion result;
+    int idx = validIndices[0];
+    result.append(edges[idx].op1);
+    result.append(edges[idx].op2);
+    return result;
+    }
+
+  Sd2dRegion result;
+
+  // Обрабатываем каждую валидную вершину (где сходятся два валидных ребра)
+  for (int i = 0; i < validIndices.size(); ++i) {
+    int currIdx = validIndices[i];
+    int prevIdx = validIndices[(i - 1 + validIndices.size()) % validIndices.size()];
+
+    // Проверяем, что ребра действительно смежные в исходном полигоне
+    // (между ними могут быть ребра нулевой длины)
+    bool areAdjacent = false;
+    int testIdx = prevIdx;
+    while( testIdx != currIdx ) {
+      testIdx = (testIdx + 1) % n;
+      if (testIdx == currIdx) {
+        areAdjacent = true;
+        break;
+        }
+      if( edges[testIdx].isValid ) {
+        break;  // Нашли другое валидное ребро - значит не смежные
+        }
+      }
+
+    if( !areAdjacent ) {
+      continue;  // Пропускаем несмежные ребра
+      }
+
+    const EdgeInfo& edge1 = edges[prevIdx];
+    const EdgeInfo& edge2 = edges[currIdx];
+
+    // Проверка на угол 0 градусов между ребрами
+    QVector2D v1 = normalize(edge1.p1 - edge1.p2);
+    QVector2D v2 = normalize(edge2.p2 - edge2.p1);
+    double angle = angleBetween(v1, v2);
+
+    if (isZero(angle)) {
+      qDebug() << "Error: Zero angle between edges";
+      return Sd2dRegion{};  // Возвращаем пустой регион
+      }
+
+    QLineF line1(edge1.op1.toPointF(), edge1.op2.toPointF());
+    QLineF line2(edge2.op1.toPointF(), edge2.op2.toPointF());
+
+    QPointF intersection;
+    QLineF::IntersectType type = line1.intersects(line2, &intersection);
+
+    // Особый случай: угол 180 градусов (ребра образуют прямую линию)
+    if( isEqual(angle, 180.0) ) {
+      // Используем смещенную точку первого ребра
+      if( !result.isEmpty() && !isEqual(result.last(), edge1.op2) ) {
+        result.append(edge1.op2);
+        }
+      continue;
+      }
+
+    if( type == QLineF::NoIntersection ) {
+      // Параллельные линии - проверяем особый случай offsetP1 == offsetP2
+      if( isEqual(edge1.op2, edge2.op1) ) {
+        if( result.isEmpty() || !isEqual(result.last(), edge1.op2) ) {
+          result.append(edge1.op2);
+          }
+        continue;
+        }
+
+      qDebug() << "Error: Parallel edges with no intersection";
+      return Sd2dRegion();  // Возвращаем пустой регион
+      }
+
+    // Проверяем плохой случай: одна из смещенных точек лежит между соседним ребром и смещенным
+    // QPointF testPoint = (type == QLineF::BoundedIntersection) ? intersection :
+    //                                                             (i == 0 ? edge1.op2 : edge2.op1);
+
+    // Проверяем для первого ребра
+    if (isPointBetween(edge1.op2, edge2.op1, edge2.op2) &&
+        !isEqual(edge1.op2, edge2.op1) && !isEqual(edge1.op2, edge2.op2)) {
+      qDebug() << "Error: Offset point lies between adjacent edge and its offset";
+      return Sd2dRegion();
+      }
+
+    // Проверяем для второго ребра
+    if (isPointBetween(edge2.op1, edge1.op1, edge1.op2) &&
+        !isEqual(edge2.op1, edge1.op1) && !isEqual(edge2.op1, edge1.op2)) {
+      qDebug() << "Error: Offset point lies between adjacent edge and its offset";
+      return Sd2dRegion();
+      }
+
+    // Добавляем точку пересечения
+    if (result.isEmpty() || !isEqual(result.last(), QVector2D(intersection) )) {
+      result.append( QVector2D(intersection) );
+      }
+    }
+
+  return result;
+  }
+
+
+
+Sd2dRegion Sd3drModel::flatFromFace(const Sd3drFace &face, const QMatrix4x4 &map)
+  {
+  Sd2dRegion region2D;
+
+  // Вычисляем обратную матрицу
+  QMatrix4x4 invMatrix = map.inverted();
+
+  // Применяем обратное преобразование к каждой точке
+  for( int pointIndex : face ) {
+    // Преобразуем точку обратно в локальные координаты
+    QVector3D localPoint = invMatrix.map( vertex(pointIndex) );
+
+    // Берем только X и Y координаты (исходный 2D регион лежал в плоскости XY)
+    region2D.append(QVector2D(localPoint.x(), localPoint.y()));
+    }
+
+  return region2D;
+  }
+
+
+
+
 
 
 
@@ -1025,6 +1295,197 @@ Sd3drFaceList Sd3drModel::faceListIndexed(const Sd3drFaceList &faceList, const Q
 
 
 
+Sd3drFaceList Sd3drModel::ring(const Sd2dRegion &r1, const Sd3drFace &face1, const Sd2dRegion &r2, const Sd3drFace &face2)
+  {
+  if( r1.size() < 3 || r2.size() < 3)
+    return Sd3drFaceList{};
+
+  // 1. Определяем, какой полигон внешний (по площади)
+  auto computeArea = [](const Sd2dRegion& poly) -> float {
+    float area = 0;
+    int n = poly.size();
+    for( int i = 0; i < n; ++i ) {
+      const QVector2D& a = poly[i];
+      const QVector2D& b = poly[(i + 1) % n];
+      area += a.x() * b.y() - a.y() * b.x();
+      }
+    return fabs(area) / 2.0f;
+    };
+
+  float area1 = computeArea(r1);
+  float area2 = computeArea(r2);
+
+  // Определяем внешний и внутренний полигоны (по ссылкам, не копируя)
+  const Sd2dRegion& outer = area1 >= area2 ? r1 : r2;
+  const Sd2dRegion& inner = area1 >= area2 ? r2 : r1;
+
+  const Sd3drFace &fouter = area1 >= area2 ? face1 : face2;
+  const Sd3drFace &finner = area1 >= area2 ? face2 : face1;
+
+  int nOuter = outer.size();
+  int nInner = inner.size();
+
+  // 2. Вычисляем центры полигонов
+  QVector2D centerOuter(0, 0), centerInner(0, 0);
+  for (const auto& p : outer) centerOuter += p;
+  for (const auto& p : inner) centerInner += p;
+  centerOuter /= nOuter;
+  centerInner /= nInner;
+
+  // 3. Функция для вычисления угла точки относительно центра
+  auto angle = [](const QVector2D& point, const QVector2D& center) -> float {
+    QVector2D dir = point - center;
+    return atan2(dir.y(), dir.x());
+    };
+
+  // 4. Создаём списки индексов, отсортированных по углу
+  QList<int> outerIndices, innerIndices;
+  QList<float> outerAngles, innerAngles;
+
+  // Для внешнего полигона
+  for( int i = 0; i < nOuter; ++i ) {
+    float ang = angle(outer[i], centerOuter);
+    if (ang < 0) ang += 2 * M_PI;
+    outerAngles.append(ang);
+    outerIndices.append(i);
+    }
+
+  // Сортируем индексы внешнего полигона по углу
+  std::sort(outerIndices.begin(), outerIndices.end(), [&outerAngles](int a, int b) {
+    return outerAngles[a] < outerAngles[b];
+    });
+
+  // Для внутреннего полигона
+  for( int i = 0; i < nInner; ++i ) {
+    float ang = angle(inner[i], centerInner);
+    if (ang < 0) ang += 2 * M_PI;
+    innerAngles.append(ang);
+    innerIndices.append(i);
+    }
+
+  // Сортируем индексы внутреннего полигона по углу
+  std::sort(innerIndices.begin(), innerIndices.end(), [&innerAngles](int a, int b) {
+    return innerAngles[a] < innerAngles[b];
+    });
+
+  // 5. Находим индекс вершины с минимальным углом во внешнем полигоне
+  // Это будет начальной точкой для обхода
+  int startOuterIdx = 0;
+  float minAngle = outerAngles[outerIndices[0]];
+  for( int i = 1; i < nOuter; ++i ) {
+    if (outerAngles[outerIndices[i]] < minAngle) {
+      minAngle = outerAngles[outerIndices[i]];
+      startOuterIdx = i;
+      }
+    }
+
+  // 6. Создаём список соответствий: для каждого индекса внешнего полигона
+  // находим соответствующий индекс внутреннего полигона
+  QList<int> innerMatchIndices;  // для каждого индекса внешнего полигона (в порядке обхода)
+
+  for( int i = 0; i < nOuter; ++i ) {
+    int outerIdx = outerIndices[(startOuterIdx + i) % nOuter];
+    float targetAngle = outerAngles[outerIdx];
+
+    // Находим два соседних угла во внутреннем полигоне
+    int idx1 = 0, idx2 = 0;
+    float angle1 = 0, angle2 = 0;
+    bool found = false;
+
+    for( int j = 0; j < nInner; ++j ) {
+      int currIdx = innerIndices[j];
+      int nextIdx = innerIndices[(j + 1) % nInner];
+
+      float currAngle = innerAngles[currIdx];
+      float nextAngle = innerAngles[nextIdx];
+      float targetAngleNorm = targetAngle;
+
+      // Обрабатываем переход через 2π
+      if( nextAngle < currAngle ) {
+        nextAngle += 2 * M_PI;
+        if( targetAngleNorm < currAngle ) {
+          targetAngleNorm += 2 * M_PI;
+          }
+        }
+
+      if( targetAngleNorm >= currAngle && targetAngleNorm <= nextAngle ) {
+        idx1 = currIdx;
+        idx2 = nextIdx;
+        angle1 = currAngle;
+        angle2 = nextAngle;
+        found = true;
+        break;
+        }
+      }
+
+    if( !found ) {
+      // Если не нашли, берём ближайший
+      float minDiff = 2 * M_PI;
+      int closestIdx = innerIndices[0];
+      for( int j = 0; j < nInner; ++j ) {
+        int idx = innerIndices[j];
+        float diff = fabs(targetAngle - innerAngles[idx]);
+        diff = qMin(diff, 2 * M_PI - diff);
+        if( diff < minDiff ) {
+          minDiff = diff;
+          closestIdx = idx;
+          }
+        }
+      innerMatchIndices.append(closestIdx);
+      }
+    else {
+      // Для интерполяции сохраняем оба индекса и параметр t
+      // Но так как мы работаем только с индексами, а не с точками,
+      // мы не можем интерполировать. Поэтому выбираем ближайшую вершину.
+      float midAngle = (angle1 + angle2) / 2.0f;
+      if (midAngle > 2 * M_PI) midAngle -= 2 * M_PI;
+
+      float diff1 = fabs(targetAngle - angle1);
+      diff1 = qMin(diff1, 2 * M_PI - diff1);
+      float diff2 = fabs(targetAngle - angle2);
+      diff2 = qMin(diff2, 2 * M_PI - diff2);
+
+      innerMatchIndices.append(diff1 <= diff2 ? idx1 : idx2);
+      }
+    }
+
+  // 7. Строим треугольники, используя только индексы
+  // Теперь outerIndices в порядке обхода начиная с startOuterIdx
+  QList<int> orderedOuterIndices;
+  for( int i = 0; i < nOuter; ++i ) {
+    orderedOuterIndices.append(outerIndices[(startOuterIdx + i) % nOuter]);
+    }
+
+  Sd3drFaceList list;
+  for( int i = 0; i < nOuter; ++i ) {
+    int next = (i + 1) % nOuter;
+
+    int outerIdx1 = orderedOuterIndices[i];
+    int outerIdx2 = orderedOuterIndices[next];
+    int innerIdx1 = innerMatchIndices[i];
+    int innerIdx2 = innerMatchIndices[next];
+
+    // Первый треугольник: outer[i] - outer[next] - inner[i]
+    Sd3drFace tri1;
+    tri1.append( fouter.at(outerIdx1) );
+    tri1.append( fouter.at(outerIdx2) );
+    tri1.append( finner.at(innerIdx1) );
+    list.append(tri1);
+
+    // Второй треугольник: outer[next] - inner[next] - inner[i]
+    Sd3drFace tri2;
+    tri2.append( fouter.at(outerIdx2) );
+    tri2.append( finner.at(innerIdx2) );
+    tri2.append( finner.at(innerIdx1) );
+    list.append(tri2);
+    }
+
+  return list;
+  }
+
+
+
+
 
 QList<float> Sd3drModel::afloatArc(float radius, float angleStart, float angleStop, int sideCount )
   {
@@ -1204,7 +1665,7 @@ Sd3drFaceList Sd3drModel::solidBoxWithCone(float lenght, float width, float heig
 
 
 //!
-//! \brief solidBeveledBox Builds a rectangular box with beveled vertical edges, optionally without bottom
+//! \brief solidBoxBevel Builds a rectangular box with beveled vertical edges, optionally without bottom
 //! \param lenght          Box length (X-axis)
 //! \param width           Box width (Y-axis)
 //! \param height          Box height (Z-axis)
@@ -1214,7 +1675,7 @@ Sd3drFaceList Sd3drModel::solidBoxWithCone(float lenght, float width, float heig
 //! \param addBot          If true, adds bottom face; if false, bottom face is omitted
 //! \return                List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidBeveledBox(float lenght, float width, float height, float bevelSize, float bevelCount, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, const QMatrix4x4 &map, bool addBot)
   {
   return solid( flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, map, addBot );
   }
@@ -1223,7 +1684,7 @@ Sd3drFaceList Sd3drModel::solidBeveledBox(float lenght, float width, float heigh
 
 
 //!
-//! \brief solidRoundBox Builds a rectangular box with rounded vertical edges, optionally without bottom
+//! \brief solidBoxRound Builds a rectangular box with rounded vertical edges, optionally without bottom
 //! \param lenght        Box length (X-axis)
 //! \param width         Box width (Y-axis)
 //! \param height        Box height (Z-axis)
@@ -1233,7 +1694,7 @@ Sd3drFaceList Sd3drModel::solidBeveledBox(float lenght, float width, float heigh
 //! \param addBot        If true, adds bottom face; if false, bottom face is omitted
 //! \return              List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidRoundBox(float lenght, float width, float height, float roundRadius, float roundCount, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, const QMatrix4x4 &map, bool addBot)
   {
   return solid( flatRectangleRound( lenght, width, roundRadius, 360 / 30, roundCount ), height, map, addBot );
   }
@@ -1759,6 +2220,109 @@ Sd3drFaceList Sd3drModel::solidAddCone(const Sd3drFaceList &faceList, float cone
 
 
 
+//!
+//! \brief solidAddRoofRound Creates a rounded top face (roof)
+//! \param faceList          Existing solid face list (top face will be removed)
+//! \param roundRadius       Radius of the rounding
+//! \return                  New solid face list with rounded roof
+//!
+Sd3drFaceList Sd3drModel::solidAddRoofRound(const Sd3drFaceList &faceList, float roundRadius)
+  {
+  Sd3drFaceList list(faceList);
+  Sd3drFace top(list.takeLast());
+  QMatrix4x4 m( matrixTop( top, 0 ) );
+  Sd2dRegion r1( flatFromFace( top, m ) );
+  float step = M_PI/2.0/16;
+  for( float ang = step; ang < M_PI/2.0; ang += step ) {
+    float dist = roundRadius * sin( ang );
+    Sd2dRegion r2( flatEquidistant( r1, dist ) );
+    Sd3drFace roof( faceFromFlat( r2, m, dist ) );
+    list.append( faceListWall( top, roof, true ) );
+    top = roof;
+    }
+  list.append( top );
+  return list;
+  }
+
+
+
+
+//!
+//! \brief solidAddFloorRound Creates a rounded bottom face (floor)
+//! \param faceList           Existing solid face list (bottom face will be removed)
+//! \param roundRadius        Radius of the rounding
+//! \return                   New solid face list with rounded floor
+//!
+Sd3drFaceList Sd3drModel::solidAddFloorRound(const Sd3drFaceList &faceList, float roundRadius)
+  {
+  Sd3drFaceList list;
+  Sd3drFace bot(faceList.first());
+  QMatrix4x4 m( matrixBot( bot, 0 ) );
+  Sd2dRegion r1( flatFromFace( bot, m ) );
+  float step = M_PI/2.0/16;
+  Sd2dRegion r2( flatEquidistant( r1, roundRadius ) );
+  Sd3drFace floor( faceFromFlat( r2, m, roundRadius ) );
+  list.append( floor );
+  for( float ang = step; ang < M_PI/2.0; ang += step ) {
+    float dist = roundRadius * cos( ang );
+    Sd2dRegion r2( flatEquidistant( r1, dist ) );
+    Sd3drFace next( faceFromFlat( r2, m, dist ) );
+    list.append( faceListWall( floor, next, true ) );
+    floor = next;
+    }
+  list.append( faceListWall( floor, bot, true ) );
+  list.append( faceList.last(faceList.size()-1) );
+  return list;
+  }
+
+
+
+
+//!
+//! \brief solidAddRoofBevel Creates a beveled top face (roof)
+//! \param faceList          Existing solid face list (top face will be removed)
+//! \param bevelSize         Size of the bevel
+//! \return                  New solid face list with beveled roof
+//!
+Sd3drFaceList Sd3drModel::solidAddRoofBevel(const Sd3drFaceList &faceList, float bevelSize)
+  {
+  Sd3drFaceList list(faceList);
+  Sd3drFace top(list.takeLast());
+  QMatrix4x4 m( matrixTop( top, 0 ) );
+  Sd2dRegion r1( flatFromFace( top, m ) );
+  Sd2dRegion r2( flatEquidistant( r1, bevelSize ) );
+  Sd3drFace roof( faceFromFlat( r2, m, bevelSize ) );
+  list.append( faceListWall( top, roof, true ) );
+  list.append( roof );
+  return list;
+  }
+
+
+
+
+//!
+//! \brief solidAddFloorBevel Creates a beveled bottom face (floor)
+//! \param faceList           Existing solid face list (bottom face will be removed)
+//! \param bevelSize          Size of the bevel
+//! \return                   New solid face list with beveled floor
+//!
+Sd3drFaceList Sd3drModel::solidAddFloorBevel(const Sd3drFaceList &faceList, float bevelSize)
+  {
+  Sd3drFaceList list;
+  Sd3drFace bot(faceList.first());
+  QMatrix4x4 m( matrixBot( bot, 0 ) );
+  Sd2dRegion r1( flatFromFace( bot, m ) );
+  Sd2dRegion r2( flatEquidistant( r1, bevelSize ) );
+  Sd3drFace floor( faceFromFlat( r2, m, bevelSize ) );
+  list.append( floor );
+  list.append( faceListWall( bot, floor, true ) );
+  list.append( faceList.last(faceList.size()-1) );
+  return list;
+  }
+
+
+
+
 
 //!
 //! \brief solidAdd Adds an extrusion with the same profile as the top face
@@ -1771,6 +2335,298 @@ Sd3drFaceList Sd3drModel::solidAdd(const Sd3drFaceList &faceList, float height)
   Sd3drFaceList list(faceList);
   list.append( solid( list.takeLast(), height ) );
   return list;
+  }
+
+
+
+
+
+//!
+//! \brief solidAddSolid Adds an extrusion with r profile at the top face
+//! \param faceList      Sorce face list with top face as base for extrusion
+//! \param r             Extrusion profile
+//! \param height        Extrusion height
+//! \param offset        Offset base extrusion from top face of source
+//! \return              New solid face list with the added extrusion
+//!
+Sd3drFaceList Sd3drModel::solidAddSolid(const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset)
+  {
+  Sd3drFaceList list(faceList);
+  Sd3drFace top(list.takeLast());
+  QMatrix4x4 topMatrix( matrixTop( top, 0 ) );
+  Sd2dRegion topRegion( flatFromFace( top, topMatrix ) );
+  //QMatrix4x4 baseMatrix( matrixTop( top, offset ) );
+  Sd3drFace base( faceFromFlat( r, topMatrix, offset ) );
+  list.append( ring( topRegion, top, r, base ) );
+  Sd3drFace up( faceFromFlat( r, topMatrix, height + offset ) );
+  list.append( faceListWall( base, up, true ) );
+  list.append( up );
+  return list;
+  }
+
+
+
+
+
+//!
+//! \brief solidAddCurveVector Adds a curved bend of the profile with given radius along the specified vector
+//! \param faceList            Existing solid face list (top face will be removed)
+//! \param radius              Bend radius
+//! \param sideCount           Number of segments for the curve
+//! \param x                   X component of the direction vector
+//! \param y                   Y component of the direction vector
+//! \param z                   Z component of the direction vector
+//! \return                    New solid face list with the curved bend
+//!
+//! The initial direction is considered to be the normal of the original profile
+Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, float radius, int sideCount, float x, float y, float z)
+  {
+  Sd3drFaceList list(faceList);
+  Sd3drFace top(list.takeLast());
+  QMatrix4x4 map( matrixTop( top, 0.0 )  );
+  // 1. Переводим регион в локальные координаты
+  QMatrix4x4 invMap = map.inverted();
+  QList<QVector3D> localRegion;
+  for( int i : std::as_const(top) )
+    localRegion.append( invMap.map(vertex(i)) );
+
+  // 2. Локальная нормаль (ось Z)
+  QVector3D localNormal(0, 0, 1);
+
+  // 3. Вычисляем угол между нормалью и вектором поворота
+  QVector3D localRotationVector( x, y, z );
+  QVector3D rotationDir = localRotationVector.normalized();
+  float dot = QVector3D::dotProduct(localNormal, rotationDir);
+  dot = qBound(-1.0f, dot, 1.0f);
+  float totalAngleRad = std::acos(dot);
+  float totalAngleDeg = totalAngleRad * 180.0f / M_PI;
+
+  qDebug() << "Полный угол поворота:" << totalAngleDeg << "°";
+
+  // 4. Определяем направление смещения в плоскости XY (проекция вектора поворота)
+  QVector3D projectionXY(localRotationVector.x(), localRotationVector.y(), 0);
+  if( projectionXY.length() < 0.0001f ) {
+    qWarning() << "Вектор поворота перпендикулярен плоскости XY, смещение не определено";
+    return list;
+    }
+  QVector3D offsetDir = projectionXY.normalized();
+
+  // 5. Центр поворота в локальных координатах (смещение в плоскости XY)
+  QVector3D localPivot = offsetDir * radius;
+
+  // 6. Ось поворота: перпендикулярна плоскости, образованной нормалью и вектором поворота
+  // Ось = нормаль × вектор_поворота (или нормализованная)
+  QVector3D localRotationAxis = QVector3D::crossProduct(localNormal, rotationDir).normalized();
+
+  // Если ось оказалась нулевой (векторы коллинеарны), поворот не требуется
+  if( localRotationAxis.length() < 0.0001f ) {
+    qDebug() << "Вектор поворота коллинеарен нормали, поворота нет";
+    return list;
+    }
+
+  // 7. Угловой шаг
+  float stepAngleRad = totalAngleRad / sideCount;
+
+  // 8. Для каждого шага создаём матрицу поворота
+  for( int step = 1; step <= sideCount; ++step ) {
+    float currentAngleRad = stepAngleRad * step;
+    float currentAngleDeg = currentAngleRad * 180.0f / M_PI;
+
+    // Создаём матрицу поворота в локальных координатах
+    QMatrix4x4 localRotationMatrix;
+
+    // 3.Возвращаем центр поворота обратно
+    localRotationMatrix.translate(localPivot);
+
+    // 2.Поворачиваем вокруг оси
+    localRotationMatrix.rotate(currentAngleDeg, localRotationAxis.x(), localRotationAxis.y(), localRotationAxis.z());
+
+    // 1.Смещаем центр поворота в начало координат
+    localRotationMatrix.translate(-localPivot);
+
+    // Применяем поворот к региону
+    Sd3drFace rotated;
+    for(const QVector3D& p : localRegion)
+      rotated.append( vertexAppend( map.map(localRotationMatrix.map(p) ) ) );
+
+    list.append( faceListWall( top, rotated, true ) );
+    top = rotated;
+    }
+
+  //Append top face
+  list.append( top );
+
+  return list;
+  }
+
+
+
+
+
+//!
+//! \brief solidAddCurveXZ Adds a curved bend of the profile with given radius and angle around the Y axis
+//! \param faceList        Existing solid face list (top face will be removed)
+//! \param radius          Bend radius
+//! \param curveAngle      Bend angle in degrees around axiz Y
+//! \param sideCount       Number of segments for the curve
+//! \return                New solid face list with the curved bend
+//!
+//! The initial direction is considered to be the normal of the original profile
+Sd3drFaceList Sd3drModel::solidAddCurveXZ(const Sd3drFaceList &faceList, float radius, float curveAngle, int sideCount)
+  {
+  QMatrix4x4 rotationMatrix;
+  rotationMatrix.rotate(curveAngle, 0, 1, 0);
+  QVector3D r( rotationMatrix.map(QVector3D(0,0,1)) );
+  return solidAddCurveVector( faceList, radius, sideCount, r.x(), r.y(), r.z() );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddBox    Adds a rectangular box on top of the solid
+//! \param lenght         Box length
+//! \param width          Box width
+//! \param height         Box height
+//! \param faceList       Existing solid face list (top face will be removed)
+//! \param transferHeight Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return               New solid face list with the box added
+//!
+Sd3drFaceList Sd3drModel::solidAddBox(float lenght, float width, float height, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatRectangle( lenght, width ), height, transferHeight );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddBeveledBox Adds a rectangular box with beveled vertical edges on top of the solid
+//! \param lenght             Box length
+//! \param width              Box width
+//! \param height             Box height
+//! \param bevelSize          Size of the bevel
+//! \param bevelCount         Number of bevel segments
+//! \param faceList           Existing solid face list (top face will be removed)
+//! \param transferHeight     Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                   New solid face list with the box added
+//!
+Sd3drFaceList Sd3drModel::solidAddBeveledBox(float lenght, float width, float height, float bevelSize, float bevelCount, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, transferHeight );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddRoundBox Adds a rectangular box with rounded vertical edges on top of the solid
+//! \param lenght           Box length
+//! \param width            Box width
+//! \param height           Box height
+//! \param roundRadius      Radius of the rounded corners
+//! \param roundCount       Number of rounding segments
+//! \param faceList         Existing solid face list (top face will be removed)
+//! \param transferHeight   Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                 New solid face list with the box added
+//!
+Sd3drFaceList Sd3drModel::solidAddRoundBox(float lenght, float width, float height, float roundRadius, float roundCount, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatRectangleRound( lenght, width, roundRadius, 360/30, roundCount ), height, transferHeight );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddCylinder Adds a cylinder on top of the solid
+//! \param radius           Cylinder radius
+//! \param height           Cylinder height
+//! \param faceList         Existing solid face list (top face will be removed)
+//! \param transferHeight   Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                 New solid face list with the cylinder added
+//!
+Sd3drFaceList Sd3drModel::solidAddCylinder(float radius, float height, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatCircle( radius ), height, transferHeight );
+  }
+
+
+
+
+//!
+//! \brief solidAddPlygedronInner Adds a regular polygon prism (by inscribed circle) on top of the solid
+//! \param radius                 Radius of the inscribed circle
+//! \param height                 Prism height
+//! \param sideCount              Number of sides
+//! \param faceList               Existing solid face list (top face will be removed)
+//! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                       New solid face list with the prism added
+//!
+Sd3drFaceList Sd3drModel::solidAddPlygedronInner(float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatPlygedronInner( radius, sideCount ), height, transferHeight );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddPlygedronOuter Adds a regular polygon prism (by circumscribed circle) on top of the solid
+//! \param radius                 Radius of the circumscribed circle
+//! \param height                 Prism height
+//! \param sideCount              Number of sides
+//! \param faceList               Existing solid face list (top face will be removed)
+//! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                       New solid face list with the prism added
+//!
+Sd3drFaceList Sd3drModel::solidAddPlygedronOuter(float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatPlygedronOuter( radius, sideCount ), height, transferHeight );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddTrapezoid Adds a trapezoid on top of the solid
+//! \param lenghtTop         Length of the top edge
+//! \param lenghtBot         Length of the bottom edge
+//! \param width             Width
+//! \param height            Trapezoid height
+//! \param faceList          Existing solid face list (top face will be removed)
+//! \param transferHeight    Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                  New solid face list with the trapezoid added
+//!
+Sd3drFaceList Sd3drModel::solidAddTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatTrapezoid( lenghtTop, lenghtBot, width ), height, transferHeight );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddRoundTrapezoid Adds a trapezoid with rounded corners on top of the solid
+//! \param lenghtTop              Length of the top edge
+//! \param lenghtBot              Length of the bottom edge
+//! \param width                  Width
+//! \param height                 Trapezoid height
+//! \param roundRadius            Radius of the rounded corners
+//! \param faceList               Existing solid face list (top face will be removed)
+//! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
+//! \return                       New solid face list with the trapezoid added
+//!
+Sd3drFaceList Sd3drModel::solidAddRoundTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const Sd3drFaceList &faceList, float transferHeight)
+  {
+  return solidAddSolid( faceList, flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ), height, transferHeight );
   }
 
 

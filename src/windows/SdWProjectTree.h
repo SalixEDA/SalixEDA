@@ -28,17 +28,18 @@ class SdWProjectTree : public QTreeWidget
   {
     Q_OBJECT
 
-    SdProject           *mProject;
+    SdProject           *mProject;         //!< Project itself
 
-    QTreeWidgetItem     *mSymbolList;    //Схемные изображения компонентов
-    QTreeWidgetItem     *mPartList;      //Корпуса компонентов
-    QTreeWidgetItem     *mComponentList; //Компоненты (схемное избр. + корпус + параметры)
-    QTreeWidgetItem     *mSheetList;     //Листы схем
-    QTreeWidgetItem     *mPlateList;     //Печатные платы
-    QTreeWidgetItem     *mTextList;      //Текстовые документы
-    QTreeWidgetItem     *mCurrentItem;   //Store current item, because currentItem() return not owned item
+    QTreeWidgetItem     *mSymbolList;      //!< Schematic symbols of components
+    QTreeWidgetItem     *mPartList;        //!< Component packages (footprints)
+    QTreeWidgetItem     *mComponentList;   //!< Components (symbol + package + parameters)
+    QTreeWidgetItem     *mSheetList;       //!< Schematic sheets
+    QTreeWidgetItem     *mPlateList;       //!< Printed circuit boards
+    QTreeWidgetItem     *mTextList;        //!< Text documents
+    QTreeWidgetItem     *mCurrentItem;     //!< Store current item, because currentItem() returns not owned item
 
-    QString              mFileName;      //Полное имя файла проекта проекта с путем
+    QString              mFileName;        //!< Full file name of the project with path
+                                           //!< For a library object, the file name will match the project name
   public:
     explicit SdWProjectTree( const QString fname, SdProject *prj, QWidget *parent = nullptr);
     ~SdWProjectTree() override;

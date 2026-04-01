@@ -178,8 +178,14 @@ void SdWProjectList::fileCloseAll()
 
 
 
-//File project open
-SdWProjectTree *SdWProjectList::fileOpen(const QString fname, SdProject *project)
+//!
+//! \brief fileOpen      Can load project from local file, create new empty project, or open given project
+//! \param fname         File name for project
+//! \param project       Project for open or nullptr if need to be created new project or project mast be loaded from file
+//! \param libraryObject Flag for library objects which not saved in files
+//! \return              Tree window for project
+//!
+SdWProjectTree *SdWProjectList::fileOpen(const QString fname, SdProject *project )
   {
   if( project == nullptr )
     //Append file name to previous file list [Добавить в список предыдущих файлов]

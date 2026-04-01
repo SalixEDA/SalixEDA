@@ -129,7 +129,9 @@ class SdWMain : public QMainWindow
     //Commands [Реакции на команды]
     //File menu commands
     void cmFileNew();
+    //Load project from library
     void cmFileLoad();
+    //Load project from local file system
     void cmFileOpen();
     void cmFilePrevious();
     void cmFileClose();

@@ -55,7 +55,12 @@ class SdWProjectList : public QWidget
     //Close all projects
     void            fileCloseAll();
 
-    //File project open
+    //!
+    //! \brief fileOpen      Can load project from local file, create new empty project, or open given project
+    //! \param fname         File name for project
+    //! \param project       Project for open or nullptr if need to be created new project or project mast be loaded from file
+    //! \return              Tree window for project
+    //!
     SdWProjectTree *fileOpen(const QString fname , SdProject *project = nullptr);
 
     //File import PasCAD
