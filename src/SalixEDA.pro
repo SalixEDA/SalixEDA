@@ -645,6 +645,7 @@ HEADERS  += \
     script/SdScriptValueOpUnaryFloatMinus.h \
     script/SdScriptValueString.h \
     script/SdScriptValueVariable.h \
+    script/SdScriptValueVariable2dRegion.h \
     script/SdScriptValueVariableBool.h \
     script/SdScriptValueVariableColor.h \
     script/SdScriptValueVariableFace.h \

@@ -19,8 +19,6 @@ Description
 #ifndef SDSCRIPTTYPES_H
 #define SDSCRIPTTYPES_H
 
-#include "3dr/Sd3drRegion.h"
-#include "3dr/Sd3drModel.h"
 
 #include <QString>
 #include <QVector3D>
@@ -28,23 +26,24 @@ Description
 #include <QList>
 #include <QColor>
 
-#define SD_SCRIPT_TYPE_NONE      '_'
+#define SD_SCRIPT_TYPE_NONE       '_'
 //basis
-#define SD_SCRIPT_TYPE_BOOL      'b'
-#define SD_SCRIPT_TYPE_FLOAT     'd'
-#define SD_SCRIPT_TYPE_COLOR     'c'
-#define SD_SCRIPT_TYPE_STRING    's'
-#define SD_SCRIPT_TYPE_AFLOAT    'a'
+#define SD_SCRIPT_TYPE_BOOL       'b'
+#define SD_SCRIPT_TYPE_FLOAT      'd'
+#define SD_SCRIPT_TYPE_COLOR      'c'
+#define SD_SCRIPT_TYPE_STRING     's'
+#define SD_SCRIPT_TYPE_AFLOAT     'a'
+#define SD_SCRIPT_TYPE_2D_REGION  'r' //List of QVector2D
 //param reference
-#define SD_SCRIPT_TYPE_REF       't'
+#define SD_SCRIPT_TYPE_REF        't'
 //2d
-#define SD_SCRIPT_TYPE_GRAPH     'g'
+#define SD_SCRIPT_TYPE_GRAPH      'g'
 //3d
-#define SD_SCRIPT_TYPE_VERTEX    'v' //Single vertex index
-#define SD_SCRIPT_TYPE_FACE      'f' //List of vertex index
-#define SD_SCRIPT_TYPE_FACE_LIST 'l' //List of list of vertex index
-#define SD_SCRIPT_TYPE_MODEL     'm' //Model, instance of body
-#define SD_SCRIPT_TYPE_MATRIX    'x'
+#define SD_SCRIPT_TYPE_VERTEX     'v' //Single vertex index
+#define SD_SCRIPT_TYPE_FACE       'f' //List of vertex index
+#define SD_SCRIPT_TYPE_FACE_LIST  'l' //List of list of vertex index
+#define SD_SCRIPT_TYPE_MODEL      'm' //Model, instance of body
+#define SD_SCRIPT_TYPE_MATRIX     'x'
 
 
 //!

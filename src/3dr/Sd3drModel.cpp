@@ -70,7 +70,7 @@ Sd2dRegion Sd3drModel::flatRectangle(float lenght, float width)
 
 
 
-Sd2dRegion Sd3drModel::flatRectangleBevel(float lenght, float width, float bevelSize, int count)
+Sd2dRegion Sd3drModel::flatRectangleBevel(float lenght, float width, float bevelSize, float count)
   {
   if( count <= 0 )
     return flatRectangle( lenght, width );
@@ -104,7 +104,7 @@ Sd2dRegion Sd3drModel::flatRectangleBevel(float lenght, float width, float bevel
 
 
 
-Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radius, float stepDegree, int count)
+Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radius, float stepDegree, float count)
   {
   Sd2dRegion region;
   width /= 2.0;
@@ -183,7 +183,7 @@ Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radiu
 
 
 
-Sd2dRegion Sd3drModel::flatEllipse(float radiusx, float radiusy, int stepDegree)
+Sd2dRegion Sd3drModel::flatEllipse(float radiusx, float radiusy, float stepDegree)
   {
   Sd2dRegion region;
   //Build circle with step degree
@@ -1295,193 +1295,153 @@ Sd3drFaceList Sd3drModel::faceListIndexed(const Sd3drFaceList &faceList, const Q
   }
 
 
+// Проверка, что треугольник (a,b,c) ориентирован против часовой стрелки (положительная площадь)
+static bool isCCW(const QVector2D &a, const QVector2D &b, const QVector2D &c)
+  {
+  return (b.x() - a.x()) * (c.y() - a.y()) - (b.y() - a.y()) * (c.x() - a.x()) > 0;
+  }
+
+
 
 Sd3drFaceList Sd3drModel::ring(const Sd2dRegion &r1, const Sd3drFace &face1, const Sd2dRegion &r2, const Sd3drFace &face2)
   {
   if( r1.size() < 3 || r2.size() < 3)
     return Sd3drFaceList{};
 
-  // 1. Определяем, какой полигон внешний (по площади)
-  auto computeArea = [](const Sd2dRegion& poly) -> float {
+  // Определяем, какой регион внешний (по площади)
+  auto polygonArea = [](const Sd2dRegion &poly) -> float {
     float area = 0;
     int n = poly.size();
-    for( int i = 0; i < n; ++i ) {
-      const QVector2D& a = poly[i];
-      const QVector2D& b = poly[(i + 1) % n];
+    for (int i = 0; i < n; ++i) {
+      const QVector2D &a = poly[i];
+      const QVector2D &b = poly[(i+1)%n];
       area += a.x() * b.y() - a.y() * b.x();
       }
-    return fabs(area) / 2.0f;
+    return area * 0.5f;
     };
 
-  float area1 = computeArea(r1);
-  float area2 = computeArea(r2);
+  float area1 = polygonArea(r1);
+  float area2 = polygonArea(r2);
 
-  // Определяем внешний и внутренний полигоны (по ссылкам, не копируя)
-  const Sd2dRegion& outer = area1 >= area2 ? r1 : r2;
-  const Sd2dRegion& inner = area1 >= area2 ? r2 : r1;
-
-  const Sd3drFace &fouter = area1 >= area2 ? face1 : face2;
-  const Sd3drFace &finner = area1 >= area2 ? face2 : face1;
-
-  int nOuter = outer.size();
-  int nInner = inner.size();
-
-  // 2. Вычисляем центры полигонов
-  QVector2D centerOuter(0, 0), centerInner(0, 0);
-  for (const auto& p : outer) centerOuter += p;
-  for (const auto& p : inner) centerInner += p;
-  centerOuter /= nOuter;
-  centerInner /= nInner;
-
-  // 3. Функция для вычисления угла точки относительно центра
-  auto angle = [](const QVector2D& point, const QVector2D& center) -> float {
-    QVector2D dir = point - center;
-    return atan2(dir.y(), dir.x());
-    };
-
-  // 4. Создаём списки индексов, отсортированных по углу
-  QList<int> outerIndices, innerIndices;
-  QList<float> outerAngles, innerAngles;
-
-  // Для внешнего полигона
-  for( int i = 0; i < nOuter; ++i ) {
-    float ang = angle(outer[i], centerOuter);
-    if (ang < 0) ang += 2 * M_PI;
-    outerAngles.append(ang);
-    outerIndices.append(i);
+  const Sd2dRegion *outer, *inner;
+  const Sd3drFace  *faceOut, *faceIn;
+  if( area1 > 0 && area2 > 0 ) { // оба по часовой? Пусть внешний — больший по площади
+    outer = (area1 > area2) ? &r1 : &r2;
+    inner = (area1 > area2) ? &r2 : &r1;
+    faceOut = (area1 > area2) ? &face1 : &face2;
+    faceIn = (area1 > area2) ? &face2 : &face1;
+    }
+  else if( area1 > 0 ) {
+    outer = &r1;
+    inner = &r2;
+    faceOut = &face1;
+    faceIn = &face2;
+    }
+  else {
+    outer = &r2;
+    inner = &r1;
+    faceOut = &face2;
+    faceIn = &face1;
     }
 
-  // Сортируем индексы внешнего полигона по углу
-  std::sort(outerIndices.begin(), outerIndices.end(), [&outerAngles](int a, int b) {
-    return outerAngles[a] < outerAngles[b];
-    });
-
-  // Для внутреннего полигона
-  for( int i = 0; i < nInner; ++i ) {
-    float ang = angle(inner[i], centerInner);
-    if (ang < 0) ang += 2 * M_PI;
-    innerAngles.append(ang);
-    innerIndices.append(i);
-    }
-
-  // Сортируем индексы внутреннего полигона по углу
-  std::sort(innerIndices.begin(), innerIndices.end(), [&innerAngles](int a, int b) {
-    return innerAngles[a] < innerAngles[b];
-    });
-
-  // 5. Находим индекс вершины с минимальным углом во внешнем полигоне
-  // Это будет начальной точкой для обхода
-  int startOuterIdx = 0;
-  float minAngle = outerAngles[outerIndices[0]];
-  for( int i = 1; i < nOuter; ++i ) {
-    if (outerAngles[outerIndices[i]] < minAngle) {
-      minAngle = outerAngles[outerIndices[i]];
-      startOuterIdx = i;
+  // Находим ближайшую пару точек между внешним и внутренним контурами
+  int innerIdx = 0;
+  QVector2D p0( outer->at(0) );
+  float minDist = p0.distanceToPoint( inner->at(0) );
+  for( int j = 0; j < inner->size(); ++j ) {
+    float d = p0.distanceToPoint( inner->at(j) );
+    if( d < minDist ) {
+      minDist = d;
+      innerIdx = j;
       }
     }
 
-  // 6. Создаём список соответствий: для каждого индекса внешнего полигона
-  // находим соответствующий индекс внутреннего полигона
-  QList<int> innerMatchIndices;  // для каждого индекса внешнего полигона (в порядке обхода)
+  auto map = [faceOut,faceIn] ( int idx ) -> int {
+    if( idx < faceOut->size() ) return faceOut->at(idx);
+    return faceIn->at(idx - faceOut->size());
+    };
 
-  for( int i = 0; i < nOuter; ++i ) {
-    int outerIdx = outerIndices[(startOuterIdx + i) % nOuter];
-    float targetAngle = outerAngles[outerIdx];
+  auto point = [outer,inner] (int idx) -> QVector2D {
+    if( idx < outer->size() ) return outer->at(idx);
+    return inner->at( idx - outer->size() );
+    };
 
-    // Находим два соседних угла во внутреннем полигоне
-    int idx1 = 0, idx2 = 0;
-    float angle1 = 0, angle2 = 0;
-    bool found = false;
+  // Строим единый полигон, соединяя внешний и внутренний через разрез
+  QList<int> indices;
+  indices.reserve( outer->size() + inner->size() + 2 );
+  // Добавляем внешний контур
+  for( int i = 0; i < outer->size(); ++i )
+    indices.append(i);
 
-    for( int j = 0; j < nInner; ++j ) {
-      int currIdx = innerIndices[j];
-      int nextIdx = innerIndices[(j + 1) % nInner];
+  // Разрез внутрь
+  indices.append( 0 );
 
-      float currAngle = innerAngles[currIdx];
-      float nextAngle = innerAngles[nextIdx];
-      float targetAngleNorm = targetAngle;
+  // Внутренний контур (обходим в обратном порядке, чтобы сохранить ориентацию)
+  // Внутренний контур (обходим в ОБРАТНОМ порядке)
+  // Начинаем с innerIdx и идем назад по индексам
+  int i = innerIdx;
+  do {
+    indices.append( i + outer->size() );
+    i--;
+    if (i < 0) i = inner->size() - 1;
+    }
+  while( i != innerIdx );
 
-      // Обрабатываем переход через 2π
-      if( nextAngle < currAngle ) {
-        nextAngle += 2 * M_PI;
-        if( targetAngleNorm < currAngle ) {
-          targetAngleNorm += 2 * M_PI;
+  // Разрез обратно
+  indices.append( innerIdx + outer->size() );
+
+  Sd3drFaceList triangles;
+
+  int step = 0;
+  while( indices.size() > 3 ) {
+    bool earFound = false;
+    for( int i = 0; i < indices.size(); ++i ) {
+      int prev = indices[(i - 1 + indices.size()) % indices.size()];
+      int curr = indices[i];
+      int next = indices[(i + 1) % indices.size()];
+
+      // Проверка, что треугольник (prev, curr, next) — ухо
+      QVector2D a = point(prev), b = point(curr), c = point(next);
+      if( !isCCW(a, b, c) ) continue; // должен быть выпуклый угол
+
+      // Проверка, что внутри треугольника нет других точек
+      bool empty = true;
+      for( int j = 0; j < indices.size(); ++j ) {
+        int p = indices[j];
+        if( p == prev || p == curr || p == next ) continue;
+        QVector2D pt = point(p);
+        // барицентрическая проверка внутри треугольника
+        float v0x = c.x() - a.x(), v0y = c.y() - a.y();
+        float v1x = b.x() - a.x(), v1y = b.y() - a.y();
+        float v2x = pt.x() - a.x(), v2y = pt.y() - a.y();
+        float dot00 = v0x*v0x + v0y*v0y;
+        float dot01 = v0x*v1x + v0y*v1y;
+        float dot02 = v0x*v2x + v0y*v2y;
+        float dot11 = v1x*v1x + v1y*v1y;
+        float dot12 = v1x*v2x + v1y*v2y;
+        float invDenom = 1.0f / (dot00 * dot11 - dot01 * dot01);
+        float u = (dot11 * dot02 - dot01 * dot12) * invDenom;
+        float v = (dot00 * dot12 - dot01 * dot02) * invDenom;
+        if( u > 0 && v > 0 && u + v < 1 ) {
+          empty = false;
+          break;
           }
         }
-
-      if( targetAngleNorm >= currAngle && targetAngleNorm <= nextAngle ) {
-        idx1 = currIdx;
-        idx2 = nextIdx;
-        angle1 = currAngle;
-        angle2 = nextAngle;
-        found = true;
+      if( empty ) {
+        triangles.append({map(prev), map(curr), map(next)});
+        indices.removeAt(i);
+        earFound = true;
         break;
         }
       }
-
-    if( !found ) {
-      // Если не нашли, берём ближайший
-      float minDiff = 2 * M_PI;
-      int closestIdx = innerIndices[0];
-      for( int j = 0; j < nInner; ++j ) {
-        int idx = innerIndices[j];
-        float diff = fabs(targetAngle - innerAngles[idx]);
-        diff = qMin(diff, 2 * M_PI - diff);
-        if( diff < minDiff ) {
-          minDiff = diff;
-          closestIdx = idx;
-          }
-        }
-      innerMatchIndices.append(closestIdx);
-      }
-    else {
-      // Для интерполяции сохраняем оба индекса и параметр t
-      // Но так как мы работаем только с индексами, а не с точками,
-      // мы не можем интерполировать. Поэтому выбираем ближайшую вершину.
-      float midAngle = (angle1 + angle2) / 2.0f;
-      if (midAngle > 2 * M_PI) midAngle -= 2 * M_PI;
-
-      float diff1 = fabs(targetAngle - angle1);
-      diff1 = qMin(diff1, 2 * M_PI - diff1);
-      float diff2 = fabs(targetAngle - angle2);
-      diff2 = qMin(diff2, 2 * M_PI - diff2);
-
-      innerMatchIndices.append(diff1 <= diff2 ? idx1 : idx2);
-      }
+    if( !earFound ) break; // защита
+    ++step;
+    if( step > 10000 ) break; // fallback
     }
-
-  // 7. Строим треугольники, используя только индексы
-  // Теперь outerIndices в порядке обхода начиная с startOuterIdx
-  QList<int> orderedOuterIndices;
-  for( int i = 0; i < nOuter; ++i ) {
-    orderedOuterIndices.append(outerIndices[(startOuterIdx + i) % nOuter]);
+  if( indices.size() == 3 ) {
+    triangles.append({ map(indices[0]), map(indices[1]), map(indices[2])});
     }
-
-  Sd3drFaceList list;
-  for( int i = 0; i < nOuter; ++i ) {
-    int next = (i + 1) % nOuter;
-
-    int outerIdx1 = orderedOuterIndices[i];
-    int outerIdx2 = orderedOuterIndices[next];
-    int innerIdx1 = innerMatchIndices[i];
-    int innerIdx2 = innerMatchIndices[next];
-
-    // Первый треугольник: outer[i] - outer[next] - inner[i]
-    Sd3drFace tri1;
-    tri1.append( fouter.at(outerIdx1) );
-    tri1.append( fouter.at(outerIdx2) );
-    tri1.append( finner.at(innerIdx1) );
-    list.append(tri1);
-
-    // Второй треугольник: outer[next] - inner[next] - inner[i]
-    Sd3drFace tri2;
-    tri2.append( fouter.at(outerIdx2) );
-    tri2.append( finner.at(innerIdx2) );
-    tri2.append( finner.at(innerIdx1) );
-    list.append(tri2);
-    }
-
-  return list;
+  return triangles;
   }
 
 
@@ -1519,8 +1479,9 @@ QList<float> Sd3drModel::afloatArc(float radius, float angleStart, float angleSt
 //! \param invertNormal Change normal direction to inverted
 //! \return             Transformation matrix
 //!
-QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, float height, bool invertNormal )
+QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, bool invertNormal )
   {
+  invertNormal = !invertNormal;
   if( face.size() < 3 )
     return QMatrix4x4(); // Недостаточно точек
 
@@ -1534,9 +1495,9 @@ QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, float height, bool inver
 
   // 2. Вычисляем нормаль к плоскости полигона
   // Используем первые три точки (они не коллинеарны, т.к. полигон выпуклый)
-  QVector3D p0( mVertexList.at(0) );
-  QVector3D p1( mVertexList.at(1) );
-  QVector3D p2( mVertexList.at(2) );
+  QVector3D p0( mVertexList.at(face.at(0)) );
+  QVector3D p1( mVertexList.at(face.at(1)) );
+  QVector3D p2( mVertexList.at(face.at(2)) );
   QVector3D a = p1 - p0;
   QVector3D b = p2 - p0;
   QVector3D normal = QVector3D::crossProduct(a, b).normalized();
@@ -1546,12 +1507,10 @@ QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, float height, bool inver
     normal = -normal;
 
   // Инвертируем нормаль если нужно (для оси Z)
-  QVector3D zAxis = normal;
 
   // 3. Смещаем центр по нормали (или против нормали, если height отрицательный)
   // height > 0: смещение в сторону zAxis
   // height < 0: смещение в противоположную сторону
-  center -= zAxis * height;
 
   // Строим локальные оси
   QVector3D tempX(1, 0, 0);
@@ -1583,48 +1542,6 @@ QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, float height, bool inver
 
   return transform;
   }
-
-
-
-
-//!
-//! \brief matrixTop Builds a matrix that translates to the center of the face and orients the z-axis along the normal
-//! \param faceList  List of faces
-//! \return          Transformation matrix
-//!
-//!  Uses the last face from the list as the source face
-QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFaceList &faceList, float height)
-  {
-  return matrixTop( faceList.last(), height );
-  }
-
-
-
-//!
-//! \brief matrixBot Builds a matrix that translates to the center of the face and orients the z-axis opposite to the normal
-//! \param face      Source face
-//! \return          Transformation matrix
-//!
-QMatrix4x4 Sd3drModel::matrixBot(const Sd3drFace &face, float height)
-  {
-  return matrixTop( face, height, true );
-  }
-
-
-
-
-
-//!
-//! \brief matrixBot Builds a matrix that translates to the center of the face and orients the z-axis opposite to the normal
-//! \param faceList  List of faces
-//! \return          Transformation matrix
-//!
-//! Uses the last face from the list as the source face
-QMatrix4x4 Sd3drModel::matrixBot(const Sd3drFaceList &faceList, float height)
-  {
-  return matrixBot( faceList.last(), height );
-  }
-
 
 
 
@@ -1663,7 +1580,7 @@ QMatrix4x4 Sd3drModel::matrixNew(float angX, float angY, float angZ, float offX,
 //!
 Sd3drFaceList Sd3drModel::solidBox(float lenght, float width, float height, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatRectangle( lenght, width ), height, map, addBot );
+  return solidNew( flatRectangle( lenght, width ), height, map, addBot );
   }
 
 
@@ -1701,7 +1618,7 @@ Sd3drFaceList Sd3drModel::solidBoxWithCone(float lenght, float width, float heig
 //!
 Sd3drFaceList Sd3drModel::solidBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, map, addBot );
+  return solidNew( flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, map, addBot );
   }
 
 
@@ -1720,7 +1637,7 @@ Sd3drFaceList Sd3drModel::solidBoxBevel(float lenght, float width, float height,
 //!
 Sd3drFaceList Sd3drModel::solidBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatRectangleRound( lenght, width, roundRadius, 360 / 30, roundCount ), height, map, addBot );
+  return solidNew( flatRectangleRound( lenght, width, roundRadius, 360 / 30, roundCount ), height, map, addBot );
   }
 
 
@@ -1736,7 +1653,7 @@ Sd3drFaceList Sd3drModel::solidBoxRound(float lenght, float width, float height,
 //!
 Sd3drFaceList Sd3drModel::solidCylinder(float radius, float height, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatCircle( radius ), height, map, addBot );
+  return solidNew( flatCircle( radius ), height, map, addBot );
   }
 
 
@@ -1772,7 +1689,7 @@ Sd3drFaceList Sd3drModel::solidCylinderWithCone(float radius, float height, floa
 //!
 Sd3drFaceList Sd3drModel::solidPlygedronInner(float radius, float height, float sideCount, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatPlygedronInner( radius, sideCount ), height, map, addBot );
+  return solidNew( flatPlygedronInner( radius, sideCount ), height, map, addBot );
   }
 
 
@@ -1789,7 +1706,7 @@ Sd3drFaceList Sd3drModel::solidPlygedronInner(float radius, float height, float 
 //!
 Sd3drFaceList Sd3drModel::solidPlygedronOuter(float radius, float height, float sideCount, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatPlygedronOuter( radius, sideCount ), height, map, addBot );
+  return solidNew( flatPlygedronOuter( radius, sideCount ), height, map, addBot );
   }
 
 
@@ -1808,7 +1725,7 @@ Sd3drFaceList Sd3drModel::solidPlygedronOuter(float radius, float height, float 
 //!
 Sd3drFaceList Sd3drModel::solidTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatTrapezoid( lenghtTop, lenghtBot, width ), height, map, addBot );
+  return solidNew( flatTrapezoid( lenghtTop, lenghtBot, width ), height, map, addBot );
   }
 
 
@@ -1828,287 +1745,12 @@ Sd3drFaceList Sd3drModel::solidTrapezoid(float lenghtTop, float lenghtBot, float
 //!
 Sd3drFaceList Sd3drModel::solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot)
   {
-  return solid( flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ), height, map, addBot );
+  return solidNew( flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ), height, map, addBot );
   }
 
 
 
 
-//!
-//! \brief solidTubeBox Builds a tube with rectangular cross-section
-//! \param lenght       Outer length
-//! \param width        Outer width
-//! \param height       Tube height
-//! \param thickness    Wall thickness
-//! \param map          Transformation matrix
-//! \param addBot       If true, adds bottom face; if false, bottom face is omitted
-//! \return             List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubeBox(float lenght, float width, float height, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidTube( flatRectangle( lenght, width ), flatRectangle( lenght - thickness, width - thickness ), height, map, addBot );
-  }
-
-
-
-
-//!
-//! \brief solidTubeBoxRound Builds a tube with rectangular cross-section and rounded corners
-//! \param lenght            Outer length
-//! \param width             Outer width
-//! \param height            Tube height
-//! \param roundRadius       Radius of the rounded corners
-//! \param roundCount        Number of rounding segments
-//! \param thickness         Wall thickness
-//! \param map               Transformation matrix
-//! \param addBot            If true, adds bottom face; if false, bottom face is omitted
-//! \return                  List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubeBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidTube( flatRectangleRound( lenght, width, roundRadius, 360 / 30, roundCount ),
-                    flatRectangleRound( lenght - thickness, width - thickness, roundRadius - thickness/2.0, 360/30, roundCount ), height, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidTubeBoxBevel   Builds a tube with rectangular cross-section and beveled corners
-//! \param lenght              Outer length
-//! \param width               Outer width
-//! \param height              Tube height
-//! \param bevelSize           Size of the bevel
-//! \param bevelCount          Number of bevel segments
-//! \param thickness           Wall thickness
-//! \param map                 Transformation matrix
-//! \param addBot              If true, adds bottom face; if false, bottom face is omitted
-//! \return                    List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubeBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidTube( flatRectangleBevel( lenght, width, bevelSize, bevelCount ),
-                    flatRectangleBevel( lenght - thickness, width - thickness, bevelSize - thickness/2.0, bevelCount ), height, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidTubeCylinder Builds a tube with circular cross-section
-//! \param radius            Outer radius
-//! \param height            Tube height
-//! \param thickness         Wall thickness
-//! \param map               Transformation matrix
-//! \param addBot            If true, adds bottom face; if false, bottom face is omitted
-//! \return                  List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubeCylinder(float radius, float height, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  return solidTube( flatCircle( radius ), flatCircle( radius - thickness ), height, map, addBot );
-  }
-
-
-
-
-//!
-//! \brief solidTubePlygedronInner Builds a tube with regular polygon cross-section by inscribed circle radius
-//! \param radius                  Radius of the inscribed circle
-//! \param height                  Tube height
-//! \param sideCount               Number of sides
-//! \param thickness               Wall thickness
-//! \param map                     Transformation matrix
-//! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
-//! \return                        List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubePlygedronInner(float radius, float height, float sideCount, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  return solidTube( flatPlygedronInner( radius, sideCount ), flatPlygedronInner( radius - thickness, sideCount ), height, map, addBot );
-  }
-
-
-
-
-//!
-//! \brief solidTubePlygedronOuter Builds a tube with regular polygon cross-section by circumscribed circle radius
-//! \param radius                  Radius of the circumscribed circle
-//! \param height                  Tube height
-//! \param sideCount               Number of sides
-//! \param thickness               Wall thickness
-//! \param map                     Transformation matrix
-//! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
-//! \return                        List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubePlygedronOuter(float radius, float height, float sideCount, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  return solidTube( flatPlygedronOuter( radius, sideCount ), flatPlygedronOuter( radius - thickness, sideCount ), height, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidTubeTrapezoid Builds a tube with trapezoidal cross-section
-//! \param lenghtTop          Length of the top edge
-//! \param lenghtBot          Length of the bottom edge
-//! \param width              Width
-//! \param height             Tube height
-//! \param thickness          Wall thickness
-//! \param map                Transformation matrix
-//! \param addBot             If true, adds bottom face; if false, bottom face is omitted
-//! \return                   List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubeTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidTube( flatTrapezoid( lenghtTop, lenghtBot, width ), flatTrapezoid( lenghtTop - thickness, lenghtBot - thickness, width - thickness ), height, map, addBot );
-  }
-
-
-
-
-//!
-//! \brief solidTubeTrapezoidRound Builds a tube with trapezoidal cross-section and rounded corners
-//! \param lenghtTop               Length of the top edge
-//! \param lenghtBot               Length of the bottom edge
-//! \param width                   Width
-//! \param height                  Tube height
-//! \param roundRadius             Radius of the rounded corners
-//! \param thickness               Wall thickness
-//! \param map                     Transformation matrix
-//! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
-//! \return                        List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidTubeTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, float thickness, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidTube( flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ),
-                    flatTrapezoidRound( lenghtTop - thickness, lenghtBot - thickness, width - thickness, roundRadius - thickness / 2.0 ), height, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidBlindBox Builds a solid with a blind hole of the same profile on top
-//! \param lenght        Outer length
-//! \param width         Outer width
-//! \param height        Total height
-//! \param thickness     Wall thickness around the hole
-//! \param holeDepth     Depth of the blind hole
-//! \param map           Transformation matrix
-//! \param addBot        If true, adds bottom face; if false, bottom face is omitted
-//! \return              List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidBlindBox(float lenght, float width, float height, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidBlind( flatRectangle( lenght, width ), flatRectangle( lenght - thickness, width - thickness ), height, holeDepth, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidBlindCylinder Builds a solid with a blind cylindrical hole on top
-//! \param radius             Outer radius
-//! \param height             Total height
-//! \param thickness          Wall thickness around the hole
-//! \param holeDepth          Depth of the blind hole
-//! \param map                Transformation matrix
-//! \param addBot             If true, adds bottom face; if false, bottom face is omitted
-//! \return                   List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidBlindCylinder(float radius, float height, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot)
-  {
-  return solidBlind( flatCircle( radius ), flatCircle( radius - thickness ), height, holeDepth, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidBlindPlygedronInner Builds a solid with a blind polygonal hole (by inscribed circle)
-//! \param radius                   Radius of the inscribed circle
-//! \param height                   Total height
-//! \param sideCount                Number of sides
-//! \param thickness                Wall thickness around the hole
-//! \param holeDepth                Depth of the blind hole
-//! \param map                      Transformation matrix
-//! \param addBot                   If true, adds bottom face; if false, bottom face is omitted
-//! \return                         List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidBlindPlygedronInner(float radius, float height, float sideCount, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot)
-  {
-  return solidBlind( flatPlygedronInner( radius, sideCount ), flatPlygedronInner( radius - thickness, sideCount ), height, holeDepth, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidBlindPlygedronOuter Builds a solid with a blind polygonal hole (by circumscribed circle)
-//! \param radius                   Radius of the circumscribed circle
-//! \param height                   Total height
-//! \param sideCount                Number of sides
-//! \param thickness                Wall thickness around the hole
-//! \param holeDepth                Depth of the blind hole
-//! \param map                      Transformation matrix
-//! \param addBot                   If true, adds bottom face; if false, bottom face is omitted
-//! \return                         List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidBlindPlygedronOuter(float radius, float height, float sideCount, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot)
-  {
-  return solidBlind( flatPlygedronOuter( radius, sideCount ), flatPlygedronOuter( radius - thickness, sideCount ), height, holeDepth, map, addBot );
-  }
-
-
-
-
-
-//!
-//! \brief solidBlindTrapezoid Builds a solid with a blind trapezoidal hole on top
-//! \param lenghtTop           Length of the top edge
-//! \param lenghtBot           Length of the bottom edge
-//! \param width               Width
-//! \param height              Total height
-//! \param thickness           Wall thickness around the hole
-//! \param holeDepth           Depth of the blind hole
-//! \param map                 Transformation matrix
-//! \param addBot              If true, adds bottom face; if false, bottom face is omitted
-//! \return                    List of faces forming the solid
-//!
-Sd3drFaceList Sd3drModel::solidBlindTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot)
-  {
-  thickness *= 2.0;
-  return solidBlind( flatTrapezoid( lenghtTop, lenghtBot, width ), flatTrapezoid( lenghtTop - thickness, lenghtBot - thickness, width - thickness ), height, holeDepth, map, addBot );
-  }
-
-
-
-
-//!
-//! \brief solid Extrudes a profile along the given face, adds top face, does not add bottom face
-//! \param face Profile face to extrude
-//! \param height Extrusion height
-//! \return List of faces forming the extruded solid
-//!
-Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height)
-  {
-  QMatrix4x4 map = matrixTop( face, 0 );
-
-  return solid( face, height, map, false );
-  }
 
 
 
@@ -2119,6 +1761,8 @@ Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatr
   Sd3drFaceList list;
   if( isZero(height) ) {
     //Append bottom only
+    list.append( face );
+    //Next operations remove this face
     list.append( face );
     }
   else {
@@ -2145,7 +1789,7 @@ Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatr
 
 
 
-Sd3drFaceList Sd3drModel::solid(const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidNew(const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot)
   {
   return solid( faceFromFlat( r, m), height, m, addBot );
   }
@@ -2153,8 +1797,13 @@ Sd3drFaceList Sd3drModel::solid(const Sd2dRegion &r, float height, const QMatrix
 
 
 
-Sd3drFaceList Sd3drModel::solidTube(const Sd3drFace &faceOut, const Sd3drFace &faceIn, float height, const QMatrix4x4 &m, bool addBot)
+
+
+
+Sd3drFaceList Sd3drModel::solidTube(const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot)
   {
+  Sd3drFace faceOut = faceFromFlat( rOut, m );
+  Sd3drFace faceIn  = faceFromFlat( flatEquidistant( rOut, thickness ), m );
   // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
   QVector3D localZ(m(0, 2), m(1, 2), m(2, 2));
   // Смещаем точку вдоль этой оси
@@ -2180,22 +1829,47 @@ Sd3drFaceList Sd3drModel::solidTube(const Sd3drFace &faceOut, const Sd3drFace &f
 
 
 
-Sd3drFaceList Sd3drModel::solidTube(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot)
+
+Sd3drFaceList Sd3drModel::solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot)
   {
-  return solidTube( faceFromFlat( rOut, m ), faceFromFlat( rIn, m ), height, m, addBot );
+  Sd3drFace faceOut = faceFromFlat( rOut, m );
+  Sd3drFace faceIn  = faceFromFlat( rIn, m );
+  // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
+  QVector3D localZ(m(0, 2), m(1, 2), m(2, 2));
+  // Смещаем точку вдоль этой оси
+  localZ *= height;
+
+  //Build top face by offset each point from bottom face on vector localZ
+  Sd3drFace topOut( faceDuplicateOffset( faceOut, localZ ) );
+  Sd3drFace topIn( faceDuplicateOffset( faceIn, localZ ) );
+
+  Sd3drFaceList list;
+  //Append bottom if need
+  if( addBot )
+    list.append( ring( rOut, faceOut, rIn, faceIn ) );
+
+  //Build wall
+  list.append( faceListWall( faceOut, topOut, true ) );
+  list.append( faceListWall( faceIn, topIn, true ) );
+
+  //Append top
+  list.append( ring( rOut, topOut, rIn, topIn ) );
+  return list;
   }
 
 
 
-
-Sd3drFaceList Sd3drModel::solidBlind(const Sd3drFace &faceOut, const Sd3drFace &faceIn, float heightOut, float heightIn, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidBlind(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot)
   {
+  Sd3drFace faceOut = faceFromFlat( rOut, m );
+  Sd3drFace faceIn  = faceFromFlat( flatEquidistant( rOut, thickness ), m, height - depth );
+
   // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
   QVector3D localZOut(m(0, 2), m(1, 2), m(2, 2));
   QVector3D localZIn(localZOut);
   // Смещаем точку вдоль этой оси
-  localZOut *= heightOut;
-  localZIn  *= heightIn;
+  localZOut *= height;
+  localZIn  *= depth;
 
   //Build top face by offset each point from bottom face on vector localZ
   Sd3drFace topOut( faceDuplicateOffset( faceOut, localZOut ) );
@@ -2206,7 +1880,6 @@ Sd3drFaceList Sd3drModel::solidBlind(const Sd3drFace &faceOut, const Sd3drFace &
   if( addBot )
     list.append( faceOut );
 
-  list.append( faceIn );
 
   //Build wall
   list.append( faceListWall( faceOut, topOut, true ) );
@@ -2214,15 +1887,49 @@ Sd3drFaceList Sd3drModel::solidBlind(const Sd3drFace &faceOut, const Sd3drFace &
 
   //Append top
   list.append( faceListWall( topOut, topIn, true ) );
+
+  list.append( faceIn );
   return list;
   }
 
 
 
 
-Sd3drFaceList Sd3drModel::solidBlind(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float blind, const QMatrix4x4 &m, bool addBot)
+
+
+
+
+Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot)
   {
-  return solidBlind( faceFromFlat( rOut, m ), faceFromFlat( rIn, m, height - blind ), height, blind, m, addBot );
+  Sd3drFace faceOut = faceFromFlat( rOut, m );
+  Sd3drFace faceIn  = faceFromFlat( rIn, m, height - depth );
+
+  // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
+  QVector3D localZOut(m(0, 2), m(1, 2), m(2, 2));
+  QVector3D localZIn(localZOut);
+  // Смещаем точку вдоль этой оси
+  localZOut *= height;
+  localZIn  *= depth;
+
+  //Build top face by offset each point from bottom face on vector localZ
+  Sd3drFace topOut( faceDuplicateOffset( faceOut, localZOut ) );
+  Sd3drFace topIn( faceDuplicateOffset( faceIn, localZIn ) );
+
+  Sd3drFaceList list;
+  //Append bottom if need
+  if( addBot )
+    list.append( faceOut );
+
+
+  //Build wall
+  list.append( faceListWall( faceOut, topOut, true ) );
+  list.append( faceListWall( faceIn, topIn, true ) );
+
+  //Append top
+  list.append( ring( rOut, topOut, rIn, topIn ) );
+
+  list.append( faceIn );
+  return list;
   }
 
 
@@ -2238,8 +1945,8 @@ Sd3drFaceList Sd3drModel::solidAddCone(const Sd3drFaceList &faceList, float cone
   {
   Sd3drFaceList list(faceList);
   Sd3drFace topFace( list.takeLast() );
-  QMatrix4x4 map = matrixTop( topFace, coneHeight );
-  int top = vertexAppend( map.map( QVector3D{} ) );
+  QMatrix4x4 map = matrixTop( topFace );
+  int top = vertexAppend( map.map( QVector3D{0,0,coneHeight} ) );
   for( int i = 0; i < topFace.count(); ++i ) {
     int nextIndex = (i + 1) % topFace.count();
     list.append( { topFace.at(i), topFace.at(nextIndex), top });
@@ -2267,23 +1974,27 @@ Sd3drFaceList Sd3drModel::solidAddRoofRound(const Sd3drFaceList &faceList, float
   bool doSin;
   float mul = great ? -1.0 : 1.0;
   if( roundRadius > 0 )
-    doSin = !great;
-  else
     doSin = great;
+  else {
+    roundRadius = -roundRadius;
+    doSin = !great;
+    }
   if( doSin ) {
     for( float ang = step; ang < M_PI/2.0; ang += step ) {
       float dist = roundRadius * sin( ang );
-      Sd2dRegion r2( flatEquidistant( r1, great * mul ) );
-      Sd3drFace roof( faceFromFlat( r2, m, dist ) );
+      float h = roundRadius - roundRadius * cos( ang );
+      Sd2dRegion r2( flatEquidistant( r1, dist * mul ) );
+      Sd3drFace roof( faceFromFlat( r2, m, h ) );
       list.append( faceListWall( top, roof, true ) );
       top = roof;
       }
     }
   else {
-    for( float ang = M_PI/2.0 - step; ang > 0 ; ang -= step ) {
-      float dist = roundRadius * cos( ang );
-      Sd2dRegion r2( flatEquidistant( r1, great * mul ) );
-      Sd3drFace roof( faceFromFlat( r2, m, dist ) );
+    for( float ang = step; ang < M_PI/2.0; ang += step ) {
+      float dist = roundRadius - roundRadius * cos( ang );
+      float h = roundRadius * sin( ang );
+      Sd2dRegion r2( flatEquidistant( r1, dist * mul ) );
+      Sd3drFace roof( faceFromFlat( r2, m, h ) );
       list.append( faceListWall( top, roof, true ) );
       top = roof;
       }
@@ -2293,35 +2004,6 @@ Sd3drFaceList Sd3drModel::solidAddRoofRound(const Sd3drFaceList &faceList, float
   }
 
 
-
-
-//!
-//! \brief solidAddFloorRound Creates a rounded bottom face (floor)
-//! \param faceList           Existing solid face list (bottom face will be removed)
-//! \param roundRadius        Radius of the rounding
-//! \return                   New solid face list with rounded floor
-//!
-Sd3drFaceList Sd3drModel::solidAddFloorRound(const Sd3drFaceList &faceList, float roundRadius)
-  {
-  Sd3drFaceList list;
-  Sd3drFace bot(faceList.first());
-  QMatrix4x4 m( matrixBot( bot, 0 ) );
-  Sd2dRegion r1( flatFromFace( bot, m ) );
-  float step = M_PI/2.0/16;
-  Sd2dRegion r2( flatEquidistant( r1, roundRadius ) );
-  Sd3drFace floor( faceFromFlat( r2, m, roundRadius ) );
-  list.append( floor );
-  for( float ang = step; ang < M_PI/2.0; ang += step ) {
-    float dist = roundRadius * cos( ang );
-    Sd2dRegion r2( flatEquidistant( r1, dist ) );
-    Sd3drFace next( faceFromFlat( r2, m, dist ) );
-    list.append( faceListWall( floor, next, true ) );
-    floor = next;
-    }
-  list.append( faceListWall( floor, bot, true ) );
-  list.append( faceList.last(faceList.size()-1) );
-  return list;
-  }
 
 
 
@@ -2348,27 +2030,6 @@ Sd3drFaceList Sd3drModel::solidAddRoofBevel(const Sd3drFaceList &faceList, float
 
 
 
-//!
-//! \brief solidAddFloorBevel Creates a beveled bottom face (floor)
-//! \param faceList           Existing solid face list (bottom face will be removed)
-//! \param bevelSize          Size of the bevel
-//! \return                   New solid face list with beveled floor
-//!
-Sd3drFaceList Sd3drModel::solidAddFloorBevel(const Sd3drFaceList &faceList, float bevelSize)
-  {
-  Sd3drFaceList list;
-  Sd3drFace bot(faceList.first());
-  QMatrix4x4 m( matrixBot( bot, 0 ) );
-  Sd2dRegion r1( flatFromFace( bot, m ) );
-  Sd2dRegion r2( flatEquidistant( r1, bevelSize ) );
-  Sd3drFace floor( faceFromFlat( r2, m, bevelSize ) );
-  list.append( floor );
-  list.append( faceListWall( bot, floor, true ) );
-  list.append( faceList.last(faceList.size()-1) );
-  return list;
-  }
-
-
 
 
 
@@ -2378,10 +2039,23 @@ Sd3drFaceList Sd3drModel::solidAddFloorBevel(const Sd3drFaceList &faceList, floa
 //! \param height   Extrusion height
 //! \return         New solid face list with the added extrusion
 //!
-Sd3drFaceList Sd3drModel::solidAdd(const Sd3drFaceList &faceList, float height)
+Sd3drFaceList Sd3drModel::solidAdd(const Sd3drFaceList &faceList, float thickness, float height, float offset)
   {
   Sd3drFaceList list(faceList);
-  list.append( solid( list.takeLast(), height ) );
+  Sd3drFace face(list.takeLast());
+  QMatrix4x4 map = matrixTop( face, 0 );
+
+  if( isZero(thickness) )
+    list.append( solid( face, height + offset, map, false ) );
+  else {
+    Sd2dRegion srcR = flatFromFace( face, map );
+    Sd2dRegion inR  = flatEquidistant( srcR, thickness );
+    Sd3drFace faceIn = faceFromFlat( inR, map, offset );
+    Sd3drFace faceTop = faceFromFlat( inR, map, offset + height );
+    list.append( faceListWall( face, faceIn, true ) );
+    list.append( faceListWall( faceIn, faceTop, true ) );
+    list.append( faceTop );
+    }
   return list;
   }
 
@@ -2390,14 +2064,14 @@ Sd3drFaceList Sd3drModel::solidAdd(const Sd3drFaceList &faceList, float height)
 
 
 //!
-//! \brief solidAddSolid Adds an extrusion with r profile at the top face
+//! \brief solidAddDif   Adds an extrusion with r profile at the top face
 //! \param faceList      Sorce face list with top face as base for extrusion
 //! \param r             Extrusion profile
 //! \param height        Extrusion height
 //! \param offset        Offset base extrusion from top face of source
 //! \return              New solid face list with the added extrusion
 //!
-Sd3drFaceList Sd3drModel::solidAddSolid(const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset)
+Sd3drFaceList Sd3drModel::solidAddDif(const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset)
   {
   Sd3drFaceList list(faceList);
   Sd3drFace top(list.takeLast());
@@ -2427,7 +2101,7 @@ Sd3drFaceList Sd3drModel::solidAddSolid(const Sd3drFaceList &faceList, const Sd2
 //! \return                    New solid face list with the curved bend
 //!
 //! The initial direction is considered to be the normal of the original profile
-Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, float radius, int sideCount, float x, float y, float z)
+Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, float radius, float sideCount, float x, float y, float z)
   {
   Sd3drFaceList list(faceList);
   Sd3drFace top(list.takeLast());
@@ -2520,7 +2194,7 @@ Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, flo
 //! \return                New solid face list with the curved bend
 //!
 //! The initial direction is considered to be the normal of the original profile
-Sd3drFaceList Sd3drModel::solidAddCurveXZ(const Sd3drFaceList &faceList, float radius, float curveAngle, int sideCount)
+Sd3drFaceList Sd3drModel::solidAddCurveXZ(const Sd3drFaceList &faceList, float radius, float sideCount, float curveAngle)
   {
   QMatrix4x4 rotationMatrix;
   rotationMatrix.rotate(curveAngle, 0, 1, 0);
@@ -2533,149 +2207,59 @@ Sd3drFaceList Sd3drModel::solidAddCurveXZ(const Sd3drFaceList &faceList, float r
 
 
 //!
-//! \brief solidAddBox    Adds a rectangular box on top of the solid
-//! \param lenght         Box length
-//! \param width          Box width
-//! \param height         Box height
-//! \param faceList       Existing solid face list (top face will be removed)
-//! \param transferHeight Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return               New solid face list with the box added
+//! \brief solidAddHole Adds a hole to the top face with same profile as top face
+//! \param faceList     Existing solid face list (top face will be removed)
+//! \param thickness    Thickness of border
+//! \param depth        Hole depth
+//! \return             New solid face list with the hole added
 //!
-Sd3drFaceList Sd3drModel::solidAddBox(float lenght, float width, float height, const Sd3drFaceList &faceList, float transferHeight)
+Sd3drFaceList Sd3drModel::solidAddHole(const Sd3drFaceList &faceList, float thickness, float depth)
   {
-  return solidAddSolid( faceList, flatRectangle( lenght, width ), height, transferHeight );
-  }
-
-
-
-
-
-//!
-//! \brief solidAddBeveledBox Adds a rectangular box with beveled vertical edges on top of the solid
-//! \param lenght             Box length
-//! \param width              Box width
-//! \param height             Box height
-//! \param bevelSize          Size of the bevel
-//! \param bevelCount         Number of bevel segments
-//! \param faceList           Existing solid face list (top face will be removed)
-//! \param transferHeight     Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                   New solid face list with the box added
-//!
-Sd3drFaceList Sd3drModel::solidAddBeveledBox(float lenght, float width, float height, float bevelSize, float bevelCount, const Sd3drFaceList &faceList, float transferHeight)
-  {
-  return solidAddSolid( faceList, flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, transferHeight );
-  }
-
-
-
-
-
-//!
-//! \brief solidAddRoundBox Adds a rectangular box with rounded vertical edges on top of the solid
-//! \param lenght           Box length
-//! \param width            Box width
-//! \param height           Box height
-//! \param roundRadius      Radius of the rounded corners
-//! \param roundCount       Number of rounding segments
-//! \param faceList         Existing solid face list (top face will be removed)
-//! \param transferHeight   Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                 New solid face list with the box added
-//!
-Sd3drFaceList Sd3drModel::solidAddRoundBox(float lenght, float width, float height, float roundRadius, float roundCount, const Sd3drFaceList &faceList, float transferHeight)
-  {
-  return solidAddSolid( faceList, flatRectangleRound( lenght, width, roundRadius, 360/30, roundCount ), height, transferHeight );
-  }
-
-
-
-
-
-//!
-//! \brief solidAddCylinder Adds a cylinder on top of the solid
-//! \param radius           Cylinder radius
-//! \param height           Cylinder height
-//! \param faceList         Existing solid face list (top face will be removed)
-//! \param transferHeight   Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                 New solid face list with the cylinder added
-//!
-Sd3drFaceList Sd3drModel::solidAddCylinder(float radius, float height, const Sd3drFaceList &faceList, float transferHeight)
-  {
-  return solidAddSolid( faceList, flatCircle( radius ), height, transferHeight );
+  Sd3drFaceList list(faceList);
+  Sd3drFace face(list.takeLast());
+  QMatrix4x4 map( matrixTop( face, 0.0 )  );
+  Sd2dRegion r = flatFromFace( face, map );
+  Sd2dRegion rIn = flatEquidistant( r, thickness );
+  Sd3drFace faceIn = faceFromFlat( rIn, map, 0 );
+  list.append( faceListWall( face, faceIn, true ) );
+  if( !isZero(depth) ) {
+    Sd3drFace depthIn = faceFromFlat( rIn, map, -depth );
+    list.append( faceListWall( faceIn, depthIn, true ) );
+    }
+  return list;
   }
 
 
 
 
 //!
-//! \brief solidAddPlygedronInner Adds a regular polygon prism (by inscribed circle) on top of the solid
-//! \param radius                 Radius of the inscribed circle
-//! \param height                 Prism height
-//! \param sideCount              Number of sides
-//! \param faceList               Existing solid face list (top face will be removed)
-//! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                       New solid face list with the prism added
+//! \brief solidAddHoleDif Adds a hole to the top face with defferent profile
+//! \param faceList        Existing solid face list (top face will be removed)
+//! \param r               Hole profile
+//! \param depth           Hole depth
+//! \return                New solid face list with the hole added
 //!
-Sd3drFaceList Sd3drModel::solidAddPlygedronInner(float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight)
+Sd3drFaceList Sd3drModel::solidAddHoleDif(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth)
   {
-  return solidAddSolid( faceList, flatPlygedronInner( radius, sideCount ), height, transferHeight );
+  Sd3drFaceList list(faceList);
+  Sd3drFace face(list.takeLast());
+  QMatrix4x4 map( matrixTop( face, 0.0 )  );
+  Sd2dRegion rOut = flatFromFace( face, map );
+  Sd3drFace faceIn = faceFromFlat( r, map, 0 );
+  list.append( ring( rOut, face, r, faceIn ) );
+  if( !isZero(depth) ) {
+    Sd3drFace depthIn = faceFromFlat( r, map, -depth );
+    list.append( faceListWall( faceIn, depthIn, true ) );
+    }
+  return list;
   }
 
 
 
 
 
-//!
-//! \brief solidAddPlygedronOuter Adds a regular polygon prism (by circumscribed circle) on top of the solid
-//! \param radius                 Radius of the circumscribed circle
-//! \param height                 Prism height
-//! \param sideCount              Number of sides
-//! \param faceList               Existing solid face list (top face will be removed)
-//! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                       New solid face list with the prism added
-//!
-Sd3drFaceList Sd3drModel::solidAddPlygedronOuter(float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight)
-  {
-  return solidAddSolid( faceList, flatPlygedronOuter( radius, sideCount ), height, transferHeight );
-  }
 
 
-
-
-
-//!
-//! \brief solidAddTrapezoid Adds a trapezoid on top of the solid
-//! \param lenghtTop         Length of the top edge
-//! \param lenghtBot         Length of the bottom edge
-//! \param width             Width
-//! \param height            Trapezoid height
-//! \param faceList          Existing solid face list (top face will be removed)
-//! \param transferHeight    Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                  New solid face list with the trapezoid added
-//!
-Sd3drFaceList Sd3drModel::solidAddTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const Sd3drFaceList &faceList, float transferHeight)
-  {
-  return solidAddSolid( faceList, flatTrapezoid( lenghtTop, lenghtBot, width ), height, transferHeight );
-  }
-
-
-
-
-
-//!
-//! \brief solidAddRoundTrapezoid Adds a trapezoid with rounded corners on top of the solid
-//! \param lenghtTop              Length of the top edge
-//! \param lenghtBot              Length of the bottom edge
-//! \param width                  Width
-//! \param height                 Trapezoid height
-//! \param roundRadius            Radius of the rounded corners
-//! \param faceList               Existing solid face list (top face will be removed)
-//! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
-//! \return                       New solid face list with the trapezoid added
-//!
-Sd3drFaceList Sd3drModel::solidAddRoundTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const Sd3drFaceList &faceList, float transferHeight)
-  {
-  return solidAddSolid( faceList, flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ), height, transferHeight );
-  }
 
 
 

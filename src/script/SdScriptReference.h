@@ -41,6 +41,7 @@ class SdScriptReference : public SdScriptValue
     virtual QList<float>         toFloatList() const override   { return mReference->toFloatList(); }
     virtual Sd3drFace            toFace() const override        { return mReference->toFace(); }
     virtual Sd3drInstance        toModel() const override       { return mReference->toModel(); }
+    virtual Sd2dRegion           to2dRegion() const override    { return mReference->to2dRegion(); }
   };
 
 #endif // SDSCRIPTREFERENCE_H

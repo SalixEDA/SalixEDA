@@ -25,6 +25,7 @@ Description
 #include "SdScriptScaner.h"
 #include "SdScriptValueVariable.h"
 #include "SdScriptValueFunction.h"
+#include "SdScriptValueFunSolidXXX.h"
 #include "SdScriptProgramm.h"
 #include "library/SdStringMap.h"
 
@@ -86,6 +87,13 @@ class SdScriptParser
     //! \param functionBuilder Function builder
     //!
     void                addFunction( const QString &functionName, SdScriptFunctionBuilder functionBuilder, const QString &help ) { mFunctions.insert( functionName, functionBuilder ); mFunctionsHelp.insert( functionName, help ); }
+
+    template <typename Method>
+    void                addFunction( const QString &functionName, Sd3drModel *model, Method method, const QString &help )
+      {
+      mFunctions.insert( functionName, [model,method] () -> SdScriptValueFunction* { return new SdScriptValueMethod<Method>(model,method); } );
+      mFunctionsHelp.insert( functionName, help );
+      }
 
     //!
     //! \brief functionsHelp Return help call signature for each function

@@ -37,6 +37,7 @@ Description
 #include "SdScriptValueVariableFace.h"
 #include "SdScriptValueVariableModel.h"
 #include "SdScriptValueVariableGraph.h"
+#include "SdScriptValueVariable2dRegion.h"
 
 #include "SdScriptValue.h"
 #include "SdScriptValueFloat.h"
@@ -186,6 +187,7 @@ SdScriptOperator *SdScriptParser::parseOperator()
     case SD_SCRIPT_TYPE_FACE      : var = new SdScriptValueVariableFace(); break;
     case SD_SCRIPT_TYPE_MODEL     : var = new SdScriptValueVariableModel(); break;
     case SD_SCRIPT_TYPE_GRAPH     : var = new SdScriptValueVariableGraph(); break;
+    case SD_SCRIPT_TYPE_2D_REGION : var = new SdScriptValueVariable2dRegion(); break;
     case SD_SCRIPT_TYPE_REF       :
       var = buildRefVariable( variableName, val );
       if( var != nullptr ) break;

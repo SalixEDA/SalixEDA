@@ -77,6 +77,11 @@ struct SdScriptTypeMap<Sd3drFace>
     static Sd3drFace get(const SdScriptValue *v) { return v->toFace(); }
   };
 
+//const Sd3drFace&
+template<>
+struct SdScriptTypeMap<const Sd3drFace&> :
+    SdScriptTypeMap<Sd3drFace> {};
+
 //Sd3drFaceList
 template<>
 struct SdScriptTypeMap<Sd3drFaceList>
@@ -84,6 +89,25 @@ struct SdScriptTypeMap<Sd3drFaceList>
     static constexpr char type = SD_SCRIPT_TYPE_FACE_LIST;
     static Sd3drFaceList get(const SdScriptValue *v) { return v->toFaceList(); }
   };
+
+//const Sd3drFaceList&
+template<>
+struct SdScriptTypeMap<const Sd3drFaceList&> :
+    SdScriptTypeMap<Sd3drFaceList> {};
+
+//Sd2dRegion
+template<>
+struct SdScriptTypeMap<Sd2dRegion>
+  {
+    static constexpr char type = SD_SCRIPT_TYPE_2D_REGION;
+    static Sd2dRegion get(const SdScriptValue *v) { return v->to2dRegion(); }
+  };
+
+//const Sd2dRegion&
+template<>
+struct SdScriptTypeMap<const Sd2dRegion&> :
+    SdScriptTypeMap<Sd2dRegion> {};
+
 
 
 
@@ -119,6 +143,16 @@ struct SdScriptResultInvoker<QMatrix4x4>
 
     template <typename F>
     static QMatrix4x4 call( F&& f ) { return f(); }
+  };
+
+//Sd2dRegion
+template<>
+struct SdScriptResultInvoker<Sd2dRegion>
+  {
+    static constexpr char type = SD_SCRIPT_TYPE_2D_REGION;
+
+    template <typename F>
+    static Sd2dRegion call( F&& f ) { return f(); }
   };
 
 
@@ -179,6 +213,13 @@ class SdScriptValueMethod : public SdScriptValueFunction
       if constexpr (std::is_same_v<Result,QMatrix4x4>)
         return invoke();
       return SdScriptValueFunction::toMatrix();
+      }
+
+    Sd2dRegion    to2dRegion() const override
+      {
+      if constexpr (std::is_same_v<Result,Sd2dRegion>)
+        return invoke();
+      return SdScriptValueFunction::to2dRegion();
       }
 
   };

@@ -37,27 +37,27 @@ class Sd3drModel
     //!
     void          clear();
 
-    static Sd2dRegion flatRectangle( float lenght, float width );
+    Sd2dRegion flatRectangle( float lenght, float width );
 
-    static Sd2dRegion flatRectangleBevel( float lenght, float width, float bevelSize, int count );
+    Sd2dRegion flatRectangleBevel( float lenght, float width, float bevelSize, float count );
 
-    static Sd2dRegion flatRectangleRound( float lenght, float width, float radius, float stepDegree, int count );
+    Sd2dRegion flatRectangleRound( float lenght, float width, float radius, float stepDegree, float count );
 
-    static Sd2dRegion flatEllipse(float radiusx, float radiusy, int stepDegree );
+    Sd2dRegion flatEllipse(float radiusx, float radiusy, float stepDegree );
 
-    static Sd2dRegion flatCircle( float radius );
+    Sd2dRegion flatCircle( float radius );
 
-    static Sd2dRegion flatPlygedronInner(float radius, float sideCount );
+    Sd2dRegion flatPlygedronInner(float radius, float sideCount );
 
-    static Sd2dRegion flatPlygedronOuter( float radius, float sideCount );
+    Sd2dRegion flatPlygedronOuter( float radius, float sideCount );
 
-    static Sd2dRegion flatTrapezoid( float lenghtTop, float lenghtBot, float width );
+    Sd2dRegion flatTrapezoid( float lenghtTop, float lenghtBot, float width );
 
-    static Sd2dRegion flatTrapezoidRound( float lenghtTop, float lenghtBot, float width, float radius );
+    Sd2dRegion flatTrapezoidRound( float lenghtTop, float lenghtBot, float width, float radius );
 
-    static Sd2dRegion flatEquidistant( const Sd2dRegion &r, float distance );
+    Sd2dRegion flatEquidistant( const Sd2dRegion &r, float distance );
 
-           Sd2dRegion flatFromFace( const Sd3drFace &face, const QMatrix4x4 &map );
+    Sd2dRegion flatFromFace( const Sd3drFace &face, const QMatrix4x4 &map );
 
     //==============================================================================================
     //  Vertex section - functions for model vertex manipulations
@@ -350,37 +350,11 @@ class Sd3drModel
     //!
     //! \brief matrixTop    Builds a matrix that translates to the center of the face and orients the z-axis along the normal
     //! \param face         Source face
-    //! \param height       Offset face center by normal
     //! \param invertNormal Change normal direction to inverted
     //! \return             Transformation matrix
     //!
-    QMatrix4x4    matrixTop(const Sd3drFace &face, float height, bool invertNormal = false );
+    QMatrix4x4    matrixTop(const Sd3drFace &face, bool invertNormal = false );
 
-    //!
-    //! \brief matrixTop Builds a matrix that translates to the center of the face and orients the z-axis along the normal
-    //! \param faceList  List of faces
-    //! \param height    Offset face center by normal
-    //! \return          Transformation matrix
-    //!
-    //!  Uses the last face from the list as the source face
-    QMatrix4x4    matrixTop( const Sd3drFaceList &faceList, float height );
-
-    //!
-    //! \brief matrixBot Builds a matrix that translates to the center of the face and orients the z-axis opposite to the normal
-    //! \param face      Source face
-    //! \param height    Offset face center by normal
-    //! \return          Transformation matrix
-    //!
-    QMatrix4x4    matrixBot( const Sd3drFace &face, float height );
-
-    //!
-    //! \brief matrixBot Builds a matrix that translates to the center of the face and orients the z-axis opposite to the normal
-    //! \param faceList  List of faces
-    //! \param height    Offset face center by normal
-    //! \return          Transformation matrix
-    //!
-    //! Uses the last face from the list as the source face
-    QMatrix4x4    matrixBot( const Sd3drFaceList &faceList, float height );
 
     //!
     //! \brief matrixNew Build complex matrix of rotation and offset
@@ -513,194 +487,25 @@ class Sd3drModel
     Sd3drFaceList solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot );
 
 
-    //!
-    //! \brief solidTubeBox Builds a tube with rectangular cross-section
-    //! \param lenght       Outer length
-    //! \param width        Outer width
-    //! \param height       Tube height
-    //! \param thickness    Wall thickness
-    //! \param map          Transformation matrix
-    //! \param addBot       If true, adds bottom face; if false, bottom face is omitted
-    //! \return             List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubeBox(float lenght, float width, float height, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubeBoxRound Builds a tube with rectangular cross-section and rounded corners
-    //! \param lenght            Outer length
-    //! \param width             Outer width
-    //! \param height            Tube height
-    //! \param roundRadius       Radius of the rounded corners
-    //! \param roundCount        Number of rounding segments
-    //! \param thickness         Wall thickness
-    //! \param map               Transformation matrix
-    //! \param addBot            If true, adds bottom face; if false, bottom face is omitted
-    //! \return                  List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubeBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubeBoxBevel   Builds a tube with rectangular cross-section and beveled corners
-    //! \param lenght              Outer length
-    //! \param width               Outer width
-    //! \param height              Tube height
-    //! \param bevelSize           Size of the bevel
-    //! \param bevelCount          Number of bevel segments
-    //! \param thickness           Wall thickness
-    //! \param map                 Transformation matrix
-    //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
-    //! \return                    List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubeBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubeCylinder Builds a tube with circular cross-section
-    //! \param radius            Outer radius
-    //! \param height            Tube height
-    //! \param thickness         Wall thickness
-    //! \param map               Transformation matrix
-    //! \param addBot            If true, adds bottom face; if false, bottom face is omitted
-    //! \return                  List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubeCylinder(float radius, float height, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubePlygedronInner Builds a tube with regular polygon cross-section by inscribed circle radius
-    //! \param radius                  Radius of the inscribed circle
-    //! \param height                  Tube height
-    //! \param sideCount               Number of sides
-    //! \param thickness               Wall thickness
-    //! \param map                     Transformation matrix
-    //! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
-    //! \return                        List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubePlygedronInner( float radius, float height, float sideCount, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubePlygedronOuter Builds a tube with regular polygon cross-section by circumscribed circle radius
-    //! \param radius                  Radius of the circumscribed circle
-    //! \param height                  Tube height
-    //! \param sideCount               Number of sides
-    //! \param thickness               Wall thickness
-    //! \param map                     Transformation matrix
-    //! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
-    //! \return                        List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubePlygedronOuter( float radius, float height, float sideCount, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubeTrapezoid Builds a tube with trapezoidal cross-section
-    //! \param lenghtTop          Length of the top edge
-    //! \param lenghtBot          Length of the bottom edge
-    //! \param width              Width
-    //! \param height             Tube height
-    //! \param thickness          Wall thickness
-    //! \param map                Transformation matrix
-    //! \param addBot             If true, adds bottom face; if false, bottom face is omitted
-    //! \return                   List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubeTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float thickness, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidTubeTrapezoidRound Builds a tube with trapezoidal cross-section and rounded corners
-    //! \param lenghtTop               Length of the top edge
-    //! \param lenghtBot               Length of the bottom edge
-    //! \param width                   Width
-    //! \param height                  Tube height
-    //! \param roundRadius             Radius of the rounded corners
-    //! \param thickness               Wall thickness
-    //! \param map                     Transformation matrix
-    //! \param addBot                  If true, adds bottom face; if false, bottom face is omitted
-    //! \return                        List of faces forming the solid
-    //!
-    Sd3drFaceList solidTubeTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, float thickness, const QMatrix4x4 &map, bool addBot );
 
 
     //!
-    //! \brief solidBlindBox Builds a solid with a blind hole of the same profile on top
-    //! \param lenght        Outer length
-    //! \param width         Outer width
-    //! \param height        Total height
-    //! \param thickness     Wall thickness around the hole
-    //! \param holeDepth     Depth of the blind hole
-    //! \param map           Transformation matrix
-    //! \param addBot        If true, adds bottom face; if false, bottom face is omitted
-    //! \return              List of faces forming the solid
-    //!
-    Sd3drFaceList solidBlindBox(float lenght, float width, float height, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidBlindCylinder Builds a solid with a blind cylindrical hole on top
-    //! \param radius             Outer radius
-    //! \param height             Total height
-    //! \param thickness          Wall thickness around the hole
-    //! \param holeDepth          Depth of the blind hole
-    //! \param map                Transformation matrix
-    //! \param addBot             If true, adds bottom face; if false, bottom face is omitted
-    //! \return                   List of faces forming the solid
-    //!
-    Sd3drFaceList solidBlindCylinder(float radius, float height, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidBlindPlygedronInner Builds a solid with a blind polygonal hole (by inscribed circle)
-    //! \param radius                   Radius of the inscribed circle
-    //! \param height                   Total height
-    //! \param sideCount                Number of sides
-    //! \param thickness                Wall thickness around the hole
-    //! \param holeDepth                Depth of the blind hole
-    //! \param map                      Transformation matrix
-    //! \param addBot                   If true, adds bottom face; if false, bottom face is omitted
-    //! \return                         List of faces forming the solid
-    //!
-    Sd3drFaceList solidBlindPlygedronInner( float radius, float height, float sideCount, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidBlindPlygedronOuter Builds a solid with a blind polygonal hole (by circumscribed circle)
-    //! \param radius                   Radius of the circumscribed circle
-    //! \param height                   Total height
-    //! \param sideCount                Number of sides
-    //! \param thickness                Wall thickness around the hole
-    //! \param holeDepth                Depth of the blind hole
-    //! \param map                      Transformation matrix
-    //! \param addBot                   If true, adds bottom face; if false, bottom face is omitted
-    //! \return                         List of faces forming the solid
-    //!
-    Sd3drFaceList solidBlindPlygedronOuter( float radius, float height, float sideCount, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot );
-
-    //!
-    //! \brief solidBlindTrapezoid Builds a solid with a blind trapezoidal hole on top
-    //! \param lenghtTop           Length of the top edge
-    //! \param lenghtBot           Length of the bottom edge
-    //! \param width               Width
-    //! \param height              Total height
-    //! \param thickness           Wall thickness around the hole
-    //! \param holeDepth           Depth of the blind hole
-    //! \param map                 Transformation matrix
-    //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
-    //! \return                    List of faces forming the solid
-    //!
-    Sd3drFaceList solidBlindTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float thickness, float holeDepth, const QMatrix4x4 &map, bool addBot );
-
-
-    //!
-    //! \brief solid Extrudes a profile along the given face, adds top face, does not add bottom face
-    //! \param face Profile face to extrude
+    //! \brief solid  Extrudes a profile along the given face, adds top face, does not add bottom face
+    //! \param face   Profile face to extrude
     //! \param height Extrusion height
     //! \return List of faces forming the extruded solid
     //!
-    Sd3drFaceList solid( const Sd3drFace &face, float height );
-
     Sd3drFaceList solid( const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solid( const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidNew( const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidTube( const Sd3drFace &faceOut, const Sd3drFace &faceIn, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidTube( const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidTube( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidBlind( const Sd3drFace &faceOut, const Sd3drFace &faceIn, float heightOut, float heightIn, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidBlind( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidBlind( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float blind, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidBlindDif( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
 
 
@@ -727,14 +532,6 @@ class Sd3drModel
     Sd3drFaceList solidAddRoofRound( const Sd3drFaceList &faceList, float roundRadius, bool great );
 
     //!
-    //! \brief solidAddFloorRound Creates a rounded bottom face (floor)
-    //! \param faceList           Existing solid face list (bottom face will be removed)
-    //! \param roundRadius        Radius of the rounding
-    //! \return                   New solid face list with rounded floor
-    //!
-    Sd3drFaceList solidAddFloorRound( const Sd3drFaceList &faceList, float roundRadius );
-
-    //!
     //! \brief solidAddRoofBevel Creates a beveled top face (roof)
     //! \param faceList          Existing solid face list (top face will be removed)
     //! \param bevelSize         Size of the bevel
@@ -743,30 +540,22 @@ class Sd3drModel
     Sd3drFaceList solidAddRoofBevel( const Sd3drFaceList &faceList, float bevelSize );
 
     //!
-    //! \brief solidAddFloorBevel Creates a beveled bottom face (floor)
-    //! \param faceList           Existing solid face list (bottom face will be removed)
-    //! \param bevelSize          Size of the bevel
-    //! \return                   New solid face list with beveled floor
-    //!
-    Sd3drFaceList solidAddFloorBevel( const Sd3drFaceList &faceList, float bevelSize );
-
-    //!
     //! \brief solidAdd Adds an extrusion with the same profile as the top face
     //! \param faceList Existing solid face list (top face will be removed)
     //! \param height   Extrusion height
     //! \return         New solid face list with the added extrusion
     //!
-    Sd3drFaceList solidAdd( const Sd3drFaceList &faceList, float height );
+    Sd3drFaceList solidAdd( const Sd3drFaceList &faceList, float thickness, float height, float offset );
 
     //!
-    //! \brief solidAddSolid Adds an extrusion with r profile at the top face
+    //! \brief solidAddDif Adds an extrusion with r profile at the top face
     //! \param faceList      Sorce face list with top face as base for extrusion
     //! \param r             Extrusion profile
     //! \param height        Extrusion height
     //! \param offset        Offset base extrusion from top face of source
     //! \return              New solid face list with the added extrusion
     //!
-    Sd3drFaceList solidAddSolid( const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset );
+    Sd3drFaceList solidAddDif( const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset );
 
     //!
     //! \brief solidAddCurveVector Adds a curved bend of the profile with given radius along the specified vector
@@ -779,7 +568,7 @@ class Sd3drModel
     //! \return                    New solid face list with the curved bend
     //!
     //! The initial direction is considered to be the normal of the original profile
-    Sd3drFaceList solidAddCurveVector(const Sd3drFaceList &faceList, float radius, int sideCount, float x, float y, float z );
+    Sd3drFaceList solidAddCurveVector(const Sd3drFaceList &faceList, float radius, float sideCount, float x, float y, float z );
 
     //!
     //! \brief solidAddCurveXZ Adds a curved bend of the profile with given radius and angle around the Y axis
@@ -790,205 +579,26 @@ class Sd3drModel
     //! \return                New solid face list with the curved bend
     //!
     //! The initial direction is considered to be the normal of the original profile
-    Sd3drFaceList solidAddCurveXZ(const Sd3drFaceList &faceList, float radius, float curveAngle, int sideCount);
+    Sd3drFaceList solidAddCurveXZ(const Sd3drFaceList &faceList, float radius, float sideCount, float curveAngle);
 
     //!
-    //! \brief solidAddHole Adds a hole to the top face
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param face Profile of the hole
-    //! \return New solid face list with the hole added
+    //! \brief solidAddHole Adds a hole to the top face with same profile as top face
+    //! \param faceList     Existing solid face list (top face will be removed)
+    //! \param thickness    Thickness of border
+    //! \param depth        Hole depth
+    //! \return             New solid face list with the hole added
     //!
-    Sd3drFaceList solidAddHole( const Sd3drFaceList &faceList, const Sd3drFace &face );
-
-
-    //!
-    //! \brief solidAddBox    Adds a rectangular box on top of the solid
-    //! \param lenght         Box length
-    //! \param width          Box width
-    //! \param height         Box height
-    //! \param faceList       Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return               New solid face list with the box added
-    //!
-    Sd3drFaceList solidAddBox(float lenght, float width, float height, const Sd3drFaceList &faceList, float transferHeight );
+    Sd3drFaceList solidAddHole( const Sd3drFaceList &faceList, float thickness, float depth );
 
     //!
-    //! \brief solidAddBeveledBox Adds a rectangular box with beveled vertical edges on top of the solid
-    //! \param lenght             Box length
-    //! \param width              Box width
-    //! \param height             Box height
-    //! \param bevelSize          Size of the bevel
-    //! \param bevelCount         Number of bevel segments
-    //! \param faceList           Existing solid face list (top face will be removed)
-    //! \param transferHeight     Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                   New solid face list with the box added
+    //! \brief solidAddHoleDif Adds a hole to the top face with defferent profile
+    //! \param faceList        Existing solid face list (top face will be removed)
+    //! \param r               Hole profile
+    //! \param depth           Hole depth
+    //! \return                New solid face list with the hole added
     //!
-    Sd3drFaceList solidAddBeveledBox(float lenght, float width, float height, float bevelSize, float bevelCount, const Sd3drFaceList &faceList, float transferHeight );
+    Sd3drFaceList solidAddHoleDif( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth );
 
-    //!
-    //! \brief solidAddRoundBox Adds a rectangular box with rounded vertical edges on top of the solid
-    //! \param lenght           Box length
-    //! \param width            Box width
-    //! \param height           Box height
-    //! \param roundRadius      Radius of the rounded corners
-    //! \param roundCount       Number of rounding segments
-    //! \param faceList         Existing solid face list (top face will be removed)
-    //! \param transferHeight   Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                 New solid face list with the box added
-    //!
-    Sd3drFaceList solidAddRoundBox(float lenght, float width, float height, float roundRadius, float roundCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidAddCylinder Adds a cylinder on top of the solid
-    //! \param radius           Cylinder radius
-    //! \param height           Cylinder height
-    //! \param faceList         Existing solid face list (top face will be removed)
-    //! \param transferHeight   Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                 New solid face list with the cylinder added
-    //!
-    Sd3drFaceList solidAddCylinder(float radius, float height, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidAddPlygedronInner Adds a regular polygon prism (by inscribed circle) on top of the solid
-    //! \param radius                 Radius of the inscribed circle
-    //! \param height                 Prism height
-    //! \param sideCount              Number of sides
-    //! \param faceList               Existing solid face list (top face will be removed)
-    //! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                       New solid face list with the prism added
-    //!
-    Sd3drFaceList solidAddPlygedronInner( float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidAddPlygedronOuter Adds a regular polygon prism (by circumscribed circle) on top of the solid
-    //! \param radius                 Radius of the circumscribed circle
-    //! \param height                 Prism height
-    //! \param sideCount              Number of sides
-    //! \param faceList               Existing solid face list (top face will be removed)
-    //! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                       New solid face list with the prism added
-    //!
-    Sd3drFaceList solidAddPlygedronOuter( float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidAddTrapezoid Adds a trapezoid on top of the solid
-    //! \param lenghtTop         Length of the top edge
-    //! \param lenghtBot         Length of the bottom edge
-    //! \param width             Width
-    //! \param height            Trapezoid height
-    //! \param faceList          Existing solid face list (top face will be removed)
-    //! \param transferHeight    Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                  New solid face list with the trapezoid added
-    //!
-    Sd3drFaceList solidAddTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidAddRoundTrapezoid Adds a trapezoid with rounded corners on top of the solid
-    //! \param lenghtTop              Length of the top edge
-    //! \param lenghtBot              Length of the bottom edge
-    //! \param width                  Width
-    //! \param height                 Trapezoid height
-    //! \param roundRadius            Radius of the rounded corners
-    //! \param faceList               Existing solid face list (top face will be removed)
-    //! \param transferHeight         Offset of the new solid's bottom face relative to the existing solid's top face
-    //! \return                       New solid face list with the trapezoid added
-    //!
-    Sd3drFaceList solidAddRoundTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const Sd3drFaceList &faceList, float transferHeight );
-
-
-    //!
-    //! \brief solidHoleBox Adds a rectangular blind hole to the top of the solid
-    //! \param lenght Hole length
-    //! \param width Hole width
-    //! \param height Hole depth
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHoleBox(float lenght, float width, float height, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHoleBeveledBox Adds a rectangular blind hole with beveled corners to the top of the solid
-    //! \param lenght Hole length
-    //! \param width Hole width
-    //! \param height Hole depth
-    //! \param bevelSize Size of the bevel
-    //! \param bevelCount Number of bevel segments
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHoleBeveledBox(float lenght, float width, float height, float bevelSize, float bevelCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHoleRoundBox Adds a rectangular blind hole with rounded corners to the top of the solid
-    //! \param lenght Hole length
-    //! \param width Hole width
-    //! \param height Hole depth
-    //! \param roundRadius Radius of the rounded corners
-    //! \param roundCount Number of rounding segments
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHoleRoundBox(float lenght, float width, float height, float roundRadius, float roundCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHoleCylinder Adds a cylindrical blind hole to the top of the solid
-    //! \param radius Hole radius
-    //! \param height Hole depth
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHoleCylinder(float radius, float height, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHolePlygedronInner Adds a polygonal blind hole (by inscribed circle) to the top of the solid
-    //! \param radius Radius of the inscribed circle
-    //! \param height Hole depth
-    //! \param sideCount Number of sides
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHolePlygedronInner( float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHolePlygedronOuter Adds a polygonal blind hole (by circumscribed circle) to the top of the solid
-    //! \param radius Radius of the circumscribed circle
-    //! \param height Hole depth
-    //! \param sideCount Number of sides
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHolePlygedronOuter( float radius, float height, float sideCount, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHoleTrapezoid Adds a trapezoidal blind hole to the top of the solid
-    //! \param lenghtTop Length of the top edge
-    //! \param lenghtBot Length of the bottom edge
-    //! \param width Width
-    //! \param height Hole depth
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHoleTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const Sd3drFaceList &faceList, float transferHeight );
-
-    //!
-    //! \brief solidHoleRoundTrapezoid Adds a trapezoidal blind hole with rounded corners to the top of the solid
-    //! \param lenghtTop Length of the top edge
-    //! \param lenghtBot Length of the bottom edge
-    //! \param width Width
-    //! \param height Hole depth
-    //! \param roundRadius Radius of the rounded corners
-    //! \param faceList Existing solid face list (top face will be removed)
-    //! \param transferHeight Offset of the hole's bottom relative to the solid's top face
-    //! \return New solid face list with the hole added
-    //!
-    Sd3drFaceList solidHoleRoundTrapezoid(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const Sd3drFaceList &faceList, float transferHeight );
 
 
     //==============================================================================================

@@ -20,6 +20,7 @@ Description
 #define SDSCRIPTVALUE_H
 
 #include "SdScriptTypes.h"
+#include "3dr/Sd3drModel.h"
 
 class SdScriptValue
   {
@@ -98,6 +99,12 @@ class SdScriptValue
     //! \return        Model which is compound of some bodies
     //!
     virtual Sd3drInstance        toModel() const { return Sd3drInstance(); }
+
+    //!
+    //! \brief to2dRegion Convert object to 2d region (list of 2d vertex)
+    //! \return           2d region
+    //!
+    virtual Sd2dRegion           to2dRegion() const { return Sd2dRegion(); }
 
   };
 

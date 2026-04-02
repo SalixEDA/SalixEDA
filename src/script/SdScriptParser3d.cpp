@@ -101,6 +101,7 @@ Description
 #include "SdScriptValueFunGraphPin.h"
 
 
+
 SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model ) :
   SdScriptParser(tableWidget)
   {
@@ -171,29 +172,43 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("faceListWalls"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunLFaceWalls(); }, QStringLiteral("faceListWalls( faceList layers, bool close )") );
   addFunction( QStringLiteral("faceListPinTqfp"), [model] () -> SdScriptValueFunction* { return new SdScriptValueFunModelPinTqfp(model); }, QStringLiteral("") );
 
-  addFunction( QStringLiteral("solidBox"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBox); }, QStringLiteral("solidBox( float lenght, float width, float height, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBoxWithCone"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBoxWithCone); }, QStringLiteral("solidBoxWithCone( float lenght, float width, float height, float coneHeight, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBoxBevel"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBoxBevel); }, QStringLiteral("solidBoxBevel( float lenght, float width, float height, float bevelSize, float bevelCount, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBoxRound"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBoxRound); }, QStringLiteral("solidBoxRound( float lenght, float width, float height, float roundRadius, float roundCount, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidCylinder"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidCylinder); }, QStringLiteral("solidCylinder( float radius, float height, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidCylinderWithCone"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidCylinderWithCone); }, QStringLiteral("solidCylinderWithCone( float radius, float height, float coneHeight, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidPlygedronInner"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidPlygedronInner); }, QStringLiteral("solidPlygedronInner( float radius, float height, float sideCount, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidPlygedronOuter"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidPlygedronOuter); }, QStringLiteral("solidPlygedronOuter( float radius, float height, float sideCount, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTrapezoid"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTrapezoid); }, QStringLiteral("solidTrapezoid( float lenghtTop, float lenghtBot, float width, float height, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTrapezoidRound"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTrapezoidRound); }, QStringLiteral("solidTrapezoidRound( float lenghtTop, float lenghtBot, float width, float height, float roundRadius, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeBox"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubeBox); }, QStringLiteral("solidTubeBox( float lenght, float width, float height, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeBoxRound"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubeBoxRound); }, QStringLiteral("solidTubeBoxRound( float lenght, float width, float height, float roundRadius, float roundCount, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeBoxBevel"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubeBoxBevel); }, QStringLiteral("solidTubeBoxBevel( float lenght, float width, float height, float bevelSize, float bevelCount, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeCylinder"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubeCylinder); }, QStringLiteral("solidTubeCylinder( float radius, float height, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubePlygedronInner"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubePlygedronInner); }, QStringLiteral("solidTubePlygedronInner( float radius, float height, float sideCount, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubePlygedronOuter"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubePlygedronOuter); }, QStringLiteral("solidTubePlygedronOuter( float radius, float height, float sideCount, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeTrapezoid"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubeTrapezoid); }, QStringLiteral("solidTubeTrapezoid( float lenghtTop, float lenghtBot, float width, float height, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeTrapezoidRound"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidTubeTrapezoidRound); }, QStringLiteral("solidTubeTrapezoidRound( float lenghtTop, float lenghtBot, float width, float height, float roundRadius, float thickness, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindBox"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBlindBox); }, QStringLiteral("solidBlindBox( float lenght, float width, float height, float thickness, float holeDepth, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindCylinder"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBlindCylinder); }, QStringLiteral("solidBlindCylinder( float radius, float height, float thickness, float holeDepth, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindPlygedronInner"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBlindPlygedronInner); }, QStringLiteral("solidBlindPlygedronInner( float radius, float height, float sideCount, float thickness, float holeDepth, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindPlygedronOuter"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBlindPlygedronOuter); }, QStringLiteral("solidBlindPlygedronOuter( float radius, float height, float sideCount, float thickness, float holeDepth, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindTrapezoid"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::solidBlindTrapezoid); }, QStringLiteral("solidBlindTrapezoid( float lenghtTop, float lenghtBot, float width, float height, float thickness, float holeDepth, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("flatRectangle"), model, &Sd3drModel::flatRectangle, QStringLiteral("flatRectangle( float lenght, float width )") );
+  addFunction( QStringLiteral("flatRectangleBevel"), model, &Sd3drModel::flatRectangleBevel, QStringLiteral("flatRectangleBevel( float lenght, float width, float bevelSize, float count )") );
+  addFunction( QStringLiteral("flatRectangleRound"), model, &Sd3drModel::flatRectangleRound, QStringLiteral("flatRectangleRound( float lenght, float width, float radius, float stepDegree, float count )") );
+  addFunction( QStringLiteral("flatEllipse"), model, &Sd3drModel::flatEllipse, QStringLiteral("flatEllipse( float radiusx, float radiusy, float stepDegree )") );
+  addFunction( QStringLiteral("flatCircle"), model, &Sd3drModel::flatCircle, QStringLiteral("flatCircle( float radius )") );
+  addFunction( QStringLiteral("flatPlygedronInner"), model, &Sd3drModel::flatPlygedronInner, QStringLiteral("flatPlygedronInner( float radius, float sideCount )") );
+  addFunction( QStringLiteral("flatPlygedronOuter"), model, &Sd3drModel::flatPlygedronOuter, QStringLiteral("flatPlygedronOuter( float radius, float sideCount )") );
+  addFunction( QStringLiteral("flatTrapezoid"), model, &Sd3drModel::flatTrapezoid, QStringLiteral("flatTrapezoid( float lenghtTop, float lenghtBot, float width )") );
+  addFunction( QStringLiteral("flatTrapezoidRound"), model, &Sd3drModel::flatTrapezoidRound, QStringLiteral("flatTrapezoidRound( float lenghtTop, float lenghtBot, float width, float radius )") );
+  addFunction( QStringLiteral("flatEquidistant"), model, &Sd3drModel::flatEquidistant, QStringLiteral("flatEquidistant( flat profile, float distance )") );
+
+  addFunction( QStringLiteral("solidNew"), model, &Sd3drModel::solidNew, QStringLiteral("solidNew( flat profile, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidTube"), model, &Sd3drModel::solidTube, QStringLiteral("solidTube( flat outProfile, float thickness, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidTubeDif"), model, &Sd3drModel::solidTubeDif, QStringLiteral("solidTubeDif( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidBlind"), model, &Sd3drModel::solidBlind, QStringLiteral("solidBlind( flat outProfile, float thickness, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidBlindDif"), model, &Sd3drModel::solidBlindDif, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom )") );
+
+  addFunction( QStringLiteral("solidAddCone"), model, &Sd3drModel::solidAddCone, QStringLiteral("solidAddCone( faceList solid, float coneHeight )") );
+  addFunction( QStringLiteral("solidAddRoofRound"), model, &Sd3drModel::solidAddRoofRound, QStringLiteral("solidAddRoofRound( faceList solid, float roundRadius, bool great )") );
+  addFunction( QStringLiteral("solidAddRoofBevel"), model, &Sd3drModel::solidAddRoofBevel, QStringLiteral("solidAddRoofBevel( faceList solid, float bevelSize )") );
+  addFunction( QStringLiteral("solidAdd"), model, &Sd3drModel::solidAdd, QStringLiteral("solidAdd( faceList solid, float thickness, float height, float offset )") );
+  addFunction( QStringLiteral("solidAddDif"), model, &Sd3drModel::solidAddDif, QStringLiteral("solidAddDif( faceList solid, flat profile, float height, float offset )") );
+  addFunction( QStringLiteral("solidAddCurveVector"), model, &Sd3drModel::solidAddCurveVector, QStringLiteral("solidAddCurveVector( faceList solid, float radius, int sideCount, float x, float y, float  )") );
+  addFunction( QStringLiteral("solidAddCurveXZ"), model, &Sd3drModel::solidAddCurveXZ, QStringLiteral("solidAddCurveXZ( faceList solid, float radius, int sideCount, float x, float y, float  )") );
+  addFunction( QStringLiteral("solidAddHole"), model, &Sd3drModel::solidAddHole, QStringLiteral("solidAddHole( faceList solid, float thickness, float depth )") );
+  addFunction( QStringLiteral("solidAddHoleDif"), model, &Sd3drModel::solidAddHoleDif, QStringLiteral("solidAddHoleDif( faceList solid, float thickness, float depth )") );
+
+  addFunction( QStringLiteral("solidBox"), model, &Sd3drModel::solidBox, QStringLiteral("solidBox( float lenght, float width, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidBoxWithCone"), model, &Sd3drModel::solidBoxWithCone, QStringLiteral("solidBoxWithCone( float lenght, float width, float height, float coneHeight, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidBoxBevel"), model, &Sd3drModel::solidBoxBevel, QStringLiteral("solidBoxBevel( float lenght, float width, float height, float bevelSize, float bevelCount, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidBoxRound"), model, &Sd3drModel::solidBoxRound, QStringLiteral("solidBoxRound( float lenght, float width, float height, float roundRadius, float roundCount, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidCylinder"), model,&Sd3drModel::solidCylinder, QStringLiteral("solidCylinder( float radius, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidCylinderWithCone"), model,&Sd3drModel::solidCylinderWithCone, QStringLiteral("solidCylinderWithCone( float radius, float height, float coneHeight, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidPlygedronInner"), model,&Sd3drModel::solidPlygedronInner, QStringLiteral("solidPlygedronInner( float radius, float height, float sideCount, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidPlygedronOuter"), model,&Sd3drModel::solidPlygedronOuter, QStringLiteral("solidPlygedronOuter( float radius, float height, float sideCount, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidTrapezoid"), model,&Sd3drModel::solidTrapezoid, QStringLiteral("solidTrapezoid( float lenghtTop, float lenghtBot, float width, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidTrapezoidRound"), model,&Sd3drModel::solidTrapezoidRound, QStringLiteral("solidTrapezoidRound( float lenghtTop, float lenghtBot, float width, float height, float roundRadius, matrix transfer, bool addBottom )") );
 
   addFunction( QStringLiteral("model"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelBuild(); }, QStringLiteral("model( color ambient, color diffuse, color specular, faceList faces[], matrix transfer )") );
   addFunction( QStringLiteral("modelNew"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelNew(); }, QStringLiteral("model( color bodyColor, faceList faces[], matrix transfer )") );

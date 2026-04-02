@@ -101,5 +101,6 @@ template<> inline Sd3drFace     SdScriptValueFunction::paramAs<Sd3drFace>(int i)
 
 template<> inline Sd3drFaceList SdScriptValueFunction::paramAs<Sd3drFaceList>(int i) const { return mParamList[i]->toFaceList(); }
 
+template<> inline Sd2dRegion    SdScriptValueFunction::paramAs<Sd2dRegion>(int i) const { return mParamList[i]->to2dRegion(); }
 
 #endif // SDSCRIPTVALUEFUNCTION_H
