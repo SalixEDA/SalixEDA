@@ -194,8 +194,8 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("solidAddRoofBevel"), model, &Sd3drModel::solidAddRoofBevel, QStringLiteral("solidAddRoofBevel( faceList solid, float bevelSize )") );
   addFunction( QStringLiteral("solidAdd"), model, &Sd3drModel::solidAdd, QStringLiteral("solidAdd( faceList solid, float thickness, float height, float offset )") );
   addFunction( QStringLiteral("solidAddDif"), model, &Sd3drModel::solidAddDif, QStringLiteral("solidAddDif( faceList solid, flat profile, float height, float offset )") );
-  addFunction( QStringLiteral("solidAddCurveVector"), model, &Sd3drModel::solidAddCurveVector, QStringLiteral("solidAddCurveVector( faceList solid, float radius, int sideCount, float x, float y, float  )") );
-  addFunction( QStringLiteral("solidAddCurveXZ"), model, &Sd3drModel::solidAddCurveXZ, QStringLiteral("solidAddCurveXZ( faceList solid, float radius, int sideCount, float x, float y, float  )") );
+  addFunction( QStringLiteral("solidAddCurveVector"), model, &Sd3drModel::solidAddCurveVector, QStringLiteral("solidAddCurveVector( faceList solid, float radius, int sideCount, float x, float y, float z )") );
+  addFunction( QStringLiteral("solidAddCurveXZ"), model, &Sd3drModel::solidAddCurveXZ, QStringLiteral("solidAddCurveXZ( faceList solid, float radius, int sideCount, float curveAngle )") );
   addFunction( QStringLiteral("solidAddHole"), model, &Sd3drModel::solidAddHole, QStringLiteral("solidAddHole( faceList solid, float thickness, float depth )") );
   addFunction( QStringLiteral("solidAddHoleDif"), model, &Sd3drModel::solidAddHoleDif, QStringLiteral("solidAddHoleDif( faceList solid, float thickness, float depth )") );
 

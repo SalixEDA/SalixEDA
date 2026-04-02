@@ -1512,17 +1512,19 @@ QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, bool invertNormal )
   // height > 0: смещение в сторону zAxis
   // height < 0: смещение в противоположную сторону
 
-  // Строим локальные оси
-  QVector3D tempX(1, 0, 0);
-  if( qAbs(QVector3D::dotProduct(normal, tempX)) > 0.9999f )
-    tempX = QVector3D(0, 1, 0);
+  // Вместо tempX используем tempY (глобальную ось Y)
+  QVector3D tempY(0, 1, 0);  // Всегда стремимся к глобальной оси Y
 
-  QVector3D localX = QVector3D::crossProduct(normal, QVector3D::crossProduct(tempX, normal)).normalized();
-  QVector3D localY = QVector3D::crossProduct(normal, localX).normalized();
+  // Но нужно проверить, не параллельна ли нормаль оси Y
+  if( qAbs(QVector3D::dotProduct(normal, tempY)) > 0.9999f ) {
+    // Если нормаль почти параллельна Y, используем X как fallback
+    tempY = QVector3D(1, 0, 0);
+    }
 
-  // Проверяем правую тройку
-  if( QVector3D::dotProduct(localY, QVector3D::crossProduct(normal, localX)) < 0 )
-    localY = -localY;
+  // Строим localY как проекцию tempY на плоскость
+  QVector3D localY = QVector3D::crossProduct(normal, QVector3D::crossProduct(tempY, normal)).normalized();
+  // Затем localX = crossProduct(localY, normal)
+  QVector3D localX = QVector3D::crossProduct(localY, normal).normalized();
 
   // Строим матрицу
   QMatrix4x4 transform;
@@ -1760,8 +1762,9 @@ Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatr
   {
   Sd3drFaceList list;
   if( isZero(height) ) {
-    //Append bottom only
-    list.append( face );
+    //Append bottom if need
+    if( addBot )
+      list.append( face );
     //Next operations remove this face
     list.append( face );
     }
