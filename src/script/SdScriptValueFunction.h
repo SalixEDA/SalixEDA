@@ -95,6 +95,8 @@ template<> inline float         SdScriptValueFunction::paramAs<float>(int i) con
 
 template<> inline bool          SdScriptValueFunction::paramAs<bool>(int i) const { return mParamList[i]->toBool(); }
 
+template<> inline QColor        SdScriptValueFunction::paramAs<QColor>(int i) const { return mParamList[i]->toColor(); }
+
 template<> inline QMatrix4x4    SdScriptValueFunction::paramAs<QMatrix4x4>(int i) const { return mParamList[i]->toMatrix(); }
 
 template<> inline Sd3drFace     SdScriptValueFunction::paramAs<Sd3drFace>(int i) const { return mParamList[i]->toFace(); }

@@ -102,3 +102,25 @@ void Sd3drMaterial::colorToFloat(QColor col, float *fcolor)
 
 
 
+//!
+//! \brief drawColor Draw both ambient and diffuse colors
+//! \param f         OpenGL functions
+//! \param color     Color value
+//!
+void Sd3drMaterial::drawColor(QOpenGLFunctions_2_0 *f, int ambient, int diffuse )
+  {
+  float fcolor[4];
+  fcolor[0] = float((ambient>>16) & 0xff) / 255.0;
+  fcolor[1] = float((ambient>>8) & 0xff) / 255.0;
+  fcolor[2] = float((ambient>>0) & 0xff) / 255.0;
+  fcolor[3] = 1.0;
+  f->glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT, fcolor );
+
+  fcolor[0] = float((diffuse>>16) & 0xff) / 255.0;
+  fcolor[1] = float((diffuse>>8) & 0xff) / 255.0;
+  fcolor[2] = float((diffuse>>0) & 0xff) / 255.0;
+  f->glMaterialfv( GL_FRONT_AND_BACK, GL_DIFFUSE, fcolor );
+  }
+
+
+

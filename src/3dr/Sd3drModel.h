@@ -343,6 +343,8 @@ class Sd3drModel
 
     static QList<float>  afloatArc(float radius, float angleStart, float angleStop, int sideCount);
 
+    static Sd3drFace     faceColor( QColor color );
+
     //==============================================================================================
     //  Solid figures, modern face list section - functions for face list generation and conversion
     //
@@ -367,6 +369,14 @@ class Sd3drModel
     //! \return          Complex matrix
     //!
     QMatrix4x4    matrixNew( float angX, float angY, float angZ, float offX, float offY, float offZ );
+
+
+    //!
+    //! \brief matrixZ Build simple matrix with offset by Z
+    //! \param offZ    Offset by Z
+    //! \return        Translation matrix
+    //!
+    QMatrix4x4    matrixZ( float offZ );
 
 
     //!
@@ -495,11 +505,15 @@ class Sd3drModel
     //! \param height Extrusion height
     //! \return List of faces forming the extruded solid
     //!
-    Sd3drFaceList solid( const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solid( const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot, QColor color );
 
     Sd3drFaceList solidNew( const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot );
 
+    Sd3drFaceList solidNewColor( const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot, QColor color );
+
     Sd3drFaceList solidTube( const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot );
+
+    Sd3drFaceList solidTubeColor( const Sd2dRegion &rOut, float thickness, float height, float offsetZ, bool addBot, QColor colo );
 
     Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
 
@@ -521,6 +535,15 @@ class Sd3drModel
     //! \return             New solid face list with the cone added
     //!
     Sd3drFaceList solidAddCone( const Sd3drFaceList &faceList, float coneHeight );
+
+    //!
+    //! \brief solidAddConeColor Adds a cone to the solid
+    //! \param faceList          Existing solid face list (top face will be removed)
+    //! \param coneHeight        Height of the cone
+    //! \param color             Cone color
+    //! \return                  New solid face list with the cone added
+    //!
+    Sd3drFaceList solidAddConeColor( const Sd3drFaceList &faceList, float coneHeight, QColor color );
 
     //!
     //! \brief solidAddRoofRound Creates a rounded top face (roof)

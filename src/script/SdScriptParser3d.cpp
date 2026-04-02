@@ -117,15 +117,14 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("matrixRotate"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunMatrixRotate(); }, QStringLiteral("matrixRotate( matrix src, float angle, float rotateX, float rotateY, float rotateZ )") );
   addFunction( QStringLiteral("matrixScale"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunMatrixScale(); }, QStringLiteral("matrixScale( matrix src, float scaleX, float scaleY, float scaleZ )") );
   addFunction( QStringLiteral("matrixTranslate"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunMatrixTranslate(); }, QStringLiteral("matrixTranslate( matrix src, float offX, float offY, float offZ )") );
-  addFunction( QStringLiteral("matrixNew"), [model] () -> SdScriptValueFunction* { return new SdScriptValueMethod(model,&Sd3drModel::matrixNew); }, QStringLiteral("matrixNew( float angX, float angY, float angZ, float offX, float offY, float offZ )") );
+  addFunction( QStringLiteral("matrixNew"), model, &Sd3drModel::matrixNew, QStringLiteral("matrixNew( float angX, float angY, float angZ, float offX, float offY, float offZ )") );
+  addFunction( QStringLiteral("matrixZ"), model, &Sd3drModel::matrixZ, QStringLiteral("matrixZ( float offZ )") );
 
   addFunction( QStringLiteral("arc"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunAFloatArc(); }, QStringLiteral("arc( float radius, float angleStart, float angleStop, float sideCount )") );
   addFunction( QStringLiteral("floatListAppend"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunAFloatAppend(); }, QStringLiteral("floatListAppend( floatList src, floatList append )") );
 
   addFunction( QStringLiteral("vertex"), [model] () -> SdScriptValueFunction* { return new SdScriptValueFunVertexBuild(model); }, QStringLiteral("vertex( float x, float y, float z )") );
   addFunction( QStringLiteral("vertexOffset"), [model] () -> SdScriptValueFunction* { return new SdScriptValueFunVertexOffset(model); }, QStringLiteral("vertexOffset( vertex src, float offX, float offY, float OffZ )") );
-//  addFunction( QStringLiteral("vertexTranslate"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunVertexTranslate(); } );
-//  addFunction( QStringLiteral("vertexCenterOfRegion"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunVertexCenterOfRegion(); } );
 
   addFunction( QStringLiteral("faceBevelXY"), [model] () -> SdScriptValueFunction* { return new SdScriptValueFunFaceBevelXY(model); }, QStringLiteral("faceBevelXY( face src, float radius )") );
   addFunction( QStringLiteral("faceCircle"), [model] () -> SdScriptValueFunction* { return new SdScriptValueFunFaceCircle(model); }, QStringLiteral("faceCircle( float radius, float stepDegree, matrix transfer )") );
@@ -184,6 +183,7 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("flatEquidistant"), model, &Sd3drModel::flatEquidistant, QStringLiteral("flatEquidistant( flat profile, float distance )") );
 
   addFunction( QStringLiteral("solidNew"), model, &Sd3drModel::solidNew, QStringLiteral("solidNew( flat profile, float height, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidNewColor"), model, &Sd3drModel::solidNewColor, QStringLiteral("solidNewColor( flat profile, float height, matrix transfer, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidTube"), model, &Sd3drModel::solidTube, QStringLiteral("solidTube( flat outProfile, float thickness, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidTubeDif"), model, &Sd3drModel::solidTubeDif, QStringLiteral("solidTubeDif( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidBlind"), model, &Sd3drModel::solidBlind, QStringLiteral("solidBlind( flat outProfile, float thickness, float height, matrix transfer, bool addBottom )") );

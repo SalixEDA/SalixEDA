@@ -37,7 +37,13 @@ void Sd3drBody::draw(QOpenGLFunctions_2_0 *f, const Sd3drRegion &vertexList, con
 
   //Draw all faces
   for( auto face : std::as_const( mFaceList ) ) {
-    if( face.count() < 3 ) continue;
+    if( face.count() < 3 ) {
+      if( face.count() == 1 )
+        mColor.drawColor( f, face.at(0), face.at(0) );
+      else if( face.count() == 2 )
+        mColor.drawColor( f, face.at(0), face.at(1) );
+      continue;
+      }
     QVector3D normal = QVector3D::normal( map.map( vertexList.at( face.at(0) ) ), map.map( vertexList.at( face.at(1) ) ), map.map( vertexList.at( face.at(2) ) ) );
     f->glBegin(GL_POLYGON);
     f->glNormal3f( normal.x(), normal.y(), normal.z() );

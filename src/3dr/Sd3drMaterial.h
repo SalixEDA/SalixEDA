@@ -40,7 +40,6 @@ struct Sd3drMaterial
 
     void draw( QOpenGLFunctions_2_0 *f ) const;
 
-
     void setColor( QColor color );
 
 
@@ -62,6 +61,14 @@ struct Sd3drMaterial
     //! \param fcolor       Destignation array of float, must be at least 4 item
     //!
     static void colorToFloat( QColor col, float *fcolor );
+
+    //!
+    //! \brief drawColor Draw both ambient and diffuse colors
+    //! \param f         OpenGL functions
+    //! \param ambient   Color value
+    //! \param diffuse   Color value
+    //!
+    static void drawColor(QOpenGLFunctions_2_0 *f, int ambient , int diffuse);
   };
 
 using Sd3ColorList = QList<Sd3drMaterial>;

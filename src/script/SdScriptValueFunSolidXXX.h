@@ -54,6 +54,14 @@ struct SdScriptTypeMap<bool>
     static bool get(const SdScriptValue *v) { return v->toBool(); }
   };
 
+//QColor
+template<>
+struct SdScriptTypeMap<QColor>
+  {
+    static constexpr char type = SD_SCRIPT_TYPE_COLOR;
+    static QColor get(const SdScriptValue *v) { return v->toColor(); }
+  };
+
 //QMatrix4x4
 template<>
 struct SdScriptTypeMap<QMatrix4x4>
@@ -155,6 +163,16 @@ struct SdScriptResultInvoker<Sd2dRegion>
     static Sd2dRegion call( F&& f ) { return f(); }
   };
 
+//QColor
+template<>
+struct SdScriptResultInvoker<QColor>
+  {
+    static constexpr char type = SD_SCRIPT_TYPE_COLOR;
+
+    template <typename F>
+    static QColor call( F&& f ) { return f(); }
+  };
+
 
 
 
@@ -220,6 +238,13 @@ class SdScriptValueMethod : public SdScriptValueFunction
       if constexpr (std::is_same_v<Result,Sd2dRegion>)
         return invoke();
       return SdScriptValueFunction::to2dRegion();
+      }
+
+    QColor        toColor() const override
+      {
+      if constexpr (std::is_same_v<Result,QColor>)
+        return invoke();
+      return SdScriptValueFunction::toColor();
       }
 
   };

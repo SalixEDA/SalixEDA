@@ -1473,6 +1473,21 @@ QList<float> Sd3drModel::afloatArc(float radius, float angleStart, float angleSt
 
 
 
+Sd3drFace Sd3drModel::faceColor(QColor color)
+  {
+  Sd3drFace face;
+  if( color.isValid() ) {
+    int cv = color.blue() & 0xff;
+    cv |= (color.green() & 0xff) << 8;
+    cv |= (color.red() & 0xff) << 16;
+    face.append(cv);
+    }
+  return face;
+  }
+
+
+
+
 //!
 //! \brief matrixTop    Builds a matrix that translates to the center of the face and orients the z-axis along the normal
 //! \param face         Source face
@@ -1564,6 +1579,21 @@ QMatrix4x4 Sd3drModel::matrixNew(float angX, float angY, float angZ, float offX,
   mat.rotate( angZ, 0, 0, 1.0 );
   mat.rotate( angY, 0, 1.0, 0 );
   mat.rotate( angX, 1.0, 0, 0 );
+  return mat;
+  }
+
+
+
+
+//!
+//! \brief matrixZ Build simple matrix with offset by Z
+//! \param offZ    Offset by Z
+//! \return        Translation matrix
+//!
+QMatrix4x4 Sd3drModel::matrixZ(float offZ)
+  {
+  QMatrix4x4 mat{};
+  mat.translate( 0, 0, offZ );
   return mat;
   }
 
@@ -1758,7 +1788,7 @@ Sd3drFaceList Sd3drModel::solidTrapezoidRound(float lenghtTop, float lenghtBot, 
 
 
 
-Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot, QColor color)
   {
   Sd3drFaceList list;
   if( isZero(height) ) {
@@ -1794,7 +1824,14 @@ Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatr
 
 Sd3drFaceList Sd3drModel::solidNew(const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot)
   {
-  return solid( faceFromFlat( r, m), height, m, addBot );
+  solidNewColor( r, height, m, addBot, QColor{} );
+  }
+
+
+
+Sd3drFaceList Sd3drModel::solidNewColor(const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot, QColor color)
+  {
+  return solid( faceFromFlat( r, m), height, m, addBot, color );
   }
 
 
@@ -1946,10 +1983,28 @@ Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion
 //!
 Sd3drFaceList Sd3drModel::solidAddCone(const Sd3drFaceList &faceList, float coneHeight)
   {
+  return solidAddConeColor( faceList, coneHeight, QColor{} );
+  }
+
+
+
+
+
+//!
+//! \brief solidAddConeColor Adds a cone to the solid
+//! \param faceList          Existing solid face list (top face will be removed)
+//! \param coneHeight        Height of the cone
+//! \param color             Cone color
+//! \return                  New solid face list with the cone added
+//!
+Sd3drFaceList Sd3drModel::solidAddConeColor(const Sd3drFaceList &faceList, float coneHeight, QColor color)
+  {
   Sd3drFaceList list(faceList);
   Sd3drFace topFace( list.takeLast() );
   QMatrix4x4 map = matrixTop( topFace );
   int top = vertexAppend( map.map( QVector3D{0,0,coneHeight} ) );
+  if( color.isValid() )
+    list.append( faceColor(color) );
   for( int i = 0; i < topFace.count(); ++i ) {
     int nextIndex = (i + 1) % topFace.count();
     list.append( { topFace.at(i), topFace.at(nextIndex), top });
@@ -2049,7 +2104,7 @@ Sd3drFaceList Sd3drModel::solidAdd(const Sd3drFaceList &faceList, float thicknes
   QMatrix4x4 map = matrixTop( face, 0 );
 
   if( isZero(thickness) )
-    list.append( solid( face, height + offset, map, false ) );
+    list.append( solid( face, height + offset, map, false, QColor{} ) );
   else {
     Sd2dRegion srcR = flatFromFace( face, map );
     Sd2dRegion inR  = flatEquidistant( srcR, thickness );
