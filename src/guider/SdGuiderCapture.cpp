@@ -351,7 +351,7 @@ void SdGuiderCapture::periodicPayer()
     if( mEventIndex >= mEventList.size() ) {
       //Stop capture
       mFfmpeg.closeWriteChannel();
-      mFfmpeg.waitForFinished(3000);
+      mFfmpeg.waitForFinished(30000);
 
       //Conversion to audio mixed
       QStringList attr;
@@ -385,10 +385,16 @@ void SdGuiderCapture::periodicPayer()
       qDebug() << "Audio mixing" << attr;
       QProcess ffmpeg;
       ffmpeg.start( "ffmpeg", attr );
-      if( !ffmpeg.waitForStarted(5000) )
+      if( !ffmpeg.waitForStarted(15000) ) {
+        qWarning() << "Failed to start FFmpeg:" << ffmpeg.errorString();
         return;
+        }
 
+      qDebug() << "Process audio to video append";
       ffmpeg.waitForFinished(35000);
+
+      qDebug() << ffmpeg.readAllStandardError();
+      qDebug() << ffmpeg.readAllStandardOutput();
       }
     }
   else {

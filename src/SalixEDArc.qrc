@@ -795,5 +795,7 @@
         <file>fonts/NotoColorEmoji.ttf</file>
         <file>pic/3dTopView.png</file>
         <file>help/iconExamples.png</file>
+        <file>help/iconVideos.png</file>
+        <file>help/iconHelp.png</file>
     </qresource>
 </RCC>
