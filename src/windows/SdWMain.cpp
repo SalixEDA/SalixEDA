@@ -761,7 +761,14 @@ void SdWMain::cmFileNew()
 //!
 void SdWMain::cmFileLoad()
   {
-  QString uid = SdDGetObject::getObjectUid( dctProject, tr("Select project to load"), this );
+  cmFileLoadUid( SdDGetObject::getObjectUid( dctProject, tr("Select project to load"), this ) );
+  }
+
+
+
+
+void SdWMain::cmFileLoadUid(const QString &uid)
+  {
   if( !uid.isEmpty() ) {
     SdProject *prj = sdObjectOnly<SdProject>( SdLibraryStorage::instance()->cfObjectGet( uid ) );
     if( prj )
@@ -1975,9 +1982,13 @@ void SdWMain::cmLibrary()
 
 
 
-void SdWMain::cmTools()
+void SdWMain::cmRef2LibraryObject()
   {
-
+  QString guid = SdDGetObject::getObjectUid( dctProject, tr("Select object to ref"), this );
+  if( !guid.isEmpty() ) {
+    //Copy to clipboard
+    QGuiApplication::clipboard()->setText( guid );
+    }
   }
 
 

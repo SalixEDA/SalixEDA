@@ -85,6 +85,7 @@ SdWHelp::SdWHelp(SdWMain *main) :
       if( path.startsWith("open:") ) { mMain->cmFileOpen(); return; }
       else if( path.startsWith("new:") ) { mMain->cmFileNew(); return; }
       else if( path.startsWith("load:") ) { mMain->cmFileOpenFile( path.mid(5) ); return; }
+      else if( path.startsWith("library:") ) { mMain->cmFileLoadUid( path.mid(8) ); return; }
       }
     if( path.endsWith( QStringLiteral(".guide")) ) {
       path = url.fileName();

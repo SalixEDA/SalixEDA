@@ -513,14 +513,19 @@ class Sd3drModel
 
     Sd3drFaceList solidTube( const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidTubeColor( const Sd2dRegion &rOut, float thickness, float height, float offsetZ, bool addBot, QColor colo );
+    Sd3drFaceList solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot, QColor color );
 
     Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
 
+    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color );
+
     Sd3drFaceList solidBlind( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot );
+
+    Sd3drFaceList solidBlindColor( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
 
     Sd3drFaceList solidBlindDif( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
+    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
 
 
 
@@ -562,6 +567,8 @@ class Sd3drModel
     //!
     Sd3drFaceList solidAddRoofBevel( const Sd3drFaceList &faceList, float bevelSize );
 
+    Sd3drFaceList solidAddRoofBevelColor( const Sd3drFaceList &faceList, float bevelSize, QColor color );
+
     //!
     //! \brief solidAdd Adds an extrusion with the same profile as the top face
     //! \param faceList Existing solid face list (top face will be removed)
@@ -570,8 +577,10 @@ class Sd3drModel
     //!
     Sd3drFaceList solidAdd( const Sd3drFaceList &faceList, float thickness, float height, float offset );
 
+    Sd3drFaceList solidAddColor( const Sd3drFaceList &faceList, float thickness, float height, float offset, QColor color );
+
     //!
-    //! \brief solidAddDif Adds an extrusion with r profile at the top face
+    //! \brief solidAddDif   Adds an extrusion with r profile at the top face
     //! \param faceList      Sorce face list with top face as base for extrusion
     //! \param r             Extrusion profile
     //! \param height        Extrusion height
@@ -579,6 +588,22 @@ class Sd3drModel
     //! \return              New solid face list with the added extrusion
     //!
     Sd3drFaceList solidAddDif( const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset );
+
+    Sd3drFaceList solidAddDifColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset, QColor color );
+
+    //!
+    //! \brief solidAddBlindArray Append to top face array of blind holes
+    //! \param faceList           Face from witch need to taken top face
+    //! \param r                  Hole profile
+    //! \param depth              Hole depth
+    //! \param rowCount           Count of hole rows
+    //! \param rowDistance        Distance between rows
+    //! \param rowDescr           Rows description. For each row: hole distance, row hole count, horizontal offset, vertical offset
+    //! \return                   New solid face list with the added extrusion
+    //!
+    Sd3drFaceList solidAddBlindArray( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowCount, float rowDistance, const QList<float> &rowDescr );
+
+    Sd3drFaceList solidAddBlindArrayColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowCount, float rowDistance, const QList<float> &rowDescr, QColor color );
 
     //!
     //! \brief solidAddCurveVector Adds a curved bend of the profile with given radius along the specified vector
@@ -613,6 +638,8 @@ class Sd3drModel
     //!
     Sd3drFaceList solidAddHole( const Sd3drFaceList &faceList, float thickness, float depth );
 
+    Sd3drFaceList solidAddHoleColor( const Sd3drFaceList &faceList, float thickness, float depth, QColor color );
+
     //!
     //! \brief solidAddHoleDif Adds a hole to the top face with defferent profile
     //! \param faceList        Existing solid face list (top face will be removed)
@@ -622,6 +649,7 @@ class Sd3drModel
     //!
     Sd3drFaceList solidAddHoleDif( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth );
 
+    Sd3drFaceList solidAddHoleDifColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, QColor color );
 
 
     //==============================================================================================

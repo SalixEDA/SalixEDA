@@ -83,6 +83,12 @@ int main(int argc, char *argv[])
     s.setValue( SDK_LANGUAGE, lang );
     }
 
+  QStringList arg = a.arguments();
+  // if( arg.count() > 1 && arg.at(1).startsWith("-") ) {
+  //   s.setValue( SDK_LANGUAGE, arg.at(1).mid(1) );
+  //   arg.remove( 1 );
+  //   }
+
 
   //Translation system
   QTranslator appTranslator;
@@ -104,7 +110,7 @@ int main(int argc, char *argv[])
 
 
   //Creating application main window
-  SdWMain w( a.arguments() );
+  SdWMain w( arg );
   if( s.value(QString(SDK_WMAIN_MAX), QVariant(true)).toBool() )
     w.showMaximized();
   else

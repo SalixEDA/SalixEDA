@@ -33,6 +33,12 @@ class SdScriptValueFunction : public SdScriptValue
     char mParamTypes[SDSCRIPT_FUN_MAX_PARAM]; //!< Type of each param
   protected:
     SdScriptValuePtr mParamList[SDSCRIPT_FUN_MAX_PARAM];
+
+    void             setParamTypes( const char *types, int count )
+      {
+      for( mParamCount = 0; mParamCount < count && mParamCount < SDSCRIPT_FUN_MAX_PARAM; ++mParamCount )
+        mParamTypes[mParamCount] = types[mParamCount];
+      }
   public:
     SdScriptValueFunction( char resultType, char paramType0 );
     SdScriptValueFunction( char resultType, char paramType0, char paramType1 );
@@ -42,13 +48,10 @@ class SdScriptValueFunction : public SdScriptValue
     SdScriptValueFunction( char resultType, char paramType0, char paramType1, char paramType2, char paramType3, char paramType4, char paramType5 );
     SdScriptValueFunction( char resultType, char paramType0, char paramType1, char paramType2, char paramType3, char paramType4, char paramType5, char paramType6 );
     SdScriptValueFunction( char resultType, char paramType0, char paramType1, char paramType2, char paramType3, char paramType4, char paramType5, char paramType6, char paramType7 );
-    SdScriptValueFunction( char resultType, std::initializer_list<char> types ) :
+    SdScriptValueFunction( char resultType ) :
       mResultType(resultType),
-      mParamCount( static_cast<int>(types.size()) )
+      mParamCount( 0 )
       {
-      int i = 0;
-      for( char t : types )
-        mParamTypes[i++] = t;
       clearParamList();
       }
     ~SdScriptValueFunction();
@@ -104,5 +107,7 @@ template<> inline Sd3drFace     SdScriptValueFunction::paramAs<Sd3drFace>(int i)
 template<> inline Sd3drFaceList SdScriptValueFunction::paramAs<Sd3drFaceList>(int i) const { return mParamList[i]->toFaceList(); }
 
 template<> inline Sd2dRegion    SdScriptValueFunction::paramAs<Sd2dRegion>(int i) const { return mParamList[i]->to2dRegion(); }
+
+template<> inline QList<float>  SdScriptValueFunction::paramAs<QList<float> >(int i) const { return mParamList[i]->toFloatList(); }
 
 #endif // SDSCRIPTVALUEFUNCTION_H

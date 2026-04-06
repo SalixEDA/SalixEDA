@@ -312,10 +312,10 @@ void SdWCommand::createMenu(SdWMain *frame)
 
   //Instruments menu
   menuInstruments = new QMenu( QObject::tr("Instruments") );
-  menuInstruments->addAction( QIcon(QString(":/pic/library.png")), QObject::tr("Library"), frame, &SdWMain::cmLibrary );
+  //menuInstruments->addAction( QIcon(QString(":/pic/library.png")), QObject::tr("Library"), frame, &SdWMain::cmLibrary );
   cmOption = menuInstruments->addAction( QIcon(QString(":/pic/instrumOptions.png")), QObject::tr("Options"), frame, &SdWMain::cmOption );
   menuInstruments->addSeparator();
-  cmTools  = menuInstruments->addAction( QIcon(QString(":/pic/instrumTools.png")), QObject::tr("Tools"), frame, &SdWMain::cmTools );
+  cmTools  = menuInstruments->addAction( QIcon(QString(":/pic/instrumTools.png")), QObject::tr("Ref to library object"), frame, &SdWMain::cmRef2LibraryObject );
   menuInstruments->addSeparator();
   cmGuiderDialog     = menuInstruments->addAction( QObject::tr("Guider scene builder..."), frame, &SdWMain::cmGuiderDialog );
                        menuInstruments->addAction( QObject::tr("Guider snapshot save"), QKeySequence(Qt::Key_F12), frame, &SdWMain::cmGuiderSnapshotSave );

@@ -94,6 +94,7 @@ void Sd3drBody::volumeAdd(QMatrix2x3 &volume, const Sd3drRegion &vertexList, con
   {
   //Draw all faces
   for( auto face : std::as_const( mFaceList ) ) {
+    if( face.count() < 3 ) continue;
     for( auto index : std::as_const( face ) ) {
       auto v = map.map( vertexList.at( index ) );
       if( volume(0,0) > v.x() ) volume(0,0) = v.x();

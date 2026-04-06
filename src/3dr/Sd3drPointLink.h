@@ -70,6 +70,8 @@ class Sd3drPointLinkList
     Sd3drPointLink *alloc();
 
     Sd3drPointLink *addRegion( Sd3drModel *model, const Sd3drFace &face, bool hole );
+
+    Sd3drPointLink *addRegion(const Sd3drFace &face, const Sd2dRegion &region2d, bool hole );
   };
 
 

@@ -117,6 +117,20 @@ struct SdScriptTypeMap<const Sd2dRegion&> :
     SdScriptTypeMap<Sd2dRegion> {};
 
 
+//QList<float>
+template<>
+struct SdScriptTypeMap<QList<float> >
+  {
+    static constexpr char type = SD_SCRIPT_TYPE_AFLOAT;
+    static QList<float> get(const SdScriptValue *v) { return v->toFloatList(); }
+  };
+
+//const QList<float>&
+template<>
+struct SdScriptTypeMap<const QList<float>&> :
+    SdScriptTypeMap<QList<float> > {};
+
+
 
 
 
@@ -174,6 +188,17 @@ struct SdScriptResultInvoker<QColor>
   };
 
 
+//QList<float>
+template<>
+struct SdScriptResultInvoker<QList<float> >
+  {
+    static constexpr char type = SD_SCRIPT_TYPE_AFLOAT;
+
+    template <typename F>
+    static QList<float> call( F&& f ) { return f(); }
+  };
+
+
 
 
 template <typename Method, size_t... I>
@@ -194,16 +219,20 @@ class SdScriptValueMethod : public SdScriptValueFunction
     Method      mMethod;
   public:
     SdScriptValueMethod( Sd3drModel *model, Method method )
-      : SdScriptValueFunction( SdScriptResultInvoker<Result>::type, buildParamTypes(std::make_index_sequence<Traits::ArgCount>{} ) )
+      : SdScriptValueFunction( SdScriptResultInvoker<Result>::type )
       , mModel(model)
       , mMethod(method)
-      {}
+      {
+      initTypes( std::make_index_sequence<Traits::ArgCount>{} );
+      }
 
   private:
+
     template<size_t... I>
-    static std::initializer_list<char> buildParamTypes( std::index_sequence<I...>)
+    void initTypes( std::index_sequence<I...>)
       {
-      return { SdScriptTypeMap<std::tuple_element_t<I, typename Traits::ArgsTuple>>::type...};
+      char types[] = {SdScriptTypeMap<std::remove_cvref_t<std::tuple_element_t<I, typename Traits::ArgsTuple> > >::type...};
+      setParamTypes( types, sizeof...(I) );
       }
 
     Result invoke() const

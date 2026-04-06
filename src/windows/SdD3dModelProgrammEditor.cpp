@@ -367,6 +367,9 @@ void SdD3dModelProgrammEditor::compile()
 
   mError->setText( parser.error() );
 
+  if( !parser.error().isEmpty() )
+    mProgramm.reset();
+
   mActive = false;
 
   rebuild();

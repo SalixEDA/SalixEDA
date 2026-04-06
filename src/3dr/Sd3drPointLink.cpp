@@ -65,6 +65,42 @@ Sd3drPointLink *Sd3drPointLinkList::addRegion(Sd3drModel *model, const Sd3drFace
 
 
 
+
+Sd3drPointLink *Sd3drPointLinkList::addRegion(const Sd3drFace &face, const Sd2dRegion &region2d, bool hole)
+  {
+  if( face.count() == 0 )
+    return nullptr;
+
+  //Detect region direction
+  double dir = 0;
+  QPointF prev = region2d.at( region2d.count() - 1 ).toPointF();
+  for( int i = 0; i < region2d.count(); i++ ) {
+    auto p = region2d.at(i).toPointF();
+    dir += (p.x() - prev.x()) * (p.y() + prev.y());
+    prev = p;
+    }
+  //If wrong direction we revert it
+  if( dir >= 0 )
+    hole = !hole;
+
+  Sd3drPointLink *region = nullptr;
+  //int count = face.count() - 1;
+  for( int i = 0; i < face.count(); i++ ) {
+    Sd3drPointLink *p = alloc();
+    p->mIndex = face.at(i);
+    p->mPoint = region2d.at(i).toPointF();
+    if( region == nullptr )
+      region = p;
+    else if( hole )
+      region = region->appendPrev( p );
+    else
+      region = region->appendNext( p );
+    }
+  return region;
+  }
+
+
+
 Sd3drPointLink *Sd3drPointLink::init()
   {
   return mNext = mPrev = this;

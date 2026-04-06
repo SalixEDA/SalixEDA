@@ -131,6 +131,7 @@ class SdWMain : public QMainWindow
     void cmFileNew();
     //Load project from library
     void cmFileLoad();
+    void cmFileLoadUid( const QString &uid );
     //Load project from local file system
     void cmFileOpen();
     void cmFilePrevious();
@@ -269,7 +270,7 @@ class SdWMain : public QMainWindow
 
     void cmOption();
     void cmLibrary();
-    void cmTools();
+    void cmRef2LibraryObject();
 
     void cmHelpIntro();
     void cmHelpPage( const QString topic );
