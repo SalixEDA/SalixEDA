@@ -517,15 +517,15 @@ class Sd3drModel
 
     Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color );
 
     Sd3drFaceList solidBlind( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidBlindColor( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
 
     Sd3drFaceList solidBlindDif( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color );
 
 
 

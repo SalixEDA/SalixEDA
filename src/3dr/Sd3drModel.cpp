@@ -1885,13 +1885,19 @@ Sd3drFaceList Sd3drModel::solidTubeColor(const Sd2dRegion &rOut, float thickness
 
 Sd3drFaceList Sd3drModel::solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot)
   {
-  return solidTubeDifColor( rOut, rIn, height, m, addBot, QColor{} );
+  return solidTubeDifColor( rOut, rIn, height, m, 0, 0, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color)
   {
+  Sd2dRegion offIn(rIn);
+  if( !isZero(offX) || !isZero(offY) ) {
+    QVector2D off(offX,offY);
+    for( int i = 0; i < offIn.count(); ++i )
+      offIn[i] += off;
+    }
   Sd3drFace faceOut = faceFromFlat( rOut, m );
-  Sd3drFace faceIn  = faceFromFlat( rIn, m );
+  Sd3drFace faceIn  = faceFromFlat( offIn, m );
   // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
   QVector3D localZ(m(0, 2), m(1, 2), m(2, 2));
   // Смещаем точку вдоль этой оси
@@ -1906,14 +1912,14 @@ Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRe
     list.append( faceColor(color) );
   //Append bottom if need
   if( addBot )
-    list.append( ring( rOut, faceOut, rIn, faceIn ) );
+    list.append( ring( rOut, faceOut, offIn, faceIn ) );
 
   //Build wall
   list.append( faceListWall( faceOut, topOut, true ) );
   list.append( faceListWall( faceIn, topIn, true ) );
 
   //Append top
-  list.append( ring( rOut, topOut, rIn, topIn ) );
+  list.append( ring( rOut, topOut, offIn, topIn ) );
   return list;
   }
 
@@ -1926,37 +1932,7 @@ Sd3drFaceList Sd3drModel::solidBlind(const Sd2dRegion &rOut, float thickness, fl
 
 Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color)
   {
-  Sd3drFace faceOut = faceFromFlat( rOut, m );
-  Sd3drFace faceIn  = faceFromFlat( flatEquidistant( rOut, thickness ), m, height - depth );
-
-  // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
-  QVector3D localZOut(m(0, 2), m(1, 2), m(2, 2));
-  QVector3D localZIn(localZOut);
-  // Смещаем точку вдоль этой оси
-  localZOut *= height;
-  localZIn  *= depth;
-
-  //Build top face by offset each point from bottom face on vector localZ
-  Sd3drFace topOut( faceDuplicateOffset( faceOut, localZOut ) );
-  Sd3drFace topIn( faceDuplicateOffset( faceIn, localZIn ) );
-
-  Sd3drFaceList list;
-  if( color.isValid() )
-    list.append( faceColor(color) );
-  //Append bottom if need
-  if( addBot )
-    list.append( faceOut );
-
-
-  //Build wall
-  list.append( faceListWall( faceOut, topOut, true ) );
-  list.append( faceListWall( faceIn, topIn, true ) );
-
-  //Append top
-  list.append( faceListWall( topOut, topIn, true ) );
-
-  list.append( faceIn );
-  return list;
+  return solidBlindDifColor( rOut, flatEquidistant( rOut, thickness ), height, depth, m, 0, 0, addBot, color );
   }
 
 
@@ -1968,11 +1944,17 @@ Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thicknes
 
 Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot)
   {
-  return solidBlindDifColor( rOut, rIn, height, depth, m, addBot, QColor{} );
+  return solidBlindDifColor( rOut, rIn, height, depth, m, 0, 0, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color)
   {
+  Sd2dRegion offIn(rIn);
+  if( !isZero(offX) || !isZero(offY) ) {
+    QVector2D off(offX,offY);
+    for( int i = 0; i < offIn.count(); ++i )
+      offIn[i] += off;
+    }
   Sd3drFace faceOut = faceFromFlat( rOut, m );
   Sd3drFace faceIn  = faceFromFlat( rIn, m, height - depth );
 
