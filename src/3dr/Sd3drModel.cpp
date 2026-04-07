@@ -1533,14 +1533,21 @@ QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, bool invertNormal )
   invertNormal = !invertNormal;
   if( face.size() < 3 )
     return QMatrix4x4(); // Недостаточно точек
-
+#define FLT_MAX 1e30
   // 1. Вычисляем центр полигона (среднее арифметическое всех вершин)
-  QVector3D center(0, 0, 0);
+  // Вычисляем AABB (Axis-Aligned Bounding Box)
+  QVector3D minPoint( FLT_MAX,  FLT_MAX,  FLT_MAX);
+  QVector3D maxPoint(-FLT_MAX, -FLT_MAX, -FLT_MAX);
+
   for( int i : face ) {
     QVector3D p( mVertexList.at(i) );
-    center += p;
+    minPoint.setX( qMin(minPoint.x(), p.x()) );
+    minPoint.setY( qMin(minPoint.y(), p.y()) );
+    minPoint.setZ( qMin(minPoint.z(), p.z()) );
+    maxPoint.setX( qMax(maxPoint.x(), p.x()) );
+    maxPoint.setY( qMax(maxPoint.y(), p.y()) );
+    maxPoint.setZ( qMax(maxPoint.z(), p.z()) );
     }
-  center /= face.size();
 
   // 2. Вычисляем нормаль к плоскости полигона
   // Используем первые три точки (они не коллинеарны, т.к. полигон выпуклый)
@@ -1550,6 +1557,12 @@ QMatrix4x4 Sd3drModel::matrixTop(const Sd3drFace &face, bool invertNormal )
   QVector3D a = p1 - p0;
   QVector3D b = p2 - p0;
   QVector3D normal = QVector3D::crossProduct(a, b).normalized();
+
+  // Вычисляем AABB центр
+  QVector3D aabbCenter = (minPoint + maxPoint) / 2.0f;
+
+  // Проецируем на плоскость полигона
+  QVector3D center = aabbCenter - QVector3D::dotProduct(aabbCenter - p0, normal) * normal;
 
   // Инвертируем нормаль если нужно
   if( invertNormal )
