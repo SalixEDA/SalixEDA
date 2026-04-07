@@ -575,6 +575,40 @@ Sd2dRegion Sd3drModel::flatEquidistant(const Sd2dRegion &r, float distance)
 
 
 
+
+Sd2dRegion Sd3drModel::flatOffset(const Sd2dRegion &r, float offx, float offy)
+  {
+  Sd2dRegion res;
+  res.reserve( r.size() );
+  QVector2D off(offx,offy);
+  for( const auto &v : r )
+    res.append( v + off );
+  return res;
+  }
+
+
+
+
+Sd2dRegion Sd3drModel::flatCircularSegment(float radius, float angleStart, float angleStop)
+  {
+  const int stepCount = 16;
+  Sd2dRegion list;
+  float angleStep = (angleStop - angleStart) / stepCount;
+  //Convert degree to radians
+  float angle = angleStart * M_PI / 180.0;
+  QVector2D p( sin(angle) * radius, cos(angle) * radius );
+  list.append( p );
+  for( int i = 0; i < stepCount; i++ ) {
+    angleStart += angleStep;
+    angle = angleStart * M_PI / 180.0;
+    QVector2D p( sin(angle) * radius, cos(angle) * radius );
+    list.append( p );
+    }
+  return list;
+  }
+
+
+
 Sd2dRegion Sd3drModel::flatFromFace(const Sd3drFace &face, const QMatrix4x4 &map)
   {
   Sd2dRegion region2D;
@@ -1792,6 +1826,44 @@ Sd3drFace reverse( Sd3drFace face )
 
 
 
+//!
+//! \brief solidRectPrizm Builds rectangular prizm with some floors. Each floor can have different size, height and center offset
+//! \param lenght         Bottom lenght
+//! \param width          Bottom width
+//! \param floors         Each floor description (5 values): lenght, width, offset x, offset y, height
+//! \param map            Transformation matrix
+//! \param addBot         If true, adds bottom face; if false, bottom face is omitted
+//! \return               List of faces forming the solid
+//!
+Sd3drFaceList Sd3drModel::solidRectPrizm(float lenght, float width, QList<float> floors, const QMatrix4x4 &map, bool addBot)
+  {
+  Sd3drFaceList list;
+  Sd3drFace faceBot = faceFromFlat( flatRectangle(lenght,width), map );
+  if( addBot )
+    list.append( reverse(faceBot) );
+
+  float floorHeight = 0.0;
+  for( int floorIndex = 0; floorIndex * 5 < floors.size(); ++floorIndex ) {
+    float floorLenght  = floors.at( floorIndex * 5 + 0 );
+    float floorWidth   = floors.at( floorIndex * 5 + 1 );
+    float floorOffsetX = floors.at( floorIndex * 5 + 2 );
+    float floorOffsetY = floors.at( floorIndex * 5 + 3 );
+    floorHeight  += floors.at( floorIndex * 5 + 4 );
+
+    Sd2dRegion floorRegion( flatOffset( flatRectangle(floorLenght,floorWidth), floorOffsetX, floorOffsetY )  );
+    Sd3drFace floorFace( faceFromFlat( floorRegion, map, floorHeight ) );
+    list.append( faceListWall( faceBot, floorFace, true ) );
+    faceBot = floorFace;
+    }
+
+  //Append top
+  list.append( faceBot );
+  return list;
+  }
+
+
+
+
 Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot, QColor color)
   {
   Sd3drFaceList list;
@@ -1885,19 +1957,13 @@ Sd3drFaceList Sd3drModel::solidTubeColor(const Sd2dRegion &rOut, float thickness
 
 Sd3drFaceList Sd3drModel::solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot)
   {
-  return solidTubeDifColor( rOut, rIn, height, m, 0, 0, addBot, QColor{} );
+  return solidTubeDifColor( rOut, rIn, height, m, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color)
   {
-  Sd2dRegion offIn(rIn);
-  if( !isZero(offX) || !isZero(offY) ) {
-    QVector2D off(offX,offY);
-    for( int i = 0; i < offIn.count(); ++i )
-      offIn[i] += off;
-    }
   Sd3drFace faceOut = faceFromFlat( rOut, m );
-  Sd3drFace faceIn  = faceFromFlat( offIn, m );
+  Sd3drFace faceIn  = faceFromFlat( rIn, m );
   // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
   QVector3D localZ(m(0, 2), m(1, 2), m(2, 2));
   // Смещаем точку вдоль этой оси
@@ -1912,14 +1978,14 @@ Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRe
     list.append( faceColor(color) );
   //Append bottom if need
   if( addBot )
-    list.append( ring( rOut, faceOut, offIn, faceIn ) );
+    list.append( ring( rOut, faceOut, rIn, faceIn ) );
 
   //Build wall
   list.append( faceListWall( faceOut, topOut, true ) );
   list.append( faceListWall( faceIn, topIn, true ) );
 
   //Append top
-  list.append( ring( rOut, topOut, offIn, topIn ) );
+  list.append( ring( rOut, topOut, rIn, topIn ) );
   return list;
   }
 
@@ -1932,7 +1998,7 @@ Sd3drFaceList Sd3drModel::solidBlind(const Sd2dRegion &rOut, float thickness, fl
 
 Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color)
   {
-  return solidBlindDifColor( rOut, flatEquidistant( rOut, thickness ), height, depth, m, 0, 0, addBot, color );
+  return solidBlindDifColor( rOut, flatEquidistant( rOut, thickness ), height, depth, m, addBot, color );
   }
 
 
@@ -1944,17 +2010,11 @@ Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thicknes
 
 Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot)
   {
-  return solidBlindDifColor( rOut, rIn, height, depth, m, 0, 0, addBot, QColor{} );
+  return solidBlindDifColor( rOut, rIn, height, depth, m, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color)
   {
-  Sd2dRegion offIn(rIn);
-  if( !isZero(offX) || !isZero(offY) ) {
-    QVector2D off(offX,offY);
-    for( int i = 0; i < offIn.count(); ++i )
-      offIn[i] += off;
-    }
   Sd3drFace faceOut = faceFromFlat( rOut, m );
   Sd3drFace faceIn  = faceFromFlat( rIn, m, height - depth );
 
@@ -1999,7 +2059,7 @@ Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dR
 //!
 Sd3drFaceList Sd3drModel::solidAddCone(const Sd3drFaceList &faceList, float coneHeight)
   {
-  return solidAddConeColor( faceList, coneHeight, QColor{} );
+  return solidAddConeColor( faceList, coneHeight, 0, 0, QColor{} );
   }
 
 
@@ -2010,15 +2070,19 @@ Sd3drFaceList Sd3drModel::solidAddCone(const Sd3drFaceList &faceList, float cone
 //! \brief solidAddConeColor Adds a cone to the solid
 //! \param faceList          Existing solid face list (top face will be removed)
 //! \param coneHeight        Height of the cone
+//! \param offx              Apex offset x
+//! \param offy              Apex offset y
 //! \param color             Cone color
 //! \return                  New solid face list with the cone added
 //!
-Sd3drFaceList Sd3drModel::solidAddConeColor(const Sd3drFaceList &faceList, float coneHeight, QColor color)
+Sd3drFaceList Sd3drModel::solidAddConeColor(const Sd3drFaceList &faceList, float coneHeight, float offx, float offy, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace topFace( list.takeLast() );
   QMatrix4x4 map = matrixTop( topFace );
-  int top = vertexAppend( map.map( QVector3D{0,0,coneHeight} ) );
+  int top = vertexAppend( map.map( QVector3D{offx,offy,coneHeight} ) );
   if( color.isValid() )
     list.append( faceColor(color) );
   for( int i = 0; i < topFace.count(); ++i ) {
@@ -2041,6 +2105,8 @@ Sd3drFaceList Sd3drModel::solidAddConeColor(const Sd3drFaceList &faceList, float
 Sd3drFaceList Sd3drModel::solidAddRoofRound(const Sd3drFaceList &faceList, float roundRadius, bool great)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 m( matrixTop( top, 0 ) );
   Sd2dRegion r1( flatFromFace( top, m ) );
@@ -2098,6 +2164,8 @@ Sd3drFaceList Sd3drModel::solidAddRoofBevel(const Sd3drFaceList &faceList, float
 Sd3drFaceList Sd3drModel::solidAddRoofBevelColor(const Sd3drFaceList &faceList, float bevelSize, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 m( matrixTop( top, 0 ) );
   Sd2dRegion r1( flatFromFace( top, m ) );
@@ -2131,6 +2199,8 @@ Sd3drFaceList Sd3drModel::solidAdd(const Sd3drFaceList &faceList, float thicknes
 Sd3drFaceList Sd3drModel::solidAddColor(const Sd3drFaceList &faceList, float thickness, float height, float offset, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace face(list.takeLast());
   QMatrix4x4 map = matrixTop( face, 0 );
 
@@ -2170,6 +2240,8 @@ Sd3drFaceList Sd3drModel::solidAddDif(const Sd3drFaceList &faceList, const Sd2dR
 Sd3drFaceList Sd3drModel::solidAddDifColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float height, float offset, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 topMatrix( matrixTop( top, 0 ) );
   Sd2dRegion topRegion( flatFromFace( top, topMatrix ) );
@@ -2197,14 +2269,16 @@ Sd3drFaceList Sd3drModel::solidAddDifColor(const Sd3drFaceList &faceList, const 
 //! \param rowDescr           Rows description. For each row: hole distance, row hole count, horizontal offset, vertical offset
 //! \return                   New solid face list with the added extrusion
 //!
-Sd3drFaceList Sd3drModel::solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowCount, float rowDistance, const QList<float> &rowDescr)
+Sd3drFaceList Sd3drModel::solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr)
   {
-  return solidAddBlindArrayColor( faceList, r, depth, rowCount, rowDistance, rowDescr, QColor{} );
+  return solidAddBlindArrayColor( faceList, r, depth, rowDistance, rowDescr, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowCount, float rowDistance, const QList<float> &rowDescr, QColor color)
+Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 topMatrix( matrixTop( top, 0 ) );
   Sd2dRegion topRegion( flatFromFace( top, topMatrix ) );
@@ -2218,21 +2292,17 @@ Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList,
   srcList.append( pointPool.addRegion( top, topRegion, true ) );
 
   //Fill hole array
-  for( int rowIndex = 0; rowIndex < rowCount; ++rowIndex ) {
-    if( rowDescr.count() < (rowIndex + 1) * 4 ) break;
+  for( int rowIndex = 0; rowIndex * 4 < rowDescr.size(); ++rowIndex ) {
     float holeHorzDistance = qBound( -1000.0, rowDescr.at( rowIndex * 4 + 0 ), 1000.0 );
     float holeCount        = qBound( 1.0, rowDescr.at( rowIndex * 4 + 1 ), 200.0 );
     float horzOffset       = qBound( -1000.0, rowDescr.at( rowIndex * 4 + 2 ), 1000.0 );
     float vertOffset       = qBound( -1000.0, rowDescr.at( rowIndex * 4 + 3 ), 1000.0 );
 
     float offX = (holeCount - 1.0) * holeHorzDistance / -2.0 + horzOffset;
-    float offY = (rowCount - 1.0) * rowDistance / -2.0 + vertOffset + rowIndex * rowDistance;
+    float offY = (rowDescr.size()/4 - 1) * rowDistance / -2.0 + vertOffset + rowIndex * rowDistance;
     for( int holeIndex = 0; holeIndex < holeCount; ++holeIndex ) {
       //Make hole region
-      Sd2dRegion hole;
-      hole.reserve( r.count() );
-      for( auto v : r )
-        hole.append( v + QVector2D( offX, offY ) );
+      Sd2dRegion hole( flatOffset( r, offX, offY ) );
       //Append region to hole list
       holeRegionList.append( hole );
 
@@ -2328,6 +2398,8 @@ Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList,
 Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, float radius, float sideCount, float x, float y, float z)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 map( matrixTop( top, 0.0 )  );
   // 1. Переводим регион в локальные координаты
@@ -2445,6 +2517,8 @@ Sd3drFaceList Sd3drModel::solidAddHole(const Sd3drFaceList &faceList, float thic
 Sd3drFaceList Sd3drModel::solidAddHoleColor(const Sd3drFaceList &faceList, float thickness, float depth, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace face(list.takeLast());
   QMatrix4x4 map( matrixTop( face, 0.0 )  );
   Sd2dRegion r = flatFromFace( face, map );
@@ -2478,6 +2552,8 @@ Sd3drFaceList Sd3drModel::solidAddHoleDif(const Sd3drFaceList &faceList, const S
 Sd3drFaceList Sd3drModel::solidAddHoleDifColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, QColor color)
   {
   Sd3drFaceList list(faceList);
+  if( list.isEmpty() )
+    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
   Sd3drFace face(list.takeLast());
   QMatrix4x4 map( matrixTop( face, 0.0 )  );
   Sd2dRegion rOut = flatFromFace( face, map );

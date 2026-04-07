@@ -181,20 +181,22 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("flatTrapezoid"), model, &Sd3drModel::flatTrapezoid, QStringLiteral("flatTrapezoid( float lenghtTop, float lenghtBot, float width )") );
   addFunction( QStringLiteral("flatTrapezoidRound"), model, &Sd3drModel::flatTrapezoidRound, QStringLiteral("flatTrapezoidRound( float lenghtTop, float lenghtBot, float width, float radius )") );
   addFunction( QStringLiteral("flatEquidistant"), model, &Sd3drModel::flatEquidistant, QStringLiteral("flatEquidistant( flat profile, float distance )") );
+  addFunction( QStringLiteral("flatOffset"), model, &Sd3drModel::flatOffset, QStringLiteral("flatOffset( flat profile, float offsetX, float offsetY )") );
+  addFunction( QStringLiteral("flatCircularSegment"), model, &Sd3drModel::flatCircularSegment, QStringLiteral("flatCircularSegment( float radius, float angleStart, float angleStop )") );
 
   addFunction( QStringLiteral("solidNew"), model, &Sd3drModel::solidNew, QStringLiteral("solidNew( flat profile, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidNewColor"), model, &Sd3drModel::solidNewColor, QStringLiteral("solidNewColor( flat profile, float height, matrix transfer, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidTube"), model, &Sd3drModel::solidTube, QStringLiteral("solidTube( flat outProfile, float thickness, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidTubeColor"), model, &Sd3drModel::solidTubeColor, QStringLiteral("solidTubeColor( flat outProfile, float thickness, float height, matrix transfer, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidTubeDif"), model, &Sd3drModel::solidTubeDif, QStringLiteral("solidTubeDif( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidTubeDifColor"), model, &Sd3drModel::solidTubeDifColor, QStringLiteral("solidTubeDifColor( flat outProfile, flat inProfile, float height, matrix transfer, float offX, float offY, bool addBottom, color bodyColor )") );
+  addFunction( QStringLiteral("solidTubeDifColor"), model, &Sd3drModel::solidTubeDifColor, QStringLiteral("solidTubeDifColor( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidBlind"), model, &Sd3drModel::solidBlind, QStringLiteral("solidBlind( flat outProfile, float thickness, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidBlindColor"), model, &Sd3drModel::solidBlindColor, QStringLiteral("solidBlindColor( flat outProfile, float thickness, float height, matrix transfer, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidBlindDif"), model, &Sd3drModel::solidBlindDif, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindDifColor"), model, &Sd3drModel::solidBlindDifColor, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, matrix transfer, float offX, float offY, bool addBottom, color bodyColor )") );
+  addFunction( QStringLiteral("solidBlindDifColor"), model, &Sd3drModel::solidBlindDifColor, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, matrix transfer, bool addBottom, color bodyColor )") );
 
   addFunction( QStringLiteral("solidAddCone"), model, &Sd3drModel::solidAddCone, QStringLiteral("solidAddCone( faceList solid, float coneHeight )") );
-  addFunction( QStringLiteral("solidAddConeColor"), model, &Sd3drModel::solidAddConeColor, QStringLiteral("solidAddCone( faceList solid, float coneHeight, color coneColor )") );
+  addFunction( QStringLiteral("solidAddConeColor"), model, &Sd3drModel::solidAddConeColor, QStringLiteral("solidAddCone( faceList solid, float coneHeight, float offx, float offy, color coneColor )") );
   addFunction( QStringLiteral("solidAddRoofRound"), model, &Sd3drModel::solidAddRoofRound, QStringLiteral("solidAddRoofRound( faceList solid, float roundRadius, bool great )") );
   addFunction( QStringLiteral("solidAddRoofBevel"), model, &Sd3drModel::solidAddRoofBevel, QStringLiteral("solidAddRoofBevel( faceList solid, float bevelSize )") );
   addFunction( QStringLiteral("solidAdd"), model, &Sd3drModel::solidAdd, QStringLiteral("solidAdd( faceList solid, float thickness, float height, float offset )") );
@@ -207,8 +209,8 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("solidAddHoleColor"), model, &Sd3drModel::solidAddHoleColor, QStringLiteral("solidAddHoleColor( faceList solid, float thickness, float depth, color bodyColor )") );
   addFunction( QStringLiteral("solidAddHoleDif"), model, &Sd3drModel::solidAddHoleDif, QStringLiteral("solidAddHoleDif( faceList solid, flat holeProfile, float depth )") );
   addFunction( QStringLiteral("solidAddHoleDifColor"), model, &Sd3drModel::solidAddHoleDifColor, QStringLiteral("solidAddHoleDifColor( faceList solid, flat holeProfile, float depth, color bodyColor )") );
-  addFunction( QStringLiteral("solidAddBlindArray"), model, &Sd3drModel::solidAddBlindArray, QStringLiteral("solidAddBlindArray( faceList solid, flat holeProfile, float depth, float rowCount, float rowDistance, floatList rowDescr )") );
-  addFunction( QStringLiteral("solidAddBlindArrayColor"), model, &Sd3drModel::solidAddBlindArrayColor, QStringLiteral("solidAddBlindArrayColor( faceList solid, flat holeProfile, float depth, float rowCount, float rowDistance, floatList rowDescr, color bodyColor )") );
+  addFunction( QStringLiteral("solidAddBlindArray"), model, &Sd3drModel::solidAddBlindArray, QStringLiteral("solidAddBlindArray( faceList solid, flat holeProfile, float depth, float rowDistance, floatList rows[horzDist, count, horzOffset, vertOffset...] )") );
+  addFunction( QStringLiteral("solidAddBlindArrayColor"), model, &Sd3drModel::solidAddBlindArrayColor, QStringLiteral("solidAddBlindArrayColor( faceList solid, flat holeProfile, float depth, float rowDistance, floatList rows[horzDist, count, horzOffset, vertOffset...], color bodyColor )") );
 
   addFunction( QStringLiteral("solidBox"), model, &Sd3drModel::solidBox, QStringLiteral("solidBox( float lenght, float width, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidBoxWithCone"), model, &Sd3drModel::solidBoxWithCone, QStringLiteral("solidBoxWithCone( float lenght, float width, float height, float coneHeight, matrix transfer, bool addBottom )") );
@@ -220,6 +222,7 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("solidPlygedronOuter"), model,&Sd3drModel::solidPlygedronOuter, QStringLiteral("solidPlygedronOuter( float radius, float height, float sideCount, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidTrapezoid"), model,&Sd3drModel::solidTrapezoid, QStringLiteral("solidTrapezoid( float lenghtTop, float lenghtBot, float width, float height, matrix transfer, bool addBottom )") );
   addFunction( QStringLiteral("solidTrapezoidRound"), model,&Sd3drModel::solidTrapezoidRound, QStringLiteral("solidTrapezoidRound( float lenghtTop, float lenghtBot, float width, float height, float roundRadius, matrix transfer, bool addBottom )") );
+  addFunction( QStringLiteral("solidRectPrizm"), model,&Sd3drModel::solidRectPrizm, QStringLiteral("solidRectPrizm( float lenght, float width, floatList floors[lenght, width, offx, offy, height...], matrix transfer, bool addBottom )") );
 
   addFunction( QStringLiteral("model"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelBuild(); }, QStringLiteral("model( color ambient, color diffuse, color specular, faceList faces[], matrix transfer )") );
   addFunction( QStringLiteral("modelNew"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelNew(); }, QStringLiteral("model( color bodyColor, faceList faces[], matrix transfer )") );

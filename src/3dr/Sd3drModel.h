@@ -57,6 +57,10 @@ class Sd3drModel
 
     Sd2dRegion flatEquidistant( const Sd2dRegion &r, float distance );
 
+    Sd2dRegion flatOffset( const Sd2dRegion &r, float offx, float offy );
+
+    Sd2dRegion flatCircularSegment( float radius, float startAngle, float stopAngle );
+
     Sd2dRegion flatFromFace( const Sd3drFace &face, const QMatrix4x4 &map );
 
     //==============================================================================================
@@ -496,6 +500,17 @@ class Sd3drModel
     //!
     Sd3drFaceList solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot );
 
+    //!
+    //! \brief solidRectPrizm Builds rectangular prizm with some floors. Each floor can have different size, height and center offset
+    //! \param lenght         Bottom lenght
+    //! \param width          Bottom width
+    //! \param floors         Each floor description (5 values): lenght, width, offset x, offset y, height
+    //! \param map            Transformation matrix
+    //! \param addBot         If true, adds bottom face; if false, bottom face is omitted
+    //! \return               List of faces forming the solid
+    //!
+    Sd3drFaceList solidRectPrizm( float lenght, float width, QList<float> floors, const QMatrix4x4 &map, bool addBot );
+
 
 
 
@@ -517,7 +532,7 @@ class Sd3drModel
 
     Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color );
+    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color );
 
     Sd3drFaceList solidBlind( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
@@ -525,7 +540,7 @@ class Sd3drModel
 
     Sd3drFaceList solidBlindDif( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot );
 
-    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, float offX, float offY, bool addBot, QColor color );
+    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
 
 
 
@@ -545,10 +560,12 @@ class Sd3drModel
     //! \brief solidAddConeColor Adds a cone to the solid
     //! \param faceList          Existing solid face list (top face will be removed)
     //! \param coneHeight        Height of the cone
+    //! \param offx              Apex offset x
+    //! \param offy              Apex offset y
     //! \param color             Cone color
     //! \return                  New solid face list with the cone added
     //!
-    Sd3drFaceList solidAddConeColor( const Sd3drFaceList &faceList, float coneHeight, QColor color );
+    Sd3drFaceList solidAddConeColor( const Sd3drFaceList &faceList, float coneHeight, float offx, float offy, QColor color );
 
     //!
     //! \brief solidAddRoofRound Creates a rounded top face (roof)
@@ -601,9 +618,9 @@ class Sd3drModel
     //! \param rowDescr           Rows description. For each row: hole distance, row hole count, horizontal offset, vertical offset
     //! \return                   New solid face list with the added extrusion
     //!
-    Sd3drFaceList solidAddBlindArray( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowCount, float rowDistance, const QList<float> &rowDescr );
+    Sd3drFaceList solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr );
 
-    Sd3drFaceList solidAddBlindArrayColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowCount, float rowDistance, const QList<float> &rowDescr, QColor color );
+    Sd3drFaceList solidAddBlindArrayColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr, QColor color );
 
     //!
     //! \brief solidAddCurveVector Adds a curved bend of the profile with given radius along the specified vector
