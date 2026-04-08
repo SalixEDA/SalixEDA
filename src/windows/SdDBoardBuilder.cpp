@@ -38,7 +38,7 @@ SdDBoardBuilder::SdDBoardBuilder(SdProjectItem *item, QWidget *parent) :
   mPlate = dynamic_cast<SdPItemPlate*>(item);
 
   //At top - board configuration selector
-  QVBoxLayout *vbox = new QVBoxLayout();
+  QVBoxLayout *vbox = new QVBoxLayout(this);
   QGridLayout *grid = new QGridLayout();
   QLabel *label;
   QRadioButton *but;
@@ -64,10 +64,12 @@ SdDBoardBuilder::SdDBoardBuilder(SdProjectItem *item, QWidget *parent) :
   grid->addWidget( but = new QRadioButton(tr("With 6 holes")), 1, 3 );
   mBoardVariant->addButton( but, 6 );
 
+  mBoardVariant->button(4)->setChecked(true);
+
   vbox->addLayout( grid );
 
 
-  QFormLayout *form = new QFormLayout(this);
+  QFormLayout *form = new QFormLayout();
 
   form->addRow( tr("Board size X (horizontal):"), mSizeX = new QLineEdit("70") );
   form->addRow( tr("Board size Y (vertical):"), mSizeY = new QLineEdit("40") );
@@ -85,6 +87,9 @@ SdDBoardBuilder::SdDBoardBuilder(SdProjectItem *item, QWidget *parent) :
     SdDHelp::help( QString("SdDBoardBuilder.htm"), this );
     } );
 
+  vbox->addWidget( box );
+
+  setLayout( vbox );
   }
 
 

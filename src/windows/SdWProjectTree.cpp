@@ -140,9 +140,12 @@ bool SdWProjectTree::cmFileSave()
     if( mProject->getAuthorKey() != mProject->getDefaultAuthor() ) {
       if( QMessageBox::question( this, tr("Warning!"), tr("This project is library project and created another author. You can not edit it. Change author to You to enable editing?") ) != QMessageBox::Yes )
         return false;
+      mProject->setEditEnable(true);
+      SdWCommand::cmFileCloud->setChecked( false );
+      mProject->titleSet( mProject->getTitle() );
+      mFileName = SD_DEFAULT_FILE_NAME;
+      return cmFileSaveAs();
       }
-    mProject->setEditEnable(true);
-    mProject->titleSet( mProject->getTitle() );
     }
   return mProject->save( mFileName );
   }
