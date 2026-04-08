@@ -797,5 +797,10 @@
         <file>help/iconExamples.png</file>
         <file>help/iconVideos.png</file>
         <file>help/iconHelp.png</file>
+        <file>pic/boardX2.png</file>
+        <file>pic/boardX6.png</file>
+        <file>pic/boardX4.png</file>
+        <file>pic/boardX0.png</file>
+        <file>pic/boardMaster.png</file>
     </qresource>
 </RCC>

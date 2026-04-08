@@ -1,0 +1,19 @@
+{
+    "command": [
+        {
+            "color": "#008000",
+            "first": {
+                "x": 2,
+                "y": 8
+            },
+            "id": "Rect",
+            "second": {
+                "x": 61,
+                "y": 39
+            },
+            "visible": true
+        }
+    ],
+    "height": 48,
+    "width": 64
+}

@@ -189,6 +189,7 @@ SOURCES += \
     windows/SdD3dMaster.cpp \
     windows/SdD3dModelMaster.cpp \
     windows/SdD3dModelProgrammEditor.cpp \
+    windows/SdDBoardBuilder.cpp \
     windows/SdDExpressionEdit.cpp \
     windows/SdDLibrary.cpp \
     windows/SdDOffset.cpp \
@@ -690,6 +691,7 @@ HEADERS  += \
     windows/SdD3dMaster.h \
     windows/SdD3dModelMaster.h \
     windows/SdD3dModelProgrammEditor.h \
+    windows/SdDBoardBuilder.h \
     windows/SdDExpressionEdit.h \
     windows/SdDLibrary.h \
     windows/SdDOffset.h \

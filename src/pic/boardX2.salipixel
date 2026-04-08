@@ -1,0 +1,51 @@
+{
+    "command": [
+        {
+            "color": "#008000",
+            "first": {
+                "x": 2,
+                "y": 8
+            },
+            "id": "Rect",
+            "second": {
+                "x": 61,
+                "y": 39
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 6,
+                "y": 24
+            },
+            "color": "#008000",
+            "id": "Circle",
+            "radius": {
+                "x": 4,
+                "y": 22
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": true,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 4,
+                "y": 22
+            },
+            "select1": {
+                "x": 8,
+                "y": 26
+            },
+            "target": {
+                "x": 59,
+                "y": 26
+            },
+            "visible": true
+        }
+    ],
+    "height": 48,
+    "width": 64
+}

@@ -265,6 +265,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuInsertPcb = new QMenu( QObject::tr("Plate") );
   menuInsertPcb->insertAction( nullptr, cmRenumeration );
   cmPcbStratum  = menuInsertPcb->addAction( QIcon(QString(":/pic/iconViaThrow.png")), QObject::tr("PCB layer count..."), frame, &SdWMain::cmPcbStratum );
+                  menuInsertPcb->addAction( QIcon(QString(":/pic/boardMaster.png")), QObject::tr("PCB board builder..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmBoardBuilder> );
   menuInsertPcb->insertSeparator(nullptr);
   cmShowRatNet = menuInsertPcb->addAction( QIcon(QStringLiteral(":/pic/viewRatnet.png")), QObject::tr("Show rat net") );
   cmShowRatNet->setCheckable(true);

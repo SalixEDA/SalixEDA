@@ -23,6 +23,7 @@ Description
 #include "SdPExport_Bom.h"
 #include "SdPExport_Dxf.h"
 #include "SdDRuleEditor.h"
+#include "SdDBoardBuilder.h"
 #include "objects/SdPulsar.h"
 #include "objects/SdEnvir.h"
 #include "objects/SdGraphPartImp.h"
@@ -212,6 +213,22 @@ void SdWEditorGraphPlate::cmPcbStratum()
   int c = QInputDialog::getInt( this, tr("PCB signal layer count"), tr("Enter PCB signal layer count:"), mPlate->stratumCount(), 1, 30, 1, &ok );
   if( ok )
     mPlate->setStratumCount( c );
+  }
+
+
+
+
+
+void SdWEditorGraphPlate::cmBoardBuilder()
+  {
+  SdDBoardBuilder builder( mPlate, this );
+  if( builder.exec() ) {
+    //Set project dirty with board changed
+    dirtyProject();
+    //Update
+    dirtyCashe();
+    update();
+    }
   }
 
 

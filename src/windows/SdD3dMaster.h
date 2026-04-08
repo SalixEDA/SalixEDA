@@ -20,7 +20,6 @@ Description
 #define SDD3DMASTER_H
 
 #include "objects/SdPItemPart.h"
-#include "objects/SdProject.h"
 #include "Sd3dModelScript.h"
 
 #include <QDialog>

@@ -22,10 +22,40 @@ Description
 class SdGraphLinear : public SdGraph
   {
   protected:
-    SdPropLine mProp; //Linear graph object props
+    SdPropLine mProp; //!< Linear graph object props
   public:
     SdGraphLinear();
     SdGraphLinear( const SdPropLine &propLine );
+
+    //
+
+    //!
+    //! \brief isMatchLayer Compare if is layer match to object layer
+    //! \param layer        Tested layer
+    //! \return             true if tested layer matched to object layer
+    //!
+    bool isMatchLayer( SdLayer *layer ) const { return mProp.mLayer.layer() == layer; }
+
+    //!
+    //! \brief isMatchId Compare unical id of object layer with given id
+    //! \param id        Id for match
+    //! \return          true if id of object layer start with given id
+    //!
+    bool isMatchId( const QString &id ) const { return mProp.mLayer.layer()->id().startsWith( id ); }
+
+    //!
+    //! \brief isMatchAny Compare unical id object layer with any of id from given list
+    //! \param idList     List of id's
+    //! \return           true if id of object layer start with any of id from given list
+    //!
+    bool isMatchAny( const QStringList &idList ) const
+      {
+      for( const auto &id : idList )
+        if( isMatchId( id ) ) return true;
+      return false;
+      }
+
+
 
     //!
     //! \brief cloneFrom Overrided function. We copy object from source
@@ -46,9 +76,6 @@ class SdGraphLinear : public SdGraph
     virtual bool isVisible() const override;
 
     virtual void setLayerUsage() override;
-
-    //Compare if is layer match to object layer
-            bool isMatchLayer( SdLayer *layer ) const { return mProp.mLayer.layer() == layer; }
 
     friend class SdPasCadImport;
   };

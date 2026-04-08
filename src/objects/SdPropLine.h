@@ -31,8 +31,8 @@ Description
 //!        Combines width, type, and layer properties with JSON serialization
 //!
 struct SdPropLine {
-  SdPvInt     mWidth; //!< Line width property in logical units
-  SdPvInt     mType;  //!< Line type property (solid, dashed, dotted, etc.)
+  SdPvInt   mWidth; //!< Line width property in logical units
+  SdPvInt   mType;  //!< Line type property (solid, dashed, dotted, etc.)
   SdPvLayer mLayer; //!< Layer property where line is drawn
 
   //!

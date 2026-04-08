@@ -1,0 +1,71 @@
+{
+    "command": [
+        {
+            "color": "#008000",
+            "first": {
+                "x": 2,
+                "y": 8
+            },
+            "id": "Rect",
+            "second": {
+                "x": 61,
+                "y": 39
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 6,
+                "y": 12
+            },
+            "color": "#008000",
+            "id": "Circle",
+            "radius": {
+                "x": 4,
+                "y": 10
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 6,
+                "y": 35
+            },
+            "color": "#008000",
+            "id": "Circle",
+            "radius": {
+                "x": 4,
+                "y": 37
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 57,
+                "y": 35
+            },
+            "color": "#008000",
+            "id": "Circle",
+            "radius": {
+                "x": 59,
+                "y": 37
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 57,
+                "y": 12
+            },
+            "color": "#008000",
+            "id": "Circle",
+            "radius": {
+                "x": 59,
+                "y": 10
+            },
+            "visible": true
+        }
+    ],
+    "height": 48,
+    "width": 64
+}
