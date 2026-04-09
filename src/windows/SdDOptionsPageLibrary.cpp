@@ -35,7 +35,7 @@ SdDOptionsPageLibrary::SdDOptionsPageLibrary(QWidget *parent) :
 
   grid->addWidget( new QLabel(tr("Local library path:")), 0, 0 );
   grid->addWidget( mLocalLibraryPath = new QLineEdit( s.value(SDK_LOCAL_LIBRARY_PATH).toString() ), 0, 1 );
-  grid->addWidget( but = new QPushButton( tr("Select...") ), 1, 2 );
+  grid->addWidget( but = new QPushButton( tr("Select...") ), 0, 2 );
   connect( but, &QPushButton::clicked, this, [this] () {
     QString str = QFileDialog::getExistingDirectory( this, tr("Local library path"), mLocalLibraryPath->text() );
     if( !str.isEmpty() )

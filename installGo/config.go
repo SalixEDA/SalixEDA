@@ -8,13 +8,14 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"os"
-        "os/user"
-	"path/filepath"
-	"runtime"
-	"time"
+  "encoding/json"
+  "fmt"
+  "os"
+  "os/user"
+  "path/filepath"
+  "runtime"
+  "time"
+  "unicode"
 )
 
 // ========== ГЛОБАЛЬНЫЕ КОНСТАНТЫ ==========
@@ -32,10 +33,16 @@ const (
 
 // ZipFiles - список ZIP-файлов для мониторинга и обновления
 // Это константы, так как набор файлов известен на этапе компиляции
+// На сервере эти файлы должны иметь имена winCore.zip или linCore.zip
+// в зависимости от операционной системы. Если имя начинается с маленькой буквы
+// то префикс операционной системы не добавляется, т.е. такие архивы общие для
+// всех ос, например videos.zip
 var ZipFiles = []string{
 	"Core.zip",
 	"Libs.zip",
         "Plugins.zip",
+        "compStore.zip",
+        "guide.zip",
 //	"Examples.zip",
 }
 
@@ -71,11 +78,13 @@ type Config struct {
 func addOSPrefix() {
   prefix := "lin"
   if runtime.GOOS == "windows" {
-    prefix = "win_"
+    prefix = "win"
     }
 
   for i, file := range ZipFiles {
-    ZipFiles[i] = prefix + file
+    if len(file) > 0 && unicode.IsUpper(rune(file[0])) {
+      ZipFiles[i] = prefix + file
+      }
     }
   }
 
@@ -83,96 +92,109 @@ func addOSPrefix() {
 
 // getConfigDir возвращает путь к директории конфигурации для текущей ОС
 func getConfigDir() (string, error) {
-	var configDir string
+  var configDir string
 
-	switch runtime.GOOS {
-	case "windows":
-		// Windows: %APPDATA%\CompanyName\ApplicationName
-		appData := os.Getenv("APPDATA")
-		if appData == "" {
-			return "", fmt.Errorf("APPDATA environment variable not set")
-		}
-		configDir = filepath.Join(appData, CompanyName, ApplicationName)
+  switch runtime.GOOS {
+    case "windows":
+      // Windows: %APPDATA%\CompanyName\ApplicationName
+      appData := os.Getenv("APPDATA")
+      if appData == "" {
+        return "", fmt.Errorf("APPDATA environment variable not set")
+        }
+      configDir = filepath.Join(appData, CompanyName, ApplicationName)
 
-	case "linux":
-		// Linux: ~/.config/CompanyName/ApplicationName
-		configHome := os.Getenv("XDG_CONFIG_HOME")
-		if configHome == "" {
-			home := os.Getenv("HOME")
-			if home == "" {
-				return "", fmt.Errorf("HOME environment variable not set")
-			}
-			configHome = filepath.Join(home, ".config")
-		}
-		configDir = filepath.Join(configHome, CompanyName, ApplicationName)
+    case "linux":
+      // Linux: ~/.config/CompanyName/ApplicationName
+      configHome := os.Getenv("XDG_CONFIG_HOME")
+      if configHome == "" {
+        home := os.Getenv("HOME")
+        if home == "" {
+          return "", fmt.Errorf("HOME environment variable not set")
+          }
+        configHome = filepath.Join(home, ".config")
+        }
+      configDir = filepath.Join(configHome, CompanyName, ApplicationName)
 
-	case "darwin":
-		// macOS: ~/Library/Application Support/CompanyName/ApplicationName
-		home := os.Getenv("HOME")
-		if home == "" {
-			return "", fmt.Errorf("HOME environment variable not set")
-		}
-		configDir = filepath.Join(home, "Library", "Application Support", CompanyName, ApplicationName)
+    case "darwin":
+      // macOS: ~/Library/Application Support/CompanyName/ApplicationName
+      home := os.Getenv("HOME")
+      if home == "" {
+        return "", fmt.Errorf("HOME environment variable not set")
+        }
+      configDir = filepath.Join(home, "Library", "Application Support", CompanyName, ApplicationName)
 
-	default:
-		return "", fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
-	}
+    default:
+      return "", fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
+    }
 
-	return configDir, nil
-}
+  return configDir, nil
+  }
+
+
+
+
 
 // getConfigPath возвращает полный путь к файлу конфигурации
 func getConfigPath() (string, error) {
-	configDir, err := getConfigDir()
-	if err != nil {
-		return "", err
-	}
-	return filepath.Join(configDir, "config.json"), nil
-}
+  configDir, err := getConfigDir()
+  if err != nil {
+    return "", err
+    }
+  return filepath.Join(configDir, "config.json"), nil
+  }
+
+
+
+
 
 // ensureConfigDir создает директорию конфигурации, если её нет
 func ensureConfigDir() error {
-	configDir, err := getConfigDir()
-	if err != nil {
-		return err
-	}
+  configDir, err := getConfigDir()
+  if err != nil {
+    return err
+    }
 
-	// Создаем директорию с правами 0755 (rwxr-xr-x)
-	if err := os.MkdirAll(configDir, 0755); err != nil {
-		return fmt.Errorf("failed to create config directory: %w", err)
-	}
+  // Создаем директорию с правами 0755 (rwxr-xr-x)
+  if err := os.MkdirAll(configDir, 0755); err != nil {
+    return fmt.Errorf("failed to create config directory: %w", err)
+    }
 
-	return nil
-}
+  return nil
+  }
+
+
+
 
 // ========== ФУНКЦИИ ЗАГРУЗКИ/СОХРАНЕНИЯ ==========
 
 // LoadConfig загружает конфигурацию из файла
 // Если файл не существует, возвращает конфигурацию по умолчанию
 func LoadConfig() (*Config, error) {
-	configPath, err := getConfigPath()
-	if err != nil {
-		return nil, err
-	}
+  configPath, err := getConfigPath()
+  if err != nil {
+    return nil, err
+    }
 
-	// Пытаемся прочитать существующий файл
-	data, err := os.ReadFile(configPath)
-	if err != nil {
-		if os.IsNotExist(err) {
-			// Файл не существует - возвращаем конфиг по умолчанию
-			return DefaultConfig(), nil
-		}
-		return nil, fmt.Errorf("failed to read config file: %w", err)
-	}
+  // Пытаемся прочитать существующий файл
+  data, err := os.ReadFile(configPath)
+  if err != nil {
+    if os.IsNotExist(err) {
+      // Файл не существует - возвращаем конфиг по умолчанию
+      return DefaultConfig(), nil
+      }
+    return nil, fmt.Errorf("failed to read config file: %w", err)
+    }
 
-	// Парсим JSON
-	var config Config
-	if err := json.Unmarshal(data, &config); err != nil {
-		return nil, fmt.Errorf("failed to parse config JSON: %w", err)
-	}
+  // Парсим JSON
+  var config Config
+  if err := json.Unmarshal(data, &config); err != nil {
+    return nil, fmt.Errorf("failed to parse config JSON: %w", err)
+    }
 
-	return &config, nil
-}
+  return &config, nil
+  }
+
+
 
 
 // getHomeDirFromUser получает домашний каталог через пакет os/user
@@ -186,6 +208,7 @@ func getHomeDirFromUser() (string, error) {
 
 
 
+
 // buildMyPath строит путь "myPath" относительно домашнего каталога
 func buildSubPath( subPath string ) string {
   home, err := getHomeDirFromUser()
@@ -196,6 +219,8 @@ func buildSubPath( subPath string ) string {
   myPath := filepath.Join(home, subPath)
   return myPath
   }
+
+
 
 
 // DefaultConfig возвращает конфигурацию по умолчанию

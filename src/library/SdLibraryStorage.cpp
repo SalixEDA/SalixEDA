@@ -902,7 +902,7 @@ void SdLibraryStorage::libraryBuildStructure()
   if( mLibraryPath.isEmpty() || mLibraryPath.length() < 3 ) {
     //Library path not defined yet
     SvDir dir( QCoreApplication::applicationDirPath() );
-    dir.cd( QStringLiteral("library/") );
+    dir.cd( QStringLiteral("compStore/") );
     QDir().mkpath( dir.slashedPath() );
     mLibraryPath = dir.slashedPath();
     s.setValue( QStringLiteral(SDK_LOCAL_LIBRARY_PATH), mLibraryPath );

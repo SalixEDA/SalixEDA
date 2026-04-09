@@ -421,6 +421,19 @@ void SdD3dModelProgrammEditor::parse()
     //This signal handles by this function parse and happens cycling
     //To eliminate this we introduce active flag
     mHighlighter->rehighlight();
+
+    if( parser.error().isEmpty() ) {
+      mProgramm = ptr;
+      mPart.clear();
+      mModel.clear();
+
+      //Build new part
+      mProgramm->execute();
+      mPart.insertChild( new Sd3dGraphModel(mModel), nullptr );
+
+      //Update preview
+      mPreview->update();
+      }
     active = false;
     }
   }

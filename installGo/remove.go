@@ -37,6 +37,12 @@ func removeSelf(cfg *Config) {
         CompanyName, ApplicationName+".lnk")
       filesToDelete = append(filesToDelete, startMenu)
 
+      uinstallMenu := filepath.Join(os.Getenv("APPDATA"),
+        "Microsoft", "Windows", "Start Menu", "Programs",
+        CompanyName, "uninstall"+ApplicationName+".lnk")
+      filesToDelete = append(filesToDelete, uinstallMenu)
+
+
       desktop := filepath.Join(os.Getenv("USERPROFILE"), "Desktop", ApplicationName+".lnk")
       filesToDelete = append(filesToDelete, desktop)
 
@@ -44,6 +50,11 @@ func removeSelf(cfg *Config) {
       systemMenu := filepath.Join(os.Getenv("HOME"), ".local", "share", "applications",
         CompanyName+"-"+ApplicationName+".desktop")
       filesToDelete = append(filesToDelete, systemMenu)
+
+      uninstallMenu := filepath.Join(os.Getenv("HOME"), ".local", "share", "applications",
+        CompanyName+"-uninstall"+ApplicationName+".desktop")
+      filesToDelete = append(filesToDelete, uninstallMenu)
+
 
       desktop := filepath.Join(os.Getenv("HOME"), "Desktop", ApplicationName+".desktop")
       filesToDelete = append(filesToDelete, desktop)
