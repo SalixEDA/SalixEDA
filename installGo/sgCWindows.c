@@ -181,6 +181,7 @@ void winStart( int posx, int posy, int width, int height, const char *title ) {
   wc.hInstance = hInstance;
   wc.lpszClassName = CLASS_NAME;
   wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+  wc.hCursor = LoadCursor(NULL, IDC_ARROW);  // Стандартная стрелка
 
   RegisterClass(&wc);
 
