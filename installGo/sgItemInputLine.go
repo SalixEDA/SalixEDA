@@ -2,6 +2,7 @@ package main
 
 import (
   "unicode"
+  "strconv"
   )
 
 
@@ -226,6 +227,8 @@ func (in *SgItemInputLine) MouseClick(localX, localY int) bool {
 
 // keyDown обработка нажатий клавиш
 func (in *SgItemInputLine) KeyDown(code int) {
+in.TextSet( strconv.Itoa(code) )
+    SgWinRepaint()
   if in.Focus {
     switch code {
       case KeyLeft:
