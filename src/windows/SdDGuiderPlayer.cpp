@@ -112,6 +112,6 @@ QString SdDGuiderPlayer::guiderPath()
 
 bool SdDGuiderPlayer::guiderExist(const QString fname)
   {
-  return QFile::exists( guiderPath() + fname + QString("-%1.mp4").arg( SdEnvir::languageGet() ) );
+  return QFile::exists( guiderPath() + fname + QString("-%1.mp4").arg( SdEnvir::languageGet() ) ) || QFile::exists( guiderPath() + fname + QString("-en.mp4") );
   }
 

@@ -1,9 +1,7 @@
 // config.go
 // Пакет для работы с конфигурацией приложения
-// Данные хранятся в JSON-файле в системной директории настроек:
-//   Windows: %APPDATA%\CompanyName\ApplicationName\config.json
-//   Linux:   ~/.config/CompanyName/ApplicationName/config.json
-//   macOS:   ~/Library/Application Support/CompanyName/ApplicationName/config.json
+// Данные хранятся в JSON-файле прямо в директории с программой
+// Имя файла конфигурации - update.cnf
 
 package main
 
@@ -29,6 +27,9 @@ const (
 
   // ServerURL - базовый URL сервера с файлами для скачивания
   ServerURL = "https://salixeda.org/data"
+
+  //Имя файла конфигурации
+  ConfigFileName = "update.cnf"
 )
 
 // ZipFiles - список ZIP-файлов для мониторинга и обновления
@@ -73,6 +74,8 @@ type Config struct {
   DownloadedFiles []FileInfo `json:"downloaded_files,omitempty"`
 }
 
+
+
 // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С ПУТЯМИ ==========
 
 func addOSPrefix() {
@@ -90,79 +93,6 @@ func addOSPrefix() {
 
 
 
-// getConfigDir возвращает путь к директории конфигурации для текущей ОС
-func getConfigDir() (string, error) {
-  var configDir string
-
-  switch runtime.GOOS {
-    case "windows":
-      // Windows: %APPDATA%\CompanyName\ApplicationName
-      appData := os.Getenv("APPDATA")
-      if appData == "" {
-        return "", fmt.Errorf("APPDATA environment variable not set")
-        }
-      configDir = filepath.Join(appData, CompanyName, ApplicationName)
-
-    case "linux":
-      // Linux: ~/.config/CompanyName/ApplicationName
-      configHome := os.Getenv("XDG_CONFIG_HOME")
-      if configHome == "" {
-        home := os.Getenv("HOME")
-        if home == "" {
-          return "", fmt.Errorf("HOME environment variable not set")
-          }
-        configHome = filepath.Join(home, ".config")
-        }
-      configDir = filepath.Join(configHome, CompanyName, ApplicationName)
-
-    case "darwin":
-      // macOS: ~/Library/Application Support/CompanyName/ApplicationName
-      home := os.Getenv("HOME")
-      if home == "" {
-        return "", fmt.Errorf("HOME environment variable not set")
-        }
-      configDir = filepath.Join(home, "Library", "Application Support", CompanyName, ApplicationName)
-
-    default:
-      return "", fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
-    }
-
-  return configDir, nil
-  }
-
-
-
-
-
-// getConfigPath возвращает полный путь к файлу конфигурации
-func getConfigPath() (string, error) {
-  configDir, err := getConfigDir()
-  if err != nil {
-    return "", err
-    }
-  return filepath.Join(configDir, "config.json"), nil
-  }
-
-
-
-
-
-// ensureConfigDir создает директорию конфигурации, если её нет
-func ensureConfigDir() error {
-  configDir, err := getConfigDir()
-  if err != nil {
-    return err
-    }
-
-  // Создаем директорию с правами 0755 (rwxr-xr-x)
-  if err := os.MkdirAll(configDir, 0755); err != nil {
-    return fmt.Errorf("failed to create config directory: %w", err)
-    }
-
-  return nil
-  }
-
-
 
 
 // ========== ФУНКЦИИ ЗАГРУЗКИ/СОХРАНЕНИЯ ==========
@@ -170,10 +100,17 @@ func ensureConfigDir() error {
 // LoadConfig загружает конфигурацию из файла
 // Если файл не существует, возвращает конфигурацию по умолчанию
 func LoadConfig() (*Config, error) {
-  configPath, err := getConfigPath()
+  // Получаем путь к исполняемому файлу
+  executablePath, err := os.Executable()
   if err != nil {
-    return nil, err
+    return nil, fmt.Errorf("failed to get executable path: %w", err)
     }
+
+  // Получаем каталог исполняемого файла
+  executableDir := filepath.Dir(executablePath)
+
+  // Формируем полный путь к файлу конфигурации
+  configPath := filepath.Join(executableDir, ConfigFileName)
 
   // Пытаемся прочитать существующий файл
   data, err := os.ReadFile(configPath)
@@ -248,15 +185,18 @@ func DefaultConfig() *Config {
 
 // Save сохраняет конфигурацию в файл
 func (c *Config) Save() error {
-  // Убеждаемся, что директория существует
-  if err := ensureConfigDir(); err != nil {
-    return err
+  // Проверяем, что InstallPath не пустой
+  if c.InstallPath == "" {
+    return fmt.Errorf("install_path is empty, cannot determine config location")
     }
 
-  configPath, err := getConfigPath()
-  if err != nil {
-    return err
+  // Убеждаемся, что директория установки существует
+  if err := os.MkdirAll(c.InstallPath, 0755); err != nil {
+    return fmt.Errorf("failed to create install directory: %w", err)
     }
+
+  // Формируем полный путь к файлу конфигурации
+  configPath := filepath.Join(c.InstallPath, ConfigFileName)
 
   // Сериализуем в JSON с отступами для читаемости
   data, err := json.MarshalIndent(c, "", "  ")

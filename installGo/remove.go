@@ -63,12 +63,6 @@ func removeSelf(cfg *Config) {
       // Для macOS можно добавить логику позже
     }
 
-  // Добавляем файл конфигурации
-  configPath, _ := getConfigPath()
-  if configPath != "" {
-    filesToDelete = append(filesToDelete, configPath)
-    }
-
   // Обходим каталог установки и собираем файлы и подкаталоги
   filepath.Walk(installPath, func(path string, info os.FileInfo, err error) error {
     if err != nil {

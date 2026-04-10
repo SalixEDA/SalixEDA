@@ -13,18 +13,23 @@ Web
 Description
   Some common params:
     - interface language
+    - update period
 */
 #ifndef SDDOPTIONSPAGECOMMON_H
 #define SDDOPTIONSPAGECOMMON_H
 
 #include <QWidget>
 #include <QComboBox>
+#include <QSpinBox>
+#include <QJsonObject>
 
 class SdDOptionsPageCommon : public QWidget
   {
     Q_OBJECT
 
-    QComboBox   *mLanguage;    //Interface language selection
+    QComboBox   *mLanguage;     //!< Interface language selection
+    QSpinBox    *mUpdatePeriod; //!< Update check period in days
+    QJsonObject  mUpdateConfig; //!< Update and install configuration
   public:
     explicit SdDOptionsPageCommon(QWidget *parent = nullptr);
 
