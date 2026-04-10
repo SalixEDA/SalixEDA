@@ -15,7 +15,7 @@ import (
 
 
 // createLinuxShortcut создает .desktop файл (Linux)
-func createLinuxShortcut(target, shortcutPath, description, iconPath string) error {
+func createLinuxShortcut( title, target, shortcutPath, description, iconPath string) error {
   // Убеждаемся, что расширение .desktop
   if !strings.HasSuffix(strings.ToLower(shortcutPath), ".desktop") {
     shortcutPath += ".desktop"
@@ -30,7 +30,7 @@ func createLinuxShortcut(target, shortcutPath, description, iconPath string) err
   content := []string{
     "[Desktop Entry]",
     "Type=Application",
-    "Name=" + filepath.Base(target),
+    "Name=" + title,
     "Exec=" + target,
     "Path=" + filepath.Dir(target),
     "Terminal=false",
@@ -65,7 +65,7 @@ func createLinuxShortcut(target, shortcutPath, description, iconPath string) err
 }
 
 
-func CreateShortcut(target, shortcutPath, description, iconPath string) error {
-  return createLinuxShortcut(target, shortcutPath, description, iconPath)
+func CreateShortcut( title, target, shortcutPath, description, iconPath string) error {
+  return createLinuxShortcut( title, target, shortcutPath, description, iconPath)
 }
 

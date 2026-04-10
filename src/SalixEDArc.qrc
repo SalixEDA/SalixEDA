@@ -802,5 +802,7 @@
         <file>pic/boardX4.png</file>
         <file>pic/boardX0.png</file>
         <file>pic/boardMaster.png</file>
+        <file>pic/iconLogo.ico</file>
+        <file>pic/iconLogo.png</file>
     </qresource>
 </RCC>

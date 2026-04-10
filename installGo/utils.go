@@ -36,7 +36,11 @@ func InstallShortcuts(installPath string) error {
   iconPath := filepath.Join(installPath, "icon.png")
   if _, err := os.Stat(iconPath); err != nil {
     iconPath = "" // иконки нет, используем стандартную
-  }
+    }
+  if runtime.GOOS == "windows" {
+    //Для windows в качестве источника иконки используем само приложение
+    iconPath = filepath.Join( installPath, ApplicationName+"int.exe" )
+    }
 
   uninstallIconPath := ""
 
@@ -47,7 +51,7 @@ func InstallShortcuts(installPath string) error {
       "Microsoft", "Windows", "Start Menu", "Programs",
       CompanyName, ApplicationName+".lnk")
 
-    if err := CreateShortcut(targetPath, startMenu, ApplicationName+" schematic and pcb EDA", iconPath); err != nil {
+    if err := CreateShortcut( "", targetPath, startMenu, ApplicationName+" schematic and pcb EDA", iconPath); err != nil {
       return err
       }
 
@@ -56,21 +60,21 @@ func InstallShortcuts(installPath string) error {
       "Microsoft", "Windows", "Start Menu", "Programs",
       CompanyName, "uninstall"+ApplicationName+".lnk")
 
-    if err := CreateShortcut(uninstallPath, uninstallMenu, "Uninstall "+ApplicationName, uninstallIconPath); err != nil {
+    if err := CreateShortcut( "", uninstallPath, uninstallMenu, "Uninstall "+ApplicationName, uninstallIconPath); err != nil {
       return err
       }
 
 
     // Ярлык на рабочем столе
     desktop := filepath.Join(os.Getenv("USERPROFILE"), "Desktop", ApplicationName+".lnk")
-    return CreateShortcut(targetPath, desktop, "", iconPath)
+    return CreateShortcut( "", targetPath, desktop, "", iconPath)
 
   case "linux":
     // Ярлык в меню приложений (системный)
     systemMenu := filepath.Join(os.Getenv("HOME"), ".local", "share", "applications",
       CompanyName+"-"+ApplicationName+".desktop")
 
-    if err := CreateShortcut(targetPath, systemMenu, ApplicationName+" schematic and pcb EDA", iconPath); err != nil {
+    if err := CreateShortcut( ApplicationName, targetPath, systemMenu, ApplicationName+" schematic and pcb EDA", iconPath); err != nil {
       return err
       }
 
@@ -78,7 +82,7 @@ func InstallShortcuts(installPath string) error {
     uninstallMenu := filepath.Join(os.Getenv("HOME"), ".local", "share", "applications",
       CompanyName+"-uninstall"+ApplicationName+".desktop")
 
-    if err := CreateShortcut(uninstallPath, uninstallMenu, "Uninstall "+ApplicationName, uninstallIconPath); err != nil {
+    if err := CreateShortcut( "Uninstall "+ApplicationName, uninstallPath, uninstallMenu, "Uninstall "+ApplicationName, uninstallIconPath); err != nil {
       return err
       }
 
@@ -87,7 +91,7 @@ func InstallShortcuts(installPath string) error {
 
     // На многих Linux системах рабочий стол может быть в другом месте
     if _, err := os.Stat(filepath.Dir(desktop)); err == nil {
-      return CreateShortcut(targetPath, desktop, "", iconPath)
+      return CreateShortcut( ApplicationName, targetPath, desktop, "", iconPath)
       }
     return nil
 

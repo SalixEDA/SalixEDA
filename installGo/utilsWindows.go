@@ -12,7 +12,7 @@ import (
   "strings"
 )
 
-func createWindowsShortcut(target, shortcutPath, description, iconPath string) error {
+func createWindowsShortcut( target, shortcutPath, description, iconPath string) error {
   // Убеждаемся, что расширение .lnk
   if filepath.Ext(shortcutPath) != ".lnk" {
     shortcutPath += ".lnk"
@@ -70,6 +70,6 @@ $Shortcut.Save()
 }
 
 
-func CreateShortcut(target, shortcutPath, description, iconPath string) error {
+func CreateShortcut( title, target, shortcutPath, description, iconPath string) error {
   return createWindowsShortcut(target, shortcutPath, description, iconPath)
 }
