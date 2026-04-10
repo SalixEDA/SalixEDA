@@ -92,7 +92,25 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     case WM_KEYDOWN:
       {
       UINT vkCode = (UINT)wParam;
-      if( vkCode < 256 ) goKeyDown( vkCode );
+      int keyCode = 0;
+      switch(vkCode) {
+        case 36 : keyCode = 0x47; break;
+        case 37 : keyCode = 0x4b; break;
+        case 39 : keyCode = 0x4d; break;
+        case 35 : keyCode = 0x4f; break;
+        case 46 : keyCode = 0x53; break;
+        case 8  : keyCode = 0xe; break;
+        case 27 : keyCode = 0x01; break;
+        case 13 : keyCode = 0x1c; break;
+        case 9  : keyCode = 0x0f; break;
+        case 38 : keyCode = 0x48; break;
+        case 33 : keyCode = 0x49; break;
+        case 40 : keyCode = 0x50; break;
+        case 34 : keyCode = 0x51; break;
+        }
+
+      if( keyCode )
+        goKeyDown( keyCode );
       }
       return 0;
 

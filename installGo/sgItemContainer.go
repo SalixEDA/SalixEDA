@@ -37,6 +37,7 @@ func (i *SgItemContainer) SetCurrent( index int ) {
     child.SetVisible( index == 0 )
     index--
     }
+  SgWinRepaint()
   }
 
 
