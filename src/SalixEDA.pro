@@ -14,7 +14,7 @@ TARGET = SalixEDA
 TEMPLATE = app
 
 #RC_ICONS = pic/main.ico
-RC_ICONS = pic/iconLogo.png
+RC_ICONS = pic/iconLogo.ico
 
 #QMAKE_CXXFLAGS += -Wc++17-extensions
 
