@@ -74,7 +74,7 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   {
 
   //Set window icon
-  setWindowIcon( QIcon(QStringLiteral(":/pic/iconMain.png")) );
+  setWindowIcon( QIcon(QStringLiteral(":/pic/iconLogo.png")) );
 
   //Create menu
   SdWCommand::createMenu( this );
