@@ -195,6 +195,7 @@ void winStart( int posx, int posy, int width, int height, const char *title ) {
 
 void winRepaint()
   {
+  InvalidateRect( hMainWindow, NULL, TRUE );
   UpdateWindow( hMainWindow );
   }
 
