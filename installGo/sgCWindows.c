@@ -184,6 +184,9 @@ void winStart( int posx, int posy, int width, int height, const char *title ) {
   ShowWindow( hMainWindow, SW_SHOWDEFAULT );
   UpdateWindow( hMainWindow );
 
+  InvalidateRect( hMainWindow, NULL, TRUE );
+  UpdateWindow( hMainWindow );
+
   // Main event loop
   MSG msg = {0};
   while (GetMessage(&msg, NULL, 0, 0)) {
