@@ -144,6 +144,7 @@ del /f /q "%%~f0" 2>nul
             }
 
           cmd := exec.Command("cmd", "/c", "start", "/b", batPath)
+          cmd.Dir = os.TempDir()
 //          cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
           cmd.Start()
           log.Printf("Self-deletion scheduled via bat file")

@@ -9,6 +9,9 @@
 void initFont();
 
 uint32_t *screenBuffer;
+uint32_t *screenBuffer0;
+uint32_t *screenBuffer1;
+
 int gWindowWidth;
 int gWindowHeight;
 
@@ -25,10 +28,14 @@ void onWindowSize(HWND hwnd)
     gWindowWidth = windowWidth;
     gWindowHeight = windowHeight;
     //Free previous buffer
-    if( screenBuffer != NULL ) free( screenBuffer );
+    if( screenBuffer0 != NULL ) free( screenBuffer0 );
+    if( screenBuffer1 != NULL ) free( screenBuffer1 );
     //Allocate new buffer
-    screenBuffer = (uint32_t*)malloc( gWindowWidth * gWindowHeight * 4 );
-    memset( screenBuffer, 0xff, gWindowWidth * gWindowHeight * 4 );
+    screenBuffer0 = (uint32_t*)malloc( gWindowWidth * gWindowHeight * 4 );
+    memset( screenBuffer0, 0xff, gWindowWidth * gWindowHeight * 4 );
+
+    screenBuffer1 = (uint32_t*)malloc( gWindowWidth * gWindowHeight * 4 );
+    memset( screenBuffer1, 0xff, gWindowWidth * gWindowHeight * 4 );
     }
   }
 
@@ -133,6 +140,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
       // Обновляем размеры перед отрисовкой
       onWindowSize(hwnd);
+
+      screenBuffer = screenBuffer == screenBuffer0 ? screenBuffer1 : screenBuffer0;
 
       goPaint( gWindowWidth, gWindowHeight );
 
