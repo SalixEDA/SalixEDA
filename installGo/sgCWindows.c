@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <memory.h>
 
-#include "guiGraphics.h"
+#include "sgCGraphics.h"
 
 void initFont();
 
