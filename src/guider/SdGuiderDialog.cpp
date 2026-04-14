@@ -370,6 +370,10 @@ int SdGuiderDialog::snapshotIndex() const
 
 
 
+
+
+
+
 //!
 //! \brief stepIndexChanged Called when step index changes
 //! \param stepIndex        New step index

@@ -48,6 +48,7 @@ class SdGuiderCapture : public QObject
     SdGuiderEvent     mEvent;       //!< Current state of mouse and keyboard events
     SdGuiderEvent     mPlayer;      //!< Player event state
     SdGuiderEventList mEventList;   //!< Event list for current scenaIndex
+    QString           mScriptPath;  //!< Path to script directory
     QString           mEventPath;   //!< Full path to event list for current scenaIndex
     QString           mVideoPath;   //!< Full path to video file
     QString           mAVPath;      //!< Full path to video with audio
@@ -138,6 +139,12 @@ class SdGuiderCapture : public QObject
     //! \brief captureStart Starts the macro sequence playback process with video recording
     //!
     void captureStart();
+
+
+    //!
+    //! \brief screenShot Make screen shot and save it as png file into guide directory
+    //!
+    void screenShot();
 
   private:
     //!

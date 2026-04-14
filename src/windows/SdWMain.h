@@ -286,6 +286,7 @@ class SdWMain : public QMainWindow
     void cmGuiderSnapshotLoad(const QString &scriptPath, int snapshotIndex , const SdGuiderStepList&);
     void cmGuiderPlay();
     void cmGuiderCapture();
+    void cmGuiderScreenShot();
 
     void cmRemoteStatus( const QString info );
 

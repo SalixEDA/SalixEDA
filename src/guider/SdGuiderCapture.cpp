@@ -92,6 +92,7 @@ SdGuiderCapture::SdGuiderCapture(QWidget *main, QObject *parent) :
 //!
 void SdGuiderCapture::setScena(const QString &scriptPath, int scenaIndex, const SdGuiderStepList &list)
   {
+  mScriptPath = scriptPath;
   mStepList   = list;
   QString eventName("scena-%1.events");
   mEventPath = scriptPath + eventName.arg(scenaIndex);
@@ -549,6 +550,28 @@ void SdGuiderCapture::captureStart()
       mPlayerTimer.start( PLAY_PERIOD );
       }
     }
+  }
+
+
+
+
+
+//!
+//! \brief screenShot Make screen shot and save it as png file into guide directory
+//!
+void SdGuiderCapture::screenShot()
+  {
+  static int screenIndex = 0;
+  //Capture current screen and append it to file
+  QRect r = mMainWindow->frameGeometry();
+  QPoint p = mMainWindow->pos();
+  QSize s = mMainWindow->size();
+  QPixmap pix = QGuiApplication::primaryScreen()->grabWindow( 0, p.x(), p.y(), s.width(), r.height() );
+  QImage image = pix.toImage();
+
+  QString picFileName( mScriptPath + QString("screen%1.png").arg(screenIndex++) );
+
+  image.save( picFileName );
   }
 
 
