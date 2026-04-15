@@ -1,12 +1,12 @@
 package main
 
 import (
-	"log"
-	"os"
-	"os/exec"
-	"path/filepath"
-	"runtime"
-	"strings"
+  "log"
+  "os"
+  "os/exec"
+  "path/filepath"
+  "runtime"
+  "strings"
 )
 
 
@@ -120,34 +120,16 @@ func init3() {
   // 1. Определение языка из системы
   var sysLang string
 
-  // Для Windows
-  if langID := os.Getenv("LANG"); langID == "" {
-    // Windows: GetUserDefaultUILanguage() через системные переменные
-    if uiLang := os.Getenv("USERPROFILE"); uiLang != "" {
-      // Альтернативный способ для Windows
-      if lang := os.Getenv("LANGUAGE"); lang != "" {
-        sysLang = lang
-      } else if lang := os.Getenv("LC_ALL"); lang != "" {
-        sysLang = lang
-      }
-    }
-  } else {
-    // Linux/Unix: LANG переменная
-    sysLang = langID
+  if lang := os.Getenv("LANG"); lang != "" {
+    // Для Linux
+    sysLang = lang
+  } else if runtime.GOOS == "windows" {
+    sysLang = windowsLanguage()
   }
 
-  // Обработка Windows кодов языка (примеры)
-  if sysLang != "" {
-    if len(sysLang) >= 2 {
-      langCode := sysLang[0:2]
-      // Приводим к нижнему регистру
-      language = strings.ToLower(langCode)
-    }
-  }
-
-  // Альтернативный метод для Windows через переменную UserLang
-  if userLang := os.Getenv("UserLang"); userLang != "" && len(userLang) >= 2 && sysLang == "" {
-    language = strings.ToLower(userLang[0:2])
+  // Извлекаем первые 2 символа из sysLang
+  if sysLang != "" && len(sysLang) >= 2 {
+    language = strings.ToLower(sysLang[0:2])
     }
 
   // 2. Проверка аргументов командной строки (имеют приоритет)

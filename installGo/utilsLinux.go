@@ -69,3 +69,6 @@ func CreateShortcut( title, target, shortcutPath, description, iconPath string) 
   return createLinuxShortcut( title, target, shortcutPath, description, iconPath)
 }
 
+func windowsLanguage() string {
+  return ""
+  }
