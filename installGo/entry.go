@@ -1,16 +1,18 @@
 package main
 
 import (
-	"log"
-	"os"
-	"os/exec"
-	"path/filepath"
-	"runtime"
-	"strings"
+  "log"
+  "os"
+  "os/exec"
+  "path/filepath"
+  "runtime"
+  "strings"
 )
+
 
 func main() {
   addOSPrefix()
+  init3()
 
   // ===== 1. ЗАГРУЗКА КОНФИГУРАЦИИ =====
   loadedConfig, loadConfigErr := LoadConfig()
@@ -104,3 +106,42 @@ func main() {
 
   cmd.Run()
   }
+
+
+
+
+
+
+var language string
+
+func init3() {
+  language = "en" // значение по умолчанию
+
+  // 1. Определение языка из системы
+  var sysLang string
+
+  if lang := os.Getenv("LANG"); lang != "" {
+    // Для Linux
+    sysLang = lang
+  } else if runtime.GOOS == "windows" {
+    sysLang = windowsLanguage()
+  }
+
+  // Извлекаем первые 2 символа из sysLang
+  if sysLang != "" && len(sysLang) >= 2 {
+    language = strings.ToLower(sysLang[0:2])
+    }
+
+  // 2. Проверка аргументов командной строки (имеют приоритет)
+  args := os.Args
+  for i := 0; i < len(args) && i < 2; i++ {
+    arg := args[i]
+    if strings.HasPrefix(arg, "-lang") && len(arg) >= 6 {
+      langCode := arg[5:7]
+      if langCode != "" {
+        language = langCode
+        break
+      }
+    }
+  }
+}

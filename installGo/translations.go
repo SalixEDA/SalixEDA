@@ -115,40 +115,53 @@ func TransStringEn() *Texts {
     // Общие
     AppTitle: "Program Installation",
 
-    // Экран установки
+    // Setup screen
     SetupTitle:       "Program Installation",
-    SetupInfo:        "This program will install the application on your computer.\n\n" +
-                      "Please select the installation folder and click 'Install'.\n" +
-                      "You can change the folder by clicking 'Browse...'.",
+    SetupInfo:        "This program will install the application on your computer." +
+                      "Please enter the installation folder and click the 'Install' button." +
+                      "You can change the folder using the keyboard.",
     SetupFolderLabel: "Installation folder:",
     SetupBrowseBtn:   "Browse...",
     SetupExitBtn:     "Exit",
     SetupInstallBtn:  "Install",
 
-    // Экран прогресса
+    // Progress screen
+    ProgressTitle:       "Installation",
     ProgressPrepare:     "Preparing...",
     ProgressCancelBtn:   "Cancel",
-    ProgressDownload:    "Stage 1: Downloading %s",
-    ProgressExtract:     "Stage 2: Extracting %s",
-    ProgressShortcuts:   "Stage 3: Creating shortcuts",
-    ProgressCopy:        "Stage 4: Copying installer",
+    ProgressDownload:    "Step 1: Downloading %s",
+    ProgressExtract:     "Step 2: Extracting %s",
+    ProgressCopy:        "Step 3: Copying installer",
+    ProgressShortcuts:   "Step 4: Creating shortcuts",
     ProgressDownloadOf:  "Downloaded %s of %s",
     ProgressExtractedOf: "Extracted %s of %s",
 
-    // Экран завершения
-    CompleteMessage:  "Installation completed successfully!",
-    CompleteFinishBtn: "Finish",
+    // Completion screen
+    CompleteTitle:       "Installation Complete",
+    CompleteMessage:     "Installation completed successfully!",
+    CompleteFinishBtn:   "Finish",
 
-    // Экран ошибки
+    // Error screen
     ErrorTitle:       "Error",
     ErrorCloseBtn:    "Close",
 
-    // Экран запроса обновления
+    // Update prompt screen
     UpdateTitle:      "Attention",
-    UpdateMessage:    "An update is available. You can download and install now or do it later.",
+    UpdateMessage:    "An update is available. We can download and update now or do it later.",
     UpdateCancelBtn:  "Cancel",
     UpdateLaterBtn:   "Later",
     UpdateNowBtn:     "Update",
+
+    DeleteTitle:      "Confirm Deletion",
+    DeleteMessage:    "Are you sure you want to delete SalixEDA program and all its components and data?",
+    DeleteCancelBtn:  "Cancel",
+    DeleteAccBtn:     "Yes, delete",
+
+    DeleteProgress:   "Removing SalixEDA",
+    DeleteFile:       "Deleting %s",
+
+    DeleteInfo:       "Information",
+    DeleteComplete:   "SalixEDA has been successfully removed from your computer",
   }
 }
 

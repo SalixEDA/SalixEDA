@@ -10,6 +10,7 @@ import (
   "path/filepath"
   "syscall"
   "strings"
+  "unsafe"
 )
 
 func createWindowsShortcut( target, shortcutPath, description, iconPath string) error {
@@ -73,3 +74,18 @@ $Shortcut.Save()
 func CreateShortcut( title, target, shortcutPath, description, iconPath string) error {
   return createWindowsShortcut(target, shortcutPath, description, iconPath)
 }
+
+
+func windowsLanguage() string {
+  var kernel32 = syscall.NewLazyDLL("kernel32.dll")
+  var procGetUserDefaultLocaleName = kernel32.NewProc("GetUserDefaultLocaleName");
+  buf := make([]uint16, 85)
+
+  r, _, _ := procGetUserDefaultLocaleName.Call( uintptr(unsafe.Pointer(&buf[0])), uintptr(len(buf)) )
+
+  if r != 0 {
+    return syscall.UTF16ToString(buf)
+  }
+
+  return ""
+  }

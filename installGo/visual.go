@@ -84,8 +84,13 @@ func NewInstallUI(cfg *Config) *InstallUI {
   }
 
   // Выбор языка
-  ui.texts = TransStringRu() // По умолчанию русский
-  // Здесь будет логика выбора языка по системе
+  switch(language) {
+    case "ru" :
+      ui.texts = TransStringRu() // По умолчанию русский
+
+    default :
+      ui.texts = TransStringEn()
+    }
 
   // Создаем стек и добавляем все экраны
   ui.stack = NewSgItemContainer( 0,0, 300, 300 )
