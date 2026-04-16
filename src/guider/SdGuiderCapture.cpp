@@ -167,6 +167,13 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
           }
         return true;
         }
+      else if( keyEvent->key() == Qt::Key_F8 ) {
+        //F8 pressed or released
+        if( event->type() == QEvent::KeyPress ) {
+          screenShot();
+          }
+        return true;
+        }
       else {
         mEvent.mKeyCode = keyEvent->key();
         mEvent.mKeyChar = keyEvent->text().isEmpty() ? 0 : keyEvent->text().at(0).unicode();
