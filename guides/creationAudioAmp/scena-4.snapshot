@@ -1,0 +1,22 @@
+{
+    "AType": "Guider snapshot file",
+    "AVersion": 1,
+    "Current editor": 0,
+    "Open editor list": [
+        {
+            "Grid-x": 250,
+            "Grid-y": 250,
+            "ObjectClass": "800",
+            "ObjectName": "amplifier",
+            "Origin-x": 10000,
+            "Origin-y": 16500,
+            "ProjectName": "projectSnapshot-4-0",
+            "Scale": 0.03528500723881351,
+            "is3d": false
+        }
+    ],
+    "Project current": 0,
+    "Projects": [
+        "projectSnapshot-4-0"
+    ]
+}

@@ -42,6 +42,9 @@ Description
 #define RECORD_PERIOD 40
 #define PLAY_PERIOD   50
 
+static QImage mouse[8];
+
+
 
 //!
 //! \brief SdGuiderCapture Constructor
@@ -77,6 +80,16 @@ SdGuiderCapture::SdGuiderCapture(QWidget *main, QObject *parent) :
   //       captureStop();
   //     }
   //   });
+  if( mouse[0].isNull() ) {
+    mouse[0] = QImage(QString(":/pic/mouse0.png"));
+    mouse[1] = QImage(QString(":/pic/mouse1.png"));
+    mouse[2] = QImage(QString(":/pic/mouse2.png"));
+    mouse[3] = QImage(QString(":/pic/mouse3.png"));
+    mouse[4] = QImage(QString(":/pic/mouse4.png"));
+    mouse[5] = QImage(QString(":/pic/mouse5.png"));
+    mouse[6] = QImage(QString(":/pic/mouse6.png"));
+    mouse[7] = QImage(QString(":/pic/mouse7.png"));
+    }
   }
 
 
@@ -286,18 +299,6 @@ void SdGuiderCapture::periodicPayer()
     //QPoint c = QCursor::pos( QGuiApplication::primaryScreen() );
     QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) + mainWindowPos );
 
-    static QImage mouse[8];
-
-    if( mouse[0].isNull() ) {
-      mouse[0] = QImage(QString(":/pic/mouse0.png"));
-      mouse[1] = QImage(QString(":/pic/mouse1.png"));
-      mouse[2] = QImage(QString(":/pic/mouse2.png"));
-      mouse[3] = QImage(QString(":/pic/mouse3.png"));
-      mouse[4] = QImage(QString(":/pic/mouse4.png"));
-      mouse[5] = QImage(QString(":/pic/mouse5.png"));
-      mouse[6] = QImage(QString(":/pic/mouse6.png"));
-      mouse[7] = QImage(QString(":/pic/mouse7.png"));
-      }
 
     //Capture current screen and append it to file
     QRect r = mMainWindow->frameGeometry();
@@ -575,6 +576,16 @@ void SdGuiderCapture::screenShot()
   QSize s = mMainWindow->size();
   QPixmap pix = QGuiApplication::primaryScreen()->grabWindow( 0, p.x(), p.y(), s.width(), r.height() );
   QImage image = pix.toImage();
+
+  QPainter painter(&image);
+
+
+  int mouseIndex = 0;
+  if( mEvent.mMouseButtons & Qt::LeftButton ) mouseIndex |= 1;
+  if( mEvent.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
+  if( mEvent.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
+  //Draw mouse
+  painter.drawImage( QPoint( mEvent.mMousePosX - 16, mEvent.mMousePosY ), mouse[mouseIndex] );
 
   QString picFileName( mScriptPath + QString("screen%1.png").arg(screenIndex++) );
 
