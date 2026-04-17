@@ -104,11 +104,13 @@ SdDGetObject::SdDGetObject(quint64 sort, const QString title, const QString &def
   connect( but, &QPushButton::clicked, this, &SdDGetObject::find );
   but->setDefault(true);
   if( sort & dctComponent ) {
+    static bool withPartOnly = true;
+    mWithPartOnly = withPartOnly;
     QCheckBox *cb = new QCheckBox( tr("With part only") );
     hbox->addWidget( cb );
-    cb->setChecked( mWithPartOnly );
+    cb->setChecked( withPartOnly );
     connect( cb, &QCheckBox::clicked, this, [this] ( bool checked ) {
-      mWithPartOnly = checked;
+      withPartOnly = mWithPartOnly = checked;
       find();
       } );
     }
@@ -129,15 +131,16 @@ SdDGetObject::SdDGetObject(quint64 sort, const QString title, const QString &def
   mSplitView->addWidget( gbox );
   connect( mSections, &QListWidget::currentRowChanged, this, &SdDGetObject::onCurrentSection );
   mSections->setSortingEnabled(false);
+  mSections->setFont( QFont( QStringList({"DejaVu Sans", "Noto Color Emoji"})) );
 
   //Create symbol and part view
-  gbox = new QGroupBox( tr("Symbol") );
+  gbox = new QGroupBox( (sort & dctProject) == 0 ? tr("Symbol") : tr("Sheet") );
   hbox = new QHBoxLayout();
   gbox->setLayout( hbox );
   hbox->addWidget( mSymbolView = new SdWEditorGraphView( gbox ) );
   mSplitView->addWidget( gbox );
 
-  gbox = new QGroupBox( tr("Part") );
+  gbox = new QGroupBox( (sort & dctProject) == 0 ? tr("Part") : tr("Pcb") );
   hbox = new QHBoxLayout();
   gbox->setLayout( hbox );
   hbox->addWidget( mPartView = new SdWEditorGraphView( gbox ) );
@@ -244,12 +247,17 @@ void SdDGetObject::find()
   QStringList list = sdNameFilter.split( QRegularExpression("\\s+"), Qt::SkipEmptyParts );
   mHeaderList.clear();
 
+  static bool withPartOnly;
+
+  //We set withPartOnly filtr only for components
+  withPartOnly = mWithPartOnly && (mSort & dctComponent);
+
   //Accumulate headers matched to filter
   SdLibraryStorage::instance()->forEachHeader( [list] ( SdLibraryHeader &hdr ) -> bool {
     //test class
     if( hdr.mClass & mSort ) {
       //Skip component or symbol without part
-      if( mWithPartOnly && !hdr.mPartPresent )
+      if( withPartOnly && !hdr.mPartPresent )
         return false;
 
       //Split uid to name type and author

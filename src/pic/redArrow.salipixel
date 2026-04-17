@@ -1,0 +1,76 @@
+{
+    "command": [
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 0,
+                "y": 0
+            },
+            "stop": {
+                "x": 16,
+                "y": 31
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 0,
+                "y": 0
+            },
+            "stop": {
+                "x": 31,
+                "y": 16
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 31,
+                "y": 16
+            },
+            "stop": {
+                "x": 19,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 16,
+                "y": 31
+            },
+            "stop": {
+                "x": 20,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Fill",
+            "source": {
+                "x": 15,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Point",
+            "point": {
+                "x": 2,
+                "y": 2
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

@@ -804,5 +804,6 @@
         <file>pic/boardMaster.png</file>
         <file>pic/iconLogo.ico</file>
         <file>pic/iconLogo.png</file>
+        <file>pic/redArrow.png</file>
     </qresource>
 </RCC>

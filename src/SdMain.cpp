@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
   QFontDatabase::addApplicationFont(":/fonts/NotoColorEmoji.ttf");
   QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
 
+
   QSettings s;
   if( !s.contains(SDK_LANGUAGE) ) {
     //Language is not assigned yet, assign it
@@ -84,11 +85,12 @@ int main(int argc, char *argv[])
     }
 
   QStringList arg = a.arguments();
-  // if( arg.count() > 1 && arg.at(1).startsWith("-") ) {
-  //   s.setValue( SDK_LANGUAGE, arg.at(1).mid(1) );
-  //   arg.remove( 1 );
-  //   }
 
+
+  //Translation system
+  QTranslator qtTranslator;
+  if( qtTranslator.load( QString( QCoreApplication::applicationDirPath() + "/qt_%1.qm").arg( s.value( SDK_LANGUAGE ).toString() ) ) )
+    a.installTranslator( &qtTranslator );
 
   //Translation system
   QTranslator appTranslator;

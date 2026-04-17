@@ -579,13 +579,16 @@ void SdGuiderCapture::screenShot()
 
   QPainter painter(&image);
 
+  static QImage redArrow( QString(":/pic/redArrow.png") );
+  // mouse[0] = QImage();
 
-  int mouseIndex = 0;
-  if( mEvent.mMouseButtons & Qt::LeftButton ) mouseIndex |= 1;
-  if( mEvent.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
-  if( mEvent.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
+  // int mouseIndex = 0;
+  // if( mEvent.mMouseButtons & Qt::LeftButton ) mouseIndex |= 1;
+  // if( mEvent.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
+  // if( mEvent.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
   //Draw mouse
-  painter.drawImage( QPoint( mEvent.mMousePosX - 16, mEvent.mMousePosY ), mouse[mouseIndex] );
+  // painter.drawImage( QPoint( mEvent.mMousePosX - 16, mEvent.mMousePosY ), mouse[mouseIndex] );
+  painter.drawImage( QPoint( mEvent.mMousePosX, mEvent.mMousePosY ), redArrow );
 
   QString picFileName( mScriptPath + QString("screen%1.png").arg(screenIndex++) );
 
