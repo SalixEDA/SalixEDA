@@ -139,6 +139,28 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
     });
   buttons->addWidget( but );
 
+
+  but = new QPushButton( tr("Shots"), this );
+  but->setToolTip( tr("Start shots capture current scena") );
+  but->setMinimumHeight( 30 );
+  connect( but, &QPushButton::pressed, this, [this] () {
+    if( mScenaIndex < mScenaList.size() ) {
+      onScenaSelected( mScenaIndex );
+      mWMain->cmGuiderScreenShot();
+      }
+    });
+  buttons->addWidget( but );
+
+
+  but = new QPushButton( tr("Shots size"), this );
+  but->setToolTip( tr("Resize main window for shots") );
+  but->setMinimumHeight( 30 );
+  connect( but, &QPushButton::pressed, this, [this] () {
+    //Made fixed window size
+    mWMain->resize( 1080, 640 );
+    });
+  buttons->addWidget( but );
+
   mainLayout->addLayout( buttons );
 
   // Configure dialog properties

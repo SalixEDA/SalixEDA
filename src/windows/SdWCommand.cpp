@@ -320,7 +320,6 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuInstruments->addSeparator();
   cmGuiderDialog     = menuInstruments->addAction( QObject::tr("Guider scene builder..."), frame, &SdWMain::cmGuiderDialog );
                        menuInstruments->addAction( QObject::tr("Guider snapshot save"), QKeySequence(Qt::Key_F12), frame, &SdWMain::cmGuiderSnapshotSave );
-                       menuInstruments->addAction( QObject::tr("Main window screenshot"), QKeySequence(Qt::Key_F8), frame, &SdWMain::cmGuiderScreenShot );
 //  cmGuiderRecord     = menuInstruments->addAction( QObject::tr("Guifrt record start-stop"), QKeySequence(Qt::Key_F11), frame, &SdWMain::cmGuiderRecord );
 //  cmGuiderRecord->setCheckable(true);
 //  cmGuiderNextStep   = menuInstruments->addAction( QObject::tr("Guider record next step"), QKeySequence(Qt::Key_F10), frame, &SdWMain::cmGuiderNextStep );

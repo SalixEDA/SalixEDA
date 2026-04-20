@@ -35,6 +35,7 @@ void SdGuiderEvent::json(SvJsonWriter &js) const
   js.jsonInt( "Modifier",  mKeyModifier );
   js.jsonInt( "KeyCode",   mKeyCode );
   js.jsonInt( "KeyChar",   mKeyChar );
+  js.jsonInt( "KeyEvent",  mKeyEventType );
   js.jsonInt( "WheelX",    mWheelX );
   js.jsonInt( "WheelY",    mWheelY );
   }
@@ -55,6 +56,7 @@ void SdGuiderEvent::json(const SvJsonReader &js)
   js.jsonInt( "Modifier",  mKeyModifier );
   js.jsonInt( "KeyCode",   mKeyCode );
   js.jsonInt( "KeyChar",   mKeyChar );
+  js.jsonInt( "KeyEvent",  mKeyEventType );
   js.jsonInt( "WheelX",    mWheelX );
   js.jsonInt( "WheelY",    mWheelY );
   }
@@ -122,33 +124,25 @@ void SdGuiderEvent::inject( const SdGuiderEvent &next, QPoint windowPos )
     mWheelY       = next.mWheelY;
     }
 
-  if( mKeyCode != next.mKeyCode || mKeyChar != next.mKeyChar ) {
+  if( next.mKeyEventType ) {
     w = QApplication::focusWidget();
     if( w != nullptr ) {
-      if( (mKeyCode | mKeyChar) ) {
+      if( next.mKeyEventType == 2 ) {
         //Key release
         QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyRelease,
-                                                       mKeyCode,
-                                                       (Qt::KeyboardModifier)mKeyModifier,
-                                                       mKeyChar ? QString( QChar(mKeyChar) ) : QString{}
+                                                       next.mKeyCode,
+                                                       (Qt::KeyboardModifier)next.mKeyModifier,
+                                                       next.mKeyChar ? QString( QChar(next.mKeyChar) ) : QString{}
                                                        ));
-        mKeyCode = next.mKeyCode;
-        mKeyChar = next.mKeyChar;
         }
       else {
         //Key press
-        mKeyCode = next.mKeyCode;
-        mKeyChar = next.mKeyChar;
         QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyPress,
-                                                       mKeyCode,
-                                                       (Qt::KeyboardModifier)mKeyModifier,
-                                                       mKeyChar ? QString( QChar(mKeyChar) ) : QString{}
+                                                       next.mKeyCode,
+                                                       (Qt::KeyboardModifier)next.mKeyModifier,
+                                                       next.mKeyChar ? QString( QChar(next.mKeyChar) ) : QString{}
                                                        ));
         }
-      }
-    else {
-      mKeyCode = next.mKeyCode;
-      mKeyChar = next.mKeyChar;
       }
     }
   }

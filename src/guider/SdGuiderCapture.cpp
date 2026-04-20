@@ -54,7 +54,8 @@ static QImage mouse[8];
 SdGuiderCapture::SdGuiderCapture(QWidget *main, QObject *parent) :
   QObject(parent),
   //mFile(nullptr),
-  mMainWindow(main)
+  mMainWindow(main),
+  mShoting(false)
   {
   memset( &mEvent, 0, sizeof(SdGuiderEvent) );
   memset( &mPlayer, 0, sizeof(SdGuiderEvent) );
@@ -112,6 +113,7 @@ void SdGuiderCapture::setScena(const QString &scriptPath, int scenaIndex, const 
   mVideoPath = moviePath( scriptPath, scenaIndex, false );
   mAVPath    = moviePath( scriptPath, scenaIndex, true );
   mAudioPattern = scriptPath + QString("scena-%1-stp-%3-%2.wav").arg(scenaIndex).arg( SdEnvir::languageGet() );
+  mShotPath     = scriptPath + QString("shot-%1-stp-%3-%2.png").arg(scenaIndex).arg( SdEnvir::languageGet() );
   QFile eventFile( mEventPath );
   mEventList.clear();
   if( eventFile.exists() ) {
@@ -143,7 +145,7 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
   {
   Q_UNUSED(watched)
   QPoint mousePos = QCursor::pos( QGuiApplication::primaryScreen() ) - mMainWindow->pos();
-  switch (event->type()) {
+  switch( event->type() ) {
     case QEvent::MouseMove:
     case QEvent::MouseButtonPress:
     case QEvent::MouseButtonRelease:
@@ -180,17 +182,18 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
           }
         return true;
         }
-      else if( keyEvent->key() == Qt::Key_F8 ) {
-        //F8 pressed or released
-        if( event->type() == QEvent::KeyPress ) {
-          screenShot();
-          }
-        return true;
-        }
+      // else if( keyEvent->key() == Qt::Key_F8 ) {
+      //   //F8 pressed or released
+      //   if( event->type() == QEvent::KeyPress ) {
+      //     screenShot();
+      //     }
+      //   return true;
+      //   }
       else {
         mEvent.mKeyCode = keyEvent->key();
         mEvent.mKeyChar = keyEvent->text().isEmpty() ? 0 : keyEvent->text().at(0).unicode();
         mEvent.mKeyModifier = keyEvent->modifiers();
+        mEvent.mKeyEventType = event->type() == QEvent::KeyPress ? 1 : 2;
 
         // Для событий клавиатуры также обновляем позицию мыши
         mEvent.mMousePosX = mousePos.x();
@@ -267,8 +270,11 @@ void SdGuiderCapture::periodicRecord()
   if( mEventList.size() > 0 && mEventList.last().mStepIndex != 0 && mEvent.mStepIndex == 0 )
     mEventList.clear();
   //Limit scene size for 5min
-  if( mEventList.size() < 15000 )
+  if( mEventList.size() < 15000 ) {
     mEventList.append( mEvent );
+    //By default no any key events
+    mEvent.mKeyEventType = 0;
+    }
   }
 
 
@@ -404,6 +410,39 @@ void SdGuiderCapture::periodicPayer()
 
       qDebug() << ffmpeg.readAllStandardError();
       qDebug() << ffmpeg.readAllStandardOutput();
+      }
+    }
+  else if( mShoting ) {
+    mPlayer.inject( mEventList.at(mEventIndex++), mainWindowPos );
+    QCursor::setPos( QPoint(mPlayer.mMousePosX, mPlayer.mMousePosY) + mainWindowPos );
+
+    bool needShot;
+    if( mEventIndex < mEventList.count() ) {
+      needShot = mShotStepIndex != mEventList.at(mEventIndex).mStepIndex;
+      mShotStepIndex = mEventList.at(mEventIndex).mStepIndex;
+      }
+    else {
+      needShot = true;
+      mShotStepIndex++;
+      }
+
+    if( needShot ) {
+      //Capture current screen and append it to file
+      QRect r = mMainWindow->frameGeometry();
+      QPoint p = mMainWindow->pos();
+      QSize s = mMainWindow->size();
+      QPixmap pix = QGuiApplication::primaryScreen()->grabWindow( 0, p.x(), p.y(), s.width(), r.height() );
+      QImage image = pix.toImage();
+
+      QPainter painter(&image);
+
+      static QImage redArrow( QString(":/pic/redArrow.png") );
+      //Draw mouse
+      painter.drawImage( QPoint( mEvent.mMousePosX, mEvent.mMousePosY ), redArrow );
+
+      QString picFileName( mShotPath.arg(mShotStepIndex) );
+
+      image.save( picFileName );
       }
     }
   else {
@@ -563,37 +602,56 @@ void SdGuiderCapture::captureStart()
 
 
 
+//!
+//! \brief shotingStart Starts the macro sequence playback process with screen shots recording
+//!
+void SdGuiderCapture::shotingStart()
+  {
+  if( mEventList.count() > 3 ) {
+    mShotStepIndex = 0;
+    mEventIndex = 1;
+    mPlayer = mEventList.at(0);
+    mStepDuration = stepEventDuration(0);
+    mShoting = true;
+    mCapture = false;
+    mPlayerTimer.start( PLAY_PERIOD );
+    }
+  }
+
+
+
+
 
 //!
 //! \brief screenShot Make screen shot and save it as png file into guide directory
 //!
-void SdGuiderCapture::screenShot()
-  {
-  static int screenIndex = 0;
-  //Capture current screen and append it to file
-  QRect r = mMainWindow->frameGeometry();
-  QPoint p = mMainWindow->pos();
-  QSize s = mMainWindow->size();
-  QPixmap pix = QGuiApplication::primaryScreen()->grabWindow( 0, p.x(), p.y(), s.width(), r.height() );
-  QImage image = pix.toImage();
+// void SdGuiderCapture::screenShot()
+//   {
+//   static int screenIndex = 0;
+//   //Capture current screen and append it to file
+//   QRect r = mMainWindow->frameGeometry();
+//   QPoint p = mMainWindow->pos();
+//   QSize s = mMainWindow->size();
+//   QPixmap pix = QGuiApplication::primaryScreen()->grabWindow( 0, p.x(), p.y(), s.width(), r.height() );
+//   QImage image = pix.toImage();
 
-  QPainter painter(&image);
+//   QPainter painter(&image);
 
-  static QImage redArrow( QString(":/pic/redArrow.png") );
-  // mouse[0] = QImage();
+//   static QImage redArrow( QString(":/pic/redArrow.png") );
+//   // mouse[0] = QImage();
 
-  // int mouseIndex = 0;
-  // if( mEvent.mMouseButtons & Qt::LeftButton ) mouseIndex |= 1;
-  // if( mEvent.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
-  // if( mEvent.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
-  //Draw mouse
-  // painter.drawImage( QPoint( mEvent.mMousePosX - 16, mEvent.mMousePosY ), mouse[mouseIndex] );
-  painter.drawImage( QPoint( mEvent.mMousePosX, mEvent.mMousePosY ), redArrow );
+//   // int mouseIndex = 0;
+//   // if( mEvent.mMouseButtons & Qt::LeftButton ) mouseIndex |= 1;
+//   // if( mEvent.mMouseButtons & Qt::MiddleButton ) mouseIndex |= 2;
+//   // if( mEvent.mMouseButtons & Qt::RightButton ) mouseIndex |= 4;
+//   //Draw mouse
+//   // painter.drawImage( QPoint( mEvent.mMousePosX - 16, mEvent.mMousePosY ), mouse[mouseIndex] );
+//   painter.drawImage( QPoint( mEvent.mMousePosX, mEvent.mMousePosY ), redArrow );
 
-  QString picFileName( mScriptPath + QString("screen%1.png").arg(screenIndex++) );
+//   QString picFileName( mScriptPath + QString("screen%1.png").arg(screenIndex++) );
 
-  image.save( picFileName );
-  }
+//   image.save( picFileName );
+//   }
 
 
 

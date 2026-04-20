@@ -45,22 +45,25 @@ Description
 class SdGuiderCapture : public QObject
   {
     Q_OBJECT
-    SdGuiderEvent     mEvent;       //!< Current state of mouse and keyboard events
-    SdGuiderEvent     mPlayer;      //!< Player event state
-    SdGuiderEventList mEventList;   //!< Event list for current scenaIndex
-    QString           mScriptPath;  //!< Path to script directory
-    QString           mEventPath;   //!< Full path to event list for current scenaIndex
-    QString           mVideoPath;   //!< Full path to video file
-    QString           mAVPath;      //!< Full path to video with audio
-    QString           mAudioPattern;//!< Pattern for audio files
-    SdGuiderStepList  mStepList;    //!< Step list for current scene
-    QTimer            mRecordTimer; //!< Periodic timer for generating record events
-    QTimer            mPlayerTimer; //!< Periodic timer for generating playback events and capture
-    QWidget          *mMainWindow;  //!< Main application window
-    QProcess          mFfmpeg;      //!< FFmpeg process for video encoding
-    int               mEventIndex;  //!< Current event index during playback
-    int               mStepDuration;//!< Step duration in events
-    bool              mCapture;     //!< Flag indicating whether video capture is active
+    SdGuiderEvent     mEvent;         //!< Current state of mouse and keyboard events
+    SdGuiderEvent     mPlayer;        //!< Player event state
+    SdGuiderEventList mEventList;     //!< Event list for current scenaIndex
+    QString           mScriptPath;    //!< Path to script directory
+    QString           mEventPath;     //!< Full path to event list for current scenaIndex
+    QString           mVideoPath;     //!< Full path to video file
+    QString           mAVPath;        //!< Full path to video with audio
+    QString           mAudioPattern;  //!< Pattern for audio files
+    QString           mShotPath;      //!< Pattern for screen shot files
+    SdGuiderStepList  mStepList;      //!< Step list for current scene
+    QTimer            mRecordTimer;   //!< Periodic timer for generating record events
+    QTimer            mPlayerTimer;   //!< Periodic timer for generating playback events and capture
+    QWidget          *mMainWindow;    //!< Main application window
+    QProcess          mFfmpeg;        //!< FFmpeg process for video encoding
+    int               mEventIndex;    //!< Current event index during playback
+    int               mStepDuration;  //!< Step duration in events
+    int               mShotStepIndex; //!< Shot step index
+    bool              mCapture;       //!< Flag indicating whether video capture is active
+    bool              mShoting;       //!< Flag indicating whether screen shot capture is active
   public:
     //!
     //! \brief SdGuiderCapture Constructor
@@ -140,11 +143,16 @@ class SdGuiderCapture : public QObject
     //!
     void captureStart();
 
+    //!
+    //! \brief shotingStart Starts the macro sequence playback process with screen shots recording
+    //!
+    void shotingStart();
+
 
     //!
     //! \brief screenShot Make screen shot and save it as png file into guide directory
     //!
-    void screenShot();
+    //void screenShot();
 
   private:
     //!
