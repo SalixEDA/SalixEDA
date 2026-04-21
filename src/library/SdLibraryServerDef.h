@@ -41,7 +41,7 @@ Description
 #define SDRM_TYPE_LIST               7
 #define SDRM_TYPE_REGISTER           8 //!< Set or change author global name
 #define SDRM_TYPE_INVALID_KEY_PAIR   9 //!< Author public key and author private key not equals recorded in db
-#define SDRM_TYPE_INVALID_NAME      10 //!< Assigned name always used by other author
+#define SDRM_TYPE_INVALID_NAME      10 //!< Assigned name already used by other author
 #define SDRM_TYPE_COMPLIANT_LIST    11
 #define SDRM_TYPE_GET_AUTHOR_LIST   12
 #define SDRM_TYPE_AUTHOR_LIST       13

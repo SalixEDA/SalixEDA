@@ -90,6 +90,7 @@ SdDBoardBuilder::SdDBoardBuilder(SdProjectItem *item, QWidget *parent) :
   vbox->addWidget( box );
 
   setLayout( vbox );
+  mSizeX->setFocus();
   }
 
 

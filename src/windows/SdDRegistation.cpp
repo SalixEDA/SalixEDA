@@ -234,7 +234,7 @@ void SdDRegistation::performRegistration(SdDRegistation *reg)
     if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_INVALID_KEY_PAIR )
       reg->mStatusText = tr("Author public key and author private key not equals recorded in db.");
     else if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_INVALID_NAME )
-      reg->mStatusText = tr("Assigned name always used by other author.");
+      reg->mStatusText = tr("Assigned name already used by other author.");
     else if( map[SDRM_TYPE].toInteger() == SDRM_TYPE_OK )
       reg->mStatusText = tr("Registration successfull.");
     else

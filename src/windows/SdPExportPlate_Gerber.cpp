@@ -380,7 +380,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
       mGridEna->setChecked(false);
       hbox->addWidget( mGridEna );
 
-      hbox->addWidget( new QLabel(" Columns:") );
+      hbox->addWidget( new QLabel(tr(" Columns:")) );
       mColumns = new QSpinBox();
       mColumns->setRange( 1, 100 );
       mColumns->setValue(1);
@@ -388,7 +388,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
       mColumns->setEnabled(false);
       hbox->addWidget( mColumns );
 
-      hbox->addWidget( new QLabel(" gap:") );
+      hbox->addWidget( new QLabel(tr(" gap:")) );
       mColumnGap = new QDoubleSpinBox();
       mColumnGap->setRange( 0, 20.0 );
       mColumnGap->setValue( 1.0 );
@@ -396,7 +396,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
       mColumnGap->setEnabled(false);
       hbox->addWidget( mColumnGap );
 
-      hbox->addWidget( new QLabel("  Rows:") );
+      hbox->addWidget( new QLabel(tr("  Rows:")) );
       mRows = new QSpinBox();
       mRows->setRange( 1, 100 );
       mRows->setValue( 1 );
@@ -404,7 +404,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
       mRows->setEnabled( false );
       hbox->addWidget( mRows );
 
-      hbox->addWidget( new QLabel(" gap:") );
+      hbox->addWidget( new QLabel(tr(" gap:")) );
       mRowGap = new QDoubleSpinBox();
       mRowGap->setRange( 0, 20.0 );
       mRowGap->setValue( 1.0 );

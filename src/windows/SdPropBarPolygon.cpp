@@ -135,6 +135,7 @@ void SdPropBarPolygon::setPropPolygon(const SdPropComposerPolygon &propPolygon, 
   setVertexType( enterType );
 
   //Fill net list
+  mWireName->clear();
   mWireName->addItems( list );
   //Current road name name
   auto &propNetName = propPolygon.get<&SdPropPolygon::mNetName>();

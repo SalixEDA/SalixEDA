@@ -575,7 +575,7 @@ bool SdGraphTracedRoad::isMatchNetAndStratum(const QString netName, SdPvStratum 
 void SdGraphTracedRoad::accumWindows(SdPolyWindowList &dest, SdPvStratum stratum, int gap, const QString netName) const
   {
   //Test if match to stratum and not equal to netName
-  if( mProp.mNetName == netName || mProp.mStratum.isIntersect(stratum) )
+  if( mProp.mNetName == netName || !mProp.mStratum.isIntersect(stratum) )
     return;
   //We append 3 objects: over rectangle, 2 end solid filled circles
 

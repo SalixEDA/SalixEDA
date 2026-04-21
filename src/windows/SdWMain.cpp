@@ -2259,6 +2259,8 @@ void SdWMain::cmGuiderScreenShot()
   {
   if( mGuiderCapture != nullptr ) {
     mGuiderCapture->shotingStart();
+    activateWindow();
+    setFocus();
     }
   }
 

@@ -1270,11 +1270,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="323"/>
-        <source>Main window screenshot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="windows/SdWCommand.cpp" line="130"/>
         <source>Rotate group 90 degree [F7]</source>
         <translation type="unfinished"></translation>
@@ -1527,47 +1522,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="333"/>
+        <location filename="windows/SdWCommand.cpp" line="332"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="334"/>
+        <location filename="windows/SdWCommand.cpp" line="333"/>
         <source>Contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="335"/>
+        <location filename="windows/SdWCommand.cpp" line="334"/>
         <source>Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="336"/>
+        <location filename="windows/SdWCommand.cpp" line="335"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="337"/>
+        <location filename="windows/SdWCommand.cpp" line="336"/>
         <source>Registration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="338"/>
+        <location filename="windows/SdWCommand.cpp" line="337"/>
         <source>Home help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="340"/>
+        <location filename="windows/SdWCommand.cpp" line="339"/>
         <source>Backward help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="342"/>
+        <location filename="windows/SdWCommand.cpp" line="341"/>
         <source>Forward help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="347"/>
+        <location filename="windows/SdWCommand.cpp" line="346"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1953,7 +1948,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDBoardBuilder.cpp" line="112"/>
+        <location filename="windows/SdDBoardBuilder.cpp" line="113"/>
         <source>Build board</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2334,19 +2329,19 @@
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="184"/>
-        <location filename="windows/SdDGetObject.cpp" line="125"/>
+        <location filename="windows/SdDGetObject.cpp" line="127"/>
         <source>Sections</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="203"/>
-        <location filename="windows/SdDGetObject.cpp" line="134"/>
+        <location filename="windows/SdDGetObject.cpp" line="137"/>
         <source>Symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="windows/SdDGetObject.ui" line="210"/>
-        <location filename="windows/SdDGetObject.cpp" line="140"/>
+        <location filename="windows/SdDGetObject.cpp" line="143"/>
         <source>Part</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2366,42 +2361,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="107"/>
+        <location filename="windows/SdDGetObject.cpp" line="109"/>
         <source>With part only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="146"/>
+        <location filename="windows/SdDGetObject.cpp" line="137"/>
+        <source>Sheet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDGetObject.cpp" line="143"/>
+        <source>Pcb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDGetObject.cpp" line="149"/>
         <source>3D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="341"/>
+        <location filename="windows/SdDGetObject.cpp" line="349"/>
         <source>Section %1: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="473"/>
+        <location filename="windows/SdDGetObject.cpp" line="481"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="474"/>
+        <location filename="windows/SdDGetObject.cpp" line="482"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="475"/>
+        <location filename="windows/SdDGetObject.cpp" line="483"/>
         <source>Created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="533"/>
+        <location filename="windows/SdDGetObject.cpp" line="541"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="533"/>
+        <location filename="windows/SdDGetObject.cpp" line="541"/>
         <source>You must select element or press Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4861,7 +4866,8 @@
     </message>
     <message>
         <location filename="windows/SdDRegistation.cpp" line="237"/>
-        <source>Assigned name always used by other author.</source>
+        <source>Assigned name already used by other author.</source>
+        <oldsource>Assigned name always used by other author.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5151,12 +5157,12 @@
 <context>
     <name>SdGuiderCapture</name>
     <message>
-        <location filename="guider/SdGuiderCapture.cpp" line="408"/>
+        <location filename="guider/SdGuiderCapture.cpp" line="455"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderCapture.cpp" line="408"/>
+        <location filename="guider/SdGuiderCapture.cpp" line="455"/>
         <source>Play completed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5199,22 +5205,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderDialog.cpp" line="145"/>
+        <location filename="guider/SdGuiderDialog.cpp" line="143"/>
+        <source>Shots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="144"/>
+        <source>Start shots capture current scena</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="155"/>
+        <source>Shots size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="156"/>
+        <source>Resize main window for shots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="guider/SdGuiderDialog.cpp" line="167"/>
         <source>The script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderDialog.cpp" line="321"/>
+        <location filename="guider/SdGuiderDialog.cpp" line="343"/>
         <source>[%1 sec] %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderDialog.cpp" line="323"/>
+        <location filename="guider/SdGuiderDialog.cpp" line="345"/>
         <source>[%1 sec]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderDialog.cpp" line="390"/>
+        <location filename="guider/SdGuiderDialog.cpp" line="412"/>
         <source>All steps completed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5742,6 +5768,22 @@
     <message>
         <location filename="windows/SdPExportPlate_Gerber.cpp" line="379"/>
         <source>Enable pcb grid (panel)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="383"/>
+        <source> Columns:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="391"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="407"/>
+        <source> gap:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="399"/>
+        <source>  Rows:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
