@@ -1,0 +1,18 @@
+- Creating a new project and schematic within it
+-- To create a new project, click this button.
+-- This creates an empty project and the project tree is shown on the left side.
+-- To create a schematic sheet or any other project object, click this button.
+-- A dialog box for creating a project object appears.
+-- In the object type list of this dialog, select "Schematic".
+-- A list of possible methods for creating schematics appears.
+-- As the creation method, select "Schematic Wizard".
+-- Click Next to proceed to the schematic wizard selection.
+-- Since "Schematic Wizard" was selected as the creation method, the next step displays a dialog with a selection of available schematic creation wizards. Select the "Schematic Formatting" wizard.
+-- And click Next to proceed to the formatting selection.
+-- A dialog box with a list of available formatting collections appears.
+-- In the list of found formatting collections, select "form iso".
+-- In the sections list, select the "iso a4" option as the formatting basis.
+-- Click OK to insert the formatting into the schematic.
+-- A prompt appears for the name of the object being created. In this case, the schematic sheet. You can leave the schematic sheet name as the default, but for symbols, footprints, and components, use real names.
+-- Click the "Finish" button to create the schematic.
+-- Result.
