@@ -30,8 +30,8 @@ void SdScaler::scaleStep(double step)
 
 void SdScaler::scaleSet(double scale)
   {
-  if( scale < 0.01 )
-    qDebug() << "Low scale" << scale;
+  // if( scale < 0.01 )
+  //   qDebug() << "Low scale" << scale;
   mScale = scale;
   //Check scale bounds
   if( mScale > maxScale ) mScale = maxScale;
