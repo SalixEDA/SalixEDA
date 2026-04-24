@@ -21,6 +21,8 @@ Description
 #include <QApplication>
 #include <QWidget>
 #include <QMouseEvent>
+#include <QMenuBar>
+#include <QMainWindow>
 
 //!
 //! \brief Serializes event data to JSON writer
@@ -129,19 +131,46 @@ void SdGuiderEvent::inject( const SdGuiderEvent &next, QPoint windowPos )
     if( w != nullptr ) {
       if( next.mKeyEventType == 2 ) {
         //Key release
-        QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyRelease,
-                                                       next.mKeyCode,
-                                                       (Qt::KeyboardModifier)next.mKeyModifier,
-                                                       next.mKeyChar ? QString( QChar(next.mKeyChar) ) : QString{}
-                                                       ));
+        if( next.mKeyCode == Qt::Key_F8 ) {
+          //Special case. We treat F8 release as F8 press
+          QMainWindow *win = dynamic_cast<QMainWindow*>(QApplication::activeWindow());
+          if( win != nullptr ) {
+            QMenuBar *bar = win->menuBar();
+            bar->setFocus();
+            bar->setActiveAction(bar->actions().first());
+            }
+          }
+        else {
+          QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyRelease,
+                                                         next.mKeyCode,
+                                                         (Qt::KeyboardModifier)next.mKeyModifier,
+                                                         next.mKeyChar ? QString( QChar(next.mKeyChar) ) : QString{}
+                                                         ));
+          }
         }
       else {
+        //Special cases for menu selection
+        if( next.mKeyCode == Qt::Key_Down ) {
+          //Special case. We treat F8 release as F8 press
+          QMainWindow *win = dynamic_cast<QMainWindow*>(QApplication::activeWindow());
+          if( win != nullptr ) {
+            QMenuBar *bar = win->menuBar();
+            if( w == bar ) {
+              QAction *act = bar->activeAction();
+              if( act != nullptr ) {
+                QMenu *menu = act->menu();
+                if( menu != nullptr )
+                  w = menu;
+                }
+              }
+            }
+          }
         //Key press
         QCoreApplication::postEvent( w, new QKeyEvent( QEvent::KeyPress,
                                                        next.mKeyCode,
                                                        (Qt::KeyboardModifier)next.mKeyModifier,
                                                        next.mKeyChar ? QString( QChar(next.mKeyChar) ) : QString{}
-                                                       ));
+                                                                       ));
         }
       }
     }
@@ -160,6 +189,8 @@ void SdGuiderEvent::mouseEvent(QWidget *w, QPoint global, QPoint local, const Sd
                                                        (Qt::MouseButton)buttonMask,
                                                        (Qt::MouseButton)mMouseButtons,
                                                        (Qt::KeyboardModifier)mKeyModifier ) );
+      if( (buttonMask & Qt::LeftButton) && w != nullptr )
+        w->setFocus();
       }
     else {
       //Mouse released

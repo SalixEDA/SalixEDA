@@ -38,6 +38,7 @@ Description
 #include <QFileInfo>
 #include <QComboBox>
 #include <QDebug>
+#include <QShortcut>
 
 
 
@@ -47,8 +48,12 @@ void SdWCommand::createMenu(SdWMain *frame)
   //File menu [Меню Файл]
   menuFile = new QMenu( QObject::tr("File") );
 
-
-
+  QShortcut *shortcut = new QShortcut(Qt::Key_F8,frame);
+  frame->connect( shortcut, &QShortcut::activated, frame, [frame] () {
+    QMenuBar *bar = frame->menuBar();
+    bar->setFocus();
+    bar->setActiveAction(bar->actions().first());
+    });
 
   cmFileNew = menuFile->addAction( QIcon(QString(":/pic/new.png")), QObject::tr("New project"), frame, &SdWMain::cmFileNew );
   cmFileLoadFromLibrary = menuFile->addAction( QIcon(QString(":/pic/download.png")), QObject::tr("Load from library..."), frame, &SdWMain::cmFileLoad );
