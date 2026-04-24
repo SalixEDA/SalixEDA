@@ -387,7 +387,7 @@ void SdGuiderCapture::periodicPayer()
       //Complete filterComplex
       for( int i = 1; i <= audioCount; ++i )
         filterComplex.append( QString("[a%1]").arg(i) );
-      filterComplex.append( QString("amix=inputs=%1[aout]").arg(audioCount) );
+      filterComplex.append( QString("amix=inputs=%1:normalize=0[aout]").arg(audioCount) );
 
       attr << "-filter_complex" << filterComplex
            << "-map" << "0:v"
