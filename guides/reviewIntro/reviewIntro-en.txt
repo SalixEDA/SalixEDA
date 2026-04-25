@@ -1,0 +1,11 @@
+- Overview
+-- SalixEDA is a free, compact, integrated computer-aided design system for schematics and PCBs of various small to medium complexity electronic devices.
+-- The system includes a complete set of graphical editors.
+-- Schematic editor.
+-- PCB editor, including a manual router with auto‑completion.
+-- 3D view of the PCB.
+-- Graphical editor for component symbols.
+-- Graphical editor for component footprint outlines.
+-- 3D graphical viewer.
+-- With an integrated parametric 3D graphics editor.
+-- Component editor that links the schematic representation of a component with its footprint image.
