@@ -578,10 +578,7 @@ void SdDLayers::onStratumCountChange(int newCount)
   newCount <<= 1;
   ui->mStratumCountText->setText( QString::number(newCount) );
 
-  mStratumMask = (stmTop|stmBottom);
-  newCount -= 2;
-  for( int i = 0; i < newCount; ++i )
-    mStratumMask |= stmInt04 << i;
+  mStratumMask = SdPvStratum::stratumStack( newCount );
 
   fillLayerList();
   }
