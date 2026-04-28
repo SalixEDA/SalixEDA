@@ -17,7 +17,6 @@ Description
 #include "SdWHelp.h"
 #include "SdWMain.h"
 #include "SdDGuiderPlayer.h"
-#include "objects/SdPulsar.h"
 #include "objects/SdEnvir.h"
 #include "SvLib/SvDir.h"
 
@@ -29,6 +28,7 @@ Description
 #include <QFileInfo>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDesktopServices>
 
 
 
@@ -44,18 +44,10 @@ SdWHelp::SdWHelp() :
     //Test special case for intro page
     //In intro page we can open project, create new project or open previously file
     QString path = url.fileName();
-    if( path.endsWith( QStringLiteral(".guide")) ) {
-      //Remove .guide from end
-      path = path.left( path.length() - 6 );
-      qDebug() << path;
-      if( SdDGuiderPlayer::guiderExist( path ) ) {
-        //Show guide player dialog
-        SdDGuiderPlayer player( path, this );
-        player.exec();
-        }
-      else
-        QMessageBox::warning( this, tr("Error!"), tr("Guider file '%1' not exist. Try reinstall SalixEDA").arg(path) );
-      }
+    if( path.endsWith( QStringLiteral(".mp4")) )
+      openGuider( path );
+    else if( path.contains( QString("://") ) )
+      QDesktopServices::openUrl( url );
     else {
       if( url.hasFragment() )
         setSource( pageConvert( url.fileName(), url.fragment() ) );
@@ -87,18 +79,10 @@ SdWHelp::SdWHelp(SdWMain *main) :
       else if( path.startsWith("load:") ) { mMain->cmFileOpenFile( path.mid(5) ); return; }
       else if( path.startsWith("library:") ) { mMain->cmFileLoadUid( path.mid(8) ); return; }
       }
-    if( path.endsWith( QStringLiteral(".guide")) ) {
-      path = url.fileName();
-      //Remove .guide from end
-      path = path.left( path.length() - 6 );
-      if( SdDGuiderPlayer::guiderExist( path ) ) {
-        //Show guide player dialog
-        SdDGuiderPlayer player( path, this );
-        player.exec();
-        }
-      else
-        QMessageBox::warning( this, tr("Error!"), tr("Guider file '%1' not exist. Try reinstall SalixEDA").arg(path) );
-      }
+    if( path.endsWith( QStringLiteral(".mp4")) )
+      openGuider( path );
+    else if( path.contains( QString("://") ) )
+      QDesktopServices::openUrl( url );
     else if( mMain != nullptr ) {
       if( url.hasFragment() )
         mMain->cmHelpPage( url.fileName() + QStringLiteral("#") + url.fragment() );
@@ -118,26 +102,45 @@ QUrl SdWHelp::pageConvert(const QString &page, const QString &fragment)
   //Interface language
   //Язык интерфейса
   QString lang = SdEnvir::languageGet();
+  QString core;
+  QString ext;
 
-  //Test if file exist with language lang
-  //Проверить наличие файла с языком
-  if( QFile::exists( helpPath() + lang + "-" + page ) ) {
-    //File exist. Build url
-    QUrl url = QUrl::fromLocalFile(helpPath() + lang + "-" + page);
-    if( !fragment.isEmpty() )
-      url.setFragment( fragment );
-    return url;
+  int pointIndex = page.lastIndexOf(QChar('.'));
+  if( pointIndex > 0 ) {
+    core = page.left( pointIndex );
+    ext  = page.mid( pointIndex );
+
+    if( core.contains(QChar('-')) ) {
+      pointIndex = core.lastIndexOf(QChar('-'));
+      lang = core.mid( pointIndex + 1 );
+      core = core.left( pointIndex );
+      }
+
+    //We use external or internal path for help in case of start page with "hx" prefix
+    QString dirPath( page.startsWith("hx") ? externHelpPath() : helpPath() );
+
+    //Test if file exist with language lang
+    //Проверить наличие файла с языком
+    QString path( dirPath + core + "-" + lang + ext );
+    if( QFile::exists( path ) ) {
+      //File exist. Build url
+      QUrl url = QUrl::fromLocalFile(path);
+      if( !fragment.isEmpty() )
+        url.setFragment( fragment );
+      return url;
+      }
+    //Test if file exist with english language
+    //Проверить наличие файла с анлийским языком
+    else if( QFile::exists( dirPath + core + "-en" + ext ) ) {
+      //File exist. Build url
+      QUrl url = QUrl::fromLocalFile( dirPath + core + "-en" + ext);
+      if( !fragment.isEmpty() )
+        url.setFragment( fragment );
+      return url;
+      }
     }
-  //Test if file exist with english language
-  //Проверить наличие файла с анлийским языком
-  else if( QFile::exists( helpPath() + "en-" + page ) ) {
-    //qDebug() << "Help on" << (helpPath() + "en-" + page);
-    //File exist. Build url
-    QUrl url = QUrl::fromLocalFile(helpPath() + "en-" + page);
-    if( !fragment.isEmpty() )
-      url.setFragment( fragment );
-    return url;
-    }
+
+
   //No file exist, return error file
   //Никакого файла нету, выдать файл с ошибкой
   return pageError();
@@ -152,15 +155,16 @@ QUrl SdWHelp::pageError()
   //Interface language
   //Язык интерфейса
   QString lang = SdEnvir::languageGet();
+  QString path( helpPath() + "errorNoPage-" + lang + ".htm" );
   //Test if exist error page with current language
   //Проверить наличие страницы с ошибкой на языке пользователя
-  if( QFile::exists( helpPath() + lang + "-errorNoPage.htm" ) )
+  if( QFile::exists( path ) )
     //Page exist, build url and return it
-    return QUrl::fromLocalFile( helpPath() + lang + "-errorNoPage.htm" );
+    return QUrl::fromLocalFile( path );
 
   //Return url with english error page
   //Вернуть страницу с ошибкой на английском
-  return QUrl::fromLocalFile( helpPath() + "en-errorNoPage.htm" );
+  return QUrl::fromLocalFile( helpPath() + "errorNoPage-en.htm" );
   }
 
 
@@ -186,11 +190,8 @@ void SdWHelp::contents()
 void SdWHelp::helpTopic(const QString topic)
   {
   //qDebug() << "help topic" << topic;
-  if( topic.endsWith( QStringLiteral(".guide")) ) {
-    //Show guide player dialog
-    SdDGuiderPlayer player( topic, this );
-    player.exec();
-    }
+  if( topic.endsWith( QStringLiteral(".mp4")) )
+    openGuider( topic );
   else if( topic.contains(QChar('#')) ) {
     //Topic contains local position
     int i = topic.indexOf( QChar('#') );
@@ -216,15 +217,11 @@ void SdWHelp::helpIntro()
   //Язык интерфейса
   QString lang = SdEnvir::languageGet();
 
-  QString fname;
+  QString fname( QString(":/startupPage/%1-startup.htm").arg(lang) );
   //Test if file exist with language lang
   //Проверить наличие файла с языком
-  if( QFile::exists( helpPath() + lang + "-startup.htm" ) )
-    //File exist.
-    fname = helpPath() + lang + "-startup.htm";
-  //Else use english language file
-  //Иначе использовать файла с анлийским языком
-  else fname = helpPath() + "en-startup.htm";
+  if( !QFile::exists( fname ) )
+    fname = QString(":/startupPage/en-startup.htm");
 
   QFile file(fname);
   if( file.open(QIODevice::ReadOnly) ) {
@@ -237,13 +234,13 @@ void SdWHelp::helpIntro()
 
     //Create html view previously file list
     QString prev;
-    for( const QString &str : files ) {
+    for( const QString &str : std::as_const(files) ) {
       QFileInfo info(str);
       prev.append("<p><a href=\"load:").append(str).append("\">").append( info.completeBaseName() ).append("</a><br>(").append(str).append(")</p>");
       }
 
     //Show intro with injected previously file list
-    setSearchPaths( {helpPath()} );
+    setSearchPaths( {helpPath(),externHelpPath()} );
     setHtml( html.arg(prev) );
     }
   }
@@ -252,9 +249,52 @@ void SdWHelp::helpIntro()
 
 
 
+//!
+//! \brief openGuider Opens guider player dialog
+//! \param topic      Topic name
+//!
+void SdWHelp::openGuider(const QString &topic)
+  {
+  //Remove .mp4 from end
+  QString path( topic.left( topic.length() - 4 ) );
+  if( SdDGuiderPlayer::guiderExist( path ) ) {
+    //Show guide player dialog
+    SdDGuiderPlayer player( path, this );
+    player.exec();
+    }
+  else
+    QMessageBox::warning( this, tr("Error!"), tr("Guider file '%1' not exist. Try reinstall SalixEDA").arg(topic) );
+  }
+
+
+
+
+
+//!
+//! \brief helpPath Returns internal help path (from resources)
+//! \return         Internal help path
+//!
 QString SdWHelp::helpPath()
   {
   return QStringLiteral(":/help/");
+  }
+
+
+
+
+//!
+//! \brief externHelpPath Returns external help path (applicationPath/help)
+//! \return               External help path
+//!
+QString SdWHelp::externHelpPath()
+  {
+  static QString helpPath;
+  if( helpPath.isEmpty() ) {
+    SvDir dir( QCoreApplication::applicationDirPath() );
+    dir.cd( QStringLiteral("help/") );
+    helpPath = dir.slashedPath();
+    }
+  return helpPath;
   }
 
 

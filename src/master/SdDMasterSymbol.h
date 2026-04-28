@@ -50,7 +50,7 @@ class SdDMasterSymbol : public QDialog
     void setValue( SdPoint p, int size = 350 );
 
     //Pin append to "pin" layer
-    void addPin( SdPoint org, int type, SdPoint pinNameOrg, const QString pinName, SdPoint pinNumberOrg );
+    void addPin( SdPoint org, int type, SdPoint pinNameOrg, const QString pinName, SdPoint pinNumberOrg, const QString &pinNumber = QString{} );
   public:
     SdDMasterSymbol( SdProjectItem *item, QWidget *parent );
 

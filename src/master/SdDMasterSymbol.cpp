@@ -88,10 +88,10 @@ void SdDMasterSymbol::setValue(SdPoint p, int size)
 
 
 //Pin append to "pin" layer
-void SdDMasterSymbol::addPin(SdPoint org, int type, SdPoint pinNameOrg, const QString pinName, SdPoint pinNumberOrg)
+void SdDMasterSymbol::addPin(SdPoint org, int type, SdPoint pinNameOrg, const QString pinName, SdPoint pinNumberOrg, const QString &pinNumber )
   {
   mPinProp.mPinType = type;
-  mItem->insertChild( new SdGraphSymPin( org, mPinProp, pinNumberOrg, mPinNumberProp, pinNameOrg, mPinNameProp, pinName), nullptr );
+  mItem->insertChild( new SdGraphSymPin( org, mPinProp, pinNumberOrg, mPinNumberProp, pinNameOrg, mPinNameProp, pinName, pinNumber ), nullptr );
   }
 
 

@@ -32,8 +32,17 @@ class SdWHelp : public QTextBrowser
     SdWHelp( SdWMain *main );
 
 
-    //Path where resides help system files
+    //!
+    //! \brief helpPath Returns internal help path (from resources)
+    //! \return         Internal help path
+    //!
     static QString helpPath();
+
+    //!
+    //! \brief externHelpPath Returns external help path (applicationPath/help)
+    //! \return               External help path
+    //!
+    static QString externHelpPath();
 
     //Conversion page name with fragment point in page to URL with current language
     //Преобразование названия страницы в фактический URL в соответствии с выбранным языком
@@ -56,6 +65,12 @@ class SdWHelp : public QTextBrowser
 
     //Show intro topic
     void helpIntro();
+
+    //!
+    //! \brief openGuider Opens guider player dialog
+    //! \param topic      Topic name
+    //!
+    void openGuider( const QString &topic );
   };
 
 #endif // SDWHELP_H

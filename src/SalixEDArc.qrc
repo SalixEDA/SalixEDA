@@ -308,16 +308,59 @@
         <file>pic/editSelectSave.png</file>
         <file>pic/partMasterModule.png</file>
         <file>pic/objSymbolPartParam.png</file>
+        <file>pic/library.png</file>
+        <file>pic/iconLocalLibrary.png</file>
+        <file>pic/iconGlobalStorage.png</file>
+        <file>pic/iconPrivateCloud.png</file>
+        <file>pic/objectPublic.png</file>
+        <file>fonts/DejaVuSans.ttf</file>
+        <file>fonts/NotoColorEmoji.ttf</file>
+        <file>pic/3dTopView.png</file>
+        <file>pic/boardX2.png</file>
+        <file>pic/boardX6.png</file>
+        <file>pic/boardX4.png</file>
+        <file>pic/boardX0.png</file>
+        <file>pic/boardMaster.png</file>
+        <file>pic/iconLogo.ico</file>
+        <file>pic/iconLogo.png</file>
+        <file>pic/redArrow.png</file>
+        <file>startupPage/en-startup.htm</file>
+        <file>startupPage/fileNew.png</file>
+        <file>startupPage/fileOpen.png</file>
+        <file>startupPage/iconExamples.png</file>
+        <file>startupPage/iconHelp.png</file>
+        <file>startupPage/iconVideos.png</file>
+        <file>startupPage/ru-startup.htm</file>
         <file>help/3dFace.png</file>
         <file>help/3dFaceList.png</file>
         <file>help/3dFaceModel.png</file>
         <file>help/3dHorzMove.png</file>
         <file>help/3dHorzRotate.png</file>
+        <file>help/3dModeHorzMove-ru.htm</file>
+        <file>help/3dModeHorzRotate-ru.htm</file>
         <file>help/3dModel.png</file>
+        <file>help/3dModeVertMove-ru.htm</file>
+        <file>help/3dModeVertRotate-ru.htm</file>
         <file>help/3dVertMove.png</file>
         <file>help/3dVertRotate.png</file>
+        <file>help/cmPadsAssociation-en.htm</file>
+        <file>help/cmPadsAssociation-ru.htm</file>
+        <file>help/cmRatNet-en.htm</file>
+        <file>help/cmRatNet-ru.htm</file>
         <file>help/cmShowPadOff.png</file>
         <file>help/cmShowPadOn.png</file>
+        <file>help/cmShowPads-en.htm</file>
+        <file>help/cmShowPads-ru.htm</file>
+        <file>help/cmTraceCheck-en.htm</file>
+        <file>help/cmTraceCheck-ru.htm</file>
+        <file>help/cmTraceError-en.htm</file>
+        <file>help/cmTraceError-ru.htm</file>
+        <file>help/cmTraceRules-en.htm</file>
+        <file>help/cmTraceRules-ru.htm</file>
+        <file>help/cmViewFit-en.htm</file>
+        <file>help/cmViewFit-ru.htm</file>
+        <file>help/contents-en.htm</file>
+        <file>help/contents-ru.htm</file>
         <file>help/cursorArc.png</file>
         <file>help/cursorArrow.png</file>
         <file>help/cursorBus.png</file>
@@ -363,166 +406,111 @@
         <file>help/drawRect.png</file>
         <file>help/drawRegion.png</file>
         <file>help/drawText.png</file>
-        <file>help/en-cmPadsAssociation.htm</file>
-        <file>help/en-cmRatNet.htm</file>
-        <file>help/en-cmShowPads.htm</file>
-        <file>help/en-cmTraceCheck.htm</file>
-        <file>help/en-cmTraceError.htm</file>
-        <file>help/en-cmTraceRules.htm</file>
-        <file>help/en-cmViewFit.htm</file>
-        <file>help/en-contents.htm</file>
-        <file>help/en-intro.htm</file>
-        <file>help/en-layers.htm</file>
-        <file>help/en-MComp.htm</file>
-        <file>help/en-MDraw.htm</file>
-        <file>help/en-MModes.htm</file>
-        <file>help/en-ModeCBus.htm</file>
-        <file>help/en-ModeCFragment.htm</file>
-        <file>help/en-ModeCIdent.htm</file>
-        <file>help/en-ModeCLinearArc.htm</file>
-        <file>help/en-ModeCLinearCircle.htm</file>
-        <file>help/en-ModeCLinearCircleFilled.htm</file>
-        <file>help/en-ModeCLinearLine.htm</file>
-        <file>help/en-ModeCLinearRect.htm</file>
-        <file>help/en-ModeCLinearRectFilled.htm</file>
-        <file>help/en-ModeCLinearRegion.htm</file>
-        <file>help/en-ModeCLinearRegionFilled.htm</file>
-        <file>help/en-ModeCNetName.htm</file>
-        <file>help/en-ModeCNetWire.htm</file>
-        <file>help/en-ModeCOrigin.htm</file>
-        <file>help/en-ModeCPartHighlight.htm</file>
-        <file>help/en-ModeCPartImp.htm</file>
-        <file>help/en-ModeCPartPin.htm</file>
-        <file>help/en-ModeCPartPlace.htm</file>
-        <file>help/en-ModeCPlateIdentMove.htm</file>
-        <file>help/en-ModeCPlateValueMove.htm</file>
-        <file>help/en-ModeCPolygonEnter.htm</file>
-        <file>help/en-ModeCRoadEnter.htm</file>
-        <file>help/en-ModeCRoadMove.htm</file>
-        <file>help/en-ModeCSheetIdentMove.htm</file>
-        <file>help/en-ModeCSheetValueMove.htm</file>
-        <file>help/en-ModeCSymImp.htm</file>
-        <file>help/en-ModeCSymPin.htm</file>
-        <file>help/en-ModeCText.htm</file>
-        <file>help/en-ModeCTraceDelete.htm</file>
-        <file>help/en-ModeCValue.htm</file>
-        <file>help/en-ModeCViaEnter.htm</file>
-        <file>help/en-ModeSelect.htm</file>
-        <file>help/en-ModeSymbolFragment.htm</file>
-        <file>help/en-ModeWireDisconnect.htm</file>
-        <file>help/en-ModeZoomIn.htm</file>
-        <file>help/en-ModeZoomOut.htm</file>
-        <file>help/en-ModeZoomWin.htm</file>
-        <file>help/en-MPart.htm</file>
-        <file>help/en-MPlate.htm</file>
-        <file>help/en-MSheet.htm</file>
-        <file>help/en-MSymbol.htm</file>
-        <file>help/en-MView.htm</file>
-        <file>help/en-pads.htm</file>
-        <file>help/en-script3d.htm</file>
-        <file>help/en-scriptFunColor.htm</file>
-        <file>help/en-scriptFunColorFromString.htm</file>
-        <file>help/en-scriptFunFaceBevelXY.htm</file>
-        <file>help/en-scriptFunFaceCircle.htm</file>
-        <file>help/en-scriptFunFaceCircleSide.htm</file>
-        <file>help/en-scriptFunFaceCurveXZ.htm</file>
-        <file>help/en-scriptFunFaceDuplicate.htm</file>
-        <file>help/en-scriptFunFaceDuplicateGrow.htm</file>
-        <file>help/en-scriptFunFaceDuplicateScale.htm</file>
-        <file>help/en-scriptFunFaceDuplicateShift.htm</file>
-        <file>help/en-scriptFunFaceEllipse.htm</file>
-        <file>help/en-scriptFunFaceEllipseSide.htm</file>
-        <file>help/en-scriptFunFaceEquidistantXY.htm</file>
-        <file>help/en-scriptFunFaceFlat.htm</file>
-        <file>help/en-scriptFunFaceFlatMatrix.htm</file>
-        <file>help/en-scriptFunFaceListAppend.htm</file>
-        <file>help/en-scriptFunFaceListBox.htm</file>
-        <file>help/en-scriptFunFaceListBoxMatrix.htm</file>
-        <file>help/en-scriptFunFaceListCurveXY.htm</file>
-        <file>help/en-scriptFunFaceListCylinder.htm</file>
-        <file>help/en-scriptFunFaceListCylinderMatrix.htm</file>
-        <file>help/en-scriptFunFaceListDuplicate.htm</file>
-        <file>help/en-scriptFunFaceListExtrude.htm</file>
-        <file>help/en-scriptFunFaceListExtrudeShift.htm</file>
-        <file>help/en-scriptFunFaceListHexagon.htm</file>
-        <file>help/en-scriptFunFaceListHolesXY.htm</file>
-        <file>help/en-scriptFunFaceListIndexed.htm</file>
-        <file>help/en-scriptFunFaceListPinCurveOne.htm</file>
-        <file>help/en-scriptFunFaceListPinCurveTwo.htm</file>
-        <file>help/en-scriptFunFaceListRotation.htm</file>
-        <file>help/en-scriptFunFaceListSimplify.htm</file>
-        <file>help/en-scriptFunFaceListUnion.htm</file>
-        <file>help/en-scriptFunFaceListWall.htm</file>
-        <file>help/en-scriptFunFaceListWallBevelXY.htm</file>
-        <file>help/en-scriptFunFaceListWallDoubleBevelXY.htm</file>
-        <file>help/en-scriptFunFaceListWallIndexed.htm</file>
-        <file>help/en-scriptFunFaceListWallList.htm</file>
-        <file>help/en-scriptFunFaceListWallRound.htm</file>
-        <file>help/en-scriptFunFaceListWalls.htm</file>
-        <file>help/en-scriptFunFacePart.htm</file>
-        <file>help/en-scriptFunFaceRect.htm</file>
-        <file>help/en-scriptFunFaceRectRound.htm</file>
-        <file>help/en-scriptFunFaceRectSide.htm</file>
-        <file>help/en-scriptFunGraphCircle.htm</file>
-        <file>help/en-scriptFunGraphLine.htm</file>
-        <file>help/en-scriptFunGraphPin.htm</file>
-        <file>help/en-scriptFunGraphRect.htm</file>
-        <file>help/en-scriptFunGraphRectFilled.htm</file>
-        <file>help/en-scriptFunMatrix.htm</file>
-        <file>help/en-scriptFunMatrixRotate.htm</file>
-        <file>help/en-scriptFunMatrixScale.htm</file>
-        <file>help/en-scriptFunMatrixTranslate.htm</file>
-        <file>help/en-scriptFunModel.htm</file>
-        <file>help/en-scriptFunModelAppend.htm</file>
-        <file>help/en-scriptFunModelCopy.htm</file>
-        <file>help/en-scriptFunRef.htm</file>
-        <file>help/en-scriptFunSelectColor.htm</file>
-        <file>help/en-scriptFunSelectPad.htm</file>
-        <file>help/en-scriptFunStringPadCircleThrough.htm</file>
-        <file>help/en-scriptFunStringPadRectThrough.htm</file>
-        <file>help/en-scriptFunStringPinIndex.htm</file>
-        <file>help/en-scriptFunStringPinMatrix.htm</file>
-        <file>help/en-scriptFunVertex.htm</file>
-        <file>help/en-scriptFunVertexOffset.htm</file>
-        <file>help/en-scriptModeHorzMove.htm</file>
-        <file>help/en-scriptSch.htm</file>
-        <file>help/en-scriptType2d.htm</file>
-        <file>help/en-scriptTypeBool.htm</file>
-        <file>help/en-scriptTypeColor.htm</file>
-        <file>help/en-scriptTypeFace.htm</file>
-        <file>help/en-scriptTypeFaceList.htm</file>
-        <file>help/en-scriptTypeFloat.htm</file>
-        <file>help/en-scriptTypeFloatList.htm</file>
-        <file>help/en-scriptTypeMatrix.htm</file>
-        <file>help/en-scriptTypeModel.htm</file>
-        <file>help/en-scriptTypeString.htm</file>
-        <file>help/en-scriptTypeVertex.htm</file>
-        <file>help/en-SdDEnterPosition.htm</file>
-        <file>help/en-SdDGetBus.htm</file>
-        <file>help/en-SdDGetObject.htm</file>
-        <file>help/en-SdDGrid.htm</file>
-        <file>help/en-SdDLayerCreate.htm</file>
-        <file>help/en-SdDLayerList.htm</file>
-        <file>help/en-SdDLayers.htm</file>
-        <file>help/en-SdDNetUnion.htm</file>
-        <file>help/en-SdDOptions.htm</file>
-        <file>help/en-SdDPadMaster.htm</file>
-        <file>help/en-SdDParamDefault.htm</file>
-        <file>help/en-SdDParamEditor.htm</file>
-        <file>help/en-SdDPrint.htm</file>
-        <file>help/en-SdDProjectStore.htm</file>
-        <file>help/en-SdDRegistration.htm</file>
-        <file>help/en-SdDRowValue.htm</file>
-        <file>help/en-SdDRuleEditor.htm</file>
-        <file>help/en-SdDVariantTable.htm</file>
-        <file>help/en-startup.htm</file>
-        <file>help/en-step.htm</file>
+        <file>help/examples-ru.htm</file>
         <file>help/fileNew.png</file>
         <file>help/fileOpen.png</file>
+        <file>help/iconExamples.png</file>
+        <file>help/iconHelp.png</file>
         <file>help/iconSheet.png</file>
+        <file>help/iconVideos.png</file>
+        <file>help/intro-en.htm</file>
+        <file>help/intro-ru.htm</file>
+        <file>help/layers-en.htm</file>
+        <file>help/layers-ru.htm</file>
+        <file>help/MComp-en.htm</file>
+        <file>help/MComp-ru.htm</file>
+        <file>help/MDraw-en.htm</file>
+        <file>help/MDraw-ru.htm</file>
+        <file>help/MModes-en.htm</file>
+        <file>help/MModes-ru.htm</file>
+        <file>help/ModeCBus-en.htm</file>
+        <file>help/ModeCBus-ru.htm</file>
+        <file>help/ModeCFragment-en.htm</file>
+        <file>help/ModeCFragment-ru.htm</file>
+        <file>help/ModeCIdent-en.htm</file>
+        <file>help/ModeCIdent-ru.htm</file>
+        <file>help/ModeCLinearArc-en.htm</file>
+        <file>help/ModeCLinearArc-ru.htm</file>
+        <file>help/ModeCLinearCircle-en.htm</file>
+        <file>help/ModeCLinearCircle-ru.htm</file>
+        <file>help/ModeCLinearCircleFilled-en.htm</file>
+        <file>help/ModeCLinearCircleFilled-ru.htm</file>
+        <file>help/ModeCLinearLine-en.htm</file>
+        <file>help/ModeCLinearLine-ru.htm</file>
+        <file>help/ModeCLinearRect-en.htm</file>
+        <file>help/ModeCLinearRect-ru.htm</file>
+        <file>help/ModeCLinearRectFilled-en.htm</file>
+        <file>help/ModeCLinearRectFilled-ru.htm</file>
+        <file>help/ModeCLinearRegion-en.htm</file>
+        <file>help/ModeCLinearRegion-ru.htm</file>
+        <file>help/ModeCLinearRegionFilled-en.htm</file>
+        <file>help/ModeCLinearRegionFilled-ru.htm</file>
+        <file>help/ModeCNetName-en.htm</file>
+        <file>help/ModeCNetName-ru.htm</file>
+        <file>help/ModeCNetWire-en.htm</file>
+        <file>help/ModeCNetWire-ru.htm</file>
+        <file>help/ModeCOrigin-en.htm</file>
+        <file>help/ModeCOrigin-ru.htm</file>
+        <file>help/ModeCPartHighlight-en.htm</file>
+        <file>help/ModeCPartHighlight-ru.htm</file>
+        <file>help/ModeCPartImp-en.htm</file>
+        <file>help/ModeCPartImp-ru.htm</file>
+        <file>help/ModeCPartPin-en.htm</file>
+        <file>help/ModeCPartPin-ru.htm</file>
+        <file>help/ModeCPartPlace-en.htm</file>
+        <file>help/ModeCPartPlace-ru.htm</file>
+        <file>help/ModeCPlateIdentMove-en.htm</file>
+        <file>help/ModeCPlateIdentMove-ru.htm</file>
+        <file>help/ModeCPlateValueMove-en.htm</file>
+        <file>help/ModeCPlateValueMove-ru.htm</file>
+        <file>help/ModeCPolygonEnter-en.htm</file>
+        <file>help/ModeCPolygonEnter-ru.htm</file>
+        <file>help/ModeCRoadEnter-en.htm</file>
+        <file>help/ModeCRoadEnter-ru.htm</file>
+        <file>help/ModeCRoadMove-en.htm</file>
+        <file>help/ModeCRoadMove-ru.htm</file>
+        <file>help/ModeCSheetIdentMove-en.htm</file>
+        <file>help/ModeCSheetIdentMove-ru.htm</file>
+        <file>help/ModeCSheetValueMove-en.htm</file>
+        <file>help/ModeCSheetValueMove-ru.htm</file>
+        <file>help/ModeCSymImp-en.htm</file>
+        <file>help/ModeCSymImp-ru.htm</file>
+        <file>help/ModeCSymPin-en.htm</file>
+        <file>help/ModeCSymPin-ru.htm</file>
+        <file>help/ModeCText-en.htm</file>
+        <file>help/ModeCText-ru.htm</file>
+        <file>help/ModeCTraceDelete-en.htm</file>
+        <file>help/ModeCTraceDelete-ru.htm</file>
+        <file>help/ModeCValue-en.htm</file>
+        <file>help/ModeCValue-ru.htm</file>
+        <file>help/ModeCViaEnter-en.htm</file>
+        <file>help/ModeCViaEnter-ru.htm</file>
+        <file>help/ModeSelect-en.htm</file>
+        <file>help/ModeSelect-ru.htm</file>
+        <file>help/ModeSymbolFragment-en.htm</file>
+        <file>help/ModeSymbolFragment-ru.htm</file>
+        <file>help/ModeWireDisconnect-en.htm</file>
+        <file>help/ModeWireDisconnect-ru.htm</file>
+        <file>help/ModeZoomIn-en.htm</file>
+        <file>help/ModeZoomIn-ru.htm</file>
+        <file>help/ModeZoomOut-en.htm</file>
+        <file>help/ModeZoomOut-ru.htm</file>
+        <file>help/ModeZoomWin-en.htm</file>
+        <file>help/ModeZoomWin-ru.htm</file>
         <file>help/mouseBLeft.png</file>
         <file>help/mouseBMiddle.png</file>
         <file>help/mouseBRight.png</file>
+        <file>help/MPart-en.htm</file>
+        <file>help/MPart-ru.htm</file>
+        <file>help/MPart3d-ru.htm</file>
+        <file>help/MPlate-en.htm</file>
+        <file>help/MPlate-ru.htm</file>
+        <file>help/MSheet-en.htm</file>
+        <file>help/MSheet-ru.htm</file>
+        <file>help/MSymbol-en.htm</file>
+        <file>help/MSymbol-ru.htm</file>
+        <file>help/MView-en.htm</file>
+        <file>help/MView-ru.htm</file>
         <file>help/objBus.png</file>
         <file>help/objComp.png</file>
         <file>help/objIdent.png</file>
@@ -543,6 +531,8 @@
         <file>help/objVia.png</file>
         <file>help/objWire.png</file>
         <file>help/objWireName.png</file>
+        <file>help/pads-en.htm</file>
+        <file>help/pads-ru.htm</file>
         <file>help/pads.png</file>
         <file>help/propBarNetWire.png</file>
         <file>help/propBarPartImp.png</file>
@@ -553,209 +543,243 @@
         <file>help/propBarSymImp.png</file>
         <file>help/propBarSymPin.png</file>
         <file>help/propBarVia.png</file>
-        <file>help/ru-3dModeHorzMove.htm</file>
-        <file>help/ru-3dModeHorzRotate.htm</file>
-        <file>help/ru-3dModeVertMove.htm</file>
-        <file>help/ru-3dModeVertRotate.htm</file>
-        <file>help/ru-cmPadsAssociation.htm</file>
-        <file>help/ru-cmRatNet.htm</file>
-        <file>help/ru-cmShowPads.htm</file>
-        <file>help/ru-cmTraceCheck.htm</file>
-        <file>help/ru-cmTraceError.htm</file>
-        <file>help/ru-cmTraceRules.htm</file>
-        <file>help/ru-cmViewFit.htm</file>
-        <file>help/ru-contents.htm</file>
-        <file>help/ru-intro.htm</file>
-        <file>help/ru-layers.htm</file>
-        <file>help/ru-MComp.htm</file>
-        <file>help/ru-MDraw.htm</file>
-        <file>help/ru-MModes.htm</file>
-        <file>help/ru-ModeCBus.htm</file>
-        <file>help/ru-ModeCFragment.htm</file>
-        <file>help/ru-ModeCIdent.htm</file>
-        <file>help/ru-ModeCLinearArc.htm</file>
-        <file>help/ru-ModeCLinearCircle.htm</file>
-        <file>help/ru-ModeCLinearCircleFilled.htm</file>
-        <file>help/ru-ModeCLinearLine.htm</file>
-        <file>help/ru-ModeCLinearRect.htm</file>
-        <file>help/ru-ModeCLinearRectFilled.htm</file>
-        <file>help/ru-ModeCLinearRegion.htm</file>
-        <file>help/ru-ModeCLinearRegionFilled.htm</file>
-        <file>help/ru-ModeCNetName.htm</file>
-        <file>help/ru-ModeCNetWire.htm</file>
-        <file>help/ru-ModeCOrigin.htm</file>
-        <file>help/ru-ModeCPartHighlight.htm</file>
-        <file>help/ru-ModeCPartImp.htm</file>
-        <file>help/ru-ModeCPartPin.htm</file>
-        <file>help/ru-ModeCPartPlace.htm</file>
-        <file>help/ru-ModeCPlateIdentMove.htm</file>
-        <file>help/ru-ModeCPlateValueMove.htm</file>
-        <file>help/ru-ModeCPolygonEnter.htm</file>
-        <file>help/ru-ModeCRoadEnter.htm</file>
-        <file>help/ru-ModeCRoadMove.htm</file>
-        <file>help/ru-ModeCSheetIdentMove.htm</file>
-        <file>help/ru-ModeCSheetValueMove.htm</file>
-        <file>help/ru-ModeCSymImp.htm</file>
-        <file>help/ru-ModeCSymPin.htm</file>
-        <file>help/ru-ModeCText.htm</file>
-        <file>help/ru-ModeCTraceDelete.htm</file>
-        <file>help/ru-ModeCValue.htm</file>
-        <file>help/ru-ModeCViaEnter.htm</file>
-        <file>help/ru-ModeSelect.htm</file>
-        <file>help/ru-ModeSymbolFragment.htm</file>
-        <file>help/ru-ModeWireDisconnect.htm</file>
-        <file>help/ru-ModeZoomIn.htm</file>
-        <file>help/ru-ModeZoomOut.htm</file>
-        <file>help/ru-ModeZoomWin.htm</file>
-        <file>help/ru-MPart.htm</file>
-        <file>help/ru-MPart3d.htm</file>
-        <file>help/ru-MPlate.htm</file>
-        <file>help/ru-MSheet.htm</file>
-        <file>help/ru-MSymbol.htm</file>
-        <file>help/ru-MView.htm</file>
-        <file>help/ru-pads.htm</file>
-        <file>help/ru-script3d.htm</file>
-        <file>help/ru-script3dFun.htm</file>
-        <file>help/ru-scriptFunColor.htm</file>
-        <file>help/ru-scriptFunColorFromString.htm</file>
-        <file>help/ru-scriptFunFaceBevelXY.htm</file>
-        <file>help/ru-scriptFunFaceCircle.htm</file>
-        <file>help/ru-scriptFunFaceCircleSide.htm</file>
-        <file>help/ru-scriptFunFaceCurveXZ.htm</file>
-        <file>help/ru-scriptFunFaceDuplicate.htm</file>
-        <file>help/ru-scriptFunFaceDuplicateGrow.htm</file>
-        <file>help/ru-scriptFunFaceDuplicateScale.htm</file>
-        <file>help/ru-scriptFunFaceDuplicateShift.htm</file>
-        <file>help/ru-scriptFunFaceEllipse.htm</file>
-        <file>help/ru-scriptFunFaceEllipseSide.htm</file>
-        <file>help/ru-scriptFunFaceEquidistantXY.htm</file>
-        <file>help/ru-scriptFunFaceFlat.htm</file>
-        <file>help/ru-scriptFunFaceFlatMatrix.htm</file>
-        <file>help/ru-scriptFunFaceListAppend.htm</file>
-        <file>help/ru-scriptFunFaceListBox.htm</file>
-        <file>help/ru-scriptFunFaceListBoxMatrix.htm</file>
-        <file>help/ru-scriptFunFaceListCurveXY.htm</file>
-        <file>help/ru-scriptFunFaceListCylinder.htm</file>
-        <file>help/ru-scriptFunFaceListCylinderMatrix.htm</file>
-        <file>help/ru-scriptFunFaceListDuplicate.htm</file>
-        <file>help/ru-scriptFunFaceListExtrude.htm</file>
-        <file>help/ru-scriptFunFaceListExtrudeShift.htm</file>
-        <file>help/ru-scriptFunFaceListHexagon.htm</file>
-        <file>help/ru-scriptFunFaceListHolesXY.htm</file>
-        <file>help/ru-scriptFunFaceListIndexed.htm</file>
-        <file>help/ru-scriptFunFaceListPinCurveOne.htm</file>
-        <file>help/ru-scriptFunFaceListPinCurveTwo.htm</file>
-        <file>help/ru-scriptFunFaceListRotation.htm</file>
-        <file>help/ru-scriptFunFaceListSimplify.htm</file>
-        <file>help/ru-scriptFunFaceListUnion.htm</file>
-        <file>help/ru-scriptFunFaceListWall.htm</file>
-        <file>help/ru-scriptFunFaceListWallBevelXY.htm</file>
-        <file>help/ru-scriptFunFaceListWallDoubleBevelXY.htm</file>
-        <file>help/ru-scriptFunFaceListWallIndexed.htm</file>
-        <file>help/ru-scriptFunFaceListWallList.htm</file>
-        <file>help/ru-scriptFunFaceListWallRound.htm</file>
-        <file>help/ru-scriptFunFaceListWalls.htm</file>
-        <file>help/ru-scriptFunFacePart.htm</file>
-        <file>help/ru-scriptFunFaceRect.htm</file>
-        <file>help/ru-scriptFunFaceRectRound.htm</file>
-        <file>help/ru-scriptFunFaceRectSide.htm</file>
-        <file>help/ru-scriptFunGraphCircle.htm</file>
-        <file>help/ru-scriptFunGraphLine.htm</file>
-        <file>help/ru-scriptFunGraphPin.htm</file>
-        <file>help/ru-scriptFunGraphRect.htm</file>
-        <file>help/ru-scriptFunGraphRectFilled.htm</file>
-        <file>help/ru-scriptFunMatrix.htm</file>
-        <file>help/ru-scriptFunMatrixRotate.htm</file>
-        <file>help/ru-scriptFunMatrixScale.htm</file>
-        <file>help/ru-scriptFunMatrixTranslate.htm</file>
-        <file>help/ru-scriptFunModel.htm</file>
-        <file>help/ru-scriptFunModelAppend.htm</file>
-        <file>help/ru-scriptFunModelCopy.htm</file>
-        <file>help/ru-scriptFunSelectColor.htm</file>
-        <file>help/ru-scriptFunSelectPad.htm</file>
-        <file>help/ru-scriptFunStringPadCircleThrough.htm</file>
-        <file>help/ru-scriptFunStringPadRectThrough.htm</file>
-        <file>help/ru-scriptFunStringPinIndex.htm</file>
-        <file>help/ru-scriptFunStringPinMatrix.htm</file>
-        <file>help/ru-scriptFunVertex.htm</file>
-        <file>help/ru-scriptFunVertexOffset.htm</file>
-        <file>help/ru-scriptSch.htm</file>
-        <file>help/ru-scriptType2d.htm</file>
-        <file>help/ru-scriptTypeBool.htm</file>
-        <file>help/ru-scriptTypeColor.htm</file>
-        <file>help/ru-scriptTypeFace.htm</file>
-        <file>help/ru-scriptTypeFaceList.htm</file>
-        <file>help/ru-scriptTypeFloat.htm</file>
-        <file>help/ru-scriptTypeFloatList.htm</file>
-        <file>help/ru-scriptTypeMatrix.htm</file>
-        <file>help/ru-scriptTypeModel.htm</file>
-        <file>help/ru-scriptTypeString.htm</file>
-        <file>help/ru-scriptTypeVertex.htm</file>
-        <file>help/ru-SdD3dModelMaster.htm</file>
-        <file>help/ru-SdDEnterPosition.htm</file>
-        <file>help/ru-SdDGetBus.htm</file>
-        <file>help/ru-SdDGetObject.htm</file>
-        <file>help/ru-SdDGrid.htm</file>
-        <file>help/ru-SdDLayerCreate.htm</file>
-        <file>help/ru-SdDLayerList.htm</file>
-        <file>help/ru-SdDLayers.htm</file>
-        <file>help/ru-SdDNetUnion.htm</file>
-        <file>help/ru-SdDOptions.htm</file>
-        <file>help/ru-SdDPadMaster.htm</file>
-        <file>help/ru-SdDPads.htm</file>
-        <file>help/ru-SdDParamDefault.htm</file>
-        <file>help/ru-SdDParamEditor.htm</file>
-        <file>help/ru-SdDPrint.htm</file>
-        <file>help/ru-SdDProjectStore.htm</file>
-        <file>help/ru-SdDRegistration.htm</file>
-        <file>help/ru-SdDRowValue.htm</file>
-        <file>help/ru-SdDRuleEditor.htm</file>
-        <file>help/ru-SdDVariantTable.htm</file>
-        <file>help/ru-startup.htm</file>
         <file>help/rules.png</file>
+        <file>help/script3d-en.htm</file>
+        <file>help/script3d-ru.htm</file>
+        <file>help/script3dFun-ru.htm</file>
+        <file>help/scriptFunColor-en.htm</file>
+        <file>help/scriptFunColor-ru.htm</file>
+        <file>help/scriptFunColorFromString-en.htm</file>
+        <file>help/scriptFunColorFromString-ru.htm</file>
+        <file>help/scriptFunFaceBevelXY-en.htm</file>
+        <file>help/scriptFunFaceBevelXY-ru.htm</file>
         <file>help/scriptFunFaceBevelXY1.png</file>
         <file>help/scriptFunFaceBevelXY2.png</file>
+        <file>help/scriptFunFaceCircle-en.htm</file>
+        <file>help/scriptFunFaceCircle-ru.htm</file>
         <file>help/scriptFunFaceCircle1.png</file>
         <file>help/scriptFunFaceCircle2.png</file>
+        <file>help/scriptFunFaceCircleSide-en.htm</file>
+        <file>help/scriptFunFaceCircleSide-ru.htm</file>
+        <file>help/scriptFunFaceCurveXZ-en.htm</file>
+        <file>help/scriptFunFaceCurveXZ-ru.htm</file>
         <file>help/scriptFunFaceCurveXZ.png</file>
+        <file>help/scriptFunFaceDuplicate-en.htm</file>
+        <file>help/scriptFunFaceDuplicate-ru.htm</file>
         <file>help/scriptFunFaceDuplicate.png</file>
+        <file>help/scriptFunFaceDuplicateGrow-en.htm</file>
+        <file>help/scriptFunFaceDuplicateGrow-ru.htm</file>
         <file>help/scriptFunFaceDuplicateGrow.png</file>
+        <file>help/scriptFunFaceDuplicateScale-en.htm</file>
+        <file>help/scriptFunFaceDuplicateScale-ru.htm</file>
         <file>help/scriptFunFaceDuplicateScale.png</file>
+        <file>help/scriptFunFaceDuplicateShift-en.htm</file>
+        <file>help/scriptFunFaceDuplicateShift-ru.htm</file>
         <file>help/scriptFunFaceDuplicateShift.png</file>
+        <file>help/scriptFunFaceEllipse-en.htm</file>
+        <file>help/scriptFunFaceEllipse-ru.htm</file>
         <file>help/scriptFunFaceEllipse.png</file>
+        <file>help/scriptFunFaceEllipseSide-en.htm</file>
+        <file>help/scriptFunFaceEllipseSide-ru.htm</file>
+        <file>help/scriptFunFaceEquidistantXY-en.htm</file>
+        <file>help/scriptFunFaceEquidistantXY-ru.htm</file>
         <file>help/scriptFunFaceEquidistantXY.png</file>
+        <file>help/scriptFunFaceFlat-en.htm</file>
+        <file>help/scriptFunFaceFlat-ru.htm</file>
         <file>help/scriptFunFaceFlat.png</file>
+        <file>help/scriptFunFaceFlatMatrix-en.htm</file>
+        <file>help/scriptFunFaceFlatMatrix-ru.htm</file>
+        <file>help/scriptFunFaceListAppend-en.htm</file>
+        <file>help/scriptFunFaceListAppend-ru.htm</file>
         <file>help/scriptFunFaceListBevelXY.png</file>
+        <file>help/scriptFunFaceListBox-en.htm</file>
+        <file>help/scriptFunFaceListBox-ru.htm</file>
         <file>help/scriptFunFaceListBox.png</file>
+        <file>help/scriptFunFaceListBoxMatrix-en.htm</file>
+        <file>help/scriptFunFaceListBoxMatrix-ru.htm</file>
         <file>help/scriptFunFaceListBoxMatrix.png</file>
+        <file>help/scriptFunFaceListCurveXY-en.htm</file>
+        <file>help/scriptFunFaceListCurveXY-ru.htm</file>
         <file>help/scriptFunFaceListCurveXY.png</file>
+        <file>help/scriptFunFaceListCylinder-en.htm</file>
+        <file>help/scriptFunFaceListCylinder-ru.htm</file>
         <file>help/scriptFunFaceListCylinder.png</file>
+        <file>help/scriptFunFaceListCylinderMatrix-en.htm</file>
+        <file>help/scriptFunFaceListCylinderMatrix-ru.htm</file>
         <file>help/scriptFunFaceListCylinderMatrix.png</file>
+        <file>help/scriptFunFaceListDuplicate-en.htm</file>
+        <file>help/scriptFunFaceListDuplicate-ru.htm</file>
         <file>help/scriptFunFaceListDuplicate.png</file>
+        <file>help/scriptFunFaceListExtrude-en.htm</file>
+        <file>help/scriptFunFaceListExtrude-ru.htm</file>
         <file>help/scriptFunFaceListExtrude.png</file>
+        <file>help/scriptFunFaceListExtrudeShift-en.htm</file>
+        <file>help/scriptFunFaceListExtrudeShift-ru.htm</file>
         <file>help/scriptFunFaceListExtrudeShift.png</file>
+        <file>help/scriptFunFaceListHexagon-en.htm</file>
+        <file>help/scriptFunFaceListHexagon-ru.htm</file>
         <file>help/scriptFunFaceListHexagon.png</file>
+        <file>help/scriptFunFaceListHolesXY-en.htm</file>
+        <file>help/scriptFunFaceListHolesXY-ru.htm</file>
         <file>help/scriptFunFaceListHolesXY.png</file>
+        <file>help/scriptFunFaceListIndexed-en.htm</file>
+        <file>help/scriptFunFaceListIndexed-ru.htm</file>
         <file>help/scriptFunFaceListIndexed.png</file>
+        <file>help/scriptFunFaceListPinCurveOne-en.htm</file>
+        <file>help/scriptFunFaceListPinCurveOne-ru.htm</file>
         <file>help/scriptFunFaceListPinCurveOne.png</file>
+        <file>help/scriptFunFaceListPinCurveTwo-en.htm</file>
+        <file>help/scriptFunFaceListPinCurveTwo-ru.htm</file>
         <file>help/scriptFunFaceListPinCurveTwo.png</file>
+        <file>help/scriptFunFaceListRotation-en.htm</file>
+        <file>help/scriptFunFaceListRotation-ru.htm</file>
         <file>help/scriptFunFaceListRotation.png</file>
+        <file>help/scriptFunFaceListSimplify-en.htm</file>
+        <file>help/scriptFunFaceListSimplify-ru.htm</file>
         <file>help/scriptFunFaceListSimplify.png</file>
+        <file>help/scriptFunFaceListUnion-en.htm</file>
+        <file>help/scriptFunFaceListUnion-ru.htm</file>
+        <file>help/scriptFunFaceListWall-en.htm</file>
+        <file>help/scriptFunFaceListWall-ru.htm</file>
         <file>help/scriptFunFaceListWall.png</file>
+        <file>help/scriptFunFaceListWallBevelXY-en.htm</file>
+        <file>help/scriptFunFaceListWallBevelXY-ru.htm</file>
+        <file>help/scriptFunFaceListWallDoubleBevelXY-en.htm</file>
+        <file>help/scriptFunFaceListWallDoubleBevelXY-ru.htm</file>
         <file>help/scriptFunFaceListWallDoubleBevelXY.png</file>
+        <file>help/scriptFunFaceListWallIndexed-en.htm</file>
+        <file>help/scriptFunFaceListWallIndexed-ru.htm</file>
         <file>help/scriptFunFaceListWallIndexed.png</file>
+        <file>help/scriptFunFaceListWallList-en.htm</file>
+        <file>help/scriptFunFaceListWallList-ru.htm</file>
         <file>help/scriptFunFaceListWallList.png</file>
+        <file>help/scriptFunFaceListWallRound-en.htm</file>
+        <file>help/scriptFunFaceListWallRound-ru.htm</file>
         <file>help/scriptFunFaceListWallRound.png</file>
+        <file>help/scriptFunFaceListWalls-en.htm</file>
+        <file>help/scriptFunFaceListWalls-ru.htm</file>
+        <file>help/scriptFunFacePart-en.htm</file>
+        <file>help/scriptFunFacePart-ru.htm</file>
         <file>help/scriptFunFacePart.png</file>
+        <file>help/scriptFunFaceRect-en.htm</file>
+        <file>help/scriptFunFaceRect-ru.htm</file>
         <file>help/scriptFunFaceRect.png</file>
+        <file>help/scriptFunFaceRectRound-en.htm</file>
+        <file>help/scriptFunFaceRectRound-ru.htm</file>
         <file>help/scriptFunFaceRectRound.png</file>
+        <file>help/scriptFunFaceRectSide-en.htm</file>
+        <file>help/scriptFunFaceRectSide-ru.htm</file>
+        <file>help/scriptFunGraphCircle-en.htm</file>
+        <file>help/scriptFunGraphCircle-ru.htm</file>
         <file>help/scriptFunGraphCircle.png</file>
+        <file>help/scriptFunGraphLine-en.htm</file>
+        <file>help/scriptFunGraphLine-ru.htm</file>
         <file>help/scriptFunGraphLine.png</file>
+        <file>help/scriptFunGraphPin-en.htm</file>
+        <file>help/scriptFunGraphPin-ru.htm</file>
         <file>help/scriptFunGraphPin.png</file>
+        <file>help/scriptFunGraphRect-en.htm</file>
+        <file>help/scriptFunGraphRect-ru.htm</file>
         <file>help/scriptFunGraphRect.png</file>
+        <file>help/scriptFunGraphRectFilled-en.htm</file>
+        <file>help/scriptFunGraphRectFilled-ru.htm</file>
         <file>help/scriptFunGraphRectFilled.png</file>
+        <file>help/scriptFunMatrix-en.htm</file>
+        <file>help/scriptFunMatrix-ru.htm</file>
+        <file>help/scriptFunMatrixRotate-en.htm</file>
+        <file>help/scriptFunMatrixRotate-ru.htm</file>
+        <file>help/scriptFunMatrixScale-en.htm</file>
+        <file>help/scriptFunMatrixScale-ru.htm</file>
+        <file>help/scriptFunMatrixTranslate-en.htm</file>
+        <file>help/scriptFunMatrixTranslate-ru.htm</file>
+        <file>help/scriptFunModel-en.htm</file>
+        <file>help/scriptFunModel-ru.htm</file>
+        <file>help/scriptFunModelAppend-en.htm</file>
+        <file>help/scriptFunModelAppend-ru.htm</file>
         <file>help/scriptFunModelAppend.png</file>
+        <file>help/scriptFunModelCopy-en.htm</file>
+        <file>help/scriptFunModelCopy-ru.htm</file>
         <file>help/scriptFunModelCopy.png</file>
+        <file>help/scriptFunRef-en.htm</file>
+        <file>help/scriptFunSelectColor-en.htm</file>
+        <file>help/scriptFunSelectColor-ru.htm</file>
+        <file>help/scriptFunSelectPad-en.htm</file>
+        <file>help/scriptFunSelectPad-ru.htm</file>
+        <file>help/scriptFunStringPadCircleThrough-en.htm</file>
+        <file>help/scriptFunStringPadCircleThrough-ru.htm</file>
+        <file>help/scriptFunStringPadRectThrough-en.htm</file>
+        <file>help/scriptFunStringPadRectThrough-ru.htm</file>
+        <file>help/scriptFunStringPinIndex-en.htm</file>
+        <file>help/scriptFunStringPinIndex-ru.htm</file>
+        <file>help/scriptFunStringPinMatrix-en.htm</file>
+        <file>help/scriptFunStringPinMatrix-ru.htm</file>
+        <file>help/scriptFunVertex-en.htm</file>
+        <file>help/scriptFunVertex-ru.htm</file>
+        <file>help/scriptFunVertexOffset-en.htm</file>
+        <file>help/scriptFunVertexOffset-ru.htm</file>
+        <file>help/scriptModeHorzMove-en.htm</file>
+        <file>help/scriptSch-en.htm</file>
+        <file>help/scriptSch-ru.htm</file>
+        <file>help/scriptType2d-en.htm</file>
+        <file>help/scriptType2d-ru.htm</file>
+        <file>help/scriptTypeBool-en.htm</file>
+        <file>help/scriptTypeBool-ru.htm</file>
+        <file>help/scriptTypeColor-en.htm</file>
+        <file>help/scriptTypeColor-ru.htm</file>
+        <file>help/scriptTypeFace-en.htm</file>
+        <file>help/scriptTypeFace-ru.htm</file>
+        <file>help/scriptTypeFaceList-en.htm</file>
+        <file>help/scriptTypeFaceList-ru.htm</file>
+        <file>help/scriptTypeFloat-en.htm</file>
+        <file>help/scriptTypeFloat-ru.htm</file>
+        <file>help/scriptTypeFloatList-en.htm</file>
+        <file>help/scriptTypeFloatList-ru.htm</file>
+        <file>help/scriptTypeMatrix-en.htm</file>
+        <file>help/scriptTypeMatrix-ru.htm</file>
+        <file>help/scriptTypeModel-en.htm</file>
+        <file>help/scriptTypeModel-ru.htm</file>
+        <file>help/scriptTypeString-en.htm</file>
+        <file>help/scriptTypeString-ru.htm</file>
+        <file>help/scriptTypeVertex-en.htm</file>
+        <file>help/scriptTypeVertex-ru.htm</file>
+        <file>help/SdD3dModelMaster-ru.htm</file>
+        <file>help/SdDEnterPosition-en.htm</file>
+        <file>help/SdDEnterPosition-ru.htm</file>
+        <file>help/SdDGetBus-en.htm</file>
+        <file>help/SdDGetBus-ru.htm</file>
+        <file>help/SdDGetObject-en.htm</file>
+        <file>help/SdDGetObject-ru.htm</file>
+        <file>help/SdDGrid-en.htm</file>
+        <file>help/SdDGrid-ru.htm</file>
+        <file>help/SdDLayerCreate-en.htm</file>
+        <file>help/SdDLayerCreate-ru.htm</file>
+        <file>help/SdDLayerList-en.htm</file>
+        <file>help/SdDLayerList-ru.htm</file>
+        <file>help/SdDLayers-en.htm</file>
+        <file>help/SdDLayers-ru.htm</file>
+        <file>help/SdDNetUnion-en.htm</file>
+        <file>help/SdDNetUnion-ru.htm</file>
+        <file>help/SdDOptions-en.htm</file>
+        <file>help/SdDOptions-ru.htm</file>
+        <file>help/SdDPadMaster-en.htm</file>
+        <file>help/SdDPadMaster-ru.htm</file>
+        <file>help/SdDPads-ru.htm</file>
+        <file>help/SdDParamDefault-en.htm</file>
+        <file>help/SdDParamDefault-ru.htm</file>
+        <file>help/SdDParamEditor-en.htm</file>
+        <file>help/SdDParamEditor-ru.htm</file>
+        <file>help/SdDPrint-en.htm</file>
+        <file>help/SdDPrint-ru.htm</file>
+        <file>help/SdDProjectStore-en.htm</file>
+        <file>help/SdDProjectStore-ru.htm</file>
+        <file>help/SdDRegistration-en.htm</file>
+        <file>help/SdDRegistration-ru.htm</file>
+        <file>help/SdDRowValue-en.htm</file>
+        <file>help/SdDRowValue-ru.htm</file>
+        <file>help/SdDRuleEditor-en.htm</file>
+        <file>help/SdDRuleEditor-ru.htm</file>
+        <file>help/SdDVariantTable-en.htm</file>
+        <file>help/SdDVariantTable-ru.htm</file>
         <file>help/select.png</file>
         <file>help/smartArc1.png</file>
         <file>help/smartCircle1.png</file>
@@ -780,30 +804,13 @@
         <file>help/smartSymPin3.png</file>
         <file>help/smartSymPin4.png</file>
         <file>help/smartText1.png</file>
+        <file>help/step-en.htm</file>
         <file>help/symbolFragment.png</file>
         <file>help/viewFit.png</file>
         <file>help/viewRatnet.png</file>
         <file>help/viewWin.png</file>
         <file>help/viewZoomIn.png</file>
         <file>help/viewZoomOut.png</file>
-        <file>pic/library.png</file>
-        <file>pic/iconLocalLibrary.png</file>
-        <file>pic/iconGlobalStorage.png</file>
-        <file>pic/iconPrivateCloud.png</file>
-        <file>pic/objectPublic.png</file>
-        <file>fonts/DejaVuSans.ttf</file>
-        <file>fonts/NotoColorEmoji.ttf</file>
-        <file>pic/3dTopView.png</file>
-        <file>help/iconExamples.png</file>
-        <file>help/iconVideos.png</file>
-        <file>help/iconHelp.png</file>
-        <file>pic/boardX2.png</file>
-        <file>pic/boardX6.png</file>
-        <file>pic/boardX4.png</file>
-        <file>pic/boardX0.png</file>
-        <file>pic/boardMaster.png</file>
-        <file>pic/iconLogo.ico</file>
-        <file>pic/iconLogo.png</file>
-        <file>pic/redArrow.png</file>
+        <file>pic/symbolMasterIcWithNum.png</file>
     </qresource>
 </RCC>

@@ -11,31 +11,34 @@ Web
   www.SalixEDA.org
 
 Description
-  Symbol creation master for integrated circuits
+  Symbol creation master for integrated circuits with pin numbers
 */
-#ifndef SDDMASTERSYMBOLIC_H
-#define SDDMASTERSYMBOLIC_H
+#ifndef SDDMASTERSYMBOLICWITHNUM_H
+#define SDDMASTERSYMBOLICWITHNUM_H
 
 #include "SdDMasterSymbol.h"
 #include "windows/SdIllustrator.h"
 
-namespace Ui {
-    class SdDMasterSymbolIc;
-  }
+#include <QTableWidget>
+#include <QLabel>
+#include <QLineEdit>
 
-class SdDMasterSymbolIc : public SdDMasterSymbol
+
+class SdDMasterSymbolIcWithNum : public SdDMasterSymbol
   {
     Q_OBJECT
 
+    QTableWidget *mLeftTable;
+    QTableWidget *mRightTable;
+    QTableWidget *mCentralTable;
+    QLabel       *mPreview;
+    QLineEdit    *mTitle;
+
   public:
-    explicit SdDMasterSymbolIc( SdProjectItem *item, QWidget *parent = nullptr );
-    ~SdDMasterSymbolIc() override;
+    explicit SdDMasterSymbolIcWithNum( SdProjectItem *item, QWidget *parent = nullptr );
 
 
   public slots:
-    //Update preview on any params changed
-    void onEditChanged( const QString txt );
-
     //Update preview on any pin changes
     void onPinChanged( int row, int column );
 
@@ -63,16 +66,29 @@ class SdDMasterSymbolIc : public SdDMasterSymbol
     //Delete pin, gap or delimiter from right side
     void rightDelete();
 
+    void moveLeft();
+
+    void moveRight();
+
+    void fromClipboard();
 
   private:
-    Ui::SdDMasterSymbolIc *ui;
 
     //Draw symbol preview
     void drawSymbol( SdIllustrator &il );
+
+    void leftInsert( const QString &pinName, const QString &pinNumber );
+
+    void rightInsert( const QString &pinName, const QString &pinNumber );
+
+    void addAttr( int x, int y, int attr );
+
+    bool addSymbol( const QString &pinName, int x, int y );
 
     // QDialog interface
   public slots:
     virtual void accept() override;
   };
 
-#endif // SDDMASTERSYMBOLIC_H
+
+#endif // SDDMASTERSYMBOLICWITHNUM_H

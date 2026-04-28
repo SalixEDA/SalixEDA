@@ -338,6 +338,7 @@ void SdDMasterSymbolIc::drawSymbol(SdIllustrator &il)
   }
 
 
+
 static void separateStringToTwoLines( const QString &src, QString &fl, QString &sec )
   {
   QStringList list = src.split( QChar('/') );

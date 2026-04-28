@@ -118,6 +118,7 @@ SOURCES += \
     master/SdDMasterPartModule.cpp \
     master/SdDMasterPartSingleLine.cpp \
     master/SdDMasterSheetDecorator.cpp \
+    master/SdDMasterSymbolIcWithNum.cpp \
     master/SdMasterPart.cpp \
     modes/SdModeCScript.cpp \
     modes/SdModeCSymHighlight.cpp \
@@ -507,6 +508,7 @@ HEADERS  += \
     master/SdDMasterPartModule.h \
     master/SdDMasterPartSingleLine.h \
     master/SdDMasterSheetDecorator.h \
+    master/SdDMasterSymbolIcWithNum.h \
     master/SdMasterPart.h \
     modes/SdModeCScript.h \
     modes/SdModeCSymHighlight.h \

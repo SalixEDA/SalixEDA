@@ -30,6 +30,7 @@ Description
 
 #include "master/SdDMasterSymbolConnector.h"
 #include "master/SdDMasterSymbolIc.h"
+#include "master/SdDMasterSymbolIcWithNum.h"
 
 #include "master/SdDMasterSheetDecorator.h"
 
@@ -149,6 +150,13 @@ void SdPNewProjectItem_Master::initializePage()
         SdDMasterSymbolIc dlg( item, p );
         return dlg.exec();
         });
+
+      addMaster( tr("Integrated circuits with num"), tr("Creates symbol for integrated circuit with pin numbering and external pin table former, for example AI"),
+                 QString(":/pic/symbolMasterIcWithNum.png"), [] ( SdProjectItem *item, QWidget *p ) -> bool {
+        SdDMasterSymbolIcWithNum dlg( item, p );
+        return dlg.exec();
+        });
+
 
       break;
 

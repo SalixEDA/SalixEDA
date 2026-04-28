@@ -1,0 +1,325 @@
+Шаг 1: Создаем пользователей-служб
+
+Заходим на сервер под root'ом и создаем пользователей без возможности интерактивного входа (без пароля и с шеллом /usr/sbin/nologin).
+bash
+
+# Создаем пользователя для управления веб-сайтами
+useradd -r -s /usr/sbin/nologin -m -d /srv/web webmaster
+
+# Создаем пользователя для сервиса глобальной библиотеки
+useradd -r -s /usr/sbin/nologin -m -d /srv/global-lib glib
+
+# Создаем пользователя для сервиса приватных облаков
+useradd -r -s /usr/sbin/nologin -m -d /srv/private-cloud pcloud
+
+# Создаем пользователя для AI-интерфейса
+useradd -r -s /usr/sbin/nologin -m -d /srv/ai aiagent
+
+Разбор параметров:
+
+    -r: Создает системного пользователя (UID из системного диапазона).
+
+    -s /usr/sbin/nologin: Запрещает интерактивный вход. Безопасно.
+
+    -m -d /путь/...: Создает домашний каталог и сразу назначает его владельцем пользователя. Это идеально подходит под вашу структуру в /srv
+
+
+Копируем исполняемый файл глобальной библиотеки
+scp global-library-server root@178.212.13.179:/srv/global-lib/
+
+Меняем права файла
+chown glib:glib /srv/global-lib/global-library-server
+chmod 750 /srv/global-lib/global-library-server
+
+Создаем файл сервиса
+nano /etc/systemd/system/global-lib.service
+
+[Unit]
+Description=Global Components Library Service
+After=network.target
+
+[Service]
+Type=simple
+User=glib
+Group=glib
+WorkingDirectory=/srv/global-lib
+ExecStart=/srv/global-lib/global-library-server
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+
+Запускаем
+sudo systemctl daemon-reload
+sudo systemctl enable global-lib
+sudo systemctl start global-lib
+
+
+
+
+Установка ollama
+curl -fsSL https://ollama.com/install.sh | sh
+Загрузка моделей
+ollama pull bge-m3
+ollama pull qwen3:4b
+
+
+
+
+
+Копируем исполняемый файл приватного облака
+scp private-cloud-server root@178.212.13.179:/srv/private-cloud/
+
+Меняем права файла
+chown pcloud:pcloud private-cloud-server
+chmod 750 private-cloud-server
+
+Создаем файл сервиса
+nano /etc/systemd/system/private-cloud.service
+
+[Unit]
+Description=Global Components Library Service
+After=network.target
+
+[Service]
+Type=simple
+User=pcloud
+Group=pcloud
+WorkingDirectory=/srv/private-cloud
+ExecStart=/srv/private-cloud/private-cloud-server
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
+
+
+Запускаем
+sudo systemctl daemon-reload
+sudo systemctl enable private-cloud
+sudo systemctl start private-cloud
+
+
+
+Ограничение логов
+sudo mkdir -p /etc/systemd/journald.conf.d/
+sudo nano /etc/systemd/journald.conf.d/00-limit.conf
+
+
+[Journal]
+# Максимальный общий размер логов
+SystemMaxUse=500M
+
+# Минимальное свободное место, которое система должна сохранить
+SystemKeepFree=1G
+
+# Максимальный размер одного файла лога
+SystemMaxFileSize=100M
+
+# Максимальное количество файлов логов
+SystemMaxFiles=100
+
+# Как долго хранить логи (1 месяц)
+MaxFileSec=1month
+
+Перезапуск журнала
+sudo systemctl restart systemd-journald
+
+
+Установка ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+Проверим, что загрузилось
+ollama --version
+
+Убедимся, что запущено
+systemctl status ollama
+
+Загружаем модели
+ollama pull bge-m3
+ollama pull qwen3:4b
+
+
+Шаг 2: Настраиваем права на каталоги
+
+Теперь нужно "разложить все по полочкам" и выдать правильные права.
+bash
+
+# 1. Структура веб-сайтов (управляется webmaster, читается Apache)
+# Создаем подкаталоги для сайтов
+mkdir -p /srv/web/{salixeda.org,salixdev.ru,salixfab.ru}
+
+# Назначаем владельца: webmaster, группа: webmaster
+chown -R webmaster:webmaster /srv/web
+
+# Права: владелец (webmaster) может всё (7), группа (webmaster) может читать и входить (5), остальные ничего (0).
+# Но! Apache должен читать файлы. Обычно Apache работает от пользователя www-data.
+# Добавляем пользователя www-data в группу webmaster, чтобы он получил доступ (r-x).
+usermod -aG webmaster www-data  # Даем Apache доступ к сайтам
+
+Создаем конфиги для каждого сайта
+
+Для salixdev.ru особый случай, так как содержит доступ к настройке почты
+<VirtualHost *:80>
+  ServerName salixdev.ru
+  ServerAlias www.salixdev.ru
+  DocumentRoot /srv/web/salixdev.ru
+
+  <Directory /srv/web/salixdev.ru>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+  # Proxy for mox of web
+  ProxyPass /mox-mail/ http://127.0.0.1:1080/webmail/
+  ProxyPassReverse /mox-mail/ http://127.0.0.1:1080/webmail/
+
+  ProxyPass /mox-admin/ http://127.0.0.1:1080/admin/
+  ProxyPassReverse /mox-admin/ http://127.0.0.1:1080/admin/
+
+  ErrorLog ${APACHE_LOG_DIR}/salixdev.ru_error.log
+  CustomLog ${APACHE_LOG_DIR}/salixdev.ru_access.log combined
+</VirtualHost>
+
+
+
+Устанавливаем утилиту для сертификатов
+apt install certbot python3-certbot-apache
+
+Получаем сертификат для каждого сайта
+certbot --apache -d salixeda.org -d www.salixeda.org
+certbot --apache -d salixdev.ru -d www.salixdev.ru
+certbot --apache -d salixfab.ru -d www.salixfab.ru
+
+Редактируем сертифицированную конфигурацию apache
+nano /etc/apache2/sites-available/salixdev.ru-le-ssl.conf
+
+<VirtualHost *:443>
+    ServerName salixdev.ru
+    # ... остальные настройки ...
+
+    # Прокси для админки Mox
+    ProxyPass /mox-admin/ http://127.0.0.1:1080/admin/
+    ProxyPassReverse /mox-admin/ http://127.0.0.1:1080/admin/
+
+    # КРИТИЧЕСКИ ВАЖНО: перезаписываем путь в cookie
+    ProxyPassReverseCookiePath /admin/ /mox-admin/
+
+    # Прокси для веб-почты
+    ProxyPass /mox-mail/ http://127.0.0.1:1080/webmail/
+    ProxyPassReverse /mox-mail/ http://127.0.0.1:1080/webmail/
+    ProxyPassReverseCookiePath /webmail/ /mox-mail/
+</VirtualHost>
+
+Почта
+У почты такая система: почта ассоциируется с ip. На ip должен указывать базовый
+домен. Если на сервере несколько доменов, то выбираем тот, который будет базовым.
+Проверяем, что все записи mx всех доменов указывают на базовый домен.
+Добавляем реверсивную запись ip->базовый_домен.
+Я выбрал базовым salixdev.ru, соответственно почта mail.salixdev.ru Все записи
+mx должны указывать на mail.salixdev.ru Реверсивная запись тоже должна на него указывать.
+Убеждаемся в наличии A записи mail.salixdev.ru->ip
+
+# 1. Создаем пользователя mox с домашней директорией
+sudo useradd -m -d /srv/mox mox
+
+# 2. Переходим в его домашнюю папку
+cd /srv/mox
+
+# 3. Скачиваем последнюю версию mox (для Linux/amd64)
+wget -O mox https://beta.gobuilds.org/github.com/mjl-/mox@latest/linux-amd64-latest/dl
+
+# 4. Делаем файл исполняемым
+sudo chmod +x mox
+
+# 5. Сразу делаем пользователя mox владельцем
+sudo chown mox:mox mox
+
+#Установить правильное имя hostname
+hostnamectl set-hostname mail.salixdev.ru
+
+#Отредактировать /etc/hosts
+127.0.0.1 localhost
+#Вот эта важная строка ip domen
+178.212.13.179 mail.salixdev.ru mail
+
+#Установить утилиты для проверки dns
+apt install dnsutils
+nslookup mail.salixdev.ru
+#Должно показать IP
+nslookup 178.212.13.179
+#Должно показать IP в реверсивном порядке и домен
+systemctl restart systemd-hostnamed
+
+#Установить unbound
+apt install unbound
+
+#Правим resolv.conf
+cp /etc/resolv.conf /etc/resolv.conf.backup
+micro /etc/resolv.conf
+#Нужно сделать nameserver 127.0.0.1
+nameserver 127.0.0.1
+
+# Переключаемся на пользователя mox
+sudo -u mox -s /bin/bash
+
+# Запускаем quickstart
+./mox quickstart -existing-webserver postmaster@salixeda.org
+
+Вывалит целую простыню. Добавляем записи в DNS
+Тип	Имя	                       Значение	        Пояснение
+TXT	mail.salixdev.ru	       v=spf1 a -all	Разрешает этому серверу отправлять почту
+TXT	_smtp._tls.mail.salixdev.ru	v=TLSRPTv1; rua=mailto:tlsreports@mail.salixdev.ru	Отчеты о TLS-соединениях
+MX	salixdev.ru	10 mail.salixdev.ru.	(у вас уже должно быть)
+
+Тип записи	Имя/Хост	Значение	Приоритет/Порт
+CNAME	autoconfig	mail.salixdev.ru	-
+SRV	_autodiscover._tcp	mail.salixdev.ru	Priority: 0, Weight: 1, Port: 443
+SRV	_imaps._tcp	mail.salixdev.ru	Priority: 0, Weight: 1, Port: 993
+SRV	_submissions._tcp	mail.salixdev.ru	Priority: 0, Weight: 1, Port: 465
+SRV	_imap._tcp	.	Priority: 0, Weight: 0, Port: 0
+SRV	_submission._tcp	.	Priority: 0, Weight: 0, Port: 0
+SRV	_pop3._tcp	.	Priority: 0, Weight: 0, Port: 0
+SRV	_pop3s._tcp	.	Priority: 0, Weight: 0, Port: 0
+CAA	salixdev.ru	0 issue "letsencrypt.org"	-
+
+#Выходим из пользователя mox
+#Получаем сертификаты, но сначала остановим сервер
+systemctl stop apache2
+
+certbot certonly --standalone -d mail.salixdev.ru
+Сертификаты создаются в
+Certificate is saved at: /etc/letsencrypt/live/mail.salixdev.ru/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/mail.salixdev.ru/privkey.pem
+
+certbot certonly --standalone -d mta-sts.salixdev.ru
+Сертификаты создаются в
+Certificate is saved at: /etc/letsencrypt/live/mta-sts.salixdev.ru/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/mta-sts.salixdev.ru/privkey.pem
+
+certbot certonly --standalone -d autoconfig.salixdev.ru
+Сертификаты создаются в
+Certificate is saved at: /etc/letsencrypt/live/autoconfig.salixdev.ru/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/autoconfig.salixdev.ru/privkey.pem
+
+#снова запускаем сервер
+systemctl start apache2
+
+
+теперь правим config/mox.conf, чтобы были указания на правильные файлы
+
+
+chmod 644 mox.service
+systemctl enable $PWD/mox.service
+systemctl start mox.service
+journalctl -f -u mox.service # See logs
+
+
+v=DKIM1;h=sha256;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsnMOr+R+ZUfOYdyq9hmgRj1Bo2nAG8f2jDaCYQakxoRLzw8Vlv5oA3PtYdzVp4wIc/FbbKz43+E+syvYWyIzjYQmxFdKBVn042wf+P1cc7U1bxWAte9fIfLmLr6voldFwry7b/ka+fk0luiWIYCmClrwdK9kYIKCC5ylg4axcDxaERl1v0i4qvLfs2GiXHzi60LhK5pkIuF56ALiAGfzxsbQmQwIXdcBhfANIQFmAguIDd37DutAhzQt0GwC+Vps6YKaB+BvlsWknoRSIJmymtDES7EpApDOnKnAi2MoJk1zjFxPfRqlpLbiGhIxvAdG+F1+YptUEXlwxryIeRLqlQIDAQAB
+v=DKIM1;h=sha256;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAupMYz5jnDCsUkJ3lUurYfxYeF5GbDJXvAR9pIAEQw1Uxdv+qagwYFPXojMsl5kzv1ndVk3Ymo0tc9Cn3QDtZzCFjJz/QS1pihNlp+34OcmSTk4FFuik1/nn3zDMOgp4v0HpJNBQNIlVl1tfucmHzRqkwYZRI2F0sgBf5tTpQ0pUZjO0TChN+w/gvapafOVYztRkyxteA7ljqa97ZL1DDQBA93pxhRuuW4NEHtMy7NsfqnWxjTcJr0D4X5nbwC4RGF6HT11//2/xX0LspLBWhvEVjgUzAkTSkWpvOVnaa3CFyhnSLbj+XMizPKqZECkAdwyID3yV9zMhdX7JrjjMc9QIDAQAB
