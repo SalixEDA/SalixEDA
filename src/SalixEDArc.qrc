@@ -812,5 +812,7 @@
         <file>help/viewZoomIn.png</file>
         <file>help/viewZoomOut.png</file>
         <file>pic/symbolMasterIcWithNum.png</file>
+        <file>help/errorNoPage-en.md</file>
+        <file>help/errorNoPage-ru.md</file>
     </qresource>
 </RCC>

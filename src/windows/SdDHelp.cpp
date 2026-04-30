@@ -39,6 +39,7 @@ SdDHelp::SdDHelp(const QString &helpPage, QWidget *parent) :
   box->addWidget( bar );
 
   mWHelp = new SdWHelp();
+  //mWHelp->zoomIn(2);
 
   QToolButton *tool = new QToolButton();
   tool->setToolTip( tr("Help contents") );

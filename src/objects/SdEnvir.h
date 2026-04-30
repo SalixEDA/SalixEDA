@@ -62,19 +62,19 @@ Description
 #define dcvLast          5
 
 //Версия SdEnvir
-#define SdEnvirVersion  (42 + FONT_COUNT)
+#define SdEnvirVersion  (43 + FONT_COUNT)
 
 
 class SdEnvir
   {
-    QColor          mSysColors[scLast];    //System color table
-    QString         mFonts[FONT_COUNT];    //System font table
-    SdLayerPtrMap   mLayerTable;           //Layers table [Таблица слоев]
-    double          mSchPPM;               //Коэффициент преобразования в физическую величину в схемном редакторе
-    double          mPrtPPM;               //Коэффициент преобразования в физическую величину в конструкциях
+    QColor            mSysColors[scLast];    //!< System color table
+    QString           mFonts[FONT_COUNT];    //!< System font table
+    SdLayerPtrMap     mLayerTable;           //!< Layers table [Таблица слоев]
+    double            mSchPPM;               //!< Conversion factor to physical quantity in the schematic editor [Коэффициент преобразования в физическую величину в схемном редакторе]
+    double            mPrtPPM;               //!< Conversion factor to physical quantity in the pcb editor [Коэффициент преобразования в физическую величину в конструкциях]
 
-    QList<QPointF>  mGridHistory;          //Previous grid history
-    SdRuleBlock     mDefaultRules;         //Default rules for pcb
+    QList<QPointF>    mGridHistory;          //!< Previous grid history
+    SdRuleBlock       mDefaultRules;         //!< Default rules for pcb
 
     //Not saved
     //Cashed layers for stratum
@@ -95,53 +95,52 @@ class SdEnvir
     SV_SINGLETON( SdEnvir )
 
 
-    int             mDotSize;              //Размер точки соединений сегментов цепи
-    int             mDotWidth;             //Толщина линии точки соединения сегментов цепи
-    int             mSymPinSize;           //Размер перекрестья ножки символа
-    int             mPartPinSize;          //Размер окружности ножки корпуса
-    int             mSmartSize;            //Размер разумной точки
-    int             mSmartWidth;           //Толщина линии разумной точки
-    bool            mIsSmart;              //Включение разумного режима
-    bool            mIsWireSmart;          //Второй уровень разумного режима для цепей в схеме
-    SdSnapMask      mSmartMask;            //Маска разрешенных для поиска разумных точек
-    bool            mNetUnionOn;           //Выводить окно объединения каждый раз
-    int             mNetUnionMode;         //Режим объединения цепей 0-нет, 1-XN, 2-все
-    bool            mEnableComp;           //Разрешить операции с компонентами или заблокировать
-    bool            mEnableNet;            //Разрешить операции с цепями
-    bool            mEnablePic;            //Разрешить операции с картинкой
-    QString         mViaType;              //Default via type [Тип переходного отверстия по умолчанию]
-    bool            mShowRatNet;           //Показывать резинки
-    bool            mShowRemark;           //Показывать всплывающие подсказки над компонентами
-    bool            mShowMessageRemark;    //Показывать информацию в строке состояния
-    int             mPlaceMode;            //Режим размещения компонентов
-    int             mMinViewGrid;          //Минимальный видимый размер сетки
-    int             mUndoSize;             //Undo buffer size [Размер буфера отмены]
-    int             mCursorView;           //Cursor crosshair type [Вид перекрестья курсора]
-    int             mSmallCursorSize;      //Small cursor size in pixels [Размер малого курсора в пикселах]
-    bool            mCursorShow;           //Show cursor [Показывать курсор]
-    int             mTraseDotSize;         //Размер точки, показывающей цепь
-                                           //PPM показывает сколько физической величины приходится на одну логическую единицу
-    bool            mGridSyncXY;           //Syncronisated edition x and grid steps
-    bool            mGridShow;             //Включение сетки
-    bool            mCursorAlignGrid;      //Включение движения курсора по сетке
-    bool            mCenterCursor;         //Центровать курсор при увеличении и уменьшении
+    int             mDotSize;              //!< Size of the connection point of circuit segments [Размер точки соединений сегментов цепи]
+    int             mDotWidth;             //!< Line thickness of the connection point of circuit segments [Толщина линии точки соединения сегментов цепи]
+    int             mSymPinSize;           //!< Size of the symbol pin crosshair [Размер перекрестья ножки символа]
+    int             mPartPinSize;          //!< Size of the part pin circle [Размер окружности ножки корпуса]
+    int             mSmartSize;            //!< Size of the smart point [Размер разумной точки]
+    int             mSmartWidth;           //!< Line thickness of the smart point [Толщина линии разумной точки]
+    bool            mIsSmart;              //!< Enable smart mode [Включение разумного режима]
+    bool            mIsWireSmart;          //!< Second level of smart mode for nets in schematic [Второй уровень разумного режима для цепей в схеме]
+    SdSnapMask      mSmartMask;            //!< Mask of allowed smart point search types [Маска разрешенных для поиска разумных точек]
+    bool            mNetUnionOn;           //!< Show union window every time [Выводить окно объединения каждый раз]
+    int             mNetUnionMode;         //!< Net union mode 0-none, 1-XN, 2-all [Режим объединения цепей 0-нет, 1-XN, 2-все]
+    bool            mEnableComp;           //!< Allow or block component operations [Разрешить операции с компонентами или заблокировать]
+    bool            mEnableNet;            //!< Allow net operations [Разрешить операции с цепями]
+    bool            mEnablePic;            //!< Allow picture operations [Разрешить операции с картинкой]
+    QString         mViaType;              //!< Default via type [Тип переходного отверстия по умолчанию]
+    bool            mShowRatNet;           //!< Show rubber bands [Показывать резинки]
+    bool            mShowRemark;           //!< Show tooltips over components [Показывать всплывающие подсказки над компонентами]
+    bool            mShowMessageRemark;    //!< Show information in status bar [Показывать информацию в строке состояния]
+    int             mPlaceMode;            //!< Component placement mode [Режим размещения компонентов]
+    int             mMinViewGrid;          //!< Minimum visible grid size [Минимальный видимый размер сетки]
+    int             mUndoSize;             //!< Undo buffer size [Размер буфера отмены]
+    int             mCursorView;           //!< Cursor crosshair type [Вид перекрестья курсора]
+    int             mSmallCursorSize;      //!< Small cursor size in pixels [Размер малого курсора в пикселах]
+    bool            mCursorShow;           //!< Show cursor [Показывать курсор]
+    int             mTraseDotSize;         //!< Size of the point showing the net [Размер точки, показывающей цепь]
+                                           //!< PPM shows how much physical quantity corresponds to one logical unit [PPM показывает сколько физической величины приходится на одну логическую единицу]
+    bool            mGridSyncXY;           //!< Synchronized edition x and grid steps
+    bool            mGridShow;             //!< Enable grid [Включение сетки]
+    bool            mCursorAlignGrid;      //!< Enable cursor movement by grid [Включение движения курсора по сетке]
+    bool            mCenterCursor;         //!< Center cursor when zooming in and out [Центровать курсор при увеличении и уменьшении]
 
-    bool            mShowRuleErrors;       //If true then over pcb shows rule error indicators as rectangles
-    bool            mShowFields;           //If true then draw fields as fields names else draw fields as values
-    bool            mShowPads;             //If true then draw pads in part editor
-    double          mPolygonOpacity;       //Polygons draws with this opacity
-    bool            mAutoRemoveRoadLoop;   //Automatic detect and remove loops when enter roads
+    bool            mShowRuleErrors;       //!< If true then over pcb shows rule error indicators as rectangles
+    bool            mShowFields;           //!< If true then draw fields as fields names else draw fields as values
+    bool            mShowPads;             //!< If true then draw pads in part editor
+    double          mPolygonOpacity;       //!< Polygons draws with this opacity
+    bool            mAutoRemoveRoadLoop;   //!< Automatic detect and remove loops when enter roads
 
-
-    bool            mGuiderEnabled;        //Флаг разрешения/запрещения путеводителя
-    int             mGuiderPosition;       //Положение разделителя путеводителя
-    bool            mProjectEnabled;       //Флаг разрешения/запрещения проекта
-    int             mProjectPosition;      //Позиция разделителя проекта
-    bool            mProjectRemoveEnabled; //Разрешение автоматического запрещения проекта
-    int             mProjectRemoveTime;    //Время удержания проекта
-    double          mWidthStep;            //Шаг изменения толщины
-    double          mTextSizeStep;         //Шаг изменения высоты текста
-    bool            mCreateBack;           //Создавать BAK файл при сохранении
+    bool            mGuiderEnabled;        //!< Flag to enable/disable the guide [Флаг разрешения/запрещения путеводителя]
+    int             mGuiderPosition;       //!< Position of the guide splitter [Положение разделителя путеводителя]
+    bool            mProjectEnabled;       //!< Flag to enable/disable the project [Флаг разрешения/запрещения проекта]
+    int             mProjectPosition;      //!< Position of the project splitter [Позиция разделителя проекта]
+    bool            mProjectRemoveEnabled; //!< Allow automatic project disabling [Разрешение автоматического запрещения проекта]
+    int             mProjectRemoveTime;    //!< Project hold time [Время удержания проекта]
+    double          mWidthStep;            //!< Width change step [Шаг изменения толщины]
+    double          mTextSizeStep;         //!< Text height change step [Шаг изменения высоты текста]
+    bool            mCreateBack;           //!< Create BAK file when saving [Создавать BAK файл при сохранении]
 
     //This path depresate
     QString mPatternPath;
@@ -221,10 +220,22 @@ class SdEnvir
     void     layerForEach(quint64 classMask, std::function<bool (SdLayer *)> fun1 );
     void     layerForEachConst( quint64 classMask, std::function<bool(SdLayer*)> fun1 ) const;
 
+    //!
+    //! \brief layerRemove - Removes a layer by its identifier
+    //! \param layerId     - Unique identifier of the layer to remove
+    //!
     void     layerRemove( const QString &layerId ) { if( mLayerTable.contains(layerId) ) { delete mLayerTable[layerId]; mLayerTable.remove( layerId ); } }
 
+    //!
+    //! \brief layerCount - Returns the total number of registered layers
+    //! \return           - Number of layers currently in the layer table
+    //!
     int      layerCount() const { return mLayerTable.count(); }
 
+    //!
+    //! \brief layerVisibleSet - Sets visibility for multiple layers
+    //! \param layerIdTable    - List of layer identifiers to set visible (others become invisible)
+    //!
     void     layerVisibleSet( const QStringList &layerIdTable );
 
     //!
@@ -253,34 +264,109 @@ class SdEnvir
     SdLayer *layerVisibleForBoundary( SdPvStratum stratum ) { return mCacheForBoundary.getVisibleLayer( stratum ); }
     SdLayer *layerVisibleForKeepout( SdPvStratum stratum )  { return mCacheForKeepout.getVisibleLayer( stratum ); }
 
-    //Set layer pair
+    //!
+    //! \brief layerSetPair - Sets a pair of layers (top and bottom) for operations
+    //! \param idTop        - Identifier of the top layer
+    //! \param idBot        - Identifier of the bottom layer
+    //!
     void     layerSetPair( QString idTop, QString idBot );
 
-    //Reset "usage" layer flag for all layers
+    //!
+    //! \brief resetLayerUsage - Resets the "usage" flag for all layers
+    //!
     void     resetLayerUsage();
-    //Set "usage" layer flag for stratum layers from caches
+
+    //!
+    //! \brief setLayerUsage - Sets the "usage" flag for stratum layers from caches
+    //! \param stratumCount  - Number of stratum layers to mark as used
+    //!
     void     setLayerUsage( int stratumCount );
 
+    //!
+    //! \brief toPhisSchematic - Converts a logical value to a physical string in schematic units
+    //! \param val            - Logical value to convert
+    //! \return               - Physical string representation (e.g., "1.5 mm")
+    //!
     QString  toPhisSchematic( int val ) const { return SdUtil::log2physStr(val,mSchPPM); }
+
+    //!
+    //! \brief fromPhisSchematic - Converts a physical string to a logical value in schematic units
+    //! \param str              - Physical string to convert (e.g., "1.5 mm")
+    //! \return                 - Logical integer value
+    //!
     int      fromPhisSchematic( const QString str ) const { return SdUtil::phys2log(str,mSchPPM); }
 
+    //!
+    //! \brief toPhisPcb - Converts a logical value to a physical string in PCB units
+    //! \param val       - Logical value to convert
+    //! \return          - Physical string representation (e.g., "2.54 mm")
+    //!
     QString  toPhisPcb( int val ) const { return SdUtil::log2physStr(val,mPrtPPM); }
+
+    //!
+    //! \brief fromPhisPcb - Converts a physical string to a logical value in PCB units
+    //! \param str         - Physical string to convert (e.g., "2.54 mm")
+    //! \return            - Logical integer value
+    //!
     int      fromPhisPcb( const QString str ) const { return SdUtil::phys2log(str,mPrtPPM); }
 
+    //!
+    //! \brief getPad - Retrieves a pad by its pin type
+    //! \param pinType - Type identifier of the pin (e.g., "smd", "thru")
+    //! \return        - SdPad object corresponding to the specified pin type
+    //!
     SdPad    getPad( const QString pinType );
+
+    //!
+    //! \brief resetPads - Resets all pad definitions to their default values
+    //!
     void     resetPads();
 
+    //!
+    //! \brief defaultRules - Returns the default design rule block
+    //! \return             - SdRuleBlock containing default clearance, width, etc.
+    //!
     SdRuleBlock defaultRules() const { return mDefaultRules; }
 
     //Return current language settings
     static   QString languageGet();
   private:
+    //!
+    //! \brief deleteLayers - Deletes all layers and clears the layer table
+    //!
     void deleteLayers();
+
+    //!
+    //! \brief addLayer - Adds a layer object to the layer management system
+    //! \param layer    - Pointer to the SdLayer object to add
+    //!
     void addLayer( SdLayer *layer );
+
+    //!
+    //! \brief addLayerId - Adds a layer identifier with description
+    //! \param descr      - Layer descriptor containing layer properties
+    //!
     void addLayerId(const SdLayerDescr &descr);
+
+    //!
+    //! \brief addLayerId - Adds a complete layer definition
+    //! \param layerId    - Unique layer identifier
+    //! \param name       - Native language name of the layer
+    //! \param englishName - English name of the layer
+    //! \param descr      - Layer descriptor with additional properties
+    //! \param layerIndex - Index position for the layer
+    //!
     void addLayerId(const QString &layerId, const QString &name, const QString &englishName, const SdLayerDescr &descr , int layerIndex);
+
+    //!
+    //! \brief layerSetPairFor - Sets a layer pair for a specific layer
+    //! \param lid0           - Identifier of the reference layer to set pair for
+    //!
     void layerSetPairFor( const QString &lid0 );
   };
+
+
+
 
 
 #endif // SDENVIR_H

@@ -37,6 +37,7 @@ SdWHelp::SdWHelp() :
   QTextBrowser( nullptr ),
   mMain(nullptr)
   {
+  zoomIn(2);
 
   setOpenLinks(false);
   //Replace anchor clicked
@@ -66,6 +67,8 @@ SdWHelp::SdWHelp(SdWMain *main) :
   QTextBrowser( nullptr ),
   mMain(main)
   {
+  zoomIn(2);
+
   setOpenLinks(false);
   //Replace anchor clicked
   connect( this, &SdWHelp::anchorClicked, this, [this] ( QUrl url) {
@@ -155,7 +158,7 @@ QUrl SdWHelp::pageError()
   //Interface language
   //Язык интерфейса
   QString lang = SdEnvir::languageGet();
-  QString path( helpPath() + "errorNoPage-" + lang + ".htm" );
+  QString path( helpPath() + "errorNoPage-" + lang + ".md" );
   //Test if exist error page with current language
   //Проверить наличие страницы с ошибкой на языке пользователя
   if( QFile::exists( path ) )
@@ -164,7 +167,7 @@ QUrl SdWHelp::pageError()
 
   //Return url with english error page
   //Вернуть страницу с ошибкой на английском
-  return QUrl::fromLocalFile( helpPath() + "errorNoPage-en.htm" );
+  return QUrl::fromLocalFile( helpPath() + "errorNoPage-en.md" );
   }
 
 

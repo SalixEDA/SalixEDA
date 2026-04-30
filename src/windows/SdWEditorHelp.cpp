@@ -24,6 +24,7 @@ SdWEditorHelp::SdWEditorHelp() :
   {
   //Create help widget
   mHelp = new SdWHelp();
+  //mHelp->zoomIn(2);
 
   //And fit it to full editor space
   QVBoxLayout *box = new QVBoxLayout;

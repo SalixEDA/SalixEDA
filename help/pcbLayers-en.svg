@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="211.667mm" height="141.111mm"
+ viewBox="0 0 29944 16475"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" baseProfile="tiny">
+<title>SalixEDA SVG drawing</title>
+<desc>An SVG drawing created by the SalixEDA SVG Generator </desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="#00ff00" fill-opacity="1" stroke="#00ff00" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<path vector-effect="none" fill-rule="evenodd" d="M7194,4496 L5444,5496 L12694,5496 L13944,4496 L7194,4496"/>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="4944,4246 7194,4996 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="7194,4996 6694,4996 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="7194,4996 6944,4746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="4944,7246 7444,5746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="7444,5746 6944,6246 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="10" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="7444,5746 6694,5996 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,4444,3746)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-4323" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Top pack 1 - PCB top</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,4444,7746)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-4669" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Bot pack last - PCB bot</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,9444,2746)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-1922" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >2-layer simple PCB</text>
+</g>
+
+<g fill="#00ff00" fill-opacity="1" stroke="#00ff00" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<path vector-effect="none" fill-rule="evenodd" d="M23194,2246 L21444,3246 L28694,3246 L29944,2246 L23194,2246"/>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="20944,1996 23194,2746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23194,2746 22694,2746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23194,2746 22944,2496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="20944,4996 23444,3496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23444,3496 22944,3996 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23444,3496 22694,3746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,20444,1496)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-4323" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Top pack 1 - PCB top</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,20444,5496)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-2135" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Bot pack 1</text>
+</g>
+
+<g fill="#00ff00" fill-opacity="1" stroke="#00ff00" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<path vector-effect="none" fill-rule="evenodd" d="M23194,6996 L21444,7996 L28694,7996 L29944,6996 L23194,6996"/>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="20944,6746 23194,7496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23194,7496 22694,7496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23194,7496 22944,7246 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="20944,9746 23444,8246 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23444,8246 22944,8746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23444,8246 22694,8496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,20444,6246)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-2211" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Top pack 2</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,20444,10246)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-2135" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Bot pack 2</text>
+</g>
+
+<g fill="#00ff00" fill-opacity="1" stroke="#00ff00" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<path vector-effect="none" fill-rule="evenodd" d="M23194,12996 L21444,13996 L28694,13996 L29944,12996 L23194,12996"/>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="20944,12746 23194,13496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23194,13496 22694,13496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23194,13496 22944,13246 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="20944,15746 23444,14246 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23444,14246 22944,14746 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#ff0000" stroke-opacity="1" stroke-width="100" stroke-linecap="round" stroke-linejoin="round" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<polyline fill="none" vector-effect="none" points="23444,14246 22694,14496 " />
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,20194,12246)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-2628" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Top pack last</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,20444,16246)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-4669" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Bot pack last - PCB bot</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,25944,1746)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-654" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >pack 1</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,26194,6496)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-654" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >pack 2</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,25944,12496)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-862" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >pack last</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="1000" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,25694,10746)"
+font-family="FreeSerif" font-size="1000" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-375" y="300" font-family="FreeSerif" font-size="1000" font-weight="400" font-style="normal"
+ >...</text>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+</g>
+
+<g fill="#ff0000" fill-opacity="1" stroke="#7f7f7f" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,25444,246)"
+font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+>
+<text fill="#7f7f7f" fill-opacity="1" stroke="none" xml:space="preserve" x="-3012" y="150" font-family="FreeSerif" font-size="500" font-weight="400" font-style="normal"
+ >Multylayer PCB (4, 6, 8 ... 30)</text>
+</g>
+</g>
+</svg>

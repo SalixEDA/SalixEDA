@@ -52,7 +52,7 @@
     <message>
         <location filename="modes/SdModeCFragment.cpp" line="79"/>
         <location filename="modes/SdModeCSymImp.cpp" line="117"/>
-        <location filename="windows/SdWCommand.cpp" line="250"/>
+        <location filename="windows/SdWCommand.cpp" line="255"/>
         <source>Insert fragment</source>
         <translation>Вставка фрагмента</translation>
     </message>
@@ -287,7 +287,7 @@
     </message>
     <message>
         <location filename="modes/SdModeCPartImp.cpp" line="104"/>
-        <location filename="windows/SdWCommand.cpp" line="285"/>
+        <location filename="windows/SdWCommand.cpp" line="290"/>
         <source>Insert part</source>
         <translation>Вставка корпуса</translation>
     </message>
@@ -558,8 +558,8 @@
     </message>
     <message>
         <location filename="modes/SdModeCValue.cpp" line="106"/>
-        <location filename="windows/SdWCommand.cpp" line="189"/>
-        <location filename="windows/SdWCommand.cpp" line="206"/>
+        <location filename="windows/SdWCommand.cpp" line="194"/>
+        <location filename="windows/SdWCommand.cpp" line="211"/>
         <source>Edit value</source>
         <translation>Редактирование значения</translation>
     </message>
@@ -898,217 +898,217 @@
         <translation>Позволяет выбрать значение конденсатора</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="48"/>
+        <location filename="windows/SdWCommand.cpp" line="49"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="53"/>
+        <location filename="windows/SdWCommand.cpp" line="58"/>
         <source>New project</source>
         <translation>Новый проект</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="54"/>
-        <location filename="windows/SdWCommand.cpp" line="91"/>
+        <location filename="windows/SdWCommand.cpp" line="59"/>
+        <location filename="windows/SdWCommand.cpp" line="96"/>
         <source>Load from library...</source>
         <translation>Загрузить из библиотеки...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="55"/>
+        <location filename="windows/SdWCommand.cpp" line="60"/>
         <source>Open project ...</source>
         <translation>Открыть проект...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="56"/>
+        <location filename="windows/SdWCommand.cpp" line="61"/>
         <source>Previous files</source>
         <translation>Предыдущие файлы</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="58"/>
+        <location filename="windows/SdWCommand.cpp" line="63"/>
         <source>Close project</source>
         <translation>Закрыть проект</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="59"/>
+        <location filename="windows/SdWCommand.cpp" line="64"/>
         <source>Close all projects</source>
         <translation>Закрыть все проекты</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="61"/>
+        <location filename="windows/SdWCommand.cpp" line="66"/>
         <source>Save project</source>
         <translation>Сохранить проект</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="62"/>
+        <location filename="windows/SdWCommand.cpp" line="67"/>
         <source>Save project as...</source>
         <translation>Сохранить проект как...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="63"/>
+        <location filename="windows/SdWCommand.cpp" line="68"/>
         <source>Save all projects</source>
         <translation>Сохранить все проекты</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="64"/>
+        <location filename="windows/SdWCommand.cpp" line="69"/>
         <source>Store to library...</source>
         <translation>Сохранить в библиотеку...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="65"/>
+        <location filename="windows/SdWCommand.cpp" line="70"/>
         <source>Project stored in library</source>
         <translation>Проект из библиотеки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="68"/>
+        <location filename="windows/SdWCommand.cpp" line="73"/>
         <source>Import PasCAD</source>
         <translation>Импорт из PasCAD</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="69"/>
+        <location filename="windows/SdWCommand.cpp" line="74"/>
         <source>Import...</source>
         <translation>Импорт...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="70"/>
+        <location filename="windows/SdWCommand.cpp" line="75"/>
         <source>Export...</source>
         <translation>Экспорт...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="72"/>
+        <location filename="windows/SdWCommand.cpp" line="77"/>
         <source>Print...</source>
         <translation>Печать...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="74"/>
+        <location filename="windows/SdWCommand.cpp" line="79"/>
         <source>Exit programm</source>
         <translation>Выход из программы</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="89"/>
+        <location filename="windows/SdWCommand.cpp" line="94"/>
         <source>Objects</source>
         <translation>Объекты</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="90"/>
+        <location filename="windows/SdWCommand.cpp" line="95"/>
         <source>Create...</source>
         <translation>Создать...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="92"/>
+        <location filename="windows/SdWCommand.cpp" line="97"/>
         <source>Rename...</source>
         <translation>Переименовать...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="93"/>
+        <location filename="windows/SdWCommand.cpp" line="98"/>
         <source>Edit object param...</source>
         <translation>Редактировать параметры объекта...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="94"/>
-        <location filename="windows/SdWCommand.cpp" line="120"/>
+        <location filename="windows/SdWCommand.cpp" line="99"/>
+        <location filename="windows/SdWCommand.cpp" line="125"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="95"/>
-        <location filename="windows/SdWCommand.cpp" line="117"/>
+        <location filename="windows/SdWCommand.cpp" line="100"/>
+        <location filename="windows/SdWCommand.cpp" line="122"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="96"/>
-        <location filename="windows/SdWCommand.cpp" line="118"/>
+        <location filename="windows/SdWCommand.cpp" line="101"/>
+        <location filename="windows/SdWCommand.cpp" line="123"/>
         <source>Paste</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="97"/>
-        <location filename="windows/SdWCommand.cpp" line="119"/>
+        <location filename="windows/SdWCommand.cpp" line="102"/>
+        <location filename="windows/SdWCommand.cpp" line="124"/>
         <source>Cut</source>
         <translation>Вырезать</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="98"/>
+        <location filename="windows/SdWCommand.cpp" line="103"/>
         <source>Duplicate</source>
         <translation>Дублировать</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="99"/>
+        <location filename="windows/SdWCommand.cpp" line="104"/>
         <source>Sort</source>
         <translation>Сортировать</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="100"/>
+        <location filename="windows/SdWCommand.cpp" line="105"/>
         <source>Enable edit</source>
         <translation>Разрешить редактирование</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="101"/>
+        <location filename="windows/SdWCommand.cpp" line="106"/>
         <source>Finish edit</source>
         <translation>Закончить редактирование</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="102"/>
+        <location filename="windows/SdWCommand.cpp" line="107"/>
         <source>Make an object public</source>
         <translation>Сделать объект публичным</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="104"/>
+        <location filename="windows/SdWCommand.cpp" line="109"/>
         <source>Edit project param...</source>
         <translation>Редактирование параметров проекта...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="105"/>
+        <location filename="windows/SdWCommand.cpp" line="110"/>
         <source>Upgrade with new versions</source>
         <translation>Обновить версии объектов</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="111"/>
+        <location filename="windows/SdWCommand.cpp" line="116"/>
         <source>Edit</source>
         <translation>Редактирование</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="112"/>
+        <location filename="windows/SdWCommand.cpp" line="117"/>
         <source>Undo</source>
         <translation>Отменить</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="114"/>
+        <location filename="windows/SdWCommand.cpp" line="119"/>
         <source>Redo</source>
         <translation>Повторить</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="122"/>
+        <location filename="windows/SdWCommand.cpp" line="127"/>
         <source>Copy SVG</source>
         <translation>Копировать как SVG</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="123"/>
+        <location filename="windows/SdWCommand.cpp" line="128"/>
         <source>Copy WEB</source>
         <translation>Копировать для WEB</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="124"/>
+        <location filename="windows/SdWCommand.cpp" line="129"/>
         <source>Save selection</source>
         <translation>Сохранить выделение</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="126"/>
+        <location filename="windows/SdWCommand.cpp" line="131"/>
         <source>Select All</source>
         <translation>Выделить все</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="127"/>
+        <location filename="windows/SdWCommand.cpp" line="132"/>
         <source>UnSelect</source>
         <translation>Убрать выделение</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="128"/>
+        <location filename="windows/SdWCommand.cpp" line="133"/>
         <source>Find</source>
         <translation>Найти</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="129"/>
+        <location filename="windows/SdWCommand.cpp" line="134"/>
         <source>Replace</source>
         <translation>Заменить</translation>
     </message>
@@ -1117,155 +1117,155 @@
         <translation type="vanished">Параметры...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="139"/>
+        <location filename="windows/SdWCommand.cpp" line="144"/>
         <source>View</source>
         <translation>Вид</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="140"/>
+        <location filename="windows/SdWCommand.cpp" line="145"/>
         <source>Show-hide project</source>
         <translation>Показать-скрыть проект</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="147"/>
+        <location filename="windows/SdWCommand.cpp" line="152"/>
         <source>Nets</source>
         <translation>Показать связи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="148"/>
+        <location filename="windows/SdWCommand.cpp" line="153"/>
         <source>Grid</source>
         <translation>Сетка</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="149"/>
+        <location filename="windows/SdWCommand.cpp" line="154"/>
         <source>Show grid tune dialog</source>
         <translation>Выводит диалог настройки сетки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="150"/>
+        <location filename="windows/SdWCommand.cpp" line="155"/>
         <source>Layers</source>
         <translation>Слои</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="151"/>
+        <location filename="windows/SdWCommand.cpp" line="156"/>
         <source>Show layers editor dialog</source>
         <translation>Показывает диалог редактирования слоев</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="153"/>
+        <location filename="windows/SdWCommand.cpp" line="158"/>
         <source>Zoom to fit view</source>
         <translation>Масштабировать в окно</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="154"/>
+        <location filename="windows/SdWCommand.cpp" line="159"/>
         <source>Zoom in</source>
         <translation>Увеличить</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="155"/>
+        <location filename="windows/SdWCommand.cpp" line="160"/>
         <source>Zoom out</source>
         <translation>Уменьшить</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="156"/>
+        <location filename="windows/SdWCommand.cpp" line="161"/>
         <source>Zoom area</source>
         <translation>Масштабировать область</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="158"/>
+        <location filename="windows/SdWCommand.cpp" line="163"/>
         <source>Measurement</source>
         <translation>Измерение</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="163"/>
+        <location filename="windows/SdWCommand.cpp" line="168"/>
         <source>Draw</source>
         <translation>Рисование</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="164"/>
+        <location filename="windows/SdWCommand.cpp" line="169"/>
         <source>Select and edit</source>
         <translation>Выделение и редактирование</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="167"/>
+        <location filename="windows/SdWCommand.cpp" line="172"/>
         <source>Line</source>
         <translation>Линия</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="168"/>
+        <location filename="windows/SdWCommand.cpp" line="173"/>
         <source>Rect</source>
         <translation>Прямоугольник</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="169"/>
+        <location filename="windows/SdWCommand.cpp" line="174"/>
         <source>Filled rect</source>
         <translation>Залитый прямоугольник</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="170"/>
+        <location filename="windows/SdWCommand.cpp" line="175"/>
         <source>Region</source>
         <translation>Регион</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="171"/>
+        <location filename="windows/SdWCommand.cpp" line="176"/>
         <source>Filled region</source>
         <translation>Залитый регион</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="172"/>
+        <location filename="windows/SdWCommand.cpp" line="177"/>
         <source>Circle</source>
         <translation>Окружность</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="173"/>
+        <location filename="windows/SdWCommand.cpp" line="178"/>
         <source>Filled circle</source>
         <translation>Залитая окружность</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="174"/>
+        <location filename="windows/SdWCommand.cpp" line="179"/>
         <source>Arc</source>
         <translation>Дуга</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="175"/>
+        <location filename="windows/SdWCommand.cpp" line="180"/>
         <source>Text</source>
         <translation>Текст</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="176"/>
+        <location filename="windows/SdWCommand.cpp" line="181"/>
         <source>Show fields or values</source>
         <translation>Показывать поля или значения</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="184"/>
+        <location filename="windows/SdWCommand.cpp" line="189"/>
         <source>Symbol</source>
         <translation>Символ</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="186"/>
-        <location filename="windows/SdWCommand.cpp" line="203"/>
+        <location filename="windows/SdWCommand.cpp" line="191"/>
+        <location filename="windows/SdWCommand.cpp" line="208"/>
         <source>Insert pin</source>
         <translation>Вставить вывод</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="187"/>
-        <location filename="windows/SdWCommand.cpp" line="204"/>
+        <location filename="windows/SdWCommand.cpp" line="192"/>
+        <location filename="windows/SdWCommand.cpp" line="209"/>
         <source>Edit reference</source>
         <translation>Редактировать ID</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="188"/>
-        <location filename="windows/SdWCommand.cpp" line="205"/>
+        <location filename="windows/SdWCommand.cpp" line="193"/>
+        <location filename="windows/SdWCommand.cpp" line="210"/>
         <source>Edit origin</source>
         <translation>Точка привязки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="197"/>
+        <location filename="windows/SdWCommand.cpp" line="202"/>
         <source>Part</source>
         <translation>Корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="199"/>
+        <location filename="windows/SdWCommand.cpp" line="204"/>
         <source>Show pads</source>
         <translation>Показать площадки</translation>
     </message>
@@ -1274,279 +1274,279 @@
         <translation type="vanished">Вставка</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="130"/>
+        <location filename="windows/SdWCommand.cpp" line="135"/>
         <source>Rotate group 90 degree [F7]</source>
         <translation>Поворот группы на 90 градусов [F7]</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="132"/>
+        <location filename="windows/SdWCommand.cpp" line="137"/>
         <source>Params of selection...</source>
         <translation>Выбор параметров...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="133"/>
+        <location filename="windows/SdWCommand.cpp" line="138"/>
         <source>Calculations...</source>
         <translation>Вычисления...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="134"/>
+        <location filename="windows/SdWCommand.cpp" line="139"/>
         <source>Fragments...</source>
         <translation>Фрагменты...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="142"/>
+        <location filename="windows/SdWCommand.cpp" line="147"/>
         <source>3d-2d switch</source>
         <translation>Переключение вида 3d-2d</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="144"/>
+        <location filename="windows/SdWCommand.cpp" line="149"/>
         <source>Mirror</source>
         <translation>Показать зеркально</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="165"/>
+        <location filename="windows/SdWCommand.cpp" line="170"/>
         <source>Binder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="190"/>
+        <location filename="windows/SdWCommand.cpp" line="195"/>
         <source>Enter symbol fragment</source>
         <translation>Ввод фрагмента символа</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="192"/>
+        <location filename="windows/SdWCommand.cpp" line="197"/>
         <source>Default part and params</source>
         <translation>Корпус по умолчанию и параметры</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="211"/>
+        <location filename="windows/SdWCommand.cpp" line="216"/>
         <source>3d part</source>
         <translation>3d корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="212"/>
+        <location filename="windows/SdWCommand.cpp" line="217"/>
         <source>Master of 3d form</source>
         <translation>Мастер создания 3d моделей</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="213"/>
+        <location filename="windows/SdWCommand.cpp" line="218"/>
         <source>Edit 3d model script</source>
         <translation>Редактирование скрипта 3d модели</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="214"/>
+        <location filename="windows/SdWCommand.cpp" line="219"/>
         <source>Import from stl file</source>
         <translation>Импорт из stl файла</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="216"/>
+        <location filename="windows/SdWCommand.cpp" line="221"/>
         <source>Import from vrml file</source>
         <translation>Импорт из vrml файла</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="218"/>
+        <location filename="windows/SdWCommand.cpp" line="223"/>
         <source>Show/hide 2d graphics in 3d scene</source>
         <translation>Показывать/скрыть 2d графику на 3d сцене</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="220"/>
+        <location filename="windows/SdWCommand.cpp" line="225"/>
         <source>Show/hide pads</source>
         <translation>Показать-скрыть площадки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="222"/>
+        <location filename="windows/SdWCommand.cpp" line="227"/>
         <source>Set top view orientation</source>
         <translation>Установить вид сверху</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="224"/>
+        <location filename="windows/SdWCommand.cpp" line="229"/>
         <source>View 3d scene with no edit</source>
         <translation>Просмотр 3d сцены без возможности редактирования</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="225"/>
+        <location filename="windows/SdWCommand.cpp" line="230"/>
         <source>Horizontal moving 3d object</source>
         <translation>Горизонтальное перемещение 3d объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="226"/>
+        <location filename="windows/SdWCommand.cpp" line="231"/>
         <source>Horizontal rotation 3d object</source>
         <translation>Горизонтальный поворот 3d объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="227"/>
+        <location filename="windows/SdWCommand.cpp" line="232"/>
         <source>Vertical moving 3d object</source>
         <translation>Вертикальное перемещение 3d объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="228"/>
+        <location filename="windows/SdWCommand.cpp" line="233"/>
         <source>Vertical rotation 3d object</source>
         <translation>Вертикальный поворот 3d объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="229"/>
+        <location filename="windows/SdWCommand.cpp" line="234"/>
         <source>Change face color</source>
         <translation>Изменение цвета поверхности</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="234"/>
+        <location filename="windows/SdWCommand.cpp" line="239"/>
         <source>3d part view</source>
         <translation>Просмотр 3d корпуса</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="242"/>
+        <location filename="windows/SdWCommand.cpp" line="247"/>
         <source>Insert comp</source>
         <translation>Вставка компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="247"/>
+        <location filename="windows/SdWCommand.cpp" line="252"/>
         <source>Sheet</source>
         <translation>Схема</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="248"/>
+        <location filename="windows/SdWCommand.cpp" line="253"/>
         <source>Renumeration</source>
         <translation>Ренумерация</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="251"/>
+        <location filename="windows/SdWCommand.cpp" line="256"/>
         <source>Insert component</source>
         <translation>Вставить компонент</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="252"/>
+        <location filename="windows/SdWCommand.cpp" line="257"/>
         <source>Insert net wire</source>
         <translation>Вставить цепь</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="253"/>
+        <location filename="windows/SdWCommand.cpp" line="258"/>
         <source>Insert net name</source>
         <translation>Вставить имя цепи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="254"/>
+        <location filename="windows/SdWCommand.cpp" line="259"/>
         <source>Insert bus (many net)</source>
         <translation>Вставить шину (несколько цепей)</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="255"/>
+        <location filename="windows/SdWCommand.cpp" line="260"/>
         <source>Disconnect net</source>
         <translation>Отключить цепь</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="256"/>
-        <location filename="windows/SdWCommand.cpp" line="297"/>
+        <location filename="windows/SdWCommand.cpp" line="261"/>
+        <location filename="windows/SdWCommand.cpp" line="302"/>
         <source>Move ident of components</source>
         <translation>Переместь ID компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="257"/>
-        <location filename="windows/SdWCommand.cpp" line="298"/>
+        <location filename="windows/SdWCommand.cpp" line="262"/>
+        <location filename="windows/SdWCommand.cpp" line="303"/>
         <source>Move value of components</source>
         <translation>Переместить значение компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="258"/>
+        <location filename="windows/SdWCommand.cpp" line="263"/>
         <source>Script insert and edit</source>
         <translation>Вставить и редактировать скрипт</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="265"/>
+        <location filename="windows/SdWCommand.cpp" line="270"/>
         <source>Plate</source>
         <translation>Плата</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="267"/>
+        <location filename="windows/SdWCommand.cpp" line="272"/>
         <source>PCB layer count...</source>
         <translation>Количество слоев платы...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="268"/>
+        <location filename="windows/SdWCommand.cpp" line="273"/>
         <source>PCB board builder...</source>
         <translation>Конструктор плат...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="270"/>
+        <location filename="windows/SdWCommand.cpp" line="275"/>
         <source>Show rat net</source>
         <translation>Показать сетку связей</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="274"/>
+        <location filename="windows/SdWCommand.cpp" line="279"/>
         <source>Pads association</source>
         <translation>Ассоциация контактных площадок</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="286"/>
+        <location filename="windows/SdWCommand.cpp" line="291"/>
         <source>Move part</source>
         <translation>Переместить корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="287"/>
+        <location filename="windows/SdWCommand.cpp" line="292"/>
         <source>Road enter</source>
         <translation>Вставить дорожку</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="288"/>
+        <location filename="windows/SdWCommand.cpp" line="293"/>
         <source>Road move</source>
         <translation>Переместить дорожку</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="289"/>
+        <location filename="windows/SdWCommand.cpp" line="294"/>
         <source>Polygon enter</source>
         <translation>Вставить полигон</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="290"/>
+        <location filename="windows/SdWCommand.cpp" line="295"/>
         <source>Via enter</source>
         <translation>Вставить переходное</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="291"/>
+        <location filename="windows/SdWCommand.cpp" line="296"/>
         <source>Delete trace</source>
         <translation>Удалить трассу</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="299"/>
+        <location filename="windows/SdWCommand.cpp" line="304"/>
         <source>Edit plate origin</source>
         <translation>Точка привязки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="300"/>
+        <location filename="windows/SdWCommand.cpp" line="305"/>
         <source>Highlight components</source>
         <translation>Подсветка компонентов</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="304"/>
+        <location filename="windows/SdWCommand.cpp" line="309"/>
         <source>Rules</source>
         <translation>Правила трассировки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="305"/>
+        <location filename="windows/SdWCommand.cpp" line="310"/>
         <source>Edit rules dialog</source>
         <translation>Редактирование правил трассировки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="306"/>
+        <location filename="windows/SdWCommand.cpp" line="311"/>
         <source>Show rule errors</source>
         <translation>Показать несоответствия правилам</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="310"/>
+        <location filename="windows/SdWCommand.cpp" line="315"/>
         <source>Check all rules</source>
         <translation>Проверить все правила</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="311"/>
+        <location filename="windows/SdWCommand.cpp" line="316"/>
         <source>Center next rules error</source>
         <translation>Следующая ошибка в центр</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="315"/>
+        <location filename="windows/SdWCommand.cpp" line="320"/>
         <source>Instruments</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="319"/>
+        <location filename="windows/SdWCommand.cpp" line="324"/>
         <source>Ref to library object</source>
         <translation>Ссылка на библиотечный объект</translation>
     </message>
@@ -1555,7 +1555,7 @@
         <translation type="obsolete">Библиотека</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="317"/>
+        <location filename="windows/SdWCommand.cpp" line="322"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
@@ -1564,57 +1564,57 @@
         <translation type="vanished">Инструменты</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="321"/>
+        <location filename="windows/SdWCommand.cpp" line="326"/>
         <source>Guider scene builder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="322"/>
+        <location filename="windows/SdWCommand.cpp" line="327"/>
         <source>Guider snapshot save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="332"/>
+        <location filename="windows/SdWCommand.cpp" line="337"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="333"/>
+        <location filename="windows/SdWCommand.cpp" line="338"/>
         <source>Contents</source>
         <translation>Содержание</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="334"/>
+        <location filename="windows/SdWCommand.cpp" line="339"/>
         <source>Index</source>
         <translation>Индекс</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="335"/>
+        <location filename="windows/SdWCommand.cpp" line="340"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="336"/>
+        <location filename="windows/SdWCommand.cpp" line="341"/>
         <source>Registration</source>
         <translation>Регистрация</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="337"/>
+        <location filename="windows/SdWCommand.cpp" line="342"/>
         <source>Home help page</source>
         <translation>Начальная страница помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="339"/>
+        <location filename="windows/SdWCommand.cpp" line="344"/>
         <source>Backward help page</source>
         <translation>К предыдущей странице помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="341"/>
+        <location filename="windows/SdWCommand.cpp" line="346"/>
         <source>Forward help page</source>
         <translation>К следующей странице помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="346"/>
+        <location filename="windows/SdWCommand.cpp" line="351"/>
         <source>Select</source>
         <translation>Выделение</translation>
     </message>
@@ -1839,7 +1839,7 @@
         <translation>Нет функции &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="115"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="116"/>
         <source>Select form to insert</source>
         <translation>Выберите форму для вставки</translation>
     </message>
@@ -2975,38 +2975,38 @@
         <translation>Выберите цвет слоя</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="594"/>
+        <location filename="windows/SdDLayers.cpp" line="591"/>
         <source>Off</source>
         <translation>Выкл</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="595"/>
+        <location filename="windows/SdDLayers.cpp" line="592"/>
         <source>On</source>
         <translation>Вкл</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="596"/>
+        <location filename="windows/SdDLayers.cpp" line="593"/>
         <source>Edit</source>
         <translation>Редакт</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="608"/>
-        <location filename="windows/SdDLayers.cpp" line="628"/>
+        <location filename="windows/SdDLayers.cpp" line="605"/>
+        <location filename="windows/SdDLayers.cpp" line="625"/>
         <source>---</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="610"/>
+        <location filename="windows/SdDLayers.cpp" line="607"/>
         <source>pad</source>
         <translation>площадки</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="612"/>
+        <location filename="windows/SdDLayers.cpp" line="609"/>
         <source>mask</source>
         <translation>маска</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="614"/>
+        <location filename="windows/SdDLayers.cpp" line="611"/>
         <source>stencil</source>
         <translation>трафарет</translation>
     </message>
@@ -3015,32 +3015,32 @@
         <translation type="vanished">трафарет</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="616"/>
+        <location filename="windows/SdDLayers.cpp" line="613"/>
         <source>hole</source>
         <translation>отверстие</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="618"/>
+        <location filename="windows/SdDLayers.cpp" line="615"/>
         <source>road</source>
         <translation>дорожки</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="620"/>
+        <location filename="windows/SdDLayers.cpp" line="617"/>
         <source>polygon</source>
         <translation>полигон</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="622"/>
+        <location filename="windows/SdDLayers.cpp" line="619"/>
         <source>bound</source>
         <translation>границы</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="624"/>
+        <location filename="windows/SdDLayers.cpp" line="621"/>
         <source>keepout</source>
         <translation>запрет</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="626"/>
+        <location filename="windows/SdDLayers.cpp" line="623"/>
         <source>last</source>
         <translation>последний</translation>
     </message>
@@ -3691,7 +3691,7 @@
     <message>
         <location filename="master/SdDMasterSymbolIc.ui" line="142"/>
         <source>Title</source>
-        <translation>Заголовк</translation>
+        <translation>Заголовок</translation>
     </message>
     <message>
         <location filename="master/SdDMasterSymbolIc.cpp" line="42"/>
@@ -3702,6 +3702,97 @@
     <message>
         <location filename="master/SdDMasterSymbolIc.cpp" line="42"/>
         <location filename="master/SdDMasterSymbolIc.cpp" line="50"/>
+        <source>Alternative names</source>
+        <translation>Альтернативные имена</translation>
+    </message>
+</context>
+<context>
+    <name>SdDMasterSymbolIcWithNum</name>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="48"/>
+        <source>Left pins</source>
+        <translation>Выводы слева</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="52"/>
+        <source>Insert pin (Ctrl+L)</source>
+        <translation>Вставить вывод (Ctrl+L)</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="57"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="107"/>
+        <source>Insert gap</source>
+        <translation>Вставить промежуток</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="61"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="111"/>
+        <source>Insert delim</source>
+        <translation>Вставить разделитель</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="66"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="116"/>
+        <source>Delete</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="76"/>
+        <source>Source pins</source>
+        <translation>Исходные выводы</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="80"/>
+        <source>Move left</source>
+        <translation>Взять налево</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="84"/>
+        <source>From clipbrd</source>
+        <translation>Из буф.обм.</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="88"/>
+        <source>Move right</source>
+        <translation>Взять вправо</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="98"/>
+        <source>Right pins</source>
+        <translation>Выводы справа</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="102"/>
+        <source>Insert pin (Ctrl+R)</source>
+        <translation>Вставить вывод (Ctrl+R)</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="127"/>
+        <source>Preview</source>
+        <translation>Предварительный просмотр</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="135"/>
+        <source>Title:</source>
+        <translation>Заголовок:</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="151"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="158"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="165"/>
+        <source>Pin name</source>
+        <translation>Имя вывода</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="151"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="158"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="165"/>
+        <source>Pin num</source>
+        <translation>Номер</translation>
+    </message>
+    <message>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="151"/>
+        <location filename="master/SdDMasterSymbolIcWithNum.cpp" line="158"/>
         <source>Alternative names</source>
         <translation>Альтернативные имена</translation>
     </message>
@@ -3780,22 +3871,22 @@
     <message>
         <location filename="windows/SdDOffset.cpp" line="159"/>
         <source>Offset X:</source>
-        <translation type="unfinished"></translation>
+        <translation>Смещение по X:</translation>
     </message>
     <message>
         <location filename="windows/SdDOffset.cpp" line="164"/>
         <source>Offset Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Смещение по Y:</translation>
     </message>
     <message>
         <location filename="windows/SdDOffset.cpp" line="190"/>
         <source>Enter offset from smart point</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите смещение от умной точки</translation>
     </message>
     <message>
         <location filename="windows/SdDOffset.cpp" line="192"/>
         <source>Enter offset from previous point</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите смещение от предыдущей точки</translation>
     </message>
 </context>
 <context>
@@ -5843,13 +5934,15 @@
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="328"/>
-        <source>on top</source>
-        <translation>сверху</translation>
+        <source>on top pack 1</source>
+        <oldsource>on top</oldsource>
+        <translation>сверху пак 1</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="329"/>
-        <source>on bottom</source>
-        <translation>снизу</translation>
+        <source>on bot pack last</source>
+        <oldsource>on bottom</oldsource>
+        <translation>снизу пак последний</translation>
     </message>
     <message>
         <source>on internal 1</source>
@@ -5886,144 +5979,244 @@
         <translation>Границы компонента</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="330"/>
         <source>on internal 2</source>
-        <translation>на внутреннем 2</translation>
+        <translation type="vanished">на внутреннем 2</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="331"/>
         <source>on internal 3</source>
-        <translation>на внутреннем 3</translation>
+        <translation type="vanished">на внутреннем 3</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="332"/>
         <source>on internal 4</source>
-        <translation>на внутреннем 4</translation>
+        <translation type="vanished">на внутреннем 4</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="333"/>
         <source>on internal 5</source>
-        <translation>на внутреннем 5</translation>
+        <translation type="vanished">на внутреннем 5</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="334"/>
         <source>on internal 6</source>
-        <translation>на внутреннем 6</translation>
+        <translation type="vanished">на внутреннем 6</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="335"/>
         <source>on internal 7</source>
-        <translation>на внутреннем 7</translation>
+        <translation type="vanished">на внутреннем 7</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="336"/>
         <source>on internal 8</source>
-        <translation>на внутреннем 8</translation>
+        <translation type="vanished">на внутреннем 8</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="337"/>
-        <source>on internal 9</source>
-        <translation>на внутреннем 9</translation>
+        <source>on top pack 5</source>
+        <oldsource>on internal 9</oldsource>
+        <translation>сверху пак 5</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="338"/>
-        <source>on internal 10</source>
-        <translation>на внутреннем 10</translation>
+        <source>on bot pack 5</source>
+        <oldsource>on internal 10</oldsource>
+        <translation>снизу пак 5</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="339"/>
         <source>on internal 11</source>
-        <translation>на внутреннем 11</translation>
+        <translation type="vanished">на внутреннем 11</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="340"/>
         <source>on internal 12</source>
-        <translation>на внутреннем 12</translation>
+        <translation type="vanished">на внутреннем 12</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="341"/>
         <source>on internal 13</source>
-        <translation>на внутреннем 13</translation>
+        <translation type="vanished">на внутреннем 13</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="342"/>
         <source>on internal 14</source>
-        <translation>на внутреннем 14</translation>
+        <translation type="vanished">на внутреннем 14</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="343"/>
         <source>on internal 15</source>
-        <translation>на внутреннем 15</translation>
+        <translation type="vanished">на внутреннем 15</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="344"/>
         <source>on internal 16</source>
-        <translation>на внутреннем 16</translation>
+        <translation type="vanished">на внутреннем 16</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="345"/>
         <source>on internal 17</source>
-        <translation>на внутреннем 17</translation>
+        <translation type="vanished">на внутреннем 17</translation>
     </message>
     <message>
-        <location filename="objects/SdLayer.cpp" line="346"/>
         <source>on internal 18</source>
-        <translation>на внутреннем 18</translation>
+        <translation type="vanished">на внутреннем 18</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="347"/>
-        <source>on internal 19</source>
-        <translation>на внутреннем 19</translation>
+        <source>on top pack 10</source>
+        <oldsource>on internal 19</oldsource>
+        <translation>сверху пак 10</translation>
+    </message>
+    <message>
+        <source>on internal 20</source>
+        <translation type="vanished">на внутреннем 20</translation>
+    </message>
+    <message>
+        <source>on internal 21</source>
+        <translation type="vanished">на внутреннем 21</translation>
+    </message>
+    <message>
+        <source>on internal 22</source>
+        <translation type="vanished">на внутреннем 22</translation>
+    </message>
+    <message>
+        <source>on internal 23</source>
+        <translation type="vanished">на внутреннем 23</translation>
+    </message>
+    <message>
+        <source>on internal 24</source>
+        <translation type="vanished">на внутреннем 24</translation>
+    </message>
+    <message>
+        <source>on internal 25</source>
+        <translation type="vanished">на внутреннем 25</translation>
+    </message>
+    <message>
+        <source>on internal 26</source>
+        <translation type="vanished">на внутреннем 26</translation>
+    </message>
+    <message>
+        <source>on internal 27</source>
+        <translation type="vanished">на внутреннем 27</translation>
+    </message>
+    <message>
+        <source>on internal 28</source>
+        <translation type="vanished">на внутреннем 28</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="330"/>
+        <source>on bot pack 1</source>
+        <translation>снизу пак 1</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="331"/>
+        <source>on top pack 2</source>
+        <translation>сверху пак 2</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="332"/>
+        <source>on bot pack 2</source>
+        <translation>снизу пак 2</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="333"/>
+        <source>on top pack 3</source>
+        <translation>сверху пак 3</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="334"/>
+        <source>on bot pack 3</source>
+        <translation>снизу пак 3</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="335"/>
+        <source>on top pack 4</source>
+        <translation>сверху пак 4</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="336"/>
+        <source>on bot pack 4</source>
+        <translation>снизу пак 4</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="339"/>
+        <source>on top pack 6</source>
+        <translation>сверху пак 6</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="340"/>
+        <source>on bot pack 6</source>
+        <translation>снизу пак 6</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="341"/>
+        <source>on top pack 7</source>
+        <translation>сверху пак 7</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="342"/>
+        <source>on bot pack 7</source>
+        <translation>снизу пак 7</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="343"/>
+        <source>on top pack 8</source>
+        <translation>сверху пак 8</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="344"/>
+        <source>on bot pack 8</source>
+        <translation>снизу пак 8</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="345"/>
+        <source>on top pack 9</source>
+        <translation>сверху пак 9</translation>
+    </message>
+    <message>
+        <location filename="objects/SdLayer.cpp" line="346"/>
+        <source>on bot pack 9</source>
+        <translation>снизу пак 9</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="348"/>
-        <source>on internal 20</source>
-        <translation>на внутреннем 20</translation>
+        <source>on bot pack 10</source>
+        <translation>снизу пак 10</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="349"/>
-        <source>on internal 21</source>
-        <translation>на внутреннем 21</translation>
+        <source>on top pack 11</source>
+        <translation>сверху пак 11</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="350"/>
-        <source>on internal 22</source>
-        <translation>на внутреннем 22</translation>
+        <source>on bot pack 11</source>
+        <translation>снизу пак 11</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="351"/>
-        <source>on internal 23</source>
-        <translation>на внутреннем 23</translation>
+        <source>on top pack 12</source>
+        <translation>сверху пак 12</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="352"/>
-        <source>on internal 24</source>
-        <translation>на внутреннем 24</translation>
+        <source>on bot pack 12</source>
+        <translation>снизу пак 12</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="353"/>
-        <source>on internal 25</source>
-        <translation>на внутреннем 25</translation>
+        <source>on top pack 13</source>
+        <translation>сверху пак 13</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="354"/>
-        <source>on internal 26</source>
-        <translation>на внутреннем 26</translation>
+        <source>on bot pack 13</source>
+        <translation>снизу пак 13</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="355"/>
-        <source>on internal 27</source>
-        <translation>на внутреннем 27</translation>
+        <source>on top pack 14</source>
+        <translation>сверху пак 14</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="356"/>
-        <source>on internal 28</source>
-        <translation>на внутреннем 28</translation>
+        <source>on bot pack 14</source>
+        <translation>снизу пак 14</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="357"/>
-        <source>on prev bottom</source>
-        <translation>на преднижнем</translation>
+        <source>on top pkt last</source>
+        <oldsource>on prev bottom</oldsource>
+        <translation>сверху пак последний</translation>
     </message>
     <message>
         <location filename="objects/SdLayer.cpp" line="359"/>
@@ -6076,17 +6269,17 @@
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="36"/>
         <source>Prepare remote global storage server connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Связываюсь с глобальной библиотекой</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="42"/>
         <source>Prepare remote private cloud server connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Связываюсь с приватным облаком</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="48"/>
         <source>Prepare local library scan</source>
-        <translation type="unfinished"></translation>
+        <translation>Выполняю локальное сканирование</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="66"/>
@@ -6142,7 +6335,7 @@
     <message>
         <location filename="library/SdLibraryStorage.cpp" line="686"/>
         <source>Fail scan local library directory&lt;br&gt;Check library path in settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу сканировать директорий&lt;br&gt;Проверьте путь к библиотеке в настройках</translation>
     </message>
     <message>
         <location filename="library/SdLibraryStorage.cpp" line="775"/>
@@ -6830,118 +7023,128 @@
 <context>
     <name>SdPNewProjectItem_Master</name>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="50"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="51"/>
         <source>Creation new project object</source>
         <translation>Создание нового объекта для проекта</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="51"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="52"/>
         <source>Select master to object creation</source>
         <translation>Выберите мастер для создания объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="55"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="56"/>
         <source>Select master type</source>
         <translation>Выберите тип мастера</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="65"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="66"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="111"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="112"/>
         <source>Sheet decorator</source>
         <translation>Оформление схемы</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="111"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="112"/>
         <source>Creates empty schematic sheet with inserted sheet form</source>
         <translation>Создает пустую схему и добавляет в нее рамку оформления</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="141"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="142"/>
         <source>Connectors</source>
         <translation>Разъемы</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="141"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="142"/>
         <source>Creates symbol for connector</source>
         <translation>Создает схемный символ для разъемов</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="147"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="148"/>
         <source>Integrated circuits</source>
         <translation>Интегральные схемы (микросхемы)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="147"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="148"/>
         <source>Creates symbol for integrated circuit</source>
         <translation>Создает схемный символ для интегральных схем (микросхем)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="160"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="154"/>
+        <source>Integrated circuits with num</source>
+        <translation>Интегральные схемы с номерами выводов (микросхемы)</translation>
+    </message>
+    <message>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="154"/>
+        <source>Creates symbol for integrated circuit with pin numbering and external pin table former, for example AI</source>
+        <translation>Создает схемный символ для интегральных схем (микросхем) с номерами выводов и возможностью использовать внешнюю таблицу с выводами, например сформированную с помощью ИИ</translation>
+    </message>
+    <message>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="168"/>
         <source>Two pins rectangle part</source>
         <translation>Двухвыводной прямоугольный корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="160"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="168"/>
         <source>Creates part with exact two pins and rectangle body (resistor, capacitor and so on)</source>
         <translation>Создает корпус точно с двумя выводами и прямоугольным корпусом (резистор, конденсатор и т.п.)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="166"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="174"/>
         <source>Two pins round part</source>
         <translation>Круглый корпус с двумя выводами</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="166"/>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="172"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="174"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="180"/>
         <source>Creates part with exact two pins and round body</source>
         <translation>Создает корпус точно с двумя выводами и круглым корпусом (электролитический конденсатор со штыревыми выводами)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="172"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="180"/>
         <source>Two through pins round part</source>
         <translation>Круглый корпус с двумя штыревыми выводами</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="178"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="186"/>
         <source>Single row pins part</source>
         <translation>Корпус с одним рядом выводов</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="178"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="186"/>
         <source>Creates part with rectangle body and single row of pins at middle of part</source>
         <translation>Создает прямоугольный корпус с одним рядом выводов посередине корпуса</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="184"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="192"/>
         <source>Two sided pins part</source>
         <translation>Корпус с выводами по двум сторонам (верх-низ)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="184"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="192"/>
         <source>Creates part with rectangle body and two pins rows by top and bottom sides</source>
         <translation>Создает прямоугольный корпус с двумя рядами выводов сверху и снизу</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="190"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="198"/>
         <source>Two sided pins part left-right</source>
         <translation>Корпус с выводами по двум сторонам (лево-право)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="190"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="198"/>
         <source>Creates part with rectangle body and two pins columns by left and right sides</source>
         <translation>Создает прямоугольный корпус с двумя рядами выводов слева и справа</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="196"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="204"/>
         <source>Four sided pins part</source>
         <translation>Корпус с выводами по четырем сторонам</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="196"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="204"/>
         <source>Creates part with rectangle body and pins on all four sides</source>
         <translation>Создает прямоугольный корпус с выводами расположенными по всем четырем сторонам корпуса</translation>
     </message>
@@ -8337,14 +8540,12 @@
 <context>
     <name>SdWHelp</name>
     <message>
-        <location filename="windows/SdWHelp.cpp" line="57"/>
-        <location filename="windows/SdWHelp.cpp" line="100"/>
+        <location filename="windows/SdWHelp.cpp" line="266"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdWHelp.cpp" line="57"/>
-        <location filename="windows/SdWHelp.cpp" line="100"/>
+        <location filename="windows/SdWHelp.cpp" line="266"/>
         <source>Guider file &apos;%1&apos; not exist. Try reinstall SalixEDA</source>
         <translation>Файл %1 путеводителя не существует. Попробуйте переустановить SalixEDA</translation>
     </message>

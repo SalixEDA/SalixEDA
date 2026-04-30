@@ -18,7 +18,6 @@ Description
 #include "objects/SdGraph.h"
 #include "SdDLayers.h"
 #include "ui_SdDLayers.h"
-#include "SdDLayerList.h"
 #include "SdDLayerCreate.h"
 #include "SdDHelp.h"
 

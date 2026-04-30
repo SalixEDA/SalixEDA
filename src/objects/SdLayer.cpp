@@ -354,7 +354,7 @@ SdLayerLevel sdLayerLevel1[] = {
   { LID1_INT26,         QT_TRANSLATE_NOOP( "SdLayer", "on bot pack 13" ),  layerTraceNone,stmInt26 },
   { LID1_INT27,         QT_TRANSLATE_NOOP( "SdLayer", "on top pack 14" ),  layerTraceNone,stmInt27 },
   { LID1_INT28,         QT_TRANSLATE_NOOP( "SdLayer", "on bot pack 14" ),  layerTraceNone,stmInt28 },
-  { LID1_INT29,         QT_TRANSLATE_NOOP( "SdLayer", "on top pkt last" ), layerTraceNone,stmInt29 },
+  { LID1_INT29,         QT_TRANSLATE_NOOP( "SdLayer", "on top pack last" ),layerTraceNone,stmInt29 },
 
   { LID1_CUSTOM1,       QT_TRANSLATE_NOOP( "SdLayer", "on custom 1" ),    layerTraceNone,stmThrough },
   { LID1_CUSTOM2,       QT_TRANSLATE_NOOP( "SdLayer", "on custom 2" ),    layerTraceNone,stmThrough },
