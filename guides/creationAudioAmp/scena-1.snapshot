@@ -1,0 +1,22 @@
+{
+    "AType": "Guider snapshot file",
+    "AVersion": 1,
+    "Current editor": 0,
+    "Open editor list": [
+        {
+            "Grid-x": 250,
+            "Grid-y": 250,
+            "ObjectClass": "800",
+            "ObjectName": "Лист 1",
+            "Origin-x": 10500,
+            "Origin-y": 14850,
+            "ProjectName": "projectSnapshot-1-0",
+            "Scale": 0.015622369617184606,
+            "is3d": false
+        }
+    ],
+    "Project current": 0,
+    "Projects": [
+        "projectSnapshot-1-0"
+    ]
+}

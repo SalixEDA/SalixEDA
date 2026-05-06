@@ -7,11 +7,11 @@
             "Grid-x": 250,
             "Grid-y": 250,
             "ObjectClass": "800",
-            "ObjectName": "amplifier",
-            "Origin-x": 10000,
-            "Origin-y": 16500,
+            "ObjectName": "Лист 1",
+            "Origin-x": 10875,
+            "Origin-y": 17000,
             "ProjectName": "projectSnapshot-4-0",
-            "Scale": 0.03528500723881351,
+            "Scale": 0.04065616930788315,
             "is3d": false
         }
     ],

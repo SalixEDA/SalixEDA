@@ -1,0 +1,126 @@
+- Creating a new project and schematic within it
+-- Creating a new project
+-- Creating a new schematic sheet
+-- Selecting the type of object to be created
+-- Choosing the schematic creation method via the "Schematic Wizard"
+-- Selecting the "Schematic Design" wizard
+-- From the list of found design collections, select "form iso"
+-- From the list of sections, select "iso a4" as the design template
+-- Leave the schematic name as default
+-- This results in such a schematic sheet
+
+
+
+- Inserting components from the library into the schematic
+-- Enable component insertion mode
+-- Enter "xpt" in the object search field and click the Find button
+-- From the list, select the XPT8871 chip
+-- Use the mouse to position the component and click the left button to place it
+-- Right-click to search for the next component
+-- Enter "0603 1uf" in the component search field
+-- Find the capacitor with exactly 1uf capacitance in the list and select it
+-- Place the capacitor on the schematic and insert it with the left mouse button
+-- Change the orientation for the next instance of the component
+-- Insert the second and third instances of the capacitor
+-- Right-click to return to component selection
+-- Enter "0603 1k" in the search field and click the Search button
+-- Among all found resistors, select the one with a value of 1kOhm
+-- Click OK to position and insert it
+-- Change the orientation to the correct one
+-- Specify the location for the resistor with the left mouse button and right-click to select the next component
+-- Enter "0603 4.7k" in the search field and click Search
+-- In the list of found resistors, select the one with a value of 4.7kOhm
+-- Left-click to insert the resistor into the schematic and right-click to return to searching for the next component
+-- Enter "pls3" in the component search field and click Search
+-- From the appeared list of suitable connectors, select connector pls3
+-- The default component image is incorrect - the connector has the wrong orientation. Change the component's mirrored state
+-- Specify the connector's location on the schematic with the left mouse button and right-click to return to component search
+-- Enter "pls2" in the component search field and click Search
+-- From the appeared list of suitable connectors, select connector pls2
+-- The mirrored state of this component remains from the previous one. Mirroring is no longer needed for this connector, so disable it
+-- Specify the connector's location on the schematic with the left mouse button and right-click to return to component search
+-- Enter "16v 10uf" in the search field and click Search
+-- From the appeared list of suitable connectors, select capacitor leaded
+-- Place the capacitor on the schematic with the left mouse button and right-click to return to component search
+-- Click Cancel here. This will finish component insertion mode
+-- This results in such a schematic
+
+
+- Inserting nets into the schematic
+-- Enable net insertion mode
+-- When moving the mouse, the "smart mode" will suggest routing a net between pins depending on the cursor position
+-- Achieve the desired position and click the middle mouse button to accept the smart mode's suggestion
+-- Sequentially insert nets using the smart mode by pressing the middle button
+-- You can start drawing a net manually with the left mouse button, ignoring the smart mode
+-- The smart mode works constantly and, after manual drawing begins, suggests completing the net. Accept the suggestion by clicking the middle button
+-- Continue drawing nets with the smart mode as long as its suggestions suit us
+-- Again start the net and a bend point manually when the smart mode's suggestion is not suitable
+-- When the net completion becomes acceptable - click the middle mouse button to agree with the "smart mode"
+-- Draw the remaining nets using a combination of manual and smart modes
+-- This results in such a schematic
+
+
+
+
+- Final schematic formatting
+
+-- To identify components, each contains a unique identifier within a single board. SalixEDA can assign these identifiers automatically. In the Schematic menu, select the Renumber item
+-- SalixEDA then assigns identifiers to components according to the rules defined in the settings. By default, GOST rules are used: top to bottom and left to right
+-- Often, text notes need to be placed on the schematic. For this, the text input mode is used
+-- Enable text input mode
+-- The text consists of a single line of characters. To enter such a line, move the mouse to the location where this line will be placed and click the left mouse button. Character input is activated, and the input location is marked by a vertical bar
+-- Type the characters using the keyboard and finish input with the Enter key or the left mouse button
+-- Repeat input for other labels. Mark the location with the left mouse button, then type the character string and press Enter to finish input
+-- To exit text input mode, press the right mouse button. This returns to edit mode
+
+
+- Creating the board outline
+-- Switch to the board
+-- Launch the board outline wizard
+-- Set the board dimensions and mounting holes
+-- Finish the wizard
+-- This results in such a board
+
+- Placing components on the board
+-- Enable component placement mode
+-- By default, components align to the grid. Set a finer grid
+-- In the Grid step field, enter 0.625 or select 0.625x0.625 from the list of previous grids
+-- Hover the mouse cursor over a component and click the left mouse button
+-- Move the mouse; the component moves with the mouse
+-- To quickly rotate 90 degrees clockwise, press the F2 key
+-- To place the component in the current position, click the left mouse button
+-- Grab the next component (X1), click the left mouse button and move the component
+-- Use F2 to rotate the component
+-- Click the left button to place the component
+-- Place the remaining components in the same way
+-- Right-click to exit component placement mode
+
+- Routing connections
+-- Enable connection routing mode
+-- By default, trace bend points align to the grid. Set a finer grid
+-- When moving the mouse, the system will suggest a trace start point. It shows this point with a small square
+-- Move the mouse to the first pin of connector X1 and click the left mouse button to start the trace from the suggested location
+-- Smart mode suggests a trace completion option. The trace is built with 90-degree bends
+-- Change the bend angle to 45 degrees
+-- Move the mouse so that the trace completion is as desired and click the middle mouse button to accept the "smart mode" suggestion
+-- Similarly, draw the remaining traces by finding the trace start and forming the desired path with the smart mode
+-- Sometimes a trace cannot be routed on the current layer even manually. In this case, switch to the bottom layer
+-- Click the button to open the list of available layers
+-- Select bottom
+-- This adds a via and the smart mode now works on the bottom layer
+-- Click the middle mouse button to accept the "smart mode" suggestion
+-- Right-click to finish routing
+
+- Adding a polygon
+-- Enable polygon addition mode
+-- Configure the grid for polygon input
+-- Configure the polygon parameters. Here enter 0.5, which is the clearance between the polygon and traces/pads inside the polygon
+-- Select the net for the polygon
+-- Pads belonging to this net are highlighted on all layers
+-- Change the bend angle of the polygon outline lines
+-- Select the layer for the polygon
+-- Click the left button to start drawing the polygon outline
+-- Repeat entering polygon vertices with the left mouse button
+-- Click the middle mouse button to close the polygon region
+-- Right-click to finish adding the polygon
+
