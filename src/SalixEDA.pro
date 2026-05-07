@@ -120,6 +120,7 @@ SOURCES += \
     master/SdDMasterSheetDecorator.cpp \
     master/SdDMasterSymbolIcWithNum.cpp \
     master/SdMasterPart.cpp \
+    modes/SdModeCNetPinsList.cpp \
     modes/SdModeCScript.cpp \
     modes/SdModeCSymHighlight.cpp \
     modes/SdModeSymbolFragment.cpp \
@@ -194,6 +195,7 @@ SOURCES += \
     windows/SdDBoardBuilder.cpp \
     windows/SdDExpressionEdit.cpp \
     windows/SdDLibrary.cpp \
+    windows/SdDNetPinsList.cpp \
     windows/SdDOffset.cpp \
     windows/SdDOptionsPageLibrary.cpp \
     windows/SdDParamBase.cpp \
@@ -511,6 +513,7 @@ HEADERS  += \
     master/SdDMasterSheetDecorator.h \
     master/SdDMasterSymbolIcWithNum.h \
     master/SdMasterPart.h \
+    modes/SdModeCNetPinsList.h \
     modes/SdModeCScript.h \
     modes/SdModeCSymHighlight.h \
     modes/SdModeSymbolFragment.h \
@@ -699,6 +702,7 @@ HEADERS  += \
     windows/SdDBoardBuilder.h \
     windows/SdDExpressionEdit.h \
     windows/SdDLibrary.h \
+    windows/SdDNetPinsList.h \
     windows/SdDOffset.h \
     windows/SdDOptionsPageLibrary.h \
     windows/SdDParamBase.h \

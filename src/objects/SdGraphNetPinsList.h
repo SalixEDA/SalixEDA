@@ -12,6 +12,9 @@ Web
 
 Description
   SdGraphNetPinsList - textual representation of net pin list.
+  Each object is for single net, but multiple part and pin. So we have
+  netName and pins map. Map is pinName-pin association. PinName we
+  generate internal.
 */
 #ifndef SDGRAPHNETPINSLIST_H
 #define SDGRAPHNETPINSLIST_H
@@ -58,15 +61,32 @@ class SdGraphNetPinsList : public SdGraphSymPinsMap
     int             mPinNameIndex; //!< Index for building unical pin name
     SdNetPinRefMap  mPinRefMap;    //!< Pin list for net
     SdTextImplement mVisual;       //!< Net pin list text properties and position
-    SdRect          mOverRect;     //!< Rectangle around text representation of list
     QString         mText;         //!< Textual representation of list
+
+    //Not saved
+    SdRect          mOverRect;     //!< Rectangle around text representation of list
   public:
     SdGraphNetPinsList() : SdGraphSymPinsMap(), mPinNameIndex(0) {}
 
+    //!
+    //! \brief netName Returns net name for netPinsList
+    //! \return        Net name for netPinsList
+    //!
+    QString           netName() const { return mNetName; }
 
+    //!
+    //! \brief pinList Returns pin list
+    //! \return        Pin list
+    //!
     SdNetPinRefList   pinList() const;
 
-    void              pinListSet( const SdNetPinRefList &list, SdUndo *undo );
+    //!
+    //! \brief pinListSet Set new pin list
+    //! \param netName    New net name
+    //! \param list       New pin list
+    //! \param undo       Undo storage
+    //!
+    void              pinListSet( const QString &netName, const SdNetPinRefList &list, SdUndo *undo );
 
     //!
     //! \brief isPinConnected Returns the connection status of a pin.

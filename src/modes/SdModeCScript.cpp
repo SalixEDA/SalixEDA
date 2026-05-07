@@ -11,6 +11,7 @@ Web
   www.SalixEDA.org
 
 Description
+  Mode for insert and edit sheet calculation scripts
 */
 #include "SdModeCScript.h"
 #include "objects/SdEnvir.h"
