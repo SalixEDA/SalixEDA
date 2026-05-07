@@ -1,5 +1,23 @@
+/*
+Project "Electronic schematic and pcb CAD"
+Copyright (c) 2026 Alexander Sibilev
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Mode for insert and edit net pins list
+*/
 #include "SdModeCNetPinsList.h"
 #include "objects/SdGraphNetPinsList.h"
+#include "objects/SdProp.h"
+#include "windows/SdDNetPinsList.h"
+#include "windows/SdWEditorGraph.h"
 
 
 SdModeCNetPinsList::SdModeCNetPinsList(SdWEditorGraph *editor, SdProjectItem *obj)
@@ -31,10 +49,25 @@ void SdModeCNetPinsList::enterPoint(SdPoint p)
     });
 
   if( pgraph == nullptr ) {
-    //Insert new net pins list
-    //Create and insert new Script object
-    addPic( new SdGraphScript( edit.scriptGet(), p, *sdGlobalProp->propText(mObject->getClass()) ), QStringLiteral("Append new script")  );
+    //Edit new net list
+    SdDNetPinsList netPinsListDlg( mObject, mEditor );
 
+    if( netPinsListDlg.exec() ) {
+      //Insert new net pins list
+      addPic( pgraph = new SdGraphNetPinsList( *(sdGlobalProp->propText(mObject->getClass())), p ), QStringLiteral("Append new net pins list")  );
+      pgraph->pinListSet( netPinsListDlg.netName(), netPinsListDlg.pinList(), mUndo );
+      }
+    }
+  else {
+    //Edit existing net list
+    SdDNetPinsList netPinsListDlg( mObject, mEditor );
+
+    netPinsListDlg.setup( pgraph->netName(), pgraph->pinList() );
+    if( netPinsListDlg.exec() ) {
+      //Insert new net pins list
+      mUndo->begin( QStringLiteral("Edit net pins list"), mObject, false );
+      pgraph->pinListSet( netPinsListDlg.netName(), netPinsListDlg.pinList(), mUndo );
+      }
     }
   }
 

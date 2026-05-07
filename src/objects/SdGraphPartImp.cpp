@@ -694,6 +694,17 @@ bool SdGraphPartImp::partPinLink(const QString pinNumber, SdGraphSymPinsMap *imp
 
 
 
+bool SdGraphPartImp::isPinNotLinked(const QString pinNumber) const
+  {
+  if( !mPins.contains(pinNumber) )
+    return false;
+  return mPins.value(pinNumber).mSection == nullptr;
+  }
+
+
+
+
+
 
 
 

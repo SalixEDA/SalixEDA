@@ -261,6 +261,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmModeTable[MD_SHEET_IDENT] = menuInsertSheet->addAction( QIcon(QString(":/pic/objIdent.png")), QObject::tr("Move ident of components"), frame, &SdWMain::cmModeReferenceMove );
   cmModeTable[MD_SHEET_VALUE] = menuInsertSheet->addAction( QIcon(QString(":/pic/objValue.png")), QObject::tr("Move value of components"), frame, &SdWMain::cmModeValueMove );
   cmModeTable[MD_SCRIPT]      = menuInsertSheet->addAction( QIcon(QString(":/pic/objScript.png")), QObject::tr("Script insert and edit"), frame, &SdWMain::cmModeScript );
+  cmModeTable[MD_NET_LIST]    = menuInsertSheet->addAction( QIcon(QString(":/pic/objScript.png")), QObject::tr("Script insert and edit"), frame, &SdWMain::cmDelegate<&SdWEditor::cmModeNetList> );
   //cmModeTable[MD_PCB_AREA]   = menuInsertSheet->addAction( QIcon(QString(":/pic/.png")), QObject::tr(""), frame, SLO );
 //  cmModeTable[MD_FIELD]      = menuInsertSheet->addAction( QIcon(QString(":/pic/objField.png")), QObject::tr("Field"), frame, SLOT(cmModeF) );
 

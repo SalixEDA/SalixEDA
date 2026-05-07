@@ -33,6 +33,7 @@ Description
 #include "modes/SdModeCSheetIdentMove.h"
 #include "modes/SdModeCSheetValueMove.h"
 #include "modes/SdModeCScript.h"
+#include "modes/SdModeCNetPinsList.h"
 #include "windows/SdDExpressionEdit.h"
 
 #include <QMessageBox>
@@ -226,6 +227,7 @@ void SdWEditorGraphSheet::cmEditFragments()
 
 void SdWEditorGraphSheet::cmModeNetList()
   {
+  modeSet( new SdModeCNetPinsList( this, mSheet )  );
   }
 
 

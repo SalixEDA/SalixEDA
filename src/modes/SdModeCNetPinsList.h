@@ -29,15 +29,15 @@ class SdModeCNetPinsList : public SdMode
 
     // SdMode interface
   public:
-    virtual int getPropBarId() const override;
-    virtual void enterPoint(SdPoint) override;
-    virtual void cancelPoint(SdPoint) override;
-    virtual void movePoint(SdPoint) override;
+    virtual int     getPropBarId() const override;
+    virtual void    enterPoint(SdPoint) override;
+    virtual void    cancelPoint(SdPoint) override;
+    virtual void    movePoint(SdPoint) override;
     virtual QString getStepHelp() const override;
     virtual QString getModeThema() const override;
     virtual QString getStepThema() const override;
-    virtual int getCursor() const override;
-    virtual int getIndex() const override;
+    virtual int     getCursor() const override;
+    virtual int     getIndex() const override;
   };
 
 #endif // SDMODECNETPINSLIST_H

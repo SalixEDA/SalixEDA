@@ -16,13 +16,41 @@ Description
 #ifndef SDDNETPINSLIST_H
 #define SDDNETPINSLIST_H
 
+#include "objects/SdNetPinRef.h"
+
 #include <QDialog>
+#include <QComboBox>
+#include <QListWidget>
+#include <QPushButton>
+
+
 
 class SdDNetPinsList : public QDialog
   {
     Q_OBJECT
+
+    SdProjectItem   *mSheet;            //!< Sheet object where net pin list resides
+    QComboBox       *mNetName;          //!< Net name field
+    QListWidget     *mPinListWidget;    //!< Net pin list widget
+    QListWidget     *mSourcePinsWidget; //!< Available pins wdiget for net
+    SdNetPinRefList  mPinList;          //!< Net pin list
+    SdNetPinRefList  mSourcePins;       //!< Available pins for net
   public:
-    SdDNetPinsList();
+    SdDNetPinsList( SdProjectItem *obj, QWidget *parent );
+
+    void setup( const QString &netName, const SdNetPinRefList &pinRefList );
+
+    SdNetPinRefList pinList() const { return mPinList; }
+
+    QString         netName() const { return mNetName->currentText(); }
+
+  public slots:
+    void            pinAppend();
+
+    void            pinRemove();
+
+  private:
+    void            fillSourcePins();
   };
 
 #endif // SDDNETPINSLIST_H

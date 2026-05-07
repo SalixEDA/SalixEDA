@@ -146,7 +146,7 @@ class SdGraphPartImp : public SdGraphTraced
     QTransform        matrix() const;
 
     //Angle of component rotation
-    SdPvAngle       angle() const { return mProp.mAngle; }
+    SdPvAngle         angle() const { return mProp.mAngle; }
 
     //!
     //! \brief partTitle Returns part title
@@ -185,6 +185,8 @@ class SdGraphPartImp : public SdGraphTraced
     //Service
     //Pin link-unlink
     bool              partPinLink(const QString pinNumber, SdGraphSymPinsMap *imp, const QString pinName, bool link );
+    //Check if pin linked
+    bool              isPinNotLinked( const QString pinNumber ) const;
     //link-unlink section
     void              setLinkSection( int section, SdGraphSymImp *symImp );
     //Check if all section removed, then autodeleted

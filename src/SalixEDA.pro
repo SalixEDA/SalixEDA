@@ -140,6 +140,7 @@ SOURCES += \
     objects/SdGraphScriptRef.cpp \
     objects/SdGraphScriptRefMap.cpp \
     objects/SdJsonIO.cpp \
+    objects/SdNetPinRef.cpp \
     objects/SdPartImpRelativePosition.cpp \
     objects/SdPropDef.cpp \
     objects/SdPvAngle.cpp \
@@ -537,6 +538,7 @@ HEADERS  += \
     objects/SdGraphScriptRefMap.h \
     objects/SdGraphSymPinsMap.h \
     objects/SdJsonIO.h \
+    objects/SdNetPinRef.h \
     objects/SdPartImpRelativePosition.h \
     objects/SdPropDef.h \
     objects/SdPv.h \

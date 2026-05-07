@@ -21,37 +21,11 @@ Description
 
 #include "SdGraphSymPinsMap.h"
 #include "SdTextImplement.h"
-
-#include <QMap>
-#include <QList>
+#include "SdNetPinRef.h"
 
 #define SD_TYPE_NET_PINS_LIST "NetPinsList"
 
 
-class SdGraphPartImp;
-
-struct SdNetPinRef
-  {
-    SdGraphPartImp *mPartImp;   //!< Part implement of pin
-    QString         mPinNumber; //!< Pin number
-
-    //!
-    //! \brief json Overloaded function to write object content into json writer
-    //! \param js   Json writer
-    //!
-    void        json( SdJsonWriter &js ) const;
-
-    //!
-    //! \brief json Overloaded function to read object content from json reader
-    //! \param js   Json reader
-    //!
-    void        json( const SdJsonReader &js );
-
-  };
-
-using SdNetPinRefMap = QMap<QString,SdNetPinRef>;
-
-using SdNetPinRefList = QList<SdNetPinRef>;
 
 
 
@@ -67,6 +41,12 @@ class SdGraphNetPinsList : public SdGraphSymPinsMap
     SdRect          mOverRect;     //!< Rectangle around text representation of list
   public:
     SdGraphNetPinsList() : SdGraphSymPinsMap(), mPinNameIndex(0) {}
+
+    SdGraphNetPinsList( const SdPropText &prp, SdPoint org ) : SdGraphSymPinsMap(), mPinNameIndex(0)
+      {
+      mVisual.mProp   = prp;
+      mVisual.mOrigin = org;
+      }
 
     //!
     //! \brief netName Returns net name for netPinsList

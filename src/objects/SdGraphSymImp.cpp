@@ -148,7 +148,7 @@ void SdGraphSymImp::paramTableSet(const SdStringMap map, SdUndo *undo, SdGraphPa
 void SdGraphSymImp::moveToPlate(SdPItemPlate *plate, SdUndo *undo)
   {
   //UnLink part in current plate
-  unLinkPart( undo );
+  unLinkPart( mPartImp, undo );
 
   //And link to part in another plate
   linkAutoPartInPlate( plate, undo );
@@ -420,7 +420,7 @@ void SdGraphSymImp::moveComplete(SdPoint grid, SdUndo *undo)
     //Part is assigned, check current area
     if( sheet->getPlate( mOrigin ) != mPartImp->getPlate() )
       //Plate is changed. Unlink from part
-      unLinkPart( undo );
+      unLinkPart( mPartImp, undo );
     else {
       //Check for new pin connections
       updatePinsConnectionStatus( undo );
@@ -781,7 +781,7 @@ void SdGraphSymImp::attach(SdUndo *undo)
 void SdGraphSymImp::detach(SdUndo *undo)
   {
   //Unlink from part
-  unLinkPart( undo );
+  unLinkPart( mPartImp, undo );
   //Autodelete all referenced objects
   if( mComponent ) mComponent->autoDelete( undo );
   if( mSymbol ) mSymbol->autoDelete( undo );

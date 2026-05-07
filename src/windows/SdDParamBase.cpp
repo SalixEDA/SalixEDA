@@ -56,6 +56,7 @@ QStringList SdDParamBase::defParamList()
     stdParamTotalPageCount,
     stdParamPageIndex,
     stdParamDeviceMark,
+    stdParamPins,
     //Capacitor specific
     stdParamDielectric,
     stdParamVoltage,
@@ -114,6 +115,7 @@ QString SdDParamBase::defParamDescription(QString paramName)
     map.insert( stdParamDatasheet, tr("Local path to pdf file with datasheet") );
     map.insert( stdParamWww, tr("www page address") );
     map.insert( stdParamDeviceMark, tr("Device marking code") );
+    map.insert( stdParamPins, tr("Pins connections outside symbol") );
     //Capacitor specific
     map.insert( stdParamDielectric, tr("Capacitor dielectric type") );
     map.insert( stdParamVoltage, tr("Capacitor working voltage") );

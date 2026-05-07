@@ -170,6 +170,7 @@ History
 #define stdParamTotalPageCount       QStringLiteral("totalPageCount")
 #define stdParamPageIndex            QStringLiteral("pageIndex")
 #define stdParamDeviceMark           QStringLiteral("device mark")
+#define stdParamPins                 QStringLiteral("pins")
 //Capacitor specific
 #define stdParamDielectric           QStringLiteral("dielectric")
 #define stdParamVoltage              QStringLiteral("voltage")
