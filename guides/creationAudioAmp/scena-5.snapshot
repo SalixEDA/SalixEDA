@@ -1,0 +1,33 @@
+{
+    "AType": "Guider snapshot file",
+    "AVersion": 1,
+    "Current editor": 1,
+    "Open editor list": [
+        {
+            "Grid-x": 250,
+            "Grid-y": 250,
+            "ObjectClass": "800",
+            "ObjectName": "Лист 1",
+            "Origin-x": 10875,
+            "Origin-y": 17000,
+            "ProjectName": "projectSnapshot-5-0",
+            "Scale": 0.04065616930788315,
+            "is3d": false
+        },
+        {
+            "Grid-x": 2500,
+            "Grid-y": 2500,
+            "ObjectClass": "1000",
+            "ObjectName": "Default plate",
+            "Origin-x": 26750,
+            "Origin-y": 10000,
+            "ProjectName": "projectSnapshot-5-0",
+            "Scale": 0.015009065251116801,
+            "is3d": false
+        }
+    ],
+    "Project current": 0,
+    "Projects": [
+        "projectSnapshot-5-0"
+    ]
+}

@@ -123,6 +123,7 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
   connect( but, &QPushButton::pressed, this, [this] () {
     if( mScenaIndex < mScenaList.size() ) {
       onScenaSelected( mScenaIndex );
+      mWMain->setFocus();
       mWMain->cmGuiderPlay();
       }
     });
@@ -134,6 +135,7 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
   connect( but, &QPushButton::pressed, this, [this] () {
     if( mScenaIndex < mScenaList.size() ) {
       onScenaSelected( mScenaIndex );
+      mWMain->setFocus();
       mWMain->cmGuiderCapture();
       }
     });
@@ -146,6 +148,7 @@ SdGuiderDialog::SdGuiderDialog(SdWMain *wmain )
   connect( but, &QPushButton::pressed, this, [this] () {
     if( mScenaIndex < mScenaList.size() ) {
       onScenaSelected( mScenaIndex );
+      mWMain->setFocus();
       mWMain->cmGuiderScreenShot();
       }
     });
@@ -495,7 +498,8 @@ void SdGuiderDialog::onBuildClicked() {
   args << "-f" << "concat"
        << "-safe" << "0"
        << "-i" << listFile.fileName()
-       << "-c" << "copy"
+       << "-c:v" << "copy"
+       << "-filter_complex" << "aresample=async=1"
        << outputPath;
 
   // Run FFmpeg
