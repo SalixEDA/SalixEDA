@@ -133,6 +133,7 @@ SOURCES += \
     objects/SdContainerFile.cpp \
     objects/SdCopyMap.cpp \
     objects/SdCopyMapProject.cpp \
+    objects/SdGraphNetPinsList.cpp \
     objects/SdGraphParam.cpp \
     objects/SdGraphScript.cpp \
     objects/SdGraphScriptRef.cpp \
@@ -526,10 +527,12 @@ HEADERS  += \
     objects/SdCopyMapProject.h \
     objects/SdDoubleVector.h \
     objects/SdFileUid.h \
+    objects/SdGraphNetPinsList.h \
     objects/SdGraphParam.h \
     objects/SdGraphScript.h \
     objects/SdGraphScriptRef.h \
     objects/SdGraphScriptRefMap.h \
+    objects/SdGraphSymPinsMap.h \
     objects/SdJsonIO.h \
     objects/SdPartImpRelativePosition.h \
     objects/SdPropDef.h \

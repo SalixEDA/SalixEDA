@@ -15,7 +15,7 @@ Description
 */
 #ifndef SDGRAPHSYMIMP_H
 #define SDGRAPHSYMIMP_H
-#include "SdGraphParam.h"
+#include "SdGraphSymPinsMap.h"
 #include "SdPoint.h"
 #include "SdPropText.h"
 #include "SdPropSymImp.h"
@@ -36,7 +36,7 @@ class SdPItemPlate;
 class SdGraphNetWire;
 
 
-class SdGraphSymImp : public SdGraphParam
+class SdGraphSymImp : public SdGraphSymPinsMap
   {
     SdGraphArea      *mArea;         //!< PCB where this symbol implement contains in
     int               mSectionIndex; //!< Section index (from 0)
@@ -82,9 +82,9 @@ class SdGraphSymImp : public SdGraphParam
     //Pin presention
     bool              isPinPresent( const QString pinName ) const { return mPins.contains(pinName); }
     //Pin connection status
-    bool              isPinConnected( const QString pinName ) const;
+    virtual bool      isPinConnected( const QString pinName ) const override;
     //Pin net name
-    QString           pinNetName( const QString pinName ) const;
+    virtual QString   pinNetName( const QString pinName ) const override;
 
     //Params with local param table
     //Setup full param table
@@ -142,8 +142,14 @@ class SdGraphSymImp : public SdGraphParam
     void              setLinkSection(int section, SdGraphPartImp *partImp );
     //Unconnect pin over rect
     void              unconnectPinOverRect(SdRect over , SdUndo *undo, const QString undoTitle);
-    //Unlink symbol from part
-    void              unLinkPart( SdUndo *undo );
+
+    //!
+    //! \brief unLinkPart Unlink part impelement from symbol implement
+    //! \param partImp    Part implement
+    //! \param undo       Undo operation
+    //!
+    virtual void      unLinkPart( SdGraphPartImp *partImp, SdUndo *undo ) override;
+
     //Link auto partImp. partImp and section are selected automatic
     void              linkAutoPart( SdUndo *undo );
     //TODO D017 Accum auto net

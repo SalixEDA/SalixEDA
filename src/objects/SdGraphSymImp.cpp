@@ -40,7 +40,7 @@ Description
 //====================================================================================
 //Symbol implementation
 SdGraphSymImp::SdGraphSymImp() :
-  SdGraphParam(),
+  SdGraphSymPinsMap(),
   mArea(nullptr),        //PCB where this symbol implement contains in
   mSectionIndex(0),      //Section index (from 0)
   mLogSection(0),        //Logical symbol section number (from 1)
@@ -54,7 +54,7 @@ SdGraphSymImp::SdGraphSymImp() :
   }
 
 SdGraphSymImp::SdGraphSymImp(SdPItemVariant *comp, SdPItemSymbol *sym, SdPItemPart *part, const SdStringMap &param, SdPoint pos, SdPropSymImp *prp ) :
-  SdGraphParam(param),
+  SdGraphSymPinsMap(param),
   mArea(nullptr),        //PCB where this symbol implement contains in
   mSectionIndex(0),      //Section index (from 0)
   mLogSection(0),        //Logical symbol section number (from 1)
@@ -186,15 +186,23 @@ void SdGraphSymImp::unconnectPinOverRect(SdRect over, SdUndo *undo, const QStrin
 
 
 
-void SdGraphSymImp::unLinkPart(SdUndo *undo)
+
+
+
+//!
+//! \brief unLinkPart Unlink part impelement from symbol implement
+//! \param partImp    Part implement
+//! \param undo       Undo operation
+//!
+void SdGraphSymImp::unLinkPart(SdGraphPartImp *partImp, SdUndo *undo)
   {
-  if( mPartImp != nullptr ) {
+  if( mPartImp == partImp ) {
     //Save pin state
     undo->prop( &mPins );
     //undo->partImpPins( )
     //UnLink pins if mPartImp present
     for( SdSymImpPinTable::iterator i = mPins.begin(); i != mPins.end(); i++ )
-      mPartImp->partPinLink( i.value().mPinNumber, nullptr, QString(), undo );
+      mPartImp->partPinLink( i.value().mPinNumber, nullptr, QString(), false );
     //Remove previous pins
     mPins.clear();
     //Save current link state

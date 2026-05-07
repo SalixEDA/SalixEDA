@@ -670,7 +670,7 @@ bool SdGraphPartImp::isSectionFree(int *section, SdPItemPart *part, SdPItemVaria
 
 
 //Pin link-unlink
-bool SdGraphPartImp::partPinLink(const QString pinNumber, SdGraphSymImp *imp, const QString pinName, bool link)
+bool SdGraphPartImp::partPinLink(const QString pinNumber, SdGraphSymPinsMap *imp, const QString pinName, bool link)
   {
   if( !mPins.contains(pinNumber) )
     return false;
@@ -755,9 +755,13 @@ void SdGraphPartImp::detach(SdUndo *undo)
   //Unlink all sections
   for( SdPartImpSection &s : mSections ) {
     if( s.mSymImp )
-      s.mSymImp->unLinkPart( undo );
+      s.mSymImp->unLinkPart( this, undo );
     if( s.mSymbol ) s.mSymbol->autoDelete( undo );
     }
+  //Unlink all pins sections
+  for( const SdPartImpPin &pin : std::as_const(mPins) )
+    if( pin.mSection != nullptr )
+      pin.mSection->unLinkPart( this, undo );
   //Autodelete all referenced objects
   if( mComponent ) mComponent->autoDelete( undo );
   if( mPart ) mPart->autoDelete( undo );

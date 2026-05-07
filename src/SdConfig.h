@@ -19,6 +19,7 @@ History
   13.03.2026 v3.2  Append visual object group id, which allow to group many visual objects into single object
   27.03.2026 v3.3  Completely redesigned guider. Works with simple text scripts. Produces standard mp4 video.
   08.04.2026 v3.4  Append board builder master
+  06.05.2026 v3.5  Append base for textual net connection list
 */
 
 #ifndef SDCONFIG
@@ -30,7 +31,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             4
+#define SD_VERSION_MINOR             5
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

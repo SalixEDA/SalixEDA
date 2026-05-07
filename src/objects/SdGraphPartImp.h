@@ -34,16 +34,17 @@ class SdGraphPartPin;
 class SdPItemSymbol;
 class SdPItemVariant;
 class SdGraphSymImp;
+class SdGraphSymPinsMap;
 class SdGraphRoadPin;
 class SdJsonReaderProperty;
 
 //Part implementation pin [Ножка вхождения корпуса]
 struct SdPartImpPin {
-  SdGraphPartPin *mPin;       //Original pin
-  SdGraphSymImp  *mSection;   //Schematic section where pin located
-  QString         mPinName;   //Part pin name
-  SdPoint         mPosition;  //Pin position in plate context
-  SdPvStratum     mStratum;   //Pin stratum
+  SdGraphPartPin    *mPin;       //!< Original pin
+  SdGraphSymPinsMap *mSection;   //!< Schematic section where pin located
+  QString            mPinName;   //!< Part pin name
+  SdPoint            mPosition;  //!< Pin position in plate context
+  SdPvStratum        mStratum;   //!< Pin stratum
 
   SdPartImpPin();
 
@@ -183,7 +184,7 @@ class SdGraphPartImp : public SdGraphTraced
 
     //Service
     //Pin link-unlink
-    bool              partPinLink(const QString pinNumber, SdGraphSymImp *imp, const QString pinName, bool link );
+    bool              partPinLink(const QString pinNumber, SdGraphSymPinsMap *imp, const QString pinName, bool link );
     //link-unlink section
     void              setLinkSection( int section, SdGraphSymImp *symImp );
     //Check if all section removed, then autodeleted
