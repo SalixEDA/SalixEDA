@@ -35,7 +35,6 @@ class SdGraphNetPinsList : public SdGraphSymPinsMap
     int             mPinNameIndex; //!< Index for building unical pin name
     SdNetPinRefMap  mPinRefMap;    //!< Pin list for net
     SdTextImplement mVisual;       //!< Net pin list text properties and position
-    QString         mText;         //!< Textual representation of list
 
     //Not saved
     SdRect          mOverRect;     //!< Rectangle around text representation of list
@@ -114,8 +113,9 @@ class SdGraphNetPinsList : public SdGraphSymPinsMap
     virtual int       behindCursor(SdPoint p) override;
 
   private:
-    void disconnectAll();
-    void connectAll();
+    void    disconnectAll();
+    void    connectAll();
+    QString buildString() const;
   };
 
 #endif // SDGRAPHNETPINSLIST_H

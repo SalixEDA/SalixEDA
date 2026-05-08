@@ -48,8 +48,8 @@ SdMode::~SdMode()
 void SdMode::restore()
   {
   //update step definite params
-  SdPulsar::sdPulsar->emitSetStatusMessage( getStepHelp() );
-  mEditor->viewport()->setCursor( loadCursor(getCursor()) );
+  setStepStatusMessage();
+  setStepCursor();
 
   //setup mode step properties bar
   SdWCommand::activateModeBar( getPropBarId(), mObject );
@@ -262,5 +262,30 @@ void SdMode::addPic( SdObject *obj, QString title )
   mObject->insertChild( obj, mUndo );
   mEditor->dirtyCashe();
   mEditor->dirtyProject();
+  }
+
+
+
+
+//!
+//! \brief setStatusMessage Sets message to status bar
+//! \param msg              Message to set
+//!
+void SdMode::setStatusMessage( const QString &msg ) const
+  {
+  SdPulsar::sdPulsar->emitSetStatusMessage( msg );
+  }
+
+
+
+
+//!
+//! \brief setCursor Sets editor current cursor
+//! \param cursor    Cursor id
+//!
+void SdMode::setCursor(int cursor) const
+  {
+  if( mEditor != nullptr )
+    mEditor->viewport()->setCursor( loadCursor(cursor) );
   }
 

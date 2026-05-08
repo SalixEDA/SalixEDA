@@ -814,5 +814,8 @@
         <file>pic/symbolMasterIcWithNum.png</file>
         <file>help/errorNoPage-en.md</file>
         <file>help/errorNoPage-ru.md</file>
+        <file>pic/netPinList.png</file>
+        <file>pic/cursorNetPinListEdit.png</file>
+        <file>pic/cursorNetPinList.png</file>
     </qresource>
 </RCC>

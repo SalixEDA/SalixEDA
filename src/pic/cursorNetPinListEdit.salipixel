@@ -1,0 +1,705 @@
+{
+    "command": [
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 1,
+                "y": 23
+            },
+            "stop": {
+                "x": 30,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 3,
+                "y": 21
+            },
+            "stop": {
+                "x": 3,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 3,
+                "y": 15
+            },
+            "stop": {
+                "x": 6,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 6,
+                "y": 21
+            },
+            "stop": {
+                "x": 6,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 15
+            },
+            "stop": {
+                "x": 8,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 15
+            },
+            "stop": {
+                "x": 11,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 18
+            },
+            "stop": {
+                "x": 10,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 21
+            },
+            "stop": {
+                "x": 11,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 13,
+                "y": 15
+            },
+            "stop": {
+                "x": 17,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 15,
+                "y": 15
+            },
+            "stop": {
+                "x": 15,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 21,
+                "y": 15
+            },
+            "stop": {
+                "x": 25,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 25,
+                "y": 15
+            },
+            "stop": {
+                "x": 21,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 27,
+                "y": 17
+            },
+            "stop": {
+                "x": 28,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 28,
+                "y": 15
+            },
+            "stop": {
+                "x": 28,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": false,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 3,
+                "y": 15
+            },
+            "select1": {
+                "x": 28,
+                "y": 21
+            },
+            "target": {
+                "x": 26,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 19,
+                "y": 15
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 20,
+                "y": 17
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 21,
+                "y": 17
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 23,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 21,
+                "y": 18
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 20,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 22,
+                "y": 19
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 22,
+                "y": 20
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 23,
+                "y": 20
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 23,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 20,
+                "y": 20
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 19,
+                "y": 20
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "ClearPoint",
+            "point": {
+                "x": 19,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 20,
+                "y": 15
+            },
+            "stop": {
+                "x": 20,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 20,
+                "y": 21
+            },
+            "stop": {
+                "x": 22,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 22,
+                "y": 21
+            },
+            "stop": {
+                "x": 23,
+                "y": 20
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 23,
+                "y": 20
+            },
+            "stop": {
+                "x": 23,
+                "y": 16
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 23,
+                "y": 16
+            },
+            "stop": {
+                "x": 22,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 20,
+                "y": 15
+            },
+            "stop": {
+                "x": 22,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 1,
+                "y": 14
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 15,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": true,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 20,
+                "y": 15
+            },
+            "select1": {
+                "x": 23,
+                "y": 21
+            },
+            "target": {
+                "x": 4,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 3,
+                "y": 16
+            },
+            "id": "ClearRect",
+            "second": {
+                "x": 5,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 6,
+                "y": 21
+            },
+            "stop": {
+                "x": 6,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 6,
+                "y": 15
+            },
+            "stop": {
+                "x": 9,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 9,
+                "y": 21
+            },
+            "stop": {
+                "x": 9,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": true,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 19,
+                "y": 14
+            },
+            "select1": {
+                "x": 23,
+                "y": 21
+            },
+            "target": {
+                "x": 14,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": false,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 20,
+                "y": 14
+            },
+            "select1": {
+                "x": 26,
+                "y": 21
+            },
+            "target": {
+                "x": 25,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 28,
+                "y": 15
+            },
+            "stop": {
+                "x": 31,
+                "y": 15
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 31,
+                "y": 15
+            },
+            "stop": {
+                "x": 31,
+                "y": 17
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 31,
+                "y": 17
+            },
+            "stop": {
+                "x": 30,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 30,
+                "y": 18
+            },
+            "stop": {
+                "x": 30,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 17
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 20
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": false,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 0,
+                "y": 14
+            },
+            "select1": {
+                "x": 31,
+                "y": 23
+            },
+            "target": {
+                "x": 31,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 3,
+                "y": 0
+            },
+            "stop": {
+                "x": 3,
+                "y": 6
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Line",
+            "start": {
+                "x": 0,
+                "y": 3
+            },
+            "stop": {
+                "x": 6,
+                "y": 3
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 21,
+                "y": 3
+            },
+            "stop": {
+                "x": 27,
+                "y": 6
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 21,
+                "y": 3
+            },
+            "stop": {
+                "x": 8,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 27,
+                "y": 6
+            },
+            "stop": {
+                "x": 14,
+                "y": 26
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 7,
+                "y": 29
+            },
+            "stop": {
+                "x": 14,
+                "y": 26
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 7,
+                "y": 29
+            },
+            "stop": {
+                "x": 8,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#e01b24",
+            "id": "Line",
+            "start": {
+                "x": 9,
+                "y": 22
+            },
+            "stop": {
+                "x": 14,
+                "y": 26
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

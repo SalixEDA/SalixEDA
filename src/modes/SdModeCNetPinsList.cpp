@@ -18,10 +18,13 @@ Description
 #include "objects/SdProp.h"
 #include "windows/SdDNetPinsList.h"
 #include "windows/SdWEditorGraph.h"
+#include "windows/SdWCommand.h"
+#include "windows/SdPropBarTextual.h"
 
 
 SdModeCNetPinsList::SdModeCNetPinsList(SdWEditorGraph *editor, SdProjectItem *obj)
   : SdMode( editor, obj )
+  , mOverNetPinsList(nullptr)
   {
 
   }
@@ -35,40 +38,60 @@ int SdModeCNetPinsList::getPropBarId() const
 
 
 
+void SdModeCNetPinsList::propGetFromBar()
+  {
+  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
+  if( tbar ) {
+    tbar->getPropText( sdGlobalProp->propText( mObject->getClass() ) );
+    mEditor->setFocus();
+    update();
+    }
+  }
+
+
+
+
+void SdModeCNetPinsList::propSetToBar()
+  {
+  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
+  if( tbar ) {
+    tbar->setPropText( sdGlobalProp->propText( mObject->getClass() ), mEditor->getPPM() );
+    }
+  }
+
+
+
+
+
 void SdModeCNetPinsList::enterPoint(SdPoint p)
   {
-  //Find object behind enter point
-  SdGraphNetPinsList *pgraph = nullptr;
-  mObject->forEach( dctText, [&pgraph,p]( SdObject *obj ) {
-    SdPtr<SdGraphNetPinsList> graph(obj);
-    if( graph.isValid() && graph->behindCursor(p) ) {
-      pgraph = graph.ptr();
-      return false;
-      }
-    return true;
-    });
 
-  if( pgraph == nullptr ) {
+  if( mOverNetPinsList == nullptr ) {
     //Edit new net list
     SdDNetPinsList netPinsListDlg( mObject, mEditor );
 
     if( netPinsListDlg.exec() ) {
       //Insert new net pins list
-      addPic( pgraph = new SdGraphNetPinsList( *(sdGlobalProp->propText(mObject->getClass())), p ), QStringLiteral("Append new net pins list")  );
-      pgraph->pinListSet( netPinsListDlg.netName(), netPinsListDlg.pinList(), mUndo );
+      addPic( mOverNetPinsList = new SdGraphNetPinsList( *(sdGlobalProp->propText(mObject->getClass())), p ), QStringLiteral("Append new net pins list")  );
+      mOverNetPinsList->pinListSet( netPinsListDlg.netName(), netPinsListDlg.pinList(), mUndo );
       }
     }
   else {
     //Edit existing net list
     SdDNetPinsList netPinsListDlg( mObject, mEditor );
 
-    netPinsListDlg.setup( pgraph->netName(), pgraph->pinList() );
+    netPinsListDlg.setup( mOverNetPinsList->netName(), mOverNetPinsList->pinList() );
     if( netPinsListDlg.exec() ) {
       //Insert new net pins list
       mUndo->begin( QStringLiteral("Edit net pins list"), mObject, false );
-      pgraph->pinListSet( netPinsListDlg.netName(), netPinsListDlg.pinList(), mUndo );
+      mOverNetPinsList->pinListSet( netPinsListDlg.netName(), netPinsListDlg.pinList(), mUndo );
+      update();
       }
     }
+
+  mOverNetPinsList = nullptr;
+  setStepStatusMessage();
+  setStepCursor();
   }
 
 
@@ -82,8 +105,26 @@ void SdModeCNetPinsList::cancelPoint(SdPoint)
 
 
 
-void SdModeCNetPinsList::movePoint(SdPoint)
+void SdModeCNetPinsList::movePoint(SdPoint p)
   {
+  //Find object behind enter point
+  SdGraphNetPinsList *pgraph = nullptr;
+  mObject->forEach( dctText, [&pgraph,p]( SdObject *obj ) {
+    SdPtr<SdGraphNetPinsList> graph(obj);
+    if( graph.isValid() && graph->behindCursor(p) ) {
+      pgraph = graph.ptr();
+      return false;
+      }
+    return true;
+    });
+
+  bool changed = (pgraph == nullptr) != (mOverNetPinsList == nullptr);
+  mOverNetPinsList = pgraph;
+
+  if( changed ) {
+    setStepStatusMessage();
+    setStepCursor();
+    }
   }
 
 
@@ -91,6 +132,8 @@ void SdModeCNetPinsList::movePoint(SdPoint)
 
 QString SdModeCNetPinsList::getStepHelp() const
   {
+  if( mOverNetPinsList != nullptr )
+    return QObject::tr("Enter point to edit net pins list");
   return QObject::tr("Enter point to insert or edit net pins list");
   }
 
@@ -115,7 +158,7 @@ QString SdModeCNetPinsList::getStepThema() const
 
 int SdModeCNetPinsList::getCursor() const
   {
-  return CUR_SCRIPT;
+  return mOverNetPinsList != nullptr ? CUR_NET_LIST_ED : CUR_NET_LIST;
   }
 
 
@@ -125,3 +168,5 @@ int SdModeCNetPinsList::getIndex() const
   {
   return MD_NET_LIST;
   }
+
+

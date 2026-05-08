@@ -75,6 +75,8 @@ static QCursor createCursor( int cursorId )
     case CUR_ZOOM_WIN    : return loadWindowsCursor( QString(":/pic/zoomwin.cur") );
     case CUR_COMP        : return QCursor( QPixmap(QStringLiteral(":/pic/cursorComp.png")), 4, 4 );
     case CUR_SCRIPT      : return QCursor( QPixmap(QStringLiteral(":/pic/cursorScript.png")), 5, 5 );
+    case CUR_NET_LIST    : return QCursor( QPixmap(QStringLiteral(":/pic/cursorNetPinList.png")), 5, 5 );
+    case CUR_NET_LIST_ED : return QCursor( QPixmap(QStringLiteral(":/pic/cursorNetPinListEdit.png")), 5, 5 );
     }
   return QCursor();
   }

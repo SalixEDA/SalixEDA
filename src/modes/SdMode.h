@@ -73,6 +73,28 @@ class SdMode
    //Add object to container
    void           addPic(SdObject *obj , QString title);
 
+   //!
+   //! \brief setStatusMessage Sets message to status bar
+   //! \param msg              Message to set
+   //!
+   void           setStatusMessage( const QString &msg ) const;
+
+   //!
+   //! \brief setStepStatusMessage Sets step help message to status bar
+   //!
+   void           setStepStatusMessage() const { setStatusMessage( getStepHelp() ); }
+
+   //!
+   //! \brief setCursor Sets editor current cursor
+   //! \param cursor    Cursor id
+   //!
+   void           setCursor( int cursor ) const;
+
+   //!
+   //! \brief setStepCursor Sets step cursor as current editor cursor
+   //!
+   void           setStepCursor() const { return setCursor( getCursor() ); }
+
   public:
     SdMode( SdWEditorGraph *editor, SdProjectItem *obj );
     virtual ~SdMode();

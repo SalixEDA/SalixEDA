@@ -761,13 +761,13 @@ int SdModeSelect::checkPoint(SdPoint p)
 
     //If message received then display it other wise display help
     if( info.isEmpty() )
-      SdPulsar::sdPulsar->emitSetStatusMessage( getStepHelp() );
+      setStepStatusMessage();
     else
-      SdPulsar::sdPulsar->emitSetStatusMessage( info );
+      setStatusMessage( info );
     }
 
   if( mState != prevStatus )
-    mEditor->viewport()->setCursor( loadCursor(getCursor()) );
+    setStepCursor();
 
   return mState;
   }

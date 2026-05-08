@@ -1,3 +1,44 @@
+/*
+Project "Electronic schematic and pcb CAD"
+Copyright (c) 2026 Alexander Sibilev
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  Dialog for edit net pins list
+
+  The dialog consists of a combo box for the net name. We populate
+  it with a list of all available nets in the project. We also allow
+  entering a net name manually.
+
+  In the central part there are two lists: a list of pins for the
+  given net (left) and a list of all available and not yet connected
+  pins (right). We populate the right list when constructing the dialog.
+  To do this, we scan all schematic sheets. In each schematic sheet, we
+  look for component occurrences, and for each component, we check for
+  the presence of a "pins" field in its parameters. If the field exists,
+  then this component is a candidate for adding to the table. Next, we
+  parse the parameter string and obtain a list of pins that can be
+  connected via text method. After that, we check whether these pins
+  are already connected. If they are not connected, they are added to
+  the available pins table.
+
+  Below the tables, there are two buttons: under the left table,
+  a "Remove" button, which moves a pin from the left table to the right;
+  and under the right table, an "Add" button, which moves a pin from
+  the right table to the left. Thus, using these buttons, you can move
+  pins back and forth between the two lists.
+
+  When the OK button of the dialog is pressed, the changes take effect
+  with the possibility of undoing. When the Cancel button is pressed,
+  all changes are ignored.
+*/
 #include "SdDNetPinsList.h"
 #include "SdDHelp.h"
 #include "objects/SdProject.h"
@@ -80,6 +121,11 @@ SdDNetPinsList::SdDNetPinsList(SdProjectItem *obj, QWidget *parent)
 
 
 
+//!
+//! \brief setup      Initializes the dialog with the specified net name and pin list
+//! \param netName    The net name to display in the combo box
+//! \param pinRefList The list of pins currently assigned to this net
+//!
 void SdDNetPinsList::setup(const QString &netName, const SdNetPinRefList &pinRefList)
   {
   mNetName->setCurrentText( netName );
@@ -92,6 +138,10 @@ void SdDNetPinsList::setup(const QString &netName, const SdNetPinRefList &pinRef
 
 
 
+//!
+//! \brief pinAppend Moves a pin from the right (available) list to the left (assigned) list
+//!                  Called when the "Add" button under the right table is clicked
+//!
 void SdDNetPinsList::pinAppend()
   {
   int index = mSourcePinsWidget->currentRow();
@@ -107,6 +157,10 @@ void SdDNetPinsList::pinAppend()
 
 
 
+//!
+//! \brief pinRemove Moves a pin from the left (assigned) list to the right (available) list
+//!                  Called when the "Remove" button under the left table is clicked
+//!
 void SdDNetPinsList::pinRemove()
   {
   int index = mPinListWidget->currentRow();
@@ -123,6 +177,13 @@ void SdDNetPinsList::pinRemove()
 
 
 
+//!
+//! \brief fillSourcePins Populates the right (available) pins list
+//!
+//! Scans all schematic sheets, finds components with a "pins" field in their parameters,
+//! parses the parameter string to get the list of pins that can be connected via text method,
+//! and adds only those pins that are not yet connected to any net
+//!
 void SdDNetPinsList::fillSourcePins()
   {
   if( mSheet != nullptr ) {

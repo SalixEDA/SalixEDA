@@ -1,3 +1,21 @@
+/*
+Project "Electronic schematic and pcb CAD"
+Copyright (c) 2026 Alexander Sibilev
+
+SPDX-License-Identifier: GPL-3.0-or-later
+
+Author
+  Alexander Sibilev S.
+
+Web
+  www.SalixEDA.org
+
+Description
+  SdGraphNetPinsList - textual representation of net pin list.
+  Each object is for single net, but multiple part and pin. So we have
+  netName and pins map. Map is pinName-pin association. PinName we
+  generate internal.
+*/
 #include "SdGraphNetPinsList.h"
 #include "SdSelector.h"
 #include "SdContext.h"
@@ -120,7 +138,6 @@ void SdGraphNetPinsList::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool
 void SdGraphNetPinsList::json(SdJsonWriter &js) const
   {
   js.jsonString( "NetName", mNetName );
-  js.jsonString( "Text", mText );
   js.jsonInt( "PinNameIndex", mPinNameIndex );
   js.jsonMap( js, QStringLiteral("PinRefMap"), mPinRefMap );
   mVisual.json( "Visual", js );
@@ -130,7 +147,6 @@ void SdGraphNetPinsList::json(SdJsonWriter &js) const
 void SdGraphNetPinsList::json(const SdJsonReader &js)
   {
   js.jsonString( "NetName", mNetName );
-  js.jsonString( "Text", mText );
   js.jsonInt( "PinNameIndex", mPinNameIndex );
   js.jsonMap( js, QStringLiteral("PinRefMap"), mPinRefMap );
   mVisual.json( "Visual", js );
@@ -219,7 +235,7 @@ bool SdGraphNetPinsList::isVisible() const
 void SdGraphNetPinsList::draw(SdContext *dc)
   {
   //Draw as simple text
-  dc->text( mVisual.mOrigin, mOverRect, mText, mVisual.mProp );
+  dc->text( mVisual.mOrigin, mOverRect, buildString(), mVisual.mProp );
   }
 
 
@@ -249,19 +265,28 @@ void SdGraphNetPinsList::disconnectAll()
 
 void SdGraphNetPinsList::connectAll()
   {
-  mText = QObject::tr("Net \"%1\" connect to pins: ").arg(mNetName);
-  bool addComma = false;
   for( auto it = mPinRefMap.cbegin(); it != mPinRefMap.cend(); ++it )
     if( it.value().mPartImp != nullptr ) {
       //Fact link pin
       it.value().mPartImp->partPinLink( it.value().mPinNumber, this, it.key(), true );
+      }
+  }
 
+
+
+QString SdGraphNetPinsList::buildString() const
+  {
+  QString str( QObject::tr("Net \"%1\" connect to pins ").arg(mNetName) );
+  bool addComma = false;
+  for( auto it = mPinRefMap.cbegin(); it != mPinRefMap.cend(); ++it )
+    if( it.value().mPartImp != nullptr && !it.value().mPartImp->isPinNotLinked(it.value().mPinNumber) ) {
       //Build textual representation
       if( addComma )
-        mText += QStringLiteral(", ");
+        str += QStringLiteral(", ");
       addComma = true;
-      mText += it.value().mPartImp->ident() + QStringLiteral(":") + it.value().mPinNumber;
+      str += it.value().mPartImp->ident() + QStringLiteral(":") + it.value().mPinNumber;
       }
+  return str;
   }
 
 

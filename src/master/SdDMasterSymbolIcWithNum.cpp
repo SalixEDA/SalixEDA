@@ -29,11 +29,14 @@ static QString strDelim("---");
 static QString strGap;
 
 
-static int cellHeight    = 500;
-static int pinSizeX      = 750;
-static int nameAreaX     = 1250;
-static int extendedAreaX = 3750;
-static int centralSizeX  = 1500;
+static int cellHeight     = 500;
+static int cellQuadHeight = 125;
+static int symHeight      = 200;
+static int symHalfHeight  = 100;
+static int pinSizeX       = 750;
+static int nameAreaX      = 1250;
+static int extendedAreaX  = 3750;
+static int centralSizeX   = 1500;
 
 
 SdDMasterSymbolIcWithNum::SdDMasterSymbolIcWithNum(SdProjectItem *item, QWidget *parent)
@@ -479,23 +482,24 @@ void SdDMasterSymbolIcWithNum::rightInsert(const QString &pinName, const QString
 
 void SdDMasterSymbolIcWithNum::addAttr(int x, int y, int attr)
   {
+  int cellSlash = cellQuadHeight; // cellHeight / 5 * 2;
   switch( attr ) {
     case 1 :
       //Circle at root
-      addCircle( x, y, 50 );
+      addCircle( x, y, cellQuadHeight );
       break;
     case 2 :
       //Cross at root
-      addLine( x - 50, y - 50, x + 50, y + 50 );
-      addLine( x + 50, y - 50, x - 50, y + 50 );
+      addLine( x - cellQuadHeight, y - cellQuadHeight, x + cellQuadHeight, y + cellQuadHeight );
+      addLine( x + cellQuadHeight, y - cellQuadHeight, x - cellQuadHeight, y + cellQuadHeight );
       break;
     case 3 :
       //Slash /
-      addLine( x - 100, y - 100, x + 100, y + 100 );
+      addLine( x - cellSlash, y - cellSlash, x + cellSlash, y + cellSlash );
       break;
     case 4 :
       //Back slash
-      addLine( x + 100, y - 100, x - 100, y + 100 );
+      addLine( x + cellSlash, y - cellSlash, x - cellSlash, y + cellSlash );
       break;
     }
   }
@@ -508,29 +512,29 @@ bool SdDMasterSymbolIcWithNum::addSymbol(const QString &pinName, int x, int y)
   {
   if( pinName == QString("(Z)") ) {
     //Romb
-    addLine( x, y - 100, x + 50, y );
-    addLine( x + 50, y, x, y + 100 );
-    addLine( x, y + 100, x - 50, y );
-    addLine( x - 50, y, x, y - 100 );
-    addLine( x - 50, y, x + 50, y );
+    addLine( x, y - symHeight, x + symHalfHeight, y );
+    addLine( x + symHalfHeight, y, x, y + symHeight );
+    addLine( x, y + symHeight, x - symHalfHeight, y );
+    addLine( x - symHalfHeight, y, x, y - symHeight );
+    addLine( x - symHalfHeight, y, x + symHalfHeight, y );
     return true;
     }
   if( pinName == QString("(OK)") ) {
     //Romb
-    addLine( x, y - 100, x + 50, y );
-    addLine( x + 50, y, x, y + 100 );
-    addLine( x, y + 100, x - 50, y );
-    addLine( x - 50, y, x, y - 100 );
-    addLine( x - 50, y + 100, x + 50, y + 100 );
+    addLine( x, y - symHeight, x + symHalfHeight, y );
+    addLine( x + symHalfHeight, y, x, y + symHeight );
+    addLine( x, y + symHeight, x - symHalfHeight, y );
+    addLine( x - symHalfHeight, y, x, y - symHeight );
+    addLine( x - symHalfHeight, y + symHeight, x + symHalfHeight, y + symHeight );
     return true;
     }
   if( pinName == QString("(OE)") ) {
     //Romb
-    addLine( x, y - 100, x + 50, y );
-    addLine( x + 50, y, x, y + 100 );
-    addLine( x, y + 100, x - 50, y );
-    addLine( x - 50, y, x, y - 100 );
-    addLine( x - 50, y - 100, x + 50, y - 100 );
+    addLine( x, y - symHeight, x + symHalfHeight, y );
+    addLine( x + symHalfHeight, y, x, y + symHeight );
+    addLine( x, y + symHeight, x - symHalfHeight, y );
+    addLine( x - symHalfHeight, y, x, y - symHeight );
+    addLine( x - symHalfHeight, y - symHeight, x + symHalfHeight, y - symHeight );
     return true;
     }
   return false;

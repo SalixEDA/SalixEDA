@@ -22,14 +22,15 @@ class SdGraphNetPinsList;
 
 class SdModeCNetPinsList : public SdMode
   {
-    SdPropText         *mPropText;    //!< Text properties
-    SdGraphNetPinsList *mNetPinsList; //!< Current netPinsList object
+    SdGraphNetPinsList *mOverNetPinsList; //!< Current netPinsList object
   public:
     SdModeCNetPinsList( SdWEditorGraph *editor, SdProjectItem *obj );
 
     // SdMode interface
   public:
     virtual int     getPropBarId() const override;
+    virtual void    propGetFromBar() override;
+    virtual void    propSetToBar() override;
     virtual void    enterPoint(SdPoint) override;
     virtual void    cancelPoint(SdPoint) override;
     virtual void    movePoint(SdPoint) override;
