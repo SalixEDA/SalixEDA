@@ -817,5 +817,11 @@
         <file>pic/netPinList.png</file>
         <file>pic/cursorNetPinListEdit.png</file>
         <file>pic/cursorNetPinList.png</file>
+        <file>help/SdDNetPinsList-en.htm</file>
+        <file>help/SdDNetPinsList-ru.htm</file>
+        <file>help/ModeCNetPinsList-en.htm</file>
+        <file>help/ModeCNetPinsList-ru.htm</file>
+        <file>help/netPinList.png</file>
+        <file>help/cursorNetPinList.png</file>
     </qresource>
 </RCC>

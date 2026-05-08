@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 align="center">Text-based netlist editing dialog</h1>
+    <p>This dialog box specifies the list of pins connected to the selected net.
+    </p>
+    <p>At the top of the dialog box is a drop-down list of nets available in the project.
+    Select a net from the list or enter a net name from the keyboard. The pins from the left pin list
+    will be connected to this net.
+    </p>
+    <p>In the central part of the dialog box there are two lists: on the left - a list
+    of pins connected to the selected net, and on the right - a list of project component pins
+    available for connection. The right list is formed automatically, and the left list is formed
+    using the Add and Remove buttons.
+    </p>
+    <p>When you click the Add button, the pin selected in the right list is moved to
+    the left list, which means that it will be connected to the selected net.
+    </p>
+    <p>When you click the Remove button, the pin selected in the left list is moved to the right
+    list, which means that it will no longer be connected to the selected net and may
+    be connected to another net.
+    </p>
+    <p>When you click the OK button, a text list of pins for the net is created. The component pins
+    on the PCB are connected to the selected net, and the pins themselves are blocked from being added
+    to other text-based netlists. That is, to add a pin to a text-based netlist, it must be free, i.e.,
+    not connected anywhere. </p>
+    <p>For the SalixEDA system to be able to populate the list of pins available for connection,
+    the component must contain a "pins" parameter. The value of this parameter is a list of
+    pinAssignment=pinNumber pairs, separated by semicolons. For example: </p>
+    <code>VCC=14; GND=7</code>
+  </body>
+</html>
+
