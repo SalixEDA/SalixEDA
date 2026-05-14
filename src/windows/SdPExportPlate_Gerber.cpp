@@ -43,7 +43,7 @@ Description
 
 //Function for coord printing
 QString gerberMM( int x ) {
-  return QString("%1.%2").arg(x/1000).arg(x%1000,3,10,QChar('0'));
+  return QString("%1.%2").arg(x/1000).arg(qAbs(x)%1000,3,10,QChar('0'));
   }
 
 
@@ -166,6 +166,7 @@ class SdGerberContext : public SdContext {
     virtual void setPen(SdPvInt width, QColor color, SdPvInt lineStyle) override;
     virtual void line(SdPoint a, SdPoint b) override;
     virtual void fillRect(SdRect r) override;
+    virtual void polygonFill( const QPolygonF &poly ) override;
     virtual void arc(SdPoint center, SdPoint start, SdPoint stop) override;
     virtual void circle(SdPoint center, int radius) override;
     virtual void circleFill(SdPoint center, int radius) override;
@@ -219,6 +220,14 @@ void SdGerberContext::fillRect(SdRect r)
     QPoint center = mTransform.mapRect( r ).center();
     mStream << "G55X" << (center.x()) << "Y" << (center.y()) << "D03*\n";
     }
+  }
+
+
+
+
+void SdGerberContext::polygonFill(const QPolygonF &poly)
+  {
+  polygonInt( mTransform.map(poly).toPolygon() );
   }
 
 
@@ -616,6 +625,9 @@ void SdPExportPlate_Gerber::onGroupGenerate()
   //For each row of file table we check flag of generation
   // if setup then generate according gerber
   SvDir pat( gn );
+  QStringList visibleLayers;
+  QStringList editableLayers;
+  SdEnvir::instance()->layerVisibleGet( visibleLayers, editableLayers );
   for( int row = 0; row < mGroup->rowCount(); row++ )
     if( mGroup->item(row,0)->text() == tr("Yes") ) {
       //Set visible list
@@ -628,7 +640,7 @@ void SdPExportPlate_Gerber::onGroupGenerate()
       //Generate Gerber
       generation( pat.slashedPath() + mGroup->item(row,1)->text() );
       }
-  SdEnvir::instance()->loadEnvir();
+  SdEnvir::instance()->layerVisibleSet( visibleLayers, editableLayers );
   //Update editor
   mEditor->dirtyCashe();
   mEditor->update();

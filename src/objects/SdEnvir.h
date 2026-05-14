@@ -233,10 +233,18 @@ class SdEnvir
     int      layerCount() const { return mLayerTable.count(); }
 
     //!
-    //! \brief layerVisibleSet - Sets visibility for multiple layers
-    //! \param layerIdTable    - List of layer identifiers to set visible (others become invisible)
+    //! \brief layerVisibleSet  Sets visibility for multiple layers
+    //! \param layerIdTable     List of layer identifiers to set visible (others become invisible)
+    //! \param editLayerIdTable List of layer identifiers to set editable
     //!
-    void     layerVisibleSet( const QStringList &layerIdTable );
+    void     layerVisibleSet( const QStringList &layerIdTable, const QStringList &editLayerIdTable = QStringList{} );
+
+    //!
+    //! \brief layerVisibleGet  Gets visibility for multiple layers
+    //! \param layerIdTable     List of layer identifiers for visible
+    //! \param editLayerIdTable List of layer identifiers for editable
+    //!
+    void     layerVisibleGet( QStringList &layerIdTable, QStringList &editLayerIdTable ) const;
 
     //!
     //! \brief gridForEach Executes function fun1 to index of grid table

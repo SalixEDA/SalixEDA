@@ -138,7 +138,7 @@ void SdEnvir::loadEnvir()
       is >> mFonts[i];
 
     //Прочитали слои
-    deleteLayers();
+    //deleteLayers();
     int c;
     is >> c;
     for( int i = 0; i < c; i++ ) {
@@ -448,16 +448,38 @@ void SdEnvir::layerForEachConst(quint64 classMask, std::function<bool (SdLayer *
 
 
 
-void SdEnvir::layerVisibleSet(const QStringList &layerIdTable)
+void SdEnvir::layerVisibleSet(const QStringList &layerIdTable, const QStringList &editLayerIdTable)
   {
   //Switch off all layers
-  for( auto layer : mLayerTable )
+  for( auto layer : std::as_const(mLayerTable) )
     layer->stateSet( layerStateOff );
 
   //Switch on only layers from list
   for( const QString &layerId : std::as_const(layerIdTable) )
     if( mLayerTable.contains(layerId) )
       mLayerTable.value( layerId )->stateSet( layerStateOn );
+
+  for( const QString &layerId : std::as_const(editLayerIdTable) )
+    if( mLayerTable.contains(layerId) )
+      mLayerTable.value( layerId )->stateSet( layerStateEdit );
+  }
+
+
+
+
+
+//!
+//! \brief layerVisibleGet  Gets visibility for multiple layers
+//! \param layerIdTable     List of layer identifiers for visible
+//! \param editLayerIdTable List of layer identifiers for editable
+//!
+void SdEnvir::layerVisibleGet(QStringList &layerIdTable, QStringList &editLayerIdTable) const
+  {
+  for( auto layer : std::as_const(mLayerTable) )
+    if( layer->state() == layerStateOn )
+      layerIdTable.append( layer->id() );
+    else if( layer->state() == layerStateEdit )
+      editLayerIdTable.append( layer->id() );
   }
 
 
