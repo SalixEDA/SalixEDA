@@ -635,6 +635,8 @@ HEADERS  += \
     script/SdScriptValueFunModelHole.h \
     script/SdScriptValueFunModelNew.h \
     script/SdScriptValueFunModelPinTqfp.h \
+    script/SdScriptValueFunModelSolid.h \
+    script/SdScriptValueFunModelSolidCopy.h \
     script/SdScriptValueFunRef.h \
     script/SdScriptValueFunSelectColor.h \
     script/SdScriptValueFunSelectPad.h \

@@ -63,6 +63,8 @@ class Sd3drModel
 
     Sd2dRegion flatFromFace( const Sd3drFace &face, const QMatrix4x4 &map );
 
+    Sd3drFace  flatToFace( const Sd2dRegion &r, float offz );
+
     //==============================================================================================
     //  Vertex section - functions for model vertex manipulations
     //
@@ -392,7 +394,7 @@ class Sd3drModel
     //! \param addBot   If true, adds bottom face; if false, bottom face is omitted
     //! \return         List of faces forming the solid
     //!
-    Sd3drFaceList solidBox(float lenght, float width, float height, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidBox(float lenght, float width, float height, bool addBot );
 
     //!
     //! \brief solidBoxWithCone Builds a rectangular box with a cone on top, optionally without bottom
@@ -404,7 +406,7 @@ class Sd3drModel
     //! \param addBot           If true, adds bottom face; if false, bottom face is omitted
     //! \return                 List of faces forming the solid
     //!
-    Sd3drFaceList solidBoxWithCone(float lenght, float width, float height, float coneHeight, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidBoxWithCone(float lenght, float width, float height, float coneHeight, bool addBot );
 
     //!
     //! \brief solidBoxBevel   Builds a rectangular box with beveled vertical edges, optionally without bottom
@@ -417,7 +419,7 @@ class Sd3drModel
     //! \param addBot          If true, adds bottom face; if false, bottom face is omitted
     //! \return                List of faces forming the solid
     //!
-    Sd3drFaceList solidBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, bool addBot );
 
     //!
     //! \brief solidBoxRound Builds a rectangular box with rounded vertical edges, optionally without bottom
@@ -430,7 +432,7 @@ class Sd3drModel
     //! \param addBot        If true, adds bottom face; if false, bottom face is omitted
     //! \return              List of faces forming the solid
     //!
-    Sd3drFaceList solidBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, bool addBot );
 
     //!
     //! \brief solidCylinder Builds a cylinder, optionally without bottom
@@ -440,7 +442,7 @@ class Sd3drModel
     //! \param addBot        If true, adds bottom face; if false, bottom face is omitted
     //! \return              List of faces forming the solid
     //!
-    Sd3drFaceList solidCylinder(float radius, float height, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidCylinder(float radius, float height, bool addBot );
 
     //!
     //! \brief solidCylinderWithCone Builds a cylinder with a cone on top, optionally without bottom
@@ -451,7 +453,7 @@ class Sd3drModel
     //! \param addBot                If true, adds bottom face; if false, bottom face is omitted
     //! \return                      List of faces forming the solid
     //!
-    Sd3drFaceList solidCylinderWithCone(float radius, float height, float coneHeight, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidCylinderWithCone(float radius, float height, float coneHeight, bool addBot );
 
     //!
     //! \brief solidPlygedronInner Builds a regular polygon prism by inscribed circle radius
@@ -462,7 +464,7 @@ class Sd3drModel
     //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
     //! \return                    List of faces forming the solid
     //!
-    Sd3drFaceList solidPlygedronInner( float radius, float height, float sideCount, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidPlygedronInner( float radius, float height, float sideCount, bool addBot );
 
     //!
     //! \brief solidPlygedronOuter Builds a regular polygon prism by circumscribed circle radius
@@ -473,7 +475,7 @@ class Sd3drModel
     //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
     //! \return                    List of faces forming the solid
     //!
-    Sd3drFaceList solidPlygedronOuter( float radius, float height, float sideCount, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidPlygedronOuter( float radius, float height, float sideCount, bool addBot );
 
     //!
     //! \brief solidTrapezoid Builds a trapezoid in the XY plane
@@ -485,7 +487,7 @@ class Sd3drModel
     //! \param addBot         If true, adds bottom face; if false, bottom face is omitted
     //! \return               List of faces forming the solid
     //!
-    Sd3drFaceList solidTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidTrapezoid(float lenghtTop, float lenghtBot, float width, float height, bool addBot );
 
     //!
     //! \brief solidTrapezoidRound Builds a trapezoid in the XY plane with rounded vertical edges
@@ -498,7 +500,7 @@ class Sd3drModel
     //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
     //! \return                    List of faces forming the solid
     //!
-    Sd3drFaceList solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, bool addBot );
 
     //!
     //! \brief solidRectPrizm Builds rectangular prizm with some floors. Each floor can have different size, height and center offset
@@ -509,7 +511,7 @@ class Sd3drModel
     //! \param addBot         If true, adds bottom face; if false, bottom face is omitted
     //! \return               List of faces forming the solid
     //!
-    Sd3drFaceList solidRectPrizm( float lenght, float width, QList<float> floors, const QMatrix4x4 &map, bool addBot );
+    Sd3drFaceList solidRectPrizm( float lenght, float width, QList<float> floors, bool addBot );
 
 
 
@@ -522,25 +524,25 @@ class Sd3drModel
     //!
     Sd3drFaceList solid( const Sd3drFace &face, float height, const QMatrix4x4 &m, bool addBot, QColor color );
 
-    Sd3drFaceList solidNew( const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidNew(const Sd2dRegion &r, float height, bool addBot );
 
-    Sd3drFaceList solidNewColor( const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidNewColor( const Sd2dRegion &r, float height, bool addBot, QColor color );
 
-    Sd3drFaceList solidTube( const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidTube( const Sd2dRegion &rOut, float thickness, float height, bool addBot );
 
-    Sd3drFaceList solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, bool addBot, QColor color );
 
-    Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, bool addBot );
 
-    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, bool addBot, QColor color );
 
-    Sd3drFaceList solidBlind( const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidBlind( const Sd2dRegion &rOut, float thickness, float height, float depth, bool addBot );
 
-    Sd3drFaceList solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, bool addBot, QColor color );
 
-    Sd3drFaceList solidBlindDif( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot );
+    Sd3drFaceList solidBlindDif( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, bool addBot );
 
-    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color );
+    Sd3drFaceList solidBlindDifColor( const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, bool addBot, QColor color );
 
 
 

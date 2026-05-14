@@ -632,6 +632,18 @@ Sd2dRegion Sd3drModel::flatFromFace(const Sd3drFace &face, const QMatrix4x4 &map
 
 
 
+Sd3drFace Sd3drModel::flatToFace(const Sd2dRegion &r, float offz)
+  {
+  Sd3drFace face;
+  for( auto v2 : r )
+    face.append( vertexAppend( QVector3D(v2,offz) )  );
+  return face;
+  }
+
+
+
+
+
 
 
 
@@ -1359,13 +1371,7 @@ Sd3drFaceList Sd3drModel::ring(const Sd2dRegion &r1, const Sd3drFace &face1, con
 
   const Sd2dRegion *outer, *inner;
   const Sd3drFace  *faceOut, *faceIn;
-  if( area1 > 0 && area2 > 0 ) { // оба по часовой? Пусть внешний — больший по площади
-    outer = (area1 > area2) ? &r1 : &r2;
-    inner = (area1 > area2) ? &r2 : &r1;
-    faceOut = (area1 > area2) ? &face1 : &face2;
-    faceIn = (area1 > area2) ? &face2 : &face1;
-    }
-  else if( area1 > 0 ) {
+  if( qAbs(area1) > qAbs(area2) ) {
     outer = &r1;
     inner = &r2;
     faceOut = &face1;
@@ -1377,6 +1383,24 @@ Sd3drFaceList Sd3drModel::ring(const Sd2dRegion &r1, const Sd3drFace &face1, con
     faceOut = &face2;
     faceIn = &face1;
     }
+  // if( area1 > 0 && area2 > 0 ) { // оба по часовой? Пусть внешний — больший по площади
+  //   outer = (area1 > area2) ? &r1 : &r2;
+  //   inner = (area1 > area2) ? &r2 : &r1;
+  //   faceOut = (area1 > area2) ? &face1 : &face2;
+  //   faceIn = (area1 > area2) ? &face2 : &face1;
+  //   }
+  // else if( area1 > 0 ) {
+  //   outer = &r1;
+  //   inner = &r2;
+  //   faceOut = &face1;
+  //   faceIn = &face2;
+  //   }
+  // else {
+  //   outer = &r2;
+  //   inner = &r1;
+  //   faceOut = &face2;
+  //   faceIn = &face1;
+  //   }
 
   // Находим ближайшую пару точек между внешним и внутренним контурами
   int innerIdx = 0;
@@ -1436,7 +1460,7 @@ Sd3drFaceList Sd3drModel::ring(const Sd2dRegion &r1, const Sd3drFace &face1, con
 
       // Проверка, что треугольник (prev, curr, next) — ухо
       QVector2D a = point(prev), b = point(curr), c = point(next);
-      if( !isCCW(a, b, c) ) continue; // должен быть выпуклый угол
+      if( isCCW(a, b, c) ) continue; // должен быть выпуклый угол
 
       // Проверка, что внутри треугольника нет других точек
       bool empty = true;
@@ -1653,13 +1677,12 @@ QMatrix4x4 Sd3drModel::matrixZ(float offZ)
 //! \param lenght   Box length (X-axis)
 //! \param width    Box width (Y-axis)
 //! \param height   Box height (Z-axis)
-//! \param map      Transformation matrix
 //! \param addBot   If true, adds bottom face; if false, bottom face is omitted
 //! \return         List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidBox(float lenght, float width, float height, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidBox(float lenght, float width, float height, bool addBot)
   {
-  return solidNew( flatRectangle( lenght, width ), height, map, addBot );
+  return solidNew( flatRectangle( lenght, width ), height, addBot );
   }
 
 
@@ -1676,9 +1699,9 @@ Sd3drFaceList Sd3drModel::solidBox(float lenght, float width, float height, cons
 //! \param addBot           If true, adds bottom face; if false, bottom face is omitted
 //! \return                 List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidBoxWithCone(float lenght, float width, float height, float coneHeight, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidBoxWithCone(float lenght, float width, float height, float coneHeight, bool addBot)
   {
-  return solidAddCone( solidBox( lenght, width, height, map, addBot ), coneHeight );
+  return solidAddCone( solidBox( lenght, width, height, addBot ), coneHeight );
   }
 
 
@@ -1695,9 +1718,9 @@ Sd3drFaceList Sd3drModel::solidBoxWithCone(float lenght, float width, float heig
 //! \param addBot          If true, adds bottom face; if false, bottom face is omitted
 //! \return                List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidBoxBevel(float lenght, float width, float height, float bevelSize, float bevelCount, bool addBot)
   {
-  return solidNew( flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, map, addBot );
+  return solidNew( flatRectangleBevel( lenght, width, bevelSize, bevelCount ), height, addBot );
   }
 
 
@@ -1714,9 +1737,9 @@ Sd3drFaceList Sd3drModel::solidBoxBevel(float lenght, float width, float height,
 //! \param addBot        If true, adds bottom face; if false, bottom face is omitted
 //! \return              List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidBoxRound(float lenght, float width, float height, float roundRadius, float roundCount, bool addBot)
   {
-  return solidNew( flatRectangleRound( lenght, width, roundRadius, 360 / 30, roundCount ), height, map, addBot );
+  return solidNew( flatRectangleRound( lenght, width, roundRadius, 360 / 30, roundCount ), height, addBot );
   }
 
 
@@ -1730,9 +1753,9 @@ Sd3drFaceList Sd3drModel::solidBoxRound(float lenght, float width, float height,
 //! \param addBot        If true, adds bottom face; if false, bottom face is omitted
 //! \return              List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidCylinder(float radius, float height, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidCylinder(float radius, float height, bool addBot)
   {
-  return solidNew( flatCircle( radius ), height, map, addBot );
+  return solidNew( flatCircle( radius ), height, addBot );
   }
 
 
@@ -1748,9 +1771,9 @@ Sd3drFaceList Sd3drModel::solidCylinder(float radius, float height, const QMatri
 //! \param addBot                If true, adds bottom face; if false, bottom face is omitted
 //! \return                      List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidCylinderWithCone(float radius, float height, float coneHeight, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidCylinderWithCone(float radius, float height, float coneHeight, bool addBot)
   {
-  return solidAddCone( solidCylinder( radius, height, map, addBot ), coneHeight );
+  return solidAddCone( solidCylinder( radius, height, addBot ), coneHeight );
   }
 
 
@@ -1766,9 +1789,9 @@ Sd3drFaceList Sd3drModel::solidCylinderWithCone(float radius, float height, floa
 //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
 //! \return                    List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidPlygedronInner(float radius, float height, float sideCount, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidPlygedronInner(float radius, float height, float sideCount, bool addBot)
   {
-  return solidNew( flatPlygedronInner( radius, sideCount ), height, map, addBot );
+  return solidNew( flatPlygedronInner( radius, sideCount ), height, addBot );
   }
 
 
@@ -1783,9 +1806,9 @@ Sd3drFaceList Sd3drModel::solidPlygedronInner(float radius, float height, float 
 //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
 //! \return                    List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidPlygedronOuter(float radius, float height, float sideCount, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidPlygedronOuter(float radius, float height, float sideCount, bool addBot)
   {
-  return solidNew( flatPlygedronOuter( radius, sideCount ), height, map, addBot );
+  return solidNew( flatPlygedronOuter( radius, sideCount ), height, addBot );
   }
 
 
@@ -1802,9 +1825,9 @@ Sd3drFaceList Sd3drModel::solidPlygedronOuter(float radius, float height, float 
 //! \param addBot         If true, adds bottom face; if false, bottom face is omitted
 //! \return               List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidTrapezoid(float lenghtTop, float lenghtBot, float width, float height, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidTrapezoid(float lenghtTop, float lenghtBot, float width, float height, bool addBot)
   {
-  return solidNew( flatTrapezoid( lenghtTop, lenghtBot, width ), height, map, addBot );
+  return solidNew( flatTrapezoid( lenghtTop, lenghtBot, width ), height, addBot );
   }
 
 
@@ -1822,9 +1845,9 @@ Sd3drFaceList Sd3drModel::solidTrapezoid(float lenghtTop, float lenghtBot, float
 //! \param addBot              If true, adds bottom face; if false, bottom face is omitted
 //! \return                    List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidTrapezoidRound(float lenghtTop, float lenghtBot, float width, float height, float roundRadius, bool addBot)
   {
-  return solidNew( flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ), height, map, addBot );
+  return solidNew( flatTrapezoidRound( lenghtTop, lenghtBot, width, roundRadius ), height, addBot );
   }
 
 
@@ -1848,10 +1871,10 @@ Sd3drFace reverse( Sd3drFace face )
 //! \param addBot         If true, adds bottom face; if false, bottom face is omitted
 //! \return               List of faces forming the solid
 //!
-Sd3drFaceList Sd3drModel::solidRectPrizm(float lenght, float width, QList<float> floors, const QMatrix4x4 &map, bool addBot)
+Sd3drFaceList Sd3drModel::solidRectPrizm(float lenght, float width, QList<float> floors, bool addBot)
   {
   Sd3drFaceList list;
-  Sd3drFace faceBot = faceFromFlat( flatRectangle(lenght,width), map );
+  Sd3drFace faceBot = flatToFace( flatRectangle(lenght,width), 0 );
   if( addBot )
     list.append( reverse(faceBot) );
 
@@ -1864,7 +1887,7 @@ Sd3drFaceList Sd3drModel::solidRectPrizm(float lenght, float width, QList<float>
     floorHeight  += floors.at( floorIndex * 5 + 4 );
 
     Sd2dRegion floorRegion( flatOffset( flatRectangle(floorLenght,floorWidth), floorOffsetX, floorOffsetY )  );
-    Sd3drFace floorFace( faceFromFlat( floorRegion, map, floorHeight ) );
+    Sd3drFace floorFace( flatToFace( floorRegion, floorHeight ) );
     list.append( faceListWall( faceBot, floorFace, true ) );
     faceBot = floorFace;
     }
@@ -1913,15 +1936,16 @@ Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatr
 
 
 
-Sd3drFaceList Sd3drModel::solidNew(const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidNew(const Sd2dRegion &r, float height, bool addBot)
   {
-  return solidNewColor( r, height, m, addBot, QColor{} );
+  return solidNewColor( r, height, addBot, QColor{} );
   }
 
 
 
-Sd3drFaceList Sd3drModel::solidNewColor(const Sd2dRegion &r, float height, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidNewColor(const Sd2dRegion &r, float height, bool addBot, QColor color)
   {
+  QMatrix4x4 m;
   return solid( faceFromFlat( r, m), height, m, addBot, color );
   }
 
@@ -1931,13 +1955,14 @@ Sd3drFaceList Sd3drModel::solidNewColor(const Sd2dRegion &r, float height, const
 
 
 
-Sd3drFaceList Sd3drModel::solidTube(const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidTube(const Sd2dRegion &rOut, float thickness, float height, bool addBot)
   {
-  return solidTubeColor( rOut, thickness, height, m, addBot, QColor{} );
+  return solidTubeColor( rOut, thickness, height, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, bool addBot, QColor color)
   {
+  QMatrix4x4 m;
   Sd3drFace faceOut = faceFromFlat( rOut, m );
   Sd3drFace faceIn  = faceFromFlat( flatEquidistant( rOut, thickness ), m );
   // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
@@ -1968,13 +1993,14 @@ Sd3drFaceList Sd3drModel::solidTubeColor(const Sd2dRegion &rOut, float thickness
 
 
 
-Sd3drFaceList Sd3drModel::solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, bool addBot)
   {
-  return solidTubeDifColor( rOut, rIn, height, m, addBot, QColor{} );
+  return solidTubeDifColor( rOut, rIn, height, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, bool addBot, QColor color)
   {
+  QMatrix4x4 m;
   Sd3drFace faceOut = faceFromFlat( rOut, m );
   Sd3drFace faceIn  = faceFromFlat( rIn, m );
   // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
@@ -2004,14 +2030,14 @@ Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRe
 
 
 
-Sd3drFaceList Sd3drModel::solidBlind(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidBlind(const Sd2dRegion &rOut, float thickness, float height, float depth, bool addBot)
   {
-  return solidBlindColor( rOut, thickness, height, depth, m, addBot, QColor{} );
+  return solidBlindColor( rOut, thickness, height, depth, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thickness, float height, float depth, bool addBot, QColor color)
   {
-  return solidBlindDifColor( rOut, flatEquidistant( rOut, thickness ), height, depth, m, addBot, color );
+  return solidBlindDifColor( rOut, flatEquidistant( rOut, thickness ), height, depth, addBot, color );
   }
 
 
@@ -2021,13 +2047,14 @@ Sd3drFaceList Sd3drModel::solidBlindColor(const Sd2dRegion &rOut, float thicknes
 
 
 
-Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot)
+Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, bool addBot)
   {
-  return solidBlindDifColor( rOut, rIn, height, depth, m, addBot, QColor{} );
+  return solidBlindDifColor( rOut, rIn, height, depth, addBot, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, const QMatrix4x4 &m, bool addBot, QColor color)
+Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, bool addBot, QColor color)
   {
+  QMatrix4x4 m;
   Sd3drFace faceOut = faceFromFlat( rOut, m );
   Sd3drFace faceIn  = faceFromFlat( rIn, m, height - depth );
 
@@ -2092,7 +2119,7 @@ Sd3drFaceList Sd3drModel::solidAddConeColor(const Sd3drFaceList &faceList, float
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace topFace( list.takeLast() );
   QMatrix4x4 map = matrixTop( topFace );
   int top = vertexAppend( map.map( QVector3D{offx,offy,coneHeight} ) );
@@ -2119,7 +2146,7 @@ Sd3drFaceList Sd3drModel::solidAddRoofRound(const Sd3drFaceList &faceList, float
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 m( matrixTop( top, 0 ) );
   Sd2dRegion r1( flatFromFace( top, m ) );
@@ -2178,7 +2205,7 @@ Sd3drFaceList Sd3drModel::solidAddRoofBevelColor(const Sd3drFaceList &faceList, 
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 m( matrixTop( top, 0 ) );
   Sd2dRegion r1( flatFromFace( top, m ) );
@@ -2213,7 +2240,7 @@ Sd3drFaceList Sd3drModel::solidAddColor(const Sd3drFaceList &faceList, float thi
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace face(list.takeLast());
   QMatrix4x4 map = matrixTop( face, 0 );
 
@@ -2254,7 +2281,7 @@ Sd3drFaceList Sd3drModel::solidAddDifColor(const Sd3drFaceList &faceList, const 
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 topMatrix( matrixTop( top, 0 ) );
   Sd2dRegion topRegion( flatFromFace( top, topMatrix ) );
@@ -2290,8 +2317,8 @@ Sd3drFaceList Sd3drModel::solidAddBlindArray(const Sd3drFaceList &faceList, cons
 Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr, QColor color)
   {
   Sd3drFaceList list(faceList);
-  if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+  if( list.isEmpty() || rowDescr.size() < 4 )
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 topMatrix( matrixTop( top, 0 ) );
   Sd2dRegion topRegion( flatFromFace( top, topMatrix ) );
@@ -2412,7 +2439,7 @@ Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, flo
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 map( matrixTop( top, 0.0 )  );
   // 1. Переводим регион в локальные координаты
@@ -2531,7 +2558,7 @@ Sd3drFaceList Sd3drModel::solidAddHoleColor(const Sd3drFaceList &faceList, float
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace face(list.takeLast());
   QMatrix4x4 map( matrixTop( face, 0.0 )  );
   Sd2dRegion r = flatFromFace( face, map );
@@ -2566,7 +2593,7 @@ Sd3drFaceList Sd3drModel::solidAddHoleDifColor(const Sd3drFaceList &faceList, co
   {
   Sd3drFaceList list(faceList);
   if( list.isEmpty() )
-    list.append( solidCylinder( 1, 0.2, QMatrix4x4{}, true ) );
+    list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace face(list.takeLast());
   QMatrix4x4 map( matrixTop( face, 0.0 )  );
   Sd2dRegion rOut = flatFromFace( face, map );

@@ -19,6 +19,8 @@ Description
 #include "SdPulsar.h"
 #include "SdPItemPlate.h"
 #include "SdPItemSheet.h"
+#include "SdPItemPart.h"
+#include "Sd3dGraphModel.h"
 #include "SdGraphNet.h"
 #include "SdEnvir.h"
 #include "SdCopyMapProject.h"
@@ -450,8 +452,33 @@ SdProject *SdProject::load(const QString fname)
   auto prj = sdObjectOnly<SdProject>( fileJsonLoad(fname) );
 
   //If project loaded successfull then update library by its content
-  if( prj != nullptr )
+  if( prj != nullptr ) {
     prj->libraryUpdate();
+
+    //To replace 3d script we need to list all objects with them
+    prj->forEachConst( dctPart, [] (SdObject *obj) -> bool {
+      //Get container file object
+      SdPtrConst<SdPItemPart> part(obj);
+      if( part.isValid() ) {
+        bool res = true;
+        part->forEachConst( dct3D, [&res] (SdObject *obj3d) -> bool {
+          SdPtrConst<Sd3dGraphModel> model(obj3d);
+          if( model.isValid() ) {
+            if( model->script().contains("solid") )
+              return res = false;
+            }
+          return true;
+          } ) ;
+
+        if( !res ) {
+          qDebug() << "Contains solid " << part->getTitle();
+          }
+        }
+      return true;
+      } );
+
+    }
+
 
   //Return loaded project
   return prj;

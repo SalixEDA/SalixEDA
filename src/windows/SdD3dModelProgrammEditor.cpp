@@ -42,52 +42,32 @@ uR"VVV(
 #This is remark. It begin from # sign and continues to end of string
 
 #First place source params of part
-bodyLenght = 4
-bodyWidth = 2
-bodyHeight = 1
+bodyDiametr = 6
+bodyHeight = 10
 bodyColor = selectColor( "#008080" )
 
 #Second place source params of pins
 pinDiametr = 0.8
-pinLenght = 3
+pinLength = 3
 pinDistance = 2.5
-pinCount = 2
 pinColor = selectColor( "#c0c0c0" )
 
 #========================================================
 #Body construction
-#Construct body faces. See help on embedded functions
-bodyBottomFace = faceFlat( vertex(-bodyLenght/2, -bodyWidth/2, 0 ), orientationXY, [ 0,bodyWidth,
-  bodyLenght,0, 0,-bodyWidth] )
-
-#Set of faces with same color
-body = [bodyBottomFace]
-
-#Model is set of faces with associated with it colors
-bodyModel = model( bodyColor, bodyColor, bodyColor, body, matrix1 )
+body = solidCylinder( bodyDiametr / 2, bodyHeight, true )
 
 #Place model into destignation model. After this you can see your construction
-partModel = bodyModel
+partModel = modelSolid( bodyColor, body, 0,0,0,  0,0,0 )
 
 #=========================================================
 #Pin construction
-pinTopFace = faceCircle( pinDiametr/2, 10, matrix1 )
-pinBotFace = faceDuplicateShift( pinTopFace, -pinLenght )
+pin = solidCylinder( pinDiametr / 2, -pinLength, false )
 
-pin = [pinBotFace]
-pin = faceListUnion( pin, faceListWall( pinTopFace, pinBotFace, true ) )
-
-
-pinMatrix = matrixTranslate( matrix1, -pinDistance/2, 0, 0 )
 #First pin placement
-pinModel = model( pinColor, pinColor, pinColor, pin, pinMatrix )
+pinModel = modelSolid( pinColor, pin, 0,0,0,  -pinDistance / 2,0,0 )
 
-i = 1
-while( i < pinCount ) {
-  pinMatrix = matrixTranslate( matrix1, -pinDistance/2 + pinDistance * i, 0, 0 )
-  pinModel = modelCopy( pinModel, pinMatrix )
-  i = i + 1
-  }
+#Second pin placement
+pinModel = modelSolidCopy( pinModel, 0,0,0,  pinDistance / 2,0,0 )
 
 #Place pin model into destignation model
 partModel = pinModel
