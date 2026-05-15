@@ -14,7 +14,7 @@
 |--------------------------------|--------------|
 | [flatRectangle](scriptFunFlatRectangle.md)|Формирует прямоугольник|
 | [flatRectangleBevel](scriptFunFlatRectangleBevel.md) | Формирует прямоугольник со скошенными углами|
-|flatRectangleRound| Формирует прямоугольник с закругленными углами|
+| [flatRectangleRound](scriptFunFlatRectangleRound.md) | Формирует прямоугольник с закругленными углами|
 |flatEllipse|Формирует эллипс|
 |flatCircle|Формирует окружность|
 |flatPlygedronInner|Формирует правильный многоугольник по диаметру внутренней окружности|

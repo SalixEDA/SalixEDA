@@ -828,5 +828,7 @@
         <file>help/script2Root-ru.md</file>
         <file>help/scriptFunFlatRectangle-ru.md</file>
         <file>help/scriptFunFlatRect.png</file>
+        <file>help/scriptFunFlatRectangleRound-ru.md</file>
+        <file>help/scriptFunFlatRectangleRound.png</file>
     </qresource>
 </RCC>

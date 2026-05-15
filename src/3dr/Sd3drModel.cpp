@@ -106,13 +106,15 @@ Sd2dRegion Sd3drModel::flatRectangleBevel(float lenght, float width, float bevel
 
 Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radius, float stepDegree, float count)
   {
+  if( count < 1.0 )
+    return flatRectangle( lenght, width );
   Sd2dRegion region;
   width /= 2.0;
   lenght /= 2.0;
-  float curX = lenght - radius;
+  float curX = -lenght + radius;
   float curY = width - radius;
   //Top right corner
-  for( float angleDegree = 0; angleDegree <= 90.0; angleDegree += stepDegree ) {
+  for( float angleDegree = -90.0; angleDegree < 0.0; angleDegree += stepDegree ) {
     //Convert degree to radians
     float angle = angleDegree * M_PI / 180.0;
     //Build next corner
@@ -120,16 +122,17 @@ Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radiu
     //Append corner to region
     region.append( v );
     }
+  region.append( QVector2D( curX, curY + radius )  );
 
   //Right edge
   if( count < 2 )
-    region.append( QVector2D( lenght, -width) );
+    region.append( QVector2D( lenght, width) );
   else {
-    curY = -curY;
-    region.append( QVector2D( curX + radius, curY )  );
+    curX = -curX;
+    region.append( QVector2D( curX, curY + radius )  );
 
     //Bottom right corner
-    for( float angleDegree = 90.0 + stepDegree; angleDegree <= 180.0; angleDegree += stepDegree ) {
+    for( float angleDegree = stepDegree; angleDegree < 90.0; angleDegree += stepDegree ) {
       //Convert degree to radians
       float angle = angleDegree * M_PI / 180.0;
       //Build next corner
@@ -137,35 +140,37 @@ Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radiu
       //Append corner to region
       region.append( v );
       }
+    region.append( QVector2D( curX + radius, curY )  );
     }
 
   //Bottom edge
   if( count < 3 )
+    region.append( QVector2D(lenght, -width) );
+  else {
+    curY = -curY;
+    region.append( QVector2D( curX + radius, curY )  );
+
+    //Bottom left corner
+    for( float angleDegree = 90.0 + stepDegree; angleDegree < 180.0; angleDegree += stepDegree ) {
+      //Convert degree to radians
+      float angle = angleDegree * M_PI / 180.0;
+      //Build next corner
+      QVector2D v( sin(angle) * radius + curX, cos(angle) * radius + curY );
+      //Append corner to region
+      region.append( v );
+      }
+    region.append( QVector2D( curX, curY - radius )  );
+    }
+
+  //Left edge
+  if( count < 4 )
     region.append( QVector2D(-lenght, -width) );
   else {
     curX = -curX;
     region.append( QVector2D( curX, curY - radius )  );
 
-    //Bottom left corner
-    for( float angleDegree = 180.0 + stepDegree; angleDegree <= 270.0; angleDegree += stepDegree ) {
-      //Convert degree to radians
-      float angle = angleDegree * M_PI / 180.0;
-      //Build next corner
-      QVector2D v( sin(angle) * radius + curX, cos(angle) * radius + curY );
-      //Append corner to region
-      region.append( v );
-      }
-    }
-
-  //Left edge
-  if( count < 4 )
-    region.append( QVector2D(-lenght,  width) );
-  else {
-    curY = -curY;
-    region.append( QVector2D( curX - radius, curY )  );
-
     //Top left corner
-    for( float angleDegree = 270.0 + stepDegree; angleDegree <= 360.0; angleDegree += stepDegree ) {
+    for( float angleDegree = 180.0 + stepDegree; angleDegree < 270.0; angleDegree += stepDegree ) {
       //Convert degree to radians
       float angle = angleDegree * M_PI / 180.0;
       //Build next corner
@@ -173,6 +178,7 @@ Sd2dRegion Sd3drModel::flatRectangleRound(float lenght, float width, float radiu
       //Append corner to region
       region.append( v );
       }
+    region.append( QVector2D( curX - radius, curY )  );
     }
 
   //Top edge is automatic as closed edge
