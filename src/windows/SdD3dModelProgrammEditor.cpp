@@ -74,6 +74,7 @@ partModel = pinModel
 
 )VVV";
 
+#define ROOT_HELP "script3d.htm"
 
 SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString id, QWidget *parent) :
   QDialog(parent),
@@ -196,7 +197,7 @@ SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString id, QWidget *pa
     }
 
   //Show beginner guide for scripting language
-  mHelp->helpTopic( QStringLiteral("script3d.htm") );
+  mHelp->helpTopic( QStringLiteral(ROOT_HELP) );
   mDirty = false;
   }
 
@@ -303,7 +304,7 @@ SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString &title, const Q
   mPreview->update();
 
   //Show beginner guide for scripting language
-  mHelp->helpTopic( QStringLiteral("script3d.htm") );
+  mHelp->helpTopic( QStringLiteral(ROOT_HELP) );
   mDirty = false;
   }
 

@@ -823,5 +823,10 @@
         <file>help/ModeCNetPinsList-ru.htm</file>
         <file>help/netPinList.png</file>
         <file>help/cursorNetPinList.png</file>
+        <file>help/scriptFunFlatRectangleBevel-ru.md</file>
+        <file>help/scriptFunFlatRectangleBevel.png</file>
+        <file>help/script2Root-ru.md</file>
+        <file>help/scriptFunFlatRectangle-ru.md</file>
+        <file>help/scriptFunFlatRect.png</file>
     </qresource>
 </RCC>

@@ -46,7 +46,7 @@ SdWScriptHighlighter::SdWScriptHighlighter(QTextDocument *parent)
   mLinkFormat.setForeground( Qt::magenta );
   mLinkFormat.setFontUnderline(true);
 
-  mKeyWords = QStringList( { QStringLiteral("if"), QStringLiteral("while") } );
+  mKeyWords = QStringList( { QStringLiteral("if"), QStringLiteral("while"), QStringLiteral("for") } );
   }
 
 

@@ -1879,7 +1879,7 @@ Sd3drFaceList Sd3drModel::solidRectPrizm(float lenght, float width, QList<float>
     list.append( reverse(faceBot) );
 
   float floorHeight = 0.0;
-  for( int floorIndex = 0; floorIndex * 5 < floors.size(); ++floorIndex ) {
+  for( int floorIndex = 0; (floorIndex + 1) * 5 <= floors.size(); ++floorIndex ) {
     float floorLenght  = floors.at( floorIndex * 5 + 0 );
     float floorWidth   = floors.at( floorIndex * 5 + 1 );
     float floorOffsetX = floors.at( floorIndex * 5 + 2 );
