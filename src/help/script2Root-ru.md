@@ -15,15 +15,15 @@
 | [flatRectangle](scriptFunFlatRectangle.md)|Формирует прямоугольник|
 | [flatRectangleBevel](scriptFunFlatRectangleBevel.md) | Формирует прямоугольник со скошенными углами|
 | [flatRectangleRound](scriptFunFlatRectangleRound.md) | Формирует прямоугольник с закругленными углами|
-|flatEllipse|Формирует эллипс|
-|flatCircle|Формирует окружность|
-|flatPlygedronInner|Формирует правильный многоугольник по диаметру внутренней окружности|
-|flatPlygedronOuter|Формирует правильный многоугольник по диаметру внешней окружности|
-|flatTrapezoid|Формирует трапецию|
-|flatTrapezoidRound|Формирует трапецию с закругленными углами|
-|flatCircularSegment|Формирует сегмент окружности|
-|flatEquidistant|Формирует эквидистантный регион из заданного|
-|flatOffset|Формирует смещенный регион из заданного|
+| [flatEllipse](scriptFunFlatEllipse.md) |Формирует эллипс|
+| [flatCircle](scriptFunFlatCircle.md) |Формирует окружность|
+| [flatPlygedronInner](scriptFunFlatPlygedron.md)|Формирует правильный многоугольник по диаметру внутренней окружности|
+| [flatPlygedronOuter](scriptFunFlatPlygedron.md)|Формирует правильный многоугольник по диаметру внешней окружности|
+| [flatTrapezoid](scriptFunFlatTrapezoid.md)|Формирует трапецию|
+| [flatTrapezoidRound](scriptFunFlatTrapezoidRound.md)|Формирует трапецию с закругленными углами|
+| [flatCircularSegment](scriptFunFlatCurcularSegment.md)|Формирует сегмент окружности|
+| [flatEquidistant](scriptFunFlatEquidistant.md)|Формирует эквидистантный регион из заданного|
+| [flatOffset](scriptFunFlatOffset.md)|Формирует смещенный регион из заданного|
 
 Функции создания начальных твердых тел простых форм. Функции работают вытягиванием
 объема из 2D контура (проекции):
