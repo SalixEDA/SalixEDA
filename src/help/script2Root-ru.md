@@ -30,17 +30,17 @@
 
 | Наименование функции | Описание |
 |--------------------------------|--------------|
-|solidBox|Тело с проекцией прямоугольника (параллелепипед)|
-|solidBoxWithCone|Тело с проекцией прямоугольника, а сверху конус|
-|solidBoxBevel|Тело с проекцией прямоугольника со скошенными углами|
-|solidBoxRound|Тело с проекцией прямоугольника с закругленными углами|
-|solidCylinder|Тело с проекцией окружности (цилиндр)|
-|solidCylinderWithCone|Тело с проекцией окружности (цилиндр), а сверху конус|
-|solidPlygedronInner|Тело с проекцией правильного многоугольника, заданного диаметром внутренней окружности|
-|solidPlygedronOuter|Тело с проекцией правильного многоугольника, заданного диаметром внешней окружности|
-|solidTrapezoid|Тело с проекцией трапеции|
-|solidTrapezoidRound|Тело с проекцией трапеции с закругленными углами|
-|solidRectPrizm|Прямоугольная призма с двумя и более этажами|
+| [solidBox](scriptFunSolidBox.md) |Тело с проекцией прямоугольника (параллелепипед)|
+| [solidBoxWithCone](scriptFunSolidBoxWithCone.md)|Тело с проекцией прямоугольника, а сверху конус|
+| [solidBoxBevel](scriptFunSolidBoxBevel.md) |Тело с проекцией прямоугольника со скошенными углами|
+| [solidBoxRound](scriptFunSolidBoxRound.md) |Тело с проекцией прямоугольника с закругленными углами|
+| [solidCylinder](scriptFunSolidCylinder.md) |Тело с проекцией окружности (цилиндр)|
+| [solidCylinderWithCone](scriptFunSolidCylinderWithCone.md)|Тело с проекцией окружности (цилиндр), а сверху конус|
+| [solidPlygedronInner](scriptFunSolidPlygedronInner.md) |Тело с проекцией правильного многоугольника, заданного диаметром внутренней окружности|
+| [solidPlygedronOuter](scriptFunSolidPlygedronOuter.md) |Тело с проекцией правильного многоугольника, заданного диаметром внешней окружности|
+| [solidTrapezoid](scriptFunSolidTrapezoid.md) |Тело с проекцией трапеции|
+| [solidTrapezoidRound](scriptFunSolidTrapezoidRound.md) |Тело с проекцией трапеции с закругленными углами|
+| [solidRectPrizm](scriptFunSolidRectPrizm.md) |Прямоугольная призма с двумя и более этажами|
 
 Функции создания начальных твердых тел, которые работают вытягиванием
 объема из заданного 2D контура (проекции):
