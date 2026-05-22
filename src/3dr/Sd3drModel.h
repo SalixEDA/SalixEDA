@@ -526,8 +526,6 @@ class Sd3drModel
 
     Sd3drFaceList solidNew(const Sd2dRegion &r, float height, bool addBot );
 
-    Sd3drFaceList solidNewColor( const Sd2dRegion &r, float height, bool addBot, QColor color );
-
     Sd3drFaceList solidTube( const Sd2dRegion &rOut, float thickness, float height, bool addBot );
 
     Sd3drFaceList solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, bool addBot, QColor color );

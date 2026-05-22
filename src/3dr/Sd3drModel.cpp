@@ -1944,16 +1944,12 @@ Sd3drFaceList Sd3drModel::solid(const Sd3drFace &face, float height, const QMatr
 
 Sd3drFaceList Sd3drModel::solidNew(const Sd2dRegion &r, float height, bool addBot)
   {
-  return solidNewColor( r, height, addBot, QColor{} );
-  }
-
-
-
-Sd3drFaceList Sd3drModel::solidNewColor(const Sd2dRegion &r, float height, bool addBot, QColor color)
-  {
   QMatrix4x4 m;
-  return solid( faceFromFlat( r, m), height, m, addBot, color );
+  return solid( faceFromFlat( r, m), height, m, addBot, QColor{} );
   }
+
+
+
 
 
 
@@ -1968,31 +1964,29 @@ Sd3drFaceList Sd3drModel::solidTube(const Sd2dRegion &rOut, float thickness, flo
 
 Sd3drFaceList Sd3drModel::solidTubeColor(const Sd2dRegion &rOut, float thickness, float height, bool addBot, QColor color)
   {
-  QMatrix4x4 m;
-  Sd3drFace faceOut = faceFromFlat( rOut, m );
-  Sd3drFace faceIn  = faceFromFlat( flatEquidistant( rOut, thickness ), m );
-  // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
-  QVector3D localZ(m(0, 2), m(1, 2), m(2, 2));
-  // Смещаем точку вдоль этой оси
-  localZ *= height;
+  Sd2dRegion rIn = flatEquidistant( rOut, thickness );
+  Sd3drFace faceOut = flatToFace( rOut, 0 );
+  Sd3drFace faceIn  = flatToFace( rIn, 0 );
 
   //Build top face by offset each point from bottom face on vector localZ
-  Sd3drFace topOut( faceDuplicateOffset( faceOut, localZ ) );
-  Sd3drFace topIn( faceDuplicateOffset( faceIn, localZ ) );
+  Sd3drFace topOut( flatToFace( rOut, height ) );
+  Sd3drFace topIn( flatToFace( rIn, height ) );
 
   Sd3drFaceList list;
-  if( color.isValid() )
-    list.append( faceColor(color) );
   //Append bottom if need
   if( addBot )
     list.append( faceListWall( reverse(faceOut), reverse(faceIn), true ) );
 
-  //Build wall
-  list.append( faceListWall( faceOut, topOut, true ) );
-  list.append( faceListWall( faceIn, topIn, true ) );
-
   //Append top
   list.append( faceListWall( topOut, topIn, true ) );
+
+  //Build wall
+  list.append( faceListWall( faceOut, topOut, true ) );
+  //Change color for internal face of tube
+  if( color.isValid() )
+    list.append( faceColor(color) );
+  list.append( faceListWall( faceIn, topIn, true ) );
+
   return list;
   }
 
@@ -2004,33 +1998,32 @@ Sd3drFaceList Sd3drModel::solidTubeDif(const Sd2dRegion &rOut, const Sd2dRegion 
   return solidTubeDifColor( rOut, rIn, height, addBot, QColor{} );
   }
 
+
+
 Sd3drFaceList Sd3drModel::solidTubeDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, bool addBot, QColor color)
   {
-  QMatrix4x4 m;
-  Sd3drFace faceOut = faceFromFlat( rOut, m );
-  Sd3drFace faceIn  = faceFromFlat( rIn, m );
-  // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
-  QVector3D localZ(m(0, 2), m(1, 2), m(2, 2));
-  // Смещаем точку вдоль этой оси
-  localZ *= height;
+  Sd3drFace faceOut = flatToFace( rOut, 0 );
+  Sd3drFace faceIn  = flatToFace( rIn, 0 );
 
   //Build top face by offset each point from bottom face on vector localZ
-  Sd3drFace topOut( faceDuplicateOffset( faceOut, localZ ) );
-  Sd3drFace topIn( faceDuplicateOffset( faceIn, localZ ) );
+  Sd3drFace topOut( flatToFace( rOut, height ) );
+  Sd3drFace topIn( flatToFace( rIn, height ) );
 
   Sd3drFaceList list;
-  if( color.isValid() )
-    list.append( faceColor(color) );
   //Append bottom if need
   if( addBot )
     list.append( ring( rOut, faceOut, rIn, faceIn ) );
 
-  //Build wall
-  list.append( faceListWall( faceOut, topOut, true ) );
-  list.append( faceListWall( faceIn, topIn, true ) );
-
   //Append top
   list.append( ring( rOut, topOut, rIn, topIn ) );
+
+  //Build wall
+  list.append( faceListWall( faceOut, topOut, true ) );
+  //Change color for internal face of tube
+  if( color.isValid() )
+    list.append( faceColor(color) );
+  list.append( faceListWall( faceIn, topIn, true ) );
+
   return list;
   }
 
@@ -2060,36 +2053,30 @@ Sd3drFaceList Sd3drModel::solidBlindDif(const Sd2dRegion &rOut, const Sd2dRegion
 
 Sd3drFaceList Sd3drModel::solidBlindDifColor(const Sd2dRegion &rOut, const Sd2dRegion &rIn, float height, float depth, bool addBot, QColor color)
   {
-  QMatrix4x4 m;
-  Sd3drFace faceOut = faceFromFlat( rOut, m );
-  Sd3drFace faceIn  = faceFromFlat( rIn, m, height - depth );
-
-  // Получаем локальную ось Z из матрицы (нормаль в мировых координатах)
-  QVector3D localZOut(m(0, 2), m(1, 2), m(2, 2));
-  QVector3D localZIn(localZOut);
-  // Смещаем точку вдоль этой оси
-  localZOut *= height;
-  localZIn  *= depth;
+  Sd3drFace faceOut = flatToFace( rOut, 0 );
+  Sd3drFace faceIn  = flatToFace( rIn, height - depth );
 
   //Build top face by offset each point from bottom face on vector localZ
-  Sd3drFace topOut( faceDuplicateOffset( faceOut, localZOut ) );
-  Sd3drFace topIn( faceDuplicateOffset( faceIn, localZIn ) );
+  Sd3drFace topOut( flatToFace( rOut, height ) );
+  Sd3drFace topIn( flatToFace( rIn, height ) );
 
   Sd3drFaceList list;
-  if( color.isValid() )
-    list.append( faceColor(color) );
   //Append bottom if need
   if( addBot )
     list.append( faceOut );
 
 
-  //Build wall
+  //Build out wall
   list.append( faceListWall( faceOut, topOut, true ) );
-  list.append( faceListWall( faceIn, topIn, true ) );
 
   //Append top
   list.append( ring( rOut, topOut, rIn, topIn ) );
 
+  if( color.isValid() )
+    list.append( faceColor(color) );
+  //Build internal wall
+  list.append( faceListWall( faceIn, topIn, true ) );
+  //Build flat
   list.append( faceIn );
   return list;
   }

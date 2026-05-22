@@ -186,15 +186,14 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("flatCircularSegment"), model, &Sd3drModel::flatCircularSegment, QStringLiteral("flatCircularSegment( float radius, float angleStart, float angleStop )") );
 
   addFunction( QStringLiteral("solidNew"), model, &Sd3drModel::solidNew, QStringLiteral("solidNew( flat profile, float height, bool addBottom )") );
-  addFunction( QStringLiteral("solidNewColor"), model, &Sd3drModel::solidNewColor, QStringLiteral("solidNewColor( flat profile, float height, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidTube"), model, &Sd3drModel::solidTube, QStringLiteral("solidTube( flat outProfile, float thickness, float height, bool addBottom )") );
   addFunction( QStringLiteral("solidTubeColor"), model, &Sd3drModel::solidTubeColor, QStringLiteral("solidTubeColor( flat outProfile, float thickness, float height, bool addBottom, color bodyColor )") );
   addFunction( QStringLiteral("solidTubeDif"), model, &Sd3drModel::solidTubeDif, QStringLiteral("solidTubeDif( flat outProfile, flat inProfile, float height, bool addBottom )") );
   addFunction( QStringLiteral("solidTubeDifColor"), model, &Sd3drModel::solidTubeDifColor, QStringLiteral("solidTubeDifColor( flat outProfile, flat inProfile, float height, bool addBottom, color bodyColor )") );
-  addFunction( QStringLiteral("solidBlind"), model, &Sd3drModel::solidBlind, QStringLiteral("solidBlind( flat outProfile, float thickness, float height, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindColor"), model, &Sd3drModel::solidBlindColor, QStringLiteral("solidBlindColor( flat outProfile, float thickness, float height, bool addBottom, color bodyColor )") );
-  addFunction( QStringLiteral("solidBlindDif"), model, &Sd3drModel::solidBlindDif, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, bool addBottom )") );
-  addFunction( QStringLiteral("solidBlindDifColor"), model, &Sd3drModel::solidBlindDifColor, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, bool addBottom, color bodyColor )") );
+  // addFunction( QStringLiteral("solidBlind"), model, &Sd3drModel::solidBlind, QStringLiteral("solidBlind( flat outProfile, float thickness, float height, bool addBottom )") );
+  // addFunction( QStringLiteral("solidBlindColor"), model, &Sd3drModel::solidBlindColor, QStringLiteral("solidBlindColor( flat outProfile, float thickness, float height, bool addBottom, color bodyColor )") );
+  // addFunction( QStringLiteral("solidBlindDif"), model, &Sd3drModel::solidBlindDif, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, bool addBottom )") );
+  // addFunction( QStringLiteral("solidBlindDifColor"), model, &Sd3drModel::solidBlindDifColor, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, bool addBottom, color bodyColor )") );
 
   addFunction( QStringLiteral("solidAddCone"), model, &Sd3drModel::solidAddCone, QStringLiteral("solidAddCone( faceList solid, float coneHeight )") );
   addFunction( QStringLiteral("solidAddConeColor"), model, &Sd3drModel::solidAddConeColor, QStringLiteral("solidAddCone( faceList solid, float coneHeight, float offx, float offy, color coneColor )") );
