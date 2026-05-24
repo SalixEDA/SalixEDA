@@ -136,7 +136,7 @@ void SdWEditorGraph::scaleSet(double scale)
   {
   mScale.scaleSet( scale );
   mCasheDirty = true;
-  //qDebug() << "scale=" << mScale.scaleGet();
+  qDebug() << "scale=" << mScale.scaleGet();
   update();
   }
 
@@ -144,7 +144,7 @@ void SdWEditorGraph::scaleStep(double step)
   {
   mScale.scaleStep(step);
   mCasheDirty = true;
-  //qDebug() << "scale=" << mScale.scaleGet();
+  qDebug() << "scale=" << mScale.scaleGet();
   update();
   }
 
@@ -582,6 +582,12 @@ void SdWEditorGraph::cmViewFit()
   //If fit rect not empty - expand this rect on all view
   if( !fit.isEmpty() )
     zoomWindow( fit );
+  else if( mScale.scaleGet() < 0 ) {
+    if( getProjectItem()->getClass() & dctSchematic )
+      scaleSet( 0.0633675 );
+    else
+      scaleSet( 0.0062904 );
+    }
   }
 
 

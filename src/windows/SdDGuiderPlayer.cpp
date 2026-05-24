@@ -26,6 +26,7 @@ Description
 #include <QSettings>
 #include <QMediaPlayer>
 #include <QVideoWidget>
+#include <QAudioOutput>
 #include <QDebug>
 
 
@@ -36,6 +37,8 @@ SdDGuiderPlayer::SdDGuiderPlayer(const QString fname, QWidget *parent) :
   //Setup titer and speach language
   mPlayer = new QMediaPlayer(this);
   mVideo  = new QVideoWidget(this);
+  QAudioOutput *audio = new QAudioOutput;
+  mPlayer->setAudioOutput( audio );
 
   QString fileName = guiderPath() + fname + QString("-%1.mp4").arg( SdEnvir::languageGet() );
   if( !QFile::exists(fileName) )

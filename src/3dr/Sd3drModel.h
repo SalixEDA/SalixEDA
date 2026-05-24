@@ -647,6 +647,17 @@ class Sd3drModel
     Sd3drFaceList solidAddCurveXZ(const Sd3drFaceList &faceList, float radius, float sideCount, float curveAngle);
 
     //!
+    //! \brief solidAddCurveYZ Adds a curved bend of the profile with given radius and angle around the Y axis
+    //! \param faceList        Existing solid face list (top face will be removed)
+    //! \param radius          Bend radius
+    //! \param curveAngle      Bend angle in degrees around axiz Y
+    //! \param sideCount       Number of segments for the curve
+    //! \return                New solid face list with the curved bend
+    //!
+    //! The initial direction is considered to be the normal of the original profile
+    Sd3drFaceList solidAddCurveYZ(const Sd3drFaceList &faceList, float radius, float sideCount, float curveAngle);
+
+    //!
     //! \brief solidAddHole Adds a hole to the top face with same profile as top face
     //! \param faceList     Existing solid face list (top face will be removed)
     //! \param thickness    Thickness of border

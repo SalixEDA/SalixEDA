@@ -205,6 +205,7 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("solidAddDifColor"), model, &Sd3drModel::solidAddDifColor, QStringLiteral("solidAddDifColor( faceList solid, flat profile, float height, float offset, color bodyColor )") );
   addFunction( QStringLiteral("solidAddCurveVector"), model, &Sd3drModel::solidAddCurveVector, QStringLiteral("solidAddCurveVector( faceList solid, float radius, int sideCount, float x, float y, float z )") );
   addFunction( QStringLiteral("solidAddCurveXZ"), model, &Sd3drModel::solidAddCurveXZ, QStringLiteral("solidAddCurveXZ( faceList solid, float radius, int sideCount, float curveAngle )") );
+  addFunction( QStringLiteral("solidAddCurveYZ"), model, &Sd3drModel::solidAddCurveYZ, QStringLiteral("solidAddCurveYZ( faceList solid, float radius, int sideCount, float curveAngle )") );
   addFunction( QStringLiteral("solidAddHole"), model, &Sd3drModel::solidAddHole, QStringLiteral("solidAddHole( faceList solid, float thickness, float depth )") );
   addFunction( QStringLiteral("solidAddHoleColor"), model, &Sd3drModel::solidAddHoleColor, QStringLiteral("solidAddHoleColor( faceList solid, float thickness, float depth, color bodyColor )") );
   addFunction( QStringLiteral("solidAddHoleDif"), model, &Sd3drModel::solidAddHoleDif, QStringLiteral("solidAddHoleDif( faceList solid, flat holeProfile, float depth )") );

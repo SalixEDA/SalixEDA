@@ -1,0 +1,9 @@
+- integration
+-- The SalixEDA project contains a complete set of used objects
+-- These are component symbols, footprints, and components
+-- All of this is integrated into the schematic and the board associated with the schematic
+-- Inserting a new component into the schematic causes its footprint to appear on the PCB and adds
+the component symbol, footprint, and component to the project
+-- Similarly, deleting a component from the schematic removes its footprint from the board
+-- And if no such components remain in the schematic, the component symbol, its footprint, and the component are removed from the project
+-- New library elements can be created directly in the project

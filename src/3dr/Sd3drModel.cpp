@@ -2533,6 +2533,25 @@ Sd3drFaceList Sd3drModel::solidAddCurveXZ(const Sd3drFaceList &faceList, float r
 
 
 
+//!
+//! \brief solidAddCurveYZ Adds a curved bend of the profile with given radius and angle around the Y axis
+//! \param faceList        Existing solid face list (top face will be removed)
+//! \param radius          Bend radius
+//! \param curveAngle      Bend angle in degrees around axiz Y
+//! \param sideCount       Number of segments for the curve
+//! \return                New solid face list with the curved bend
+//!
+//! The initial direction is considered to be the normal of the original profile
+Sd3drFaceList Sd3drModel::solidAddCurveYZ(const Sd3drFaceList &faceList, float radius, float sideCount, float curveAngle)
+  {
+  QMatrix4x4 rotationMatrix;
+  rotationMatrix.rotate(curveAngle, 1, 0, 0);
+  QVector3D r( rotationMatrix.map(QVector3D(0,0,1)) );
+  return solidAddCurveVector( faceList, radius, sideCount, r.x(), r.y(), r.z() );
+  }
+
+
+
 
 
 //!
