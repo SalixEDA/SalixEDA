@@ -211,6 +211,18 @@ QImage SdContainerFile::drawImage(int width, int height, bool currentLayers)
 
 
 
+void SdContainerFile::updateCreationTimeOnly()
+  {
+  int time = SvTime2x::current();
+  if( time <= mFileUid.mCreateTime )
+    mFileUid.mCreateTime++;
+  else
+    mFileUid.mCreateTime = time;
+  }
+
+
+
+
 //Return current registered author
 QString SdContainerFile::getDefaultAuthor()
   {

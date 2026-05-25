@@ -208,6 +208,18 @@ void SdGraphPartPin::getProp(SdPropSelected &prop)
 
 
 
+bool SdGraphPartPin::layerReplace(const QStringList &pairs)
+  {
+  bool res = mNameProp.mLayer.replace(pairs);
+  res = mNumberProp.mLayer.replace(pairs) || res;
+  if( mPinProp.mSide.isTop() )
+    res = mPinProp.mLayer.replace(pairs) || res;
+  return res;
+  }
+
+
+
+
 void SdGraphPartPin::setText(int index, QString sour, SdPropText &prop, QWidget *parent)
   {
   Q_UNUSED(index)

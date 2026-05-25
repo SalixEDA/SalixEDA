@@ -160,6 +160,17 @@ void SdGraphText::getProp(SdPropSelected &prop)
 
 
 
+bool SdGraphText::layerReplace(const QStringList &pairs)
+  {
+  return mProp.mLayer.replace( pairs );
+  }
+
+
+
+
+
+
+
 void SdGraphText::setLayerUsage()
   {
   mProp.mLayer.setLayerUsage();

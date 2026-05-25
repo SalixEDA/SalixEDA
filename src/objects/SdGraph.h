@@ -76,6 +76,7 @@ class SdGraph : public SdObject
     //Изменение свойствами
     virtual void   setProp( SdPropSelected &prop );
     virtual void   getProp( SdPropSelected &prop );
+    virtual bool   layerReplace( const QStringList &pairs ) { Q_UNUSED(pairs) return false; }
 
     //Изменение обновлением текста
     virtual void   setText(int index, QString sour, SdPropText &prop, QWidget *parent );

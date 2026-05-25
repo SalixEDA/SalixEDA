@@ -239,7 +239,7 @@ void SdPItemPlate::drawRatNet(SdContext *dc)
     buildRatNet();
   //Draw rat net pairs
   dc->setPen( 0, SdEnvir::instance()->getSysColor(scRatNet), dltSolid );
-  for( const SdRatNetPair &pair : mRatNet )
+  for( const SdRatNetPair &pair : std::as_const(mRatNet) )
     dc->line( pair.a, pair.b );
   }
 
@@ -480,7 +480,7 @@ void SdPItemPlate::checkRules(std::function<bool()> fun1)
 //Draw rule error indicators
 void SdPItemPlate::drawRuleErrors(SdContext *dc) {
   dc->setPen( 0, SdEnvir::instance()->getSysColor(scRuleErrors), dltSolid );
-  for( const SdRect &r : mRuleErrors )
+  for( const SdRect &r : std::as_const(mRuleErrors) )
     dc->rect( r );
   }
 

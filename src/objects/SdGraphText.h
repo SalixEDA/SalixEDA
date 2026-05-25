@@ -72,6 +72,7 @@ class SdGraphText : public SdGraph
     virtual void    transform(const QTransform &map, SdPvAngle angle) override;
     virtual void    setProp(SdPropSelected &prop) override;
     virtual void    getProp(SdPropSelected &prop) override;
+    virtual bool    layerReplace( const QStringList &pairs ) override;
     virtual void    setLayerUsage() override;
     virtual void    setText(int index, QString sour, SdPropText &prop, QWidget *parent) override;
     virtual void    selectByPoint(const SdPoint p, SdSelector *selector) override;

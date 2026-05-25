@@ -82,6 +82,12 @@ class SdPvLayer : public SdPv<SdLayerPtr,SdPvLayer>
     //!
     void       json( const QString name, const SdJsonReader &js );
 
+    //!
+    //! \brief replace Replace layer on table base
+    //! \param pairs   Table of layer pairs. even - source layer id, odd - destignation layer id
+    //! \return        true if replaced
+    //!
+    bool       replace( const QStringList &pairs );
   };
 
 

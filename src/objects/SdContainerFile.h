@@ -111,6 +111,11 @@ class SdContainerFile : public SdContainer
     //!
     virtual QImage         drawImage( int width, int height, bool currentLayers );
 
+    //!
+    //! \brief updateCreationTime Set creation time as current
+    //!
+    void                   updateCreationTimeOnly();
+
 
     //Return current registered author
     static QString         getDefaultAuthor();

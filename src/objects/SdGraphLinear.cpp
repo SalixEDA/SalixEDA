@@ -86,6 +86,16 @@ void SdGraphLinear::getProp(SdPropSelected &prop)
   }
 
 
+
+
+bool SdGraphLinear::layerReplace(const QStringList &pairs)
+  {
+  return mProp.mLayer.replace( pairs );
+  }
+
+
+
+
 bool SdGraphLinear::isVisible() const
   {
   return mProp.mLayer.isVisible();

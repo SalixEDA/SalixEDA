@@ -49,7 +49,12 @@ class SdPropBarLay : public SdPropBar
     void         setEditObject(SdClass theClass, SdPvStratum stratum);
 
   private:
-    void         refillLayers();
+    //!
+    //! \brief refillLayers Refill list of available layers and correct ability selection of required layer
+    //! \param required     Layer required selected
+    //! \return             Available selected layer
+    //!
+    SdLayer     *refillLayers( SdLayer *required );
   };
 
 #endif // SDPROPBARLAY_H

@@ -125,3 +125,21 @@ void SdPvLayer::json(const QString name, const SdJsonReader &js)
 
 
 
+
+//!
+//! \brief replace Replace layer on table base
+//! \param pairs   Table of layer pairs. even - source layer id, odd - destignation layer id
+//! \return        true if replaced
+//!
+bool SdPvLayer::replace(const QStringList &pairs)
+  {
+  for( int i = 0; i < pairs.count(); i += 2 )
+    if( layer()->id() == pairs.at(i) ) {
+      set( pairs.at(i+1) );
+      return true;
+      }
+  return false;
+  }
+
+
+

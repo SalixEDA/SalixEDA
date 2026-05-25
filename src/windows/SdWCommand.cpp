@@ -323,6 +323,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmOption = menuInstruments->addAction( QIcon(QString(":/pic/instrumOptions.png")), QObject::tr("Options"), frame, &SdWMain::cmOption );
   menuInstruments->addSeparator();
   cmTools  = menuInstruments->addAction( QIcon(QString(":/pic/instrumTools.png")), QObject::tr("Ref to library object"), frame, &SdWMain::cmRef2LibraryObject );
+             menuInstruments->addAction( QObject::tr("Library service"), frame, &SdWMain::cmLibrary );
   menuInstruments->addSeparator();
   cmGuiderDialog     = menuInstruments->addAction( QObject::tr("Guider scene builder..."), frame, &SdWMain::cmGuiderDialog );
                        menuInstruments->addAction( QObject::tr("Guider snapshot save"), QKeySequence(Qt::Key_F12), frame, &SdWMain::cmGuiderSnapshotSave );

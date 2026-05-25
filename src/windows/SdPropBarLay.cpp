@@ -102,7 +102,7 @@ void SdPropBarLay::updateViewedLayers(SdLayer *currentLayer)
   //get current selection
   if( currentLayer == nullptr )
     currentLayer = prevLayer;
-  refillLayers();
+  currentLayer = refillLayers( currentLayer );
   setSelectedLayer( currentLayer );
 
   if( prevLayer != currentLayer )
@@ -129,22 +129,47 @@ void SdPropBarLay::setEditObject(SdClass theClass, SdPvStratum stratum)
   if( mEditObjectClass != theClass || mStratum != stratum )  {
     mEditObjectClass = theClass;
     mStratum         = stratum;
-    refillLayers();
+    refillLayers(nullptr);
     }
   }
 
 
 
-void SdPropBarLay::refillLayers()
+//!
+//! \brief refillLayers Refill list of available layers and correct ability selection of required layer
+//! \param required     Layer required selected
+//! \return             Available selected layer
+//!
+SdLayer *SdPropBarLay::refillLayers(SdLayer *required)
   {
   mLayer->clear();
   //fill new layers list
-  SdEnvir::instance()->layerForEachConst( mEditObjectClass, [this] ( SdLayer *p ) -> bool {
+  bool available = false;
+  SdLayer *first = nullptr;
+  SdEnvir::instance()->layerForEachConst( mEditObjectClass, [this,required,&available,&first] ( SdLayer *p ) -> bool {
     if( p->isEdited() && p->stratum().isIntersect(mStratum) ) {
+      //Append layer p into available layer list
       mLayer->addItem( p->name(), QVariant( p->id() ) );
+
+      //Compare appended layer to required
+      if( p == required )
+        //If equal then we mark required layer as available to select
+        available = true;
+
+      //If first available layer not yet assigned, then we assign it
+      if( first == nullptr )
+        first = p;
       }
     return true;
     } );
+
+  if( !available ) {
+    //When required layer is not available to selection, then we
+    //change required to first available layer of list
+    required = first;
+    }
+
+  return required;
   }
 
 

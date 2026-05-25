@@ -71,6 +71,7 @@ class SdGraphLinear : public SdGraph
     //Properties service [Изменение свойствами]
     virtual void setProp(SdPropSelected &prop) override;
     virtual void getProp(SdPropSelected &prop) override;
+    virtual bool layerReplace( const QStringList &pairs ) override;
 
     //Проверить доступность объекта
     virtual bool isVisible() const override;

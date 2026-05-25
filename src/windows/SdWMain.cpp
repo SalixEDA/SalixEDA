@@ -1973,10 +1973,50 @@ void SdWMain::cmOption()
 
 
 
-
 void SdWMain::cmLibrary()
   {
+  QStringList partList;
+  SdLibraryStorage::instance()->forEachHeader( [&partList](SdLibraryHeader &hdr) -> bool {
+    if( hdr.mClass & dctPart ) {
+      partList.append( hdr.hashUidName() );
+      }
+    //Continue iteration
+    return false;
+    });
 
+  for( const QString &uid : std::as_const(partList) ) {
+    SdPItemPart *part = sdObjectOnly<SdPItemPart>( SdLibraryStorage::instance()->cfObjectGet( uid )  );
+    if( part != nullptr ) {
+      bool changed = false;
+      part->forEach( dctPartObjects, [&changed] (SdObject *obj) -> bool {
+        SdPtr<SdGraph> graph( obj );
+        if( graph.isValid() ) {
+          static QStringList pairs( { LID0_NET,      LID0_COMMON,
+                                      LID0_NET_NAME, LID0_COMMON,
+                                      LID0_BUS,      LID0_COMMON,
+                                      LID0_AREA,     LID0_COMMON,
+
+                                      LID0_COMPONENT,  LID0_COMPONENT LID1_TOP,
+                                      LID0_PIN,        LID0_PIN LID1_TOP,
+                                      LID0_PIN_NAME,   LID0_PIN_NAME LID1_TOP,
+                                      LID0_PIN_NUMBER, LID0_PIN_NUMBER LID1_TOP,
+                                      LID0_IDENT,      LID0_IDENT LID1_TOP,
+                                      LID0_VALUE,      LID0_VALUE LID1_TOP
+                                    });
+          changed = graph->layerReplace( pairs ) || changed;
+          }
+        return false;
+        });
+
+      if( changed ) {
+        //Update time version
+        part->updateCreationTimeOnly();
+        //SdLibraryStorage::instance()->cfObjectInsert( part );
+        qDebug() << "Upgrade" << part->getTitle();
+        }
+      delete part;
+      }
+    }
   }
 
 

@@ -1183,10 +1183,10 @@ void SdGraphPartImp::accumHoles(Sd3drModel &model, Sd3drFaceList &faceList, SdPv
   {
   QMatrix4x4 mp(map);
   mp.translate( mOrigin.xmm(), mOrigin.ymm(), 0 );
+  mp.rotate( mProp.mAngle.getDegree(), 0, 0, 1 );
   //Bottom side conversion
   if( mProp.mSide.isBottom() )
     mp.rotate( 180, 0, 1, 0 );
-  mp.rotate( mProp.mAngle.getDegree(), 0, 0, 1 );
   mp.translate( -mPart->getOrigin().xmm(), -mPart->getOrigin().ymm(), 0 );
 
   //At first we scan all throught holes
