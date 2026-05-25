@@ -250,6 +250,19 @@ void SdPartImpSection::json(const SdJsonReader &js)
   }
 
 
+//!
+//! \brief isFree Check if this section is free
+//! \param symbol Symbol for comparing
+//! \return       true if section free and match to this symbol
+//!
+
+// bool SdPartImpSection::isFree(SdPItemSymbol *symbol)
+//   {
+//   if( mSymImp != nullptr || mSymbol == nullptr || symbol == nullptr ) return false;
+//   return mSymbol->fileUid() == symbol->fileUid();
+//   }
+
+
 
 
 

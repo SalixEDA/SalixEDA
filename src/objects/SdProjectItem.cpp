@@ -119,6 +119,7 @@ SdUndo *SdProjectItem::getUndo() const
 //Set editEnable flag. Return copy object when object editing is prohibited
 SdProjectItem *SdProjectItem::setEditEnable( bool edit, const QString undoTitle )
   {
+  //if( edit == mEditEnable ) return this;
   //mThereNewer = false;
   SdUndo *undo = getUndo();
   if( !undoTitle.isEmpty() && undo )

@@ -109,6 +109,11 @@ struct SdPartImpSection {
   //!
   void json( const SdJsonReader &js );
 
+  //!
+  //! \brief isFree Check if this section is free
+  //! \param symbol Symbol for comparing
+  //! \return       true if section free and match to this symbol
+  //!
   bool isFree( SdPItemSymbol *symbol ) { return mSymbol == symbol && mSymImp == nullptr; }
   };
 
