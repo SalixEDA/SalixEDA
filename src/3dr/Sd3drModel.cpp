@@ -2452,7 +2452,7 @@ Sd3drFaceList Sd3drModel::solidAddCurveVector(const Sd3drFaceList &faceList, flo
   float totalAngleRad = std::acos(dot);
   float totalAngleDeg = totalAngleRad * 180.0f / M_PI;
 
-  qDebug() << "Полный угол поворота:" << totalAngleDeg << "°";
+  //qDebug() << "Полный угол поворота:" << totalAngleDeg << "°";
 
   // 4. Определяем направление смещения в плоскости XY (проекция вектора поворота)
   QVector3D projectionXY(localRotationVector.x(), localRotationVector.y(), 0);
