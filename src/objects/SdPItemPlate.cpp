@@ -146,7 +146,7 @@ SdPad SdPItemPlate::getPad(const QString pinType) const
 
 void SdPItemPlate::drawPad(SdContext *dc, SdPoint p, const QString pinType, SdPvStratum stratum) const
   {
-  getPad( pinType ).draw( dc, p, stratum );
+  getPad( pinType ).draw( dc, p, stratum & getStratum() );
   }
 
 

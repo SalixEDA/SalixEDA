@@ -92,6 +92,27 @@ void SdGraphLinearRect::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool 
 
 
 
+
+//!
+//! \brief isClone Test if object src is clone of current object or viseversa
+//! \param src     Source object
+//! \return        true when object src is clone of current object or viseversa
+//!
+bool SdGraphLinearRect::isClone(const SdObject *src) const
+  {
+  if( SdGraphLinear::isClone(src) ) {
+    SdPtrConst<SdGraphLinearRect> rect(src);
+    if( rect.isValid() ) {
+      return a == rect->a &&
+             b == rect->b;
+      }
+    }
+  return false;
+  }
+
+
+
+
 //!
 //! \brief json Overloaded function to write object content into json writer
 //!             Overrided function

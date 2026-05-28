@@ -1971,10 +1971,28 @@ void SdWMain::cmOption()
 
 
 
-
+#include "objects/SdGraphPartPin.h"
 
 void SdWMain::cmLibrary()
   {
+#if 0
+
+  QStringList objectList;
+  SdLibraryStorage::instance()->forEachHeader( [&objectList](SdLibraryHeader &hdr) -> bool {
+    if( hdr.mAuthorKey != SdLibraryStorage::authorPublicKey() ) {
+      objectList.append( hdr.hashUidName() );
+      qDebug() << "Wrong author " << hdr.authorGlobalName() << hdr.mName;
+      }
+    //Continue iteration
+    return false;
+    });
+
+  for( const QString &uid : std::as_const(objectList) ) {
+    SdLibraryStorage::instance()->cfObjectDeleteHard( uid );
+    }
+#endif
+
+#if 0
   QStringList partList;
   SdLibraryStorage::instance()->forEachHeader( [&partList](SdLibraryHeader &hdr) -> bool {
     if( hdr.mClass & dctPart ) {
@@ -1988,13 +2006,16 @@ void SdWMain::cmLibrary()
     SdPItemPart *part = sdObjectOnly<SdPItemPart>( SdLibraryStorage::instance()->cfObjectGet( uid )  );
     if( part != nullptr ) {
       bool changed = false;
-      part->forEach( dctPartObjects, [&changed] (SdObject *obj) -> bool {
+      QSet<QString> pins;
+      SdObjectPtrList toDelete;
+      part->forEach( dctPartObjects, [&changed,&pins,&toDelete,part] (SdObject *obj) -> bool {
         SdPtr<SdGraph> graph( obj );
         if( graph.isValid() ) {
-          static QStringList pairs( { LID0_NET,      LID0_COMMON,
-                                      LID0_NET_NAME, LID0_COMMON,
-                                      LID0_BUS,      LID0_COMMON,
-                                      LID0_AREA,     LID0_COMMON,
+          static QStringList pairs( { LID0_NET,      LID0_COMPONENT LID1_TOP,
+                                      LID0_NET_NAME, LID0_COMPONENT LID1_TOP,
+                                      LID0_BUS,      LID0_COMPONENT LID1_TOP,
+                                      LID0_AREA,     LID0_COMPONENT LID1_TOP,
+                                      LID0_COMMON,   LID0_COMPONENT LID1_TOP,
 
                                       LID0_COMPONENT,  LID0_COMPONENT LID1_TOP,
                                       LID0_PIN,        LID0_PIN LID1_TOP,
@@ -2004,19 +2025,48 @@ void SdWMain::cmLibrary()
                                       LID0_VALUE,      LID0_VALUE LID1_TOP
                                     });
           changed = graph->layerReplace( pairs ) || changed;
+
+          SdGraph *graphObj = graph.ptr();
+          part->forEach( dctPicture, [graphObj,&toDelete] (SdObject *dst) -> bool {
+            if( graphObj == dst )
+              return false;
+            else {
+              if( graphObj->isClone( dst ) ) {
+                toDelete.append( dst );
+                }
+              }
+            return true;
+            });
+
           }
-        return false;
+        SdPtr<SdGraphPartPin> partPin( obj );
+        if( partPin.isValid() ) {
+          if( pins.contains( partPin->getPinNumber() ) )
+            toDelete.append( obj );
+          else
+            pins.insert( partPin->getPinNumber() );
+          }
+
+        return true;
         });
+
+      if( toDelete.count() ) {
+        qDebug() << "Remove duplicate pins or graphics from " << part->getTitle();
+        for( auto obj : std::as_const(toDelete) )
+          part->deleteChild( obj, nullptr );
+        changed = true;
+        }
 
       if( changed ) {
         //Update time version
         part->updateCreationTimeOnly();
-        //SdLibraryStorage::instance()->cfObjectInsert( part );
+        SdLibraryStorage::instance()->cfObjectInsert( part );
         qDebug() << "Upgrade" << part->getTitle();
         }
       delete part;
       }
     }
+#endif
   }
 
 

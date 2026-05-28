@@ -62,7 +62,7 @@ Description
 #define dcvLast          5
 
 //Версия SdEnvir
-#define SdEnvirVersion  (43 + FONT_COUNT)
+#define SdEnvirVersion  (44 + FONT_COUNT)
 
 
 class SdEnvir

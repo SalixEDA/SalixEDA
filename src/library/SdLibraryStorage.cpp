@@ -268,6 +268,22 @@ void SdLibraryStorage::cfObjectDelete(const SdContainerFile *item)
 
 
 
+void SdLibraryStorage::cfObjectDeleteHard(const QString hashUidName)
+  {
+  QWriteLocker locker( &mLock );
+  if( mReferenceMap.contains(hashUidName) ) {
+    //Delete object file
+    QFile::remove( fullPathOfLibraryObject( hashUidName ) );
+
+    //Remove from local storage
+    mReferenceMap.remove( hashUidName );
+
+    mDirty = true;
+    }
+  }
+
+
+
 
 
 //!

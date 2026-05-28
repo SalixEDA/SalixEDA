@@ -157,6 +157,13 @@ class SdGraph : public SdObject
     //!
     virtual void   cloneFrom( const SdObject *src, SdCopyMap &copyMap, bool next ) override;
 
+    //!
+    //! \brief isClone Test if object src is clone of current object or viseversa
+    //! \param src     Source object
+    //! \return        true when object src is clone of current object or viseversa
+    //!
+    virtual bool   isClone( const SdObject *src ) const { Q_UNUSED(src) return false; }
+
 
 
     //Write and read object

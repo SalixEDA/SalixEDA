@@ -66,7 +66,7 @@ class SdPItemPlate : public SdProjectItem
     //Stratum count
     int                    stratumCount() const { return mStratumCount; }
     void                   setStratumCount( int sc );
-    virtual SdPvStratum      getStratum() const override;
+    virtual SdPvStratum    getStratum() const override;
 
     //!
     //! \brief allocPartImp Allocate component section in plate

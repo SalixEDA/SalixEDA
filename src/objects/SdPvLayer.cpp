@@ -135,6 +135,7 @@ bool SdPvLayer::replace(const QStringList &pairs)
   {
   for( int i = 0; i < pairs.count(); i += 2 )
     if( layer()->id() == pairs.at(i) ) {
+      qDebug() << "Replace " << pairs.at(i) << " on " << pairs.at(i+1);
       set( pairs.at(i+1) );
       return true;
       }

@@ -49,6 +49,17 @@ void SdGraphLinear::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool next
 
 
 
+bool SdGraphLinear::isClone(const SdObject *src) const
+  {
+  SdPtrConst<SdGraphLinear> linear(src);
+  if( linear.isValid() )
+    return mProp == linear->mProp;
+  return false;
+  }
+
+
+
+
 void SdGraphLinear::json(SdJsonWriter &js) const
   {
   mProp.json( js );

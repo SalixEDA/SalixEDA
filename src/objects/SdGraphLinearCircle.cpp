@@ -66,6 +66,27 @@ void SdGraphLinearCircle::cloneFrom(const SdObject *src, SdCopyMap &copyMap, boo
 
 
 
+
+//!
+//! \brief isClone Test if object src is clone of current object or viseversa
+//! \param src     Source object
+//! \return        true when object src is clone of current object or viseversa
+//!
+bool SdGraphLinearCircle::isClone(const SdObject *src) const
+  {
+  if( SdGraphLinear::isClone(src) ) {
+    SdPtrConst<SdGraphLinearCircle> circle(src);
+    if( circle.isValid() ) {
+      return mCenter == circle->mCenter &&
+             mRadius == circle->mRadius;
+      }
+    }
+  return false;
+  }
+
+
+
+
 //!
 //! \brief json Overloaded function to write object content into json writer
 //!             Overrided function

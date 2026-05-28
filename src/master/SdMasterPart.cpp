@@ -82,7 +82,7 @@ void SdMasterPart::setValue(SdPoint p, int size)
 
 void SdMasterPart::setupSmdPin()
   {
-  mPinProp.mLayer.set( LID0_PIN );
+  mPinProp.mLayer.set( LID0_PIN LID1_TOP );
   mPinProp.mSide  = stmTop;
   }
 
@@ -148,7 +148,7 @@ void SdMasterPart::parseAttr(SdPropText &prop, const QString attr)
 SdMasterPart::SdMasterPart(SdProjectItem *item) :
   mItem(item)
   {
-  mLineProp.mLayer.set( LID0_COMPONENT );
+  mLineProp.mLayer.set( LID0_COMPONENT LID1_TOP );
   mLineProp.mType  = dltSolid;
   mLineProp.mWidth = 0;
 

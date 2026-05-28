@@ -196,7 +196,7 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   // addFunction( QStringLiteral("solidBlindDifColor"), model, &Sd3drModel::solidBlindDifColor, QStringLiteral("solidBlindDif( flat outProfile, flat inProfile, float height, bool addBottom, color bodyColor )") );
 
   addFunction( QStringLiteral("solidAddCone"), model, &Sd3drModel::solidAddCone, QStringLiteral("solidAddCone( faceList solid, float coneHeight )") );
-  addFunction( QStringLiteral("solidAddConeColor"), model, &Sd3drModel::solidAddConeColor, QStringLiteral("solidAddCone( faceList solid, float coneHeight, float offx, float offy, color coneColor )") );
+  addFunction( QStringLiteral("solidAddConeColor"), model, &Sd3drModel::solidAddConeColor, QStringLiteral("solidAddConeColor( faceList solid, float coneHeight, float offx, float offy, color coneColor )") );
   addFunction( QStringLiteral("solidAddRoofRound"), model, &Sd3drModel::solidAddRoofRound, QStringLiteral("solidAddRoofRound( faceList solid, float roundRadius, bool great )") );
   addFunction( QStringLiteral("solidAddRoofBevel"), model, &Sd3drModel::solidAddRoofBevel, QStringLiteral("solidAddRoofBevel( faceList solid, float bevelSize )") );
   addFunction( QStringLiteral("solidAdd"), model, &Sd3drModel::solidAdd, QStringLiteral("solidAdd( faceList solid, float thickness, float height, float offset )") );

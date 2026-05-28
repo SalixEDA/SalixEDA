@@ -65,6 +65,14 @@ class SdGraphLinear : public SdGraph
     //!                  For example: pin name A23 with next copy return A24
     //!
     virtual void cloneFrom( const SdObject *src, SdCopyMap &copyMap, bool next ) override;
+
+    //!
+    //! \brief isClone Test if object src is clone of current object or viseversa
+    //! \param src     Source object
+    //! \return        true when object src is clone of current object or viseversa
+    //!
+    virtual bool isClone( const SdObject *src ) const override;
+
     virtual void json( SdJsonWriter &js) const override;
     virtual void json(const SdJsonReader &js) override;
 

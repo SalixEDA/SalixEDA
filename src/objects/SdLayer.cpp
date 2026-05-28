@@ -28,6 +28,8 @@ SdLayerDescr sdLayerDescrDefault[] = {
       { dctCommon, LID0_PICTURE,                 0x0000ff00, layerTraceNone,         stmThrough }, // 3   Arbitrary drawing
       { dctCommon, LID0_REMARK,                  0x00ff2000, layerTraceNone,         stmThrough }, // 4   Comment
 
+      { dctCommon,    LID0_PIN,                  0x0000ff00, layerTraceNone,         stmThrough }, // 16  Pin graphics
+
   // ================================================================
   // Schematic specific layers (without LID1_...)
   // ================================================================
@@ -51,7 +53,6 @@ SdLayerDescr sdLayerDescrDefault[] = {
   // ================================================================
       // Schematic only (no LID1)
       { dctSchematic, LID0_COMPONENT,            0x00ff0000, layerTraceNone,         stmThrough }, // 15  Component symbol
-      { dctSchematic, LID0_PIN,                  0x0000ff00, layerTraceNone,         stmThrough }, // 16  Pin graphics
       { dctSchematic, LID0_PIN_NAME,             0x000000ff, layerTraceNone,         stmThrough }, // 17  Pin name
       { dctSchematic, LID0_PIN_NUMBER,           0x000020ff, layerTraceNone,         stmThrough }, // 18  Pin number
       { dctSchematic, LID0_IDENT,                0x00ff7f00, layerTraceNone,         stmThrough }, // 19  Identifier

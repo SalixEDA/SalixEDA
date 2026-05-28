@@ -81,7 +81,7 @@ void SdPartImpPin::drawPad(SdContext *dc, SdPItemPlate *plate, SdPvStratum strat
   //Draw pin pad
   if( !highliteNet.isEmpty() && getNetName() == highliteNet )
     dc->setOverColor( SdEnvir::instance()->getSysColor(scTraseNet) );
-  plate->drawPad( dc, mPin->getPinOrigin(), mPin->getPinType(), mStratum.stratum() & stratum );
+  plate->drawPad( dc, mPin->getPinOrigin(), mPin->getPinType(), mStratum & stratum );
 //  plate->drawPad( dc, mPosition, mPin->getPinType(), mStratum.stratum() & stratum );
   dc->resetOverColor();
   }

@@ -171,6 +171,8 @@ class SdLibraryStorage : public QObject
     //Mark item object as deleted
     void               cfObjectDelete( const SdContainerFile *item );
 
+    void               cfObjectDeleteHard( const QString hashUidName );
+
     //!
     //! \brief cfObjectGet Load object from library
     //! \param uid         UID of loaded object

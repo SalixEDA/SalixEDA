@@ -309,7 +309,7 @@ void SdGraphTracedVia::accumNetSegments(SdPlateNetContainer *netContainer)
 void SdGraphTracedVia::drawStratum(SdContext *dcx, SdPvStratum stratum)
   {
   //Draw pin pad
-  getPlate()->drawPad( dcx, mPosition, mProp.mPadType.string(), mProp.mStratum.stratum() & stratum );
+  getPlate()->drawPad( dcx, mPosition, mProp.mPadType.string(), mProp.mStratum & stratum );
   }
 
 

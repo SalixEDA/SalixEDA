@@ -46,6 +46,13 @@ class SdGraphLinearCircle : public SdGraphLinear
     virtual void    cloneFrom( const SdObject *src, SdCopyMap &copyMap, bool next ) override;
 
     //!
+    //! \brief isClone Test if object src is clone of current object or viseversa
+    //! \param src     Source object
+    //! \return        true when object src is clone of current object or viseversa
+    //!
+    virtual bool    isClone( const SdObject *src ) const override;
+
+    //!
     //! \brief json Overloaded function to write object content into json writer
     //!             Overrided function
     //! \param js   Json writer

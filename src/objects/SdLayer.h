@@ -76,9 +76,10 @@ enum SdLayerTrace {
 #define LID0_GUIDE         "Guide"        // Construction guides and alignment lines
 #define LID0_COURTYARD     "Courtyard"    // Component courtyard
 #define LID0_SOLDER_MASK   "Mask"         // Mask
+// Both schematic and PCB (without LID1_... and with LID1_TOP, LID1_BOT for PCB)
+#define LID0_PIN           "Pin"          // Pin graphics
 // Both schematic and PCB (without LID1_... for schematic; LID1_TOP, LID1_BOT for PCB)
 #define LID0_COMPONENT     "Component"    // Component graphics (symbol or footprint)
-#define LID0_PIN           "Pin"          // Pin graphics
 #define LID0_PIN_NAME      "PinName"      // Pin name graphics
 #define LID0_PIN_NUMBER    "PinNumber"    // Pin number graphics
 #define LID0_IDENT         "Ident"        // Identifier graphics
