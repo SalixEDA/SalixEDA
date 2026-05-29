@@ -63,16 +63,17 @@
 | [solidAddConeColor](scriptFunSolidAddConeColor.md) |Добавляет конус с заданием его цвета|
 | [solidAddRoofRound](scriptFunSolidAddRoofRound.md) |Добавляет закругленную крышу|
 | [solidAddRoofBevel](scriptFunSolidAddRoofBevel.md) |Добавляет крышу с фасками|
-| [solidAdd](solidFunSolidAdd.md) |Добавляет такую-же форму, что и предыдущий объект, но с изменением размера|
-|solidAddColor|Добавляет такую-же форму, что и предыдущий объект, но с изменением размера и с заданием цвета для добавляемой формы|
-|solidAddDif|Добавляет произвольную форму|
-|solidAddDifColor|Добавляет произвольную форму с заданием цвета для новой формы|
+| [solidAdd](scriptFunSolidAdd.md) |Добавляет такую-же форму, что и предыдущий объект, но с изменением размера|
+| [solidAddColor](scriptFunSolidAddColor.md) |Добавляет такую-же форму, что и предыдущий объект, но с изменением размера и с заданием цвета для добавляемой формы|
+| [solidAddDif](scriptFunSolidAddDif.md) |Добавляет произвольную форму|
+| [solidAddDifColor](scriptFunSolidAddDifColor.md) |Добавляет произвольную форму с заданием цвета для новой формы|
 |solidAddCurveVector|Добавляет изгиб тела по вектору|
 |solidAddCurveXZ|Добавляет изгиб тела по углу в плоскости XZ|
-|solidAddHole|Добавляет отверстие без дна|
-|solidAddHoleColor|Добавляет отверстие без дна с заданием цвета отверстия|
-|solidAddHoleDif|Добавляет отверстие без дна с другой формой, нежели тело|
-|solidAddHoleDifColor|Добавляет отверстие без дна с другой формой, нежели тело и заданием цвета отверстия|
+|solidAddCurveYZ|Добавляет изгиб тела по углу в плоскости YZ|
+| [solidAddHole](scriptFunSolidAddHole.md) |Добавляет отверстие без дна|
+| [solidAddHoleColor](scriptFunSolidAddHoleColor.md) |Добавляет отверстие без дна с заданием цвета отверстия|
+| [solidAddHoleDif](scriptFunSolidAddHoleDif.md) |Добавляет отверстие без дна с другой формой, нежели тело|
+| [solidAddHoleDifColor](scriptFunSolidAddHoleDifColor.md) |Добавляет отверстие без дна с другой формой, нежели тело и заданием цвета отверстия|
 |solidAddBlindArray|Добавляет массив глухих отверстий (с дном)|
 |solidAddBlindArrayColor|Добавляет массив глухих отверстий (с дном) с заданием цвета отверстий|
 
