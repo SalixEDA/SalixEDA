@@ -613,14 +613,12 @@ class Sd3drModel
     //! \param faceList           Face from witch need to taken top face
     //! \param r                  Hole profile
     //! \param depth              Hole depth
-    //! \param rowCount           Count of hole rows
-    //! \param rowDistance        Distance between rows
     //! \param rowDescr           Rows description. For each row: hole distance, row hole count, horizontal offset, vertical offset
     //! \return                   New solid face list with the added extrusion
     //!
-    Sd3drFaceList solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr );
+    Sd3drFaceList solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, const QList<float> &groupDescr );
 
-    Sd3drFaceList solidAddBlindArrayColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr, QColor color );
+    Sd3drFaceList solidAddBlindArrayColor( const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, const QList<float> &groupDescr, QColor color );
 
     //!
     //! \brief solidAddCurveVector Adds a curved bend of the profile with given radius along the specified vector

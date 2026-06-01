@@ -1,15 +1,15 @@
-# solidAddBlindArray
+# solidAddBlindArrayColor
 
 [Содержание](contents.htm)=>[Скрипт 3d](script3d.md)=>[Построение 3d моделей](script2Root.md)
 
 ---
 
 ## Формат вызова
-`faceList solidAddBlindArray( faceList solid, flat holeProfile, float depth, floatList groups[horzDist, count, horzOffset, vertOffset...] )`
+`faceList solidAddBlindArrayColor( faceList solid, flat holeProfile, float depth, floatList groups[horzDist, count, horzOffset, vertOffset...], color bodyColor )`
 
 ## Описание
 Добавляет на последнюю грань фигуры массив глухих отверстий. Массив состоит из групп
-отверстий, расположенных в ряд. Каждая группа описывается в четырьмя числами в параметре
+отверстий с произвольным цветом, расположенных в ряд. Каждая группа описывается в четырьмя числами в параметре
 groups.
 
 Последняя грань обычно верхняя, но далеко не всегда. Например, у стакана это дно внутренней
@@ -22,6 +22,7 @@ groups.
 - depth глубина отверстия. С положительными числами получается отверстие с дном, с 
 отрицательными - торчащая надстройка
 - groups массив описаний групп
+- bodyColor цвет внутренней части отверстий
 
 
 ## Блок описания группы
@@ -46,13 +47,13 @@ body = solidTrapezoidRound( 20, 26, 8, 5, 1, true )
 
 hole = flatCircle( 0.5 )
 
-body = solidAddBlindArray( body, hole, 3, [ 2.5, 7, 0, 1.25,
-                                            2.5, 8, 0, -1.25] )
+body = solidAddBlindArrayColor( body, hole, 3, [ 2.5, 7, 0, 1.25,
+                                                 2.5, 8, 0, -1.25], selectColor("#008000") )
 
 partModel = modelSolid( selectColor("#800000"), body, 0,0,0, 0,0,0 )
 ```
 
 Этот код сформирует такое изображение:
 
-![pic](scriptFunSolidAddBlindArray.png)
+![pic](scriptFunSolidAddBlindArrayColor.png)
 

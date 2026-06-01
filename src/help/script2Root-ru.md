@@ -67,15 +67,15 @@
 | [solidAddColor](scriptFunSolidAddColor.md) |Добавляет такую-же форму, что и предыдущий объект, но с изменением размера и с заданием цвета для добавляемой формы|
 | [solidAddDif](scriptFunSolidAddDif.md) |Добавляет произвольную форму|
 | [solidAddDifColor](scriptFunSolidAddDifColor.md) |Добавляет произвольную форму с заданием цвета для новой формы|
-|solidAddCurveVector|Добавляет изгиб тела по вектору|
-|solidAddCurveXZ|Добавляет изгиб тела по углу в плоскости XZ|
-|solidAddCurveYZ|Добавляет изгиб тела по углу в плоскости YZ|
+| [solidAddCurveVector](scriptFunSolidAddCurveVector.md) |Добавляет изгиб тела по вектору|
+| [solidAddCurveXZ](scriptFunSolidAddCurveXZ.md) |Добавляет изгиб тела по углу в плоскости XZ|
+| [solidAddCurveYZ](scriptFunSolidAddCurveYZ.md) |Добавляет изгиб тела по углу в плоскости YZ|
 | [solidAddHole](scriptFunSolidAddHole.md) |Добавляет отверстие без дна|
 | [solidAddHoleColor](scriptFunSolidAddHoleColor.md) |Добавляет отверстие без дна с заданием цвета отверстия|
 | [solidAddHoleDif](scriptFunSolidAddHoleDif.md) |Добавляет отверстие без дна с другой формой, нежели тело|
 | [solidAddHoleDifColor](scriptFunSolidAddHoleDifColor.md) |Добавляет отверстие без дна с другой формой, нежели тело и заданием цвета отверстия|
-|solidAddBlindArray|Добавляет массив глухих отверстий (с дном)|
-|solidAddBlindArrayColor|Добавляет массив глухих отверстий (с дном) с заданием цвета отверстий|
+| [solidAddBlindArray](scriptFunSolidAddBlindArray.md) |Добавляет массив глухих отверстий (с дном)|
+| [solidAddBlindArrayColor](scriptFunSolidAddBlindArrayColor.md) |Добавляет массив глухих отверстий (с дном) с заданием цвета отверстий|
 
 Функции формирования моделей из тел. Модель - это одно или несколько тел, для которых
 задан цвет и
@@ -84,6 +84,6 @@
 
 | Наименование функции | Описание |
 |--------------------------------|--------------|
-|modelSolid|Создает модель заданием цвета и положения тела|
-|modelSolidAdd|Добавляет тело к модели|
-|modelSolidCopy|Добавляет новое положение тел модели (копия)|
+| [modelSolid](scriptFunModelSolid.md) |Создает модель заданием цвета и положения тела|
+| [modelSolidAdd](scriptFunModelSolidAdd.md) |Добавляет тело к модели|
+| [modelSolidCopy](scriptFunModelSolidCopy.md) |Добавляет новое положение тел модели (копия)|

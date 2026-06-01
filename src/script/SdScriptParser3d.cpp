@@ -210,8 +210,8 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("solidAddHoleColor"), model, &Sd3drModel::solidAddHoleColor, QStringLiteral("solidAddHoleColor( faceList solid, float thickness, float depth, color bodyColor )") );
   addFunction( QStringLiteral("solidAddHoleDif"), model, &Sd3drModel::solidAddHoleDif, QStringLiteral("solidAddHoleDif( faceList solid, flat holeProfile, float depth )") );
   addFunction( QStringLiteral("solidAddHoleDifColor"), model, &Sd3drModel::solidAddHoleDifColor, QStringLiteral("solidAddHoleDifColor( faceList solid, flat holeProfile, float depth, color bodyColor )") );
-  addFunction( QStringLiteral("solidAddBlindArray"), model, &Sd3drModel::solidAddBlindArray, QStringLiteral("solidAddBlindArray( faceList solid, flat holeProfile, float depth, float rowDistance, floatList rows[horzDist, count, horzOffset, vertOffset...] )") );
-  addFunction( QStringLiteral("solidAddBlindArrayColor"), model, &Sd3drModel::solidAddBlindArrayColor, QStringLiteral("solidAddBlindArrayColor( faceList solid, flat holeProfile, float depth, float rowDistance, floatList rows[horzDist, count, horzOffset, vertOffset...], color bodyColor )") );
+  addFunction( QStringLiteral("solidAddBlindArray"), model, &Sd3drModel::solidAddBlindArray, QStringLiteral("solidAddBlindArray( faceList solid, flat holeProfile, float depth, floatList groups[horzDist, count, horzOffset, vertOffset...] )") );
+  addFunction( QStringLiteral("solidAddBlindArrayColor"), model, &Sd3drModel::solidAddBlindArrayColor, QStringLiteral("solidAddBlindArrayColor( faceList solid, flat holeProfile, float depth, floatList groups[horzDist, count, horzOffset, vertOffset...], color bodyColor )") );
 
   addFunction( QStringLiteral("solidBox"), model, &Sd3drModel::solidBox, QStringLiteral("solidBox( float lenght, float width, float height, bool addBottom )") );
   addFunction( QStringLiteral("solidBoxWithCone"), model, &Sd3drModel::solidBoxWithCone, QStringLiteral("solidBoxWithCone( float lenght, float width, float height, float coneHeight, bool addBottom )") );
@@ -229,8 +229,8 @@ SdScriptParser3d::SdScriptParser3d(QTableWidget *tableWidget, Sd3drModel *model 
   addFunction( QStringLiteral("modelNew"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelNew(); }, QStringLiteral("modelNew( color bodyColor, faceList faces[], matrix transfer )") );
   addFunction( QStringLiteral("modelAppend"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelAppend(); }, QStringLiteral("modelAppend( model src, color ambient, color diffuse, color specular, faceList faces[] )") );
   addFunction( QStringLiteral("modelCopy"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelCopy(); }, QStringLiteral("modelCopy( model src, matrix trasfer )") );
-  addFunction( QStringLiteral("modelSolid"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelSolid(); }, QStringLiteral("modelSolid( color bodyColor, faceList faces[], float angX, float angY, float angZ, float offX, float offY, float offZ )") );
-  addFunction( QStringLiteral("modelSolidAdd"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelAdd(); }, QStringLiteral("modelSolidAdd( model src, color bodyColor, faceList faces[] )") );
+  addFunction( QStringLiteral("modelSolid"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelSolid(); }, QStringLiteral("modelSolid( color bodyColor, faceList faces, float angX, float angY, float angZ, float offX, float offY, float offZ )") );
+  addFunction( QStringLiteral("modelSolidAdd"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelAdd(); }, QStringLiteral("modelSolidAdd( model src, color bodyColor, faceList faces )") );
   addFunction( QStringLiteral("modelSolidCopy"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunModelSolidCopy(); }, QStringLiteral("modelSolidCopy( model src, float angX, float angY, float angZ, float offX, float offY, float offZ )") );
 
   addFunction( QStringLiteral("graphLine"), [] () -> SdScriptValueFunction* { return new SdScriptValueFunGraphLine(); }, QStringLiteral("graphLine( float [startX,startY], float [stopX,xtopY] )") );

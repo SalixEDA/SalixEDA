@@ -2297,20 +2297,18 @@ Sd3drFaceList Sd3drModel::solidAddDifColor(const Sd3drFaceList &faceList, const 
 //! \param faceList           Face from witch need to taken top face
 //! \param r                  Hole profile
 //! \param depth              Hole depth
-//! \param rowCount           Count of hole rows
-//! \param rowDistance        Distance between rows
-//! \param rowDescr           Rows description. For each row: hole distance, row hole count, horizontal offset, vertical offset
+//! \param groupDescr         Rows description. For each row: hole distance, row hole count, horizontal offset, vertical offset
 //! \return                   New solid face list with the added extrusion
 //!
-Sd3drFaceList Sd3drModel::solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr)
+Sd3drFaceList Sd3drModel::solidAddBlindArray(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, const QList<float> &groupDescr)
   {
-  return solidAddBlindArrayColor( faceList, r, depth, rowDistance, rowDescr, QColor{} );
+  return solidAddBlindArrayColor( faceList, r, depth, groupDescr, QColor{} );
   }
 
-Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, float rowDistance, const QList<float> &rowDescr, QColor color)
+Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList, const Sd2dRegion &r, float depth, const QList<float> &groupDescr, QColor color)
   {
   Sd3drFaceList list(faceList);
-  if( list.isEmpty() || rowDescr.size() < 4 )
+  if( list.isEmpty() || groupDescr.size() < 4 )
     list.append( solidCylinder( 1, 0.2, true ) );
   Sd3drFace top(list.takeLast());
   QMatrix4x4 topMatrix( matrixTop( top, 0 ) );
@@ -2325,17 +2323,18 @@ Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList,
   srcList.append( pointPool.addRegion( top, topRegion, true ) );
 
   //Fill hole array
-  for( int rowIndex = 0; rowIndex * 4 < rowDescr.size(); ++rowIndex ) {
-    float holeHorzDistance = qBound( -1000.0, rowDescr.at( rowIndex * 4 + 0 ), 1000.0 );
-    float holeCount        = qBound( 1.0, rowDescr.at( rowIndex * 4 + 1 ), 200.0 );
-    float horzOffset       = qBound( -1000.0, rowDescr.at( rowIndex * 4 + 2 ), 1000.0 );
-    float vertOffset       = qBound( -1000.0, rowDescr.at( rowIndex * 4 + 3 ), 1000.0 );
+  for( int rowIndex = 0; (rowIndex + 1) * 4 <= groupDescr.size(); ++rowIndex ) {
+    float holeHorzDistance = qBound( -1000.0, groupDescr.at( rowIndex * 4 + 0 ), 1000.0 );
+    float holeCount        = qBound( 1.0, groupDescr.at( rowIndex * 4 + 1 ), 200.0 );
+    float horzOffset       = qBound( -1000.0, groupDescr.at( rowIndex * 4 + 2 ), 1000.0 );
+    float vertPosition     = qBound( -1000.0, groupDescr.at( rowIndex * 4 + 3 ), 1000.0 );
 
     float offX = (holeCount - 1.0) * holeHorzDistance / -2.0 + horzOffset;
-    float offY = (rowDescr.size()/4 - 1) * rowDistance / -2.0 + vertOffset + rowIndex * rowDistance;
+    float offY = vertPosition;
     for( int holeIndex = 0; holeIndex < holeCount; ++holeIndex ) {
       //Make hole region
       Sd2dRegion hole( flatOffset( r, offX, offY ) );
+      offX += holeHorzDistance;
       //Append region to hole list
       holeRegionList.append( hole );
 
@@ -2410,7 +2409,6 @@ Sd3drFaceList Sd3drModel::solidAddBlindArrayColor(const Sd3drFaceList &faceList,
   list.append( holes );
 
   return list;
-
   }
 
 
