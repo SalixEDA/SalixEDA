@@ -323,3 +323,25 @@ journalctl -f -u mox.service # See logs
 
 v=DKIM1;h=sha256;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsnMOr+R+ZUfOYdyq9hmgRj1Bo2nAG8f2jDaCYQakxoRLzw8Vlv5oA3PtYdzVp4wIc/FbbKz43+E+syvYWyIzjYQmxFdKBVn042wf+P1cc7U1bxWAte9fIfLmLr6voldFwry7b/ka+fk0luiWIYCmClrwdK9kYIKCC5ylg4axcDxaERl1v0i4qvLfs2GiXHzi60LhK5pkIuF56ALiAGfzxsbQmQwIXdcBhfANIQFmAguIDd37DutAhzQt0GwC+Vps6YKaB+BvlsWknoRSIJmymtDES7EpApDOnKnAi2MoJk1zjFxPfRqlpLbiGhIxvAdG+F1+YptUEXlwxryIeRLqlQIDAQAB
 v=DKIM1;h=sha256;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAupMYz5jnDCsUkJ3lUurYfxYeF5GbDJXvAR9pIAEQw1Uxdv+qagwYFPXojMsl5kzv1ndVk3Ymo0tc9Cn3QDtZzCFjJz/QS1pihNlp+34OcmSTk4FFuik1/nn3zDMOgp4v0HpJNBQNIlVl1tfucmHzRqkwYZRI2F0sgBf5tTpQ0pUZjO0TChN+w/gvapafOVYztRkyxteA7ljqa97ZL1DDQBA93pxhRuuW4NEHtMy7NsfqnWxjTcJr0D4X5nbwC4RGF6HT11//2/xX0LspLBWhvEVjgUzAkTSkWpvOVnaa3CFyhnSLbj+XMizPKqZECkAdwyID3yV9zMhdX7JrjjMc9QIDAQAB
+
+
+
+
+
+Обновление сертификатов для mox
+Остановим сервер
+systemctl stop apache2
+Создадим сертификаты
+certbot certonly --standalone -d mail.salixdev.ru
+certbot certonly --standalone -d mta-sts.salixdev.ru
+certbot certonly --standalone -d autoconfig.salixdev.ru
+Запускаем сервер
+systemctl start apache2
+
+Меняем права на сертификаты (здесь указываем путь к ссылкам, но меняются сами файлы)
+chown mox:mox /etc/letsencrypt/live/mail.salixdev.ru/*
+chown mox:mox /etc/letsencrypt/live/mta-sts.salixdev.ru/*
+chown mox:mox /etc/letsencrypt/live/autoconfig.salixdev.ru/*
+
+Перезапускаем mox
+systemctl restart mox
