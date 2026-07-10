@@ -82,7 +82,7 @@ struct SdProp
 
 //    DTraseRules traseRules;     //Правила трассировки
 
-    const int     mPropVersion = 3;
+    const int     mPropVersion = 4;
 
     SdProp();
 
