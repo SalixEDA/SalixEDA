@@ -803,7 +803,7 @@ SdWScriptEditor::keyPressEvent(QKeyEvent *e)
       if( mHighlighter != nullptr && mHighlighter->isFunction(ident) ) {
         //Начать имя функции с большой буквы
         ident[0] = ident.at(0).toUpper();
-        emit help( QStringLiteral("scriptFun") + ident + QStringLiteral(".htm") );
+        emit help( QStringLiteral("scriptFun") + ident + QStringLiteral(".md") );
         }
       }
     return;

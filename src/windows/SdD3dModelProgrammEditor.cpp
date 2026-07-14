@@ -74,7 +74,7 @@ partModel = pinModel
 
 )VVV";
 
-#define ROOT_HELP "script3d.htm"
+#define ROOT_HELP "script3d.md"
 
 SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString id, QWidget *parent) :
   QDialog(parent),

@@ -918,5 +918,23 @@
         <file>help/scriptFunFlatCircle.png</file>
         <file>help/scriptFunFlatEllipse-ru.md</file>
         <file>help/scriptFunFlatEllipse.png</file>
+        <file>help/script3d-ru.md</file>
+        <file>help/script2Root-en.md</file>
+        <file>help/script3d-en.md</file>
+        <file>help/scriptFunFlatRectangle-en.md</file>
+        <file>help/scriptFunSolidBoxWithCone-en.md</file>
+        <file>help/scriptFunSolidBox-en.md</file>
+        <file>help/scriptFunFlatOffset-en.md</file>
+        <file>help/scriptFunFlatEquidistant-en.md</file>
+        <file>help/scriptFunFlatCircularSegment-en.md</file>
+        <file>help/scriptFunFlatTrapezoidRound-en.md</file>
+        <file>help/scriptFunFlatTrapezoid-en.md</file>
+        <file>help/scriptFunFlatPolygedronOuter-en.md</file>
+        <file>help/scriptFunFlatPolygedronInner-en.md</file>
+        <file>help/scriptFunFlatCircle-en.md</file>
+        <file>help/scriptFunFlatEllipse-en.md</file>
+        <file>help/scriptFunFlatRectangleRound-en.md</file>
+        <file>help/scriptFunFlatRectangleBevel-en.md</file>
+        <file>help/scriptFunSolidBoxBevel-en.md</file>
     </qresource>
 </RCC>
