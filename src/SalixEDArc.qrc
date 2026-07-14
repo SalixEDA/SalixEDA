@@ -936,5 +936,39 @@
         <file>help/scriptFunFlatRectangleRound-en.md</file>
         <file>help/scriptFunFlatRectangleBevel-en.md</file>
         <file>help/scriptFunSolidBoxBevel-en.md</file>
+        <file>help/scriptFunModelSolidCopy-en.md</file>
+        <file>help/scriptFunModelSolidAdd-en.md</file>
+        <file>help/scriptFunModelSolid-en.md</file>
+        <file>help/scriptFunSolidAddCurveYZ-en.md</file>
+        <file>help/scriptFunSolidAddCurveXZ-en.md</file>
+        <file>help/scriptFunSolidAddCurveVector-en.md</file>
+        <file>help/scriptFunSolidAddBlindArrayColor-en.md</file>
+        <file>help/scriptFunSolidAddBlindArray-en.md</file>
+        <file>help/scriptFunSolidAddHoleDifColor-en.md</file>
+        <file>help/scriptFunSolidAddHoleDif-en.md</file>
+        <file>help/scriptFunSolidAddHoleColor-en.md</file>
+        <file>help/scriptFunSolidAddHole-en.md</file>
+        <file>help/scriptFunSolidAddDifColor-en.md</file>
+        <file>help/scriptFunSolidAddDif-en.md</file>
+        <file>help/scriptFunSolidAddColor-en.md</file>
+        <file>help/scriptFunSolidAdd-en.md</file>
+        <file>help/scriptFunSolidAddRoofBevel-en.md</file>
+        <file>help/scriptFunSolidAddRoofRound-en.md</file>
+        <file>help/scriptFunSolidAddConeColor-en.md</file>
+        <file>help/scriptFunSolidAddCone-en.md</file>
+        <file>help/scriptFunSolidTubeDifColor-en.md</file>
+        <file>help/scriptFunSolidTubeDif-en.md</file>
+        <file>help/scriptFunSolidTubeColor-en.md</file>
+        <file>help/scriptFunSolidTube-en.md</file>
+        <file>help/scriptFunSolidNewColor-en.md</file>
+        <file>help/scriptFunSolidNew-en.md</file>
+        <file>help/scriptFunSolidRectPrizm-en.md</file>
+        <file>help/scriptFunSolidTrapezoidRound-en.md</file>
+        <file>help/scriptFunSolidTrapezoid-en.md</file>
+        <file>help/scriptFunSolidPlygedronOuter-en.md</file>
+        <file>help/scriptFunSolidPlygedronInner-en.md</file>
+        <file>help/scriptFunSolidCylinderWithCone-en.md</file>
+        <file>help/scriptFunSolidCylinder-en.md</file>
+        <file>help/scriptFunSolidBoxRound-en.md</file>
     </qresource>
 </RCC>
