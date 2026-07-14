@@ -14,36 +14,36 @@
     в переменных. Ниже представлен типичный код построения выводного конденсатора.
     </p>
 <code>
-#First place source params of part
-bodyDiametr = 6
-bodyHeight = 10
-bodyColor = selectColor( "#008080" )
-
-#Second place source params of pins
-pinDiametr = 0.8
-pinLength = 3
-pinDistance = 2.5
-pinColor = selectColor( "#c0c0c0" )
-
-#========================================================
-#Body construction
-body = solidCylinder( bodyDiametr / 2, bodyHeight, true )
-
-#Place model into destignation model. After this you can see your construction
-partModel = modelSolid( bodyColor, body, 0,0,0,  0,0,0 )
-
-#=========================================================
-#Pin construction
-pin = solidCylinder( pinDiametr / 2, -pinLength, false )
-
-#First pin placement
-pinModel = modelSolid( pinColor, pin, 0,0,0,  -pinDistance / 2,0,0 )
-
-#Second pin placement
-pinModel = modelSolidCopy( pinModel, 0,0,0,  pinDistance / 2,0,0 )
-
-#Place pin model into destignation model
-partModel = pinModel
+#First place source params of part<br>
+bodyDiametr = 6<br>
+bodyHeight = 10<br>
+bodyColor = selectColor( "#008080" )<br>
+<br>
+#Second place source params of pins<br>
+pinDiametr = 0.8<br>
+pinLength = 3<br>
+pinDistance = 2.5<br>
+pinColor = selectColor( "#c0c0c0" )<br>
+<br>
+#========================================================<br>
+#Body construction<br>
+body = solidCylinder( bodyDiametr / 2, bodyHeight, true )<br>
+<br>
+#Place model into destignation model. After this you can see your construction<br>
+partModel = modelSolid( bodyColor, body, 0,0,0,  0,0,0 )<br>
+<br>
+#=========================================================<br>
+#Pin construction<br>
+pin = solidCylinder( pinDiametr / 2, -pinLength, false )<br>
+<br>
+#First pin placement<br>
+pinModel = modelSolid( pinColor, pin, 0,0,0,  -pinDistance / 2,0,0 )<br>
+<br>
+#Second pin placement<br>
+pinModel = modelSolidCopy( pinModel, 0,0,0,  pinDistance / 2,0,0 )<br>
+<br>
+#Place pin model into destignation model<br>
+partModel = pinModel<br>
 </code>
 
     <p>Трехмерная модель состоит из трехмерных тел. В модели может присутствовать
@@ -81,7 +81,7 @@ partModel = pinModel
     или ниши. Есть варианты функций, которые повторяют форму верхней грани фигуры,
     а есть которые добавляют произвольные формы.
     </p>
-    <p>Ф
+    <p>
     </p>
   </body>
 </html>
