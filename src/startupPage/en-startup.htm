@@ -1,37 +1,56 @@
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=windows-1251">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
   </head>
   <body>
     <h1 align="center">Welcome to SalixEDA</h1>
-    <p>You can open existing or recent project. You can also create new project.</p>
+    <p>You can open an existing project or one of your previous projects.
+      You can also create a new project or view examples.</p>
     <hr>
     <table width="100%" border="0">
       <tbody>
         <tr>
-          <td width="50%"> <button><img src="fileNew.png" align="middle"> <a href="new:">Create
-                new project</a> </button> <button><img src="fileOpen.png" align="middle">
-              <a href="open:">Load existing project</a> </button>
+          <td width="50%">
+            <table width="100%" border="0">
+              <tbody>
+                <tr>
+                  <td width="48%">
+                    <button><img src="fileNew.png" align="middle"> <a href="new:">Create
+                    a new project</a> </button>
+                  </td>
+                  <td width="2%"><br>
+                  </td>
+                  <td>
+                    <button><img src="fileOpen.png" align="middle">
+                    <a href="open:">Open an existing project</a> </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
             <hr>
-            <h3>Recent projects</h3>
+            <h3>Previous projects</h3>
             <p> %1 </p>
           </td>
           <td width="1%"><br>
           </td>
           <td>
-            <h3 style="text-align: center;">Check out our help system</h3>
-            <p><a href="intro.htm">Introduction</a> - Short introduction to
-              SalixEDA</p>
-            <p>SalixEDA Help <a href="contents.htm">contents</a></p>
-            <p><a href="http://localhost/doc/quickStart">QuickStart</a> on web</p>
-            <h3 style="text-align: center;">Watch the training videos</h3>
-            <p> <a href="reviewIntro.mp4">Features</a> - in this video some
-              features of the system are presented</p>
-            <p> <a href="integration.guide">Integration</a> - in this video
-              SalixEDA integration presented</p>
-            <p> <a href="rapidSchematic.guide">Rapid schematic creation</a> -
-              in this video SalixEDA some schematic edit possibilities presented</p>
-            <p></p>
+            <h3 style="text-align: center;"><img src="iconHelp.png" align="middle"> Browse the help system</h3>
+            <p><a href="intro.htm">Introduction</a> - A brief introduction to the
+              SalixEDA system</p>
+            <p><a href="contents.htm">Help</a> on the SalixEDA system</p>
+
+            <h3 style="text-align: center;"><img src="iconExamples.png" align="middle"> View example projects</h3>
+            <p><a href="examples:DC-DC 24-5V 2A converter.salixeda">24V-5V 2A DC-DC convertor demo sheet</a> - a simple analog circuit</p>
+            <p><a href="examples.htm">More examples</a></p>
+
+            <h3 style="text-align: center;"><img src="iconVideos.png" align="middle"> Watch tutorial videos</h3>
+            <p> <a href="reviewIntro.mp4">Features</a> - this video
+              presents some of the system's capabilities</p>
+            <p> <a href="integration.mp4">Integration</a> - this video
+              discusses the integrity of SalixEDA</p>
+            <p> <a href="creationAudioAmp.mp4">Full SalixEDA cycle</a> - this video
+              demonstrates the complete design cycle of an actual board</p>
           </td>
         </tr>
       </tbody>
