@@ -23,7 +23,7 @@ SdWEditorHelp::SdWEditorHelp() :
   SdWEditor(nullptr)
   {
   //Create help widget
-  mHelp = new SdWHelp();
+  mHelp = new SdWHelp(false);
   //mHelp->zoomIn(2);
 
   //And fit it to full editor space

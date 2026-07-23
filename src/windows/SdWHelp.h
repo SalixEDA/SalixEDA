@@ -18,18 +18,12 @@ Description
 
 #include <QTextBrowser>
 
-class SdWMain;
-
 class SdWHelp : public QTextBrowser
   {
     Q_OBJECT
-
-    SdWMain *mMain; //Main window pointer
   public:
     //Common constructor for help widgets
-    SdWHelp();
-    //Constructor for intro help page widget
-    SdWHelp( SdWMain *main );
+    SdWHelp( bool isIntro );
 
 
     //!
@@ -43,6 +37,12 @@ class SdWHelp : public QTextBrowser
     //! \return               External help path
     //!
     static QString externHelpPath();
+
+    //!
+    //! \brief examplesPath Returns path for examples (applicationPath/examples)
+    //! \return             Examples path
+    //!
+    static QString examplesPath();
 
     //Conversion page name with fragment point in page to URL with current language
     //Преобразование названия страницы в фактический URL в соответствии с выбранным языком

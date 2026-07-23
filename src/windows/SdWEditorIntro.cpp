@@ -19,11 +19,11 @@ Description
 
 #include <QVBoxLayout>
 
-SdWEditorIntro::SdWEditorIntro(SdWMain *main, QWidget *parent) :
+SdWEditorIntro::SdWEditorIntro(QWidget *parent) :
   SdWEditor(parent)
   {
   //Create help widget
-  mHelp = new SdWHelp(main);
+  mHelp = new SdWHelp(true);
 
   //And fit it to full editor space
   QVBoxLayout *box = new QVBoxLayout;

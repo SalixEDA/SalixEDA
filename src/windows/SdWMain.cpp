@@ -66,12 +66,14 @@ Description
 #include <QJsonDocument>
 #include <QDesktopServices>
 
+SdWMain  *SdWMain::mWMain;         //Global pointer to main window
 
 SdWMain::SdWMain(QStringList args, QWidget *parent) :
   QMainWindow(parent),
   mGuiderCapture(nullptr),
   mGuiderDialog(nullptr)
   {
+  mWMain = this;
 
   //Set window icon
   setWindowIcon( QIcon(QStringLiteral(":/pic/iconLogo.png")) );
@@ -93,7 +95,7 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   connect( mWEditors, &QTabWidget::currentChanged, this, &SdWMain::onActivateEditor );
   connect( mWEditors, &QTabWidget::tabCloseRequested, this, &SdWMain::onCloseEditor );
   //At right - help wizard
-  mWHelp        = new SdWHelp();
+  mWHelp        = new SdWHelp(false);
   mWHelp->setMinimumWidth(200);
   //mWHelp->resize( 300, mWHelp->size().height() );
   connect( SdPulsar::sdPulsar, &SdPulsar::helpTopic, mWHelp, &SdWHelp::helpTopic );
@@ -2087,7 +2089,7 @@ void SdWMain::cmRef2LibraryObject()
 void SdWMain::cmHelpIntro()
   {
   //Create intro editor
-  SdWEditorIntro *intro = new SdWEditorIntro(this);
+  SdWEditorIntro *intro = new SdWEditorIntro();
   //insert it into tab
   mWEditors->addTab( intro, QIcon( QString(":/pic/help.png") ), tr("Intro help page") );
   //Bring intro tab to top

@@ -41,25 +41,33 @@ class SdWMain : public QMainWindow
   {
     Q_OBJECT
 
-    SdGuiderCapture *mGuiderCapture; //Object for capture guider movie
+    SdGuiderCapture *mGuiderCapture; //!< Object for capture guider movie
     SdGuiderDialog  *mGuiderDialog;  //!< Guider scena build dialog
 
-    QSplitter       *mWSplitter;     //Central part of programm windows - is splitter with projects and redactors
-    SdWProjectList  *mWProjectList;  //Project list
-    QTabWidget      *mWEditors;      //Actived visual editors
-    SdWHelp         *mWHelp;         //Edge help
+    QSplitter       *mWSplitter;     //!< Central part of programm windows - is splitter with projects and redactors
+    SdWProjectList  *mWProjectList;  //!< Project list
+    QTabWidget      *mWEditors;      //!< Actived visual editors
+    SdWHelp         *mWHelp;         //!< Edge help
 
     //Status bar infos
-    SdWLabel        *mXLabel;        //X axiz title (X or col)
-    SdWLabel        *mXPos;          //X axiz position
-    SdWLabel        *mYLabel;        //Y axiz title (Y or row)
-    SdWLabel        *mYPos;          //Y axiz position
-    SdWLabel        *mTraceStatus;   //Current trace status
-    SdWLabel        *mMessage;       //Message
-    QToolButton     *mCapture;       //Capture status
-    QToolButton     *mRemote;        //Remote status
+    SdWLabel        *mXLabel;        //!< X axiz title (X or col)
+    SdWLabel        *mXPos;          //!< X axiz position
+    SdWLabel        *mYLabel;        //!< Y axiz title (Y or row)
+    SdWLabel        *mYPos;          //!< Y axiz position
+    SdWLabel        *mTraceStatus;   //!< Current trace status
+    SdWLabel        *mMessage;       //!< Message
+    QToolButton     *mCapture;       //!< Capture status
+    QToolButton     *mRemote;        //!< Remote status
+
+    static SdWMain  *mWMain;         //!< Global pointer to main window
   public:
     explicit SdWMain( QStringList args, QWidget *parent = nullptr );
+
+    //!
+    //! \brief instance Returns instance of main window of application
+    //! \return         Instance of main window
+    //!
+    static inline SdWMain *instance() { return mWMain; }
 
     //!
     //! \brief cmDelegate This template simple translate command to active editor

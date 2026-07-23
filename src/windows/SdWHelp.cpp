@@ -33,68 +33,58 @@ Description
 
 
 //Common constructor for help widgets
-SdWHelp::SdWHelp() :
-  QTextBrowser( nullptr ),
-  mMain(nullptr)
+SdWHelp::SdWHelp(bool isIntro) :
+  QTextBrowser( nullptr )
   {
   zoomIn(2);
 
   setOpenLinks(false);
-  //Replace anchor clicked
-  connect( this, &SdWHelp::anchorClicked, this, [this] ( QUrl url) {
-    //Test special case for intro page
-    //In intro page we can open project, create new project or open previously file
-    QString path = url.fileName();
-    if( path.endsWith( QStringLiteral(".mp4")) )
-      openGuider( path );
-    else if( path.contains( QString("://") ) )
-      QDesktopServices::openUrl( url );
-    else {
-      if( url.hasFragment() )
-        setSource( pageConvert( url.fileName(), url.fragment() ) );
+  if( isIntro ) {
+    //Replace anchor clicked
+    connect( this, &SdWHelp::anchorClicked, this, [this] ( QUrl url) {
+      //Test special case for intro page
+      //In intro page we can open project, create new project or open previously file
+      QString path = url.toString();
+      if( path.startsWith("open:") ) { SdWMain::instance()->cmFileOpen(); return; }
+      else if( path.startsWith("new:") ) { SdWMain::instance()->cmFileNew(); return; }
+      else if( path.startsWith("load:") ) { SdWMain::instance()->cmFileOpenFile( path.mid(5) ); return; }
+      else if( path.startsWith("library:") ) { SdWMain::instance()->cmFileLoadUid( path.mid(8) ); return; }
+      else if( path.startsWith("examples:") ) { SdWMain::instance()->cmFileOpenFile( examplesPath() + path.mid(9) ); return; }
+      if( path.endsWith( QStringLiteral(".mp4")) )
+        openGuider( path );
+      else if( path.contains( QString("://") ) )
+        QDesktopServices::openUrl( url );
+      else if( url.hasFragment() )
+        SdWMain::instance()->cmHelpPage( url.fileName() + QStringLiteral("#") + url.fragment() );
       else
-        setSource( pageConvert( url.fileName(), QString() ) );
-      }
-    });
+        SdWMain::instance()->cmHelpPage( url.fileName() );
+      });
+    helpIntro();
+    }
+  else {
+    //Replace anchor clicked
+    connect( this, &SdWHelp::anchorClicked, this, [this] ( QUrl url) {
+      //Test special case for intro page
+      //In intro page we can open project, create new project or open previously file
+      QString path = url.fileName();
+      if( path.startsWith("examples:") ) { SdWMain::instance()->cmFileOpenFile( examplesPath() + path.mid(9) ); return; }
+      if( path.endsWith( QStringLiteral(".mp4")) )
+        openGuider( path );
+      else if( path.contains( QString("://") ) )
+        QDesktopServices::openUrl( url );
+      else {
+        if( url.hasFragment() )
+          setSource( pageConvert( url.fileName(), url.fragment() ) );
+        else
+          setSource( pageConvert( url.fileName(), QString() ) );
+        }
+      });
+    }
   }
 
 
 
 
-
-//Constructor for intro help page widget
-SdWHelp::SdWHelp(SdWMain *main) :
-  QTextBrowser( nullptr ),
-  mMain(main)
-  {
-  zoomIn(2);
-
-  setOpenLinks(false);
-  //Replace anchor clicked
-  connect( this, &SdWHelp::anchorClicked, this, [this] ( QUrl url) {
-    //Test special case for intro page
-    //In intro page we can open project, create new project or open previously file
-    QString path = url.toString();
-    if( mMain ) {
-      qDebug() << "help" << path;
-      if( path.startsWith("open:") ) { mMain->cmFileOpen(); return; }
-      else if( path.startsWith("new:") ) { mMain->cmFileNew(); return; }
-      else if( path.startsWith("load:") ) { mMain->cmFileOpenFile( path.mid(5) ); return; }
-      else if( path.startsWith("library:") ) { mMain->cmFileLoadUid( path.mid(8) ); return; }
-      }
-    if( path.endsWith( QStringLiteral(".mp4")) )
-      openGuider( path );
-    else if( path.contains( QString("://") ) )
-      QDesktopServices::openUrl( url );
-    else if( mMain != nullptr ) {
-      if( url.hasFragment() )
-        mMain->cmHelpPage( url.fileName() + QStringLiteral("#") + url.fragment() );
-      else
-        mMain->cmHelpPage( url.fileName() );
-      }
-    });
-  helpIntro();
-  }
 
 
 
@@ -120,7 +110,13 @@ QUrl SdWHelp::pageConvert(const QString &page, const QString &fragment)
       }
 
     //We use external or internal path for help in case of start page with "hx" prefix
-    QString dirPath( page.startsWith("hx") ? externHelpPath() : helpPath() );
+    QString dirPath;
+    if( page.startsWith("hx") )
+      dirPath = externHelpPath();
+    else if( page.startsWith("exam") )
+      dirPath = examplesPath();
+    else
+      dirPath = helpPath();
 
     //Test if file exist with language lang
     //Проверить наличие файла с языком
@@ -298,6 +294,25 @@ QString SdWHelp::externHelpPath()
     helpPath = dir.slashedPath();
     }
   return helpPath;
+  }
+
+
+
+
+
+//!
+//! \brief examplesPath Returns path for examples (applicationPath/examples)
+//! \return             Examples path
+//!
+QString SdWHelp::examplesPath()
+  {
+  static QString cacheExamplesPath;
+  if( cacheExamplesPath.isEmpty() ) {
+    SvDir dir( QCoreApplication::applicationDirPath() );
+    dir.cd( QStringLiteral("examples/") );
+    cacheExamplesPath = dir.slashedPath();
+    }
+  return cacheExamplesPath;
   }
 
 

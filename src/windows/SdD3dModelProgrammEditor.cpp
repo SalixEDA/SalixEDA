@@ -150,7 +150,7 @@ SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString id, QWidget *pa
    editor->setLayout( tlay );
 
    //Help widget
-   splitter->addWidget( mHelp = new SdWHelp() );
+   splitter->addWidget( mHelp = new SdWHelp(false) );
    connect( mTextEdit, &SdWScriptEditor::help, mHelp, &SdWHelp::helpTopic );
 
    //Text editor widget with buttons
@@ -272,7 +272,7 @@ SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString &title, const Q
    editor->setLayout( tlay );
 
    //Help widget
-   splitter->addWidget( mHelp = new SdWHelp() );
+   splitter->addWidget( mHelp = new SdWHelp(false) );
    connect( mTextEdit, &SdWScriptEditor::help, mHelp, &SdWHelp::helpTopic );
 
    //Text editor widget with buttons

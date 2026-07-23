@@ -20,6 +20,7 @@ History
   27.03.2026 v3.3  Completely redesigned guider. Works with simple text scripts. Produces standard mp4 video.
   08.04.2026 v3.4  Append board builder master
   06.05.2026 v3.5  Append base for textual net connection list
+  16.07.2026 v3.6  Refactor help examples system. Allow examples load
 */
 
 #ifndef SDCONFIG
@@ -31,7 +32,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             5
+#define SD_VERSION_MINOR             6
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

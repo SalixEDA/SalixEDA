@@ -88,7 +88,7 @@ SdDExpressionEdit::SdDExpressionEdit(const QString &script, QWidget *parent) :
    editor->setLayout( tlay );
 
    //Help widget
-   splitter->addWidget( mHelp = new SdWHelp() );
+   splitter->addWidget( mHelp = new SdWHelp(false) );
    connect( mTextEdit, &SdWScriptEditor::help, mHelp, &SdWHelp::helpTopic );
 
    //Text editor widget with buttons

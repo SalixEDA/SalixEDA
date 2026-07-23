@@ -29,7 +29,7 @@ class SdWEditorIntro : public SdWEditor
 
     SdWHelp *mHelp; //Help widget fill full editor space
   public:
-    SdWEditorIntro( SdWMain *main, QWidget *parent = nullptr );
+    SdWEditorIntro( QWidget *parent = nullptr );
 
     //void helpIntro( SdWMain *main ) { mHelp->helpIntro( main ); }
 
