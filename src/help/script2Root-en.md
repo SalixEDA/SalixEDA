@@ -21,7 +21,7 @@ Functions for creating 2D contours (projections):
 | [flatPlygedronOuter](scriptFunFlatPlygedron.md)|Creates a regular polygon based on the diameter of the circumcircle|
 | [flatTrapezoid](scriptFunFlatTrapezoid.md)|Creates a trapezoid|
 | [flatTrapezoidRound](scriptFunFlatTrapezoidRound.md)|Creates a trapezoid with rounded corners|
-| [flatCircularSegment](scriptFunFlatCurcularSegment.md)|Creates a circular segment|
+| [flatCircularSegment](scriptFunFlatCircularSegment.md)|Creates a circular segment|
 | [flatEquidistant](scriptFunFlatEquidistant.md)|Creates an equidistant region from a given one|
 | [flatOffset](scriptFunFlatOffset.md)|Creates an offset region from a given one|
 

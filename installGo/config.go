@@ -45,6 +45,7 @@ var ZipFiles = []string{
         "compStore.zip",
         "guide.zip",
 	"examples.zip",
+        "help.zip",
 }
 
 // ========== СТРУКТУРА КОНФИГУРАЦИИ ==========

@@ -21,7 +21,7 @@
 | [flatPlygedronOuter](scriptFunFlatPlygedron.md)|Формирует правильный многоугольник по диаметру внешней окружности|
 | [flatTrapezoid](scriptFunFlatTrapezoid.md)|Формирует трапецию|
 | [flatTrapezoidRound](scriptFunFlatTrapezoidRound.md)|Формирует трапецию с закругленными углами|
-| [flatCircularSegment](scriptFunFlatCurcularSegment.md)|Формирует сегмент окружности|
+| [flatCircularSegment](scriptFunFlatCircularSegment.md)|Формирует сегмент окружности|
 | [flatEquidistant](scriptFunFlatEquidistant.md)|Формирует эквидистантный регион из заданного|
 | [flatOffset](scriptFunFlatOffset.md)|Формирует смещенный регион из заданного|
 
