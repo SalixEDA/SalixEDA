@@ -35,6 +35,7 @@ Description
 SdDBoardBuilder::SdDBoardBuilder(SdProjectItem *item, QWidget *parent) :
   QDialog(parent)
   {
+  setWindowTitle( tr("Board builder") );
   mPlate = dynamic_cast<SdPItemPlate*>(item);
 
   //At top - board configuration selector
