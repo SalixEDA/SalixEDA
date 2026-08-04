@@ -99,7 +99,7 @@ class BomArticle {
 QString BomArticle::build(std::function<QString (const QString &)> fun1)
   {
   QString res = mPattern;
-  for( const QString &field : mFieldNameList )
+  for( const QString &field : std::as_const(mFieldNameList) )
     res = res.arg( fun1(field) );
   return res;
   }
@@ -232,7 +232,7 @@ SdPExport_Bom::SdPExport_Bom(SdProjectItem *item, int step, SdPMasterList *list,
     //BOM pattern list
     QDir patternDir( SdEnvir::instance()->mPatternPath );
     QFileInfoList lst = patternDir.entryInfoList( QStringList({QString("bom*.*")}), QDir::Files );
-    for( const QFileInfo &info : lst ) {
+    for( const QFileInfo &info : std::as_const(lst) ) {
       mBomPatternList->addItem( info.fileName() );
       }
 
@@ -259,7 +259,7 @@ SdPExport_Bom::SdPExport_Bom(SdProjectItem *item, int step, SdPMasterList *list,
 
     //Registry pattern list
     lst = patternDir.entryInfoList( QStringList({QString("registry*.*")}), QDir::Files );
-    for( const QFileInfo &info : lst ) {
+    for( const QFileInfo &info : std::as_const(lst) ) {
       mRegistryPattern->addItem( info.fileName() );
       }
 
@@ -270,6 +270,16 @@ SdPExport_Bom::SdPExport_Bom(SdProjectItem *item, int step, SdPMasterList *list,
 
   lay->addLayout( hbox );
   setLayout( lay );
+
+  // Assign unique names for the interactive help system
+  mCurrentItem->setObjectName("SdPExport_Bom.mCurrentItem");
+  mGenBom->setObjectName("SdPExport_Bom.mGenBom");
+  mBomPatternList->setObjectName("SdPExport_Bom.mBomPatternList");
+  mBom->setObjectName("SdPExport_Bom.mBom");
+  mGenRegistry->setObjectName("SdPExport_Bom.mGenRegistry");
+  mGenRegistryGroup->setObjectName("SdPExport_Bom.mGenRegistryGroup");
+  mRegistryPattern->setObjectName("SdPExport_Bom.mRegistryPattern");
+  mRegistry->setObjectName("SdPExport_Bom.mRegistry");
   }
 
 
@@ -333,7 +343,7 @@ void SdPExport_Bom::genBom()
     QList<QJsonObject> res;
     QJsonObject bomItem;
     QList<int> logNumberList;
-    for( const QJsonObject &comp : ar ) {
+    for( const QJsonObject &comp : std::as_const(ar) ) {
       if( bomItem.isEmpty() ) {
         //bomItem not assigned yet, assign comp to it
         bomItem = comp;
@@ -494,7 +504,7 @@ void SdPExport_Bom::genRegistry()
     QJsonObject emptyItem;
     QList<int> logNumberList;
     QString currentPrefix;
-    for( const QJsonObject &comp : ar ) {
+    for( const QJsonObject &comp : std::as_const(ar) ) {
       if( bomItem.isEmpty() ) {
         //bomItem not assigned yet, assign comp to it
         bomItem = comp;

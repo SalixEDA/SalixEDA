@@ -473,11 +473,11 @@ void SdWCommand::projectState(bool enable)
 
 void SdWCommand::addEditCommands(QToolBar *bar)
   {
-  bar->insertAction( nullptr, cmEditCopy );
-  bar->insertAction( nullptr, cmEditCut );
-  bar->insertAction( nullptr, cmEditPaste );
-  bar->insertAction( nullptr, cmEditDelete );
-  bar->insertAction( nullptr, cmEditProperties );
+  InsertActionAndAssignName( bar, cmEditCopy, "cmEditCopy" );
+  InsertActionAndAssignName( bar, cmEditCut, "cmEditCut" );
+  InsertActionAndAssignName( bar, cmEditPaste, "cmEditPaste" );
+  InsertActionAndAssignName( bar, cmEditDelete, "cmEditDelete" );
+  InsertActionAndAssignName( bar, cmEditProperties, "cmEditProperties" );
   }
 
 
@@ -486,13 +486,12 @@ void SdWCommand::addEditCommands(QToolBar *bar)
 void SdWCommand::addViewCommands(QToolBar *bar)
   {
   bar->addSeparator();
-  bar->insertAction( nullptr, cmViewGrid );
-//  bar->addSeparator();
-  bar->insertAction( nullptr, cmViewFill );
-  bar->insertAction( nullptr, cmModeTable[MD_ZOOM_IN] );
-  bar->insertAction( nullptr, cmModeTable[MD_ZOOM_OUT] );
-  bar->insertAction( nullptr, cmModeTable[MD_ZOOM_WIN] );
-  bar->insertAction( nullptr, cmModeTable[MD_MEASUREMENT] );
+  InsertActionAndAssignName( bar, cmViewGrid, "cmViewGrid" );
+  InsertActionAndAssignName( bar, cmViewFill, "cmViewFill" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_ZOOM_IN], "cmModeTable_MD_ZOOM_IN" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_ZOOM_OUT], "cmModeTable_MD_ZOOM_OUT" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_ZOOM_WIN], "cmModeTable_MD_ZOOM_WIN" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_MEASUREMENT], "cmModeTable_MD_MEASUREMENT" );
   }
 
 
@@ -502,18 +501,18 @@ void SdWCommand::addViewCommands(QToolBar *bar)
 void SdWCommand::addDrawCommands(QToolBar *bar)
   {
   bar->addSeparator();
-  bar->insertAction( nullptr, cmModeTable[MD_SELECT] );
-//  bar->addSeparator();
-  bar->insertAction( nullptr, cmModeTable[MD_LINE] );
-  bar->insertAction( nullptr, cmModeTable[MD_RECT] );
-  bar->insertAction( nullptr, cmModeTable[MD_FILL_RECT] );
-  bar->insertAction( nullptr, cmModeTable[MD_REGION] );
-  bar->insertAction( nullptr, cmModeTable[MD_FILL_REGION] );
-  bar->insertAction( nullptr, cmModeTable[MD_CIRCLE] );
-  bar->insertAction( nullptr, cmModeTable[MD_FILL_CIRCLE] );
-  bar->insertAction( nullptr, cmModeTable[MD_ARC] );
-  bar->insertAction( nullptr, cmModeTable[MD_TEXT] );
-  bar->insertAction( nullptr, cmShowField );
+  InsertActionAndAssignName( bar, cmModeTable[MD_SELECT], "cmModeTable_MD_SELECT" );
+
+  InsertActionAndAssignName( bar, cmModeTable[MD_LINE], "cmModeTable_MD_LINE" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_RECT], "cmModeTable_MD_RECT" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_FILL_RECT], "cmModeTable_MD_FILL_RECT" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_REGION], "cmModeTable_MD_REGION" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_FILL_REGION], "cmModeTable_MD_FILL_REGION" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_CIRCLE], "cmModeTable_MD_CIRCLE" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_FILL_CIRCLE], "cmModeTable_MD_FILL_CIRCLE" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_ARC], "cmModeTable_MD_ARC" );
+  InsertActionAndAssignName( bar, cmModeTable[MD_TEXT], "cmModeTable_MD_TEXT" );
+  InsertActionAndAssignName( bar, cmShowField, "cmShowField" );
   bar->addSeparator();
   }
 
@@ -559,21 +558,25 @@ void SdWCommand::createToolBars(SdWMain *frame)
   {
   //Main bar
   barMain = new QToolBar( QString("Main") );
-  barMain->insertAction( nullptr, cmFileNew );
-  barMain->insertAction( nullptr, cmFileOpen );
-  barMain->insertAction( nullptr, cmFileSave );
-  barMain->insertAction( nullptr, cmFilePrint );
-  barMain->insertAction( nullptr, cmFileCloud );
+  InsertActionAndAssignName( barMain, cmFileNew, "cmFileNew" );
+  InsertActionAndAssignName( barMain, cmFileOpen, "cmFileOpen" );
+  InsertActionAndAssignName( barMain, cmFileSave, "cmFileSave" );
+  InsertActionAndAssignName( barMain, cmFilePrint, "cmFilePrint" );
+  InsertActionAndAssignName( barMain, cmFileCloud, "cmFileCloud" );
   barMain->addSeparator();
-  barMain->insertAction( nullptr, cmObjectNew );
-  barMain->insertAction( nullptr, cmObjectEditEnable );
-  barMain->insertAction( nullptr, cmObjectEditDisable );
-  barMain->insertAction( nullptr, cmObjectPublic );
-  barMain->insertAction( nullptr, cmEditUndo );
-  barMain->insertAction( nullptr, cmEditRedo );
+  InsertActionAndAssignName( barMain, cmObjectNew, "cmObjectNew" );
+  InsertActionAndAssignName( barMain, cmObjectEditEnable, "cmObjectEditEnable" );
+  InsertActionAndAssignName( barMain, cmObjectEditDisable, "cmObjectEditDisable" );
+  InsertActionAndAssignName( barMain, cmObjectPublic, "cmObjectPublic" );
+  InsertActionAndAssignName( barMain, cmEditUndo, "cmEditUndo" );
+  InsertActionAndAssignName( barMain, cmEditRedo, "cmEditRedo" );
 
   frame->addToolBar( barMain );
-  //barMain->setIconSize( QSize(20,24) );
+
+
+
+
+
 
 
 
@@ -582,15 +585,20 @@ void SdWCommand::createToolBars(SdWMain *frame)
   addEditCommands( barSymbol );
   addViewCommands( barSymbol );
   addDrawCommands( barSymbol );
-  barSymbol->insertAction( nullptr, cmModeTable[MD_SYM_PIN] );
-  barSymbol->insertAction( nullptr, cmModeTable[MD_SYM_IDENT] );
-  barSymbol->insertAction( nullptr, cmModeTable[MD_SYM_ORIGIN] );
-  barSymbol->insertAction( nullptr, cmModeTable[MD_SYM_VALUE] );
-  barSymbol->insertAction( nullptr, cmModeTable[MD_SYMBOL_FRAGMENT] );
+  InsertActionAndAssignName( barSymbol, cmModeTable[MD_SYM_PIN], "cmModeTable_MD_SYM_PIN" );
+  InsertActionAndAssignName( barSymbol, cmModeTable[MD_SYM_IDENT], "cmModeTable_MD_SYM_IDENT" );
+  InsertActionAndAssignName( barSymbol, cmModeTable[MD_SYM_ORIGIN], "cmModeTable_MD_SYM_ORIGIN" );
+  InsertActionAndAssignName( barSymbol, cmModeTable[MD_SYM_VALUE], "cmModeTable_MD_SYM_VALUE" );
+  InsertActionAndAssignName( barSymbol, cmModeTable[MD_SYMBOL_FRAGMENT], "cmModeTable_MD_SYMBOL_FRAGMENT" );
   barSymbol->addSeparator();
-  barSymbol->insertAction( nullptr, cmSymbolPartParam );
+  InsertActionAndAssignName( barSymbol, cmSymbolPartParam, "cmSymbolPartParam" );
 
   frame->addToolBar( barSymbol );
+
+
+
+
+
 
 
   //Part bar
@@ -598,38 +606,44 @@ void SdWCommand::createToolBars(SdWMain *frame)
   addEditCommands( barPart );
   addViewCommands( barPart );
   addDrawCommands( barPart );
-  barPart->insertAction( nullptr, cmShowPads );
-  barPart->insertAction( nullptr, cmModeTable[MD_PART_PIN] );
-  barPart->insertAction( nullptr, cmModeTable[MD_PART_IDENT] );
-  barPart->insertAction( nullptr, cmModeTable[MD_PART_ORIGIN] );
-  barPart->insertAction( nullptr, cmModeTable[MD_PART_VALUE] );
+  InsertActionAndAssignName( barPart, cmShowPads, "cmShowPads" );
+  InsertActionAndAssignName( barPart, cmModeTable[MD_PART_PIN], "cmModeTable_MD_PART_PIN" );
+  InsertActionAndAssignName( barPart, cmModeTable[MD_PART_IDENT], "cmModeTable_MD_PART_IDENT" );
+  InsertActionAndAssignName( barPart, cmModeTable[MD_PART_ORIGIN], "cmModeTable_MD_PART_ORIGIN" );
+  InsertActionAndAssignName( barPart, cmModeTable[MD_PART_VALUE], "cmModeTable_MD_PART_VALUE" );
 
   frame->addToolBar( barPart );
 
 
+
+
+
   //Part 3d bar
   barPart3d = new QToolBar( QString("Part3d") );
-  barPart3d->insertAction( nullptr, cm3dShowPads );
-  barPart3d->insertAction( nullptr, cm3dShow2d );
-  barPart3d->insertAction( nullptr, cm3dTopView );
+  InsertActionAndAssignName( barPart3d, cm3dShowPads, "cm3dShowPads" );
+  InsertActionAndAssignName( barPart3d, cm3dShow2d, "cm3dShow2d" );
+  InsertActionAndAssignName( barPart3d, cm3dTopView, "cm3dTopView" );
   barPart3d->addSeparator();
-  barPart3d->insertAction( nullptr, cmModeTable[MD_3D_VIEW] );
+  InsertActionAndAssignName( barPart3d, cmModeTable[MD_3D_VIEW], "cmModeTable_MD_3D_VIEW" );
   barPart3d->addSeparator();
-  barPart3d->insertAction( nullptr, cm3dProgram );
+  InsertActionAndAssignName( barPart3d, cm3dProgram, "cm3dProgram" );
   barPart3d->addSeparator();
-  barPart3d->insertAction( nullptr, cmModeTable[MD_3D_HORZ_MOVE] );
-  barPart3d->insertAction( nullptr, cmModeTable[MD_3D_HORZ_ROTATE] );
-  barPart3d->insertAction( nullptr, cmModeTable[MD_3D_VERT_MOVE] );
-  barPart3d->insertAction( nullptr, cmModeTable[MD_3D_VERT_ROTATE] );
+  InsertActionAndAssignName( barPart3d, cmModeTable[MD_3D_HORZ_MOVE], "cmModeTable_MD_3D_HORZ_MOVE" );
+  InsertActionAndAssignName( barPart3d, cmModeTable[MD_3D_HORZ_ROTATE], "cmModeTable_MD_3D_HORZ_ROTATE" );
+  InsertActionAndAssignName( barPart3d, cmModeTable[MD_3D_VERT_MOVE], "cmModeTable_MD_3D_VERT_MOVE" );
+  InsertActionAndAssignName( barPart3d, cmModeTable[MD_3D_VERT_ROTATE], "cmModeTable_MD_3D_VERT_ROTATE" );
+
   frame->addToolBar( barPart3d );
+
+
 
   //Part 3d bar view
   barPart3dView = new QToolBar( QString("Part3dView") );
-  barPart3dView->insertAction( nullptr, cm3dShowPads );
-  barPart3dView->insertAction( nullptr, cm3dShow2d );
-  barPart3dView->insertAction( nullptr, cm3dTopView );
+  InsertActionAndAssignName( barPart3dView, cm3dShowPads, "cm3dShowPads" );
+  InsertActionAndAssignName( barPart3dView, cm3dShow2d, "cm3dShow2d" );
+  InsertActionAndAssignName( barPart3dView, cm3dTopView, "cm3dTopView" );
   barPart3dView->addSeparator();
-  barPart3dView->insertAction( nullptr, cm3dProgram );
+  InsertActionAndAssignName( barPart3dView, cm3dProgram, "cm3dProgram" );
   frame->addToolBar( barPart3dView );
 
   //Comp bar
@@ -644,15 +658,15 @@ void SdWCommand::createToolBars(SdWMain *frame)
   addEditCommands( barSheet );
   addViewCommands( barSheet );
   addDrawCommands( barSheet );
-  barSheet->insertAction( nullptr, cmModeTable[MD_FRAGMENT] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_COMPONENT] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_NET] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_BUS] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_DISCONNECT] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_NET_NAME] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_SHEET_IDENT] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_SHEET_VALUE] );
-  barSheet->insertAction( nullptr, cmModeTable[MD_NET_LIST] );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_FRAGMENT], "cmModeTable_MD_FRAGMENT" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_COMPONENT], "cmModeTable_MD_COMPONENT" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_NET], "cmModeTable_MD_NET" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_BUS], "cmModeTable_MD_BUS" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_DISCONNECT], "cmModeTable_MD_DISCONNECT" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_NET_NAME], "cmModeTable_MD_NET_NAME" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_SHEET_IDENT], "cmModeTable_MD_SHEET_IDENT" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_SHEET_VALUE], "cmModeTable_MD_SHEET_VALUE" );
+  InsertActionAndAssignName( barSheet, cmModeTable[MD_NET_LIST], "cmModeTable_MD_NET_LIST" );
 
   frame->addToolBar( barSheet );
 
@@ -663,22 +677,22 @@ void SdWCommand::createToolBars(SdWMain *frame)
   addEditCommands( barPcb );
   addViewCommands( barPcb );
   addDrawCommands( barPcb );
-  barPcb->insertAction( nullptr, cmShowRatNet );
-  barPcb->insertAction( nullptr, cmShowRuleErrors );
-  barPcb->insertAction( nullptr, cmRulesEdit );
-  barPcb->insertAction( nullptr, cmRulesCheck );
-  barPcb->insertAction( nullptr, cmPads );
-  barPcb->insertAction( nullptr, cmModeTable[MD_PART_IMP] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_MOVE_PART] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_ROAD_ENTER] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_ROAD_MOVE] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_TRACE_DELETE] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_POLYGON] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_VIA_ENTER] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_PLATE_IDENT] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_PLATE_VALUE] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_PLATE_ORIGIN] );
-  barPcb->insertAction( nullptr, cmModeTable[MD_PART_HIGHLIGHT] );
+  InsertActionAndAssignName( barPcb, cmShowRatNet, "cmShowRatNet" );
+  InsertActionAndAssignName( barPcb, cmShowRuleErrors, "cmShowRuleErrors" );
+  InsertActionAndAssignName( barPcb, cmRulesEdit, "cmRulesEdit" );
+  InsertActionAndAssignName( barPcb, cmRulesCheck, "cmRulesCheck" );
+  InsertActionAndAssignName( barPcb, cmPads, "cmPads" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_PART_IMP], "cmModeTable_MD_PART_IMP" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_MOVE_PART], "cmModeTable_MD_MOVE_PART" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_ROAD_ENTER], "cmModeTable_MD_ROAD_ENTER" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_ROAD_MOVE], "cmModeTable_MD_ROAD_MOVE" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_TRACE_DELETE], "cmModeTable_MD_TRACE_DELETE" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_POLYGON], "cmModeTable_MD_POLYGON" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_VIA_ENTER], "cmModeTable_MD_VIA_ENTER" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_PLATE_IDENT], "cmModeTable_MD_PLATE_IDENT" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_PLATE_VALUE], "cmModeTable_MD_PLATE_VALUE" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_PLATE_ORIGIN], "cmModeTable_MD_PLATE_ORIGIN" );
+  InsertActionAndAssignName( barPcb, cmModeTable[MD_PART_HIGHLIGHT], "cmModeTable_MD_PART_HIGHLIGHT" );
 
   frame->addToolBar( barPcb );
 
@@ -694,9 +708,9 @@ void SdWCommand::createToolBars(SdWMain *frame)
 
   //Help bar
   barHelp = new QToolBar( QString("Help") );
-  barHelp->insertAction( nullptr, cmHelpHome );
-  barHelp->insertAction( nullptr, cmHelpBackward );
-  barHelp->insertAction( nullptr, cmHelpForward );
+  InsertActionAndAssignName( barHelp, cmHelpHome, "cmHelpHome" );
+  InsertActionAndAssignName( barHelp, cmHelpBackward, "cmHelpBackward" );
+  InsertActionAndAssignName( barHelp, cmHelpForward, "cmHelpForward" );
   frame->addToolBar(barHelp);
 
 

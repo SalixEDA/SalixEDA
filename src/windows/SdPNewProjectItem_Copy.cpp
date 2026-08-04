@@ -20,11 +20,11 @@ Description
 #include "SdPNewProjectItem.h"
 #include "SdDGetProjectObject.h"
 #include "SdDGetObject.h"
-#include "objects/SdPItemSymbol.h"
-#include "objects/SdPItemPart.h"
-#include "objects/SdPItemComponent.h"
-#include "objects/SdPItemSheet.h"
-#include "objects/SdPItemPlate.h"
+// #include "objects/SdPItemSymbol.h"
+// #include "objects/SdPItemPart.h"
+// #include "objects/SdPItemComponent.h"
+// #include "objects/SdPItemSheet.h"
+// #include "objects/SdPItemPlate.h"
 #include "objects/SdCopyMapProject.h"
 
 #include <QVBoxLayout>
@@ -56,6 +56,7 @@ SdPNewProjectItem_Copy::SdPNewProjectItem_Copy(SdProjectItemPtr *itemPtr, SdProj
 
   QPushButton *but;
   vlay->addWidget( but = new QPushButton(tr("Select from current project")) );
+  but->setObjectName( "SdPNewProjectItem_Copy.SelectFromProject" );
   connect( but, &QPushButton::clicked, this, [this] () {
     //Clear copy item and delete all owned copy objects
     clearCopyItem();
@@ -69,6 +70,7 @@ SdPNewProjectItem_Copy::SdPNewProjectItem_Copy(SdProjectItemPtr *itemPtr, SdProj
     });
 
   vlay->addWidget( but = new QPushButton(tr("Select from library")) );
+  but->setObjectName( "SdPNewProjectItem_Copy.SelectFromLibrary" );
   connect( but, &QPushButton::clicked, this, [this] () {
     //Clear copy item and delete all owned copy objects
     clearCopyItem();
@@ -82,9 +84,12 @@ SdPNewProjectItem_Copy::SdPNewProjectItem_Copy(SdProjectItemPtr *itemPtr, SdProj
     });
 
   vlay->addWidget( but = new QPushButton(tr("Select from file")) );
+  but->setObjectName( "SdPNewProjectItem_Copy.SelectFromFile" );
   connect( but, &QPushButton::clicked, this, &SdPNewProjectItem_Copy::onCopyFromFile );
 
   setLayout( vlay );
+
+  mCopyName->setObjectName( "SdPNewProjectItem_Copy.mCopyName" );
   }
 
 

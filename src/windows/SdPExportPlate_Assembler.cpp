@@ -60,6 +60,13 @@ SdPExportPlate_Assembler::SdPExportPlate_Assembler(SdWEditorGraphPlate *editor, 
   vbox->addWidget( mDelimiter = new QLineEdit("!") );
 
   setLayout( vbox );
+
+  // Assign unique names for the interactive help system
+  mReference->setObjectName("SdPExportPlate_Assembler.mReference");
+  mComps->setObjectName("SdPExportPlate_Assembler.mComps");
+  mBottom->setObjectName("SdPExportPlate_Assembler.mBottom");
+  mSolder->setObjectName("SdPExportPlate_Assembler.mSolder");
+  mDelimiter->setObjectName("SdPExportPlate_Assembler.mDelimiter");
   }
 
 

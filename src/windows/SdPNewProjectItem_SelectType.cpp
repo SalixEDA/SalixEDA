@@ -72,6 +72,11 @@ SdPNewProjectItem_SelectType::SdPNewProjectItem_SelectType(SdProjectItemPtr *ite
 
   connect( mObjectType, &QListWidget::currentRowChanged, this, &SdPNewProjectItem_SelectType::classChanged );
   connect( mCreationOrder, &QListWidget::currentRowChanged, this, &SdPNewProjectItem_SelectType::orderChanged );
+
+  // Assign unique names for the interactive help system
+  mObjectType->setObjectName("SdPNewProjectItem_SelectType.mObjectType");
+  mCreationOrder->setObjectName("SdPNewProjectItem_SelectType.mCreationOrder");
+  mDescription->setObjectName("SdPNewProjectItem_SelectType.mDescription");
   }
 
 

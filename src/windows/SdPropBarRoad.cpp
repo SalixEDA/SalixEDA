@@ -19,6 +19,7 @@ Description
 #include "SdDPadMaster.h"
 #include "objects/SdUtil.h"
 #include "objects/SdEnvir.h"
+#include "SdWCommand.h"
 
 #include <QLineEdit>
 #include <QToolButton>
@@ -172,6 +173,34 @@ SdPropBarRoad::SdPropBarRoad(const QString title, bool asRoad) :
     } );
   addWidget( but );
 
+  // Assign unique names for the interactive help system
+  if( asRoad ) {
+    mWidth->setObjectName("SdPropBarRoad.asRoad.mWidth");
+    mWireName->setObjectName("SdPropBarRoad.asRoad.mWireName");
+    if( auto *widget = widgetForAction(mAlignToGrid) )
+      widget->setObjectName("SdPropBarRoad.asRoad.mAlignToGrid");
+    if( auto *widget = widgetForAction(mLoopDetection) )
+      widget->setObjectName("SdPropBarRoad.asRoad.mLoopDetection");
+    if( auto *widget = widgetForAction(mEnterOrtho) )
+      widget->setObjectName("SdPropBarRoad.asRoad.mEnterOrtho");
+    if( auto *widget = widgetForAction(mEnter45degree) )
+      widget->setObjectName("SdPropBarRoad.asRoad.mEnter45degree");
+    if( auto *widget = widgetForAction(mEnterAnyDegree) )
+      widget->setObjectName("SdPropBarRoad.asRoad.mEnterAnyDegree");
+    if( auto *widget = widgetForAction(mViaThrough) )
+      widget->setObjectName("SdPropBarRoad.asRoad.mViaThrough");
+    mViaPadType->setObjectName("SdPropBarRoad.asRoad.mViaPadType");
+    }
+  else {
+    mWireName->setObjectName("SdPropBarRoad.mWireName");
+    if( auto *widget = widgetForAction(mAlignToGrid) )
+      widget->setObjectName("SdPropBarRoad.mAlignToGrid");
+    if( auto *widget = widgetForAction(mLoopDetection) )
+      widget->setObjectName("SdPropBarRoad.mLoopDetection");
+    if( auto *widget = widgetForAction(mViaThrough) )
+      widget->setObjectName("SdPropBarRoad.mViaThrough");
+    mViaPadType->setObjectName("SdPropBarRoad.mViaPadType");
+    }
   }
 
 

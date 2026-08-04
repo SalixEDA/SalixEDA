@@ -220,4 +220,7 @@ class SdWCommand
     static void        selectMode( int md );
   };
 
+
+#define InsertActionAndAssignName( bar, action, name ) bar->insertAction( nullptr, action); if( auto *widget = bar->widgetForAction(action) ) widget->setObjectName( name )
+
 #endif // SDWCOMMAND_H

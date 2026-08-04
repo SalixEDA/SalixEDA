@@ -76,6 +76,11 @@ SdPNewProjectItem_Master::SdPNewProjectItem_Master(SdProjectItemPtr *item, SdPro
       mImage->setPixmap( QPixmap(mImages.at(row)) );
       }
     } );
+
+  // Assign unique names for the interactive help system
+  mMasterType->setObjectName("SdPNewProjectItem_Master.mMasterType");
+  mImage->setObjectName("SdPNewProjectItem_Master.mImage");
+  mDescription->setObjectName("SdPNewProjectItem_Master.mDescription");
   }
 
 

@@ -112,6 +112,20 @@ SdPropBarLinear::SdPropBarLinear(const QString title) :
     emit propChanged();
     });
 
+  // Assign unique names for the interactive help system
+  mWidth->setObjectName("SdPropBarLinear.mWidth");
+  if( auto *widget = widgetForAction(mEnterOrtho) )
+    widget->setObjectName("SdPropBarLinear.mEnterOrtho");
+  if( auto *widget = widgetForAction(mEnter45degree) )
+    widget->setObjectName("SdPropBarLinear.mEnter45degree");
+  if( auto *widget = widgetForAction(mEnterAnyDegree) )
+    widget->setObjectName("SdPropBarLinear.mEnterAnyDegree");
+  if( auto *widget = widgetForAction(mLineSolid) )
+    widget->setObjectName("SdPropBarLinear.mLineSolid");
+  if( auto *widget = widgetForAction(mLineDotted) )
+    widget->setObjectName("SdPropBarLinear.mLineDotted");
+  if( auto *widget = widgetForAction(mLineDashed) )
+    widget->setObjectName("SdPropBarLinear.mLineDashed");
   }
 
 

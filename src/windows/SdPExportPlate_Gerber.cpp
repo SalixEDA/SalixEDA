@@ -443,6 +443,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
           QPushButton *but = new QPushButton( tr("Select...") );
           fbox->addWidget( but );
           connect( but, &QPushButton::clicked, this, &SdPExportPlate_Gerber::onFileSelect );
+          but->setObjectName( "SdPExportPlate_Gerber.SelectSingle" );
         vbox->addLayout( fbox );
 
         //Layers selection
@@ -451,6 +452,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
           but = new QPushButton( tr("Layers...") );
           fbox->addWidget( but );
           connect( but, &QPushButton::clicked, this, &SdPExportPlate_Gerber::onLayers );
+          but->setObjectName( "SdPExportPlate_Gerber.SelectLayers" );
         vbox->addLayout( fbox );
 
         //Gerber generation
@@ -459,6 +461,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
           but = new QPushButton( tr("Generate") );
           fbox->addWidget( but );
           connect( but, &QPushButton::clicked, this, &SdPExportPlate_Gerber::onGenerate );
+          but->setObjectName( "SdPExportPlate_Gerber.GenerateSingle" );
         vbox->addLayout( fbox );
 
         vbox->addStretch();
@@ -478,6 +481,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
           but = new QPushButton( tr("Select...") );
           fbox->addWidget( but );
           connect( but, &QPushButton::clicked, this, &SdPExportPlate_Gerber::onGroupPathSelect );
+          but->setObjectName( "SdPExportPlate_Gerber.SelectPath" );
         vbox->addLayout( fbox );
 
         //Table for packet generation
@@ -490,6 +494,7 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
           but = new QPushButton( tr("Generate") );
           fbox->addWidget( but );
           connect( but, &QPushButton::clicked, this, &SdPExportPlate_Gerber::onGroupGenerate );
+          but->setObjectName( "SdPExportPlate_Gerber.GenerateGroup" );
         vbox->addLayout( fbox );
 
       hbox->addLayout( vbox );
@@ -564,6 +569,15 @@ SdPExportPlate_Gerber::SdPExportPlate_Gerber(SdWEditorGraphPlate *editor, SdPIte
     }
   connect( mGroup,  &QTableWidget::cellClicked, this, &SdPExportPlate_Gerber::onCellClicked );
 
+  // Assign unique names for the interactive help system
+  mFile->setObjectName("SdPExportPlate_Gerber.mFile");
+  mGroupPath->setObjectName("SdPExportPlate_Gerber.mGroupPath");
+  mGroup->setObjectName("SdPExportPlate_Gerber.mGroup");
+  mGridEna->setObjectName("SdPExportPlate_Gerber.mGridEna");
+  mColumns->setObjectName("SdPExportPlate_Gerber.mColumns");
+  mColumnGap->setObjectName("SdPExportPlate_Gerber.mColumnGap");
+  mRows->setObjectName("SdPExportPlate_Gerber.mRows");
+  mRowGap->setObjectName("SdPExportPlate_Gerber.mRowGap");
   }
 
 

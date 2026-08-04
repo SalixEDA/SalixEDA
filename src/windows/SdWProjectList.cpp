@@ -47,6 +47,11 @@ SdWProjectList::SdWProjectList(QWidget *parent) : QWidget(parent)
   connect( mCloseProject, SIGNAL(clicked()), this, SLOT(cmFileClose()) );
   connect( SdPulsar::sdPulsar, &SdPulsar::renameProject, this, &SdWProjectList::onRenameProject );
   connect( SdPulsar::sdPulsar, &SdPulsar::highlightProject, this, &SdWProjectList::onProjectHighlighted );
+
+  // Assign unique names for the interactive help system
+  mWProjectStack->setObjectName("SdWProjectList.mWProjectStack");
+  mProjectTitles->setObjectName("SdWProjectList.mProjectTitles");
+  mCloseProject->setObjectName("SdWProjectList.mCloseProject");
   }
 
 

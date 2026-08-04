@@ -59,6 +59,10 @@ SdPMasterList::SdPMasterList( const QString atitle, const QString asubTitle, QWi
       }
     } );
 
+  // Assign unique names for the interactive help system
+  mMasterType->setObjectName("SdPMasterList.mMasterType");
+  mImage->setObjectName("SdPMasterList.mImage");
+  mDescription->setObjectName("SdPMasterList.mDescription");
   }
 
 

@@ -71,6 +71,11 @@ SdPNewProjectItem_3dMaster::SdPNewProjectItem_3dMaster(SdProjectItemPtr *item, S
   setLayout( hlay );
 
   connect( mMasterType, &QListWidget::currentRowChanged, this, &SdPNewProjectItem_3dMaster::onCurrentRowChanged );
+
+  // Assign unique names for the interactive help system
+  mMasterType->setObjectName("SdPNewProjectItem_3dMaster.mMasterType");
+  mPreview->setObjectName("SdPNewProjectItem_3dMaster.mPreview");
+  mDescription->setObjectName("SdPNewProjectItem_3dMaster.mDescription");
   }
 
 

@@ -55,6 +55,16 @@ SdDVariantTable::SdDVariantTable(SdPItemVariant *var, bool editEna, QWidget *par
   connect( ui->buttonBox->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDVariantTable.htm"), this );
     } );
+
+  // Assign unique names for the interactive help system
+  ui->mDefFields->setObjectName("SdDVariantTable.mDefFields");
+  ui->mRowDelete->setObjectName("SdDVariantTable.mRowDelete");
+  ui->mRowDeleteAll->setObjectName("SdDVariantTable.mRowDeleteAll");
+  ui->mVariantFieldDelete->setObjectName("SdDVariantTable.mVariantFieldDelete");
+  ui->mVariantAppendField->setObjectName("SdDVariantTable.mVariantAppendField");
+  ui->mVariantFieldRename->setObjectName("SdDVariantTable.mVariantFieldRename");
+  ui->mVariantTable->setObjectName("SdDVariantTable.mVariantTable");
+  ui->mRowInsert->setObjectName("SdDVariantTable.mRowInsert");
   }
 
 

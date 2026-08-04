@@ -14,6 +14,8 @@ Description
   Properties bar for symbol pin
 */
 #include "SdPropBarSymPin.h"
+#include "SdWCommand.h"
+
 #include <QComboBox>
 
 SdPropBarSymPin::SdPropBarSymPin(const QString title) :
@@ -38,6 +40,7 @@ SdPropBarSymPin::SdPropBarSymPin(const QString title) :
     });
   addWidget( mPinType );
 
+  mPinType->setObjectName( "SdPropBarSymPin.mPinType" );
   }
 
 

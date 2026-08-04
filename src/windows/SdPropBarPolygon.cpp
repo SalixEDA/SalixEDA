@@ -16,6 +16,8 @@ Description
 #include "SdPropBarPolygon.h"
 #include "SdStringHistory.h"
 #include "objects/SdProp.h"
+#include "SdWCommand.h"
+
 #include <QLineEdit>
 #include <QDebug>
 
@@ -90,6 +92,16 @@ SdPropBarPolygon::SdPropBarPolygon(const QString title) :
     setVertexType( dleAnyDegree );
     emit propChanged();
     });
+
+  // Assign unique names for the interactive help system
+  mGap->setObjectName("SdPropBarPolygon.mGap");
+  mWireName->setObjectName("SdPropBarPolygon.mWireName");
+  if( auto *widget = widgetForAction(mEnterOrtho) )
+    widget->setObjectName("SdPropBarPolygon.mEnterOrtho");
+  if( auto *widget = widgetForAction(mEnter45degree) )
+    widget->setObjectName("SdPropBarPolygon.mEnter45degree");
+  if( auto *widget = widgetForAction(mEnterAnyDegree) )
+    widget->setObjectName("SdPropBarPolygon.mEnterAnyDegree");
   }
 
 

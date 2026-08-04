@@ -40,5 +40,13 @@ SdPropBarDefault::SdPropBarDefault(const QString title) :
   connect( mMaskPicture, &QAction::triggered, [this](bool) {
     SdEnvir::instance()->mEnablePic = !mMaskPicture->isChecked();
     });
+
+  // Assign unique names for the interactive help system
+  if (auto *widget = widgetForAction(mMaskComp))
+      widget->setObjectName("SdPropBarDefault.mMaskComp");
+  if (auto *widget = widgetForAction(mMaskNet))
+      widget->setObjectName("SdPropBarDefault.mMaskNet");
+  if (auto *widget = widgetForAction(mMaskPicture))
+      widget->setObjectName("SdPropBarDefault.mMaskPicture");
   }
 

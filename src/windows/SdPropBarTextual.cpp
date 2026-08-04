@@ -16,6 +16,8 @@ Description
 #include "SdPropBarTextual.h"
 #include "SdStringHistory.h"
 #include "objects/SdEnvir.h"
+#include "SdWCommand.h"
+
 #include <QList>
 #include <QLineEdit>
 #include <QDoubleValidator>
@@ -158,6 +160,31 @@ SdPropBarTextual::SdPropBarTextual(const QString title) :
     emit propChanged();
     });
 
+
+
+  // Assign unique names for the interactive help system
+  mFont->setObjectName("SdPropBarTextual.mFont");
+  mSize->setObjectName("SdPropBarTextual.mSize");
+  if( auto *widget = widgetForAction(mVertTop) )
+    widget->setObjectName("SdPropBarTextual.mVertTop");
+  if( auto *widget = widgetForAction(mVertMiddle) )
+    widget->setObjectName("SdPropBarTextual.mVertMiddle");
+  if( auto *widget = widgetForAction(mVertBottom) )
+    widget->setObjectName("SdPropBarTextual.mVertBottom");
+  if( auto *widget = widgetForAction(mHorzLeft) )
+    widget->setObjectName("SdPropBarTextual.mHorzLeft");
+  if( auto *widget = widgetForAction(mHorzCenter) )
+    widget->setObjectName("SdPropBarTextual.mHorzCenter");
+  if( auto *widget = widgetForAction(mHorzRight) )
+    widget->setObjectName("SdPropBarTextual.mHorzRight");
+  if( auto *widget = widgetForAction(mDir0) )
+    widget->setObjectName("SdPropBarTextual.mDir0");
+  if( auto *widget = widgetForAction(mDir90) )
+    widget->setObjectName("SdPropBarTextual.mDir90");
+  if( auto *widget = widgetForAction(mDir180) )
+    widget->setObjectName("SdPropBarTextual.mDir180");
+  if( auto *widget = widgetForAction(mDir270) )
+    widget->setObjectName("SdPropBarTextual.mDir270");
   }
 
 

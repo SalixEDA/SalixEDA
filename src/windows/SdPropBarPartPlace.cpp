@@ -13,6 +13,7 @@ Web
 Description
 */
 #include "SdPropBarPartPlace.h"
+#include "SdWCommand.h"
 
 #include <QLabel>
 #include <QComboBox>
@@ -86,6 +87,30 @@ SdPropBarPartPlace::SdPropBarPartPlace(const QString title) :
     });
 
   addWidget( mComponent );
+
+  // Assign unique names for the interactive help system
+  mDirection->setObjectName("SdPropBarPartPlace.mDirection");
+  if( auto *widget = widgetForAction(SdWCommand::cmViewLayers) )
+    widget->setObjectName("SdPropBarPartPlace.cmViewLayers");
+  if( auto *widget = widgetForAction(mMirror) )
+    widget->setObjectName("SdPropBarPartPlace.mMirror");
+  if( auto *widget = widgetForAction(mBottom) )
+    widget->setObjectName("SdPropBarPartPlace.mBottom");
+  if( auto *widget = widgetForAction(mTop) )
+    widget->setObjectName("SdPropBarPartPlace.mTop");
+  if( auto *widget = widgetForAction(mAlignToGrid) )
+    widget->setObjectName("SdPropBarPartPlace.mAlignToGrid");
+
+  if( auto *widget = widgetForAction(mSideMaskButton) )
+    widget->setObjectName("SdPropBarPartPlace.mSideMaskButton");
+  if( auto *widget = widgetForAction(mSmartMode) )
+    widget->setObjectName("SdPropBarPartPlace.mSmartMode");
+  if( auto *widget = widgetForAction(mNextNumberMode) )
+    widget->setObjectName("SdPropBarPartPlace.mNextNumberMode");
+  if( auto *widget = widgetForAction(mSheetSelection) )
+    widget->setObjectName("SdPropBarPartPlace.mSheetSelection");
+  mSheetList->setObjectName("SdPropBarPartPlace.mSheetList");
+  mComponent->setObjectName("SdPropBarPartPlace.mComponent");
   }
 
 

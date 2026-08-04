@@ -67,6 +67,19 @@ SdPropBarSymImp::SdPropBarSymImp(const QString title) :
     emit propChanged();
     });
 
+  // Assign unique names for the interactive help system
+  if( auto *widget = widgetForAction(SdWCommand::cmViewLayers) )
+    widget->setObjectName("SdPropBarSymImp.cmViewLayers");
+  if( auto *widget = widgetForAction(mDir0) )
+    widget->setObjectName("SdPropBarSymImp.mDir0");
+  if( auto *widget = widgetForAction(mDir90) )
+    widget->setObjectName("SdPropBarSymImp.mDir90");
+  if( auto *widget = widgetForAction(mDir180) )
+    widget->setObjectName("SdPropBarSymImp.mDir180");
+  if( auto *widget = widgetForAction(mDir270) )
+    widget->setObjectName("SdPropBarSymImp.mDir270");
+  if( auto *widget = widgetForAction(mMirror) )
+    widget->setObjectName("SdPropBarSymImp.mMirror");
   }
 
 

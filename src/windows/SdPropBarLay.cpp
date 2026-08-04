@@ -45,6 +45,10 @@ SdPropBarLay::SdPropBarLay( const QString title ) :
 
   //fill new layers list
   QTimer::singleShot( 20, this, [this] () { updateViewedLayers(nullptr); } );
+
+  mLayer->setObjectName( "SdPropBarLay.mLayer" );
+  if( auto *widget = widgetForAction(SdWCommand::cmViewLayers) )
+    widget->setObjectName("SdPropBarLay.cmViewLayers");
   }
 
 

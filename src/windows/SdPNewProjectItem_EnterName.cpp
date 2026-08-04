@@ -37,6 +37,10 @@ SdPNewProjectItem_EnterName::SdPNewProjectItem_EnterName(SdProjectItemPtr *item,
   setLayout( vlay );
 
   connect( mName, &QLineEdit::textChanged, this, &SdPNewProjectItem_EnterName::onTextChanged );
+
+  // Assign unique names for the interactive help system
+  mUnical->setObjectName("SdPNewProjectItem_EnterName.mUnical");
+  mName->setObjectName("SdPNewProjectItem_EnterName.mName");
   }
 
 

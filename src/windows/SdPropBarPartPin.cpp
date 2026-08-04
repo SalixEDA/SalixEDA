@@ -17,6 +17,7 @@ Description
 #include "SdStringHistory.h"
 #include "SdDPads.h"
 #include "SdDPadMaster.h"
+#include "SdWCommand.h"
 
 #include <QLineEdit>
 #include <QToolButton>
@@ -55,6 +56,7 @@ SdPropBarPartPin::SdPropBarPartPin(const QString title) :
   //Button to select pin type from default pad association table
   QToolButton *but = new QToolButton();
   but->setText( QStringLiteral("...") );
+  but->setObjectName( "SdPropBarPartPin.PadDesigner" );
   connect( but, &QToolButton::clicked, this, [this] () {
     QString str = SdDPadMaster::build( mPinType->currentText(), this );
     if( str != mPinType->currentText() ) {
@@ -63,6 +65,10 @@ SdPropBarPartPin::SdPropBarPartPin(const QString title) :
       }
     } );
   addWidget( but );
+
+  // Assign unique names for the interactive help system
+  mPinSide->setObjectName("SdPropBarPartPin.mPinSide");
+  mPinType->setObjectName("SdPropBarPartPin.mPinType");
   }
 
 

@@ -16,6 +16,7 @@ Description
 #include "SdPropBarWire.h"
 #include "SdStringHistory.h"
 #include "objects/SdProp.h"
+#include "SdWCommand.h"
 
 #include <QLineEdit>
 #include <QPushButton>
@@ -32,6 +33,7 @@ SdPropBarWire::SdPropBarWire( const QString title ) :
   addWidget( but = new QToolButton() );
   but->setText( tr("Wire line width:") );
   but->setToolTip( tr("Activate width editor") );
+  but->setObjectName( "SdPropBarWire.WireLineWidth" );
   mWidth = new QComboBox();
   mWidth->setEditable(true);
   mWidth->setToolTip( tr("Wire line width editor") );
@@ -68,6 +70,7 @@ SdPropBarWire::SdPropBarWire( const QString title ) :
   addWidget( but = new QToolButton() );
   but->setText( tr("Wire name:") );
   but->setToolTip( tr("Activate wire name editor") );
+  but->setObjectName( "SdPropBarWire.WireName" );
 
   mWireName = new QComboBox();
   mWireName->setEditable(true);
@@ -154,6 +157,21 @@ SdPropBarWire::SdPropBarWire( const QString title ) :
     emit propChanged();
     });
 
+  // Assign unique names for the interactive help system
+  mWidth->setObjectName("SdPropBarWire.mWidth");
+  mWireName->setObjectName("SdPropBarWire.mWireName");
+  if (auto *widget = widgetForAction(mEnterOrtho))
+      widget->setObjectName("SdPropBarWire.mEnterOrtho");
+  if (auto *widget = widgetForAction(mEnter45degree))
+      widget->setObjectName("SdPropBarWire.mEnter45degree");
+  if (auto *widget = widgetForAction(mEnterAnyDegree))
+      widget->setObjectName("SdPropBarWire.mEnterAnyDegree");
+  if (auto *widget = widgetForAction(mLineSolid))
+      widget->setObjectName("SdPropBarWire.mLineSolid");
+  if (auto *widget = widgetForAction(mLineDotted))
+      widget->setObjectName("SdPropBarWire.mLineDotted");
+  if (auto *widget = widgetForAction(mLineDashed))
+      widget->setObjectName("SdPropBarWire.mLineDashed");
   }
 
 
