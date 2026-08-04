@@ -345,3 +345,20 @@ chown mox:mox /etc/letsencrypt/live/autoconfig.salixdev.ru/*
 
 Перезапускаем mox
 systemctl restart mox
+
+
+
+
+
+
+
+
+
+Создание log файла для статистики посещений сайта
+cd /var/log
+mkdir salixeda.org
+cd salixeda.org/
+touch visits.log
+chown www-data:www-data visits.log
+chmod 644 visits.log
+

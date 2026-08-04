@@ -10,9 +10,10 @@ import (
   "os"
   "path/filepath"
   "time"
+  "sync/atomic"
   )
 
-
+var isInstalling int32 // 0 - свободен, 1 - процесс идет
 
 func showErrorAndExit(ui *InstallUI, msg string) {
   //Блокирующий вызов модального окна
@@ -55,6 +56,14 @@ func doSetup(cfg *Config) {
 
 // performInstallation выполняет установку или обновление с визуальным интерфейсом
 func performInstallation(ui *InstallUI, cfg *Config, filesToUpdate []string) {
+  // Пытаемся установить флаг в 1. Если он уже 1, значит, горутина уже работает — выходим
+  if !atomic.CompareAndSwapInt32(&isInstalling, 0, 1) {
+    return
+  }
+
+  // Гарантируем сброс флага обратно в 0 при любом выходе из функции (успех или ошибка)
+  defer atomic.StoreInt32(&isInstalling, 0)
+
   // Определяем режим работы
   isInstall := len(filesToUpdate) == 0
 
