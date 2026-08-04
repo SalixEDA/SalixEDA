@@ -573,7 +573,8 @@ QString SdGraphPartImp::getBomItemLine() const
   for( auto iter = mParamTable.cbegin(); iter != mParamTable.cend(); iter++ ) {
     QString field = QString("<%1>").arg( iter.key() );
     if( bom.contains( field ) )
-      bom.replace( field, iter.value() );
+      bom.replace( field, paramGet(iter.key()) );
+      //bom.replace( field, iter.value() );
     }
 
   return bom.replace( QChar('<'), QChar('(') ).replace( QChar('>'), QChar(')') );
