@@ -126,6 +126,12 @@ SdDExpressionEdit::SdDExpressionEdit(const QString &script, QWidget *parent) :
   //Show beginner guide for scripting language
   mHelp->helpTopic( QStringLiteral("scriptSch.htm") );
   mDirty = false;
+
+  // Assign unique names for the interactive help system
+  mTextEdit->setObjectName( "SdDExpressionEdit.mTextEdit" );
+  mError->setObjectName( "SdDExpressionEdit.mError" );
+  mParamWidget->setObjectName( "SdDExpressionEdit.mParamWidget" );
+  mHelp->setObjectName( "SdDExpressionEdit.mHelp" );
   }
 
 

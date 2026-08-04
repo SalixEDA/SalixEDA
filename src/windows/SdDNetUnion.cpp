@@ -32,6 +32,10 @@ SdDNetUnion::SdDNetUnion(const QString first, const QString second, QWidget *par
   connect( ui->buttonBox->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDNetUnion.htm"), this );
     } );
+
+  // Assign unique names for the interactive help system
+  ui->mFirst->setObjectName("SdDNetUnion.mFirst");
+  ui->mSecond->setObjectName("SdDNetUnion.mSecond");
   }
 
 SdDNetUnion::~SdDNetUnion()

@@ -78,6 +78,12 @@ SdDOptionsPagePath::SdDOptionsPagePath(QWidget *parent) :
 
 
   setLayout( grid );
+
+  // Assign unique names for the interactive help system
+  mHomePath->setObjectName("SdDOptionsPagePath.mHomePath");
+  mLibraryPath->setObjectName("SdDOptionsPagePath.mLibraryPath");
+  mPatternPath->setObjectName("SdDOptionsPagePath.mPatternPath");
+  mCategoryPath->setObjectName("SdDOptionsPagePath.mCategoryPath");
   }
 
 

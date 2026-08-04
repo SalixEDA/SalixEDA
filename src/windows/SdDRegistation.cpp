@@ -70,6 +70,18 @@ SdDRegistation::SdDRegistation(bool fromHelp, QWidget *parent) :
 
   //Check registration status at start
   QTimer::singleShot( 300, this, &SdDRegistation::cmGetStatus );
+
+  // Assign unique names for the interactive help system
+  ui->mGetStatus->setObjectName("SdDRegistation.mGetStatus");
+  ui->mRegistrationStatus->setObjectName("SdDRegistation.mRegistrationStatus");
+  ui->mRegistration->setObjectName("SdDRegistation.mRegistration");
+  ui->mEmail->setObjectName("SdDRegistation.mEmail");
+  ui->mGeneratePassword->setObjectName("SdDRegistation.mGeneratePassword");
+  ui->mNameTitle->setObjectName("SdDRegistation.mNameTitle");
+  ui->mPrivateKey->setObjectName("SdDRegistation.mPrivateKey");
+  ui->mProcess->setObjectName("SdDRegistation.mProcess");
+  ui->mPublicName->setObjectName("SdDRegistation.mPublicName");
+  ui->mServer->setObjectName("SdDRegistation.mServer");
   }
 
 

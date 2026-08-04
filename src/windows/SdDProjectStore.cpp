@@ -48,6 +48,10 @@ SdDProjectStore::SdDProjectStore( const QString name, SdProject *prj, QWidget *p
   connect( box->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDProjectStore.htm"), this );
     } );
+
+  // Assign unique names for the interactive help system
+  mUnical->setObjectName("SdDProjectStore.mUnical");
+  mName->setObjectName("SdDProjectStore.mName");
   }
 
 

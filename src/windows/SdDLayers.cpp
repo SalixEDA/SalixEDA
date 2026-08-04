@@ -100,6 +100,21 @@ SdDLayers::SdDLayers(SdClass editObjectClass, SdProject *prj, QWidget *parent) :
   ui->mStratumCount->setEnabled(false);
 
   fillLayerList();
+
+  // Assign unique names for the interactive help system
+  ui->mLayerList->setObjectName("SdDLayers.mLayerList");
+  ui->mCreate->setObjectName("SdDLayers.mCreate");
+  ui->mDelete->setObjectName("SdDLayers.mDelete");
+  ui->mHideAll->setObjectName("SdDLayers.mHideAll");
+  ui->mLoad->setObjectName("SdDLayers.mLoad");
+  ui->mSave->setObjectName("SdDLayers.mSave");
+  ui->mShowActual->setObjectName("SdDLayers.mShowActual");
+  ui->mShowAll->setObjectName("SdDLayers.mShowAll");
+  ui->mShowUsed->setObjectName("SdDLayers.mShowUsed");
+  ui->mStratumCount->setObjectName("SdDLayers.mStratumCount");
+  ui->mStratumCountText->setObjectName("SdDLayers.mStratumCountText");
+  ui->mStratumCountTitle->setObjectName("SdDLayers.mStratumCountTitle");
+  ui->mSwitchAll->setObjectName("SdDLayers.mSwitchAll");
   }
 
 

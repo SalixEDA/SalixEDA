@@ -129,6 +129,15 @@ SdDOptionsPageLibrary::SdDOptionsPageLibrary(QWidget *parent) :
 */
 
   setLayout( grid );
+
+  // Assign unique names for the interactive help system
+  mLocalLibraryPath->setObjectName("SdDOptionsPageLibrary.mLocalLibraryPath");
+  mGlobalStorageIp->setObjectName("SdDOptionsPageLibrary.mGlobalStorageIp");
+  mPrivateCloudIp->setObjectName("SdDOptionsPageLibrary.mPrivateCloudIp");
+  mPrivateCloudId->setObjectName("SdDOptionsPageLibrary.mPrivateCloudId");
+  // mAuthorName->setObjectName("SdDOptionsPageLibrary.mAuthorName");
+  // mObjectsCount->setObjectName("SdDOptionsPageLibrary.mObjectsCount");
+  // mAutoUpload->setObjectName("SdDOptionsPageLibrary.mAutoUpload");
   }
 
 

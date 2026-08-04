@@ -95,6 +95,12 @@ SdDGetBus::SdDGetBus(SdProject *prj, QWidget *parent) :
 
   //Help system
   connect( ui->buttonBox, &QDialogButtonBox::helpRequested, this, [this] () { SdDHelp::help( "SdDGetBus.htm", this ); });
+
+  // Assign unique names for the interactive help system
+  ui->mBusEdit->setObjectName("SdDGetBus.mBusEdit");
+  ui->mBusList->setObjectName("SdDGetBus.mBusList");
+  ui->mNamedNetList->setObjectName("SdDGetBus.mNamedNetList");
+  ui->mRemove->setObjectName("SdDGetBus.mRemove");
   }
 
 

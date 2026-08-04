@@ -102,6 +102,19 @@ SdDSymbolPartParam::SdDSymbolPartParam(SdPItemSymbol *symbol, QWidget *parent)
   fillParams();
   fillPart();
   resize( 1000, 400 );
+
+  // Assign unique names for the interactive help system
+  mParamTable->setObjectName("SdDSymbolPartParam.mParamTable");
+  mParamAdd->setObjectName("SdDSymbolPartParam.mParamAdd");
+  mParamAddDefault->setObjectName("SdDSymbolPartParam.mParamAddDefault");
+  mParamDelete->setObjectName("SdDSymbolPartParam.mParamDelete");
+  mParamCopy->setObjectName("SdDSymbolPartParam.mParamCopy");
+  mValueSelector->setObjectName("SdDSymbolPartParam.mValueSelector");
+
+  mPartViewer->setObjectName("SdDSymbolPartParam.mPartViewer");
+  m3dView->setObjectName("SdDSymbolPartParam.m3dView");
+  mPart->setObjectName("SdDSymbolPartParam.mPart");
+  mPartSelect->setObjectName("SdDSymbolPartParam.mPartSelect");
   }
 
 

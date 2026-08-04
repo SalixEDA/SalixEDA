@@ -101,6 +101,11 @@ SdD3dMaster::SdD3dMaster(SdPItemPart *part, QWidget *parent) :
 
   initializePage();
   mMasterType->setCurrentRow(0);
+
+  // Assign unique names for the interactive help system
+  mMasterType->setObjectName( "SdD3dMaster.mMasterType" );
+  mPreview->setObjectName( "SdD3dMaster.mPreview" );
+  mDescription->setObjectName( "SdD3dMaster.mDescription" );
   }
 
 

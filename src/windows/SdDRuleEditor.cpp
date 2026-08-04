@@ -82,6 +82,22 @@ SdDRuleEditor::SdDRuleEditor(SdPItemPlate *plate, QWidget *parent) :
   connect( ui->buttonBox->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDRuleEditor.htm"), this );
     } );
+
+  // Assign unique names for the interactive help system
+  ui->mNetAllGaps->setObjectName("SdDRuleEditor.mNetAllGaps");
+  ui->mNetApplyAllGaps->setObjectName("SdDRuleEditor.mNetApplyAllGaps");
+  ui->mPcbApplyAllGaps->setObjectName("SdDRuleEditor.mPcbApplyAllGaps");
+  ui->mPcbAllGaps->setObjectName("SdDRuleEditor.mPcbAllGaps");
+  ui->mNetClearAll->setObjectName("SdDRuleEditor.mNetClearAll");
+  ui->mNetList->setObjectName("SdDRuleEditor.mNetList");
+  ui->mNetPad2Pad->setObjectName("SdDRuleEditor.mNetPad2Pad");
+  ui->mNetRoad2Pad->setObjectName("SdDRuleEditor.mNetRoad2Pad");
+  ui->mNetRoad2Road->setObjectName("SdDRuleEditor.mNetRoad2Road");
+  ui->mNetRoadWidth->setObjectName("SdDRuleEditor.mNetRoadWidth");
+  ui->mPcbPad2Pad->setObjectName("SdDRuleEditor.mPcbPad2Pad");
+  ui->mPcbRoad2Pad->setObjectName("SdDRuleEditor.mPcbRoad2Pad");
+  ui->mPcbRoad2Road->setObjectName("SdDRuleEditor.mPcbRoad2Road");
+  ui->mPcbRoadWidth->setObjectName("SdDRuleEditor.mPcbRoadWidth");
   }
 
 

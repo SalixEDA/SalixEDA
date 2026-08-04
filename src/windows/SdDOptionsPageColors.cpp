@@ -50,6 +50,9 @@ SdDOptionsPageColors::SdDOptionsPageColors(QWidget *parent) :
   setLayout( mainLayout );
 
   connect( mTable, &QTableWidget::cellClicked, this, &SdDOptionsPageColors::onColorSelect );
+
+  // Assign unique names for the interactive help system
+  mTable->setObjectName( "SdDOptionsPageColors.mTable" );
   }
 
 

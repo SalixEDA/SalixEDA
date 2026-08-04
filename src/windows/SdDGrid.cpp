@@ -76,6 +76,20 @@ SdDGrid::SdDGrid(QPointF curGrid, QWidget *parent) :
 
   //Help system
   connect( ui->buttonBox, &QDialogButtonBox::helpRequested, this, [this] () { SdDHelp::help( "SdDGrid.htm", this ); });
+
+  // Assign unique names for the interactive help system
+  ui->mShowGrid->setObjectName("SdDGrid.mShowGrid");
+  ui->mShowCursor->setObjectName("SdDGrid.mShowCursor");
+  ui->mAlignCursor->setObjectName("SdDGrid.mAlignCursor");
+  ui->mCrosshairFull->setObjectName("SdDGrid.mCrosshairFull");
+  ui->mCrosshairFull45->setObjectName("SdDGrid.mCrosshairFull45");
+  ui->mCrosshairNone->setObjectName("SdDGrid.mCrosshairNone");
+  ui->mCrosshairSmall->setObjectName("SdDGrid.mCrosshairSmall");
+  ui->mCrosshairSmall45->setObjectName("SdDGrid.mCrosshairSmall45");
+  ui->mPreviousList->setObjectName("SdDGrid.mPreviousList");
+  ui->mStepX->setObjectName("SdDGrid.mStepX");
+  ui->mStepY->setObjectName("SdDGrid.mStepY");
+  ui->mSyncXY->setObjectName("SdDGrid.mSyncXY");
   }
 
 SdDGrid::~SdDGrid()

@@ -108,6 +108,19 @@ SdDParamEditor::SdDParamEditor(const QString title, const SdStringMap &map, SdPr
   QTimer::singleShot( 300, this, [this]() {
     fillParams();
     });
+
+
+  // Assign unique names for the interactive help system
+  mParamTable->setObjectName("SdDParamEditor.mParamTable");
+  mParamAdd->setObjectName("SdDParamEditor.mParamAdd");
+  mParamAddDefault->setObjectName("SdDParamEditor.mParamAddDefault");
+  mParamDelete->setObjectName("SdDParamEditor.mParamDelete");
+  mParamCopy->setObjectName("SdDParamEditor.mParamCopy");
+  mValueSelector->setObjectName("SdDParamEditor.mValueSelector");
+
+  mParamFields->setObjectName("SdDParamEditor.mParamFields");
+  mStm32AlterPinAdd->setObjectName("SdDParamEditor.mStm32AlterPinAdd");
+  mStm32AlterPinRemove->setObjectName("SdDParamEditor.mStm32AlterPinRemove");
   }
 
 

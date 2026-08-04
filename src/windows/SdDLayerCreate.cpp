@@ -41,6 +41,12 @@ SdDLayerCreate::SdDLayerCreate(QWidget *parent) :
 
   //Help system
   connect( ui->buttonBox, &QDialogButtonBox::helpRequested, this, [this] () { SdDHelp::help( "SdDLayerCreate.htm", this ); });
+
+  // Assign unique names for the interactive help system
+  ui->mLayerId->setObjectName("SdDLayerCreate.mLayerId");
+  ui->mLayerName->setObjectName("SdDLayerCreate.mLayerName");
+  ui->mClassList->setObjectName("SdDLayerCreate.mClassList");
+  ui->mModifierList->setObjectName("SdDLayerCreate.mModifierList");
   }
 
 

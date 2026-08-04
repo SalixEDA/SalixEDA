@@ -81,6 +81,9 @@ SdDOptions::SdDOptions(QWidget *parent) :
   setWindowTitle( tr("Options") );
   resize( 700, 500 );
   setModal( true );
+
+  // Assign unique names for the interactive help system
+  mTabWidget->setObjectName( "SdDOptions.mTabWidget" );
   }
 
 

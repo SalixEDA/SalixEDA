@@ -27,7 +27,6 @@ Description
 SdDParamBase::SdDParamBase(QWidget *parent)
   : QDialog(parent)
   {
-
   }
 
 

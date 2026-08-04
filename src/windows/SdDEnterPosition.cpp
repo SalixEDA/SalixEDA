@@ -34,6 +34,12 @@ SdDEnterPosition::SdDEnterPosition(QWidget *parent) :
 
   //Help system
   connect( ui->buttonBox, &QDialogButtonBox::helpRequested, this, [this] () { SdDHelp::help( "SdDEnterPosition.htm", this ); });
+
+  // Assign unique names for the interactive help system
+  ui->mRef->setObjectName("SdDEnterPosition.mRef");
+  ui->mX->setObjectName("SdDEnterPosition.mX");
+  ui->mY->setObjectName("SdDEnterPosition.mY");
+  ui->mZ->setObjectName("SdDEnterPosition.mZ");
   }
 
 

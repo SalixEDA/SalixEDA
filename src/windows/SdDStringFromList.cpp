@@ -37,6 +37,10 @@ SdDStringFromList::SdDStringFromList( const QStringList &lst, std::function<QStr
     ui->mDescription->setText( mGetDescription(str) );
     } );
   ui->mList->setCurrentRow(0);
+
+  // Assign unique names for the interactive help system
+  ui->mList->setObjectName("SdDStringFromList.mList");
+  ui->mDescription->setObjectName("SdDStringFromList.mDescription");
   }
 
 

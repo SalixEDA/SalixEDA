@@ -234,6 +234,14 @@ SdDGetObject::SdDGetObject(quint64 sort, const QString title, const QString &def
     for( int i = 0; i < mTable->columnCount(); i++ )
       sdFieldWidth.insert( mTable->horizontalHeaderItem(i)->text(), mTable->columnWidth(i) );
     });
+
+  // Assign unique names for the interactive help system
+  mSymbolView->setObjectName( "SdDGetObject.mSymbolView" );
+  mPartView->setObjectName( "SdDGetObject.mPartView" );
+  m3dView->setObjectName( "SdDGetObject.m3dView" );
+  mNameFilter->setObjectName( "SdDGetObject.mNameFilter" );
+  mTable->setObjectName( "SdDGetObject.mTable" );
+  mSections->setObjectName( "SdDGetObject.mSections" );
   }
 
 

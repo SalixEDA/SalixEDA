@@ -53,6 +53,11 @@ SdDLayerList::SdDLayerList(const QString currentPair, QWidget *parent) :
 
   if( currentPairIndex >= 0 )
     ui->mList->setCurrentRow( currentPairIndex );
+
+  // Assign unique names for the interactive help system
+  ui->mList->setObjectName("SdDLayerList.mList");
+  ui->mAssign->setObjectName("SdDLayerList.mAssign");
+  ui->mRemove->setObjectName("SdDLayerList.mRemove");
   }
 
 

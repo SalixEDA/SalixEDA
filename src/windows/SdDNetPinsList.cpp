@@ -115,7 +115,10 @@ SdDNetPinsList::SdDNetPinsList(SdProjectItem *obj, QWidget *parent)
     mSourcePinsWidget->addItem( QString("%1 %2 %3").arg( pin.mPinFunction, pin.mPartImp->ident(), pin.mPinNumber ) );
     }
 
-
+  // Assign unique names for the interactive help system
+  mNetName->setObjectName( "SdDNetPinsList.mNetName" );
+  mPinListWidget->setObjectName( "SdDNetPinsList.mPinListWidget" );
+  mSourcePinsWidget->setObjectName( "SdDNetPinsList.mSourcePinsWidget" );
   }
 
 

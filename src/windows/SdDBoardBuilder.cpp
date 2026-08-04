@@ -92,6 +92,13 @@ SdDBoardBuilder::SdDBoardBuilder(SdProjectItem *item, QWidget *parent) :
 
   setLayout( vbox );
   mSizeX->setFocus();
+
+  // Assign unique names for the interactive help system
+  mSizeX->setObjectName( "SdDBoardBuilder.mSizeX" );
+  mSizeY->setObjectName( "SdDBoardBuilder.mSizeY" );
+  mHoleDiam->setObjectName( "SdDBoardBuilder.mHoleDiam" );
+  mHoleDist->setObjectName( "SdDBoardBuilder.mHoleDist" );
+  mBoardVariant->setObjectName( "SdDBoardBuilder.mBoardVariant" );
   }
 
 

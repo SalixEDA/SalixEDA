@@ -86,6 +86,11 @@ SdDOptionsPageCommon::SdDOptionsPageCommon(QWidget *parent) :
 
 
   setLayout( grid );
+
+  // Assign unique names for the interactive help system
+  mLanguage->setObjectName( "SdDOptionsPageCommon.mLanguage" );
+  if( mUpdatePeriod != nullptr )
+    mUpdatePeriod->setObjectName( "SdDOptionsPageCommon.mUpdatePeriod" );
   }
 
 

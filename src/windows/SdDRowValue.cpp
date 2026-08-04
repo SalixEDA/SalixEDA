@@ -150,6 +150,10 @@ SdDRowValue::SdDRowValue(SdStringMap *map, const SdValueModifier *list, QWidget 
   connect( ui->buttonBox->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDRowValue.htm"), this );
     } );
+
+  // Assign unique names for the interactive help system
+  ui->mModifiers->setObjectName("SdDRowValue.mModifiers");
+  ui->mValues->setObjectName("SdDRowValue.mValues");
   }
 
 

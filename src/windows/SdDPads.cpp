@@ -60,6 +60,18 @@ SdDPads::SdDPads(SdPItemPlate *plate, const QString associationName, SdPadMap ma
     } );
 
   updatePinTable();
+
+  // Assign unique names for the interactive help system
+  ui->mPadTable->setObjectName("SdDPads.mPadTable");
+  ui->mAccumUsedPins->setObjectName("SdDPads.mAccumUsedPins");
+  ui->mDeleteAllPins->setObjectName("SdDPads.mDeleteAllPins");
+  ui->mAppendPin->setObjectName("SdDPads.mAppendPin");
+  ui->mAssociationClear->setObjectName("SdDPads.mAssociationClear");
+  ui->mAssociationLoad->setObjectName("SdDPads.mAssociationLoad");
+  ui->mAssociationName->setObjectName("SdDPads.mAssociationName");
+  ui->mAssociationSave->setObjectName("SdDPads.mAssociationSave");
+  ui->mAssociationUse->setObjectName("SdDPads.mAssociationUse");
+  ui->mDeletePin->setObjectName("SdDPads.mDeletePin");
   }
 
 

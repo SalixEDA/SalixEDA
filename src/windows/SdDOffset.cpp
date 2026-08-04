@@ -193,6 +193,10 @@ SdDOffset::SdDOffset(const QString &key, QWidget *parent)
     mBoxOffsetX->setCurrentText( key );
     }
   mBoxOffsetX->setFocus();
+
+  // Assign unique names for the interactive help system
+  mBoxOffsetX->setObjectName( "mBoxOffsetX" );
+  mBoxOffsetY->setObjectName( "mBoxOffsetY" );
   }
 
 

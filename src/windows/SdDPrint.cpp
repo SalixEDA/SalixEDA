@@ -139,6 +139,27 @@ SdDPrint::SdDPrint(SdRect over, SdRect sel, SdRect wnd, double ppm, QPrinter *pr
     SdDHelp::help( QString("SdDPrint.htm"), this );
     } );
 
+  // Assign unique names for the interactive help system
+  ui->mAreaFull->setObjectName("SdDPrint.mAreaFull");
+  ui->mAreaSelection->setObjectName("SdDPrint.mAreaSelection");
+  ui->mAreaWindow->setObjectName("SdDPrint.mAreaWindow");
+  ui->mAreaWindowBottom->setObjectName("SdDPrint.mAreaWindowBottom");
+  ui->mAreaWindowLeft->setObjectName("SdDPrint.mAreaWindowLeft");
+  ui->mAreaWindowRight->setObjectName("SdDPrint.mAreaWindowRight");
+  ui->mAreaWindowTop->setObjectName("SdDPrint.mAreaWindowTop");
+  ui->mAreaWindowSelect->setObjectName("SdDPrint.mAreaWindowSelect");
+  ui->mColorPrint->setObjectName("SdDPrint.mColorPrint");
+  ui->mCopyCount->setObjectName("SdDPrint.mCopyCount");
+  ui->mPrinter->setObjectName("SdDPrint.mPrinter");
+  ui->mPrinterOptions->setObjectName("SdDPrint.mPrinterOptions");
+  ui->mMirrorHorz->setObjectName("SdDPrint.mMirrorHorz");
+  ui->mOrientationHorizontal->setObjectName("SdDPrint.mOrientationHorizontal");
+  ui->mOrientationIcon->setObjectName("SdDPrint.mOrientationIcon");
+  ui->mOrientationVertical->setObjectName("SdDPrint.mOrientationVertical");
+  ui->mScaleFit->setObjectName("SdDPrint.mScaleFit");
+  ui->mScaleUser->setObjectName("SdDPrint.mScaleUser");
+  ui->mScaleValue->setObjectName("SdDPrint.mScaleValue");
+  ui->mZeroLineWidth->setObjectName("SdDPrint.mZeroLineWidth");
   }
 
 

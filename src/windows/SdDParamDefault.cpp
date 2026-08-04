@@ -51,6 +51,8 @@ SdDParamDefault::SdDParamDefault(QWidget *parent) :
   connect( ui->buttonBox->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDParamDefault.htm"), this );
     } );
+
+  ui->mTable->setObjectName( "SdDParamDefault.mTable" );
   }
 
 

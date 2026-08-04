@@ -91,6 +91,10 @@ SdD3dModelMaster::SdD3dModelMaster(const QString script, SdPItemPart *part, QWid
   rebuild();
   mPreview->fitItem();
   mPreview->update();
+
+  // Assign unique names for the interactive help system
+  mParamWidget->setObjectName( "SdD3dModelMaster.mParamWidget" );
+  mPreview->setObjectName( "SdD3dModelMaster.mPreview" );
   }
 
 

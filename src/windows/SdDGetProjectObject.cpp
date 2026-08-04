@@ -58,6 +58,10 @@ SdDGetProjectObject::SdDGetProjectObject(SdContainer *project, quint64 mask, con
       }
     });
 
+  // Assign unique names for the interactive help system
+  ui->mList->setObjectName("SdDGetProjectObject.mList");
+  ui->mViewBox->setObjectName("SdDGetProjectObject.mViewBox");
+  mView->setObjectName("SdDGetProjectObject.mView");
   }
 
 

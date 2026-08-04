@@ -74,6 +74,22 @@ SdDOptionsPageEditors::SdDOptionsPageEditors(QWidget *parent) : QWidget(parent)
   grid->addWidget( mTraceDotSize = new QLineEdit(), 9, 1 );
 
   setLayout(vbox);
+
+  // Assign unique names for the interactive help system
+  mShowRatNet->setObjectName("SdDOptionsPageEditors.mShowRatNet");
+  mShowRemarks->setObjectName("SdDOptionsPageEditors.mShowRemarks");
+  mShowMessage->setObjectName("SdDOptionsPageEditors.mShowMessage");
+  mCenterCursor->setObjectName("SdDOptionsPageEditors.mCenterCursor");
+  mSymbolPinSize->setObjectName("SdDOptionsPageEditors.mSymbolPinSize");
+  mPartPinSize->setObjectName("SdDOptionsPageEditors.mPartPinSize");
+  mWireDotSize->setObjectName("SdDOptionsPageEditors.mWireDotSize");
+  mWireDotWidth->setObjectName("SdDOptionsPageEditors.mWireDotWidth");
+  mViaType->setObjectName("SdDOptionsPageEditors.mViaType");
+  mWidthStep->setObjectName("SdDOptionsPageEditors.mWidthStep");
+  mTextSizeStep->setObjectName("SdDOptionsPageEditors.mTextSizeStep");
+  mMinViewGridSize->setObjectName("SdDOptionsPageEditors.mMinViewGridSize");
+  mCursorViewSize->setObjectName("SdDOptionsPageEditors.mCursorViewSize");
+  mTraceDotSize->setObjectName("SdDOptionsPageEditors.mTraceDotSize");
   }
 
 

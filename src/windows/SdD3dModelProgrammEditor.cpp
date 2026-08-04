@@ -199,6 +199,15 @@ SdD3dModelProgrammEditor::SdD3dModelProgrammEditor(const QString id, QWidget *pa
   //Show beginner guide for scripting language
   mHelp->helpTopic( QStringLiteral(ROOT_HELP) );
   mDirty = false;
+
+  // Assign unique names for the interactive help system
+  mTextEdit->setObjectName( "SdD3dModelProgrammEditor.mTextEdit" );
+  mError->setObjectName( "SdD3dModelProgrammEditor.mError" );
+  mTitle->setObjectName( "SdD3dModelProgrammEditor.mTitle" );
+  mDescription->setObjectName( "SdD3dModelProgrammEditor.mDescription" );
+  mParamWidget->setObjectName( "SdD3dModelProgrammEditor.mParamWidget" );
+  mPreview->setObjectName( "SdD3dModelProgrammEditor.mPreview" );
+  mHelp->setObjectName( "SdD3dModelProgrammEditor.mHelp" );
   }
 
 

@@ -104,6 +104,26 @@ SdDPadMaster::SdDPadMaster(SdPad pad, QWidget *parent) :
   connect( ui->buttonBox->button(QDialogButtonBox::Help), &QPushButton::clicked, this, [this] () {
     SdDHelp::help( QString("SdDPadMaster.htm"), this );
     } );
+
+  // Assign unique names for the interactive help system
+  ui->mCenterX->setObjectName("SdDPadMaster.mCenterX");
+  ui->mCenterY->setObjectName("SdDPadMaster.mCenterY");
+  ui->mCirclePad->setObjectName("SdDPadMaster.mCirclePad");
+  ui->mHoleDiametr->setObjectName("SdDPadMaster.mHoleDiametr");
+  ui->mHoleLength->setObjectName("SdDPadMaster.mHoleLength");
+  ui->mPadDiametr->setObjectName("SdDPadMaster.mPadDiametr");
+  ui->mPadDiametrTitle->setObjectName("SdDPadMaster.mPadDiametrTitle");
+  ui->mMaskThreshold->setObjectName("SdDPadMaster.mMaskThreshold");
+  ui->mPadHeight->setObjectName("SdDPadMaster.mPadHeight");
+  ui->mPadProfile->setObjectName("SdDPadMaster.mPadProfile");
+  ui->mPadSchematic->setObjectName("SdDPadMaster.mPadSchematic");
+  ui->mSlotAngle->setObjectName("SdDPadMaster.mSlotAngle");
+  ui->mStensilColumns->setObjectName("SdDPadMaster.mStensilColumns");
+  ui->mStensilHeight->setObjectName("SdDPadMaster.mStensilHeight");
+  ui->mStensilRows->setObjectName("SdDPadMaster.mStensilRows");
+  ui->mStensilThreshold->setObjectName("SdDPadMaster.mStensilThreshold");
+  ui->mStensilWidth->setObjectName("SdDPadMaster.mStensilWidth");
+  ui->mThroughPin->setObjectName("SdDPadMaster.mThroughPin");
   }
 
 
