@@ -209,6 +209,7 @@ SOURCES += \
     windows/SdWEditor3dPartView.cpp \
     windows/SdWEditor3dPlate.cpp \
     windows/SdWExpressor.cpp \
+    windows/SdWGuiderRef.cpp \
     windows/SdWMain.cpp \
     objects/SdObject.cpp \
     objects/SdProject.cpp \
@@ -720,6 +721,7 @@ HEADERS  += \
     windows/SdWEditor3dPartView.h \
     windows/SdWEditor3dPlate.h \
     windows/SdWExpressor.h \
+    windows/SdWGuiderRef.h \
     windows/SdWMain.h \
     objects/SdObject.h \
     objects/SdProject.h \

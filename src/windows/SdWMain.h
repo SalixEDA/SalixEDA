@@ -36,6 +36,7 @@ class SdProjectItem;
 class SdWProjectTree;
 class SdGuiderCapture;
 class SdGuiderDialog;
+class SdWGuiderRef;
 
 class SdWMain : public QMainWindow
   {
@@ -43,6 +44,7 @@ class SdWMain : public QMainWindow
 
     SdGuiderCapture *mGuiderCapture; //!< Object for capture guider movie
     SdGuiderDialog  *mGuiderDialog;  //!< Guider scena build dialog
+    SdWGuiderRef    *mGuiderRef;     //!< Guider overlay which highlight visual object by its name
 
     QSplitter       *mWSplitter;     //!< Central part of programm windows - is splitter with projects and redactors
     SdWProjectList  *mWProjectList;  //!< Project list
@@ -84,6 +86,9 @@ class SdWMain : public QMainWindow
   signals:
 
   public slots:
+    //Guider
+    void highlightWidget( const QString &widgetName );
+
     //Status bar
     void setStatusLabels( const QString xlabel, const QString ylabel );
     void setStatusPositions( const QString x, const QString y );

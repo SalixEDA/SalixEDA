@@ -38,6 +38,7 @@ Description
 #include "SdDLayers.h"
 #include "SdDProjectStore.h"
 #include "SdDGetObject.h"
+#include "SdWGuiderRef.h"
 #include "objects/SdPulsar.h"
 #include "objects/SdEnvir.h"
 #include "guider/SdGuiderCapture.h"
@@ -77,6 +78,9 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
 
   //Set window icon
   setWindowIcon( QIcon(QStringLiteral(":/pic/iconLogo.png")) );
+
+  //Build guider highlighter
+  mGuiderRef = new SdWGuiderRef( this );
 
   //Create menu
   SdWCommand::createMenu( this );
@@ -212,6 +216,11 @@ SdWMain::SdWMain(QStringList args, QWidget *parent) :
   //   //We send request to receiv version info file
   //   SdObjectNetClient::instance()->doFile( QStringLiteral("version") );
   //   });
+  }
+
+void SdWMain::highlightWidget(const QString &widgetName)
+  {
+  mGuiderRef->highlightWidget( widgetName );
   }
 
 

@@ -118,9 +118,12 @@ SdDParamEditor::SdDParamEditor(const QString title, const SdStringMap &map, SdPr
   mParamCopy->setObjectName("SdDParamEditor.mParamCopy");
   mValueSelector->setObjectName("SdDParamEditor.mValueSelector");
 
-  mParamFields->setObjectName("SdDParamEditor.mParamFields");
-  mStm32AlterPinAdd->setObjectName("SdDParamEditor.mStm32AlterPinAdd");
-  mStm32AlterPinRemove->setObjectName("SdDParamEditor.mStm32AlterPinRemove");
+  if( isProject )
+    mParamFields->setObjectName("SdDParamEditor.mParamFields");
+  if( stm32 ) {
+    mStm32AlterPinAdd->setObjectName("SdDParamEditor.mStm32AlterPinAdd");
+    mStm32AlterPinRemove->setObjectName("SdDParamEditor.mStm32AlterPinRemove");
+    }
   }
 
 

@@ -34,10 +34,10 @@ Description
 #include <QKeyEvent>
 #include <QWheelEvent>
 #include <QEnterEvent>
-#include <QCursor>
-#include <QGuiApplication>
 #include <QPainter>
 #include <QMessageBox>
+#include <QApplication>
+#include <QClipboard>
 
 #define RECORD_PERIOD 40
 #define PLAY_PERIOD   50
@@ -182,13 +182,24 @@ bool SdGuiderCapture::eventFilter(QObject *watched, QEvent *event)
           }
         return true;
         }
-      // else if( keyEvent->key() == Qt::Key_F8 ) {
-      //   //F8 pressed or released
-      //   if( event->type() == QEvent::KeyPress ) {
-      //     screenShot();
-      //     }
-      //   return true;
-      //   }
+      else if( keyEvent->key() == Qt::Key_F9 ) {
+        //F8 pressed or released
+        if( event->type() == QEvent::KeyPress ) {
+          //Find name of top visual object at cursor
+          QWidget *widget = QApplication::widgetAt(QCursor::pos());
+          while( widget && widget->objectName().isEmpty() )
+            widget = widget->parentWidget();
+
+          // Extract object name
+          if( widget ) {
+            QString name = widget->objectName();
+            if( !name.isEmpty() )
+              //If object's name is not empty we copy it to clipboard as reference
+              QGuiApplication::clipboard()->setText( QString("(Где)[where:%1]").arg(name) );
+            }
+          }
+        return true;
+        }
       else {
         mEvent.mKeyCode = keyEvent->key();
         mEvent.mKeyChar = keyEvent->text().isEmpty() ? 0 : keyEvent->text().at(0).unicode();
