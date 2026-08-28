@@ -251,6 +251,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   //Sheet editor menu
   menuInsertSheet = new QMenu( QObject::tr("Sheet") );
   cmRenumeration              = menuInsertSheet->addAction( QIcon(QStringLiteral(":/pic/renumeration.png")), QObject::tr("Renumeration"), frame, &SdWMain::cmRenumeration );
+                                menuInsertSheet->addAction( QIcon(QStringLiteral(":/pic/formMaster.png")), QObject::tr("Sheet form master..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmFormInsert> );
   menuInsertSheet->addSeparator();
   cmModeTable[MD_FRAGMENT]    = menuInsertSheet->addAction( QIcon(QString(":/pic/iconSheet.png")), QObject::tr("Insert fragment"), frame, &SdWMain::cmModeFragment );
   cmModeTable[MD_COMPONENT]   = menuInsertSheet->addAction( QIcon(QString(":/pic/objComp.png")), QObject::tr("Insert component"), frame, &SdWMain::cmModeComponent );
@@ -337,7 +338,8 @@ void SdWCommand::createMenu(SdWMain *frame)
 
   //Help menu
   menuHelp = new QMenu( QObject::tr("Help") );
-  cmHelpContents      = menuHelp->addAction( QIcon(QString(":/pic/help.png")), QObject::tr("Contents"), frame, &SdWMain::cmHelpContents );
+                       menuHelp->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Ai Chat"), frame, &SdWMain::cmHelpAi );
+  cmHelpContents     = menuHelp->addAction( QIcon(QString(":/pic/help.png")), QObject::tr("Contents"), frame, &SdWMain::cmHelpContents );
   cmHelpIndex        = menuHelp->addAction( QIcon(QString(":/pic/helpContext.png")), QObject::tr("Index"), frame, &SdWMain::cmHelpIndex );
   cmHelpAbout        = menuHelp->addAction( QIcon(QString(":/pic/helpAbout.png")), QObject::tr("About"), frame, &SdWMain::cmHelpAbout );
   cmHelpRegistration = menuHelp->addAction( QIcon(QString(":/pic/helpRegistration.png")), QObject::tr("Registration"), frame, &SdWMain::cmHelpRegistration );

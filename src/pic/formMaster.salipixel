@@ -1,0 +1,415 @@
+{
+    "command": [
+        {
+            "color": "#e66100",
+            "first": {
+                "x": 7,
+                "y": 1
+            },
+            "id": "Rect",
+            "second": {
+                "x": 25,
+                "y": 30
+            },
+            "visible": true
+        },
+        {
+            "color": "#e66100",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 23
+            },
+            "stop": {
+                "x": 24,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#e66100",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 25
+            },
+            "stop": {
+                "x": 24,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#e66100",
+            "id": "Line",
+            "start": {
+                "x": 8,
+                "y": 28
+            },
+            "stop": {
+                "x": 24,
+                "y": 28
+            },
+            "visible": true
+        },
+        {
+            "color": "#e66100",
+            "id": "Line",
+            "start": {
+                "x": 12,
+                "y": 23
+            },
+            "stop": {
+                "x": 12,
+                "y": 30
+            },
+            "visible": true
+        },
+        {
+            "color": "#e66100",
+            "id": "Line",
+            "start": {
+                "x": 22,
+                "y": 28
+            },
+            "stop": {
+                "x": 22,
+                "y": 30
+            },
+            "visible": true
+        },
+        {
+            "color": "#e66100",
+            "id": "Line",
+            "start": {
+                "x": 19,
+                "y": 23
+            },
+            "stop": {
+                "x": 19,
+                "y": 30
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Line",
+            "start": {
+                "x": 17,
+                "y": 12
+            },
+            "stop": {
+                "x": 29,
+                "y": 24
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Line",
+            "start": {
+                "x": 18,
+                "y": 12
+            },
+            "stop": {
+                "x": 28,
+                "y": 22
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Line",
+            "start": {
+                "x": 18,
+                "y": 14
+            },
+            "stop": {
+                "x": 27,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 20
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 20
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 15,
+                "y": 9
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 15,
+                "y": 8
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 14,
+                "y": 8
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 14,
+                "y": 9
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 20,
+                "y": 8
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 21,
+                "y": 8
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 21,
+                "y": 9
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 20,
+                "y": 9
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 24,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 24,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 12,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 11,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 11,
+                "y": 14
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 12,
+                "y": 14
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 15,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 14,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 14,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#1c71d8",
+            "id": "Point",
+            "point": {
+                "x": 15,
+                "y": 19
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

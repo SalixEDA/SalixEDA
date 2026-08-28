@@ -1,10 +1,11 @@
-Шаг 1: Создаем пользователей-служб
+## Создаем пользователей-служб
 
 Заходим на сервер под root'ом и создаем пользователей без возможности интерактивного входа (без пароля и с шеллом /usr/sbin/nologin).
 bash
 
-# Создаем пользователя для управления веб-сайтами
+Создаем пользователя для управления веб-сайтами
 useradd -r -s /usr/sbin/nologin -m -d /srv/web webmaster
+
 
 # Создаем пользователя для сервиса глобальной библиотеки
 useradd -r -s /usr/sbin/nologin -m -d /srv/global-lib glib
@@ -34,6 +35,7 @@ chmod 750 /srv/global-lib/global-library-server
 Создаем файл сервиса
 nano /etc/systemd/system/global-lib.service
 
+global-lib.service
 [Unit]
 Description=Global Components Library Service
 After=network.target
@@ -51,6 +53,7 @@ PrivateTmp=yes
 
 [Install]
 WantedBy=multi-user.target
+
 
 Запускаем
 sudo systemctl daemon-reload
@@ -216,6 +219,8 @@ nano /etc/apache2/sites-available/salixdev.ru-le-ssl.conf
     ProxyPassReverse /mox-mail/ http://127.0.0.1:1080/webmail/
     ProxyPassReverseCookiePath /webmail/ /mox-mail/
 </VirtualHost>
+
+
 
 Почта
 У почты такая система: почта ассоциируется с ip. На ip должен указывать базовый

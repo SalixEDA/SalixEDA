@@ -970,5 +970,7 @@
         <file>help/scriptFunSolidCylinderWithCone-en.md</file>
         <file>help/scriptFunSolidCylinder-en.md</file>
         <file>help/scriptFunSolidBoxRound-en.md</file>
+        <file>pic/formMaster.png</file>
+        <file>pic/aiChat.png</file>
     </qresource>
 </RCC>

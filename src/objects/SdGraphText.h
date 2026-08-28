@@ -39,6 +39,13 @@ class SdGraphText : public SdGraph
     SdPoint           getOrigin() const { return mOrigin; }
     const SdPropText& getPropText() const { return mProp; }
 
+    //!
+    //! \brief isMatchId Compare unical id of object layer with given id
+    //! \param id        Id for match
+    //! \return          true if id of object layer start with given id
+    //!
+    bool isMatchId( const QString &id ) const { return mProp.mLayer.layer()->id().startsWith( id ); }
+
     // SdObject interface
   public:
     virtual QString getType() const override;

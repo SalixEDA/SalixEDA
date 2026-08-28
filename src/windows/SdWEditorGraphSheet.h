@@ -84,7 +84,10 @@ class SdWEditorGraphSheet : public SdWEditorGraph
     //!
     virtual void           cmEditFragments() override;
 
-    virtual void cmModeNetList() override;
+    //!
+    //! \brief cmModeNetList Insert and edit textual net list
+    //!
+    virtual void           cmModeNetList() override;
 
     //Perform project renumeration of component references
     virtual void           cmRenumeration() override;
@@ -97,6 +100,12 @@ class SdWEditorGraphSheet : public SdWEditorGraph
 
     //Export command
     virtual void           cmFileExport() override;
+
+    //!
+    //! \brief cmFormInsert Insert and replace form
+    //!
+    virtual void           cmFormInsert() override;
+
 
   };
 

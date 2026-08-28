@@ -31,6 +31,7 @@ Description
 #include "SdWEditor3dPartView.h"
 #include "SdWEditor3dPlate.h"
 #include "SdWRemoteStatus.h"
+#include "SdWAiChat.h"
 #include "SdWCommand.h"
 #include "SdWLabel.h"
 #include "SdDOptions.h"
@@ -2175,6 +2176,15 @@ void SdWMain::cmHelpForward()
   {
   SdWEditorHelp *help = dynamic_cast<SdWEditorHelp*>( helpWidget() );
   help->helpForward();
+  }
+
+
+
+void SdWMain::cmHelpAi()
+  {
+  SdWAiChat::instance()->show();
+  SdWAiChat::instance()->raise();
+  SdWAiChat::instance()->activateWindow();
   }
 
 

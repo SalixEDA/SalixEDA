@@ -18,6 +18,8 @@ Description
 #include "SdWCommand.h"
 #include "objects/SdPulsar.h"
 #include "objects/SdEnvir.h"
+#include "objects/SdGraphLinear.h"
+#include "objects/SdGraphText.h"
 #include "SdPMasterList.h"
 #include "SdPExport_Bom.h"
 #include "SdPExport_Dxf.h"
@@ -35,6 +37,7 @@ Description
 #include "modes/SdModeCScript.h"
 #include "modes/SdModeCNetPinsList.h"
 #include "windows/SdDExpressionEdit.h"
+#include "windows/SdDGetObject.h"
 
 #include <QMessageBox>
 #include <QDebug>
@@ -278,6 +281,47 @@ void SdWEditorGraphSheet::cmFileExport()
   wizard.setPage( 1,   new SdPExport_Bom( mSheet, 1, master, &wizard) );
   wizard.setPage( 2,   new SdPExport_Dxf( mSheet, 2, master, &wizard) );
   wizard.exec();
+  }
+
+
+
+
+//!
+//! \brief cmFormInsert Insert and replace form
+//!
+void SdWEditorGraphSheet::cmFormInsert()
+  {
+  QString sheetName;
+  SdProject *project = SdDGetObject::getProject( sheetName, QObject::tr("Select fragment to insert"), this, "form" );
+  if( project != nullptr ) {
+    //At first step we remove previous form
+    SdSelector selector;
+    mSheet->forEach( dctLines|dctText, [&selector](SdObject *obj) ->bool {
+      //Convert object to Graph object
+      SdPtr<SdGraphLinear> ptr(obj);
+      if( ptr.isValid() && ptr->isMatchId(LID0_FORM) )
+        selector.insert( ptr.ptr() );
+
+      SdPtr<SdGraphText> tp(obj);
+      if( tp.isValid() && tp->isMatchId(LID0_FORM) )
+        selector.insert( tp.ptr() );
+      return true; //Continue scan
+      } );
+
+    //Delete all selected objects
+    SdUndo *undo = mSheet->getUndo();
+    undo->begin( QObject::tr("Replace form"), mSheet, false );
+    selector.forEach( dctAll, [undo] (SdObject *obj) ->bool {
+      SdGraph *graph = dynamic_cast<SdGraph*>(obj);
+      if( graph != nullptr )
+        graph->deleteObject( undo );
+      return true;
+      });
+    selector.removeAll();
+
+    //Insert new form
+    modeSet( new SdModeCFragment( this, mSheet, project, sheetName ) );
+    }
   }
 
 

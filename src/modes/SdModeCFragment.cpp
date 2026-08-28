@@ -13,10 +13,7 @@ Web
 Description
 */
 #include "SdModeCFragment.h"
-#include "objects/SdEnvir.h"
 #include "objects/SdPItemSheet.h"
-#include "objects/SdPItemPlate.h"
-#include "objects/SdGraphNetWire.h"
 #include "objects/SdPulsar.h"
 #include "objects/SdConverterOffset.h"
 #include "windows/SdWCommand.h"
@@ -25,9 +22,10 @@ Description
 
 #include <QMessageBox>
 
-SdModeCFragment::SdModeCFragment(SdWEditorGraph *editor, SdProjectItem *obj) :
+SdModeCFragment::SdModeCFragment(SdWEditorGraph *editor, SdProjectItem *obj, SdProject *project, const QString &objectName) :
   SdModeCommon( editor, obj ),
-  mPastePrj(nullptr)
+  mPastePrj(project),
+  mObjectName(objectName)
   {
 
   }
@@ -47,7 +45,33 @@ SdModeCFragment::~SdModeCFragment()
 void SdModeCFragment::activate()
   {
   SdModeCommon::activate();
-  getFragment();
+  if( mObjectName.isEmpty() )
+    getFragment();
+  else
+    {
+    mPaste.clear();
+    SdPItemSheet *sheet = mPastePrj->getSheet( mObjectName );
+
+    if( sheet == nullptr ) {
+      QMessageBox::warning( mEditor, QObject::tr("Warning!"), QObject::tr("No sheets to insert. Try another fragment.") );
+      cancelMode();
+      return;
+      }
+
+    //Select all objects in sheet
+    sheet->forEach( dctAll, [this] (SdObject *obj) -> bool {
+      SdGraph *graph = dynamic_cast<SdGraph*>(obj);
+      if( graph != nullptr )
+        graph->select( &mPaste );
+      return true;
+      });
+
+
+    if( !mPaste.count() ) {
+      QMessageBox::warning( mEditor, QObject::tr("Warning!"), QObject::tr("No objects to insert. Source sheet is empty. Select another fragment.") );
+      cancelMode();
+      }
+    }
   }
 
 
@@ -80,6 +104,8 @@ void SdModeCFragment::enterPoint(SdPoint point)
     //Insert copy of pasted elements into object without selection them
     mObject->insertObjects( point.sub( mFirst ), &mPaste, mUndo, nullptr, false );
     }
+  if( !mObjectName.isEmpty() )
+    cancelMode();
   }
 
 
@@ -87,7 +113,10 @@ void SdModeCFragment::enterPoint(SdPoint point)
 
 void SdModeCFragment::cancelPoint(SdPoint)
   {
-  getFragment();
+  if( mObjectName.isEmpty() )
+    getFragment();
+  else
+    cancelMode();
   }
 
 

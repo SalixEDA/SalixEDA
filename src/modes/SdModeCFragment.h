@@ -17,20 +17,21 @@ Description
 #define SDMODECFRAGMENT_H
 
 #include "SdModeCommon.h"
-#include "objects/SdProp.h"
 #include "objects/SdSelector.h"
 #include "objects/SdProject.h"
 
 
 class SdModeCFragment : public SdModeCommon
   {
-    SdSelector      mPaste;      //Врагмент для вставки (копирования)
-    SdProject      *mPastePrj;   //Проект, из которого производится вставка
-    SdPoint         mFirst;      //Начальная точка
-    SdPoint         mPrevMove;   //Предыдущая точка
-    SdPoint         mCurPoint;   //Текущая точка
+  protected:
+    SdSelector      mPaste;        //!< Fragment for insertion [Фрагмент для вставки (копирования)]
+    SdProject      *mPastePrj;     //!< Project, from which insertion [Проект, из которого производится вставка]
+    SdPoint         mFirst;        //!< First point [Начальная точка]
+    SdPoint         mPrevMove;     //!< Previous point [Предыдущая точка]
+    SdPoint         mCurPoint;     //!< Current point [Текущая точка]
+    QString         mObjectName;   //!< Object name for insertion
   public:
-    SdModeCFragment( SdWEditorGraph *editor, SdProjectItem *obj );
+    SdModeCFragment( SdWEditorGraph *editor, SdProjectItem *obj, SdProject *project = nullptr, const QString &objectName = QString{} );
     ~SdModeCFragment() override;
 
     // SdMode interface
