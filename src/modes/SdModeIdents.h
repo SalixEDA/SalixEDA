@@ -104,4 +104,12 @@ Description
 #define PB_VIA             12
 #define PB_LAST            13
 
+
+//List of command codes for mode context menus (Menu's Context Command)
+#define MCC_SELECT_ITEM_FIRST   0
+#define MCC_SELECT_ITEM_COUNT  20
+#define MCC_COMPONENT_ROTATE  100 //!< Rotate selected component clock wise on 90 (F2)
+#define MCC_COMPONENT_FLIP    101 //!< Flip component to other side of pcb (F3)
+#define MCC_GROUP_ROTATE      102 //!< Rotate group elements clock wise on 90
+
 #endif // SDMODEIDENT_H

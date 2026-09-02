@@ -16,7 +16,7 @@ Description
 #include "SdPropBarDefault.h"
 #include "objects/SdEnvir.h"
 
-SdPropBarDefault::SdPropBarDefault(const QString title) :
+SdPropBarDefault::SdPropBarDefault(const QString &title) :
   SdPropBarLay( title )
   {
 

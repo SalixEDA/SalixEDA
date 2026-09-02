@@ -22,11 +22,16 @@ class SdPropBarDefault : public SdPropBarLay
   {
     Q_OBJECT
 
-    QAction *mMaskComp;    //Do not tought components
-    QAction *mMaskNet;     //Do not tought nets
-    QAction *mMaskPicture; //Do not tought picture elements
+    QAction *mMaskComp;    //!< Flag "Do not tought components"
+    QAction *mMaskNet;     //!< Flag "Do not tought nets"
+    QAction *mMaskPicture; //!< Flag "Do not tought picture elements"
   public:
-    SdPropBarDefault(const QString title);
+    SdPropBarDefault(const QString &title);
+
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_NO_SELECTION;
   };
 
 #endif // SDPROPBARDEFAULT_H

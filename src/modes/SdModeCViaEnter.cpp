@@ -45,7 +45,7 @@ void SdModeCViaEnter::drawStatic(SdContext *ctx)
 
 int SdModeCViaEnter::getPropBarId() const
   {
-  return PB_VIA;
+  return SdPropBarVia::mBarId;
   }
 
 
@@ -53,8 +53,7 @@ int SdModeCViaEnter::getPropBarId() const
 
 void SdModeCViaEnter::propGetFromBar()
   {
-  SdPropBarRoad *bar = dynamic_cast<SdPropBarRoad*>( SdWCommand::mBarTable[PB_VIA] );
-  if( bar ) {
+  if( SdPropBarViaPtr bar{} ) {
     bar->getPropVia( &mViaProp );
     sdGlobalProp->mViaProp = mViaProp;
     mEditor->setFocus();
@@ -68,8 +67,7 @@ void SdModeCViaEnter::propGetFromBar()
 
 void SdModeCViaEnter::propSetToBar()
   {
-  SdPropBarRoad *bar = dynamic_cast<SdPropBarRoad*>( SdWCommand::mBarTable[PB_VIA] );
-  if( bar ) {
+  if( SdPropBarViaPtr bar{} ) {
     //Setup tracing layer count and trace type
     bar->setPlateAndTrace( plate(), layerTraceRoad );
     bar->setPropVia( &mViaProp );

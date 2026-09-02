@@ -70,7 +70,7 @@ void SdModeCPolygonEnter::drawDynamic(SdContext *ctx)
 
 int SdModeCPolygonEnter::getPropBarId() const
   {
-  return PB_POLYGON;
+  return SdPropBarPolygon::mBarId;
   }
 
 
@@ -80,8 +80,7 @@ int SdModeCPolygonEnter::getPropBarId() const
 
 void SdModeCPolygonEnter::propGetFromBar()
   {
-  SdPropBarPolygon *bar = dynamic_cast<SdPropBarPolygon*>( SdWCommand::mBarTable[PB_POLYGON] );
-  if( bar ) {
+  if( SdPropBarPolygonPtr bar{} ) {
     //Retrive properties from polygon properties bar
     bar->getPropPolygon( mProp, &(sdGlobalProp->mWireEnterType) );
     mEditor->setFocus();
@@ -95,8 +94,7 @@ void SdModeCPolygonEnter::propGetFromBar()
 
 void SdModeCPolygonEnter::propSetToBar()
   {
-  SdPropBarPolygon *bar = dynamic_cast<SdPropBarPolygon*>( SdWCommand::mBarTable[PB_POLYGON] );
-  if( bar ) {
+  if( SdPropBarPolygonPtr bar{} ) {
     //Accum available net names
     QStringList netList = mObject->getProject()->netList();
     //If net name not assigned yet for polygon then assign first one

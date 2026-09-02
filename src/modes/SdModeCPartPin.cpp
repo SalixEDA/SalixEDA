@@ -86,9 +86,9 @@ int SdModeCPartPin::getPropBarId() const
     case sPlaceNumber :
     case sPlaceName   :
     case sEnterNumber :
-      return PB_TEXT;
+      return SdPropBarTextual::mBarId;
     }
-  return PB_PART_PIN;
+  return SdPropBarPartPin::mBarId;
   }
 
 
@@ -97,8 +97,7 @@ int SdModeCPartPin::getPropBarId() const
 void SdModeCPartPin::propGetFromBar()
   {
   if( getStep() == sPlaceName ) {
-    auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-    if( tbar ) {
+    if( SdPropBarTextualPtr tbar{} ) {
       tbar->getPropText( &(sdGlobalProp->mPartPinNameProp) );
       mEditor->setFocus();
       update();
@@ -106,16 +105,14 @@ void SdModeCPartPin::propGetFromBar()
     }
   else if( getStep() == sEnterNumber ) SdModeCTextual::propGetFromBar();
   else if( getStep() == sPlaceNumber ) {
-    auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-    if( tbar ) {
+    if( SdPropBarTextualPtr tbar{} ) {
       tbar->getPropText( &(sdGlobalProp->mPartPinNumberProp) );
       mEditor->setFocus();
       update();
       }
     }
   else if( getStep() == sPlacePin ) {
-    SdPropBarPartPin *sbar = dynamic_cast<SdPropBarPartPin*>( SdWCommand::getModeBar(PB_PART_PIN) );
-    if( sbar ) {
+    if( SdPropBarPartPinPtr sbar{} ) {
       sbar->getPropPartPin( sdGlobalProp->mPartPinProp );
       mEditor->setFocus();
       update();
@@ -129,17 +126,17 @@ void SdModeCPartPin::propGetFromBar()
 void SdModeCPartPin::propSetToBar()
   {
   if( getStep() == sPlaceName ) {
-    auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-    if( tbar ) tbar->setPropText( &(sdGlobalProp->mPartPinNameProp), mEditor->getPPM() );
+    if( SdPropBarTextualPtr tbar{} )
+      tbar->setPropText( &(sdGlobalProp->mPartPinNameProp), mEditor->getPPM() );
     }
   else if( getStep() == sEnterNumber ) SdModeCTextual::propSetToBar();
   else if( getStep() == sPlaceNumber ) {
-    auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-    if( tbar ) tbar->setPropText( &(sdGlobalProp->mPartPinNumberProp), mEditor->getPPM() );
+    if( SdPropBarTextualPtr tbar{} )
+      tbar->setPropText( &(sdGlobalProp->mPartPinNumberProp), mEditor->getPPM() );
     }
   else if( getStep() == sPlacePin ) {
-    SdPropBarPartPin *sbar = dynamic_cast<SdPropBarPartPin*>( SdWCommand::getModeBar(PB_PART_PIN) );
-    if( sbar ) sbar->setPropPartPin( sdGlobalProp->mPartPinProp );
+    if( SdPropBarPartPinPtr sbar{} )
+      sbar->setPropPartPin( sdGlobalProp->mPartPinProp );
     }
   }
 

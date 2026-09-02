@@ -93,7 +93,7 @@ void SdModeCPartPlace::reset()
   //setup properties in bar
   propSetToBar();
 
-  SdPropBarPartPlace *barPartPlace = dynamic_cast<SdPropBarPartPlace*>(SdWCommand::getModeBar(getPropBarId()));
+  SdPropBarPartPlacePtr barPartPlace;
   barPartPlace->setSmartMode( mSmartOrNextId );
   mSideMask = barPartPlace->sideMask();
 
@@ -171,7 +171,7 @@ void SdModeCPartPlace::drawDynamic(SdContext *ctx)
 
 int SdModeCPartPlace::getPropBarId() const
   {
-  return PB_PART_PLACE;
+  return SdPropBarPartPlace::mBarId;
   }
 
 
@@ -181,7 +181,7 @@ void SdModeCPartPlace::propGetFromBar()
   {
   //saveStateOfSelectedObjects( QObject::tr("Properties changed") );
 
-  SdPropBarPartPlace *barPartPlace = dynamic_cast<SdPropBarPartPlace*>(SdWCommand::getModeBar(getPropBarId()));
+  SdPropBarPartPlacePtr barPartPlace;
 
   //Common assignments
   mBySheet       = barPartPlace->isSheetSelection();
@@ -228,7 +228,7 @@ void SdModeCPartPlace::propSetToBar()
 
   //Set new bar
   //SdWCommand::setModeBar( PB_PART_IMP );
-  SdPropBarPartImp *barPartImp = dynamic_cast<SdPropBarPartImp*>(SdWCommand::getModeBar(getPropBarId()));
+  SdPropBarPartPlacePtr barPartImp;
   barPartImp->setPropPartImp( mLocalProp.mPartImpProp );
 
   dirtyRatNet();
@@ -355,31 +355,11 @@ void SdModeCPartPlace::keyDown(int key, QChar ch)
   switch( key ) {
     case Qt::Key_F2 :
       //Component rotation [Поворот]
-      if( mFragment.count() && getStep() == psmMove ) {
-        //Save state of selected objects
-        //saveStateOfSelectedObjects( QObject::tr("Component rotation") );
-        auto &angle = mLocalProp.mPartImpProp.get<&SdPropPartImp::mAngle>();
-        if( angle.isSingle() )
-          angle.reset( angle.value() + 90000 );
-        else
-          angle.reset( 0 );
-        //mLocalProp.mPartImpProp.mAngle += 90000;
-        setPropertiesToComponent();
-        }
+      contextCommand( MCC_COMPONENT_ROTATE );
       break;
     case Qt::Key_F3 :
       //Flip component to other pcb side [Перенос на другую сторону платы]
-      if( mFragment.count() && getStep() == psmMove ) {
-        //Save state of selected objects
-        //saveStateOfSelectedObjects( QObject::tr("Component flip") );
-        auto &side = mLocalProp.mPartImpProp.get<&SdPropPartImp::mSide>();
-        if( side.isSingle() )
-          side.reset( side.value().isTop() ? stmBottom : stmTop );
-        else
-          side.reset( stmTop );
-        //mLocalProp.mPartImpProp.mSide = mLocalProp.mPartImpProp.mSide == stmTop ? ;
-        setPropertiesToComponent();
-        }
+      contextCommand( MCC_COMPONENT_FLIP );
       break;
 //    case vkF4 :
 //      //Зеркальность
@@ -406,18 +386,7 @@ void SdModeCPartPlace::keyDown(int key, QChar ch)
       break;
     case Qt::Key_F7 :
       //Component group rotation [Поворот как группы компонентов]
-      if( mFragment.count() && getStep() == psmMove ) {
-        //Save state of selected objects
-        //saveStateOfSelectedObjects( QObject::tr("Group rotation") );
-        //Perform rotation
-        QTransform map( mPrevMove.transformRotation( SdPvAngle(da90) )  );
-        mFragment.forEach( dctPartImp, [map] (SdObject *obj) -> bool {
-          SdGraphPartImp *imp = dynamic_cast<SdGraphPartImp*>( obj );
-          if( imp ) imp->transform( map, SdPvAngle(da90) );
-          return true;
-          });
-        update();
-        }
+      contextCommand( MCC_GROUP_ROTATE );
       break;
     case Qt::Key_F8 :
       place();
@@ -594,6 +563,62 @@ int SdModeCPartPlace::getCursor() const
 int SdModeCPartPlace::getIndex() const
   {
   return MD_MOVE_PART;
+  }
+
+QMenu *SdModeCPartPlace::contextMenu() const
+  {
+  return nullptr;
+  }
+
+void SdModeCPartPlace::contextCommand(int cmd)
+  {
+  switch(cmd) {
+    case MCC_COMPONENT_ROTATE :
+      //Component rotation [Поворот]
+      if( mFragment.count() && getStep() == psmMove ) {
+        //Save state of selected objects
+        //saveStateOfSelectedObjects( QObject::tr("Component rotation") );
+        auto &angle = mLocalProp.mPartImpProp.get<&SdPropPartImp::mAngle>();
+        if( angle.isSingle() )
+          angle.reset( angle.value() + 90000 );
+        else
+          angle.reset( 0 );
+        //mLocalProp.mPartImpProp.mAngle += 90000;
+        setPropertiesToComponent();
+        }
+      break;
+
+    case MCC_COMPONENT_FLIP :
+      //Flip component to other pcb side [Перенос на другую сторону платы]
+      if( mFragment.count() && getStep() == psmMove ) {
+        //Save state of selected objects
+        //saveStateOfSelectedObjects( QObject::tr("Component flip") );
+        auto &side = mLocalProp.mPartImpProp.get<&SdPropPartImp::mSide>();
+        if( side.isSingle() )
+          side.reset( side.value().isTop() ? stmBottom : stmTop );
+        else
+          side.reset( stmTop );
+        //mLocalProp.mPartImpProp.mSide = mLocalProp.mPartImpProp.mSide == stmTop ? ;
+        setPropertiesToComponent();
+        }
+      break;
+
+    case MCC_GROUP_ROTATE :
+      //Component group rotation [Поворот как группы компонентов]
+      if( mFragment.count() && getStep() == psmMove ) {
+        //Save state of selected objects
+        //saveStateOfSelectedObjects( QObject::tr("Group rotation") );
+        //Perform rotation
+        QTransform map( mPrevMove.transformRotation( SdPvAngle(da90) )  );
+        mFragment.forEach( dctPartImp, [map] (SdObject *obj) -> bool {
+          SdGraphPartImp *imp = dynamic_cast<SdGraphPartImp*>( obj );
+          if( imp ) imp->transform( map, SdPvAngle(da90) );
+          return true;
+          });
+        update();
+        }
+      break;
+    }
   }
 
 

@@ -19,6 +19,7 @@ Description
 
 #include "SdConfig.h"
 #include "modes/SdModeIdents.h"
+#include "objects/SdClass.h"
 #include <QAction>
 #include <QMenu>
 #include <QToolBar>
@@ -53,6 +54,8 @@ class SdWCommand
     static QMenu *menuHelp;
 
     static QMenu *menuSelect;
+    static QMenu *menuSelectSymPart;
+    static QMenu *menuSelectSheet;
 
     static QActionPtr cmMenuInsertSymbol;
     static QActionPtr cmMenuInsertSheet;
@@ -135,6 +138,11 @@ class SdWCommand
     static QActionPtr   cmEditCalculations;
     static QActionPtr   cmEditFragments;
 
+    static QActionPtr   cmContextSelectItem[MCC_SELECT_ITEM_COUNT];
+    static QActionPtr   cmContextComponentRotate;
+    static QActionPtr   cmContextComponentFlip;
+    static QActionPtr   cmContextGroupRotate;
+
     static QActionPtr   cmViewProject;
     static QActionPtr   cmView3d;
     static QActionPtr   cmViewMirror;
@@ -195,6 +203,9 @@ class SdWCommand
     //Full list mode tool bars
     static SdPropBarPtr mBarTable[PB_LAST];
 
+    //Menu map is to replace menu ident in help page with real root menu title and submenu title
+    static QMap<QString,QString> mMenuMap;
+
     //Set visible properties bar for barId
     static void         activateModeBar(int barId, SdProjectItem *pitem );
     //Get properties bar for barId
@@ -208,7 +219,9 @@ class SdWCommand
     //! \return               Tool bar reduced to needed type
     //!
     template<typename ToolBar>
-    static ToolBar    *getModeToolBar( int barId ) { return dynamic_cast<ToolBar*>( getModeBar(barId) ); }
+    static ToolBar    *getModeToolBar() { return dynamic_cast<ToolBar*>( getModeBar(ToolBar::mBarId) ); }
+
+    static QMenu      *getSelectMenu( SdClass objectClass );
 
 
     static void        createMenu( SdWMain *frame );
@@ -218,7 +231,10 @@ class SdWCommand
     static void        createToolBars( SdWMain *frame );
     static void        hideEditorContext();
     static void        selectMode( int md );
+    static void        __addMenuMap( const QString &id, QMenu *rootMenu, QAction *menuAction );
   };
+
+//extern SdWCommand sdWCommand;
 
 
 #define InsertActionAndAssignName( bar, action, name ) bar->insertAction( nullptr, action); if( auto *widget = bar->widgetForAction(action) ) widget->setObjectName( name )

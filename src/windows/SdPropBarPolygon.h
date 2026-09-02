@@ -47,8 +47,14 @@ class SdPropBarPolygon : public SdPropBarStratum
     void setPropPolygon( const SdPropComposerPolygon &propPolygon, double ppm, int enterType , const QStringList list);
     void getPropPolygon( SdPropComposerPolygon &propPolygon, int *enterType );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_POLYGON;
   private:
     void setVertexType( int type );
   };
+
+using SdPropBarPolygonPtr = SdPropBarPointer<SdPropBarPolygon>;
 
 #endif // SDPROPBARPOLYGON_H

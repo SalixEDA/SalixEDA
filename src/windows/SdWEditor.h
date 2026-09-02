@@ -109,6 +109,9 @@ class SdWEditor : public QAbstractScrollArea
     virtual void cmEditRotateGroup() {}
     virtual void cmEditCalculations() {}
     virtual void cmEditFragments() {}
+    virtual void cmEditHighlightExt() {}
+
+    virtual void cmContextCommand( int ) {}
 
     //Functional commands
 

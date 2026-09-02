@@ -72,8 +72,15 @@ class SdPropBarPartPlace : public SdPropBarPartImp
     //Get current component
     QString   component() const;
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_PART_PLACE;
   signals:
     void      partSelect( QStringList list );
   };
+
+
+using SdPropBarPartPlacePtr = SdPropBarPointer<SdPropBarPartPlace>;
 
 #endif // SDPROPBARPARTPLACE_H

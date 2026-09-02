@@ -58,6 +58,10 @@ class SdPropBarTextual : public SdPropBarLay
     void setPropText( const SdPropComposerText &propText, double ppm );
     void getPropText( SdPropComposerText &propText );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_TEXT;
   private:
     void setFont( int index );
     void setSize( double size );
@@ -65,5 +69,7 @@ class SdPropBarTextual : public SdPropBarLay
     void setHorizontalAlignment( int horz );
     void setDirection( int dir );
   };
+
+using SdPropBarTextualPtr = SdPropBarPointer<SdPropBarTextual>;
 
 #endif // SDPROPBARTEXTUAL_H

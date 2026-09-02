@@ -77,7 +77,7 @@ void SdModeCNetName::drawDynamic(SdContext *ctx)
 
 int SdModeCNetName::getPropBarId() const
   {
-  return PB_TEXT;
+  return SdPropBarTextual::mBarId;
   }
 
 
@@ -85,8 +85,7 @@ int SdModeCNetName::getPropBarId() const
 
 void SdModeCNetName::propGetFromBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     tbar->getPropText( &(sdGlobalProp->mWireNameProp) );
     update();
     }
@@ -97,8 +96,7 @@ void SdModeCNetName::propGetFromBar()
 
 void SdModeCNetName::propSetToBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     tbar->setPropText( &(sdGlobalProp->mWireNameProp), mEditor->getPPM() );
     }
   }

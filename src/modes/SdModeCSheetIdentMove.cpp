@@ -58,7 +58,7 @@ void SdModeCSheetIdentMove::drawDynamic(SdContext *ctx)
 
 int SdModeCSheetIdentMove::getPropBarId() const
   {
-  return PB_TEXT;
+  return SdPropBarTextual::mBarId;
   }
 
 
@@ -66,9 +66,8 @@ int SdModeCSheetIdentMove::getPropBarId() const
 
 void SdModeCSheetIdentMove::propGetFromBar()
   {
-  auto bar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-  Q_ASSERT( bar != nullptr );
-  bar->getPropText( &mPropText );
+  if( SdPropBarTextualPtr bar{} )
+    bar->getPropText( &mPropText );
   mPropSmart = mPropText;
   update();
   }
@@ -78,9 +77,8 @@ void SdModeCSheetIdentMove::propGetFromBar()
 
 void SdModeCSheetIdentMove::propSetToBar()
   {
-  auto bar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-  Q_ASSERT( bar != nullptr );
-  bar->setPropText( &mPropText, mEditor->getPPM() );
+  if( SdPropBarTextualPtr bar{} )
+    bar->setPropText( &mPropText, mEditor->getPPM() );
   }
 
 

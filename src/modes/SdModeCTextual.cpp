@@ -288,7 +288,7 @@ void SdModeCTextual::clipboardCut()
 
 int SdModeCTextual::getPropBarId() const
   {
-  return PB_TEXT;
+  return SdPropBarTextual::mBarId;
   }
 
 
@@ -296,8 +296,7 @@ int SdModeCTextual::getPropBarId() const
 
 void SdModeCTextual::propGetFromBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     if( mPropText )
       tbar->getPropText( mPropText );
     else
@@ -312,8 +311,7 @@ void SdModeCTextual::propGetFromBar()
 
 void SdModeCTextual::propSetToBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     if( mPropText )
       tbar->setPropText( mPropText, mEditor->getPPM() );
     else

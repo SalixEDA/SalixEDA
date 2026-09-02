@@ -54,9 +54,15 @@ class SdPropBarWire : public SdPropBarLay
     void setPropWire(SdPropComposerLine &propLine, double ppm, int enterType, const SdPvMulty<SdPvString> wireName );
     void getPropWire( SdPropComposerLine &propLine, int *enterType, SdPvMulty<SdPvString> &wireName );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_WIRE;
   private:
     void setVertexType( int type );
     void setLineType( int type );
   };
+
+using SdPropBarWirePtr = SdPropBarPointer<SdPropBarWire>;
 
 #endif // SDPROPBARWIRE_H

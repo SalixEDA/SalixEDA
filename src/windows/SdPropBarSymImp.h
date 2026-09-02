@@ -42,8 +42,14 @@ class SdPropBarSymImp : public SdPropBar
     void setPropSymImp( const SdPropComposerSymImp &propSymImp );
     void getPropSymImp( SdPropComposerSymImp &propSymImp );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_SYM_IMP;
   private:
     void setDirection( int dir );
   };
+
+using SdPropBarSymImpPtr = SdPropBarPointer<SdPropBarSymImp>;
 
 #endif // SDPROPBARSYMIMP_H

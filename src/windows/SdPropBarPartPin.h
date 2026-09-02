@@ -34,8 +34,16 @@ class SdPropBarPartPin : public SdPropBarLay
     void setPropPartPin( const SdPropComposerPartPin &propPartPin );
     void getPropPartPin( SdPropComposerPartPin &propPartPin );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_PART_PIN;
+
   private slots:
     void setPinType();
   };
+
+
+using SdPropBarPartPinPtr = SdPropBarPointer<SdPropBarPartPin>;
 
 #endif // SDPROPBARPARTPIN_H

@@ -80,7 +80,7 @@ void SdModeCSymImp::drawDynamic(SdContext *ctx)
 
 int SdModeCSymImp::getPropBarId() const
   {
-  return PB_SYM_IMP;
+  return SdPropBarSymImp::mBarId;
   }
 
 
@@ -88,8 +88,7 @@ int SdModeCSymImp::getPropBarId() const
 
 void SdModeCSymImp::propGetFromBar()
   {
-  SdPropBarSymImp *sbar = dynamic_cast<SdPropBarSymImp*>( SdWCommand::getModeBar(PB_SYM_IMP) );
-  if( sbar ) {
+  if( SdPropBarSymImpPtr sbar{} ) {
     sbar->getPropSymImp( sdGlobalProp->mSymImpProp );
     update();
     }
@@ -100,8 +99,7 @@ void SdModeCSymImp::propGetFromBar()
 
 void SdModeCSymImp::propSetToBar()
   {
-  SdPropBarSymImp *sbar = dynamic_cast<SdPropBarSymImp*>( SdWCommand::getModeBar(PB_SYM_IMP) );
-  if( sbar ) {
+  if( SdPropBarSymImpPtr sbar{} ) {
     sbar->setPropSymImp( sdGlobalProp->mSymImpProp );
     }
   }

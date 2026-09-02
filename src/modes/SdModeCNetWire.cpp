@@ -101,15 +101,14 @@ void SdModeCNetWire::drawDynamic(SdContext *ctx)
 
 int SdModeCNetWire::getPropBarId() const
   {
-  return PB_WIRE;
+  return SdPropBarWire::mBarId;
   }
 
 
 
 void SdModeCNetWire::propGetFromBar()
   {
-  SdPropBarWire *bar = dynamic_cast<SdPropBarWire*>( SdWCommand::mBarTable[PB_WIRE] );
-  if( bar ) {
+  if( SdPropBarWirePtr bar{} ) {
     SdPvMulty<SdPvString> pvWireName;
     QString wireName;
     bar->getPropWire( sdGlobalProp->mWireProp, &(sdGlobalProp->mWireEnterType), pvWireName );
@@ -154,8 +153,7 @@ void SdModeCNetWire::propGetFromBar()
 
 void SdModeCNetWire::propSetToBar()
   {
-  SdPropBarWire *bar = dynamic_cast<SdPropBarWire*>( SdWCommand::mBarTable[PB_WIRE] );
-  if( bar ) {
+  if( SdPropBarWirePtr bar{} ) {
     SdPvMulty<SdPvString> netName;
     netName.reset( SdPvString(mNetName) );
     bar->setPropWire( sdGlobalProp->mWireProp, mEditor->getPPM(), sdGlobalProp->mWireEnterType, netName );
@@ -303,7 +301,7 @@ SdModeCNetWire::RenumResult SdModeCNetWire::getUnionResult(const QString firstWi
 
 bool SdModeCNetWire::okUnion(const QString newName)
   {
-  return QMessageBox::question( mEditor, QObject::tr("Warning!"), QObject::tr("Union net '%1' and net '%2'?").arg(mNetName).arg(newName) ) == QMessageBox::Yes;
+  return QMessageBox::question( mEditor, QObject::tr("Warning!"), QObject::tr("Union net '%1' and net '%2'?").arg(mNetName, newName) ) == QMessageBox::Yes;
   }
 
 

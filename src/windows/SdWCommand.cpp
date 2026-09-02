@@ -251,7 +251,9 @@ void SdWCommand::createMenu(SdWMain *frame)
   //Sheet editor menu
   menuInsertSheet = new QMenu( QObject::tr("Sheet") );
   cmRenumeration              = menuInsertSheet->addAction( QIcon(QStringLiteral(":/pic/renumeration.png")), QObject::tr("Renumeration"), frame, &SdWMain::cmRenumeration );
-                                menuInsertSheet->addAction( QIcon(QStringLiteral(":/pic/formMaster.png")), QObject::tr("Sheet form master..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmFormInsert> );
+  __addMenuMap( "menu:sheetRenumeration", menuInsertSheet, cmRenumeration );
+  auto formMaster             = menuInsertSheet->addAction( QIcon(QStringLiteral(":/pic/formMaster.png")), QObject::tr("Sheet form master..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmFormInsert> );
+  __addMenuMap( "menu:formMaster", menuInsertSheet, formMaster );
   menuInsertSheet->addSeparator();
   cmModeTable[MD_FRAGMENT]    = menuInsertSheet->addAction( QIcon(QString(":/pic/iconSheet.png")), QObject::tr("Insert fragment"), frame, &SdWMain::cmModeFragment );
   cmModeTable[MD_COMPONENT]   = menuInsertSheet->addAction( QIcon(QString(":/pic/objComp.png")), QObject::tr("Insert component"), frame, &SdWMain::cmModeComponent );
@@ -271,8 +273,10 @@ void SdWCommand::createMenu(SdWMain *frame)
   //PCB editor menu
   menuInsertPcb = new QMenu( QObject::tr("Plate") );
   menuInsertPcb->insertAction( nullptr, cmRenumeration );
+  __addMenuMap( "menu:plateRenumeration", menuInsertPcb, cmRenumeration );
   cmPcbStratum  = menuInsertPcb->addAction( QIcon(QString(":/pic/iconViaThrow.png")), QObject::tr("PCB layer count..."), frame, &SdWMain::cmPcbStratum );
-                  menuInsertPcb->addAction( QIcon(QString(":/pic/boardMaster.png")), QObject::tr("PCB board builder..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmBoardBuilder> );
+  auto boardMaster = menuInsertPcb->addAction( QIcon(QString(":/pic/boardMaster.png")), QObject::tr("PCB board builder..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmBoardBuilder> );
+  __addMenuMap( "menu:plateBoardMaster", menuInsertPcb, boardMaster );
   menuInsertPcb->insertSeparator(nullptr);
   cmShowRatNet = menuInsertPcb->addAction( QIcon(QStringLiteral(":/pic/viewRatnet.png")), QObject::tr("Show rat net") );
   cmShowRatNet->setCheckable(true);
@@ -351,7 +355,17 @@ void SdWCommand::createMenu(SdWMain *frame)
   frame->connect( cmHelpForward, &QAction::triggered, frame, &SdWMain::cmHelpForward );
 
 
-  //Select popup menu
+  //Context menu
+  QMenu *contextMenu = new QMenu( QObject::tr("Context") );
+  for( int i = 0; i <= MCC_SELECT_ITEM_COUNT; ++i )
+    cmContextSelectItem[i] = contextMenu->addAction( QObject::tr("Select"), [frame,i]() { frame->cmContextCommand(i + MCC_SELECT_ITEM_FIRST); } );
+  cmContextComponentRotate = contextMenu->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Rotate component CW 90"), frame, &SdWMain::cmContextCommand<MCC_COMPONENT_ROTATE> );
+  cmContextComponentFlip   = contextMenu->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Flip component to other side"), frame, &SdWMain::cmContextCommand<MCC_COMPONENT_FLIP> );
+  cmContextGroupRotate     = contextMenu->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Rotate component CW 90"), frame, &SdWMain::cmContextCommand<MCC_GROUP_ROTATE> );
+
+
+
+  //Select popup menu (common version)
   menuSelect = new QMenu( QObject::tr("Select") );
   menuSelect->insertAction( nullptr, cmEditUndo );
   menuSelect->insertAction( nullptr, cmEditRedo );
@@ -368,8 +382,44 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuSelect->insertAction( nullptr, cmEditRotateGroup );
   menuSelect->addSeparator();
   menuSelect->insertAction( nullptr, cmEditProperties );
-  menuSelect->insertAction( nullptr, cmEditCalculations );
-  menuSelect->insertAction( nullptr, cmEditFragments );
+
+  //Select popup menu (symbol and part version)
+  menuSelectSymPart = new QMenu( QObject::tr("Select") );
+  menuSelectSymPart->insertAction( nullptr, cmEditUndo );
+  menuSelectSymPart->insertAction( nullptr, cmEditRedo );
+  menuSelectSymPart->addSeparator();
+  menuSelectSymPart->insertAction( nullptr, cmEditCopy );
+  menuSelectSymPart->insertAction( nullptr, cmEditPaste );
+  menuSelectSymPart->insertAction( nullptr, cmEditCut );
+  menuSelectSymPart->insertAction( nullptr, cmEditDelete );
+  menuSelectSymPart->addSeparator();
+  menuSelectSymPart->insertAction( nullptr, cmEditSelectAll );
+  menuSelectSymPart->insertAction( nullptr, cmEditUnSelect );
+  menuSelectSymPart->insertAction( nullptr, cmEditFind );
+  menuSelectSymPart->insertAction( nullptr, cmEditReplace );
+  menuSelectSymPart->insertAction( nullptr, cmEditRotateGroup );
+  menuSelectSymPart->addSeparator();
+  menuSelectSymPart->insertAction( nullptr, cmEditProperties );
+
+  //Select popup menu (sheet version)
+  menuSelectSheet = new QMenu( QObject::tr("Select") );
+  menuSelectSheet->insertAction( nullptr, cmEditUndo );
+  menuSelectSheet->insertAction( nullptr, cmEditRedo );
+  menuSelectSheet->addSeparator();
+  menuSelectSheet->insertAction( nullptr, cmEditCopy );
+  menuSelectSheet->insertAction( nullptr, cmEditPaste );
+  menuSelectSheet->insertAction( nullptr, cmEditCut );
+  menuSelectSheet->insertAction( nullptr, cmEditDelete );
+  menuSelectSheet->addSeparator();
+  menuSelectSheet->insertAction( nullptr, cmEditSelectAll );
+  menuSelectSheet->insertAction( nullptr, cmEditUnSelect );
+  menuSelectSheet->insertAction( nullptr, cmEditFind );
+  menuSelectSheet->insertAction( nullptr, cmEditReplace );
+  menuSelectSheet->insertAction( nullptr, cmEditRotateGroup );
+  menuSelectSheet->addSeparator();
+  menuSelectSheet->insertAction( nullptr, cmEditProperties );
+  menuSelectSheet->insertAction( nullptr, cmEditCalculations );
+  menuSelectSheet->insertAction( nullptr, cmEditFragments );
 
 
 
@@ -556,6 +606,29 @@ int SdWCommand::getModeBarId()
 
 
 
+QMenu *SdWCommand::getSelectMenu(SdClass objectClass)
+  {
+  if( objectClass & (dctSymbol | dctPart) ) return menuSelectSymPart;
+  if( objectClass & (dctSheet) ) return menuSelectSheet;
+  return menuSelect;
+  }
+
+
+
+template<typename PropBar>
+static PropBar *buildPropBar( SdWMain *frame, const QString &title )
+  {
+  PropBar *bar = new PropBar( title );
+  frame->addToolBar( bar );
+  bar->setVisible(false);
+  Q_ASSERT( SdWCommand::mBarTable[PropBar::mBarId] == nullptr );
+  SdWCommand::mBarTable[PropBar::mBarId] = bar;
+  bar->connect( bar, &PropBar::propChanged, frame, &SdWMain::cmPropertiesChange );
+  return bar;
+  }
+
+
+
 void SdWCommand::createToolBars(SdWMain *frame)
   {
   //Main bar
@@ -718,82 +791,32 @@ void SdWCommand::createToolBars(SdWMain *frame)
 
   frame->addToolBarBreak();
 
-  SdPropBarLay *mbar;
-  mbar = new SdPropBarLay( QStringLiteral("Default tool bar") );
-  frame->addToolBar( mbar );
-  mBarTable[PB_DEFAULT] = mbar;
+  buildPropBar<SdPropBarLay>( frame, QStringLiteral("Default tool bar") );
 
-  mbar = new SdPropBarLinear( QStringLiteral("Linear mode") );
-  frame->addToolBar( mbar );
-  mbar->setVisible(false);
-  mBarTable[PB_LINEAR] = mbar;
-  mbar->connect( mbar, &SdPropBarLay::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarLinear>( frame, QStringLiteral("Linear mode") );
 
-  mbar = new SdPropBarTextual( QStringLiteral("Textual mode") );
-  frame->addToolBar( mbar );
-  mbar->setVisible(false);
-  mBarTable[PB_TEXT] = mbar;
-  mbar->connect( mbar, &SdPropBarLay::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarTextual>( frame, QStringLiteral("Textual mode") );
 
-  mbar = new SdPropBarSymPin( QStringLiteral("Sym pin") );
-  frame->addToolBar( mbar );
-  mbar->setVisible(false);
-  mBarTable[PB_SYM_PIN] = mbar;
-  mbar->connect( mbar, &SdPropBarLay::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarSymPin>( frame, QStringLiteral("Sym pin") );
 
-  mbar = new SdPropBarPartPin( QStringLiteral("Part pin") );
-  frame->addToolBar( mbar );
-  mbar->setVisible(false);
-  mBarTable[PB_PART_PIN] = mbar;
-  mbar->connect( mbar, &SdPropBarLay::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarPartPin>( frame, QStringLiteral("Part pin") );
 
-  SdPropBarSymImp *isbar = new SdPropBarSymImp( QStringLiteral("Symbol implement") );
-  frame->addToolBar( isbar );
-  isbar->setVisible(false);
-  mBarTable[PB_SYM_IMP] = isbar;
-  isbar->connect( isbar, &SdPropBarSymImp::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarSymImp>( frame, QStringLiteral("Symbol implement") );
 
-  SdPropBarPartImp *ipbar = new SdPropBarPartImp( QStringLiteral("Part implement") );
-  frame->addToolBar( ipbar );
-  ipbar->setVisible(false);
-  mBarTable[PB_PART_IMP] = ipbar;
-  ipbar->connect( ipbar, &SdPropBarPartImp::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarPartImp>( frame, QStringLiteral("Part implement") );
 
-  SdPropBarRoad *rbar = new SdPropBarRoad( QStringLiteral("Road") );
-  frame->addToolBar( rbar );
-  rbar->setVisible(false);
-  mBarTable[PB_ROAD] = rbar;
-  rbar->connect( rbar, &SdPropBarRoad::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarRoad>( frame, QStringLiteral("Road") );
 
-  SdPropBarPolygon *gbar = new SdPropBarPolygon( QStringLiteral("Polygon") );
-  frame->addToolBar( gbar );
-  gbar->setVisible(false);
-  mBarTable[PB_POLYGON] = gbar;
-  gbar->connect( gbar, &SdPropBarRoad::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarPolygon>( frame, QStringLiteral("Polygon") );
 
-  SdPropBarWire *wbar = new SdPropBarWire( QStringLiteral("Wire") );
-  frame->addToolBar( wbar );
-  wbar->setVisible(false);
-  mBarTable[PB_WIRE] = wbar;
-  wbar->connect( wbar, &SdPropBarWire::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarWire>( frame, QStringLiteral("Wire") );
 
-  SdPropBarPartPlace *pbar = new SdPropBarPartPlace( QStringLiteral("Part place") );
-  frame->addToolBar( pbar );
-  pbar->setVisible(false);
-  mBarTable[PB_PART_PLACE] = pbar;
-  pbar->connect( pbar, &SdPropBarPartPlace::propChanged, frame, &SdWMain::cmPropertiesChange );
+  auto pbar = buildPropBar<SdPropBarPartPlace>( frame, QStringLiteral("Part place") );
   pbar->connect( pbar, &SdPropBarPartPlace::partSelect, frame, &SdWMain::cmModePartSelect );
 
-  SdPropBarDefault *dbar = new SdPropBarDefault( QStringLiteral("No selection") );
-  frame->addToolBar( dbar );
-  dbar->setVisible(false);
-  mBarTable[PB_NO_SELECTION] = dbar;
+  buildPropBar<SdPropBarDefault>( frame, QStringLiteral("No selection") );
 
-  SdPropBarRoad *vbar = new SdPropBarRoad( QStringLiteral("Via"), false );
-  frame->addToolBar( vbar );
-  vbar->setVisible(false);
-  mBarTable[PB_VIA] = vbar;
-  rbar->connect( vbar, &SdPropBarRoad::propChanged, frame, &SdWMain::cmPropertiesChange );
+  buildPropBar<SdPropBarVia>( frame, QStringLiteral("Via") );
 
   for( int i = 0; i < MD_LAST; i++ )
     if( cmModeTable[i] )
@@ -838,6 +861,13 @@ void SdWCommand::selectMode(int md)
   for( int i = 0; i < MD_LAST; i++ )
     if( cmModeTable[i] )
       cmModeTable[i]->setChecked( i == md );
+  }
+
+
+
+void SdWCommand::__addMenuMap(const QString &id, QMenu *rootMenu, QAction *menuAction)
+  {
+  mMenuMap.insert( id, QObject::tr("Menu \"%1\":\"%2\"").arg(rootMenu->title(), menuAction->text() ) );
   }
 
 
@@ -901,6 +931,12 @@ QActionPtr SdWCommand::cmEditRotateGroup;
 QActionPtr SdWCommand::cmEditProperties;
 QActionPtr SdWCommand::cmEditCalculations;
 QActionPtr SdWCommand::cmEditFragments;
+
+QActionPtr SdWCommand::cmContextSelectItem[MCC_SELECT_ITEM_COUNT];
+QActionPtr SdWCommand::cmContextComponentRotate;
+QActionPtr SdWCommand::cmContextComponentFlip;
+QActionPtr SdWCommand::cmContextGroupRotate;
+
 
 QActionPtr SdWCommand::cmViewProject;
 QActionPtr SdWCommand::cmView3d;
@@ -974,6 +1010,8 @@ QMenu *SdWCommand::menuHelp;
 QMenu *SdWCommand::menuRules;
 
 QMenu *SdWCommand::menuSelect;
+QMenu *SdWCommand::menuSelectSymPart;
+QMenu *SdWCommand::menuSelectSheet;
 
 QActionPtr SdWCommand::cmMenuInsertSymbol;
 QActionPtr SdWCommand::cmMenuInsertSheet;
@@ -1001,3 +1039,5 @@ QActionPtr   SdWCommand::cmModeTable[MD_LAST];
 
 //Full list mode tool bars
 SdPropBarPtr SdWCommand::mBarTable[PB_LAST];
+
+QMap<QString,QString> SdWCommand::mMenuMap;

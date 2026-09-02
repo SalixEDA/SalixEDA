@@ -37,6 +37,11 @@ class SdPropBarLay : public SdPropBar
   public:
     SdPropBarLay(const QString title);
 
+
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_DEFAULT;
   signals:
     //On property changed by user
     void propChanged();

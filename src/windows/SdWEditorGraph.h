@@ -146,6 +146,8 @@ class SdWEditorGraph : public SdWEditor
     virtual void           cmEditRotateGroup() override;
     virtual void           cmClipboardChange() override;
 
+    virtual void           cmContextCommand( int cmd ) override;
+
     virtual void           onActivateEditor() override;
     virtual void           cmViewFit() override;
     virtual void           cmViewGrid() override;

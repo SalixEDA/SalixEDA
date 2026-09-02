@@ -33,6 +33,12 @@ class SdPropBarSymPin : public SdPropBarLay
     void setPropSymPin( const SdPropComposerSymPin &propSymPin );
     void getPropSymPin( SdPropComposerSymPin &propSymPin );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_SYM_PIN;
   };
+
+using SdPropBarSymPinPtr = SdPropBarPointer<SdPropBarSymPin>;
 
 #endif // SDPROPBARSYMPIN_H

@@ -142,52 +142,52 @@ void SdModeSelect::propGetFromBar()
   mLocalProp.clear();
   switch( mLocalProp.getPropBarId() ) {
     case PB_LINEAR : {
-      SdPropBarLinear  *barLinear  = dynamic_cast<SdPropBarLinear*>(SdWCommand::getModeBar(PB_LINEAR));
+      SdPropBarLinearPtr barLinear;
       barLinear->getPropLine( mLocalProp.mLineProp, &(mLocalProp.mEnterType) );
       mLocalProp.setLayer( mLocalProp.mLineProp.get<&SdPropLine::mLayer>() );
       }
       break;
     case PB_TEXT : {
-      SdPropBarTextual *barTextual = dynamic_cast<SdPropBarTextual*>(SdWCommand::getModeBar(PB_TEXT));
+      SdPropBarTextualPtr barTextual;
       barTextual->getPropText( mLocalProp.mTextProp );
       mLocalProp.setLayer( mLocalProp.mTextProp.get<&SdPropText::mLayer>() );
       }
       break;
     case PB_WIRE : {
-      SdPropBarWire    *barWire    = dynamic_cast<SdPropBarWire*>(SdWCommand::getModeBar(PB_WIRE));
+      SdPropBarWirePtr barWire;
       barWire->getPropWire( mLocalProp.mWireProp, &(mLocalProp.mEnterType), mLocalProp.mWireName );
       mLocalProp.setLayer( mLocalProp.mWireProp.get<&SdPropLine::mLayer>() );
       }
       break;
     case PB_SYM_PIN : {
-      SdPropBarSymPin  *barSymPin  = dynamic_cast<SdPropBarSymPin*>(SdWCommand::getModeBar(PB_SYM_PIN));
+      SdPropBarSymPinPtr barSymPin;
       barSymPin->getPropSymPin( mLocalProp.mSymPinProp );
       mLocalProp.setLayer( mLocalProp.mSymPinProp.get<&SdPropSymPin::mLayer>() );
       }
       break;
     case PB_PART_PIN : {
-      SdPropBarPartPin *barPartPin = dynamic_cast<SdPropBarPartPin*>(SdWCommand::getModeBar(PB_PART_PIN));
+      SdPropBarPartPinPtr barPartPin;
       barPartPin->getPropPartPin( mLocalProp.mPartPinProp );
       mLocalProp.setLayer( mLocalProp.mPartPinProp.get<&SdPropPartPin::mLayer>() );
       }
       break;
     case PB_SYM_IMP : {
-      SdPropBarSymImp  *barSymImp  = dynamic_cast<SdPropBarSymImp*>(SdWCommand::getModeBar(PB_SYM_IMP));
+      SdPropBarSymImpPtr barSymImp;
       barSymImp->getPropSymImp( mLocalProp.mSymImpProp );
       }
       break;
     case PB_PART_IMP : {
-      SdPropBarPartImp *barPartImp = dynamic_cast<SdPropBarPartImp*>(SdWCommand::getModeBar(PB_PART_IMP));
+      SdPropBarPartImpPtr barPartImp;
       barPartImp->getPropPartImp( mLocalProp.mPartImpProp );
       }
       break;
     case PB_ROAD : {
-      SdPropBarRoad *barRoad = dynamic_cast<SdPropBarRoad*>(SdWCommand::getModeBar(PB_ROAD) );
+      SdPropBarRoadPtr barRoad;
       barRoad->getPropRoad( mLocalProp.mRoadProp, mLocalProp.mViaProp, &(mLocalProp.mEnterType) );
       }
       break;
     case PB_POLYGON : {
-      SdPropBarPolygon *barPolygon = dynamic_cast<SdPropBarPolygon*>(SdWCommand::getModeBar(PB_POLYGON) );
+      SdPropBarPolygonPtr barPolygon;
       barPolygon->getPropPolygon( mLocalProp.mPolygonProp, &(mLocalProp.mEnterType) );
       }
       break;
@@ -228,47 +228,47 @@ void SdModeSelect::propSetToBar()
   //Set prop into bar
   switch( getPropBarId() ) {
     case PB_LINEAR : {
-      SdPropBarLinear  *barLinear  = dynamic_cast<SdPropBarLinear*>(SdWCommand::getModeBar(PB_LINEAR));
+      SdPropBarLinearPtr barLinear;
       barLinear->setPropLine( mLocalProp.mLineProp, getPPM(), mLocalProp.mEnterType );
       }
       break;
     case PB_TEXT : {
-      SdPropBarTextual *barTextual = dynamic_cast<SdPropBarTextual*>(SdWCommand::getModeBar(PB_TEXT));
+      SdPropBarTextualPtr barTextual;
       barTextual->setPropText( mLocalProp.mTextProp, getPPM() );
       }
       break;
     case PB_WIRE : {
-      SdPropBarWire    *barWire    = dynamic_cast<SdPropBarWire*>(SdWCommand::getModeBar(PB_WIRE));
+      SdPropBarWirePtr barWire;
       barWire->setPropWire( mLocalProp.mWireProp, getPPM(), mLocalProp.mEnterType, mLocalProp.mWireName );
       }
       break;
     case PB_SYM_PIN : {
-      SdPropBarSymPin  *barSymPin  = dynamic_cast<SdPropBarSymPin*>(SdWCommand::getModeBar(PB_SYM_PIN));
+      SdPropBarSymPinPtr barSymPin;
       barSymPin->setPropSymPin( mLocalProp.mSymPinProp );
       }
       break;
     case PB_PART_PIN : {
-      SdPropBarPartPin *barPartPin = dynamic_cast<SdPropBarPartPin*>(SdWCommand::getModeBar(PB_PART_PIN));
+      SdPropBarPartPinPtr barPartPin;
       barPartPin->setPropPartPin( mLocalProp.mPartPinProp );
       }
       break;
     case PB_SYM_IMP : {
-      SdPropBarSymImp  *barSymImp  = dynamic_cast<SdPropBarSymImp*>(SdWCommand::getModeBar(PB_SYM_IMP));
+      SdPropBarSymImpPtr barSymImp;
       barSymImp->setPropSymImp( mLocalProp.mSymImpProp );
       }
       break;
     case PB_PART_IMP : {
-      SdPropBarPartImp *barPartImp = dynamic_cast<SdPropBarPartImp*>(SdWCommand::getModeBar(PB_PART_IMP));
+      SdPropBarPartImpPtr barPartImp;
       barPartImp->setPropPartImp( mLocalProp.mPartImpProp );
       }
       break;
     case PB_ROAD : {
-      SdPropBarRoad *barRoad = dynamic_cast<SdPropBarRoad*>(SdWCommand::getModeBar(PB_ROAD) );
+      SdPropBarRoadPtr barRoad;
       barRoad->setPropRoad( mLocalProp.mRoadProp, mLocalProp.mViaProp, getPPM(), mLocalProp.mEnterType );
       }
       break;
     case PB_POLYGON : {
-      SdPropBarPolygon *barPolygon = dynamic_cast<SdPropBarPolygon*>(SdWCommand::getModeBar(PB_POLYGON) );
+      SdPropBarPolygonPtr barPolygon;
       barPolygon->setPropPolygon( mLocalProp.mPolygonProp, getPPM(), mLocalProp.mEnterType, mObject->getProject()->netList() );
       }
       break;
@@ -559,6 +559,14 @@ void SdModeSelect::keyUp(int key, QChar ch)
     case Qt::Key_Control : mControl = false; break;
     }
   mEditor->viewport()->setCursor( loadCursor(getCursor()) );
+  }
+
+
+
+
+QMenu *SdModeSelect::contextMenu() const
+  {
+  return SdWCommand::getSelectMenu( mObject->getClass() );
   }
 
 
@@ -987,7 +995,7 @@ void SdModeSelect::insertCopy(SdPoint offset, bool next)
 
 void SdModeSelect::activateMenu()
   {
-  mEditor->contextMenu( SdWCommand::menuSelect );
+  mEditor->contextMenu( contextMenu() );
   }
 
 

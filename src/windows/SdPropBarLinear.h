@@ -50,9 +50,17 @@ class SdPropBarLinear : public SdPropBarLay
     void setPropLine( const SdPropComposerLine &propLine, double ppm, int enterType );
     void getPropLine(SdPropComposerLine &propLine, int *enterType );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_LINEAR;
+
   private:
     void setVertexType( int type );
     void setLineType( int type );
   };
+
+
+using SdPropBarLinearPtr = SdPropBarPointer<SdPropBarLinear>;
 
 #endif // SDPROPBARLINEAR_H

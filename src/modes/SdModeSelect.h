@@ -80,6 +80,7 @@ class SdModeSelect : public SdMode
     virtual int     getIndex() const override;
     virtual void    keyDown(int key, QChar ch) override;
     virtual void    keyUp(int key, QChar ch) override;
+    virtual QMenu  *contextMenu() const override;
 
     //!
     //! \brief storeSelectionToFile Store selection to image file

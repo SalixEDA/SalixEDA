@@ -104,6 +104,8 @@ class SdModeCPartPlace : public SdModeCommon
     virtual QString getStepThema() const override;
     virtual int     getCursor() const override;
     virtual int     getIndex() const override;
+    virtual QMenu  *contextMenu() const override;
+    virtual void    contextCommand( int cmd ) override;
 
   private:
     //Remove selection of components

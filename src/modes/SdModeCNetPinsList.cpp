@@ -32,7 +32,7 @@ SdModeCNetPinsList::SdModeCNetPinsList(SdWEditorGraph *editor, SdProjectItem *ob
 
 int SdModeCNetPinsList::getPropBarId() const
   {
-  return PB_TEXT;
+  return SdPropBarTextual::mBarId;
   }
 
 
@@ -40,8 +40,7 @@ int SdModeCNetPinsList::getPropBarId() const
 
 void SdModeCNetPinsList::propGetFromBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     tbar->getPropText( sdGlobalProp->propText( mObject->getClass() ) );
     mEditor->setFocus();
     update();
@@ -53,8 +52,7 @@ void SdModeCNetPinsList::propGetFromBar()
 
 void SdModeCNetPinsList::propSetToBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     tbar->setPropText( sdGlobalProp->propText( mObject->getClass() ), mEditor->getPPM() );
     }
   }

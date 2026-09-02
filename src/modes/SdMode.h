@@ -116,10 +116,10 @@ class SdMode
     virtual void    clickPoint( SdPoint ) {}                //Двойное нажатие левой кнопки
 
     //!
-    //! \brief cancelPoint Process point rejection/cancellation (right mouse button click)
+    //! \brief cancelPoint Process point rejection/cancellation (right mouse button click) [Точка прекращения (правая кнопка)]
     //! \param p           Point coordinates at cancellation moment
     //!
-    virtual void    cancelPoint( SdPoint ) {}               //Точка прекращения (правая кнопка)
+    virtual void    cancelPoint( SdPoint ) {}
     virtual void    movePoint( SdPoint ) {}                 //Перемещение точки
     virtual bool    wheel( SdPoint ) { return false; }      //Вращение колеса мыши
     virtual void    keyDown( int key, QChar ch );           //Нажатие кнопки
@@ -128,6 +128,16 @@ class SdMode
     virtual void    beginDrag( SdPoint ) {}                 //Начало перетаскивания
     virtual void    dragPoint( SdPoint ) {}                 //Перетаскивание
     virtual void    stopDrag( SdPoint ) {}                  //Конец перетаскивания
+
+    //!
+    //! \brief showMenu Shows context menu at point
+    //!
+    virtual QMenu  *contextMenu() const { return nullptr; }
+
+    //!
+    //! \brief contextCommand Execute context menu command
+    //!
+    virtual void    contextCommand( int ) {}
 
     virtual bool    enableCopy() const;                     //Режим имеет объекты для копирования
     virtual bool    enablePaste( quint64 pasteMask ) const; //Режим разрешает вставку объектов с заданной маской

@@ -70,7 +70,7 @@ void SdModeCPartImp::drawDynamic(SdContext *ctx)
 
 int SdModeCPartImp::getPropBarId() const
   {
-  return PB_PART_IMP;
+  return SdPropBarPartImp::mBarId;
   }
 
 
@@ -78,8 +78,7 @@ int SdModeCPartImp::getPropBarId() const
 
 void SdModeCPartImp::propGetFromBar()
   {
-  SdPropBarPartImp *sbar = dynamic_cast<SdPropBarPartImp*>( SdWCommand::getModeBar(PB_PART_IMP) );
-  if( sbar ) {
+  if( SdPropBarPartImpPtr sbar{} ) {
     sbar->getPropPartImp( sdGlobalProp->mPartImpProp );
     update();
     }
@@ -90,8 +89,7 @@ void SdModeCPartImp::propGetFromBar()
 
 void SdModeCPartImp::propSetToBar()
   {
-  SdPropBarPartImp *sbar = dynamic_cast<SdPropBarPartImp*>( SdWCommand::getModeBar(PB_PART_IMP) );
-  if( sbar ) {
+  if( SdPropBarPartImpPtr sbar{} ) {
     sbar->setPropPartImp( sdGlobalProp->mPartImpProp );
     }
   }

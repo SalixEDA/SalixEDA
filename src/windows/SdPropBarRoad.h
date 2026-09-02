@@ -12,6 +12,8 @@ Web
 
 Description
   Properties bar for tracing road
+
+  Helper properties bar for vias
 */
 #ifndef SDPROPBARROAD_H
 #define SDPROPBARROAD_H
@@ -64,8 +66,34 @@ class SdPropBarRoad : public SdPropBarStratum
     void setViaRule( int viaRule );
     int  getViaRule();
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_ROAD;
   private:
     void setVertexType( int type );
   };
+
+using SdPropBarRoadPtr = SdPropBarPointer<SdPropBarRoad>;
+
+
+
+//!
+//! \brief The SdPropBarVia class Helper class to distinct via from road
+//!
+class SdPropBarVia : public SdPropBarRoad
+  {
+    Q_OBJECT
+
+  public:
+    SdPropBarVia( const QString title ) : SdPropBarRoad( title, false ) {}
+
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_VIA;
+  };
+
+using SdPropBarViaPtr = SdPropBarPointer<SdPropBarVia>;
 
 #endif // SDPROPBARROAD_H

@@ -56,7 +56,7 @@ void SdModeCIdent::drawDynamic(SdContext *ctx)
 
 int SdModeCIdent::getPropBarId() const
   {
-  return PB_TEXT;
+  return SdPropBarTextual::mBarId;
   }
 
 
@@ -64,9 +64,8 @@ int SdModeCIdent::getPropBarId() const
 
 void SdModeCIdent::propGetFromBar()
   {
-  auto bar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-  Q_ASSERT( bar != nullptr );
-  bar->getPropText( mPropText );
+  if( SdPropBarTextualPtr bar{} )
+    bar->getPropText( mPropText );
   update();
   }
 
@@ -75,9 +74,8 @@ void SdModeCIdent::propGetFromBar()
 
 void SdModeCIdent::propSetToBar()
   {
-  auto bar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-  Q_ASSERT( bar != nullptr );
-  bar->setPropText( mPropText, mEditor->getPPM() );
+  if( SdPropBarTextualPtr bar{} )
+    bar->setPropText( mPropText, mEditor->getPPM() );
   }
 
 

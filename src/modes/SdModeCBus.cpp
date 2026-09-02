@@ -82,8 +82,8 @@ void SdModeCBus::drawDynamic(SdContext *ctx)
 
 int SdModeCBus::getPropBarId() const
   {
-  if( getStep() == sNamePlace ) return PB_TEXT;
-  return PB_WIRE;
+  if( getStep() == sNamePlace ) return SdPropBarTextual::mBarId;
+  return SdPropBarWire::mBarId;
   }
 
 
@@ -92,14 +92,12 @@ int SdModeCBus::getPropBarId() const
 void SdModeCBus::propGetFromBar()
   {
   if( getStep() == sNamePlace ) {
-    auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-    if( tbar ) {
+    if( SdPropBarTextualPtr tbar{} ) {
       tbar->getPropText( &(sdGlobalProp->mWireNameProp) );
       }
     }
   else {
-    auto bar = SdWCommand::getModeToolBar<SdPropBarWire>( PB_WIRE );
-    if( bar ) {
+    if( SdPropBarWirePtr bar{} ) {
       SdPvMulty<SdPvString> wireName;
       bar->getPropWire( sdGlobalProp->mWireProp, &(sdGlobalProp->mWireEnterType), wireName );
       }
@@ -112,14 +110,12 @@ void SdModeCBus::propGetFromBar()
 void SdModeCBus::propSetToBar()
   {
   if( getStep() == sNamePlace ) {
-    auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>(PB_TEXT);
-    if( tbar ) {
+    if( SdPropBarTextualPtr tbar{} ) {
       tbar->setPropText( &(sdGlobalProp->mWireNameProp), mEditor->getPPM() );
       }
     }
   else if( mNetList.count() && mIndex < mNetList.count() ) {
-    auto bar = SdWCommand::getModeToolBar<SdPropBarWire>( PB_WIRE );
-    if( bar )
+    if( SdPropBarWirePtr bar{} )
       bar->setPropWire( sdGlobalProp->mWireProp, mEditor->getPPM(), sdGlobalProp->mWireEnterType, SdPvMulty<SdPvString>( SdPvString(mNetList.at(mIndex)) ) );
     }
   }

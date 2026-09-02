@@ -50,8 +50,15 @@ class SdPropBarPartImp : public SdPropBar
     void setPropPartImp( const SdPropComposerPartImp &propPartImp );
     void getPropPartImp( SdPropComposerPartImp &propPartImp );
 
+    //!
+    //! \brief mBarId Prop Bar id
+    //!
+    static constexpr int mBarId = PB_PART_IMP;
   private:
     void reorderDirection();
   };
+
+
+using SdPropBarPartImpPtr = SdPropBarPointer<SdPropBarPartImp>;
 
 #endif // SDPROPBARPARTIMP_H

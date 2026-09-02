@@ -79,15 +79,14 @@ void SdModeCScript::drawDynamic(SdContext *ctx)
 
 int SdModeCScript::getPropBarId() const
   {
-  return PB_TEXT;
+  return SdPropBarTextual::mBarId;
   }
 
 
 
 void SdModeCScript::propGetFromBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     if( mPropText )
       tbar->getPropText( mPropText );
     else
@@ -101,8 +100,7 @@ void SdModeCScript::propGetFromBar()
 
 void SdModeCScript::propSetToBar()
   {
-  auto tbar = SdWCommand::getModeToolBar<SdPropBarTextual>( PB_TEXT );
-  if( tbar ) {
+  if( SdPropBarTextualPtr tbar{} ) {
     if( mPropText )
       tbar->setPropText( mPropText, mEditor->getPPM() );
     else

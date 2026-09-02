@@ -50,27 +50,30 @@
         <translation>Вставка цепи шины</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="79"/>
+        <location filename="modes/SdModeCFragment.cpp" line="103"/>
         <location filename="modes/SdModeCSymImp.cpp" line="117"/>
-        <location filename="windows/SdWCommand.cpp" line="255"/>
+        <location filename="windows/SdWCommand.cpp" line="256"/>
         <source>Insert fragment</source>
         <translation>Вставка фрагмента</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="107"/>
+        <location filename="modes/SdModeCFragment.cpp" line="136"/>
         <location filename="modes/SdModeCSymImp.cpp" line="175"/>
         <source>Enter fragment place point</source>
         <translation>Укажите точку вставки фрагмента</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="151"/>
+        <location filename="modes/SdModeCFragment.cpp" line="180"/>
         <location filename="modes/SdModeCSymImp.cpp" line="319"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="295"/>
         <source>Select fragment to insert</source>
         <translation>Выберите фрагмент для вставки</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="160"/>
-        <location filename="modes/SdModeCFragment.cpp" line="174"/>
+        <location filename="modes/SdModeCFragment.cpp" line="56"/>
+        <location filename="modes/SdModeCFragment.cpp" line="71"/>
+        <location filename="modes/SdModeCFragment.cpp" line="189"/>
+        <location filename="modes/SdModeCFragment.cpp" line="203"/>
         <location filename="modes/SdModeCNetWire.cpp" line="306"/>
         <location filename="modes/SdModeCPartImp.cpp" line="206"/>
         <location filename="modes/SdModeCPartImp.cpp" line="211"/>
@@ -85,13 +88,15 @@
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="160"/>
+        <location filename="modes/SdModeCFragment.cpp" line="56"/>
+        <location filename="modes/SdModeCFragment.cpp" line="189"/>
         <location filename="modes/SdModeCSymImp.cpp" line="328"/>
         <source>No sheets to insert. Try another fragment.</source>
         <translation>Нету листов для вставки. Попробуйте выбрать другой фрагмент.</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCFragment.cpp" line="174"/>
+        <location filename="modes/SdModeCFragment.cpp" line="71"/>
+        <location filename="modes/SdModeCFragment.cpp" line="203"/>
         <location filename="modes/SdModeCSymImp.cpp" line="342"/>
         <source>No objects to insert. Source sheet is empty. Select another fragment.</source>
         <translation>Нету объектов для вставки. Исходный лист пустой. Выберите другой фрагмент.</translation>
@@ -287,7 +292,7 @@
     </message>
     <message>
         <location filename="modes/SdModeCPartImp.cpp" line="104"/>
-        <location filename="windows/SdWCommand.cpp" line="291"/>
+        <location filename="windows/SdWCommand.cpp" line="292"/>
         <source>Insert part</source>
         <translation>Вставка корпуса</translation>
     </message>
@@ -360,32 +365,32 @@
     <message>
         <location filename="modes/SdModeCPartPlace.cpp" line="259"/>
         <location filename="modes/SdModeCPartPlace.cpp" line="290"/>
-        <location filename="modes/SdModeCPartPlace.cpp" line="506"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="475"/>
         <source>Moving components</source>
         <translation>Перемещение компонентов</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="531"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="500"/>
         <source>Point second corner for selection components group</source>
         <translation>Укажите второй угол для выделения группы компонентов</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="534"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="503"/>
         <source>Place components! Left button - at cursor position, middle - smart position, right - cancel</source>
         <translation>Размещайте компоненты! Левая кнопка - размещение в позицию курсора, средняя кнопка - разумная позиция, правая кнопка - отмена</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="538"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="507"/>
         <source>Left button: %1;   Middle button: %2</source>
         <translation>Левая кнопка: %1; Средняя кнопка: %2</translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="543"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="512"/>
         <source>Press left button to go to sheet to select component, middle button: </source>
         <translation>Нажмите левую кнопку чтобы перейти к выбору из схемы, средняя кнопка: </translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPlace.cpp" line="545"/>
+        <location filename="modes/SdModeCPartPlace.cpp" line="514"/>
         <source>Press left button on component to select for placing, middle button: </source>
         <translation>Нажмите левую кнопку на компоненте, чтобы выбрать его для размещения или среднюю кнопку: </translation>
     </message>
@@ -457,7 +462,7 @@
     </message>
     <message>
         <location filename="modes/SdModeCRoadMove.cpp" line="352"/>
-        <location filename="modes/SdModeSelect.cpp" line="830"/>
+        <location filename="modes/SdModeSelect.cpp" line="838"/>
         <source>Move begin</source>
         <translation>Начало переноса</translation>
     </message>
@@ -629,13 +634,13 @@
         <translation>Укажите точку для вставки элементов из буфера обмена</translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="1013"/>
+        <location filename="modes/SdModeSelect.cpp" line="1021"/>
         <source>Group rotation</source>
         <translation>Поворот группы</translation>
     </message>
     <message>
         <location filename="modes/SdModeCTraceDelete.cpp" line="88"/>
-        <location filename="modes/SdModeSelect.cpp" line="672"/>
+        <location filename="modes/SdModeSelect.cpp" line="680"/>
         <source>Deletion elements</source>
         <translation>Удаление элементов</translation>
     </message>
@@ -645,12 +650,12 @@
         <translation>Укажите дорожку, полигон или переходное для удаления</translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="941"/>
+        <location filename="modes/SdModeSelect.cpp" line="949"/>
         <source>Insert from clipboard</source>
         <translation>Вставка из буфера обмена</translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="977"/>
+        <location filename="modes/SdModeSelect.cpp" line="985"/>
         <source>Copy insertion</source>
         <translation>Копирование вставки</translation>
     </message>
@@ -862,27 +867,27 @@
         <translation>Изменение точки привязки</translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="141"/>
+        <location filename="windows/SdDPadMaster.cpp" line="161"/>
         <source>PCB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="145"/>
+        <location filename="windows/SdDPadMaster.cpp" line="165"/>
         <source>Solder mask</source>
         <translation>Маска пасты</translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="152"/>
+        <location filename="windows/SdDPadMaster.cpp" line="172"/>
         <source>Pad</source>
         <translation>Площадка</translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="158"/>
+        <location filename="windows/SdDPadMaster.cpp" line="178"/>
         <source>Hole</source>
         <translation>Отверстие</translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="164"/>
+        <location filename="windows/SdDPadMaster.cpp" line="184"/>
         <source>Stensil</source>
         <translation>Трафарет</translation>
     </message>
@@ -1306,7 +1311,7 @@
     <message>
         <location filename="windows/SdWCommand.cpp" line="170"/>
         <source>Binder</source>
-        <translation type="unfinished"></translation>
+        <translation>Привязка</translation>
     </message>
     <message>
         <location filename="windows/SdWCommand.cpp" line="195"/>
@@ -1409,163 +1414,179 @@
         <translation>Ренумерация</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="256"/>
+        <location filename="windows/SdWCommand.cpp" line="254"/>
+        <source>Sheet form master...</source>
+        <translation>Мастер рамок форматов...</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="257"/>
         <source>Insert component</source>
         <translation>Вставить компонент</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="257"/>
+        <location filename="windows/SdWCommand.cpp" line="258"/>
         <source>Insert net wire</source>
         <translation>Вставить цепь</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="258"/>
+        <location filename="windows/SdWCommand.cpp" line="259"/>
         <source>Insert net name</source>
         <translation>Вставить имя цепи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="259"/>
+        <location filename="windows/SdWCommand.cpp" line="260"/>
         <source>Insert bus (many net)</source>
         <translation>Вставить шину (несколько цепей)</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="260"/>
+        <location filename="windows/SdWCommand.cpp" line="261"/>
         <source>Disconnect net</source>
         <translation>Отключить цепь</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="261"/>
-        <location filename="windows/SdWCommand.cpp" line="303"/>
+        <location filename="windows/SdWCommand.cpp" line="262"/>
+        <location filename="windows/SdWCommand.cpp" line="304"/>
         <source>Move ident of components</source>
         <translation>Переместь ID компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="262"/>
-        <location filename="windows/SdWCommand.cpp" line="304"/>
+        <location filename="windows/SdWCommand.cpp" line="263"/>
+        <location filename="windows/SdWCommand.cpp" line="305"/>
         <source>Move value of components</source>
         <translation>Переместить значение компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="263"/>
+        <location filename="windows/SdWCommand.cpp" line="264"/>
         <source>Script insert and edit</source>
         <translation>Вставить и редактировать скрипт</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="264"/>
+        <location filename="windows/SdWCommand.cpp" line="265"/>
         <source>Net pins list insert and edit</source>
         <translation>Текстовый список цепей, вставка и редактирование</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="271"/>
+        <location filename="windows/SdWCommand.cpp" line="272"/>
         <source>Plate</source>
         <translation>Плата</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="273"/>
+        <location filename="windows/SdWCommand.cpp" line="274"/>
         <source>PCB layer count...</source>
         <translation>Количество слоев платы...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="274"/>
+        <location filename="windows/SdWCommand.cpp" line="275"/>
         <source>PCB board builder...</source>
         <translation>Конструктор плат...</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="276"/>
+        <location filename="windows/SdWCommand.cpp" line="277"/>
         <source>Show rat net</source>
         <translation>Показать сетку связей</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="280"/>
+        <location filename="windows/SdWCommand.cpp" line="281"/>
         <source>Pads association</source>
         <translation>Ассоциация контактных площадок</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="292"/>
+        <location filename="windows/SdWCommand.cpp" line="293"/>
         <source>Move part</source>
         <translation>Переместить корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="293"/>
+        <location filename="windows/SdWCommand.cpp" line="294"/>
         <source>Road enter</source>
         <translation>Вставить дорожку</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="294"/>
+        <location filename="windows/SdWCommand.cpp" line="295"/>
         <source>Road move</source>
         <translation>Переместить дорожку</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="295"/>
+        <location filename="windows/SdWCommand.cpp" line="296"/>
         <source>Polygon enter</source>
         <translation>Вставить полигон</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="296"/>
+        <location filename="windows/SdWCommand.cpp" line="297"/>
         <source>Via enter</source>
         <translation>Вставить переходное</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="297"/>
+        <location filename="windows/SdWCommand.cpp" line="298"/>
         <source>Delete trace</source>
         <translation>Удалить трассу</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="305"/>
+        <location filename="windows/SdWCommand.cpp" line="306"/>
         <source>Edit plate origin</source>
         <translation>Точка привязки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="306"/>
+        <location filename="windows/SdWCommand.cpp" line="307"/>
         <source>Highlight components</source>
         <translation>Подсветка компонентов</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="310"/>
+        <location filename="windows/SdWCommand.cpp" line="311"/>
         <source>Rules</source>
         <translation>Правила трассировки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="311"/>
+        <location filename="windows/SdWCommand.cpp" line="312"/>
         <source>Edit rules dialog</source>
         <translation>Редактирование правил трассировки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="312"/>
+        <location filename="windows/SdWCommand.cpp" line="313"/>
         <source>Show rule errors</source>
         <translation>Показать несоответствия правилам</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="316"/>
+        <location filename="windows/SdWCommand.cpp" line="317"/>
         <source>Check all rules</source>
         <translation>Проверить все правила</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="317"/>
+        <location filename="windows/SdWCommand.cpp" line="318"/>
         <source>Center next rules error</source>
         <translation>Следующая ошибка в центр</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="321"/>
+        <location filename="windows/SdWCommand.cpp" line="322"/>
         <source>Instruments</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="325"/>
+        <location filename="windows/SdWCommand.cpp" line="326"/>
         <source>Ref to library object</source>
         <translation>Ссылка на библиотечный объект</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="326"/>
+        <location filename="windows/SdWCommand.cpp" line="327"/>
         <source>Library service</source>
-        <translation type="unfinished"></translation>
+        <translation>Обслуживание библиотек</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="358"/>
+        <location filename="windows/SdWCommand.cpp" line="360"/>
+        <source>Rotate component CW 90</source>
+        <translation>Поворот компонента по часовой на 90</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="359"/>
+        <source>Flip component to other side</source>
+        <translation>Перенос компонента на другую сторону платы</translation>
     </message>
     <message>
         <source>Library</source>
         <translation type="obsolete">Библиотека</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="323"/>
+        <location filename="windows/SdWCommand.cpp" line="324"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
@@ -1574,57 +1595,70 @@
         <translation type="vanished">Инструменты</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="328"/>
+        <location filename="windows/SdWCommand.cpp" line="329"/>
         <source>Guider scene builder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="329"/>
+        <location filename="windows/SdWCommand.cpp" line="330"/>
         <source>Guider snapshot save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="339"/>
+        <location filename="windows/SdWCommand.cpp" line="340"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="340"/>
+        <location filename="windows/SdWCommand.cpp" line="341"/>
+        <source>Ai Chat</source>
+        <translation>Ai чат</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="342"/>
         <source>Contents</source>
         <translation>Содержание</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="341"/>
+        <location filename="windows/SdWCommand.cpp" line="343"/>
         <source>Index</source>
         <translation>Индекс</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="342"/>
+        <location filename="windows/SdWCommand.cpp" line="344"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="343"/>
+        <location filename="windows/SdWCommand.cpp" line="345"/>
         <source>Registration</source>
         <translation>Регистрация</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="344"/>
+        <location filename="windows/SdWCommand.cpp" line="346"/>
         <source>Home help page</source>
         <translation>Начальная страница помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="346"/>
+        <location filename="windows/SdWCommand.cpp" line="348"/>
         <source>Backward help page</source>
         <translation>К предыдущей странице помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="348"/>
+        <location filename="windows/SdWCommand.cpp" line="350"/>
         <source>Forward help page</source>
         <translation>К следующей странице помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="353"/>
+        <location filename="windows/SdWCommand.cpp" line="355"/>
+        <source>Context</source>
+        <translation>Контекстное меню</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="357"/>
+        <location filename="windows/SdWCommand.cpp" line="365"/>
+        <location filename="windows/SdWCommand.cpp" line="383"/>
+        <location filename="windows/SdWCommand.cpp" line="401"/>
         <source>Select</source>
         <translation>Выделение</translation>
     </message>
@@ -1849,7 +1883,7 @@
         <translation>Нет функции &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="116"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="121"/>
         <source>Select form to insert</source>
         <translation>Выберите форму для вставки</translation>
     </message>
@@ -1936,85 +1970,85 @@
     <message>
         <location filename="modes/SdModeTBinder.cpp" line="108"/>
         <source>Enter binding point or enter offset from previous point</source>
-        <translation type="unfinished"></translation>
+        <translation>Укажите относительную точку или введите смещение от предыдущей точки</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="335"/>
         <source>Circle diam %1mm</source>
-        <translation type="unfinished"></translation>
+        <translation>Окружность диаметром %1мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="338"/>
         <source>Ellipse %1*%2mm</source>
-        <translation type="unfinished"></translation>
+        <translation>Эллипс %1*%2мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="343"/>
         <source>Rounded rect %1*%2mm ratio %3mm</source>
-        <translation type="unfinished"></translation>
+        <translation>Скругленный прямоугольник %1*%2мм скругление %3мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="347"/>
         <source>Rect %1*%2mm</source>
-        <translation type="unfinished"></translation>
+        <translation>Прямоугольник %1*%2мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="353"/>
         <source> off %1*%2mm</source>
-        <translation type="unfinished"></translation>
+        <translation>смещение %1*%2мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="358"/>
         <source> rotate %1°</source>
-        <translation type="unfinished"></translation>
+        <translation>поворот %1°</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="363"/>
         <source> slot %1*%2mm</source>
-        <translation type="unfinished"></translation>
+        <translation>слот %1*%2мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="366"/>
         <source> hole %1mm</source>
-        <translation type="unfinished"></translation>
+        <translation>отверстие %1мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="372"/>
         <source> mask=pad</source>
-        <translation type="unfinished"></translation>
+        <translation>маска=площадка</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="374"/>
         <source> mask %1mm</source>
-        <translation type="unfinished"></translation>
+        <translation>маска %1мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="376"/>
         <source> mask %1*%2mm</source>
-        <translation type="unfinished"></translation>
+        <translation>маска %1*%2мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="383"/>
         <source> stencil=pad</source>
-        <translation type="unfinished"></translation>
+        <translation>апертура=площадка</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="385"/>
         <source> stencil arr %1*%2 of %3*%4mm</source>
-        <translation type="unfinished"></translation>
+        <translation>массив %1*%2 из апертур %3*%4мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="391"/>
         <source> stencil %1mm</source>
-        <translation type="unfinished"></translation>
+        <translation>апертура %1мм</translation>
     </message>
     <message>
         <location filename="objects/SdPad.cpp" line="393"/>
         <source> stencil %1*%2mm</source>
-        <translation type="unfinished"></translation>
+        <translation>апертура %1*%2мм</translation>
     </message>
     <message>
-        <location filename="windows/SdDBoardBuilder.cpp" line="114"/>
+        <location filename="windows/SdDBoardBuilder.cpp" line="121"/>
         <source>Build board</source>
         <translation>Построение платы</translation>
     </message>
@@ -2032,6 +2066,11 @@
         <location filename="objects/SdGraphNetPinsList.cpp" line="279"/>
         <source>Net &quot;%1&quot; connect to pins </source>
         <translation>Цепь &quot;%1&quot; подключить к выводам </translation>
+    </message>
+    <message>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="313"/>
+        <source>Replace form</source>
+        <translation>Замена рамки формата</translation>
     </message>
 </context>
 <context>
@@ -2128,68 +2167,68 @@
     </message>
     <message>
         <location filename="windows/SdD3dModelProgrammEditor.cpp" line="134"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="256"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="265"/>
         <source>Error:</source>
         <translation>Ошибка:</translation>
     </message>
     <message>
         <location filename="windows/SdD3dModelProgrammEditor.cpp" line="141"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="263"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="272"/>
         <source>Build</source>
         <translation>Построить</translation>
     </message>
     <message>
         <location filename="windows/SdD3dModelProgrammEditor.cpp" line="142"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="264"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="273"/>
         <source>Compile source text 3d model programm</source>
         <translation>Компилирует исходный текст программы построения 3d модели</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="217"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="226"/>
         <source>3d model editor</source>
         <translation>Редактор 3d моделей</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="223"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="232"/>
         <source>Part title: </source>
         <translation>Название корпуса: </translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="341"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="350"/>
         <source>Parametr name</source>
         <translation>Имя параметра</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="341"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="350"/>
         <source>Parametr value</source>
         <translation>Значение параметра</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="432"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="437"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="491"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="507"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="441"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="446"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="500"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="516"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="432"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="441"/>
         <source>Programm title not defined! Enter programm title and repeate saving</source>
         <translation>Не задано название программы! Введите название программы и сохраните повторно</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="437"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="446"/>
         <source>Programm description not defined! Enter programm description and repeate saving</source>
         <translation>Не задано описание программы! Введите описание программы и сохраните повторно</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="446"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="455"/>
         <source>Update 3d programm</source>
         <translation>Обновление 3d программы</translation>
     </message>
     <message>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="491"/>
-        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="507"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="500"/>
+        <location filename="windows/SdD3dModelProgrammEditor.cpp" line="516"/>
         <source>Programm text changed! Do You want save edited text before closing?</source>
         <translation>Текст программы изменен! Вы хотите сохранить внесенные изменения перед закрытием?</translation>
     </message>
@@ -2369,12 +2408,12 @@
         <translation>Список именованных цепей</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetBus.cpp" line="196"/>
+        <location filename="windows/SdDGetBus.cpp" line="202"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetBus.cpp" line="196"/>
+        <location filename="windows/SdDGetBus.cpp" line="202"/>
         <source>Wrong net list syntax. Use: netA,netB,net&lt;0:2&gt;</source>
         <translation>Неверный синтаксис списка цепей. Используйте: цепьА,цепьБ,цепь&lt;0:2&gt;</translation>
     </message>
@@ -2511,32 +2550,32 @@
         <translation>3D</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="349"/>
+        <location filename="windows/SdDGetObject.cpp" line="357"/>
         <source>Section %1: %2</source>
         <translation>Секция %1:%2</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="481"/>
+        <location filename="windows/SdDGetObject.cpp" line="489"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="482"/>
+        <location filename="windows/SdDGetObject.cpp" line="490"/>
         <source>Author</source>
         <translation>Автор</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="483"/>
+        <location filename="windows/SdDGetObject.cpp" line="491"/>
         <source>Created</source>
         <translation>Создан</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="541"/>
+        <location filename="windows/SdDGetObject.cpp" line="549"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdDGetObject.cpp" line="541"/>
+        <location filename="windows/SdDGetObject.cpp" line="549"/>
         <source>You must select element or press Cancel</source>
         <translation>Вы должны выбратиь элемент или нажмите Отмена</translation>
     </message>
@@ -2845,12 +2884,12 @@
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayerList.cpp" line="106"/>
+        <location filename="windows/SdDLayerList.cpp" line="111"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayerList.cpp" line="106"/>
+        <location filename="windows/SdDLayerList.cpp" line="111"/>
         <source>Pair not selected to assign. Select it and repeate assigning.</source>
         <translation>Не выбран парный слой для назначения. Выберите его и повторите назначение.</translation>
     </message>
@@ -2964,79 +3003,79 @@
         <translation>Имя пары</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="311"/>
+        <location filename="windows/SdDLayers.cpp" line="326"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="311"/>
+        <location filename="windows/SdDLayers.cpp" line="326"/>
         <source>Are You sure to delete layer &quot;%1&quot;</source>
         <translation>Вы уверены, что хотите удалить слой &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="317"/>
-        <location filename="windows/SdDLayers.cpp" line="327"/>
+        <location filename="windows/SdDLayers.cpp" line="332"/>
+        <location filename="windows/SdDLayers.cpp" line="342"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="317"/>
+        <location filename="windows/SdDLayers.cpp" line="332"/>
         <source>Layer &quot;%1&quot; is used in some projects. It can&apos;t be deleted.</source>
         <translation>Слой &quot;%1&quot; используется в некоторых проектах. Его нельзя удалить.</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="327"/>
+        <location filename="windows/SdDLayers.cpp" line="342"/>
         <source>Select layer to delete</source>
         <translation>Выберите слой для удаления</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="400"/>
+        <location filename="windows/SdDLayers.cpp" line="415"/>
         <source>Select file name to load layer state list</source>
         <translation>Выберите имя файла для загрузки списка состояния слоев</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="422"/>
+        <location filename="windows/SdDLayers.cpp" line="437"/>
         <source>Enter file name to save layer state list</source>
         <translation>Введите имя файла для сохранения списка состояния слоев</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="519"/>
+        <location filename="windows/SdDLayers.cpp" line="534"/>
         <source>Select layer color</source>
         <translation>Выберите цвет слоя</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="590"/>
+        <location filename="windows/SdDLayers.cpp" line="605"/>
         <source>Off</source>
         <translation>Выкл</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="591"/>
+        <location filename="windows/SdDLayers.cpp" line="606"/>
         <source>On</source>
         <translation>Вкл</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="592"/>
+        <location filename="windows/SdDLayers.cpp" line="607"/>
         <source>Edit</source>
         <translation>Редакт</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="604"/>
-        <location filename="windows/SdDLayers.cpp" line="624"/>
+        <location filename="windows/SdDLayers.cpp" line="619"/>
+        <location filename="windows/SdDLayers.cpp" line="639"/>
         <source>---</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="606"/>
+        <location filename="windows/SdDLayers.cpp" line="621"/>
         <source>pad</source>
         <translation>площадки</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="608"/>
+        <location filename="windows/SdDLayers.cpp" line="623"/>
         <source>mask</source>
         <translation>маска</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="610"/>
+        <location filename="windows/SdDLayers.cpp" line="625"/>
         <source>stencil</source>
         <translation>трафарет</translation>
     </message>
@@ -3045,32 +3084,32 @@
         <translation type="vanished">трафарет</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="612"/>
+        <location filename="windows/SdDLayers.cpp" line="627"/>
         <source>hole</source>
         <translation>отверстие</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="614"/>
+        <location filename="windows/SdDLayers.cpp" line="629"/>
         <source>road</source>
         <translation>дорожки</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="616"/>
+        <location filename="windows/SdDLayers.cpp" line="631"/>
         <source>polygon</source>
         <translation>полигон</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="618"/>
+        <location filename="windows/SdDLayers.cpp" line="633"/>
         <source>bound</source>
         <translation>границы</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="620"/>
+        <location filename="windows/SdDLayers.cpp" line="635"/>
         <source>keepout</source>
         <translation>запрет</translation>
     </message>
     <message>
-        <location filename="windows/SdDLayers.cpp" line="622"/>
+        <location filename="windows/SdDLayers.cpp" line="637"/>
         <source>last</source>
         <translation>последний</translation>
     </message>
@@ -3919,12 +3958,12 @@
         <translation>Назначить &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="windows/SdDNetUnion.cpp" line="47"/>
+        <location filename="windows/SdDNetUnion.cpp" line="51"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdDNetUnion.cpp" line="47"/>
+        <location filename="windows/SdDNetUnion.cpp" line="51"/>
         <source>You must select one variant or cancel</source>
         <translation>Вы должны выбрать один вариант или нажать Отмена</translation>
     </message>
@@ -4469,12 +4508,12 @@
         <translation>Просмотр площадки вид сверху</translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="285"/>
+        <location filename="windows/SdDPadMaster.cpp" line="305"/>
         <source>Pad diametr</source>
         <translation>Диаметр площадки</translation>
     </message>
     <message>
-        <location filename="windows/SdDPadMaster.cpp" line="290"/>
+        <location filename="windows/SdDPadMaster.cpp" line="310"/>
         <source>Pad witdh</source>
         <translation>Ширина площадки</translation>
     </message>
@@ -4532,59 +4571,59 @@
         <translation>Загрузить ассоциацию</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="126"/>
+        <location filename="windows/SdDPads.cpp" line="138"/>
         <source>Pin type</source>
         <translation>Тип вывода</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="126"/>
+        <location filename="windows/SdDPads.cpp" line="138"/>
         <source>Pad description</source>
         <translation>Описание площадки</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="189"/>
+        <location filename="windows/SdDPads.cpp" line="201"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="189"/>
+        <location filename="windows/SdDPads.cpp" line="201"/>
         <source>Not selected pin to delete. Select one and retry.</source>
         <translation>Не выбрана площадка для удаления. Выберите площадку и повторите.</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="195"/>
-        <location filename="windows/SdDPads.cpp" line="212"/>
+        <location filename="windows/SdDPads.cpp" line="207"/>
+        <location filename="windows/SdDPads.cpp" line="224"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="195"/>
+        <location filename="windows/SdDPads.cpp" line="207"/>
         <source>Are you sure to delete pin &quot;%1&quot;</source>
         <translation>Вы уверены, что хотите удалить вывод &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="212"/>
+        <location filename="windows/SdDPads.cpp" line="224"/>
         <source>Are you sure to delete all pins?</source>
         <translation>Вы уверены, что хотите удалить все выводы?</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="240"/>
+        <location filename="windows/SdDPads.cpp" line="252"/>
         <source>Enter name for save pad association</source>
         <translation>Введите имя для сохранения ассоции контактных площадок</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="247"/>
+        <location filename="windows/SdDPads.cpp" line="259"/>
         <source>Pad association saved successfully</source>
         <translation>Ассоциация контактных площадок сохранена успешно</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="249"/>
+        <location filename="windows/SdDPads.cpp" line="261"/>
         <source>Fail to save pad association</source>
         <translation>Ошибка сохранения ассоциации контактных площадок</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="259"/>
-        <location filename="windows/SdDPads.cpp" line="286"/>
+        <location filename="windows/SdDPads.cpp" line="271"/>
+        <location filename="windows/SdDPads.cpp" line="298"/>
         <source>Select pad association file to load</source>
         <translation>Выберите файл с ассоциацией контактных площадок для загрузки</translation>
     </message>
@@ -4593,8 +4632,8 @@
         <translation type="vanished">Не могу сохранить так как не введено имя. Введите имя для этой таблицы ассоциации и повторите сохранение.</translation>
     </message>
     <message>
-        <location filename="windows/SdDPads.cpp" line="247"/>
-        <location filename="windows/SdDPads.cpp" line="249"/>
+        <location filename="windows/SdDPads.cpp" line="259"/>
+        <location filename="windows/SdDPads.cpp" line="261"/>
         <source>Info</source>
         <translation>Информация</translation>
     </message>
@@ -4610,224 +4649,224 @@
 <context>
     <name>SdDParamBase</name>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="104"/>
+        <location filename="windows/SdDParamBase.cpp" line="103"/>
         <source>This parameter define component line representation in bill of material report</source>
         <translation type="unfinished">Этот параметр определяет представление компонента в отчете перечня материалов (BOM)</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="105"/>
+        <location filename="windows/SdDParamBase.cpp" line="104"/>
         <source>Component article representation. Can be used in component name and also in bom</source>
         <translation type="unfinished">Представляет артикул компонента. Может быть использован в названии компонента а также в перечне материалов BOM</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="106"/>
+        <location filename="windows/SdDParamBase.cpp" line="105"/>
         <source>This parametr define component name without value for example smd 0805</source>
         <translation type="unfinished">Этот параметр определяет имя компонента без значения, например smd 0805</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="107"/>
+        <location filename="windows/SdDParamBase.cpp" line="106"/>
         <source>This parameter define concrete component value for example 1kOm</source>
         <translation type="unfinished">Этот параметр определяет значение компонента, например 1kOm</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="108"/>
+        <location filename="windows/SdDParamBase.cpp" line="107"/>
         <source>Minimum for value parameter, for example 1 Om</source>
         <translation type="unfinished">Минимальное значение параметра, например 1Om</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="109"/>
+        <location filename="windows/SdDParamBase.cpp" line="108"/>
         <source>Maximum for value parameter, for example 10 MOm</source>
         <translation type="unfinished">Максимальное значение параметра, например 10Mom</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="110"/>
+        <location filename="windows/SdDParamBase.cpp" line="109"/>
         <source>Row with which forms all intermediate values, for example E12</source>
         <translation type="unfinished">Ряд, из которого формируются индивидуальные значения компонента, например E12</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="111"/>
+        <location filename="windows/SdDParamBase.cpp" line="110"/>
         <source>This param define component ident prefix for example prefix DD will construct ident DD4</source>
         <translation type="unfinished">Этот параметр определяет префикс идентификатора компонента, например префикс DD создаст идентификатор DD4</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="112"/>
+        <location filename="windows/SdDParamBase.cpp" line="111"/>
         <source>This param define used value selector for example &apos;resistor&apos; will select resistor values, i.e. 1.2kOm</source>
         <translation type="unfinished">Этот параметр определяет использование селектора, например &apos;resistor&apos; будет выбирать значения резисторов, т.е. 1.2kOm</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="113"/>
+        <location filename="windows/SdDParamBase.cpp" line="112"/>
         <source>Manufacturer of component</source>
         <translation type="unfinished">Производитель компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="114"/>
+        <location filename="windows/SdDParamBase.cpp" line="113"/>
         <source>Tolerance of value</source>
         <translation type="unfinished">Допуск значения</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="115"/>
+        <location filename="windows/SdDParamBase.cpp" line="114"/>
         <source>Local path to pdf file with datasheet</source>
         <translation type="unfinished">Локальный путь к файлу PDF с описанием компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="116"/>
+        <location filename="windows/SdDParamBase.cpp" line="115"/>
         <source>www page address</source>
         <translation type="unfinished">Адрес в сети Internet к описанию компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="117"/>
+        <location filename="windows/SdDParamBase.cpp" line="116"/>
         <source>Device marking code</source>
         <translation type="unfinished">Маркировка компонента на корпусе компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="118"/>
+        <location filename="windows/SdDParamBase.cpp" line="117"/>
         <source>Pins connections outside symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="120"/>
+        <location filename="windows/SdDParamBase.cpp" line="119"/>
         <source>Capacitor dielectric type</source>
         <translation type="unfinished">Тип диэлектрика конденсатора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="121"/>
+        <location filename="windows/SdDParamBase.cpp" line="120"/>
         <source>Capacitor working voltage</source>
         <translation type="unfinished">Рабочее напряжение конденсатора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="123"/>
+        <location filename="windows/SdDParamBase.cpp" line="122"/>
         <source>Diod forvard voltage</source>
         <translation type="unfinished">Прямое напряжение диода</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="124"/>
+        <location filename="windows/SdDParamBase.cpp" line="123"/>
         <source>Forvard continuous current</source>
         <translation type="unfinished">Прямой продолжительный ток</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="125"/>
+        <location filename="windows/SdDParamBase.cpp" line="124"/>
         <source>Diod reverce voltage</source>
         <translation type="unfinished">Обратное напряжение диода</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="127"/>
+        <location filename="windows/SdDParamBase.cpp" line="126"/>
         <source>LED angle</source>
         <translation type="unfinished">Угол светодиода</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="128"/>
+        <location filename="windows/SdDParamBase.cpp" line="127"/>
         <source>LED brightness</source>
         <translation type="unfinished">Яркость светодиода</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="129"/>
+        <location filename="windows/SdDParamBase.cpp" line="128"/>
         <source>LED color</source>
         <translation type="unfinished">Цвет светодиода</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="130"/>
+        <location filename="windows/SdDParamBase.cpp" line="129"/>
         <source>LED wavelength</source>
         <translation type="unfinished">Длина волны светодиода</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="132"/>
+        <location filename="windows/SdDParamBase.cpp" line="131"/>
         <source>Inductor saturated current</source>
         <translation type="unfinished">Ток насыщения индуктора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="133"/>
+        <location filename="windows/SdDParamBase.cpp" line="132"/>
         <source>Inductor resistance</source>
         <translation type="unfinished">Сопротивление индуктора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="134"/>
+        <location filename="windows/SdDParamBase.cpp" line="133"/>
         <source>Inductor self resonant frequency</source>
         <translation type="unfinished">Собственная резонансная частота индуктора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="136"/>
+        <location filename="windows/SdDParamBase.cpp" line="135"/>
         <source>MOSFET dest current</source>
         <translation type="unfinished">Ток стока MOSFET</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="137"/>
+        <location filename="windows/SdDParamBase.cpp" line="136"/>
         <source>MOSFET dest power or transistor power</source>
         <translation type="unfinished">Мощность стока MOSFET или транзистора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="138"/>
+        <location filename="windows/SdDParamBase.cpp" line="137"/>
         <source>MOSFET source-dest resistance when ON state</source>
         <translation type="unfinished">Сопротивление исток-сток MOSFET во включенном состоянии</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="139"/>
+        <location filename="windows/SdDParamBase.cpp" line="138"/>
         <source>MOSFET source-dest voltage when OFF</source>
         <translation type="unfinished">Напряжение исток-сток MOSFET в выключенном состоянии</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="140"/>
+        <location filename="windows/SdDParamBase.cpp" line="139"/>
         <source>MOSFET gate-source voltage</source>
         <translation type="unfinished">Напряжение затвор исток MOSFET</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="142"/>
+        <location filename="windows/SdDParamBase.cpp" line="141"/>
         <source>Transistor collector current</source>
         <translation type="unfinished">Ток коллектора транзистора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="143"/>
+        <location filename="windows/SdDParamBase.cpp" line="142"/>
         <source>Transistor maximum Voltage which it can withstand on its collector measured relative to its base with the emitter open circuit</source>
         <translation type="unfinished">Максимальное напряжение на коллекторе относительно базы в схеме с открытым эмиттером</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="144"/>
+        <location filename="windows/SdDParamBase.cpp" line="143"/>
         <source>Transistor maximum voltage which it can withstand on its collector measured relative to its emitter with the base open circuit</source>
         <translation type="unfinished">Максимальное напряжение на коллекторе относительно эмиттера в схеме с открытой базой</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="145"/>
+        <location filename="windows/SdDParamBase.cpp" line="144"/>
         <source>Transistor current-gain koef</source>
         <translation type="unfinished">Коэффициент усиления по току коллектора</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="147"/>
+        <location filename="windows/SdDParamBase.cpp" line="146"/>
         <source>Description for 3d model programm</source>
         <translation type="unfinished">Описание для программы 3d модели</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="192"/>
-        <location filename="windows/SdDParamBase.cpp" line="267"/>
+        <location filename="windows/SdDParamBase.cpp" line="191"/>
+        <location filename="windows/SdDParamBase.cpp" line="266"/>
         <source>Param name</source>
         <translation type="unfinished">Имя параметра</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="192"/>
+        <location filename="windows/SdDParamBase.cpp" line="191"/>
         <source>Enter param name</source>
         <translation type="unfinished">Введите имя параметра</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="195"/>
-        <location filename="windows/SdDParamBase.cpp" line="227"/>
+        <location filename="windows/SdDParamBase.cpp" line="194"/>
+        <location filename="windows/SdDParamBase.cpp" line="226"/>
         <source>Warning!</source>
         <translation type="unfinished">Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="195"/>
+        <location filename="windows/SdDParamBase.cpp" line="194"/>
         <source>Param with this name already exist. Enter another name.</source>
         <translation type="unfinished">Параметр с таким именем уже существует. Введите другое имя.</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="227"/>
+        <location filename="windows/SdDParamBase.cpp" line="226"/>
         <source>Select param to delete</source>
         <translation type="unfinished">Выберите параметр для удаления</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="235"/>
+        <location filename="windows/SdDParamBase.cpp" line="234"/>
         <source>Select component to copy param from</source>
         <translation type="unfinished">Выберите компонент для копирования из него параметров</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamBase.cpp" line="267"/>
+        <location filename="windows/SdDParamBase.cpp" line="266"/>
         <source>Param value</source>
         <translation type="unfinished">Значение параметра</translation>
     </message>
@@ -4903,12 +4942,12 @@
         <translation>Удалить выводы stm32</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="165"/>
+        <location filename="windows/SdDParamEditor.cpp" line="181"/>
         <source>STM32CubeIde MX configuration file</source>
         <translation>Конфигурационный файл STM32CubeIde MX</translation>
     </message>
     <message>
-        <location filename="windows/SdDParamEditor.cpp" line="165"/>
+        <location filename="windows/SdDParamEditor.cpp" line="181"/>
         <source>STM32CubeIde MX Files (*%1)</source>
         <translation>Файлы STM32CubeIde MX (*%1)</translation>
     </message>
@@ -5227,27 +5266,27 @@
         <translation>Введите библиотечное имя для проекта</translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="61"/>
+        <location filename="windows/SdDProjectStore.cpp" line="65"/>
         <source>&lt;font color=&quot;blue&quot;&gt;Name is empty. You must enter correct name at least one symbol.&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;blue&quot;&gt;Имя пустое. Вы должны ввести правильное имя хотя-бы из одной буквы-цифры.&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="64"/>
+        <location filename="windows/SdDProjectStore.cpp" line="68"/>
         <source>&lt;font color=&quot;red&quot;&gt;This name already exist and will be overwritted! If You dont want to then enter another name.&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;red&quot;&gt;Это имя уже существует и будет перезаписано! Если Вы не хотите этого введите другое имя.&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="67"/>
+        <location filename="windows/SdDProjectStore.cpp" line="71"/>
         <source>Name is correct and free.</source>
         <translation>Имя корректное и свободное.</translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="80"/>
+        <location filename="windows/SdDProjectStore.cpp" line="84"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdDProjectStore.cpp" line="80"/>
+        <location filename="windows/SdDProjectStore.cpp" line="84"/>
         <source>Library name of project is empty. Enter name to store project or press cancel.</source>
         <translation>Библиотечное имя проекта пустое. Введите имя для сохранения проекта в библиотеке или нажмите Отмена.</translation>
     </message>
@@ -5287,7 +5326,7 @@
         <translation>Генерировать приватный ключ</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="189"/>
+        <location filename="windows/SdDRegistation.cpp" line="201"/>
         <source>Name:</source>
         <translation>Имя:</translation>
     </message>
@@ -5354,12 +5393,12 @@
         <translation type="vanished">Нет информации</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="88"/>
-        <location filename="windows/SdDRegistation.cpp" line="92"/>
-        <location filename="windows/SdDRegistation.cpp" line="96"/>
-        <location filename="windows/SdDRegistation.cpp" line="101"/>
-        <location filename="windows/SdDRegistation.cpp" line="138"/>
-        <location filename="windows/SdDRegistation.cpp" line="143"/>
+        <location filename="windows/SdDRegistation.cpp" line="100"/>
+        <location filename="windows/SdDRegistation.cpp" line="104"/>
+        <location filename="windows/SdDRegistation.cpp" line="108"/>
+        <location filename="windows/SdDRegistation.cpp" line="113"/>
+        <location filename="windows/SdDRegistation.cpp" line="150"/>
+        <location filename="windows/SdDRegistation.cpp" line="155"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
@@ -5400,8 +5439,8 @@
         <translation type="vanished">Не зарегистрирован!</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="88"/>
-        <location filename="windows/SdDRegistation.cpp" line="138"/>
+        <location filename="windows/SdDRegistation.cpp" line="100"/>
+        <location filename="windows/SdDRegistation.cpp" line="150"/>
         <source>Enter repository server</source>
         <translation>Введите IP сервера репозитория</translation>
     </message>
@@ -5410,76 +5449,76 @@
         <translation type="vanished">Введите пароль для вашего имени</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="92"/>
+        <location filename="windows/SdDRegistation.cpp" line="104"/>
         <source>Enter public author name</source>
         <translation>Введите публичное имя автора</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="96"/>
+        <location filename="windows/SdDRegistation.cpp" line="108"/>
         <source>Enter your email needed to restore key at later</source>
         <translation>Введите ваш email нужный для возможности восстановления ключа в дальнейшем</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="101"/>
-        <location filename="windows/SdDRegistation.cpp" line="143"/>
+        <location filename="windows/SdDRegistation.cpp" line="113"/>
+        <location filename="windows/SdDRegistation.cpp" line="155"/>
         <source>Enter private key for your account</source>
         <translation>Введите приватный ключ для вашего аккаунта</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="108"/>
-        <location filename="windows/SdDRegistation.cpp" line="150"/>
+        <location filename="windows/SdDRegistation.cpp" line="120"/>
+        <location filename="windows/SdDRegistation.cpp" line="162"/>
         <source>Query server...</source>
         <translation>Запрос на сервер...</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="185"/>
+        <location filename="windows/SdDRegistation.cpp" line="197"/>
         <source>Name (empty):</source>
         <translation>Имя (пустое):</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="187"/>
+        <location filename="windows/SdDRegistation.cpp" line="199"/>
         <source>Name (unavailable):</source>
         <translation>Имя (недопустимое): </translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="235"/>
+        <location filename="windows/SdDRegistation.cpp" line="247"/>
         <source>Author public key and author private key not equals recorded in db.</source>
         <translation>Публичный ключ автора и его приватный ключ не соответствуют записанным в базе данных сервера.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="237"/>
+        <location filename="windows/SdDRegistation.cpp" line="249"/>
         <source>Assigned name already used by other author.</source>
         <oldsource>Assigned name always used by other author.</oldsource>
         <translation>Заданное имя уже используется другим автором.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="239"/>
+        <location filename="windows/SdDRegistation.cpp" line="251"/>
         <source>Registration successfull.</source>
         <translation>Регистрация успешна.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="241"/>
+        <location filename="windows/SdDRegistation.cpp" line="253"/>
         <source>Registration fail. Try later.</source>
         <translation>Регистрация не удалась. Попробуйте позднее.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="244"/>
-        <location filename="windows/SdDRegistation.cpp" line="276"/>
+        <location filename="windows/SdDRegistation.cpp" line="256"/>
+        <location filename="windows/SdDRegistation.cpp" line="288"/>
         <source>Error occured. </source>
         <translation>Возникла ошибка.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="266"/>
+        <location filename="windows/SdDRegistation.cpp" line="278"/>
         <source>Registered.</source>
         <translation>Зарегистрирован.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="271"/>
+        <location filename="windows/SdDRegistation.cpp" line="283"/>
         <source>Not registered.</source>
         <translation>Не зарегистрирован.</translation>
     </message>
     <message>
-        <location filename="windows/SdDRegistation.cpp" line="273"/>
+        <location filename="windows/SdDRegistation.cpp" line="285"/>
         <source>Registration status fail. Try later.</source>
         <translation>Ошибка получения статуса регистрации. Попробуйте позднее.</translation>
     </message>
@@ -5573,7 +5612,7 @@
         <translation>Все наследовать</translation>
     </message>
     <message>
-        <location filename="windows/SdDRuleEditor.cpp" line="201"/>
+        <location filename="windows/SdDRuleEditor.cpp" line="217"/>
         <source>Rule setup</source>
         <translation>Установка правил</translation>
     </message>
@@ -5629,12 +5668,12 @@
         <translation>Выбрать значение...</translation>
     </message>
     <message>
-        <location filename="windows/SdDSymbolPartParam.cpp" line="111"/>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="124"/>
         <source>Select part for component</source>
         <translation>Выберите корпус для компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdDSymbolPartParam.cpp" line="135"/>
+        <location filename="windows/SdDSymbolPartParam.cpp" line="148"/>
         <source>Param and/or part are changed</source>
         <translation>Параметры и/или корпус изменились</translation>
     </message>
@@ -5658,7 +5697,7 @@
     </message>
     <message>
         <location filename="windows/SdDVariantTable.ui" line="74"/>
-        <location filename="windows/SdDVariantTable.cpp" line="74"/>
+        <location filename="windows/SdDVariantTable.cpp" line="84"/>
         <source>Append field</source>
         <translation>Добавить поле</translation>
     </message>
@@ -5669,7 +5708,7 @@
     </message>
     <message>
         <location filename="windows/SdDVariantTable.ui" line="88"/>
-        <location filename="windows/SdDVariantTable.cpp" line="106"/>
+        <location filename="windows/SdDVariantTable.cpp" line="116"/>
         <source>Rename field</source>
         <translation>Переименовать поле</translation>
     </message>
@@ -5689,61 +5728,61 @@
         <translation>Удалить все ряды</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="74"/>
+        <location filename="windows/SdDVariantTable.cpp" line="84"/>
         <source>Enter field name for append</source>
         <translation>Введите имя поля для вставки</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="88"/>
-        <location filename="windows/SdDVariantTable.cpp" line="93"/>
-        <location filename="windows/SdDVariantTable.cpp" line="111"/>
-        <location filename="windows/SdDVariantTable.cpp" line="166"/>
-        <location filename="windows/SdDVariantTable.cpp" line="186"/>
+        <location filename="windows/SdDVariantTable.cpp" line="98"/>
+        <location filename="windows/SdDVariantTable.cpp" line="103"/>
+        <location filename="windows/SdDVariantTable.cpp" line="121"/>
+        <location filename="windows/SdDVariantTable.cpp" line="176"/>
+        <location filename="windows/SdDVariantTable.cpp" line="196"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="88"/>
+        <location filename="windows/SdDVariantTable.cpp" line="98"/>
         <source>Are You sure to delete field &apos;%1&apos;? This operation is not undoable</source>
         <translation>Вы уверены, что хотите удалить поле &apos;%1&apos;? Эта операция не отменяется</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="93"/>
+        <location filename="windows/SdDVariantTable.cpp" line="103"/>
         <source>No selected field for deletion. Select partial field and try again.</source>
         <translation>Не выбрано поле для удаления. Выберите отдельное поле и попробуйте еще раз.</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="106"/>
+        <location filename="windows/SdDVariantTable.cpp" line="116"/>
         <source>Enter new field name</source>
         <translation>Введите имя нового поля</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="111"/>
+        <location filename="windows/SdDVariantTable.cpp" line="121"/>
         <source>No selected field for renaming. Select partial field and try again.</source>
         <translation>Не выбрано поле для переименования. Выберите отдельное поле и попробуйте снова.</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="166"/>
+        <location filename="windows/SdDVariantTable.cpp" line="176"/>
         <source>Are You sure to delete ALL rows? This is non undoing operation. Are You sure?</source>
         <translation>Вы абсолютно уверены, что хотите удалить ВСЕ ряды? Эту операцию нельзя будет отменить. Вы уверены?</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="186"/>
+        <location filename="windows/SdDVariantTable.cpp" line="196"/>
         <source>You attempting delete field &apos;%1&apos; from variant table. All field column contents will be loss. This is non undoing operation. Are You sure?</source>
         <translation>Вы пытаетесь удалить поле &apos;%1&apos; из таблицы вариантов. Все значения в колонке этого поля будут стерты. Эту операцию нельзя будет отменить. Вы уверены?</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="225"/>
+        <location filename="windows/SdDVariantTable.cpp" line="235"/>
         <source>Has variant</source>
         <translation>Есть варианты</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="225"/>
+        <location filename="windows/SdDVariantTable.cpp" line="235"/>
         <source>Param name</source>
         <translation>Имя параметра</translation>
     </message>
     <message>
-        <location filename="windows/SdDVariantTable.cpp" line="225"/>
+        <location filename="windows/SdDVariantTable.cpp" line="235"/>
         <source>Param value</source>
         <translation>Значение параметра</translation>
     </message>
@@ -5755,12 +5794,12 @@
         <translation type="vanished">Файл для сохранения захваченного видео</translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderCapture.cpp" line="455"/>
+        <location filename="guider/SdGuiderCapture.cpp" line="466"/>
         <source>Info</source>
         <translation type="unfinished">Информация</translation>
     </message>
     <message>
-        <location filename="guider/SdGuiderCapture.cpp" line="455"/>
+        <location filename="guider/SdGuiderCapture.cpp" line="466"/>
         <source>Play completed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6352,32 +6391,32 @@
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="66"/>
         <source>&lt;b&gt;🌐 Global storage&lt;/b&gt;&lt;br&gt;Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;🌐 Глобальное хранилище&lt;/b&gt;&lt;br&gt;Ошибок: %1</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="71"/>
         <source>&lt;b&gt;🌐 Global storage&lt;/b&gt;&lt;br&gt;Transfer in: %1&lt;br&gt;Transfer out: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;🌐 Глобальное хранилище&lt;/b&gt;&lt;br&gt;Получено: %1&lt;br&gt;Отправлено: %2</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="91"/>
         <source>&lt;b&gt;☁️ Private cloud&lt;/b&gt;&lt;br&gt;Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;☁️ Приватное облако&lt;/b&gt;&lt;br&gt;Ошибок: %1</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="96"/>
         <source>&lt;b&gt;☁️ Private cloud&lt;/b&gt;&lt;br&gt;Transfer in: %1&lt;br&gt;Transfer out: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;☁️ Приватное облако&lt;/b&gt;&lt;br&gt;Получено: %1&lt;br&gt;Отправлено: %2</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="116"/>
         <source>&lt;b&gt;📚 Local library&lt;/b&gt;&lt;br&gt;Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;📚 Локальная библиотека&lt;/b&gt;&lt;br&gt;Ошибок: %1</translation>
     </message>
     <message>
         <location filename="library/SdLibraryIndicator.cpp" line="121"/>
         <source>&lt;b&gt;📚 Local library&lt;/b&gt;&lt;br&gt;Objects in library: %1&lt;br&gt;Appended: %2, Removed: %3&lt;br&gt;Updated: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;📚 Локальная библиотека&lt;/b&gt;&lt;br&gt;Объектов в библиотеке: %1&lt;br&gt;Добавлено: %2, Удалено: %3&lt;br&gt;Обновлено: %4</translation>
     </message>
 </context>
 <context>
@@ -6393,12 +6432,12 @@
     <message>
         <location filename="library/SdLibraryStorage.cpp" line="478"/>
         <source>Anonim</source>
-        <translation type="unfinished"></translation>
+        <translation>Без имени</translation>
     </message>
     <message>
         <location filename="library/SdLibraryStorage.cpp" line="498"/>
         <source>Anonim [○□]</source>
-        <translation type="unfinished"></translation>
+        <translation>Без имени [○□]</translation>
     </message>
     <message>
         <location filename="library/SdLibraryStorage.cpp" line="702"/>
@@ -6582,24 +6621,24 @@
         <translation>Разделитель колонок в файле установщика</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="70"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="77"/>
         <source>Select file name for save assemble file</source>
         <translation>Выберите имя файла для сохранения данных для установщика</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="78"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="85"/>
         <source>;SalixEDA V%1.%2 smt assemble export file
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="90"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="97"/>
         <source>;Components list:
 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Assembler.cpp" line="119"/>
+        <location filename="windows/SdPExportPlate_Assembler.cpp" line="126"/>
         <source>
 
 
@@ -6653,123 +6692,123 @@
     </message>
     <message>
         <location filename="windows/SdPExportPlate_Gerber.cpp" line="443"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="478"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="481"/>
         <source>Select...</source>
         <translation>Выбор...</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="450"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="451"/>
         <source>Layers for gerber:</source>
         <translation>Слои для gerber:</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="451"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="452"/>
         <source>Layers...</source>
         <translation>Слои...</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="458"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="460"/>
         <source>Generate single gerber:</source>
         <translation>Генерировать один gerber-файл:</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="459"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="490"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="542"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="461"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="494"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="547"/>
         <source>Generate</source>
         <translation>Генерировать</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="471"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="474"/>
         <source>Multiple file creation</source>
         <translation>Создание нескольких файлов</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="473"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="476"/>
         <source>Gerber files path:</source>
         <translation>Путь для сохранения gerber-файлов:</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="489"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="493"/>
         <source>Generate gerber group:</source>
         <translation>Генерировать группу gerber-файлов:</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="542"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="547"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="542"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="547"/>
         <source>Layer list</source>
         <translation>Список слоев</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="554"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="670"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="559"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="684"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="575"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="589"/>
         <source>Enter or select gerber file name</source>
         <translation>Введите или выберите имя gerber-файла</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="588"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="620"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="602"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="634"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="588"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="602"/>
         <source>File name field is empty. Enter file name gerber generate to.</source>
         <translation>Поле имени файла пустое. Введите имя gerber-файла для генерации.</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="620"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="634"/>
         <source>Group path field is empty. Enter path to witch files will be generate.</source>
         <translation>Поле пути к группе файлов пусто. Введите путь, по которому будут размещены сгенерированные файлы.</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="632"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="669"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="672"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="646"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="683"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="686"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="655"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="669"/>
         <source>Open Directory</source>
         <translation>Открыть директорий</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="777"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="791"/>
         <source>Info!</source>
         <translation>Информация!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="777"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="791"/>
         <source>Gerber file &apos;%1&apos; successfully created.</source>
         <translation>Gerber-файл &apos;%1&apos; успешно создан.</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="780"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="794"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="780"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="794"/>
         <source>Can&apos;t create Gerber file &apos;%1&apos;</source>
         <translation>Не могу создать Gerber-файл &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="810"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="824"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="810"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="824"/>
         <source>Press generate button to generate one or more gerber files or press Cancel</source>
         <translation>Нажмите кнопку Генерация, чтобы сгенерить один или несколько Gerber-файлов или нажмите Отмена</translation>
     </message>
@@ -6844,44 +6883,44 @@
         <translation>Шаблон для перечня компонентов:</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="370"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="544"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="380"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="554"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="370"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="544"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="380"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="554"/>
         <source>Can&apos;t read pattern file.</source>
         <translation>Не могу прочитать файл шаблона.</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="457"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="631"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="467"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="641"/>
         <source>Enter file name to save report</source>
         <translation>Введите имя файла для сохранения отчета</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="463"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="637"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="473"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="647"/>
         <source>Info!</source>
         <translation>Информация!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="463"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="637"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="473"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="647"/>
         <source>Report successfully created.</source>
         <translation>Отчет успешно создан.</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="468"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="642"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="478"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="652"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Bom.cpp" line="468"/>
-        <location filename="windows/SdPExport_Bom.cpp" line="642"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="478"/>
+        <location filename="windows/SdPExport_Bom.cpp" line="652"/>
         <source>You not selected pattern to generation. Select pattern in list and repeate.</source>
         <translation>Вы не выбрали шаблон для генерации. Выберите шаблон в списке и повторите.</translation>
     </message>
@@ -7014,29 +7053,29 @@
         <translation>Выберите из текущего проекта</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="62"/>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="75"/>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="159"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="63"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="77"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="164"/>
         <source>Select object for copy from</source>
         <translation>Выберите объект для копирования</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="71"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="72"/>
         <source>Select from library</source>
         <translation>Выберите из библиотеки</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="84"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="86"/>
         <source>Select from file</source>
         <translation>Выберите из файла</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="154"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="159"/>
         <source>File for loading</source>
         <translation>Файл для загрузки</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="154"/>
+        <location filename="windows/SdPNewProjectItem_Copy.cpp" line="159"/>
         <source>SalixEDA 3D Files (*%1)</source>
         <translation></translation>
     </message>
@@ -7058,32 +7097,32 @@
         <translation type="vanished">Категория элемента</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="50"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="54"/>
         <source>&lt;font color=&quot;blue&quot;&gt;Name is empty. You must enter correct name at least one symbol.&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;blue&quot;&gt;Имя пустое. Вы должны ввести правильное имя хотя-бы из одной буквы-цифры.&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="54"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="58"/>
         <source>&lt;font color=&quot;red&quot;&gt;This name already exist. Enter another name or this override existing.&lt;/font&gt;</source>
         <translation>&lt;font color=&quot;red&quot;&gt;Это имя уже существует и будет перезаписано! Если Вы не хотите этого введите другое имя.&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="58"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="62"/>
         <source>Name is correct and free.</source>
         <translation>Имя корректное и свободное.</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="69"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="73"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="69"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="73"/>
         <source>Object with this name and author already exist in base. Overwrite existing object?</source>
         <translation>Объект с таким именем и автором уже существует в базе. Перезаписать существующий объект?</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="73"/>
+        <location filename="windows/SdPNewProjectItem_EnterName.cpp" line="77"/>
         <source>Set object title</source>
         <translation>Задание имени объекта</translation>
     </message>
@@ -7111,108 +7150,108 @@
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="112"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="117"/>
         <source>Sheet decorator</source>
         <translation>Оформление схемы</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="112"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="117"/>
         <source>Creates empty schematic sheet with inserted sheet form</source>
         <translation>Создает пустую схему и добавляет в нее рамку оформления</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="142"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="147"/>
         <source>Connectors</source>
         <translation>Разъемы</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="142"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="147"/>
         <source>Creates symbol for connector</source>
         <translation>Создает схемный символ для разъемов</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="148"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="153"/>
         <source>Integrated circuits</source>
         <translation>Интегральные схемы (микросхемы)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="148"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="153"/>
         <source>Creates symbol for integrated circuit</source>
         <translation>Создает схемный символ для интегральных схем (микросхем)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="154"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="159"/>
         <source>Integrated circuits with num</source>
         <translation>Интегральные схемы с номерами выводов (микросхемы)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="154"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="159"/>
         <source>Creates symbol for integrated circuit with pin numbering and external pin table former, for example AI</source>
         <translation>Создает схемный символ для интегральных схем (микросхем) с номерами выводов и возможностью использовать внешнюю таблицу с выводами, например сформированную с помощью ИИ</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="168"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="173"/>
         <source>Two pins rectangle part</source>
         <translation>Двухвыводной прямоугольный корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="168"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="173"/>
         <source>Creates part with exact two pins and rectangle body (resistor, capacitor and so on)</source>
         <translation>Создает корпус точно с двумя выводами и прямоугольным корпусом (резистор, конденсатор и т.п.)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="174"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="179"/>
         <source>Two pins round part</source>
         <translation>Круглый корпус с двумя выводами</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="174"/>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="180"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="179"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="185"/>
         <source>Creates part with exact two pins and round body</source>
         <translation>Создает корпус точно с двумя выводами и круглым корпусом (электролитический конденсатор со штыревыми выводами)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="180"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="185"/>
         <source>Two through pins round part</source>
         <translation>Круглый корпус с двумя штыревыми выводами</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="186"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="191"/>
         <source>Single row pins part</source>
         <translation>Корпус с одним рядом выводов</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="186"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="191"/>
         <source>Creates part with rectangle body and single row of pins at middle of part</source>
         <translation>Создает прямоугольный корпус с одним рядом выводов посередине корпуса</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="192"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="197"/>
         <source>Two sided pins part</source>
         <translation>Корпус с выводами по двум сторонам (верх-низ)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="192"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="197"/>
         <source>Creates part with rectangle body and two pins rows by top and bottom sides</source>
         <translation>Создает прямоугольный корпус с двумя рядами выводов сверху и снизу</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="198"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="203"/>
         <source>Two sided pins part left-right</source>
         <translation>Корпус с выводами по двум сторонам (лево-право)</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="198"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="203"/>
         <source>Creates part with rectangle body and two pins columns by left and right sides</source>
         <translation>Создает прямоугольный корпус с двумя рядами выводов слева и справа</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="204"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="209"/>
         <source>Four sided pins part</source>
         <translation>Корпус с выводами по четырем сторонам</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_Master.cpp" line="204"/>
+        <location filename="windows/SdPNewProjectItem_Master.cpp" line="209"/>
         <source>Creates part with rectangle body and pins on all four sides</source>
         <translation>Создает прямоугольный корпус с выводами расположенными по всем четырем сторонам корпуса</translation>
     </message>
@@ -7279,27 +7318,27 @@
         <translation>Текстовый документ</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="87"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="92"/>
         <source>Sheet%1</source>
         <translation>Лист %1</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="91"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="96"/>
         <source>PCB%1</source>
         <translation>Плата %1</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="95"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="100"/>
         <source>Symbol%1</source>
         <translation>Символ %1</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="99"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="104"/>
         <source>Part%1</source>
         <translation>Корпус %1</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="103"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="108"/>
         <source>Component%1</source>
         <translation>Компонент %1</translation>
     </message>
@@ -7308,132 +7347,132 @@
         <translation type="vanished">Наследник %1</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="107"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="112"/>
         <source>Text doc%1</source>
         <translation>Текстовый документ %1</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="114"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="119"/>
         <source>Set object title</source>
         <translation>Задание имени объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="155"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="160"/>
         <source>Empty sheet</source>
         <translation>Пустая схема</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="156"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="161"/>
         <source>Creates empty schematic sheet with no any component or graphics.</source>
         <translation>Создает пустую схему без всяких компонентов и какой-либо графики.</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="157"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="162"/>
         <source>Sheet master</source>
         <translation>Мастер схем</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="158"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="163"/>
         <source>Start master which guide you to create schematic sheet</source>
         <translation>Запускает мастер с помощью которого вы можете создать лист схемы</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="168"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="173"/>
         <source>Empty construction</source>
         <translation>Пустая плата</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="169"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="174"/>
         <source>Creates empty construction or pcb</source>
         <translation>Создает пустую плату (PCB) или конструктив</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="174"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="179"/>
         <source>Empty symbol</source>
         <translation>Пустой схемный символ</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="175"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="180"/>
         <source>Creates empty schematic component section symbol with no any pins or graphics.</source>
         <translation>Создает пустой схемный символ секции компонента безо всяких выводов или какой-либо графики. </translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="176"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="181"/>
         <source>Copy existing symbol</source>
         <translation>Копия существующего символа</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="177"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="182"/>
         <source>Creates copy of existing schematic component section</source>
         <translation>Создает копию существующего схемного символа секции</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="178"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="183"/>
         <source>Symbol master</source>
         <translation>Мастер схемного символа</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="179"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="184"/>
         <source>Start master which guide you to create symbol</source>
         <translation>Запускает мастер, с помощью которого вы можете создать символ</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="184"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="189"/>
         <source>Empty part</source>
         <translation>Пустой корпус</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="185"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="190"/>
         <source>Creates empty component part with no any pins or graphics.</source>
         <translation>Создает пустой корпус компонента безо всяких выводов или какой-либо графики.</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="186"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="191"/>
         <source>Copy existing part</source>
         <translation>Копия существующего корпуса</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="187"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="192"/>
         <source>Creates copy of existing component part</source>
         <translation>Создает копию существующего корпуса компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="188"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="193"/>
         <source>Part master</source>
         <translation>Мастер корпусов</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="189"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="194"/>
         <source>Start master which guide you to create part</source>
         <translation>Запускает мастер создания корпусов, с помощью которого вы можете создать корпус компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="190"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="195"/>
         <source>3D part master</source>
         <translation>Мастер 3d корпусов</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="191"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="196"/>
         <source>Start master which guide you to create part and its 3d model</source>
         <translation>Запускает мастер, который создает 3d модель корпуса компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="196"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="201"/>
         <source>Empty component</source>
         <translation>Пустой компонент</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="197"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="202"/>
         <source>Creates empty component as pair schematic and part with no any schematic or part.</source>
         <translation>Создает пустой компонент как пару схемного изображения и корпуса, но без заданных схемных изображений или корпуса.</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="198"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="203"/>
         <source>Copy existing component</source>
         <translation>Копия существующего компонента</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="199"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="204"/>
         <source>Creates copy of existing component</source>
         <translation>Создает копию существующего компонента</translation>
     </message>
@@ -7454,7 +7493,7 @@
         <translation type="vanished">Создает копию существующего наследника или наследует существующий компонент</translation>
     </message>
     <message>
-        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="204"/>
+        <location filename="windows/SdPNewProjectItem_SelectType.cpp" line="209"/>
         <source>Empty text</source>
         <translation>Пустой текст</translation>
     </message>
@@ -7539,22 +7578,22 @@
 <context>
     <name>SdPropBarPartPin</name>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="36"/>
         <source>---</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="36"/>
         <source>Top smd</source>
         <translation>Планарный сверху</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="36"/>
         <source>Bottom smd</source>
         <translation>Планарный снизу</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPin.cpp" line="35"/>
+        <location filename="windows/SdPropBarPartPin.cpp" line="36"/>
         <source>Through</source>
         <translation>Штыревой</translation>
     </message>
@@ -7562,32 +7601,32 @@
 <context>
     <name>SdPropBarPartPlace</name>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="25"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="26"/>
         <source>Take component from both side top and bottom</source>
         <translation>Брать компонент с обоих сторон сверху и снизу</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="37"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="38"/>
         <source>Smart mode on middle button</source>
         <translation>Разумный режим по нажатию левой кнопки</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="47"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="48"/>
         <source>Selection consistently components on middle button</source>
         <translation>Выбор последующего по номеру компонента при нажатии средней кнопки мыши</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="57"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="58"/>
         <source>Selection from schematic sheet</source>
         <translation>Выбор компонента из листа схемы</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="62"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="63"/>
         <source>Sheets:</source>
         <translation>Схемы:</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPartPlace.cpp" line="74"/>
+        <location filename="windows/SdPropBarPartPlace.cpp" line="75"/>
         <source>Component:</source>
         <translation>Компонент:</translation>
     </message>
@@ -7595,17 +7634,17 @@
 <context>
     <name>SdPropBarPolygon</name>
     <message>
-        <location filename="windows/SdPropBarPolygon.cpp" line="70"/>
+        <location filename="windows/SdPropBarPolygon.cpp" line="72"/>
         <source>lines connects orthogonal</source>
         <translation>ортогональное соединение линий</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPolygon.cpp" line="78"/>
+        <location filename="windows/SdPropBarPolygon.cpp" line="80"/>
         <source>lines connects at 45 degree</source>
         <translation>соединение линий под углом 45 градусов</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarPolygon.cpp" line="86"/>
+        <location filename="windows/SdPropBarPolygon.cpp" line="88"/>
         <source>lines connects at any degree</source>
         <translation>соединение линий под произвольным углом</translation>
     </message>
@@ -7613,62 +7652,62 @@
 <context>
     <name>SdPropBarRoad</name>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="37"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="38"/>
         <source>Road width:</source>
         <translation>Ширина дорожки:</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="38"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="39"/>
         <source>Activate road width editor</source>
         <translation>Активировать редактор ширины дорожки</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="42"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="43"/>
         <source>Current road width editor</source>
         <translation>Редактор ширины текущей дорожки</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="77"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="78"/>
         <source>Current road net name</source>
         <translation>Имя цепи текущей дорожки</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="86"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="87"/>
         <source>Align cursor to grid</source>
         <translation>Выровнять курсор по сетке</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="93"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="94"/>
         <source>On-off automatic road loop detection and removing</source>
         <translation>Вкл-откл детектирования и удаления петель дорожек</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="102"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="103"/>
         <source>lines connects orthogonal</source>
         <translation>ортогональное соединение линий</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="110"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="111"/>
         <source>lines connects at 45 degree</source>
         <translation>соединение линий под углом 45 градусов</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="118"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="119"/>
         <source>lines connects at any degree</source>
         <translation>соединение линий под произвольным углом</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="132"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="133"/>
         <source>Via through or blind</source>
         <translation>Переходное отверстие сквозное или глухое</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="144"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="145"/>
         <source>Via pad type</source>
         <translation>Тип площадки переходного отверстия</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarRoad.cpp" line="164"/>
+        <location filename="windows/SdPropBarRoad.cpp" line="165"/>
         <source>Edit via pad type</source>
         <translation>Редактирование типа площадки переходного отверстия</translation>
     </message>
@@ -7704,42 +7743,42 @@
 <context>
     <name>SdPropBarSymPin</name>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="25"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="27"/>
         <source>undefined</source>
         <translation>неопределенный</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="26"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="28"/>
         <source>input</source>
         <translation>вход</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="27"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="29"/>
         <source>output</source>
         <translation>выход</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="28"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="30"/>
         <source>in-out</source>
         <translation>вход-выход</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="29"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="31"/>
         <source>analog in</source>
         <translation>аналоговый вход</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="30"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="32"/>
         <source>analog out</source>
         <translation>аналоговый выход</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="31"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="33"/>
         <source>analog</source>
         <translation>аналоговый</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarSymPin.cpp" line="32"/>
+        <location filename="windows/SdPropBarSymPin.cpp" line="34"/>
         <source>power</source>
         <translation>питание</translation>
     </message>
@@ -7747,54 +7786,54 @@
 <context>
     <name>SdPropBarTextual</name>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="74"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="76"/>
         <source>Text aligned to top</source>
         <translation>Текст выровнен по верху</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="82"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="84"/>
         <source>Text aligned to vertical middle</source>
         <oldsource>Text aligned to middle</oldsource>
         <translation>Текст выровнен вертикальному центру</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="90"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="92"/>
         <source>Text aligned to bottom</source>
         <translation>Текст выровнен по низу</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="102"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="104"/>
         <source>Text aligned to left</source>
         <translation>Текст выровнен по левому краю</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="110"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="112"/>
         <source>Text aligned to horizontal center</source>
         <oldsource>Text aligned to center</oldsource>
         <translation>Текст выровнен по горизонтальному центру</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="118"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="120"/>
         <source>Text aligned to right</source>
         <translation>Текст вровнен по правому краю</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="129"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="131"/>
         <source>Text direction left to right</source>
         <translation>Направление текста слева-направо</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="137"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="139"/>
         <source>Text direction bottom to top</source>
         <translation>Направление текста снизу-вверх</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="145"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="147"/>
         <source>Text direction right to left</source>
         <translation>Направление текста справа-налево</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarTextual.cpp" line="153"/>
+        <location filename="windows/SdPropBarTextual.cpp" line="155"/>
         <source>Text direction top to bottom</source>
         <translation>Направление текста сверху-вниз</translation>
     </message>
@@ -7802,52 +7841,70 @@
 <context>
     <name>SdPropBarWire</name>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="33"/>
+        <location filename="windows/SdPropBarWire.cpp" line="34"/>
         <source>Wire line width:</source>
         <translation>Ширина линии цепи:</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="34"/>
+        <location filename="windows/SdPropBarWire.cpp" line="35"/>
         <source>Activate width editor</source>
         <translation>Активировать редактор ширины</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="37"/>
+        <location filename="windows/SdPropBarWire.cpp" line="39"/>
         <source>Wire line width editor</source>
         <translation>Редактор ширины линии цепи</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="69"/>
+        <location filename="windows/SdPropBarWire.cpp" line="71"/>
         <source>Wire name:</source>
         <translation>Имя цепи:</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="70"/>
+        <location filename="windows/SdPropBarWire.cpp" line="72"/>
         <source>Activate wire name editor</source>
         <translation>Активировать редактор имени цепи</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="74"/>
+        <location filename="windows/SdPropBarWire.cpp" line="77"/>
         <source>Wire name editor</source>
         <translation>Редактор имени цепи</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="105"/>
+        <location filename="windows/SdPropBarWire.cpp" line="108"/>
         <source>lines connects orthogonal</source>
         <translation>ортогональное соединение линий</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="113"/>
+        <location filename="windows/SdPropBarWire.cpp" line="116"/>
         <source>lines connects at 45 degree</source>
         <translation>соединение линий под углом 45 градусов</translation>
     </message>
     <message>
-        <location filename="windows/SdPropBarWire.cpp" line="121"/>
-        <location filename="windows/SdPropBarWire.cpp" line="133"/>
-        <location filename="windows/SdPropBarWire.cpp" line="141"/>
-        <location filename="windows/SdPropBarWire.cpp" line="149"/>
+        <location filename="windows/SdPropBarWire.cpp" line="124"/>
+        <location filename="windows/SdPropBarWire.cpp" line="136"/>
+        <location filename="windows/SdPropBarWire.cpp" line="144"/>
+        <location filename="windows/SdPropBarWire.cpp" line="152"/>
         <source>lines connects at any degree</source>
         <translation>соединение линий под произвольным углом</translation>
+    </message>
+</context>
+<context>
+    <name>SdWAiChat</name>
+    <message>
+        <location filename="windows/SdWAiChat.cpp" line="125"/>
+        <source>AI Assistant</source>
+        <translation>AI ассистент</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWAiChat.cpp" line="207"/>
+        <source>You</source>
+        <translation>Вы</translation>
+    </message>
+    <message>
+        <location filename="windows/SdWAiChat.cpp" line="232"/>
+        <source>System</source>
+        <translation>Система</translation>
     </message>
 </context>
 <context>
@@ -8341,17 +8398,17 @@
 <context>
     <name>SdWEditorGraph</name>
     <message>
-        <location filename="windows/SdWEditorGraph.cpp" line="747"/>
+        <location filename="windows/SdWEditorGraph.cpp" line="748"/>
         <source>No object</source>
         <translation>Нет объекта</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraph.cpp" line="1212"/>
+        <location filename="windows/SdWEditorGraph.cpp" line="1221"/>
         <source>Enter file name for save image</source>
         <translation>Введите имя файла для сохранения картинки</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraph.cpp" line="1212"/>
+        <location filename="windows/SdWEditorGraph.cpp" line="1221"/>
         <source>PNG files (*.png);;SVG files (*.svg)</source>
         <translation>Файлы PNG (*.png);;Файлы SVG (*.svg)</translation>
     </message>
@@ -8426,33 +8483,33 @@
 <context>
     <name>SdWEditorGraphSheet</name>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="187"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="190"/>
         <source>Component params</source>
         <oldsource>Sheet params</oldsource>
         <translation>Параметры компонентов</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="191"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="194"/>
         <source>Param change</source>
         <translation>Изменение параметра</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="201"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="204"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="201"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="204"/>
         <source>Parameters edit available only for component. No component selected. Select components and try again.</source>
         <translation>Редактирование параметров доступно только для компонентов. Ни один компонент не выбран. Выберите компоненты и попробуйте снова.</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="276"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="279"/>
         <source>Export sheet</source>
         <translation>Экспорт схемы</translation>
     </message>
     <message>
-        <location filename="windows/SdWEditorGraphSheet.cpp" line="276"/>
+        <location filename="windows/SdWEditorGraphSheet.cpp" line="279"/>
         <source>Select export master</source>
         <translation>Выберите мастер экспорта</translation>
     </message>
@@ -8621,90 +8678,90 @@
 <context>
     <name>SdWMain</name>
     <message>
-        <location filename="windows/SdWMain.cpp" line="123"/>
+        <location filename="windows/SdWMain.cpp" line="128"/>
         <source>Current cursor position X coord</source>
         <translation>Текущая позиция курсора по оси X</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="125"/>
+        <location filename="windows/SdWMain.cpp" line="130"/>
         <source>Current cursor position Y coord</source>
         <translation>Текущая позиция курсора по оси Y</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="127"/>
+        <location filename="windows/SdWMain.cpp" line="132"/>
         <source>Enter...</source>
         <translation>Ввод...</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="130"/>
+        <location filename="windows/SdWMain.cpp" line="135"/>
         <source>When press this button, You can enter cursor coord</source>
         <translation>При нажатии этой кнопки вы можете ввести координаты курсора вручную</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="135"/>
+        <location filename="windows/SdWMain.cpp" line="140"/>
         <source>Current trace status: unconnected nets and rules errors count</source>
         <translation>Текущий статус трассировки: количество неподключенных цепей и ошибок трассировки</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="138"/>
+        <location filename="windows/SdWMain.cpp" line="143"/>
         <source>Short guide to current mode step or other messages</source>
         <translation>Короткое пояснение по текущему шагу режима или другое сообщение</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="143"/>
-        <location filename="windows/SdWMain.cpp" line="2198"/>
+        <location filename="windows/SdWMain.cpp" line="148"/>
+        <location filename="windows/SdWMain.cpp" line="2217"/>
         <source>Show status of guide capture video system: stopped</source>
         <translation>Показывает статус системы захвата обучающего видео: остановлено</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="790"/>
+        <location filename="windows/SdWMain.cpp" line="800"/>
         <source>SalixEDA Files (*%1 *%2);;SaliCAD files (*%3 *%4);;KiCad files (*.kicad_mod)</source>
         <translation>Файлы SalixEDA (*%1 *%2);;Файлы SaliCAD (*%3 *%4);;Файлы KiCad (*.kicad_mod)</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="802"/>
-        <location filename="windows/SdWMain.cpp" line="1117"/>
-        <location filename="windows/SdWMain.cpp" line="2212"/>
+        <location filename="windows/SdWMain.cpp" line="812"/>
+        <location filename="windows/SdWMain.cpp" line="1127"/>
+        <location filename="windows/SdWMain.cpp" line="2231"/>
         <source>Error</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="802"/>
+        <location filename="windows/SdWMain.cpp" line="812"/>
         <source>Can&apos;t read file &apos;%1&apos;</source>
         <translation>Не могу прочитать файл &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2079"/>
+        <location filename="windows/SdWMain.cpp" line="2089"/>
         <source>Select object to ref</source>
         <translation>Выберите объект для получения ссылки</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2131"/>
+        <location filename="windows/SdWMain.cpp" line="2141"/>
         <source>&lt;html&gt;&lt;body&gt;&lt;p&gt;Version %1.%2, &lt;/p&gt;&lt;p&gt;Copyright SalixEDA&lt;/p&gt;&lt;p&gt;Author: %3&lt;/p&gt;&lt;p&gt;Web:&lt;br&gt;&lt;a href=&quot;http://SalixEDA.org&quot;&gt;SalixEDA.org&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2178"/>
+        <location filename="windows/SdWMain.cpp" line="2197"/>
         <source>Open guider scena file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2179"/>
+        <location filename="windows/SdWMain.cpp" line="2198"/>
         <source>Scena text files (*.txt)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2183"/>
+        <location filename="windows/SdWMain.cpp" line="2202"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2183"/>
+        <location filename="windows/SdWMain.cpp" line="2202"/>
         <source>This mode is only for guider creators. Are you sure you want to create guide?</source>
         <translation>Этот режим только для создателей руководств. Вы уверены, что хотите создать руководство?</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2212"/>
+        <location filename="windows/SdWMain.cpp" line="2231"/>
         <source>Can&apos;t read scena file %1</source>
         <translation>Не могу прочитать файл сцены %1</translation>
     </message>
@@ -8721,34 +8778,34 @@
         <translation type="vanished">Состояние удаленного репозитория: выполняется синхронизация</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="248"/>
+        <location filename="windows/SdWMain.cpp" line="258"/>
         <source>Unconnected: %1  Errors: %2</source>
         <translation>Неподключено: %1 Ошибок: %2</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="606"/>
-        <location filename="windows/SdWMain.cpp" line="913"/>
-        <location filename="windows/SdWMain.cpp" line="929"/>
+        <location filename="windows/SdWMain.cpp" line="616"/>
+        <location filename="windows/SdWMain.cpp" line="923"/>
+        <location filename="windows/SdWMain.cpp" line="939"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="606"/>
+        <location filename="windows/SdWMain.cpp" line="616"/>
         <source>Available new version %1.%2! And your version is %3.%4. Update?</source>
         <translation>Доступна новая версия %1.%2! А ваша версия - %3.%4. Обновить?</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="707"/>
+        <location filename="windows/SdWMain.cpp" line="717"/>
         <source>Help system</source>
         <translation>Система помощи</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="766"/>
+        <location filename="windows/SdWMain.cpp" line="776"/>
         <source>Select project to load</source>
         <translation>Выберите проект для загрузки</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="789"/>
+        <location filename="windows/SdWMain.cpp" line="799"/>
         <source>Open project file</source>
         <translation>Открыть файл проекта</translation>
     </message>
@@ -8757,12 +8814,12 @@
         <translation type="obsolete">Файлы PasCAD (*%1 *%2)</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="913"/>
+        <location filename="windows/SdWMain.cpp" line="923"/>
         <source>This project also is in the library. It automatic upgrade when save</source>
         <translation>Этот проект есть также и в библиотеке. Он будет там автоматически обновлен при сохранении</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="929"/>
+        <location filename="windows/SdWMain.cpp" line="939"/>
         <source>Do You want to delete project from library?</source>
         <translation>Вы действительно хотите удалить проект из библиотки?</translation>
     </message>
@@ -8771,32 +8828,32 @@
         <translation type="vanished">Файлы SalixEDA 3D (*%1)</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="962"/>
+        <location filename="windows/SdWMain.cpp" line="972"/>
         <source>Import PasCAD project file</source>
         <translation>Импортировать проект PasCAD</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="962"/>
+        <location filename="windows/SdWMain.cpp" line="972"/>
         <source>PasCAD Files (*%1)</source>
         <translation>Файлы PasCAD (*%1)</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="1117"/>
+        <location filename="windows/SdWMain.cpp" line="1127"/>
         <source>To make object public is enable only for registered authors. Register and retry.</source>
         <translation>Возможность публиковать объекты доступна только для зарегистрированных пользователей. Зарегистрируйтесь и повторите.</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2094"/>
+        <location filename="windows/SdWMain.cpp" line="2104"/>
         <source>Intro help page</source>
         <translation>Страница введения</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2131"/>
+        <location filename="windows/SdWMain.cpp" line="2141"/>
         <source>About %1</source>
         <translation>О программе %1</translation>
     </message>
     <message>
-        <location filename="windows/SdWMain.cpp" line="2194"/>
+        <location filename="windows/SdWMain.cpp" line="2213"/>
         <source>Show status of guide capture video system: running</source>
         <translation>Показывает статус системы захвата обучающего видео: идет захват</translation>
     </message>
@@ -8813,12 +8870,12 @@
         <translation>Закрыть активный проект</translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectList.cpp" line="224"/>
+        <location filename="windows/SdWProjectList.cpp" line="229"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="windows/SdWProjectList.cpp" line="224"/>
+        <location filename="windows/SdWProjectList.cpp" line="229"/>
         <source>Error on file reading [%1]</source>
         <translation>Ошибка при чтении файла [%1]</translation>
     </message>

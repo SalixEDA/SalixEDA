@@ -25,15 +25,14 @@ SdModeCLinear::SdModeCLinear(SdWEditorGraph *editor, SdProjectItem *obj) :
 
 int SdModeCLinear::getPropBarId() const
   {
-  return PB_LINEAR;
+  return SdPropBarLinear::mBarId;
   }
 
 
 
 void SdModeCLinear::propGetFromBar()
   {
-  SdPropBarLinear *bar = dynamic_cast<SdPropBarLinear*>( SdWCommand::mBarTable[PB_LINEAR] );
-  if( bar ) {
+  if( SdPropBarLinearPtr bar{} ) {
     bar->getPropLine( sdGlobalProp->propLine( mObject->getClass() ), &(sdGlobalProp->mLineEnterType) );
     mEditor->setFocus();
     update();
@@ -44,7 +43,6 @@ void SdModeCLinear::propGetFromBar()
 
 void SdModeCLinear::propSetToBar()
   {
-  SdPropBarLinear *bar = dynamic_cast<SdPropBarLinear*>( SdWCommand::mBarTable[PB_LINEAR] );
-  if( bar )
+  if( SdPropBarLinearPtr bar{} )
     bar->setPropLine( sdGlobalProp->propLine( mObject->getClass() ), mEditor->getPPM(), sdGlobalProp->mLineEnterType );
   }

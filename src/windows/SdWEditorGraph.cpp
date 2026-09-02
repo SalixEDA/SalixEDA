@@ -202,7 +202,8 @@ void SdWEditorGraph::zoomWindow(SdRect r)
 
 void SdWEditorGraph::contextMenu(QMenu *menu)
   {
-  menu->exec( QCursor::pos() );
+  if( menu != nullptr )
+    menu->exec( QCursor::pos() );
   }
 
 
@@ -908,9 +909,17 @@ void SdWEditorGraph::mousePressEvent(QMouseEvent *event)
       modeGet()->enterPoint( mPrevPoint );
       }
     else if( event->button() == Qt::MiddleButton && !(event->modifiers() & Qt::ShiftModifier) )
+      //Middle button without shift modifier is smart point
       mPrevEnter = modeGet()->enterPrev();
-    else if( event->button() == Qt::RightButton )
-      modeGet()->cancelPoint( mPrevPoint );
+
+    else if( event->button() == Qt::RightButton ) {
+      if( event->modifiers() & Qt::ShiftModifier )
+        //Right button with shift we show context menu
+        contextMenu( modeGet()->contextMenu() );
+      else
+        //Right button is cancel point
+        modeGet()->cancelPoint( mPrevPoint );
+      }
     }
   }
 
@@ -1243,6 +1252,15 @@ void SdWEditorGraph::cmClipboardChange()
   {
   //Change status of clipboard
   SdWCommand::cmEditPaste->setEnabled( SdSelector::isClipboardAvailable() );
+  }
+
+
+
+
+
+void SdWEditorGraph::cmContextCommand(int cmd)
+  {
+  modeGet()->contextCommand( cmd );
   }
 
 

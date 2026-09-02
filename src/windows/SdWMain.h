@@ -83,6 +83,20 @@ class SdWMain : public QMainWindow
         (ed->*Method)();
       }
 
+    template <int cmd>
+    void cmContextCommand()
+      {
+      cmContextCommand(cmd);
+      }
+
+    void cmContextCommand( int cmd )
+      {
+      //Get active editor ...
+      if( SdWEditor *ed = activeEditor() )
+        //... and translate command to its method
+        ed->cmContextCommand( cmd );
+      }
+
   signals:
 
   public slots:

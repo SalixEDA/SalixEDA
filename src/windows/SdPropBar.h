@@ -17,6 +17,8 @@ Description
 #define SDPROPBAR_H
 
 #include "objects/SdProjectItem.h"
+#include "modes/SdModeIdents.h"
+#include "windows/SdWCommand.h"
 
 #include <QToolBar>
 
@@ -33,6 +35,26 @@ class SdPropBar : public QToolBar
 
   public slots:
     virtual void setEditObject(SdProjectItem *pitem) { Q_UNUSED(pitem); }
+  };
+
+
+
+
+template <class PropBar>
+class SdPropBarPointer {
+    PropBar *mPropBarPtr; //!< Pointer to prop bar
+  public:
+    // 1. Исправлен синтаксис конструктора
+    SdPropBarPointer() {
+      mPropBarPtr = SdWCommand::getModeToolBar<PropBar>();
+      }
+
+    explicit operator bool() const { return mPropBarPtr != nullptr; }
+
+    PropBar *operator->() { return mPropBarPtr; }
+    const PropBar *operator->() const { return mPropBarPtr; }
+
+    PropBar &operator*() { return *mPropBarPtr; }
   };
 
 
