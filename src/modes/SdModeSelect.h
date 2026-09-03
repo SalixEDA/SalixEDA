@@ -44,8 +44,11 @@ class SdModeSelect : public SdMode
       smSelPresent,    //Есть выделение
       smCopy,          //Копирование
       smMove,          //Перенос
-      smRotateBase,    //Указание базы для поворота
-      smRotateDir,     //Указание направления поворота
+      smRotateBase,    //!< Select center of rotation
+      smRotateFrom,    //!< Start point of rotation
+      smRotateTo,      //!< Target point of rotation
+      smMirrorBase,    //!< First point of mirror line
+      smMirrorDir,     //!< Second point of mirror line
       smPaste,         //Вставка из карамана
       smLast };
 
@@ -81,6 +84,11 @@ class SdModeSelect : public SdMode
     virtual void    keyDown(int key, QChar ch) override;
     virtual void    keyUp(int key, QChar ch) override;
     virtual QMenu  *contextMenu() const override;
+
+    //!
+    //! \brief contextCommand Execute context menu command
+    //!
+    virtual void    contextCommand( int cmdCode ) override;
 
     //!
     //! \brief storeSelectionToFile Store selection to image file

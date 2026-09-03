@@ -142,6 +142,9 @@ class SdWCommand
     static QActionPtr   cmContextComponentRotate;
     static QActionPtr   cmContextComponentFlip;
     static QActionPtr   cmContextGroupRotate;
+    static QActionPtr   cmContextGraphRotate;
+    static QActionPtr   cmContextGraphMirror;
+
 
     static QActionPtr   cmViewProject;
     static QActionPtr   cmView3d;
@@ -221,7 +224,7 @@ class SdWCommand
     template<typename ToolBar>
     static ToolBar    *getModeToolBar() { return dynamic_cast<ToolBar*>( getModeBar(ToolBar::mBarId) ); }
 
-    static QMenu      *getSelectMenu( SdClass objectClass );
+    static QMenu      *getSelectMenu(SdClass objectClass , SdClass selectedClass);
 
 
     static void        createMenu( SdWMain *frame );

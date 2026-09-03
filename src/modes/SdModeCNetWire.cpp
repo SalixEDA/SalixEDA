@@ -122,18 +122,20 @@ void SdModeCNetWire::propGetFromBar()
           if( getSheet()->isNetPresent(mNetName) ) {
             //Both nets present: with new name and with old name
             if( okUnion(wireName) ) {
+              auto oldNetName = mNetName;
               getSheet()->netRename( mNetName, wireName, mUndo );
               //Question: rename net in other sheets and rename if yes
-              renameOtherSheets( wireName );
+              renameOtherSheets( oldNetName, wireName );
               }
             }
           }
         else {
           if( getSheet()->isNetPresent(mNetName) ) {
+            auto oldNetName = mNetName;
             //New net is not defined yet. Rename old net
             getSheet()->netRename( mNetName, wireName, mUndo );
             //Question: rename net in other sheets and rename if yes
-            renameOtherSheets( wireName );
+            renameOtherSheets( oldNetName, wireName );
             }
           }
         mNetName = wireName;
@@ -212,7 +214,7 @@ void SdModeCNetWire::movePoint( SdPoint p )
     //For smart point we request is it sym imp
     mSmartSour = mFirst;
     int state = 0;
-    SdPtr<SdGraph> graph( getSheet()->behindPoint( dctSymImp, mFirst, &state ) );
+    SdGraphSdp graph( getSheet()->behindPoint( dctSymImp, mFirst, &state ) );
     mSmartSourStr = getStringer( mSmartSour.x(), mSmartSour.y(), graph.ptr() );
     calcSmartPoint();
     }
@@ -306,18 +308,28 @@ bool SdModeCNetWire::okUnion(const QString newName)
 
 
 
-void SdModeCNetWire::renameOtherSheets(const QString wireName)
+void SdModeCNetWire::renameOtherSheets( const QString &oldNetName, const QString newNetName )
   {
-  if( QMessageBox::question( mEditor, QObject::tr("Query"), QObject::tr("Rename nets in all other sheets?")) == QMessageBox::Yes ) {
-    //User answer "Yes", so for each sheet in project execute renaming
-    SdProject *prj = getSheet()->getProject();
-    Q_ASSERT(prj != nullptr);
-    prj->forEach( dctSheet, [this,wireName] (SdObject *obj) -> bool {
-      SdPItemSheet *sheet = dynamic_cast<SdPItemSheet*>(obj);
-      Q_ASSERT( sheet != nullptr );
-      sheet->netRename( mNetName, wireName, mUndo );
-      return true;
-      });
+  //In first we find nets with mNetName in other sheets
+  bool oldNetPresent = false;
+  SdProject *prj = getSheet()->getProject();
+  Q_ASSERT(prj != nullptr);
+  prj->forEach( dctSheet, [oldNetName, &oldNetPresent] (SdObject *obj) -> bool {
+    if( SdPItemSheetSdp sheet{obj} )
+      oldNetPresent = sheet->isNetPresent( oldNetName );
+    return !oldNetPresent;
+    });
+
+  //We show dialog only if there is oldNetName in other sheets
+  if( oldNetPresent ) {
+    if( QMessageBox::question( mEditor, QObject::tr("Query"), QObject::tr("Rename nets in all other sheets?")) == QMessageBox::Yes ) {
+      //User answer "Yes", so for each sheet in project execute renaming
+      prj->forEach( dctSheet, [this,oldNetName,newNetName] (SdObject *obj) -> bool {
+        if( SdPItemSheetSdp sheet{obj} )
+          sheet->netRename( oldNetName, newNetName, mUndo );
+        return true;
+        });
+      }
     }
   }
 
@@ -443,16 +455,16 @@ void SdModeCNetWire::calcSmartPoint()
   snap.mSnapMask = snapNearestPin | snapExcludeExcl;
   snap.mExclude  = mSmartSour;
   snap.scan( getSheet(), dctSymImp );
-  SdRect over;
   bool noResult = snap.mGraph == nullptr;
-  if( !noResult )
-    over = snap.mGraph->getOverRect();
 
   //qDebug() << "calcSmartPoint" << noResult << snap.mDest;
   if( noResult ) {
     mSmartDest = mSmartSour;
     }
   else {
+    SdRect over;
+    over = snap.mGraph->getOverRect();
+
     mSmartDest = snap.mDest;
     //Calculate stringer
     //Stringer must have opposite direction with component body
@@ -580,3 +592,189 @@ void SdModeCNetWire::activate()
   {
   nextNet();
   }
+
+
+
+//Extended algorithm for smart route
+#if 0
+#include <QPoint>
+#include <QRect>
+#include <QVector>
+#include <QLine>
+#include <cmath>
+#include <algorithm>
+#include <climits>
+
+class OrthogonalRouter {
+public:
+    // Функция округления к ближайшему шагу сетки
+    static int snap(int value, int gridStep) {
+        if (gridStep <= 0) return value;
+        return std::round(static_cast<double>(value) / gridStep) * gridStep;
+    }
+
+    // Проверка: пересекает ли отрезок прямоугольник (с учетом исключения для нулевой толщины)
+    static bool intersectsRect(const QPoint& p1, const QPoint& p2, const QRect& rect) {
+        if (rect.isNull() || !rect.isValid()) return false;
+
+        // Если это линия-точка или вырожденный прямоугольник
+        bool isZeroWidth = (rect.width() == 0);
+        bool isZeroHeight = (rect.height() == 0);
+
+        // Определяем границы отрезка
+        int minX = std::min(p1.x(), p2.x());
+        int maxX = std::max(p1.x(), p2.x());
+        int minY = std::min(p1.y(), p2.y());
+        int maxY = std::max(p1.y(), p2.y());
+
+        // Проверка прохода ВДОЛЬ ребер (запрещено по условию)
+        // Если отрезок горизонтальный и лежит точно на верхней или нижней грани
+        if (p1.y() == p2.y() && !isZeroHeight) {
+            if ((p1.y() == rect.top() || p1.y() == rect.bottom()) && (maxX > rect.left() && minX < rect.right())) {
+                return true;
+            }
+        }
+        // Если отрезок вертикальный и лежит точно на левой или правой грани
+        if (p1.x() == p2.x() && !isZeroWidth) {
+            if ((p1.x() == rect.left() || p1.x() == rect.right()) && (maxY > rect.top() && minY < rect.bottom())) {
+                return true;
+            }
+        }
+
+        // Стандартное пересечение интервалов (внутрь прямоугольника заходить нельзя)
+        // "проход через нулевую ширину или высоту не считается пересечением"
+        if (isZeroWidth && isZeroHeight) {
+            return false; // Точечный прямоугольник не блокирует
+        }
+
+        // Внутренняя область (строгое пересечение или нахождение внутри)
+        bool overlapX = (minX < rect.right() && maxX > rect.left());
+        bool overlapY = (minY < rect.bottom() && maxY > rect.top());
+
+        if (isZeroWidth) {
+            // Вертикальный отрезок-стена: пересекает, если наш отрезок горизонтально пересекает его X
+            return (minX <= rect.left() && maxX >= rect.left() && overlapY);
+        }
+        if (isZeroHeight) {
+            // Горизонтальный отрезок-стена
+            return (minY <= rect.top() && maxY >= rect.top() && overlapX);
+        }
+
+        return (overlapX && overlapY);
+    }
+
+    // Проверка всего пути на валидность
+    static bool isValidPath(const QVector<QPoint>& path, const QRect& srcOver, const QRect& dstOver) {
+        for (int i = 0; i < path.size() - 1; ++i) {
+            if (intersectsRect(path[i], path[i+1], srcOver) ||
+                intersectsRect(path[i], path[i+1], dstOver)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Вычисление длины ломаной линии
+    static int getPathLength(const QVector<QPoint>& path) {
+        int length = 0;
+        for (int i = 0; i < path.size() - 1; ++i) {
+            length += std::abs(path[i].x() - path[i+1].x()) + std::abs(path[i].y() - path[i+1].y());
+        }
+        return length;
+    }
+
+    // Основная функция трассировки
+    static QVector<QPoint> findRoute(QPoint srcPoint, QPoint dstPoint,
+                                     QRect srcOver, QRect dstOver, QPoint grid) {
+        QVector<QPoint> bestPath;
+        int minLength = INT_MAX;
+
+        // Направления для первого шага (0 - горизонтально, 1 - вертикально)
+        for (int initialDir : {0, 1}) {
+
+            // Генерируем возможные ключевые координаты (каналы трассировки)
+            QVector<int> xChannels = { srcPoint.x(), dstPoint.x() };
+            QVector<int> yChannels = { srcPoint.y(), dstPoint.y() };
+
+            // Добавляем отступы вокруг препятствий (на безопасное расстояние сетки)
+            auto addObstacleChannels = [&](const QRect& r) {
+                if (!r.isNull() && r.isValid()) {
+                    int stepX = grid.x() > 0 ? grid.x() : 10;
+                    int stepY = grid.y() > 0 ? grid.y() : 10;
+                    xChannels << snap(r.left() - stepX, stepX) << snap(r.right() + stepX, stepX);
+                    yChannels << snap(r.top() - stepY, stepY) << snap(r.bottom() + stepY, stepY);
+                }
+            };
+            addObstacleChannels(srcOver);
+            addObstacleChannels(dstOver);
+
+            // Перебор возможных промежуточных изломов (до 5 сегментов = до 4 промежуточных точек)
+            for (int cx1 : xChannels) {
+                for (int cy1 : yChannels) {
+                    for (int cx2 : xChannels) {
+                        for (int cy2 : yChannels) {
+
+                            QVector<QPoint> path;
+                            path.append(srcPoint);
+
+                            // --- СТРОИМ ТОЧКУ 1 (Первый излом) ---
+                            // Выравниваем ОДНУ координату по сетке в зависимости от направления
+                            QPoint p1;
+                            if (initialDir == 0) { // Движение по X
+                                p1.setX(snap(cx1, grid.x())); // Первая координата выровнена
+                                p1.setY(srcPoint.y());        // Вторая сохраняет исходное положение
+                            } else { // Движение по Y
+                                p1.setX(srcPoint.x());
+                                p1.setY(snap(cy1, grid.y()));
+                            }
+                            if (p1 != path.last()) path.append(p1);
+
+                            // --- СТРОИМ ТОЧКУ 2 (Второй излом) ---
+                            // На втором изломе выравнивается ВТОРАЯ координата по сетке.
+                            // Теперь вся траектория жестко сидит на узлах сетки.
+                            QPoint p2;
+                            if (initialDir == 0) {
+                                p2.setX(p1.x()); // Уже выровнен по X
+                                p2.setY(snap(cy2, grid.y())); // Теперь выровнен и по Y
+                            } else {
+                                p2.setX(snap(cx2, grid.x()));
+                                p2.setY(p1.y());
+                            }
+                            if (p2 != path.last()) path.append(p2);
+
+                            // --- СТРОИМ ПРОМЕЖУТОЧНЫЕ ТОЧКИ ДЛЯ ВЫХОДА НА ФИНИШ ---
+                            // Точка 3 для ортогонального перехода к финишу
+                            QPoint p3;
+                            if (initialDir == 0) {
+                                p3.setX(snap(dstPoint.x(), grid.x()));
+                                p3.setY(p2.y());
+                            } else {
+                                p3.setX(p2.x());
+                                p3.setY(snap(dstPoint.y(), grid.y()));
+                            }
+                            if (p3 != path.last()) path.append(p3);
+
+                            // Добавляем финальную точку
+                            if (dstPoint != path.last()) path.append(dstPoint);
+
+                            // Проверяем ограничения: сегментов должно быть от 1 до 5 (точек от 2 до 6)
+                            int segments = path.size() - 1;
+                            if (segments >= 1 && segments <= 5) {
+                                if (isValidPath(path, srcOver, dstOver)) {
+                                    int len = getPathLength(path);
+                                    if (len < minLength) {
+                                        minLength = len;
+                                        bestPath = path;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return bestPath;
+    }
+};
+#endif
+

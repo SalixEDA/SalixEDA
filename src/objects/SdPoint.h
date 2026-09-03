@@ -54,13 +54,15 @@ class SdPoint : public QPoint
     void        set( int cx, int cy ) { setX(cx); setY(cy); }
     void        moveOriented(int dx, int dy, SdOrientation orient );
     SdPoint     complement() const { return SdPoint(-x(),-y()); }
-    SdPoint     sub( SdPoint b ) { return SdPoint( x() - b.x(), y() - b.y() ); }
+    SdPoint     sub( SdPoint b ) const { return SdPoint( x() - b.x(), y() - b.y() ); }
     SdPoint     operator - ( SdPoint b ) { return sub(b); }
     SdPoint     operator + ( SdPoint b ) { return SdPoint( x() + b.x(), y() + b.y() ); }
     SdPoint     getMiddle( SdPoint b ) { return SdPoint( (x() + b.x()) / 2, (y() + b.y()) / 2 ); }
     SdPvAngle   getAngle( SdPoint center = SdPoint() ) const; //Угол поворота до точки относительно центра
     double      getAngleDegree(SdPoint center) const;
     QPointF     toPointF() const { return QPointF(x(),y()); }
+    SdPvAngle   getAngleBetween( SdPoint from, SdPoint to ) const;
+    SdPoint     getArcMiddlePoint( SdPoint start, SdPoint stop ) const;
 
     float       xmm() const { return static_cast<float>(x()) / 1000.0; }
     float       ymm() const { return static_cast<float>(y()) / 1000.0; }
@@ -107,6 +109,21 @@ class SdPoint : public QPoint
     //!
     QTransform  transformRotation( SdPvAngle angle ) const;
 
+    //!
+    //! \brief transformRotationDegree Constructs a transformation matrix that performs a rotation by the specified angle around
+    //!                                a given point that serves as the center of rotation
+    //! \param degree                  Rotation angle in degree
+    //! \return                        Transformation matrix
+    //!
+    QTransform  transformRotationDegree( double degree ) const;
+
+    //!
+    //! \brief transformMirror Constructs a transformation matrix that performs a mirror on line thisPoint-p
+    //! \param p               Second point of mirror line
+    //! \return                Transformation matrix
+    //!
+    QTransform  transformMirror( SdPoint p ) const;
+
 
     //!
     //! \brief json Overloaded function to write object content into json writer
@@ -148,6 +165,21 @@ class SdPoint : public QPoint
     //!                    Returns 0.0 if a or b coincides with center
     //!
     static double  angleVector( SdPoint a, SdPoint center, SdPoint b );
+
+    //!
+    //! \brief isArcClockwise Determines if the arc is oriented clockwise based on three points.
+    //!
+    //! Calculates the winding direction of an arc that passes sequentially
+    //! through the start, middle, and end points. Uses a cross product approach
+    //! adapted for a coordinate system where the Y-axis points upward.
+    //!
+    //! \param start  The exact starting point of the arc.
+    //! \param middle A point on the arc curve between start and end that defines the bend direction.
+    //! \param end    The exact ending point of the arc.
+    //! \return       True if the path from start through middle to end moves clockwise;
+    //!               false if it moves counter-clockwise or if the points are collinear.
+    //!
+    static bool    isArcClockwise( SdPoint start, SdPoint middle, SdPoint end );
 
     //Test if point is far
     bool        isFar() const { return x() == farCoord && y() == farCoord; }

@@ -1,0 +1,292 @@
+{
+    "command": [
+        {
+            "color": "#000000",
+            "id": "Line",
+            "start": {
+                "x": 3,
+                "y": 0
+            },
+            "stop": {
+                "x": 3,
+                "y": 6
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Line",
+            "start": {
+                "x": 0,
+                "y": 3
+            },
+            "stop": {
+                "x": 6,
+                "y": 3
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 5,
+                "y": 11
+            },
+            "id": "Rect",
+            "second": {
+                "x": 13,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "first": {
+                "x": 16,
+                "y": 6
+            },
+            "id": "Rect",
+            "second": {
+                "x": 16,
+                "y": 29
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 11
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 20,
+                "y": 11
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 21,
+                "y": 11
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 11
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 26,
+                "y": 11
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 11
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 13
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 17
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 24
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 19,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 20,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 21,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 25,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 26,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 25
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 24
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 19
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 18
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "id": "Point",
+            "point": {
+                "x": 27,
+                "y": 17
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

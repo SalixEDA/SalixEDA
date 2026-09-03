@@ -167,7 +167,7 @@ class SdGerberContext : public SdContext {
     virtual void line(SdPoint a, SdPoint b) override;
     virtual void fillRect(SdRect r) override;
     virtual void polygonFill( const QPolygonF &poly ) override;
-    virtual void arc(SdPoint center, SdPoint start, SdPoint stop) override;
+    virtual void arc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop) override;
     virtual void circle(SdPoint center, int radius) override;
     virtual void circleFill(SdPoint center, int radius) override;
     virtual void regionFill( const SdPointList &points, const SdPropLine &prop ) override;
@@ -233,15 +233,23 @@ void SdGerberContext::polygonFill(const QPolygonF &poly)
 
 
 
-void SdGerberContext::arc(SdPoint center, SdPoint start, SdPoint stop)
+void SdGerberContext::arc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop)
   {
+  SdPoint c = mTransform.map(center);
+  SdPoint s = mTransform.map(start);
+  SdPoint m = mTransform.map(middle);
+  SdPoint e = mTransform.map(stop);
   //We always roll arc from start to stop clockwise
   //Select multiquadrant mode
   mStream << "G75*\n";
   //Move to start point
-  if( mPos != start ) mStream << "G01X" << start.x() << "Y" << start.y() << "D02*\n";
-  mStream << "G02X" << stop.x() << "Y" << stop.y() << "I" << (center.x() - start.x()) << "J" << (center.y() - start.y()) << "D01*\nG01*";
-  mPos = stop;
+  if( mPos != s ) mStream << "G01X" << s.x() << "Y" << s.y() << "D02*\n";
+  if( SdPoint::isArcClockwise( s, m, e ) )
+    mStream << "G02X";
+  else
+    mStream << "G03X";
+  mStream << s.x() << "Y" << s.y() << "I" << (c.x() - s.x()) << "J" << (c.y() - s.y()) << "D01*\n";
+  mPos = e;
   }
 
 

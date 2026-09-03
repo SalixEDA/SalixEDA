@@ -68,6 +68,8 @@ class SdSelector : public SdObject
     void                clear();
     void                operator = ( const SdSelector &sour );
 
+    SdClass             contentClasses() const;
+
     //Clipboard functions
     void                putToClipboard(const SdProject *project , double scale, SdWEditor::SdCopyFormat format );
     SdProject          *getFromClipboard();

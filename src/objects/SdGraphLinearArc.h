@@ -24,9 +24,10 @@ Description
 
 class SdGraphLinearArc : public SdGraphLinear
   {
-    SdPoint mCenter;  //Center of arc's circle
-    SdPoint mStart;   //Start point of arc. Arc drawing is counter-clock wise rotation.
-    SdPoint mStop;    //Stop point of arc
+    SdPoint mCenter;  //!< Center of arc's circle
+    SdPoint mStart;   //!< Start point of arc.
+    SdPoint mMiddle;  //!< Middle point of arc. Define direction of arc
+    SdPoint mStop;    //!< Stop point of arc
   public:
     SdGraphLinearArc();
     SdGraphLinearArc( SdPoint center, SdPoint start, SdPoint stop, const SdPropLine &propLine );

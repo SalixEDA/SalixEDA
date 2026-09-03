@@ -209,30 +209,83 @@ void SdContext::fillRect(SdRect r, SdLayerPtr layer)
 
 
 
-void SdContext::arc(SdPoint center, SdPoint start, SdPoint stop)
+
+
+
+void SdContext::arc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop)
   {
-  double radius = center.getDistance(start);
-  QRectF r( center.x()-radius, center.y()-radius, 2.0*radius, 2.0*radius );
-  double ang = mAngle.getDegree();
-  double startAngle = start.getAngleDegree( center );
-  double arcAngle = stop.getAngleDegree( center ) - startAngle;
-  startAngle += ang;
-  if( arcAngle < 0 )
-    arcAngle += 360.0;
-  if( mMirror )
-    mPainter->drawArc( mTransform.mapRect(r), static_cast<int>(startAngle * 16.0), static_cast<int>(-arcAngle * 16.0) );
-  else
-    mPainter->drawArc( mTransform.mapRect(r), static_cast<int>(startAngle * 16.0), static_cast<int>(arcAngle * 16.0) );
+  //qDebug() << center << start << middle << stop;
+  //Transform points
+  QPointF c = mTransform.map(center.toPointF());
+  QPointF s = mTransform.map(start.toPointF());
+  QPointF m = mTransform.map(middle.toPointF());
+  QPointF e = mTransform.map(stop.toPointF());
+
+  // 1. Calculate radius
+  double rX = s.x() - c.x();
+  double rY = s.y() - c.y();
+  double radius = std::sqrt(rX * rX + rY * rY);
+  if( radius < 0.001 )
+    return; // Защита от вырожденной дуги
+
+  // 2. Build bound rect around center c
+  QRectF boundRect(c.x() - radius, c.y() - radius, radius * 2.0, radius * 2.0);
+
+  // 3. Calculate abs angles for all points in radian
+  double alphaS = std::atan2(s.y() - c.y(), s.x() - c.x());
+  double alphaM = std::atan2(m.y() - c.y(), m.x() - c.x());
+  double alphaE = std::atan2(e.y() - c.y(), e.x() - c.x());
+
+  // 4. Convert angles into degree
+  double degS = alphaS * (180.0 / M_PI);
+  double degM = alphaM * (180.0 / M_PI);
+  double degE = alphaE * (180.0 / M_PI);
+
+  // 5. Calculate angles between m and e around s
+  double sweepM = degM - degS;
+  double sweepE = degE - degS;
+
+  // Вспомогательная лямбда для приведения углов к строго положительному диапазону [0, 360)
+  auto normalize360 = [](double angle) {
+    while (angle < 0.0)    angle += 360.0;
+    while (angle >= 360.0) angle -= 360.0;
+    return angle;
+    };
+
+  sweepM = normalize360(sweepM);
+  sweepE = normalize360(sweepE);
+
+  // 6. Определяем направление обхода и итоговый угол разворота (span)
+  double finalSweepDeg = 0.0;
+
+  // Точка M гарантированно лежит на дуге между S и E.
+  // Если угол до M меньше угла до E, значит мы идем в сторону увеличения углов (против часовой)
+  if( sweepM < sweepE ) {
+    // Движение идет ПРОТИВ часовой стрелки (значения углов растут)
+    finalSweepDeg = sweepE;
+    }
+  else {
+    // Движение идет ПО часовой стрелке (значения углов уменьшаются)
+    // Итоговый угол должен быть отрицательным и пройти через "ноль" окружности
+    finalSweepDeg = sweepE - 360.0;
+    }
+
+  // 7. Конвертируем углы в формат Qt (1/16 доля градуса)
+  // Важно округлить до целого, так как drawArc принимает int
+  int qtStartAngle = std::round(degS * 16.0);
+  int qtSpanAngle  = std::round(finalSweepDeg * 16.0);
+
+  // 8. Финальная отрисовка
+  mPainter->drawArc( boundRect, -qtStartAngle, -qtSpanAngle );
   }
 
 
 
-
-void SdContext::arc(SdPoint center, SdPoint start, SdPoint stop, const SdPropLine &prop)
+void SdContext::arc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop, const SdPropLine &prop)
   {
   if( mSelector || prop.mLayer.layer(mPairLayer)->isVisible() ) {
     setProp( prop );
-    arc( center, start, stop );
+    arc( center, start, middle, stop );
     }
   }
 

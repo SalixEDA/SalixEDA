@@ -72,6 +72,8 @@ class SdPvAngle : public SdPv<int,SdPvAngle>
     //Create angle from string representation
     static SdPvAngle fromString( const QString str );
 
+    static SdPvAngle fromDouble( double angle ) { return SdPvAngle(angle * 1000.0); }
+
   private:
     static constexpr int norm( int v )
       {

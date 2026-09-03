@@ -161,7 +161,7 @@ void SdModeCLinearArc::drawDynamic(SdContext *ctx)
     case sStop :
       //Выбор воторой точки
       //First point selection
-      ctx->arc( mCenter, mStart, mPrev );
+      ctx->arc( mCenter, mStart, mCenter.getArcMiddlePoint(mStart,mPrev), mPrev );
       //break is absent purposefully
 
       [[fallthrough]];

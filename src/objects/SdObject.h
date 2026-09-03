@@ -197,11 +197,14 @@ class SdPtr {
 
     bool isValid() const { return mPtr != nullptr; }
 
-    operator bool () const { return mPtr != nullptr; }
+    explicit operator bool () const { return mPtr != nullptr; }
 
     objectType *operator -> () { return mPtr; }
+    const objectType *operator -> () const { return mPtr; }
 
     objectType *ptr() const { return mPtr; }
+
+    objectType &operator*() { return *mPtr; }
   };
 
 

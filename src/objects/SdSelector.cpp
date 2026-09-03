@@ -135,6 +135,20 @@ void SdSelector::operator =(const SdSelector &sour)
 
 
 
+SdClass SdSelector::contentClasses() const
+  {
+  SdClass cls = 0;
+  for( auto graph : mTable ) {
+    if( graph && !graph->isDeleted() ) {
+      cls |= graph->getClass();
+      }
+    }
+  return cls;
+  }
+
+
+
+
 void SdSelector::putToClipboard(const SdProject *project, double scale , SdWEditor::SdCopyFormat format)
   {
   //Prepare Json object with project and selection

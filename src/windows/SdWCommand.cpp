@@ -359,9 +359,11 @@ void SdWCommand::createMenu(SdWMain *frame)
   QMenu *contextMenu = new QMenu( QObject::tr("Context") );
   for( int i = 0; i <= MCC_SELECT_ITEM_COUNT; ++i )
     cmContextSelectItem[i] = contextMenu->addAction( QObject::tr("Select"), [frame,i]() { frame->cmContextCommand(i + MCC_SELECT_ITEM_FIRST); } );
-  cmContextComponentRotate = contextMenu->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Rotate component CW 90"), frame, &SdWMain::cmContextCommand<MCC_COMPONENT_ROTATE> );
-  cmContextComponentFlip   = contextMenu->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Flip component to other side"), frame, &SdWMain::cmContextCommand<MCC_COMPONENT_FLIP> );
-  cmContextGroupRotate     = contextMenu->addAction( QIcon(QString(":/pic/aiChat.png")), QObject::tr("Rotate component CW 90"), frame, &SdWMain::cmContextCommand<MCC_GROUP_ROTATE> );
+  cmContextComponentRotate = contextMenu->addAction( QIcon(QString(":/pic/editRotate.png")), QObject::tr("Rotate component CW 90"), frame, &SdWMain::cmContextCommand<MCC_COMPONENT_ROTATE> );
+  cmContextComponentFlip   = contextMenu->addAction( QIcon(QString(":/pic/flipSide.png")), QObject::tr("Flip component to other side"), frame, &SdWMain::cmContextCommand<MCC_COMPONENT_FLIP> );
+  cmContextGroupRotate     = contextMenu->addAction( QIcon(QString(":/pic/editRotateGroup.png")), QObject::tr("Rotate component CW 90"), frame, &SdWMain::cmContextCommand<MCC_GROUP_ROTATE> );
+  cmContextGraphRotate     = contextMenu->addAction( QIcon(QString(":/pic/editGraphRotate.png")), QObject::tr("Rotate graphics"), frame, &SdWMain::cmContextCommand<MCC_GRAPHICS_ROTATE> );
+  cmContextGraphMirror     = contextMenu->addAction( QIcon(QString(":/pic/editGraphMirror.png")), QObject::tr("Mirror graphics"), frame, &SdWMain::cmContextCommand<MCC_GRAPHICS_MIRROR> );
 
 
 
@@ -382,6 +384,9 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuSelect->insertAction( nullptr, cmEditRotateGroup );
   menuSelect->addSeparator();
   menuSelect->insertAction( nullptr, cmEditProperties );
+  menuSelect->addSeparator();
+  menuSelect->insertAction( nullptr, cmContextGraphRotate );
+  menuSelect->insertAction( nullptr, cmContextGraphMirror );
 
   //Select popup menu (symbol and part version)
   menuSelectSymPart = new QMenu( QObject::tr("Select") );
@@ -400,6 +405,9 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuSelectSymPart->insertAction( nullptr, cmEditRotateGroup );
   menuSelectSymPart->addSeparator();
   menuSelectSymPart->insertAction( nullptr, cmEditProperties );
+  menuSelectSymPart->addSeparator();
+  menuSelectSymPart->insertAction( nullptr, cmContextGraphRotate );
+  menuSelectSymPart->insertAction( nullptr, cmContextGraphMirror );
 
   //Select popup menu (sheet version)
   menuSelectSheet = new QMenu( QObject::tr("Select") );
@@ -420,6 +428,9 @@ void SdWCommand::createMenu(SdWMain *frame)
   menuSelectSheet->insertAction( nullptr, cmEditProperties );
   menuSelectSheet->insertAction( nullptr, cmEditCalculations );
   menuSelectSheet->insertAction( nullptr, cmEditFragments );
+  menuSelectSheet->addSeparator();
+  menuSelectSheet->insertAction( nullptr, cmContextGraphRotate );
+  menuSelectSheet->insertAction( nullptr, cmContextGraphMirror );
 
 
 
@@ -606,8 +617,14 @@ int SdWCommand::getModeBarId()
 
 
 
-QMenu *SdWCommand::getSelectMenu(SdClass objectClass)
+QMenu *SdWCommand::getSelectMenu( SdClass objectClass, SdClass selectedClass )
   {
+  //Enable special graph items
+  bool enaGraph = selectedClass == dctLines;
+  cmContextGraphRotate->setEnabled(enaGraph);
+  cmContextGraphMirror->setEnabled(enaGraph);
+
+  //Return menu variant
   if( objectClass & (dctSymbol | dctPart) ) return menuSelectSymPart;
   if( objectClass & (dctSheet) ) return menuSelectSheet;
   return menuSelect;
@@ -936,6 +953,8 @@ QActionPtr SdWCommand::cmContextSelectItem[MCC_SELECT_ITEM_COUNT];
 QActionPtr SdWCommand::cmContextComponentRotate;
 QActionPtr SdWCommand::cmContextComponentFlip;
 QActionPtr SdWCommand::cmContextGroupRotate;
+QActionPtr SdWCommand::cmContextGraphRotate;
+QActionPtr SdWCommand::cmContextGraphMirror;
 
 
 QActionPtr SdWCommand::cmViewProject;

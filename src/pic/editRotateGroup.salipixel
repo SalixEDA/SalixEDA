@@ -1,0 +1,227 @@
+{
+    "command": [
+        {
+            "color": "#0000ff",
+            "first": {
+                "x": 4,
+                "y": 16
+            },
+            "id": "Rect",
+            "second": {
+                "x": 7,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#0000ff",
+            "first": {
+                "x": 9,
+                "y": 16
+            },
+            "id": "Rect",
+            "second": {
+                "x": 12,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#0000ff",
+            "first": {
+                "x": 9,
+                "y": 18
+            },
+            "id": "Rect",
+            "second": {
+                "x": 12,
+                "y": 23
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": false,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 3,
+                "y": 10
+            },
+            "select1": {
+                "x": 13,
+                "y": 25
+            },
+            "target": {
+                "x": 13,
+                "y": 22
+            },
+            "visible": true
+        },
+        {
+            "angle": {
+                "x": 19,
+                "y": 23
+            },
+            "center": {
+                "x": 9,
+                "y": 24
+            },
+            "color": "#000000",
+            "doCopy": true,
+            "doOverride": false,
+            "id": "AreaRotate",
+            "select0": {
+                "x": 3,
+                "y": 8
+            },
+            "select1": {
+                "x": 13,
+                "y": 21
+            },
+            "visible": true
+        },
+        {
+            "color": "#000000",
+            "doCopy": false,
+            "doOverride": false,
+            "id": "AreaMove",
+            "select0": {
+                "x": 13,
+                "y": 19
+            },
+            "select1": {
+                "x": 24,
+                "y": 27
+            },
+            "target": {
+                "x": 27,
+                "y": 29
+            },
+            "visible": true
+        },
+        {
+            "color": "#8ff0a4",
+            "first": {
+                "x": 16,
+                "y": 21
+            },
+            "id": "Rect",
+            "second": {
+                "x": 23,
+                "y": 24
+            },
+            "visible": true
+        },
+        {
+            "color": "#8ff0a4",
+            "first": {
+                "x": 16,
+                "y": 26
+            },
+            "id": "Rect",
+            "second": {
+                "x": 21,
+                "y": 29
+            },
+            "visible": true
+        },
+        {
+            "color": "#8ff0a4",
+            "first": {
+                "x": 23,
+                "y": 26
+            },
+            "id": "Rect",
+            "second": {
+                "x": 27,
+                "y": 29
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 11,
+                "y": 24
+            },
+            "color": "#79fb37",
+            "id": "Arc",
+            "start": {
+                "x": 11,
+                "y": 3
+            },
+            "stop": {
+                "x": 28,
+                "y": 16
+            },
+            "visible": true
+        },
+        {
+            "color": "#79fb37",
+            "id": "Line",
+            "start": {
+                "x": 29,
+                "y": 15
+            },
+            "stop": {
+                "x": 23,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#79fb37",
+            "id": "Line",
+            "start": {
+                "x": 29,
+                "y": 15
+            },
+            "stop": {
+                "x": 29,
+                "y": 8
+            },
+            "visible": true
+        },
+        {
+            "color": "#79fb37",
+            "first": {
+                "x": 16,
+                "y": 21
+            },
+            "id": "Rect",
+            "second": {
+                "x": 23,
+                "y": 24
+            },
+            "visible": true
+        },
+        {
+            "color": "#79fb37",
+            "first": {
+                "x": 16,
+                "y": 26
+            },
+            "id": "Rect",
+            "second": {
+                "x": 21,
+                "y": 29
+            },
+            "visible": true
+        },
+        {
+            "color": "#79fb37",
+            "first": {
+                "x": 23,
+                "y": 26
+            },
+            "id": "Rect",
+            "second": {
+                "x": 27,
+                "y": 29
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

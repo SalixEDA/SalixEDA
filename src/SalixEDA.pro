@@ -132,6 +132,8 @@ SOURCES += \
     3dr/Sd3drRegion.cpp \
     modes/SdModeTBinder.cpp \
     objects/SdContainerFile.cpp \
+    objects/SdConverterGraphMirror.cpp \
+    objects/SdConverterGraphRotate.cpp \
     objects/SdCopyMap.cpp \
     objects/SdCopyMapProject.cpp \
     objects/SdGraphNetPinsList.cpp \
@@ -529,6 +531,8 @@ HEADERS  += \
     3dr/Sd3drRegion.h \
     modes/SdModeTBinder.h \
     objects/SdContainerFile.h \
+    objects/SdConverterGraphMirror.h \
+    objects/SdConverterGraphRotate.h \
     objects/SdCopyMap.h \
     objects/SdCopyMapProject.h \
     objects/SdDoubleVector.h \

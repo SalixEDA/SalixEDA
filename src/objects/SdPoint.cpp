@@ -151,6 +151,56 @@ double SdPoint::getAngleDegree(SdPoint center) const
 
 
 
+SdPvAngle SdPoint::getAngleBetween(SdPoint from, SdPoint to) const
+  {
+  // 1. Получаем координаты векторов относительно центра поворота c
+  double v1x = from.x() - x();
+  double v1y = from.y() - y();
+
+  double v2x = to.x() - x();
+  double v2y = to.y() - y();
+
+  // 2. Находим абсолютные углы каждого вектора в радианах
+  double angle1 = std::atan2(v1y, v1x);
+  double angle2 = std::atan2(v2y, v2x);
+
+  // 3. Вычисляем разницу углов
+  double angleRad = angle2 - angle1;
+
+  // 4. Переводим радианы в градусы
+  double angleDeg = angleRad * (180.0 / M_PI);
+
+  // 5. Нормализуем угол, чтобы он лежал в диапазоне [-180, 180]
+  if (angleDeg > 180.0)  angleDeg -= 360.0;
+  if (angleDeg <= -180.0) angleDeg += 360.0;
+
+  return SdPvAngle::fromDouble(angleDeg);
+  }
+
+
+
+
+SdPoint SdPoint::getArcMiddlePoint(SdPoint start, SdPoint stop) const
+  {
+  double radius = getDistance(start);
+  if( radius < 0.001 )
+    return stop;
+
+  //Углы получаются в градусах 0 - 360
+  double angleS = start.getAngleDegree( *this );
+  double angleE = stop.getAngleDegree( *this );
+
+  double sweepAngle = angleE - angleS;
+  if( sweepAngle < 0 )
+    sweepAngle += 360.0;
+
+  return transformRotationDegree( sweepAngle/2 ).map( start );
+  }
+
+
+
+
+
 //Return distance between two points - this and p
 double SdPoint::getDistance(SdPoint p) const
   {
@@ -316,10 +366,55 @@ QTransform SdPoint::transformMoveFrom(SdPoint p) const
 //!
 QTransform SdPoint::transformRotation(SdPvAngle angle) const
   {
+  return transformRotationDegree( angle.getDegree() );
+  }
+
+
+
+
+//!
+//! \brief transformRotationDegree Constructs a transformation matrix that performs a rotation by the specified angle around
+//!                                a given point that serves as the center of rotation
+//! \param degree                  Rotation angle in degree
+//! \return                        Transformation matrix
+//!
+QTransform SdPoint::transformRotationDegree(double degree) const
+  {
   QTransform map( QTransform::fromTranslate( x(), y() ) );
-  map.rotate( angle.getDegree() );
+  map.rotate( degree );
   map.translate( -x(), -y() );
   return map;
+  }
+
+
+
+
+
+
+
+//!
+//! \brief transformMirror Constructs a transformation matrix that performs a mirror on line thisPoint-p
+//! \param p               Second point of mirror line
+//! \return                Transformation matrix
+//!
+QTransform SdPoint::transformMirror(SdPoint p) const
+  {
+  // If the points coincide, return the identity matrix.
+  if( *this == p )
+    return QTransform();
+
+  double angleDeg = p.getAngleDegree( *this );
+
+  QTransform matrix;
+
+  // 3. Строим цепочку трансформаций (в Qt операции применяются справа налево)
+  matrix.translate(x(), y());    // Шаг 5: Сдвигаем обратно в p1
+  matrix.rotate(angleDeg);             // Шаг 4: Поворачиваем обратно
+  matrix.scale(1.0, -1.0);             // Шаг 3: Зеркалим относительно оси X (инверсия Y)
+  matrix.rotate(-angleDeg);            // Шаг 2: Поворачиваем линию к оси X
+  matrix.translate(-x(), -y());  // Шаг 1: Сдвигаем p1 в начало координат
+
+  return matrix;
   }
 
 
@@ -422,6 +517,20 @@ double SdPoint::angleVector( SdPoint a, SdPoint center, SdPoint b )
     }
 
   return angleDeg;
+  }
+
+
+
+
+bool SdPoint::isArcClockwise(SdPoint start, SdPoint middle, SdPoint end)
+  {
+  QPointF se( end.sub(start) );
+  QPointF sm( middle.sub(start) );
+
+  // Косое произведение
+  double z = se.x() * sm.y() - se.y() * sm.x();
+
+  return z < 0;
   }
 
 

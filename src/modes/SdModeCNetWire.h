@@ -69,7 +69,7 @@ class SdModeCNetWire : public SdModeCommon
   protected:
     RenumResult          getUnionResult( const QString firstWireName, const QString secondWireName );
     bool                 okUnion( const QString newName );
-    void                 renameOtherSheets(const QString wireName );
+    void                 renameOtherSheets( const QString &oldNetName, const QString newNetName );
 
     bool                 testFirstPoint( SdPoint p );
     bool                 testNextPoint( SdPoint p );

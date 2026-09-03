@@ -972,5 +972,9 @@
         <file>help/scriptFunSolidBoxRound-en.md</file>
         <file>pic/formMaster.png</file>
         <file>pic/aiChat.png</file>
+        <file>pic/editRotateGroup.png</file>
+        <file>pic/editGraphMirror.png</file>
+        <file>pic/editGraphRotate.png</file>
+        <file>pic/cursorGraphMirror.png</file>
     </qresource>
 </RCC>

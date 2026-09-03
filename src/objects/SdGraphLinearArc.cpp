@@ -32,7 +32,7 @@ SdGraphLinearArc::SdGraphLinearArc(SdPoint center, SdPoint start, SdPoint stop, 
   mStart(start),
   mStop(stop)
   {
-
+  mMiddle = mCenter.getArcMiddlePoint( start, stop );
   }
 
 
@@ -52,6 +52,7 @@ void SdGraphLinearArc::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool n
   Q_ASSERT( arc.isValid() );
   mCenter  = arc->mCenter;
   mStart   = arc->mStart;
+  mMiddle  = arc->mMiddle;
   mStop    = arc->mStop;
   }
 
@@ -70,6 +71,7 @@ bool SdGraphLinearArc::isClone(const SdObject *src) const
     if( arc.isValid() ) {
       return mCenter == arc->mCenter &&
              mStart  == arc->mStart &&
+             mMiddle == arc->mMiddle &&
              mStop   == arc->mStop;
       }
     }
@@ -88,6 +90,7 @@ void SdGraphLinearArc::json(SdJsonWriter &js) const
   {
   js.jsonPoint( QStringLiteral("Center"), mCenter );
   js.jsonPoint( QStringLiteral("Start"), mStart );
+  js.jsonPoint( QStringLiteral("Middle"), mMiddle );
   js.jsonPoint( QStringLiteral("Stop"), mStop );
   SdGraphLinear::json( js );
   }
@@ -105,6 +108,10 @@ void SdGraphLinearArc::json(const SdJsonReader &js)
   js.jsonPoint( QStringLiteral("Center"), mCenter );
   js.jsonPoint( QStringLiteral("Start"), mStart );
   js.jsonPoint( QStringLiteral("Stop"), mStop );
+  if( js.contains(QStringLiteral("Middle")) )
+    js.jsonPoint( QStringLiteral("Middle"), mMiddle );
+  else
+    mMiddle = mCenter.getArcMiddlePoint( mStart, mStop );
   SdGraphLinear::json( js );
   }
 
@@ -116,7 +123,7 @@ void SdGraphLinearArc::json(const SdJsonReader &js)
 
 void SdGraphLinearArc::saveState(SdUndo *undo)
   {
-  undo->prop( &mProp, &mCenter, &mStart, &mStop );
+  undo->prop( &mProp, &mCenter, &mStart, &mMiddle, &mStop );
   }
 
 
@@ -126,11 +133,8 @@ void SdGraphLinearArc::transform(const QTransform &map, SdPvAngle)
   {
   mCenter = map.map(mCenter);
   mStart  = map.map(mStart);
+  mMiddle = map.map(mMiddle);
   mStop   = map.map(mStop);
-  if( !(map.isRotating() || map.isScaling() || map.isTranslating()) ) {
-    //For mirror
-    mStart.swap( mStop );
-    }
   }
 
 
@@ -169,7 +173,7 @@ SdRect SdGraphLinearArc::getOverRect() const
 
 void SdGraphLinearArc::draw(SdContext *dc)
   {
-  dc->arc( mCenter, mStart, mStop, mProp );
+  dc->arc( mCenter, mStart, mMiddle, mStop, mProp );
   }
 
 

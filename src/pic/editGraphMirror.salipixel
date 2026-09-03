@@ -1,0 +1,110 @@
+{
+    "command": [
+        {
+            "color": "#e5a50a",
+            "id": "Line",
+            "start": {
+                "x": 16,
+                "y": 3
+            },
+            "stop": {
+                "x": 16,
+                "y": 27
+            },
+            "visible": true
+        },
+        {
+            "color": "#e5a50a",
+            "id": "Line",
+            "start": {
+                "x": 15,
+                "y": 3
+            },
+            "stop": {
+                "x": 15,
+                "y": 27
+            },
+            "visible": true
+        },
+        {
+            "color": "#0000ff",
+            "id": "Line",
+            "start": {
+                "x": 12,
+                "y": 5
+            },
+            "stop": {
+                "x": 12,
+                "y": 27
+            },
+            "visible": true
+        },
+        {
+            "color": "#0000ff",
+            "id": "Line",
+            "start": {
+                "x": 12,
+                "y": 27
+            },
+            "stop": {
+                "x": 3,
+                "y": 27
+            },
+            "visible": true
+        },
+        {
+            "color": "#0000ff",
+            "id": "Line",
+            "start": {
+                "x": 3,
+                "y": 27
+            },
+            "stop": {
+                "x": 12,
+                "y": 5
+            },
+            "visible": true
+        },
+        {
+            "color": "#99c1f1",
+            "id": "Line",
+            "start": {
+                "x": 19,
+                "y": 5
+            },
+            "stop": {
+                "x": 19,
+                "y": 27
+            },
+            "visible": true
+        },
+        {
+            "color": "#99c1f1",
+            "id": "Line",
+            "start": {
+                "x": 19,
+                "y": 27
+            },
+            "stop": {
+                "x": 28,
+                "y": 27
+            },
+            "visible": true
+        },
+        {
+            "color": "#99c1f1",
+            "id": "Line",
+            "start": {
+                "x": 28,
+                "y": 27
+            },
+            "stop": {
+                "x": 19,
+                "y": 5
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

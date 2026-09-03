@@ -21,6 +21,10 @@ History
   08.04.2026 v3.4  Append board builder master
   06.05.2026 v3.5  Append base for textual net connection list
   16.07.2026 v3.6  Refactor help examples system. Allow examples load
+  03.09.2026 v3.7  Fix: correct drawing arcs and also for any transformation
+                   Fix: correct drawing arcs in gerber
+                   Append sheet form master
+                   Append select context menu rotation and mirror for graphics
 */
 
 #ifndef SDCONFIG
@@ -32,7 +36,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             6
+#define SD_VERSION_MINOR             7
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

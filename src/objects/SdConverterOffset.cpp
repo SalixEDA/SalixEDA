@@ -11,7 +11,7 @@ Web
   www.SalixEDA.org
 
 Description
-
+  Converter for simple offset. Used for display copy of selected objects in appropriate place
 */
 #include "SdConverterOffset.h"
 

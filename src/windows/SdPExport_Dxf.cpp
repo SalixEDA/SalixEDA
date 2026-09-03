@@ -62,7 +62,7 @@ class SdDxfContext : public SdContext {
     virtual void setPen(SdPvInt width, QColor color, SdPvInt lineStyle) override;
     virtual void line(SdPoint a, SdPoint b) override;
     virtual void fillRect(SdRect r) override;
-    virtual void arc(SdPoint center, SdPoint start, SdPoint stop) override;
+    virtual void arc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop) override;
     virtual void circle(SdPoint center, int radius) override;
     virtual void circleFill(SdPoint center, int radius) override;
     virtual void regionFill( const SdPointList &points, const SdPropLine &prop ) override;
@@ -392,10 +392,11 @@ void SdDxfContext::fillRect(SdRect r)
   Q_UNUSED(r)
   }
 
-void SdDxfContext::arc(SdPoint center, SdPoint start, SdPoint stop)
+void SdDxfContext::arc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop)
   {
   Q_UNUSED(center)
   Q_UNUSED(start)
+  Q_UNUSED(middle)
   Q_UNUSED(stop)
   }
 

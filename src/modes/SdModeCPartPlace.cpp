@@ -505,7 +505,7 @@ QString SdModeCPartPlace::getStepHelp() const
     if( mBehindCursorPrt ) {
       QString str = mBehindCursorPrt->ident();
       QString temp( QObject::tr("Left button: %1;   Middle button: %2") );
-      return temp.arg(str).arg(mSmartName);
+      return temp.arg( str, mSmartName );
       }
     }
   if( mBySheet )

@@ -1,0 +1,75 @@
+{
+    "command": [
+        {
+            "color": "#0000ff",
+            "id": "Line",
+            "start": {
+                "x": 3,
+                "y": 26
+            },
+            "stop": {
+                "x": 3,
+                "y": 6
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 3,
+                "y": 26
+            },
+            "color": "#0000ff",
+            "id": "Circle",
+            "radius": {
+                "x": 6,
+                "y": 26
+            },
+            "visible": true
+        },
+        {
+            "center": {
+                "x": 3,
+                "y": 26
+            },
+            "color": "#26a269",
+            "id": "Arc",
+            "start": {
+                "x": 3,
+                "y": 3
+            },
+            "stop": {
+                "x": 21,
+                "y": 17
+            },
+            "visible": true
+        },
+        {
+            "color": "#26a269",
+            "id": "Line",
+            "start": {
+                "x": 22,
+                "y": 15
+            },
+            "stop": {
+                "x": 17,
+                "y": 12
+            },
+            "visible": true
+        },
+        {
+            "color": "#26a269",
+            "id": "Line",
+            "start": {
+                "x": 22,
+                "y": 15
+            },
+            "stop": {
+                "x": 21,
+                "y": 9
+            },
+            "visible": true
+        }
+    ],
+    "height": 32,
+    "width": 32
+}

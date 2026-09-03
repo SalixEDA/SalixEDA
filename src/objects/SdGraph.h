@@ -187,4 +187,6 @@ class SdGraph : public SdObject
 
 typedef SdGraph *SdGraphPtr;
 
+using SdGraphSdp = SdPtr<SdGraph>;
+
 #endif // SDGRAPHOBJECT_H

@@ -17,9 +17,10 @@ Description
 #include "objects/SdEnvir.h"
 #include "objects/SdPItemSheet.h"
 #include "objects/SdPItemPlate.h"
-#include "objects/SdGraphNetWire.h"
 #include "objects/SdPulsar.h"
 #include "objects/SdConverterOffset.h"
+#include "objects/SdConverterGraphRotate.h"
+#include "objects/SdConverterGraphMirror.h"
 
 //All prop bars
 #include "windows/SdPropBarLinear.h"
@@ -92,20 +93,31 @@ void SdModeSelect::drawStatic(SdContext *ctx)
 
 void SdModeSelect::drawDynamic(SdContext *ctx)
   {
-  //Draw all selected elements
-  ctx->setOverColor( SdEnvir::instance()->getSysColor(scSelected) );
-  mFragment.draw( ctx );
+  if( getStep() == smRotateTo ) {
+    ctx->setOverColor( SdEnvir::instance()->getSysColor(scSelected) );
+    mFragment.draw( ctx->setTempConverter( SdConverterGraphRotate(mFirst, mPrevMove, mCurPoint) ) );
+    }
+  else if( getStep() == smMirrorDir ) {
+    ctx->setOverColor( SdEnvir::instance()->getSysColor(scSelected) );
+    mFragment.draw( ctx->setTempConverter( SdConverterGraphMirror(mFirst, mCurPoint) ) );
+    }
+  else {
+    //Draw all selected elements
+    ctx->setOverColor( SdEnvir::instance()->getSysColor(scSelected) );
+    mFragment.draw( ctx );
 
-  {
-  //Draw all copy in current point
-  SdConverterOffset offset( mPrevMove.sub(mFirst) );
-  ctx->setConverter( &offset );
-  mPaste.draw( ctx );
-  }
+    // {
+    // //Draw all copy in current point
+    // SdConverterOffset offset( mPrevMove.sub(mFirst) );
+    // ctx->setConverter( &offset );
+    // mPaste.draw( ctx );
+    // }
+    mPaste.draw( ctx->setTempConverter( SdConverterOffset(mPrevMove.sub(mFirst)) )  );
 
-  //On according step
-  switch( getStep() ) {
-    case smSelRect : showRect( ctx ); break;
+    //On according step
+    switch( getStep() ) {
+      case smSelRect : showRect( ctx ); break;
+      }
     }
   }
 
@@ -282,7 +294,63 @@ void SdModeSelect::enterPoint( SdPoint point )
   {
   //GetBase()->GetProject()->Dirty();
   switch( getStep() ) {
+    case smRotateBase :
+      mFirst = point;
+      setStep( smRotateFrom );
+      break;
+
+    case smRotateFrom :
+      if( mFirst != point ) {
+        mPrevMove = point;
+        setStep( smRotateTo );
+        setDirtyCashe();
+        update();
+        }
+      break;
+
+    case smRotateTo :
+      if( mPrevMove != point ) {
+        auto angle = mFirst.getAngleBetween( mPrevMove, point );
+        auto mat = mFirst.transformRotation( angle );
+        mUndo->begin( QObject::tr("Rotation"), mObject, false );
+        //Save state of all object and rotate
+        mFragment.forEach( dctLines, [this,mat,angle] (SdObject *obj) -> bool {
+          if( SdGraphSdp graph{obj} ) {
+            graph->saveState( mUndo );
+            graph->transform( mat, angle );
+            }
+          return true;
+          });
+        setStep(smSelPresent);
+        setDirty();
+        }
+      break;
+
+    case smMirrorBase :
+      mFirst = point;
+      setStep( smMirrorDir );
+      setDirtyCashe();
+      update();
+      break;
+
+    case smMirrorDir :
+      if( mFirst != point ) {
+        auto mat = mFirst.transformMirror( point );
+        mUndo->begin( QObject::tr("Mirroring"), mObject, false );
+        mFragment.forEach( dctLines, [this,mat] (SdObject *obj) -> bool {
+          if( SdGraphSdp graph{obj} ) {
+            graph->saveState( mUndo );
+            graph->transform( mat );
+            }
+          return true;
+          });
+        setStep(smSelPresent);
+        setDirty();
+        }
+      break;
+
     case smPaste : enterPaste( point ); break;
+
     default :
       //Проверить клавишу Shift, если не нажата то удалить предыдущее выделение
       if( !(checkPoint(point) & ELEM_SEL) ) {
@@ -337,6 +405,13 @@ void SdModeSelect::clickPoint( SdPoint point )
 void SdModeSelect::cancelPoint( SdPoint point )
   {
   switch( getStep() ) {
+    case smRotateBase :
+    case smRotateFrom :
+    case smRotateTo   :
+    case smMirrorBase :
+    case smMirrorDir  :
+      setStep( smSelPresent );
+      return;
     case smPaste : cancelPaste(); break;
     default :
       if( checkPoint(point) ) {
@@ -363,6 +438,10 @@ void SdModeSelect::movePoint( SdPoint p )
   mCurPoint = p;
   switch( getStep() ) {
     case smPaste : dragCopy( p ); break;
+    case smRotateTo :
+    case smMirrorDir :
+      update();
+      break;
     default      : checkPoint( p ); //Определить состояние курсора в текущей точке
     }
   }
@@ -457,7 +536,10 @@ QString SdModeSelect::getStepHelp() const
     //Указание базы для поворота
     case smRotateBase : return QObject::tr( "Enter center point for elements group rotation");
     //Указание направления поворота
-    case smRotateDir  : return QObject::tr( "Enter point to define angle of rotation" );
+    case smRotateFrom : return QObject::tr( "Enter source point of rotation" );
+    case smRotateTo   : return QObject::tr( "Enter target point of rotation" );
+    case smMirrorBase : return QObject::tr( "Enter first point of mirror segment" );
+    case smMirrorDir  : return QObject::tr( "Enter second point of mirror segment" );
     //Вставка из карамана
     case smPaste      : return QObject::tr( "Enter position for pasted elements" );
     }
@@ -490,7 +572,10 @@ QString SdModeSelect::getStepThema() const
     //Указание базы для поворота
     case smRotateBase : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectRotateCenter" );
     //Указание направления поворота
-    case smRotateDir  : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectRotateAngle" );
+    case smRotateFrom : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectRotateSource" );
+    case smRotateTo   : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectRotateAngle" );
+    case smMirrorBase : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectMirrorLineFirst" );
+    case smMirrorDir  : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectMirrorLineSecond" );
     //Вставка из карамана
     case smPaste      : return QStringLiteral( MODE_HELP "ModeSelect.htm#SelectPaste" );
     }
@@ -510,7 +595,10 @@ int SdModeSelect::getCursor() const
     case smCopy       : return CUR_COPY;
     case smMove       : return CUR_MOVE;
     case smRotateBase : return CUR_ROTATE;
-    case smRotateDir  : return CUR_ROTATE;
+    case smRotateFrom : return CUR_ROTATE;
+    case smRotateTo   : return CUR_ROTATE;
+    case smMirrorBase : return CUR_GRAPH_MIRROR;
+    case smMirrorDir  : return CUR_GRAPH_MIRROR;
     case smPaste      : return CUR_ARROW;
     }
   return CUR_ARROW;
@@ -566,7 +654,19 @@ void SdModeSelect::keyUp(int key, QChar ch)
 
 QMenu *SdModeSelect::contextMenu() const
   {
-  return SdWCommand::getSelectMenu( mObject->getClass() );
+  //Get summ of selected objects classes
+  return SdWCommand::getSelectMenu( mObject->getClass(), mFragment.contentClasses() );
+  }
+
+
+
+
+void SdModeSelect::contextCommand(int cmdCode)
+  {
+  switch( cmdCode ) {
+    case MCC_GRAPHICS_ROTATE : setStep( smRotateBase ); break;
+    case MCC_GRAPHICS_MIRROR : setStep( smMirrorBase ); break;
+    }
   }
 
 

@@ -81,6 +81,7 @@ class SdContext {
     //Operations with coord convertor
     SdContext*      setConverter( SdConverter *c );
     void            removeConverter( SdConverter *c );
+    SdContext      *setTempConverter( SdConverter &&c ) { return setConverter( &c ); }
 
     //Overriding color. If this color is setuped then drawing perform by this color but not default layer color.
     //This possibility is for draw "selected" elements or "enter" elements and so on
@@ -125,8 +126,8 @@ class SdContext {
     virtual void    fillRect( SdRect r );
     void            fillRect( SdRect r, QColor color );
     void            fillRect( SdRect r, SdLayerPtr layer );
-    virtual void    arc( SdPoint center, SdPoint start, SdPoint stop );
-    void            arc( SdPoint center, SdPoint start, SdPoint stop, const SdPropLine &prop );
+    virtual void    arc( SdPoint center, SdPoint start, SdPoint middle, SdPoint stop );
+    void            arc( SdPoint center, SdPoint start, SdPoint middle, SdPoint stop, const SdPropLine &prop );
     virtual void    circle( SdPoint center, int radius );
     void            circle( SdPoint center, int radius, const SdPropLine &prop );
     virtual void    circleFill( SdPoint center, int radius );

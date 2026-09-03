@@ -73,4 +73,6 @@ class SdPItemSheet : public SdProjectItem
 
   };
 
+using SdPItemSheetSdp = SdPtr<SdPItemSheet>;
+
 #endif // SDPITEMSHEET_H

@@ -111,5 +111,7 @@ Description
 #define MCC_COMPONENT_ROTATE  100 //!< Rotate selected component clock wise on 90 (F2)
 #define MCC_COMPONENT_FLIP    101 //!< Flip component to other side of pcb (F3)
 #define MCC_GROUP_ROTATE      102 //!< Rotate group elements clock wise on 90
+#define MCC_GRAPHICS_ROTATE   103 //!< Rotate graphics
+#define MCC_GRAPHICS_MIRROR   104 //!< Mirror graphics
 
 #endif // SDMODEIDENT_H
