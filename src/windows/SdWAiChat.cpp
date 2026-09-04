@@ -1,4 +1,5 @@
 #include "SdWAiChat.h"
+#include "ai/SdAiGateway.h"
 
 #include <QTextBrowser>
 #include <QTextEdit>
@@ -8,6 +9,7 @@
 #include <QCloseEvent>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
+#include <QTextBlock>
 #include <QVariantAnimation>
 #include <QTimer>
 #include <QApplication>
@@ -22,7 +24,6 @@ SdWAiChat::SdWAiChat(QWidget *parent)
   , mSendButton(nullptr)
   {
   setupUi();
-  appendTestMessages();
 
   // Initialize the 10-second delay timer
   mFadeDelayTimer = new QTimer(this);
@@ -36,6 +37,9 @@ SdWAiChat::SdWAiChat(QWidget *parent)
   installEventFilter(this);
   mInputFields->installEventFilter(this);
   mChatLog->installEventFilter(this);
+
+  connect( this, &SdWAiChat::question, SdAiGateway::instance(), &SdAiGateway::question, Qt::QueuedConnection );
+  connect( SdAiGateway::instance(), &SdAiGateway::answer, this, &SdWAiChat::appendAiMessage, Qt::QueuedConnection );
   }
 
 
@@ -171,20 +175,20 @@ void SdWAiChat::onSendButtonClicked()
   QString queryText = mInputFields->toPlainText().trimmed();
   if( queryText.isEmpty() ) return;
 
-  // TODO: Add logic to process the string and interact with the embedding system.
+  if( mDialog.size() & 1 )
+    mDialog.append( mAnswer );
+
+  mDialog.append( queryText );
+
   appendUserMessage( queryText );
-  appendAiMessage( "А я ничего не знаю. Я тупой");
   mInputFields->clear();
+
+  emit question( QString{}, mDialog );
   }
 
 
 
 
-void SdWAiChat::appendTestMessages()
-  {
-  appendUserMessage( "Primer" );
-  appendAiMessage( "# Answer\nThis answer from ai");
-  }
 
 
 
@@ -212,7 +216,7 @@ void SdWAiChat::appendUserMessage(const QString &msg)
 
 
 
-
+#if 0
 void SdWAiChat::appendAiMessage(const QString &msg)
   {
   // 1. Создаем временный документ и загружаем Markdown
@@ -234,6 +238,66 @@ void SdWAiChat::appendAiMessage(const QString &msg)
   // 5. Добавляем монолитный блок в лог
   mChatLog->append(finalMessageHtml);
   }
+#endif
+
+void SdWAiChat::appendAiMessage(int answerId, const QString &answer) {
+  bool isNext = answerId == mAnswerId;
+  //Prepare final message
+  if( isNext ) {
+    // If the token is empty, generation for this ID has completed naturally
+    if(answer.isEmpty())
+      return;
+    mAnswer.append( answer );
+    }
+  else {
+    mAnswer = answer;
+    mAnswerId = answerId;
+    }
+
+  // Convert Markdown source to raw HTML layout
+  QTextDocument tempDoc;
+  tempDoc.setMarkdown(mAnswer);
+
+  QString body = extractBody(tempDoc.toHtml());
+
+  // Wrap with boundary markers using the current response transaction ID
+  QString finalMessageHtml = QString(
+                               "<table width=\"100%\">"
+                               "  <tr>"
+                               "    <td style=\"padding: 8px;\">"
+                               "      <b>%1:</b><br>%2"
+                               "    </td>"
+                               "    <td width=\"5%\"></td>"
+                               "  </tr>"
+                               "</table>")
+                             .arg( tr("System"), body);
+
+  // Check if this is a completely new response sequence
+  if( isNext ) {
+    auto childList = mChatLog->document()->rootFrame()->childFrames();
+    QTextFrame *lastFrame = childList.last();
+    // 1. Получаем позиции начала и конца из фрейма таблицы
+    int startPos = childList.at(childList.count() - 2)->lastPosition() + 1;
+    int endPos = lastFrame->lastPosition() + 1;
+
+    // 2. Создаем курсор, привязанный к документу лога
+    QTextCursor cursor(mChatLog->document());
+
+    // 3. Перемещаем курсор в начальную позицию фрейма
+    cursor.setPosition(startPos);
+
+    // 4. Выделяем фрагмент до конечной позиции фрейма
+    // Флаг QTextCursor::KeepAnchor указывает, что нужно именно выделить текст (вытащить якорь)
+    cursor.setPosition(endPos, QTextCursor::KeepAnchor);
+
+    // 5. Удаляем выделенный фрейм вместе со всей его служебной HTML-структурой
+    cursor.removeSelectedText();
+
+    }
+  // Append the clean atomic chunk down into the log interface
+  mChatLog->append(finalMessageHtml);
+  }
+
 
 
 

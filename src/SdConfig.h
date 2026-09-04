@@ -137,6 +137,9 @@ History
 #define SDK_GET_OBJECT_DLG_CFG       "DlgGetObjectCfg2_8"
 #define SDK_PROP                     "Prop"
 #define SDK_PROP_VERSION             "Prop version"
+#define SDK_AI_URL                   "AiUrl"
+#define SDK_AI_KEY                   "AiKey"
+#define SDK_AI_MODEL                 "AiModel"
 
 
 #define MODE_HELP                    //Prefix to mode help files

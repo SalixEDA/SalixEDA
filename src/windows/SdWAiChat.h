@@ -60,6 +60,11 @@ class SdWAiChat : public QWidget
 
     QTimer       *mFadeDelayTimer; //!< Timer to manage the 10-second delay before fading.
 
+    QString       mAnswer;         //!< Assistant answer collect buffer
+    int           mAnswerId;       //!< Assistant answer id
+
+    QStringList   mDialog;
+
     //!
     //! \brief SdWAiChat Constructs the chat window.
     //! \param parent    Pointer to the parent widget.
@@ -78,6 +83,9 @@ class SdWAiChat : public QWidget
 
     //! \brief Deleted assignment operator to enforce Singleton pattern.
     SdWAiChat& operator=(const SdWAiChat&) = delete;
+
+  signals:
+    void question(const QString &system, const QStringList &dialog);
 
   protected:
     //!
@@ -110,6 +118,8 @@ class SdWAiChat : public QWidget
     /// @brief Initiates the smooth opacity fade animation after the delay expires.
     void onFadeTimeout();
 
+    void appendAiMessage(int answerId, const QString &answer);
+
   private:
     //!
     //! \brief setupUi Initializes and lays out all UI components programmatically.
@@ -123,7 +133,7 @@ class SdWAiChat : public QWidget
 
     void appendUserMessage( const QString &msg );
 
-    void appendAiMessage( const QString &msg );
+    //void appendAiMessage( const QString &msg );
 
     QString extractBody(const QString &fullHtml );
 

@@ -43,6 +43,7 @@ docs.CONFIG += recursive  # Позволяет цели зависеть от д
 
 
 SOURCES += \
+    ai/SdAiGateway.cpp \
     guider/SdGuiderDialog.cpp \
     guider/SdGuiderEvent.cpp \
     guider/SdGuiderSnapshot.cpp \
@@ -439,6 +440,7 @@ SOURCES += \
 
 HEADERS  += \
     SvLib/SvJson3dIO.h \
+    ai/SdAiGateway.h \
     guider/SdGuiderDialog.h \
     guider/SdGuiderEvent.h \
     guider/SdGuiderSnapshot.h \
