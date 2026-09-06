@@ -38,7 +38,7 @@ SdWAiChat::SdWAiChat(QWidget *parent)
   mInputFields->installEventFilter(this);
   mChatLog->installEventFilter(this);
 
-  connect( this, &SdWAiChat::question, SdAiGateway::instance(), &SdAiGateway::question, Qt::QueuedConnection );
+  connect( this, &SdWAiChat::userQuestion, SdAiGateway::instance(), &SdAiGateway::userQuestion, Qt::QueuedConnection );
   connect( SdAiGateway::instance(), &SdAiGateway::answer, this, &SdWAiChat::appendAiMessage, Qt::QueuedConnection );
   }
 
@@ -183,7 +183,7 @@ void SdWAiChat::onSendButtonClicked()
   appendUserMessage( queryText );
   mInputFields->clear();
 
-  emit question( QString{}, mDialog );
+  emit userQuestion( mDialog );
   }
 
 

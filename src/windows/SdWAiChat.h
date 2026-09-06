@@ -85,7 +85,7 @@ class SdWAiChat : public QWidget
     SdWAiChat& operator=(const SdWAiChat&) = delete;
 
   signals:
-    void question(const QString &system, const QStringList &dialog);
+    void userQuestion( const QStringList &dialog );
 
   protected:
     //!
