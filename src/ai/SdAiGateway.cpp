@@ -21,6 +21,8 @@ Description
 */
 #include "SdConfig.h"
 #include "SdAiGateway.h"
+#include "SdAiAgentDef.h"
+#include "library/SdTcpCborClient.h"
 
 #include <QSettings>
 #include <QJsonDocument>
@@ -29,6 +31,7 @@ Description
 #include <QUrl>
 #include <QNetworkRequest>
 #include <QThread>
+#include <QCborMap>
 
 SdAiGateway::SdAiGateway(QObject *parent) : QObject(parent) {
   // Initialize the manager in the scope of the thread this object lives in.
@@ -143,23 +146,70 @@ void SdAiGateway::question(const QString &system, const QStringList &dialog) {
 
 void SdAiGateway::userQuestion(const QStringList &dialog)
   {
-  static QString documentationPrefix( "\n[Documentation] В этом разделе представлены статьи из документации, которые, возможно, "
-                                      "относятся к теме вопроса.\n%1\n" );
-  static QString stepsPrefix( "\n[Steps] В этом разделе представлены пошаговые инструкции, которые, возможно, "
-                              "относятся к теме вопроса. Если для ответа используешь какую либо статью из "
-                              "данного раздела, то размещай ее целиком, без каких либо сокращений с "
-                              "выполнением перевода на язык вопроса.\n%1\n" );
-  static QString actionPrefix( "\n[Actions] В этом разделе представлены скрипты, которые исполняются "
-                               "программой SalixEDA. Выдавая эти скрипты ты можешь выполнять определенные действия "
-                               "вместо пользователя.\n%1\n");
-
   QString system("Ты электронный помощник в программе сапр схемотехники и печатных плат SalixEDA."
                       "Ниже представлен контекст в виде статей в markdown формате. Каждая статья предваряется "
-                      "заголовком первого уровня. "
+                      "типом статьи. "
                       "Составь ответ на языке вопроса, при необходимости воспользовавшись статьями контекста. "
-                      "Вставки в тексте статей в скобках {} должны передаваться в ответ без всяких изменений."
+                      "Вставки в тексте статей в скобках {} должны передаваться в ответ строго как есть без всяких изменений! "
                       "Если какая-то статья используется для составления ответа, то в ответ должны попасть все "
                       "вставки, заключенные в скобки {} из данной статьи.\n");
+
+
+  QSettings s;
+  try {
+    SdTcpCborClient client;
+    client.openSocket(s.value(SDK_AI_AGENT_IP, /*SD_DEFAULT_AI_AGENT_IP*/ "127.0.0.1").toString(), SD_AI_AGENT_PORT );
+
+    //Prepare cbor map query
+    QCborMap map;
+    map[SDAI_TYPE]  = SDAI_TYPE_QUERY;
+    map[SDAI_QUERY] = dialog.last();
+
+
+    //At first, we retrieve the list of server updates performed after the last synchronization.
+    //This list will also include the objects uploaded in the previous step.
+    QCborMap taskMap = client.transferMap( map );
+    qint64 taskId = taskMap[SDAI_TASK_ID].toInteger();
+    for( int count = 0; taskMap[SDAI_TYPE].toInteger() == SDAI_TYPE_BUSY && count < 100; count++ ) {
+      QThread::msleep(300);
+      QCborMap poll;
+      poll[SDAI_TYPE]    = SDAI_TYPE_POLL;
+      poll[SDAI_TASK_ID] = taskId;
+      taskMap = client.transferMap( poll );
+      //qDebug() << "Embed" << taskId;
+      }
+
+    if( taskMap[SDAI_TYPE].toInteger() == SDAI_TYPE_ANSWER ) {
+      QString answer = taskMap[SDAI_ANSWER].toString();
+      //qDebug() << "Answert" << answer;
+
+      if( answer.contains( "[Scene]") )
+        system.append( "\n[Scene] Статьи данного типа представляют собой пошаговые инструкции, которые, возможно, "
+                       "относятся к теме вопроса. Если для ответа используешь какую либо статью из "
+                       "данного раздела, то размещай ее целиком, без каких либо сокращений или других изменений с "
+                       "выполнением перевода на язык вопроса.\n" );
+      if( answer.contains( "[Component]") )
+        system.append( "\n[Component] Статьи данного типа представляют собой информацию о конкретных компонентах, которыми,"
+                       " возможно, интересуется пользователь.\n" );
+      if( answer.contains( "[Action]") )
+        system.append( "\n[Action] Статьи данного типа представляют собой скрипты, которые исполняются "
+                       "программой SalixEDA. Выдавая эти скрипты ты можешь выполнять определенные действия "
+                       "вместо пользователя.\n" );
+      if( answer.contains( "[Article]") )
+        system.append( "\n[Article] Статьи данного типа представляют собой документацию, которая, возможно, "
+                       "относится к теме вопроса.\n" );
+
+      system.append( answer );
+      //qDebug() << "System prompt" << system;
+      }
+    client.closeSocket();
+    }
+  catch(const std::exception& e) {
+    qDebug() << "Error occured" << e.what();
+    }
+
+
+
   question( system, dialog );
   }
 

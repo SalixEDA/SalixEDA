@@ -121,6 +121,7 @@ History
 //Default IP for global storage and private cloud
 #define SD_DEFAULT_GLOBAL_STORAGE_IP "178.212.13.179"
 #define SD_DEFAULT_PRIVATE_CLOUD_IP  "178.212.13.179"
+#define SD_DEFAULT_AI_AGENT_IP       "178.212.13.179"
 
 //Settings key names
 #define SDK_WMAIN_MAX                "WMainMax"
@@ -140,6 +141,7 @@ History
 #define SDK_AI_URL                   "AiUrl"
 #define SDK_AI_KEY                   "AiKey"
 #define SDK_AI_MODEL                 "AiModel"
+#define SDK_AI_AGENT_IP              "AiAgentIp"
 
 
 #define MODE_HELP                    //Prefix to mode help files

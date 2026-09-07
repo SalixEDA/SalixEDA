@@ -440,6 +440,7 @@ SOURCES += \
 
 HEADERS  += \
     SvLib/SvJson3dIO.h \
+    ai/SdAiAgentDef.h \
     ai/SdAiGateway.h \
     guider/SdGuiderDialog.h \
     guider/SdGuiderEvent.h \
