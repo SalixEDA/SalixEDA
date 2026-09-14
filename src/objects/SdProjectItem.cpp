@@ -217,13 +217,36 @@ SdGraphValue *SdProjectItem::findValue() const
 
 
 //Get over rect
-SdRect SdProjectItem::getOverRect(quint64 classMask)
+SdRect SdProjectItem::getOverRect(SdClass classMask)
   {
   //Collect fit rect
   SdRect fit;
   forEach( classMask, [&fit](SdObject *obj) {
-    SdGraph *graph = dynamic_cast<SdGraph*>(obj);
-    if( graph ) {
+    SdPtrConst<SdGraph> graph(obj);
+    if( graph.isValid() ) {
+      if( fit.isEmpty() )
+        fit = graph->getOverRect();
+      else
+        fit.grow( graph->getOverRect() );
+      }
+    return true;
+    } );
+
+  return fit;
+  }
+
+
+
+
+
+
+SdRect SdProjectItem::getVisibleOverRect(SdClass classMask)
+  {
+  //Collect fit rect
+  SdRect fit;
+  forEach( classMask, [&fit](SdObject *obj) {
+    SdPtrConst<SdGraph> graph(obj);
+    if( graph.isValid() && graph->isVisible() ) {
       if( fit.isEmpty() )
         fit = graph->getOverRect();
       else

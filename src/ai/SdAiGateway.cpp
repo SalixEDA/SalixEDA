@@ -205,7 +205,13 @@ void SdAiGateway::userQuestion(const QStringList &dialog)
     client.closeSocket();
     }
   catch(const std::exception& e) {
-    qDebug() << "Error occured" << e.what();
+    //qDebug() << "Error occured" << e.what();
+    emit answer(++mCurrentId, tr("# Error\n"
+                               "Can't connect with ai agent. Check ai agent ip in options.\n"
+                               "Current agent ip: %1\n"
+                               "Error context: %2\n").arg(s.value(SDK_AI_AGENT_IP, SD_DEFAULT_AI_AGENT_IP).toString(), QString(e.what())) );
+    emit answer( mCurrentId, "" );
+    return;
     }
 
 
@@ -243,7 +249,7 @@ void SdAiGateway::onReadyRead() {
   // Preserve the last line fragment which might still be incomplete.
   mBuffer = lines.takeLast();
 
-  for( const QString &line : lines ) {
+  for( const QString &line : std::as_const(lines) ) {
     QString trimmed = line.trimmed();
     if (trimmed.isEmpty()) {
       continue;

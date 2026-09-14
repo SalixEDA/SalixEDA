@@ -25,6 +25,8 @@ History
                    Fix: correct drawing arcs in gerber
                    Append sheet form master
                    Append select context menu rotation and mirror for graphics
+  11.09.2026 v3.8  Append text support in gerber export
+                   Append options dialog for ai agent
 */
 
 #ifndef SDCONFIG
@@ -36,7 +38,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             7
+#define SD_VERSION_MINOR             8
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

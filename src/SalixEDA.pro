@@ -150,6 +150,7 @@ SOURCES += \
     objects/SdPvInt.cpp \
     objects/SdPvLayer.cpp \
     objects/SdPvStratum.cpp \
+    objects/SdVectorFont.cpp \
     script/SdScriptOperatorBlock.cpp \
     script/SdScriptOperatorFor.cpp \
     script/SdScriptOperatorIf.cpp \
@@ -201,6 +202,7 @@ SOURCES += \
     windows/SdDLibrary.cpp \
     windows/SdDNetPinsList.cpp \
     windows/SdDOffset.cpp \
+    windows/SdDOptionsPageAiAgent.cpp \
     windows/SdDOptionsPageLibrary.cpp \
     windows/SdDParamBase.cpp \
     windows/SdDSymbolPartParam.cpp \
@@ -557,6 +559,7 @@ HEADERS  += \
     objects/SdPvMulty.h \
     objects/SdPvStratum.h \
     objects/SdPvString.h \
+    objects/SdVectorFont.h \
     script/SdScriptOperator.h \
     script/SdScriptOperatorAssign.h \
     script/SdScriptOperatorBlock.h \
@@ -717,6 +720,7 @@ HEADERS  += \
     windows/SdDLibrary.h \
     windows/SdDNetPinsList.h \
     windows/SdDOffset.h \
+    windows/SdDOptionsPageAiAgent.h \
     windows/SdDOptionsPageLibrary.h \
     windows/SdDParamBase.h \
     windows/SdDSymbolPartParam.h \

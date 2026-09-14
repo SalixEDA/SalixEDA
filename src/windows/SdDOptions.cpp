@@ -20,6 +20,7 @@ Description
 #include "SdDOptionsPageEditors.h"
 //#include "SdDOptionsPagePath.h"
 #include "SdDOptionsPageLibrary.h"
+#include "SdDOptionsPageAiAgent.h"
 #include "SdDHelp.h"
 #include "library/SdLibraryStorage.h"
 
@@ -76,6 +77,11 @@ SdDOptions::SdDOptions(QWidget *parent) :
   SdDOptionsPageLibrary *library = new SdDOptionsPageLibrary();
   connect(mButtons, &QDialogButtonBox::accepted, library, &SdDOptionsPageLibrary::accept );
   mTabWidget->addTab( library, tr("Library") );
+
+  //Ai Agent page
+  SdDOptionsPageAiAgent *aiAgent = new SdDOptionsPageAiAgent();
+  connect( mButtons, &QDialogButtonBox::accepted, aiAgent, &SdDOptionsPageAiAgent::accept );
+  mTabWidget->addTab( aiAgent, tr("AI Agent") );
 
 
   setWindowTitle( tr("Options") );
