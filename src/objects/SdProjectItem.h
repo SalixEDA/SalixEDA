@@ -60,7 +60,8 @@ class SdProjectItem : public SdContainerFile
     virtual void           publicSet() override;
 
     //Get over rect
-    SdRect                 getOverRect( quint64 classMask = dctAll );
+    SdRect                 getOverRect( SdClass classMask = dctAll );
+    SdRect                 getVisibleOverRect( SdClass classMask = dctAll );
 
     //Object visual (graphical) identificator
     SdGraphIdent          *identGet();

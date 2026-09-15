@@ -20,6 +20,7 @@ Description
 #include "objects/SdContext.h"
 #include "objects/SdConverterOffset.h"
 #include "objects/SdEnvir.h"
+#include "objects/SdVectorFont.h"
 #include "SvLib/SvDir.h"
 
 #include <QPushButton>
@@ -39,7 +40,7 @@ Description
 #include <QDebug>
 
 
-
+#define TEXT_DRAWING_APERTURE_RADIUS 100
 
 //Function for coord printing
 QString gerberMM( int x ) {
@@ -78,6 +79,7 @@ struct SdGerberApertureContext : public SdContext {
     virtual void circle(SdPoint center, int radius ) override;
     virtual void circleFill(SdPoint center, int radius) override;
     virtual void polygon(const SdPointList &points, const SdPolyWindowList &windows, SdLayer *layer) override;
+    virtual void text( SdPoint pos, SdRect &over, const QString str, const SdPropText &prop ) override;
 
     void appendAperture( const QString ap );
   };
@@ -131,6 +133,21 @@ void SdGerberApertureContext::polygon(const SdPointList &points, const SdPolyWin
   }
 
 
+
+
+void SdGerberApertureContext::text(SdPoint pos, SdRect &over, const QString str, const SdPropText &prop)
+  {
+  Q_UNUSED(pos);
+  Q_UNUSED(over);
+  Q_UNUSED(prop);
+  if( !str.isEmpty() )
+    appendAperture( gerberApertureCircle(TEXT_DRAWING_APERTURE_RADIUS) );
+  }
+
+
+
+
+
 void SdGerberApertureContext::appendAperture( const QString ap ) {
   if( !mApertureMap.contains(ap) ) {
     //Aperture not contained in map. Append
@@ -151,13 +168,15 @@ class SdGerberContext : public SdContext {
     int               mCurrentAperture;
     QTextStream      &mStream;
     SdPoint           mPos;
+    SdVectorFont      mVectorFont;      //!< Font to draw text by line segments
   public:
     SdGerberContext( const QMap<QString,int> &apertureMap, QTextStream &os ) :
       SdContext( SdPoint(), new QPainter() ),
       mApertureMap(apertureMap),
       mCurrentAperture(-1),
       mStream(os),
-      mPos(2000000000,2000000000) { }
+      mPos(2000000000,2000000000),
+      mVectorFont(":/fonts/VectorFont.fnt") { }
 
     ~SdGerberContext() override { delete mPainter; }
 
@@ -172,6 +191,7 @@ class SdGerberContext : public SdContext {
     virtual void circleFill(SdPoint center, int radius) override;
     virtual void regionFill( const SdPointList &points, const SdPropLine &prop ) override;
     virtual void polygon(const SdPointList &points, const SdPolyWindowList &windows, SdLayer *layer) override;
+    virtual void text( SdPoint pos, SdRect &over, const QString str, const SdPropText &prop ) override;
 
   private:
     //Select current aperture
@@ -316,6 +336,19 @@ void SdGerberContext::polygon(const SdPointList &points, const SdPolyWindowList 
           polygonInt( mTransform.map( win.polygon().toPolygon() ) );
           }
       }
+    }
+  }
+
+
+
+void SdGerberContext::text(SdPoint pos, SdRect &over, const QString str, const SdPropText &prop)
+  {
+  Q_UNUSED(over)
+  if( prop.mLayer.layer(mPairLayer)->isVisible() ) {
+    selectAperture( gerberApertureCircle(TEXT_DRAWING_APERTURE_RADIUS) );
+    const QVector<QLine> path( mVectorFont.stringPath( str, prop ) );
+    for( const QLine &segment : path )
+      line( pos + SdPoint(segment.p1()), pos + SdPoint(segment.p2()) );
     }
   }
 
@@ -745,8 +778,8 @@ void SdPExportPlate_Gerber::generation(const QString fileName)
 
     //Build piture [Сформировать картинку]
     //Calculate over rect [Подсчитать охватывающий прямоугольник]
-    SdRect over = mPlate->getOverRect();
-    qDebug() << "Gerber over" << over;
+    SdRect over = mPlate->getVisibleOverRect();
+    //qDebug() << "Gerber over" << over;
 
     //Define context [Образовать контекст]
     SdGerberContext gc( app.mApertureMap, os );

@@ -136,7 +136,7 @@ class SdContext {
     virtual void    polygonFill( const QPolygonF &poly );
     void            polygonFill( const QPolygonF &poly, QColor color );
     void            textEx(SdPoint pos, SdRect &over, const QString str, SdPvAngle dir, SdPvInt horz, SdPvInt vert, int cursor = 0, SdPoint *cp1 = nullptr, SdPoint *cp2 = nullptr, SdRect *sel = nullptr, int start = 0, int stop = 0);
-    void            text( SdPoint pos, SdRect &over, const QString str, const SdPropText &prop );
+    virtual void    text( SdPoint pos, SdRect &over, const QString str, const SdPropText &prop );
     void            region( const SdPointList &points, bool autoClose = true );
     void            region( const SdPointList &points, const SdPropLine &prop, bool autoClose = true );
     virtual void    regionFill( const SdPointList &points, const SdPropLine &prop );
