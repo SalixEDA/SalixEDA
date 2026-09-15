@@ -712,21 +712,22 @@ void SdPExportPlate_Gerber::generation(const QString fileName)
     //Header
     //Заголовок
     os << "G04 SalixEDA Gerber export. www.salixeda.org *\n"
-          "%ASAXBY*\n"     //Выбор осей
-          "FSLAX33Y33*\n"  //Формат, опущены лидирующие нули, абсолютные данные, 3 целых 3 дробных
-          "MIA0B0*\n"      //Зеркальность 0=нет, 1=есть
-          "MOMM*\n"        //Режим миллиметров
-          "OFA0B0*\n"      //Смещение 0
-          "SFA1.0B1.0*%\n" //Масштаб 1:1
-
-          "%IJALBL*\n"     //Выравнивание картинки
-          "IN"
+          "%MOMM*%\n"        //Режим миллиметров
+          "%FSLAX33Y33*%\n"  //Формат, опущены лидирующие нули, абсолютные данные, 3 целых 3 дробных
+          "G04 File "
        << info.completeBaseName()
-       << "*\n"            //Название картинки
-          "IOA0B0*%\n"     //Смещение
-          "%IP"
-       << (polarPos ? "POS*\n" : "NEG*\n") //Позитив
-       << "IR0*%\n";        //Поворот
+       << "*\n";            //Название картинки
+
+       //    "%ASAXBY*\n"     //Выбор осей
+       //    "MIA0B0*\n"      //Зеркальность 0=нет, 1=есть
+       //    "OFA0B0*\n"      //Смещение 0
+       //    "SFA1.0B1.0*%\n" //Масштаб 1:1
+
+       //    "%IJALBL*\n"     //Выравнивание картинки
+       //    "IOA0B0*%\n"     //Смещение
+       //    "%IP"
+       // << (polarPos ? "POS*\n" : "NEG*\n") //Позитив
+       // << "IR0*%\n";        //Поворот
 
     //Apertures accum
     SdGerberApertureContext app;
