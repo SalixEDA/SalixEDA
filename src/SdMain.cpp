@@ -54,6 +54,12 @@ int main(int argc, char *argv[])
   // Sd2dRegion r( {QVector2D(-100,0), QVector2D(-100,50), QVector2D(0,50), QVector2D(100,50), QVector2D(100,0)} );
   // qDebug() << Sd3drModel::flatEquidistant( r, 5 );
 
+  // Заставляем Qt6 использовать ИСКЛЮЧИТЕЛЬНО FFmpeg на всех платформах
+  qputenv("QT_MEDIA_BACKEND", "ffmpeg");
+
+  // И сразу отключаем в нем аппаратное ускорение, как мы решили ранее
+  qputenv("QT_DISABLE_HW_TEXTURES_CONVERSION", "1");
+  qputenv("QT_FFMPEG_DECODING_HW_DEVICE_TYPES", "");
 
   //Setups for settings
   QCoreApplication::setOrganizationName("SalixEDA");

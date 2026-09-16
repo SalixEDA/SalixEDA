@@ -4,67 +4,67 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="309"/>
+        <location filename="modes/SdModeCBus.cpp" line="305"/>
         <source>Enter first point of path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="310"/>
+        <location filename="modes/SdModeCBus.cpp" line="306"/>
         <source>Enter second point of path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="311"/>
+        <location filename="modes/SdModeCBus.cpp" line="307"/>
         <source>Enter next point of path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="312"/>
+        <location filename="modes/SdModeCBus.cpp" line="308"/>
         <source>Enter wire name placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="313"/>
+        <location filename="modes/SdModeCBus.cpp" line="309"/>
         <source>Enter connection point of next wire path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="401"/>
-        <location filename="modes/SdModeCPartPin.cpp" line="304"/>
-        <location filename="modes/SdModeCPartPin.cpp" line="317"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="306"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="319"/>
+        <location filename="modes/SdModeCBus.cpp" line="397"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="301"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="314"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="303"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="316"/>
         <location filename="objects/SdGraphPartPin.cpp" line="235"/>
         <location filename="objects/SdGraphSymPin.cpp" line="218"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="401"/>
+        <location filename="modes/SdModeCBus.cpp" line="397"/>
         <source>Bus wire vertex is on other wire. Select other point.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCBus.cpp" line="415"/>
+        <location filename="modes/SdModeCBus.cpp" line="411"/>
         <source>Insert bus wire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCFragment.cpp" line="103"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="117"/>
-        <location filename="windows/SdWCommand.cpp" line="256"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="115"/>
+        <location filename="windows/SdWCommand.cpp" line="258"/>
         <source>Insert fragment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCFragment.cpp" line="136"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="175"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="173"/>
         <source>Enter fragment place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCFragment.cpp" line="180"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="319"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="317"/>
         <location filename="windows/SdWEditorGraphSheet.cpp" line="295"/>
         <source>Select fragment to insert</source>
         <translation type="unfinished"></translation>
@@ -75,39 +75,39 @@
         <location filename="modes/SdModeCFragment.cpp" line="189"/>
         <location filename="modes/SdModeCFragment.cpp" line="203"/>
         <location filename="modes/SdModeCNetWire.cpp" line="306"/>
-        <location filename="modes/SdModeCPartImp.cpp" line="206"/>
-        <location filename="modes/SdModeCPartImp.cpp" line="211"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="228"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="238"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="245"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="249"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="256"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="328"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="342"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="204"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="209"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="226"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="236"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="243"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="247"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="254"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="326"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="340"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCFragment.cpp" line="56"/>
         <location filename="modes/SdModeCFragment.cpp" line="189"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="328"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="326"/>
         <source>No sheets to insert. Try another fragment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCFragment.cpp" line="71"/>
         <location filename="modes/SdModeCFragment.cpp" line="203"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="342"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="340"/>
         <source>No objects to insert. Source sheet is empty. Select another fragment.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCIdent.cpp" line="88"/>
+        <location filename="modes/SdModeCIdent.cpp" line="86"/>
         <source>Edit ident</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCIdent.cpp" line="118"/>
+        <location filename="modes/SdModeCIdent.cpp" line="116"/>
         <source>Enter ident position</source>
         <translation type="unfinished"></translation>
     </message>
@@ -214,8 +214,8 @@
     </message>
     <message>
         <location filename="modes/SdModeCLinearRegion.cpp" line="179"/>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="124"/>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="189"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="122"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="187"/>
         <source>Insert region</source>
         <translation type="unfinished"></translation>
     </message>
@@ -235,17 +235,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetName.cpp" line="112"/>
+        <location filename="modes/SdModeCNetName.cpp" line="110"/>
         <source>Insert sheet net name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetName.cpp" line="160"/>
+        <location filename="modes/SdModeCNetName.cpp" line="158"/>
         <source>Enter net name place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetName.cpp" line="160"/>
+        <location filename="modes/SdModeCNetName.cpp" line="158"/>
         <source>Select net for name placement</source>
         <translation type="unfinished"></translation>
     </message>
@@ -275,13 +275,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="313"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="205"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="325"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="204"/>
         <source>Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetWire.cpp" line="313"/>
+        <location filename="modes/SdModeCNetWire.cpp" line="325"/>
         <source>Rename nets in all other sheets?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -291,74 +291,74 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="104"/>
-        <location filename="windows/SdWCommand.cpp" line="292"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="102"/>
+        <location filename="windows/SdWCommand.cpp" line="296"/>
         <source>Insert part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="152"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="150"/>
         <source>Enter part place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="195"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="193"/>
         <source>Select part to insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="206"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="204"/>
         <source>Can&apos;t load selected part. Select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartImp.cpp" line="211"/>
-        <location filename="modes/SdModeCSymImp.cpp" line="256"/>
+        <location filename="modes/SdModeCPartImp.cpp" line="209"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="254"/>
         <source>Part is in editing state. Switch it to lock state or select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="175"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="177"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="172"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="174"/>
         <source>Enter sym pin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="238"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="240"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="235"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="237"/>
         <source>Enter pin place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="239"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="241"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="236"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="238"/>
         <source>Enter pin name place</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="240"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="237"/>
         <source>Type pin number text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymPin.cpp" line="242"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="239"/>
         <source>Type pin name text</source>
         <oldsource>Type text</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="241"/>
-        <location filename="modes/SdModeCSymPin.cpp" line="243"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="238"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="240"/>
         <source>Enter pin number place</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="304"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="301"/>
         <source>Pin number can&apos;t be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPartPin.cpp" line="317"/>
+        <location filename="modes/SdModeCPartPin.cpp" line="314"/>
         <source>Duplicate pin number. Change number or cancel.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -396,73 +396,73 @@
     </message>
     <message>
         <location filename="modes/SdModeCPlateIdentMove.cpp" line="33"/>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="209"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="207"/>
         <source>Enter new ident or value position.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCPlateIdentMove.cpp" line="38"/>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="214"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="212"/>
         <source>Left button: %1; F6 - switch to next component behind cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCPlateIdentMove.cpp" line="41"/>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="217"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="215"/>
         <source>Select component to move ident or value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="221"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="219"/>
         <source>Enter next point of polygon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCPolygonEnter.cpp" line="221"/>
+        <location filename="modes/SdModeCPolygonEnter.cpp" line="219"/>
         <source>Enter first point of polygon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="205"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="204"/>
         <source>Change width for full net?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="270"/>
         <location filename="modes/SdModeCRoadEnter.cpp" line="272"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="274"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="283"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="281"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="330"/>
         <location filename="modes/SdModeCRoadEnter.cpp" line="332"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="334"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="353"/>
         <location filename="modes/SdModeCRoadEnter.cpp" line="355"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="357"/>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="360"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="358"/>
         <source>Insert trace road</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="453"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="451"/>
         <source>Enter next point of road polyline</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="453"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="451"/>
         <source>Select point to start road. Left button &apos;%1&apos; net.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="840"/>
-        <location filename="modes/SdModeCViaEnter.cpp" line="110"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="838"/>
+        <location filename="modes/SdModeCViaEnter.cpp" line="108"/>
         <source>Insert trace via</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCRoadEnter.cpp" line="936"/>
+        <location filename="modes/SdModeCRoadEnter.cpp" line="934"/>
         <source>Deletion loop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCRoadMove.cpp" line="352"/>
-        <location filename="modes/SdModeSelect.cpp" line="838"/>
+        <location filename="modes/SdModeSelect.cpp" line="938"/>
         <source>Move begin</source>
         <translation type="unfinished"></translation>
     </message>
@@ -477,62 +477,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSheetIdentMove.cpp" line="98"/>
+        <location filename="modes/SdModeCSheetIdentMove.cpp" line="96"/>
         <source>Move ident or value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="125"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="123"/>
         <source>Insert symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="176"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="174"/>
         <source>Enter symbol section place point</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="217"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="215"/>
         <source>Select component to insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="228"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="226"/>
         <source>Can&apos;t load selected component. Select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="238"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="236"/>
         <source>Can&apos;t load selected component section. Select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="245"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="243"/>
         <source>Component is in editing state. Switch it to lock state or select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="249"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="247"/>
         <source>Section is in editing state. Switch it to lock state or select another.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="316"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="314"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymImp.cpp" line="316"/>
+        <location filename="modes/SdModeCSymImp.cpp" line="314"/>
         <source>There at least one fragment with this component. Do You want to select it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymPin.cpp" line="306"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="303"/>
         <source>Pin name can&apos;t be empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCSymPin.cpp" line="319"/>
+        <location filename="modes/SdModeCSymPin.cpp" line="316"/>
         <source>Duplicate pin name. Change name or cancel.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -562,19 +562,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCValue.cpp" line="106"/>
+        <location filename="modes/SdModeCValue.cpp" line="104"/>
         <location filename="windows/SdWCommand.cpp" line="194"/>
         <location filename="windows/SdWCommand.cpp" line="211"/>
         <source>Edit value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCValue.cpp" line="140"/>
+        <location filename="modes/SdModeCValue.cpp" line="138"/>
         <source>Enter value position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCViaEnter.cpp" line="131"/>
+        <location filename="modes/SdModeCViaEnter.cpp" line="129"/>
         <source>Enter position to add via to</source>
         <translation type="unfinished"></translation>
     </message>
@@ -589,58 +589,83 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="131"/>
+        <location filename="modes/SdModeSelect.cpp" line="143"/>
         <source>Properties changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="448"/>
+        <location filename="modes/SdModeSelect.cpp" line="315"/>
+        <source>Rotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeSelect.cpp" line="339"/>
+        <source>Mirroring</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeSelect.cpp" line="527"/>
         <source>No selected elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="450"/>
+        <location filename="modes/SdModeSelect.cpp" line="529"/>
         <source>Enter second corner for selection objects group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="452"/>
+        <location filename="modes/SdModeSelect.cpp" line="531"/>
         <source>There selected elements. You may them move, copy and edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="454"/>
+        <location filename="modes/SdModeSelect.cpp" line="533"/>
         <source>Enter position for new elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="456"/>
+        <location filename="modes/SdModeSelect.cpp" line="535"/>
         <source>Enter new position for selected elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="458"/>
+        <location filename="modes/SdModeSelect.cpp" line="537"/>
         <source>Enter center point for elements group rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="460"/>
-        <source>Enter point to define angle of rotation</source>
+        <location filename="modes/SdModeSelect.cpp" line="539"/>
+        <source>Enter source point of rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="462"/>
+        <location filename="modes/SdModeSelect.cpp" line="540"/>
+        <source>Enter target point of rotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeSelect.cpp" line="541"/>
+        <source>Enter first point of mirror segment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeSelect.cpp" line="542"/>
+        <source>Enter second point of mirror segment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="modes/SdModeSelect.cpp" line="544"/>
         <source>Enter position for pasted elements</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="1021"/>
+        <location filename="modes/SdModeSelect.cpp" line="1121"/>
         <source>Group rotation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="modes/SdModeCTraceDelete.cpp" line="88"/>
-        <location filename="modes/SdModeSelect.cpp" line="680"/>
+        <location filename="modes/SdModeSelect.cpp" line="780"/>
         <source>Deletion elements</source>
         <translation type="unfinished"></translation>
     </message>
@@ -650,12 +675,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="949"/>
+        <location filename="modes/SdModeSelect.cpp" line="1049"/>
         <source>Insert from clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeSelect.cpp" line="985"/>
+        <location filename="modes/SdModeSelect.cpp" line="1085"/>
         <source>Copy insertion</source>
         <translation type="unfinished"></translation>
     </message>
@@ -826,7 +851,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="objects/SdProjectItem.cpp" line="314"/>
+        <location filename="objects/SdProjectItem.cpp" line="337"/>
         <source>Origin position changed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1255,49 +1280,64 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="254"/>
+        <location filename="windows/SdWCommand.cpp" line="255"/>
         <source>Sheet form master...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="265"/>
+        <location filename="windows/SdWCommand.cpp" line="267"/>
         <source>Net pins list insert and edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="275"/>
+        <location filename="windows/SdWCommand.cpp" line="278"/>
         <source>PCB board builder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="326"/>
+        <location filename="windows/SdWCommand.cpp" line="330"/>
         <source>Ref to library object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="327"/>
+        <location filename="windows/SdWCommand.cpp" line="331"/>
         <source>Library service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="329"/>
+        <location filename="windows/SdWCommand.cpp" line="333"/>
         <source>Guider scene builder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="330"/>
+        <location filename="windows/SdWCommand.cpp" line="334"/>
         <source>Guider snapshot save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="358"/>
-        <location filename="windows/SdWCommand.cpp" line="360"/>
+        <location filename="windows/SdWCommand.cpp" line="362"/>
+        <location filename="windows/SdWCommand.cpp" line="364"/>
         <source>Rotate component CW 90</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="359"/>
+        <location filename="windows/SdWCommand.cpp" line="363"/>
         <source>Flip component to other side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="365"/>
+        <source>Rotate graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="366"/>
+        <source>Mirror graphics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdWCommand.cpp" line="887"/>
+        <source>Menu &quot;%1&quot;:&quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1416,197 +1456,197 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="257"/>
+        <location filename="windows/SdWCommand.cpp" line="259"/>
         <source>Insert component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="258"/>
+        <location filename="windows/SdWCommand.cpp" line="260"/>
         <source>Insert net wire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="259"/>
+        <location filename="windows/SdWCommand.cpp" line="261"/>
         <source>Insert net name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="260"/>
+        <location filename="windows/SdWCommand.cpp" line="262"/>
         <source>Insert bus (many net)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="261"/>
+        <location filename="windows/SdWCommand.cpp" line="263"/>
         <source>Disconnect net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="262"/>
-        <location filename="windows/SdWCommand.cpp" line="304"/>
+        <location filename="windows/SdWCommand.cpp" line="264"/>
+        <location filename="windows/SdWCommand.cpp" line="308"/>
         <source>Move ident of components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="263"/>
-        <location filename="windows/SdWCommand.cpp" line="305"/>
+        <location filename="windows/SdWCommand.cpp" line="265"/>
+        <location filename="windows/SdWCommand.cpp" line="309"/>
         <source>Move value of components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="264"/>
+        <location filename="windows/SdWCommand.cpp" line="266"/>
         <source>Script insert and edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="272"/>
+        <location filename="windows/SdWCommand.cpp" line="274"/>
         <source>Plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="274"/>
+        <location filename="windows/SdWCommand.cpp" line="277"/>
         <source>PCB layer count...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="277"/>
+        <location filename="windows/SdWCommand.cpp" line="281"/>
         <source>Show rat net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="281"/>
+        <location filename="windows/SdWCommand.cpp" line="285"/>
         <source>Pads association</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="293"/>
+        <location filename="windows/SdWCommand.cpp" line="297"/>
         <source>Move part</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="294"/>
+        <location filename="windows/SdWCommand.cpp" line="298"/>
         <source>Road enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="295"/>
+        <location filename="windows/SdWCommand.cpp" line="299"/>
         <source>Road move</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="296"/>
+        <location filename="windows/SdWCommand.cpp" line="300"/>
         <source>Polygon enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="297"/>
+        <location filename="windows/SdWCommand.cpp" line="301"/>
         <source>Via enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="298"/>
+        <location filename="windows/SdWCommand.cpp" line="302"/>
         <source>Delete trace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="306"/>
+        <location filename="windows/SdWCommand.cpp" line="310"/>
         <source>Edit plate origin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="307"/>
+        <location filename="windows/SdWCommand.cpp" line="311"/>
         <source>Highlight components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="311"/>
+        <location filename="windows/SdWCommand.cpp" line="315"/>
         <source>Rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="312"/>
+        <location filename="windows/SdWCommand.cpp" line="316"/>
         <source>Edit rules dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="313"/>
+        <location filename="windows/SdWCommand.cpp" line="317"/>
         <source>Show rule errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="317"/>
+        <location filename="windows/SdWCommand.cpp" line="321"/>
         <source>Check all rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="318"/>
+        <location filename="windows/SdWCommand.cpp" line="322"/>
         <source>Center next rules error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="322"/>
+        <location filename="windows/SdWCommand.cpp" line="326"/>
         <source>Instruments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="324"/>
+        <location filename="windows/SdWCommand.cpp" line="328"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="340"/>
+        <location filename="windows/SdWCommand.cpp" line="344"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="341"/>
+        <location filename="windows/SdWCommand.cpp" line="345"/>
         <source>Ai Chat</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="342"/>
+        <location filename="windows/SdWCommand.cpp" line="346"/>
         <source>Contents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="343"/>
+        <location filename="windows/SdWCommand.cpp" line="347"/>
         <source>Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="344"/>
+        <location filename="windows/SdWCommand.cpp" line="348"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="345"/>
+        <location filename="windows/SdWCommand.cpp" line="349"/>
         <source>Registration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="346"/>
+        <location filename="windows/SdWCommand.cpp" line="350"/>
         <source>Home help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="348"/>
+        <location filename="windows/SdWCommand.cpp" line="352"/>
         <source>Backward help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="350"/>
+        <location filename="windows/SdWCommand.cpp" line="354"/>
         <source>Forward help page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="355"/>
+        <location filename="windows/SdWCommand.cpp" line="359"/>
         <source>Context</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWCommand.cpp" line="357"/>
-        <location filename="windows/SdWCommand.cpp" line="365"/>
-        <location filename="windows/SdWCommand.cpp" line="383"/>
-        <location filename="windows/SdWCommand.cpp" line="401"/>
+        <location filename="windows/SdWCommand.cpp" line="361"/>
+        <location filename="windows/SdWCommand.cpp" line="371"/>
+        <location filename="windows/SdWCommand.cpp" line="392"/>
+        <location filename="windows/SdWCommand.cpp" line="413"/>
         <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1656,17 +1696,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCScript.cpp" line="253"/>
+        <location filename="modes/SdModeCScript.cpp" line="251"/>
         <source>Enter point to insert or edit script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCScript.cpp" line="254"/>
+        <location filename="modes/SdModeCScript.cpp" line="252"/>
         <source>Select component or other script to link with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCScript.cpp" line="255"/>
+        <location filename="modes/SdModeCScript.cpp" line="253"/>
         <source>Select group of components to find the right one calculation script</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1997,12 +2037,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetPinsList.cpp" line="136"/>
+        <location filename="modes/SdModeCNetPinsList.cpp" line="134"/>
         <source>Enter point to edit net pins list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="modes/SdModeCNetPinsList.cpp" line="137"/>
+        <location filename="modes/SdModeCNetPinsList.cpp" line="135"/>
         <source>Enter point to insert or edit net pins list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2037,6 +2077,18 @@
     <message>
         <location filename="modes/Sd3dModeFaceColor.cpp" line="95"/>
         <source>Press to select color for this part</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdAiGateway</name>
+    <message>
+        <location filename="ai/SdAiGateway.cpp" line="209"/>
+        <source># Error
+Can&apos;t connect with ai agent. Check ai agent ip in options.
+Current agent ip: %1
+Error context: %2
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3867,29 +3919,62 @@
 <context>
     <name>SdDOptions</name>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="36"/>
-        <location filename="windows/SdDOptions.cpp" line="81"/>
+        <location filename="windows/SdDOptions.cpp" line="37"/>
+        <location filename="windows/SdDOptions.cpp" line="87"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="58"/>
+        <location filename="windows/SdDOptions.cpp" line="59"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="63"/>
+        <location filename="windows/SdDOptions.cpp" line="64"/>
         <source>Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="73"/>
+        <location filename="windows/SdDOptions.cpp" line="74"/>
         <source>Editors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdDOptions.cpp" line="78"/>
+        <location filename="windows/SdDOptions.cpp" line="79"/>
         <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptions.cpp" line="84"/>
+        <source>AI Agent</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SdDOptionsPageAiAgent</name>
+    <message>
+        <location filename="windows/SdDOptionsPageAiAgent.cpp" line="16"/>
+        <source>Ai Agent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageAiAgent.cpp" line="21"/>
+        <source>LLM Provider URL (OpenAI API)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageAiAgent.cpp" line="22"/>
+        <source>API Access Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageAiAgent.cpp" line="23"/>
+        <source>Exact name of LLM Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="windows/SdDOptionsPageAiAgent.cpp" line="24"/>
+        <source>Embedder model agent ip</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5960,165 +6045,165 @@
 <context>
     <name>SdPExportPlate_Gerber</name>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="384"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="425"/>
         <source>Gerber</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="384"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="425"/>
         <source>Creates gerber files for plate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="388"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="429"/>
         <source>Enable pcb grid (panel)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="392"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="433"/>
         <source> Columns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="400"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="416"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="441"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="457"/>
         <source> gap:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="408"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="449"/>
         <source>  Rows:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="436"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="477"/>
         <source>Signle file creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="438"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="479"/>
         <source>Gerber file name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="443"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="481"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="484"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="522"/>
         <source>Select...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="451"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="492"/>
         <source>Layers for gerber:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="452"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="493"/>
         <source>Layers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="460"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="501"/>
         <source>Generate single gerber:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="461"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="494"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="547"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="502"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="535"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="588"/>
         <source>Generate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="474"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="515"/>
         <source>Multiple file creation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="476"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="517"/>
         <source>Gerber files path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="493"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="534"/>
         <source>Generate gerber group:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="547"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="588"/>
         <source>File name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="547"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="588"/>
         <source>Layer list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="559"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="684"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="600"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="725"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="589"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="630"/>
         <source>Enter or select gerber file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="602"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="634"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="643"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="675"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="602"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="643"/>
         <source>File name field is empty. Enter file name gerber generate to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="634"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="675"/>
         <source>Group path field is empty. Enter path to witch files will be generate.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="646"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="683"/>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="686"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="687"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="724"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="727"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="669"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="710"/>
         <source>Open Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="791"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="833"/>
         <source>Info!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="791"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="833"/>
         <source>Gerber file &apos;%1&apos; successfully created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="794"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="836"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="794"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="836"/>
         <source>Can&apos;t create Gerber file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="824"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="866"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExportPlate_Gerber.cpp" line="824"/>
+        <location filename="windows/SdPExportPlate_Gerber.cpp" line="866"/>
         <source>Press generate button to generate one or more gerber files or press Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6233,47 +6318,47 @@
 <context>
     <name>SdPExport_Dxf</name>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="438"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="439"/>
         <source>DXF file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="438"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="439"/>
         <source>Creates DXF file from current object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="444"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="445"/>
         <source>Layers for DXF:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="445"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="446"/>
         <source>Layers...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="462"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="463"/>
         <source>Enter or select DXF file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="468"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="469"/>
         <source>Info!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="468"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="469"/>
         <source>DXF file &apos;%1&apos; successfully created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="471"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="472"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdPExport_Dxf.cpp" line="471"/>
+        <location filename="windows/SdPExport_Dxf.cpp" line="472"/>
         <source>Can&apos;t create DXF file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7146,17 +7231,18 @@
 <context>
     <name>SdWAiChat</name>
     <message>
-        <location filename="windows/SdWAiChat.cpp" line="125"/>
+        <location filename="windows/SdWAiChat.cpp" line="129"/>
         <source>AI Assistant</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWAiChat.cpp" line="207"/>
+        <location filename="windows/SdWAiChat.cpp" line="211"/>
         <source>You</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="windows/SdWAiChat.cpp" line="232"/>
+        <location filename="windows/SdWAiChat.cpp" line="236"/>
+        <location filename="windows/SdWAiChat.cpp" line="273"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
