@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 CONFIG += c++20
+#CONFIG += force_debug_info
 QMAKE_CXXFLAGS += -fconcepts
 
 QT       += core gui network sql printsupport multimedia opengl svg openglwidgets multimediawidgets core5compat

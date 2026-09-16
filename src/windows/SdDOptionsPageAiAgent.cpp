@@ -21,7 +21,7 @@ SdDOptionsPageAiAgent::SdDOptionsPageAiAgent(QWidget *parent) :
   form->addRow( tr("LLM Provider URL (OpenAI API)"), mAiUrl = new QLineEdit(s.value(SDK_AI_URL).toString()) );
   form->addRow( tr("API Access Key"),                mAiKey = new QLineEdit(s.value(SDK_AI_KEY).toString()) );
   form->addRow( tr("Exact name of LLM Model"),       mAiModel = new QLineEdit(s.value(SDK_AI_MODEL).toString()) );
-  form->addRow( tr("Embedder model agent ip"),       mAiAgentIp = new QLineEdit(s.value(SDK_AI_AGENT_IP).toString()) );
+  form->addRow( tr("Embedder model agent ip"),       mAiAgentIp = new QLineEdit(s.value(SDK_AI_AGENT_IP, SD_DEFAULT_AI_AGENT_IP).toString()) );
 
   // Регулярное выражение для IP4
   QRegularExpression regex(
@@ -29,6 +29,8 @@ SdDOptionsPageAiAgent::SdDOptionsPageAiAgent(QWidget *parent) :
       "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
   );
   mAiAgentIp->setValidator( new QRegularExpressionValidator(regex, mAiAgentIp ) );
+
+  setLayout( form );
 
   // Assign unique names for the interactive help system
   mAiUrl->setObjectName("SdDOptionsPageAiAgent.mAiUrl");

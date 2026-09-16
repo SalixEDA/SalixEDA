@@ -32,6 +32,8 @@ Description
 #include <QNetworkRequest>
 #include <QThread>
 #include <QCborMap>
+#include <QMutex>
+#include <QMutexLocker>
 
 SdAiGateway::SdAiGateway(QObject *parent) : QObject(parent) {
   // Initialize the manager in the scope of the thread this object lives in.
@@ -47,8 +49,9 @@ SdAiGateway::~SdAiGateway() {
 
 
 
-
+static QMutex sdAiGatewayMutex;
 SdAiGateway* SdAiGateway::instance() {
+  QMutexLocker locker(&sdAiGatewayMutex);
   // Thread-safe initialization guaranteed by C++11 magic statics.
   static SdAiGateway* singleInstance = nullptr;
 

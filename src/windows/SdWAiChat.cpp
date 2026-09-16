@@ -14,6 +14,8 @@
 #include <QTimer>
 #include <QApplication>
 #include <QMainWindow>
+#include <QMutex>
+#include <QMutexLocker>
 
 
 SdWAiChat::SdWAiChat(QWidget *parent)
@@ -43,9 +45,10 @@ SdWAiChat::SdWAiChat(QWidget *parent)
   }
 
 
-
+static QMutex sdWAiChatMutex;
 SdWAiChat* SdWAiChat::instance()
   {
+  QMutexLocker locker(&sdWAiChatMutex);
   static SdWAiChat *sInstance = nullptr;
   if (!sInstance)
     {

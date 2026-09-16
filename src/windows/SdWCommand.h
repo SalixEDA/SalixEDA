@@ -138,7 +138,7 @@ class SdWCommand
     static QActionPtr   cmEditCalculations;
     static QActionPtr   cmEditFragments;
 
-    static QActionPtr   cmContextSelectItem[MCC_SELECT_ITEM_COUNT];
+    static QActionPtr   cmContextSelectItem[MCC_SELECT_ITEM_COUNT+1];
     static QActionPtr   cmContextComponentRotate;
     static QActionPtr   cmContextComponentFlip;
     static QActionPtr   cmContextGroupRotate;

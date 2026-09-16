@@ -949,7 +949,7 @@ QActionPtr SdWCommand::cmEditProperties;
 QActionPtr SdWCommand::cmEditCalculations;
 QActionPtr SdWCommand::cmEditFragments;
 
-QActionPtr SdWCommand::cmContextSelectItem[MCC_SELECT_ITEM_COUNT];
+QActionPtr SdWCommand::cmContextSelectItem[MCC_SELECT_ITEM_COUNT+1];
 QActionPtr SdWCommand::cmContextComponentRotate;
 QActionPtr SdWCommand::cmContextComponentFlip;
 QActionPtr SdWCommand::cmContextGroupRotate;
