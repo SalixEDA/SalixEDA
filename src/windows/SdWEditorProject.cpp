@@ -16,6 +16,7 @@ Description
 #include "SdWEditorProject.h"
 #include "SdWCommand.h"
 #include "objects/SdPulsar.h"
+#include "objects/SdProjectItem.h"
 
 #include <QVBoxLayout>
 
@@ -123,6 +124,19 @@ void SdWEditorProject::onLinkClick(QUrl url)
     SdWCommand::cmProjectParam->trigger();
     return;
     }
+  //Scan projects objects to find projectItem
+  SdProjectItem *item = nullptr;
+  mProject->forEach( dctSheet | dctPlate, [&item,path] ( SdObject *obj ) -> bool {
+    SdPtr<SdProjectItem> sheetPlate(obj);
+    if( sheetPlate.isValid() && path == sheetPlate->fileUid() ) {
+      item = sheetPlate.ptr();
+      return false;
+      }
+    return true;
+    });
+
+  if( item != nullptr )
+    SdPulsar::sdPulsar->emitActivateItem( item );
   }
 
 
@@ -145,6 +159,33 @@ void SdWEditorProject::visualBuild()
       }
     htm.append( "</table>" );
     }
+
+  //Sheets and boards as preview pictures
+  htm.append( "<p style=\"text-align: justify;\">" );
+  mProject->forEach( dctSheet, [this,&htm] ( SdObject *obj ) -> bool {
+    SdPtr<SdProjectItem> sheet(obj);
+    if( sheet.isValid() ) {
+      QImage pic = sheet->drawImage( 480, 300, false );
+      if( !pic.isNull() ) {
+        mTitle->document()->addResource( QTextDocument::ImageResource, QUrl( sheet->fileUid() ), pic );
+        htm.append( QString("<a href=\"%1\"><img src=\"%1\" width=\"480\" height=\"300\"/></a> ").arg( sheet->fileUid() ) );
+        }
+      }
+    return true;
+    });
+  mProject->forEach( dctPlate, [this,&htm] ( SdObject *obj ) -> bool {
+    SdPtr<SdProjectItem> plate(obj);
+    if( plate.isValid() ) {
+      QImage pic = plate->drawImage( 480, 300, false );
+      if( !pic.isNull() ) {
+        mTitle->document()->addResource( QTextDocument::ImageResource, QUrl( plate->fileUid() ), pic );
+        htm.append( QString("<a href=\"%1\"><img src=\"%1\" width=\"480\" height=\"300\"/></a> ").arg( plate->fileUid() ) );
+        }
+      }
+    return true;
+    });
+  htm.append( "</p>" );
+
   mTitle->setHtml( htm );
   }
 

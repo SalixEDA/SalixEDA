@@ -27,6 +27,7 @@ History
                    Append select context menu rotation and mirror for graphics
   11.09.2026 v3.8  Append text support in gerber export
                    Append options dialog for ai agent
+  24.09.2026 v3.9  Append sheet and plate preview to intro page of project with link possibility
 */
 
 #ifndef SDCONFIG
@@ -38,7 +39,7 @@ History
 
 //Version definition
 #define SD_VERSION_MAJOR             3
-#define SD_VERSION_MINOR             8
+#define SD_VERSION_MINOR             9
 
 //Some defaults
 #define SD_DEFAULT_WEB               "www.SalixEDA.org"

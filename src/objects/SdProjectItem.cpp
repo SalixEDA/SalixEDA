@@ -27,6 +27,7 @@ Description
 #include "SdJsonIO.h"
 #include "SdContext.h"
 #include "SdConverterView.h"
+#include "SdEnvir.h"
 
 #include <QDateTime>
 #include <QPainter>
@@ -488,7 +489,18 @@ void SdProjectItem::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool next
 //!
 QImage SdProjectItem::drawImage(int width, int height, bool currentLayers)
   {
-  Q_UNUSED(currentLayers)
+  QStringList visibleLayers;
+  QStringList editableLayers;
+  SdEnvir::instance()->layerVisibleGet( visibleLayers, editableLayers );
+
+  if( !currentLayers ) {
+    QStringList allLayers( {LID0_COMMON,LID0_NET,LID0_NET_NAME,LID0_BUS,LID0_AREA,LID0_FORM,LID0_NAVI,
+                           LID0_PCB,LID0_HOLE,LID0_COMPONENT,LID0_PIN_NAME,LID0_PIN_NUMBER,LID0_IDENT,LID0_VALUE,
+                           LID0_COMPONENT LID1_TOP,LID0_IDENT LID1_TOP,LID0_COMPONENT LID1_BOT,LID0_IDENT LID1_BOT,
+                           LID0_WIRE LID1_TOP, LID0_POLYGON LID1_TOP, LID0_PAD LID1_TOP,LID0_WIRE LID1_BOT, LID0_POLYGON LID1_BOT, LID0_PAD LID1_BOT});
+    SdEnvir::instance()->layerVisibleSet( allLayers, allLayers );
+    }
+
   //Collect fit rect
   SdRect fit;
   forEach( dctAll, [&fit](SdObject *obj) {
@@ -527,8 +539,14 @@ QImage SdProjectItem::drawImage(int width, int height, bool currentLayers)
     //Draw
     draw( &context );
 
+    if( !currentLayers )
+      SdEnvir::instance()->layerVisibleSet( visibleLayers, editableLayers );
+
     return image;
     }
+
+  if( !currentLayers )
+    SdEnvir::instance()->layerVisibleSet( visibleLayers, editableLayers );
   return QImage{};
   }
 
