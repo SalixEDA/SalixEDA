@@ -276,7 +276,7 @@ SdGraphPartImp::SdGraphPartImp() :
 
   }
 
-SdGraphPartImp::SdGraphPartImp(SdPoint org, SdPropPartImp *prp, SdPItemPart *part, SdPItemVariant *comp, const SdStringMap &param) :
+SdGraphPartImp::SdGraphPartImp(SdPoint org, const SdPropPartImp *prp, SdPItemPart *part, SdPItemVariant *comp, const SdStringMap &param) :
   SdGraphTraced(),
   mLogNumber(0),          //Logical part number (from 1)
   mOrigin(org),           //Position of Implement
@@ -310,6 +310,22 @@ QTransform SdGraphPartImp::matrix() const
 QString SdGraphPartImp::partTitle() const
   {
   return mPart == nullptr ? QString{} : mPart->getTitle();
+  }
+
+
+
+
+
+//!
+//! \brief partImpInfo Returns part imp info structure with origin, side and angle of rotation
+//! \return            Part imp info structure with origin, side and angle of rotation
+//!
+SdPartImpInfo SdGraphPartImp::partImpInfo() const
+  {
+  //We return real part imp info only for imps which resides inside pcb contour
+  if( getPlate()->isInsidePcbContour(mOrigin) )
+    return SdPartImpInfo( mOrigin, mProp );
+  return SdPartImpInfo{};
   }
 
 

@@ -95,6 +95,20 @@ class SdProjectItem : public SdContainerFile
     void                   insertObjects(SdPoint offset, SdSelector *sour, SdUndo *undo, SdSelector *dest, bool next );
 
     //!
+    //! \brief preInsertObjects Preparatory operations before inserting objects
+    //! \param offset           Object offset
+    //! \param sour             Selector containing the objects to be inserted
+    //!
+    virtual void           preInsertObjects( SdPoint offset, SdSelector *sour ) { Q_UNUSED(offset); Q_UNUSED(sour); }
+
+    //!
+    //! \brief postInsertObjects Post-operations after inserting objects
+    //! \param offset            Object offset
+    //! \param dest              Selector containing the inserted objects (copies of the original objects)
+    //!
+    virtual void           postInsertObjects( SdPoint offset, SdSelector *dest ) { Q_UNUSED(offset); Q_UNUSED(dest); }
+
+    //!
     //! \brief json Overloaded function to write object content into json writer
     //!             Overrided function
     //! \param js   Json writer

@@ -551,6 +551,7 @@ HEADERS  += \
     objects/SdGraphSymPinsMap.h \
     objects/SdJsonIO.h \
     objects/SdNetPinRef.h \
+    objects/SdPartImpInfo.h \
     objects/SdPartImpRelativePosition.h \
     objects/SdPropDef.h \
     objects/SdPv.h \

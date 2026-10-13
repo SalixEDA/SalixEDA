@@ -14,6 +14,7 @@ Description
   Graphical schematic sheet presentation
 */
 #include "SdPItemSheet.h"
+#include "SdPItemPlate.h"
 #include "SdGraphNetWire.h"
 #include "SdGraphArea.h"
 #include "SdGraphSymImp.h"
@@ -188,6 +189,16 @@ QString SdPItemSheet::getIconName() const
 quint64 SdPItemSheet::getAcceptedObjectsMask() const
   {
   return dctSheetObjects;
+  }
+
+
+
+
+void SdPItemSheet::postInsertObjects(SdPoint offset, SdSelector *dest)
+  {
+  Q_UNUSED(offset)
+  Q_UNUSED(dest)
+  getProject()->getDefaultPlate()->groupAllocation();
   }
 
 

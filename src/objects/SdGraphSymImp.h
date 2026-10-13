@@ -23,6 +23,7 @@ Description
 #include "library/SdStringMap.h"
 #include "SdPItemComponent.h"
 #include "SdTextImplement.h"
+#include "SdPartImpInfo.h"
 
 
 #define SD_TYPE_SYM_IMP "SymImp"
@@ -59,6 +60,9 @@ class SdGraphSymImp : public SdGraphSymPinsMap
                                      //!  If mPartImp == nullptr then symbol not linked
     SdSymImpPinTable  mPins;         //!< Pin information table
     QString           mLinkError;    //!< Error string, which displays when no link
+
+    //Not saved
+    SdPartImpInfo     mPartImpInfo;  //!< Preferred component placement on the board
   public:
     SdGraphSymImp();
 

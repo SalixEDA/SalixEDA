@@ -676,7 +676,7 @@ void SdGraphSymImp::linkAutoPartInPlate(SdPItemPlate *plate, SdUndo *undo)
   else {
     //Get part where this section resides
     int section = -1;
-    SdGraphPartImp *partImp = plate->allocPartImp( &section, mPart, mComponent, mSymbol, mParamTable, undo );
+    SdGraphPartImp *partImp = plate->allocPartImp( &section, mPart, mComponent, mSymbol, mParamTable, undo, mPartImpInfo );
     //qDebug() << "Allocated section" << section;
     Q_ASSERT( partImp != nullptr );
 
@@ -820,6 +820,9 @@ void SdGraphSymImp::cloneFrom(const SdObject *src, SdCopyMap &copyMap, bool next
   //PartImp and pins assigned when attached to schematic sheet
   //mPartImp      = imp->mPartImp;
   //mPins         = imp->mPins;        //Pin information table
+  //Preferred component placement on the board
+  if( imp->mPartImp != nullptr )
+    mPartImpInfo  = imp->mPartImp->partImpInfo();
   }
 
 

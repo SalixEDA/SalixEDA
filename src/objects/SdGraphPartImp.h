@@ -22,6 +22,7 @@ Description
 #include "SdBarrier.h"
 #include "SdTextImplement.h"
 #include "SdPlateNetList.h"
+#include "SdPartImpInfo.h"
 
 #include <QMap>
 
@@ -36,7 +37,7 @@ class SdPItemVariant;
 class SdGraphSymImp;
 class SdGraphSymPinsMap;
 class SdGraphRoadPin;
-class SdJsonReaderProperty;
+struct SdJsonReaderProperty;
 
 //Part implementation pin [Ножка вхождения корпуса]
 struct SdPartImpPin {
@@ -144,7 +145,7 @@ class SdGraphPartImp : public SdGraphTraced
     SdStringMap            mParamTable;  //!< Parameters
   public:
     SdGraphPartImp();
-    SdGraphPartImp(SdPoint org, SdPropPartImp *prp, SdPItemPart *part, SdPItemVariant *comp, const SdStringMap &param );
+    SdGraphPartImp(SdPoint org, const SdPropPartImp *prp, SdPItemPart *part, SdPItemVariant *comp, const SdStringMap &param );
 
     //Information
     //Get implement transform matrix
@@ -158,6 +159,12 @@ class SdGraphPartImp : public SdGraphTraced
     //! \return          Part title
     //!
     QString           partTitle() const;
+
+    //!
+    //! \brief partImpInfo Returns part imp info structure with origin, side and angle of rotation
+    //! \return            Part imp info structure with origin, side and angle of rotation
+    //!
+    SdPartImpInfo     partImpInfo() const;
 
 
     //Identificator

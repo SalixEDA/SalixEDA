@@ -31,6 +31,7 @@ class SdGraphSymImp;
 class SdPItemPart;
 class SdPItemSymbol;
 class SdPItemVariant;
+struct SdPartImpInfo;
 
 #define SD_TYPE_PLATE "Plate"
 
@@ -38,25 +39,30 @@ class SdPItemVariant;
 
 class SdPItemPlate : public SdProjectItem
   {
-    SdRect            mPartRow;           //Row for allocation autoinserted parts
-    SdPadAssociation  mPadAssociation;    //Pad to pin association table
-    SdRuleBlock       mRulesPcb;          //PCB rules
-    SdRuleBlockMap    mRulesMap;          //Net rule map
-    qint32            mStratumCount;      //Tracing stratum (layers) count
+    SdRect            mPartRow;           //!< Row for allocation autoinserted parts
+    SdPoint           mFragmentPos;       //!< Position for insert fragment
+    bool              mIsFragmentActive;  //!< True when fragment inserted
+    SdPadAssociation  mPadAssociation;    //!< Pad to pin association table
+    SdRuleBlock       mRulesPcb;          //!< PCB rules
+    SdRuleBlockMap    mRulesMap;          //!< Net rule map
+    qint32            mStratumCount;      //!< Tracing stratum (layers) count
 
     //Not saved
-    SdRatNet          mRatNet;            //Rat net is unconnected pairs
+    SdRatNet          mRatNet;            //!< Rat net is unconnected pairs
     bool              mRatNetDirty;
 
-    SdRectList        mRuleErrors;        //Indicator rule errors
+    SdRectList        mRuleErrors;        //!< Indicator rule errors
 
-    Sd3drModel         m3dModel;
+    Sd3drModel        m3dModel;
+
+    SdObjectPtrList   mGroupList;         //!< Temporary list of group components
+
   public:
     //Saved properties for modes
-    SdPoint           mTraceGrid;         //Current trace grid
-    bool              mTraceCursorGrid;   //Enable cursor grid align when trace
-    SdPoint           mPlaceGrid;         //Current place grid
-    bool              mPlaceCursorGrid;   //Enable cursor grid align when place
+    SdPoint           mTraceGrid;         //!< Current trace grid
+    bool              mTraceCursorGrid;   //!< Enable cursor grid align when trace
+    SdPoint           mPlaceGrid;         //!< Current place grid
+    bool              mPlaceCursorGrid;   //!< Enable cursor grid align when place
 
 
 
@@ -76,10 +82,11 @@ class SdPItemPlate : public SdProjectItem
     //! \param sym          Symbol of component section
     //! \param param        Current param variant
     //! \param undo         Undo for allocation
+    //! \param prefferedPos Preffered position, side and angle of newly inserted partImp
     //! \return             Part implement with allocated section
     //!
     //! Look for existing component on plate and find in them free section which match to given symbol-part-component-param combination
-    SdGraphPartImp        *allocPartImp(int *section, SdPItemPart *part, SdPItemVariant *comp, SdPItemSymbol *sym, const SdStringMap &param, SdUndo *undo);
+    SdGraphPartImp        *allocPartImp(int *section, SdPItemPart *part, SdPItemVariant *comp, SdPItemSymbol *sym, const SdStringMap &param, SdUndo *undo, const SdPartImpInfo &prefferedPos );
 
     //Pin-to-pad association
     //Full association table
@@ -185,6 +192,18 @@ class SdPItemPlate : public SdProjectItem
 
     void                   rebuild3dModel();
 
+    //!
+    //! \brief groupAllocation Perform placement of temporary group list
+    //!
+    void                   groupAllocation();
+
+    //!
+    //! \brief isInsidePcbContour Returns true if p is inside pcb contour
+    //! \param p                  Point to test
+    //! \return                   true if p is inside pcb contour
+    //!
+    bool                   isInsidePcbContour( SdPoint p ) const;
+
     // SdObject interface
   public:
     virtual QString        getType() const override;
@@ -218,6 +237,12 @@ class SdPItemPlate : public SdProjectItem
   private:
     //Check intersection on barriers and form errorList
     void checkIntersection(const SdBarrierList &src, const SdBarrierList &dst, bool excludeSameIndex );
+
+    //!
+    //! \brief pcbContourGet Return pcb contour
+    //! \param pointList     PCB contour
+    //!
+    void pcbContourGet( SdPointList &pointList ) const;
   };
 
 #endif // SDPITEMPLATE_H

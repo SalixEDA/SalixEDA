@@ -37,6 +37,7 @@ Description
 
 SdPItemPlate::SdPItemPlate() :
   SdProjectItem(),
+  mIsFragmentActive(false),
   mStratumCount(2),
   mRatNetDirty(true),
   mTraceGrid(-1,-1),         //Current trace grid
@@ -80,10 +81,11 @@ SdPvStratum SdPItemPlate::getStratum() const
 //! \param sym          Symbol of component section
 //! \param param        Current param variant
 //! \param undo         Undo for allocation
+//! \param prefferedPos Preffered position, side and angle of newly inserted partImp
 //! \return             Part implement with allocated section
 //!
 //! Look for existing component on plate and find in them free section which match to given symbol-part-component-param combination
-SdGraphPartImp *SdPItemPlate::allocPartImp(int *section, SdPItemPart *part, SdPItemVariant *comp, SdPItemSymbol *sym, const SdStringMap &param, SdUndo *undo )
+SdGraphPartImp *SdPItemPlate::allocPartImp(int *section, SdPItemPart *part, SdPItemVariant *comp, SdPItemSymbol *sym, const SdStringMap &param, SdUndo *undo, const SdPartImpInfo &prefferedPos )
   {
   if( part == nullptr )
     return nullptr;
@@ -108,18 +110,29 @@ SdGraphPartImp *SdPItemPlate::allocPartImp(int *section, SdPItemPart *part, SdPI
     if( mPartRow.isEmpty() || mPartRow.isNull() )
       mPartRow.set( SdPoint(0,0), SdPoint(2500,2500) );
     mPartRow.setWidth(2500);
-    qDebug() << "row start" << mPartRow;
+    //qDebug() << "row start" << mPartRow;
     }
-  SdRect over = part->getOverRect();
-  SdPoint p( mPartRow.getTopRight() );
-  qDebug() << p;
-  p.ry() = (p.y() + over.height()) / 2500 * 2500;
-  p.rx() = (p.x() + 2500) / 2500 * 2500;
-  mPartRow.setRight( p.x() + over.width() );
-  qDebug() << Q_FUNC_INFO << mPartRow << p << over.height();
 
-  //Create new part implement
-  res = new SdGraphPartImp( p, &(sdGlobalProp->mPartImpProp), part, comp, param );
+  if( prefferedPos.mValid ) {
+    //Create new part implement
+    res = new SdGraphPartImp( prefferedPos.mOrigin, &(prefferedPos.mProp), part, comp, param );
+
+    //Components with preffered position we append into groupList
+    mGroupList.append( res );
+    }
+  else {
+    SdRect over = part->getOverRect();
+    SdPoint p( mPartRow.getTopRight() );
+    //qDebug() << p;
+    p.ry() = (p.y() + over.height()) / 2500 * 2500;
+    p.rx() = (p.x() + 2500) / 2500 * 2500;
+    mPartRow.setRight( p.x() + over.width() );
+    //qDebug() << Q_FUNC_INFO << mPartRow << p << over.height();
+
+    //Create new part implement
+    res = new SdGraphPartImp( p, &(sdGlobalProp->mPartImpProp), part, comp, param );
+    }
+
   insertChild( res, undo );
 
   bool isFree = res->isSectionFree( section, part, comp, param, sym );
@@ -555,24 +568,7 @@ void SdPItemPlate::rebuild3dModel()
   m3dModel.clear();
   SdPointList pointList;
   //At first, find pcb contour
-  SdLayer *pcbLayer = SdEnvir::instance()->layerGet( LID0_PCB );
-  forEach( dctLines, [&pointList, pcbLayer] (SdObject *obj) -> bool {
-    SdPtr<SdGraphLinearRect> rect(obj);
-    if( rect.isValid() && rect->isMatchLayer(pcbLayer) ) {
-      //There we found pcb rectangle form
-      //Draw it and cancel iteration
-      pointList = rect->getPointList();
-      return false;
-      }
-    SdPtr<SdGraphLinearRegion> region(obj);
-    if( region.isValid() && region->isMatchLayer(pcbLayer) ) {
-      //There we found pcb region form
-      //Draw it and cancel iteration
-      pointList = region->getPointList();
-      return false;
-      }
-    return true;
-    } );
+  pcbContourGet( pointList );
 
   //If no pcb contour then we do nothing
   if( pointList.count() > 2 ) {
@@ -624,6 +620,69 @@ void SdPItemPlate::rebuild3dModel()
     m3dModel.instanceAppend( inst );
     }
 
+  }
+
+
+
+
+//!
+//! \brief groupAllocation Perform placement of temporary group list
+//!
+void SdPItemPlate::groupAllocation()
+  {
+  if( mGroupList.count() ) {
+    SdRect over;
+    for( auto *obj : std::as_const(mGroupList) ) {
+      SdPtrConst<SdGraph> graph(obj);
+      if( graph.isValid() ) {
+        if( over.isEmpty() )
+          over = graph->getOverRect();
+        else
+          over.grow( graph->getOverRect() );
+        }
+      }
+
+    //Offset fragment
+    SdPoint s( over.bottomLeft() );
+    QTransform t = QTransform::fromTranslate( mPartRow.x() - s.x(), mPartRow.y() - s.y() );
+
+    //Move fragment
+    for( auto *obj : std::as_const(mGroupList) ) {
+      SdPtr<SdGraph> graph(obj);
+      if( graph.isValid() ) {
+        graph->transform( t );
+        }
+      }
+
+
+    //Row ajust
+    SdPoint p( mPartRow.getTopRight() );
+    //qDebug() << p;
+    p.ry() = (p.y() + over.height()) / 2500 * 2500;
+    p.rx() = (p.x() + 2500) / 2500 * 2500;
+    mPartRow.setRight( p.x() + over.width() );
+
+    mGroupList.clear();
+    }
+  }
+
+
+
+
+
+//!
+//! \brief isInsidePcbContour Returns true if p is inside pcb contour
+//! \param p                  Point to test
+//! \return                   true if p is inside pcb contour
+//!
+bool SdPItemPlate::isInsidePcbContour(SdPoint p) const
+  {
+  //Get pcb contour polygon
+  SdPointList pointList;
+  pcbContourGet( pointList );
+
+  //Return test if point is inside
+  return pointList.containsPoint( p, Qt::OddEvenFill );
   }
 
 
@@ -790,6 +849,35 @@ void SdPItemPlate::checkIntersection(const SdBarrierList &src, const SdBarrierLi
         }
     }
 
+  }
+
+
+
+
+//!
+//! \brief pcbContourGet Return pcb contour
+//! \param pointList     PCB contour
+//!
+void SdPItemPlate::pcbContourGet(SdPointList &pointList) const
+  {
+  SdLayer *pcbLayer = SdEnvir::instance()->layerGet( LID0_PCB );
+  forEachConst( dctLines, [&pointList, pcbLayer] (SdObject *obj) -> bool {
+    SdPtr<SdGraphLinearRect> rect(obj);
+    if( rect.isValid() && rect->isMatchLayer(pcbLayer) ) {
+      //There we found pcb rectangle form
+      //Draw it and cancel iteration
+      pointList = rect->getPointList();
+      return false;
+      }
+    SdPtr<SdGraphLinearRegion> region(obj);
+    if( region.isValid() && region->isMatchLayer(pcbLayer) ) {
+      //There we found pcb region form
+      //Draw it and cancel iteration
+      pointList = region->getPointList();
+      return false;
+      }
+    return true;
+    } );
   }
 
 

@@ -69,6 +69,13 @@ class SdPItemSheet : public SdProjectItem
     virtual QString        getIconName() const override;
     virtual quint64        getAcceptedObjectsMask() const override;
 
+    //!
+    //! \brief postInsertObjects Post-operations after inserting objects
+    //! \param offset            Object offset
+    //! \param dest              Selector containing the inserted objects (copies of the original objects)
+    //!
+    virtual void           postInsertObjects( SdPoint offset, SdSelector *dest ) override;
+
     friend class SdPasCadImport;
 
   };
