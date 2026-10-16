@@ -104,6 +104,16 @@ class SdScaner
     bool         tokenNeedValue( char tokenId, QString &value, const QString errorMsg );
 
     //!
+    //! \brief tokenNeedValue Check if last scanned token equals to tokenId1 OR tokenId2 and return value itself
+    //! \param tokenId1       Needed token ident, variant 1
+    //! \param tokenId2       Needed token ident, variant 2
+    //! \param value          Value of token if last scanned token equals to tokenId1 OR tokenId2
+    //! \param errorMsg       Error message which appended to error list if last scanned token not equals to tokenId1 and tokenId2
+    //! \return               true when any of tokenId equals to last scanned token
+    //!
+    bool         tokenNeedValue( char tokenId1, char tokenId2, QString &value, const QString errorMsg );
+
+    //!
     //! \brief tokenNeedValueInt Treat next token as integer
     //! \param tokenVal          Token id for integer
     //! \return                  Value of integer
@@ -140,6 +150,15 @@ class SdScaner
     //! \return                     true when tokenId equals to last scanned token and no error in conversion to float
     //!
     bool         tokenNeedValueFloat( char tokenId, float &value, const QString errorMsg );
+
+    //!
+    //! \brief tokenNeedValueDouble  Check if last scanned token equals to tokenId and return value itself as double
+    //! \param tokenId               Needed token ident
+    //! \param value                 Value of token if last scanned token equals to tokenId
+    //! \param errorMsg              Error message which appended to error list if last scanned token not equals to tokenId
+    //! \return                      true when tokenId equals to last scanned token and no error in conversion to double
+    //!
+    bool         tokenNeedValueDouble( char tokenId, double &value, const QString &errorMsg );
 
     //!
     //! \brief tokenValue Return last token value as string

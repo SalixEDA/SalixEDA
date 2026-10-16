@@ -123,6 +123,34 @@ bool SdScaner::tokenNeedValue(char tokenId, QString &value, const QString errorM
 
 
 
+
+
+//!
+//! \brief tokenNeedValue Check if last scanned token equals to tokenId1 OR tokenId2 and return value itself
+//! \param tokenId1       Needed token ident, variant 1
+//! \param tokenId2       Needed token ident, variant 2
+//! \param value          Value of token if last scanned token equals to tokenId1 OR tokenId2
+//! \param errorMsg       Error message which appended to error list if last scanned token not equals to tokenId1 and tokenId2
+//! \return               true when any of tokenId equals to last scanned token
+//!
+bool SdScaner::tokenNeedValue(char tokenId1, char tokenId2, QString &value, const QString errorMsg)
+  {
+  if( mToken == 0 )
+    return false;
+  //Append special case when integer need to be act as float
+  if( (tokenId1 == mToken) || (tokenId2 == mToken) ) {
+    value = mTokenValue;
+    tokenNext();
+    return true;
+    }
+  error( errorMsg );
+  return false;
+  }
+
+
+
+
+
 //!
 //! \brief tokenNeedValueInt  Check if last scanned token equals to tokenId and return value itself as integer
 //! \param tokenId            Needed token ident
@@ -158,6 +186,29 @@ bool SdScaner::tokenNeedValueFloat(char tokenId, float &value, const QString err
   if( tokenNeedValue( tokenId, strVal, errorMsg ) ) {
     bool res;
     value = strVal.toFloat( &res );
+    return res;
+    }
+  return false;
+  }
+
+
+
+
+
+
+//!
+//! \brief tokenNeedValueDouble  Check if last scanned token equals to tokenId and return value itself as double
+//! \param tokenId               Needed token ident
+//! \param value                 Value of token if last scanned token equals to tokenId
+//! \param errorMsg              Error message which appended to error list if last scanned token not equals to tokenId
+//! \return                      true when tokenId equals to last scanned token and no error in conversion to double
+//!
+bool SdScaner::tokenNeedValueDouble(char tokenId, double &value, const QString &errorMsg)
+  {
+  QString strVal;
+  if( tokenNeedValue( tokenId, strVal, errorMsg ) ) {
+    bool res;
+    value = strVal.toDouble( &res );
     return res;
     }
   return false;

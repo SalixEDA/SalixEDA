@@ -48,6 +48,7 @@ SOURCES += \
     guider/SdGuiderDialog.cpp \
     guider/SdGuiderEvent.cpp \
     guider/SdGuiderSnapshot.cpp \
+    import/SdScanerSe.cpp \
     import/iges/IgesEntityCurveOnParametricSurface.cpp \
     import/iges/IgesEntityFaceGenerator.cpp \
     import/iges/IgesEntityRationalBSplineCurve.cpp \
@@ -449,6 +450,7 @@ HEADERS  += \
     guider/SdGuiderEvent.h \
     guider/SdGuiderSnapshot.h \
     guider/SdGuiderStep.h \
+    import/SdScanerSe.h \
     import/iges/IgesEntityCurveOnParametricSurface.h \
     import/iges/IgesEntityFaceGenerator.h \
     import/iges/IgesEntityRationalBSplineCurve.h \

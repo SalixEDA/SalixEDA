@@ -18,86 +18,9 @@ Description
 #include "SdScanerKiCad.h"
 
 
-template<typename Class, auto Member>
-void sdKiCad(SdScanerKiCad* scaner, Class* pad) {
-  std::invoke(Member, pad).scan(scaner);
-  }
 
 
 
-
-struct SdKiCadValidable
-  {
-    bool mPresent = false; //!< Flag, true if this field present in file
-
-    bool isValid() const { return mPresent; }
-  };
-
-
-
-
-
-struct SdKiCadDouble : public SdKiCadValidable
-  {
-    double mValue   = 0;     //!< Value
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      mValue = scaner->tokenNeedValueDouble();
-      scaner->tokenNeedClose();
-      mPresent = true;
-      }
-  };
-
-
-
-
-
-struct SdKiCadCoord : public SdKiCadValidable
-  {
-    int  mValue   = 0;     //!< Value
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      mValue = scaner->tokenNeedCoord();
-      scaner->tokenNeedClose();
-      mPresent = true;
-      }
-  };
-
-
-
-
-
-struct SdKiCadPoint : public SdKiCadValidable
-  {
-    QPointF mPoint;           //!< 2d point
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      mPoint.setX( scaner->tokenNeedValueDouble() );
-      mPoint.setY( scaner->tokenNeedValueDouble() );
-      scaner->tokenNeedClose();
-      mPresent = true;
-      }
-  };
-
-
-
-
-
-struct SdKiCadSdPoint : public SdKiCadValidable
-  {
-    QPoint mPoint; //!< 2d point
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      mPoint.setX( scaner->tokenNeedCoord() );
-      mPoint.setY( scaner->tokenNeedCoord() );
-      scaner->tokenNeedClose();
-      mPresent = true;
-      }
-  };
 
 
 
@@ -140,91 +63,36 @@ struct SdKiCadSdPointWithAngle : public SdKiCadValidable
 
 
 
-struct SdKiCadString : public SdKiCadValidable
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct SdKiCadYesNo : public SdSeSelector<SdKiCadYesNo>
   {
-    QString mValue;           //!< String value
+    SdKiCadYesNo( bool v ) : SdSeSelector<SdKiCadYesNo>(v ? 1 : 0) {}
 
-    void scan( SdScanerKiCad *scaner )
-      {
-      mValue = scaner->tokenNeedValue('s');
-      scaner->tokenNeed( ')' );
-      mPresent = true;
-      }
-
-    QString layer() const;
-  };
-
-
-
-
-struct SdKiCadStringList : public SdKiCadValidable
-  {
-    QStringList mList;            //!< List of strings
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      while( scaner->token() != ')' )
-        mList.append( scaner->tokenNeedValue('s') );
-      scaner->tokenNeed( ')' );
-      mPresent = true;
-      }
-  };
-
-
-
-
-template <typename SdKiCad>
-struct SdKiCadMap : public SdKiCadValidable
-  {
-    int  mSelector = -1;
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      QString str = scaner->tokenNeedValue('n');
-      scaner->tokenNeed( ')' );
-      mSelector =  SdKiCad::mTokenMap.value(str, mSelector);
-      mPresent = true;
-      }
-  };
-
-
-
-
-
-struct SdKiCadYesNo : public SdKiCadMap<SdKiCadYesNo>
-  {
-    inline static const QMap<QString,int> mTokenMap = {
+    inline static const QMap<QString,int> selectorMap = {
       { "yes", 1 },
       { "no",  0 }
     };
 
-    bool isYes() const { return mSelector == 1; }
+    bool isYes() const { return selector() == 1; }
   };
 
 
-/*
-struct SdKiCadMap
-  {
-    const QMap<QString,int> &mFindMap;
-    int                      mSelector;
-    bool                     mPresent = false; //!< Flag, true if this field present in file
-
-    SdKiCadMap( const QMap<QString,int> &map, int fail = -1 ) : mFindMap(map), mSelector(fail) {}
-
-    void scan( SdScanerKiCad *scaner )
-      {
-      QString str = scaner->tokenNeedValue('n');
-      scaner->tokenNeed( ')' );
-      mSelector = mFindMap.value(str, mSelector);
-      mPresent = true;
-      }
-  };
-
-*/
 
 
 
-struct SdKiCadStrokeType : public SdKiCadMap<SdKiCadStrokeType>
+struct SdKiCadStrokeType : public SdSeSelector<SdKiCadStrokeType>
   {
     enum {
       typeNone,
@@ -234,7 +102,7 @@ struct SdKiCadStrokeType : public SdKiCadMap<SdKiCadStrokeType>
       typeDashDot
     };
 
-    inline static const QMap<QString,int> mTokenMap = {
+    inline static const QMap<QString,int> selectorMap = {
       { "none",     typeNone },
       { "solid",    typeSolid },
       { "dashed",   typeDashed },
@@ -246,15 +114,6 @@ struct SdKiCadStrokeType : public SdKiCadMap<SdKiCadStrokeType>
 
 
 
-
-template <typename SdKiCad >
-struct SdKiCadGrouped
-  {
-    void scan(  SdScanerKiCad *scaner  )
-      {
-      scaner->parse( SdKiCad::tokenMap, static_cast<SdKiCad*>(this) );
-      }
-  };
 
 
 
@@ -274,24 +133,6 @@ struct SdKiCadStroke : public SdKiCadGrouped<SdKiCadStroke>
   };
 
 
-
-
-struct SdKiCadLine : public SdKiCadGrouped<SdKiCadLine>
-  {
-    SdKiCadSdPoint mStart;
-    SdKiCadSdPoint mEnd;
-    SdKiCadStroke  mStroke;
-    SdKiCadString  mLayer;
-
-    inline static SdKiCadTokenMap<SdKiCadLine> tokenMap = {
-      { "start",  sdKiCad<SdKiCadLine,&SdKiCadLine::mStart> },
-      { "end",    sdKiCad<SdKiCadLine,&SdKiCadLine::mEnd> },
-      { "stroke", sdKiCad<SdKiCadLine,&SdKiCadLine::mStroke> },
-      { "layer",  sdKiCad<SdKiCadLine,&SdKiCadLine::mLayer> }
-    };
-
-    bool isValid() const { return mStart.isValid() && mEnd.isValid() && mStroke.isValid() && mLayer.isValid(); }
-  };
 
 
 
@@ -361,23 +202,136 @@ struct SdKiCadPad : public SdKiCadGrouped<SdKiCadPad>
   };
 
 
-struct SdKiCadFont : public SdKiCadGrouped<SdKiCadFont>
-  {
-    SdKiCadSdPoint mSize;
-    SdKiCadCoord   mThickness;
 
-    inline static const SdKiCadTokenMap<SdKiCadFont> tokenMap = {
-      { "size",      sdKiCad<SdKiCadFont,&SdKiCadFont::mSize> },
-      { "thickness", sdKiCad<SdKiCadFont,&SdKiCadFont::mThickness> }
+inline constexpr int SdKiCadFpScale = 1000;
+inline constexpr int SdKiCadFpAngleScale = 1000;
+
+struct SdKiCadFpTextAt : public SdSeGroup<SdKiCadFpTextAt>
+  {
+    int mPosX;
+    int mPosY;
+    int mAngle    = 0;
+    int mUnlocked = -1;
+
+    inline static const SdSeSerialList<SdKiCadFpTextAt> serialList = {
+      sdSeScanIntScaled<SdKiCadFpTextAt, &SdKiCadFpTextAt::mPosX, SdKiCadFpScale >,
+      sdSeScanIntScaled<SdKiCadFpTextAt, &SdKiCadFpTextAt::mPosY, SdKiCadFpScale >,
+      sdSeScanIntScaled<SdKiCadFpTextAt, &SdKiCadFpTextAt::mAngle, SdKiCadFpAngleScale, SdSeOptional >,
+      sdSeScanSelector<SdKiCadFpTextAt, &SdKiCadFpTextAt::mUnlocked, SdSeOptional>( {"unlocked"} )
     };
   };
 
+struct SdKiCadFpTextSize : public SdSeGroup<SdKiCadFpTextSize>
+  {
+    int mSizeW;
+    int mSizeH;
+
+    inline static const SdSeSerialList<SdKiCadFpTextSize> serialList = {
+      sdSeScanIntScaled<SdKiCadFpTextSize, &SdKiCadFpTextSize::mSizeW, SdKiCadFpScale >,
+      sdSeScanIntScaled<SdKiCadFpTextSize, &SdKiCadFpTextSize::mSizeH, SdKiCadFpScale >,
+      };
+  };
+
+struct SdKiCadFpTextFont : public SdSeGroup<SdKiCadFpTextFont>
+  {
+    SdKiCadFpTextSize             mSize;
+    SdSeIntScaled<SdKiCadFpScale> mThickness;
+    SdSeDouble                    mWidth = 1.0;
+    SdKiCadYesNo                  mItalic = false;
+    bool                          mBold = false;
+
+    inline static const SdSeTokenMap<SdKiCadFpTextFont> tokenMap = {
+      {"size",      sdSeParse<SdKiCadFpTextFont, &SdKiCadFpTextFont::mSize>},
+      {"thickness", sdSeParse<SdKiCadFpTextFont, &SdKiCadFpTextFont::mThickness>},
+      {"width",     sdSeParse<SdKiCadFpTextFont, &SdKiCadFpTextFont::mWidth>},
+      {"italic",    sdSeParse<SdKiCadFpTextFont, &SdKiCadFpTextFont::mItalic>},
+      //Flags
+      {"bold",      sdSeParseFlag<SdKiCadFpTextFont, &SdKiCadFpTextFont::mBold>},
+      };
+  };
+
+
+struct SdKiCadFpTextJustify : public SdSeGroup<SdKiCadFpTextJustify>
+  {
+    bool mLeft   = false;
+    bool mRight  = false;
+    bool mBottom = false;
+    bool mTop    = false;
+    bool mMirror = false;
+
+    inline static const SdSeTokenMap<SdKiCadFpTextJustify> tokenMap = {
+      {"left",   sdSeParseFlag<SdKiCadFpTextJustify, &SdKiCadFpTextJustify::mLeft>},
+      {"right",  sdSeParseFlag<SdKiCadFpTextJustify, &SdKiCadFpTextJustify::mRight>},
+      {"bottom", sdSeParseFlag<SdKiCadFpTextJustify, &SdKiCadFpTextJustify::mBottom>},
+      {"top",    sdSeParseFlag<SdKiCadFpTextJustify, &SdKiCadFpTextJustify::mTop>},
+      {"mirro",  sdSeParseFlag<SdKiCadFpTextJustify, &SdKiCadFpTextJustify::mMirror>},
+      };
+  };
+
+struct SdKiCadFpEffects : public SdSeGroup<SdKiCadFpEffects>
+  {
+    SdKiCadFpTextFont    mFont;
+    SdKiCadFpTextJustify mJustify;
+
+    inline static const SdSeTokenMap<SdKiCadFpEffects> tokenMap = {
+      {"font",    sdSeParse<SdKiCadFpEffects, &SdKiCadFpEffects::mFont>},
+      {"justify", sdSeParse<SdKiCadFpEffects, &SdKiCadFpEffects::mJustify>},
+      };
+  };
+
+struct SdKiCadFpText : public SdSeGroup<SdKiCadFpText>
+  {
+    QString          mType;
+    QString          mText;
+
+    SdKiCadFpTextAt  mAt;
+    SdSeStringOrName mLayer;
+    SdKiCadYesNo     mHide = false;
+    SdKiCadFpEffects mEffects;
+
+
+    inline static const SdSeSerialList<SdKiCadFpText> serialList = {
+      sdSeScanName<SdKiCadFpText, &SdKiCadFpText::mType>,
+      sdSeScanStringOrName<SdKiCadFpText, &SdKiCadFpText::mText >,
+      };
+
+    inline static const SdSeTokenMap<SdKiCadFpText> tokenMap = {
+      {"at",      sdSeParse<SdKiCadFpText, &SdKiCadFpText::mAt>},
+      {"layer",   sdSeParse<SdKiCadFpText, &SdKiCadFpText::mLayer>},
+      {"hide",    sdSeParse<SdKiCadFpText, &SdKiCadFpText::mHide>},
+      {"effects", sdSeParse<SdKiCadFpText, &SdKiCadFpText::mEffects>},
+      };
+  };
+
+
+
+
+using SdKiCadFpSdPoint = SdSeSdPoint<SdKiCadFpScale>;
+
+
+struct SdKiCadFpLine : public SdSeGroup<SdKiCadFpLine>
+  {
+    SdKiCadFpSdPoint mStart;
+    SdKiCadFpSdPoint mEnd;
+    SdKiCadStroke  mStroke;
+    SdKiCadString  mLayer;
+
+    inline static SdKiCadTokenMap<SdKiCadLine> tokenMap = {
+      { "start",  sdKiCad<SdKiCadLine,&SdKiCadLine::mStart> },
+      { "end",    sdKiCad<SdKiCadLine,&SdKiCadLine::mEnd> },
+      { "stroke", sdKiCad<SdKiCadLine,&SdKiCadLine::mStroke> },
+      { "layer",  sdKiCad<SdKiCadLine,&SdKiCadLine::mLayer> }
+    };
+
+    bool isValid() const { return mStart.isValid() && mEnd.isValid() && mStroke.isValid() && mLayer.isValid(); }
+  };
+
+
+
+
+
 
 /*
-struct SdKiCadTextEffects : public SdKiCadGrouped<SdKiCadTextEffects>
-  {
-
-  };
 
 
 struct SdKiCadTextProp : public SdKiCadGrouped<SdKiCadTextProp>
