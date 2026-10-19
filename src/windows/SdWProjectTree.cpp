@@ -584,7 +584,6 @@ void SdWProjectTree::onCurrentItemChanged(QTreeWidgetItem *cur, QTreeWidgetItem 
 
   SdWCommand::cmFilePrint->setEnabled(enable);
   SdWCommand::cmFileExport->setEnabled(enable);
-  SdWCommand::cmFileImport->setEnabled(enable);
 
   if( enable && cur != nullptr ) {
     SdProjectItem *item = dynamic_cast<SdProjectItem*>( mProject->item( cur ) );

@@ -33,6 +33,7 @@ Description
 #include "SdPropBarWire.h"
 #include "SdPropBarPartPlace.h"
 #include "objects/SdEnvir.h"
+#include "import/SdImportManager.h"
 #include <QMenuBar>
 #include <QSettings>
 #include <QFileInfo>
@@ -71,7 +72,8 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmFileCloud->setCheckable(true);
   menuFile->addSeparator();
   cmFileImportPis = menuFile->addAction( QObject::tr("Import PasCAD"), frame, &SdWMain::cmFileImportPis );
-  cmFileImport    = menuFile->addAction( QIcon(QString(":/pic/fileImport.png")), QObject::tr("Import..."), frame, &SdWMain::cmFileImport );
+  //cmFileImport    = menuFile->addAction( QIcon(QString(":/pic/fileImport.png")), QObject::tr("Import..."), frame, &SdWMain::cmFileImport );
+  auto menuFileImport = menuFile->addMenu( QIcon(QString(":/pic/fileImport.png")), QObject::tr("Import...") );
   cmFileExport    = menuFile->addAction( QIcon(QString(":/pic/fileExport.png")), QObject::tr("Export..."), frame, &SdWMain::cmFileExport );
   menuFile->addSeparator();
   cmFilePrint = menuFile->addAction( QIcon(QString(":/pic/filePrint.png")), QObject::tr("Print..."), frame, &SdWMain::cmDelegate<&SdWEditor::cmFilePrint> );
@@ -79,8 +81,7 @@ void SdWCommand::createMenu(SdWMain *frame)
   cmFileExit = menuFile->addAction( QIcon(QString(":/pic/exit.png")), QObject::tr("Exit programm"), frame, &SdWMain::cmFileExit );
 
   //Last previous files menu [Меню для предыдущих файлов]
-  for (int i = 0; i < PREVIOUS_FILES_COUNT; ++i)
-    {
+  for( int i = 0; i < PREVIOUS_FILES_COUNT; ++i ) {
     cmFilePrevious[i] = new QAction(frame);
     cmFilePrevious[i]->setVisible(false);
     frame->connect(cmFilePrevious[i], &QAction::triggered, frame, &SdWMain::cmFilePrevious );
@@ -88,6 +89,15 @@ void SdWCommand::createMenu(SdWMain *frame)
     }
 
   updatePreviousMenu();
+
+  //Submenu for import file
+  for( int i = 0; i < SdImportManager::instance()->count(); ++i ) {
+    QString iconName = SdImportManager::instance()->iconName(i);
+    if( iconName.isEmpty() )
+      menuFileImport->addAction( SdImportManager::instance()->menuTitle(i), frame, [frame,i] () { frame->cmFileImport(i); } );
+    else
+      menuFileImport->addAction(  QIcon(iconName), SdImportManager::instance()->menuTitle(i), frame, [frame,i] () { frame->cmFileImport(i); } );
+    }
 
 
   //Object menu [Меню Объект]
@@ -509,7 +519,6 @@ void SdWCommand::projectState(bool enable)
   if( !enable ) {
     cmFileSave->setEnabled(enable);
     cmFilePrint->setEnabled(enable);
-    cmFileImport->setEnabled(enable);
     cmFileExport->setEnabled(enable);
 
     cmObjectRename->setEnabled(enable);
@@ -905,7 +914,6 @@ QActionPtr SdWCommand::cmFileSaveAll;
 QActionPtr SdWCommand::cmFilePrint;
 QActionPtr SdWCommand::cmFileExit;
 QActionPtr SdWCommand::cmFileImportPis;
-QActionPtr SdWCommand::cmFileImport;
 QActionPtr SdWCommand::cmFileExport;
 QActionPtr SdWCommand::cmFileExportGerber;
 QActionPtr SdWCommand::cmFileStoreToLibrary;

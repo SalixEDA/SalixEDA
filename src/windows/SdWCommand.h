@@ -95,7 +95,6 @@ class SdWCommand
     static QActionPtr   cmFilePrint;
     static QActionPtr   cmFileExit;
     static QActionPtr   cmFileImportPis;
-    static QActionPtr   cmFileImport;
     static QActionPtr   cmFileExport;
     static QActionPtr   cmFileExportGerber;
     static QActionPtr   cmFileStoreToLibrary;

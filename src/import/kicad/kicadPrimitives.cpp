@@ -285,7 +285,7 @@ QString kicadLayerMap( const QString kicadLayerName )
   return mLayerMap.value( kicadLayerName, LID0_INVISIBLE );
   }
 
-
+/*
 void kicadFillPropLine( SdPropLine &prop, const SdKiCadStroke &stroke, const SdKiCadString &layer )
   {
   if( stroke.isValid() ) {
@@ -307,3 +307,4 @@ void kicadFillPropLine( SdPropLine &prop, const SdKiCadStroke &stroke, const SdK
   //Convert layer
   prop.mLayer.set( kicadLayerMap(layer.mValue) );
   }
+*/

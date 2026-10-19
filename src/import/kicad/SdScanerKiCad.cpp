@@ -17,7 +17,7 @@ Description
 #include <QObject>
 
 
-
+/*
 void SdScanerKiCad::parseTop(SdProject *project)
   {
   //Token map
@@ -31,7 +31,7 @@ void SdScanerKiCad::parseTop(SdProject *project)
   while( !isEndOfScanOrError() )
     parseContent( tokenMap, project );
   }
-
+*/
 
 
 

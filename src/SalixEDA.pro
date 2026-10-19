@@ -54,6 +54,7 @@ SOURCES += \
     import/iges/IgesEntityRationalBSplineCurve.cpp \
     import/iges/IgesEntitySurface.cpp \
     import/iges/IgesEntityTrimmedParametricSurface.cpp \
+    import/kicad/SdImportKiCadLib.cpp \
     import/kicad/SdScanerKiCad.cpp \
     import/kicad/kicadCirclePart.cpp \
     import/kicad/kicadFootprint.cpp \
@@ -450,12 +451,14 @@ HEADERS  += \
     guider/SdGuiderEvent.h \
     guider/SdGuiderSnapshot.h \
     guider/SdGuiderStep.h \
+    import/SdImportManager.h \
     import/SdScanerSe.h \
     import/iges/IgesEntityCurveOnParametricSurface.h \
     import/iges/IgesEntityFaceGenerator.h \
     import/iges/IgesEntityRationalBSplineCurve.h \
     import/iges/IgesEntitySurface.h \
     import/iges/IgesEntityTrimmedParametricSurface.h \
+    import/kicad/SdImportKiCadLib.h \
     import/kicad/SdKiCad.h \
     import/kicad/SdScanerKiCad.h \
     import/nurbs/NurbsBasis.h \

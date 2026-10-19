@@ -23,7 +23,7 @@ Description
 
 
 
-
+/*
 
 
 struct SdKiCadPointWithAngle : public SdKiCadValidable
@@ -61,7 +61,7 @@ struct SdKiCadSdPointWithAngle : public SdKiCadValidable
   };
 
 
-
+*/
 
 
 
@@ -117,7 +117,7 @@ struct SdKiCadStrokeType : public SdSeSelector<SdKiCadStrokeType>
 
 
 
-
+/*
 
 struct SdKiCadStroke : public SdKiCadGrouped<SdKiCadStroke>
   {
@@ -201,7 +201,7 @@ struct SdKiCadPad : public SdKiCadGrouped<SdKiCadPad>
 
   };
 
-
+*/
 
 inline constexpr int SdKiCadFpScale = 1000;
 inline constexpr int SdKiCadFpAngleScale = 1000;
@@ -308,7 +308,7 @@ struct SdKiCadFpText : public SdSeGroup<SdKiCadFpText>
 
 using SdKiCadFpSdPoint = SdSeSdPoint<SdKiCadFpScale>;
 
-
+/*
 struct SdKiCadFpLine : public SdSeGroup<SdKiCadFpLine>
   {
     SdKiCadFpSdPoint mStart;
@@ -331,7 +331,7 @@ struct SdKiCadFpLine : public SdSeGroup<SdKiCadFpLine>
 
 
 
-/*
+
 
 
 struct SdKiCadTextProp : public SdKiCadGrouped<SdKiCadTextProp>
@@ -343,7 +343,7 @@ struct SdKiCadTextProp : public SdKiCadGrouped<SdKiCadTextProp>
 
 */
 
-
+/*
 void kicadFootprint( SdScanerKiCad *scaner, SdProject *project );
 void kicadSymbolLib( SdScanerKiCad *scaner, SdProject *project );
 void kicadPropertyPart( SdScanerKiCad *scaner, SdPItemPart *part );
@@ -352,5 +352,6 @@ void kicadGraphCircle( SdScanerKiCad *scaner, SdPItemPart *part );
 
 void kicadFillPropLine( SdPropLine &prop, const SdKiCadStroke &stroke, const SdKiCadString &layer );
 QString kicadLayerMap( const QString kicadLayerName );
+*/
 
 #endif // SDKICAD_H

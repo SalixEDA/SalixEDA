@@ -18,6 +18,7 @@ Description
 
 #include <QObject>
 
+/*
 void kicadFootprint(SdScanerKiCad *scaner, SdProject *project )
   {
   //We work with mm
@@ -38,3 +39,4 @@ void kicadFootprint(SdScanerKiCad *scaner, SdProject *project )
 
   scaner->parse( tokenMap, part );
   }
+*/

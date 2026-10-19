@@ -18,7 +18,7 @@ Description
 #include "../../objects/SdGraphLinearCircleFilled.h"
 
 
-
+/*
 void kicadGraphCircle( SdScanerKiCad *scaner, SdPItemPart *part )
   {
   SdKiCadCircle circleInfo;
@@ -37,3 +37,4 @@ void kicadGraphCircle( SdScanerKiCad *scaner, SdPItemPart *part )
     }
 
   }
+*/

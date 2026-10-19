@@ -81,7 +81,6 @@ class SdWEditor : public QAbstractScrollArea
     //Command on rections [Реакции на команды]
     //File menu commands
     virtual void cmFilePrint() {}
-    virtual void cmFileImport() {}
     virtual void cmFileExport() {}
 
     //Object menu commands

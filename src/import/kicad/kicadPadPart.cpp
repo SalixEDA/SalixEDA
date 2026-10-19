@@ -19,7 +19,7 @@ Description
 
 
 
-
+/*
 void kicadPadPart( SdScanerKiCad *scaner, SdPItemPart *part )
   {
   //TODO need to complete with pad import
@@ -51,3 +51,4 @@ void kicadPadPart( SdScanerKiCad *scaner, SdPItemPart *part )
   //Build pin on component with pad
   // part->insertChild( new SdGraphLinearLine( lineInfo.mA, lineInfo.mB, lineInfo.mProp ), nullptr );
   }
+*/

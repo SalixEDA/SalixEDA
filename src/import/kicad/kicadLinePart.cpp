@@ -16,7 +16,7 @@ Description
 #include "../../objects/SdPItemPart.h"
 #include "../../objects/SdGraphLinearLine.h"
 
-
+/*
 
 void kicadGraphLine( SdScanerKiCad *scaner, SdPItemPart *part )
   {
@@ -31,3 +31,4 @@ void kicadGraphLine( SdScanerKiCad *scaner, SdPItemPart *part )
     part->insertChild( new SdGraphLinearLine( lineInfo.mStart.mPoint, lineInfo.mEnd.mPoint, prop ), nullptr );
     }
   }
+*/

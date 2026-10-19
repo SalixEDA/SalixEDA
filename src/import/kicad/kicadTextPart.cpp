@@ -76,7 +76,7 @@ void kicadTextPart( SdScanerKiCad *scaner, SdPItemPart *part )
     textInfo.mPropText.mVert   = dvjMiddle;
     textInfo.mPropText.mMirror = 0;
 
-    scaner->parse( tokenMap, &textInfo );
+//    scaner->parse( tokenMap, &textInfo );
 
     int half = textInfo.mPropText.mSize.value() / 2;
     SdRect r( textInfo.mOrg.x() - half, textInfo.mOrg.y() - half, half * 2, half * 2 );

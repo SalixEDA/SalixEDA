@@ -175,7 +175,7 @@ class SdWMain : public QMainWindow
     void cmFileExit();
 
     void cmFileImportPis();
-    void cmFileImport();
+    void cmFileImport( int importIndex );
     void cmFileExport();
 
     //Object menu commands

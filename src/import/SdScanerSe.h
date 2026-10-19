@@ -435,7 +435,7 @@ struct SdSeGroup
 
       // Scan positional elements if they exist. For this,
       // the serialList must be declared in the derived class
-      if constexpr (requiresSerialList<SdSeObject>()) {
+      if constexpr (requires { SdSeObject::serialList; }) {
 
         // The sequential scanning itself
         for( auto fun : std::as_const(SdSeObject::serialList) )
@@ -447,7 +447,7 @@ struct SdSeGroup
 
       // Scan named elements if they exist. For this,
       // the tokenMap must be declared in the derived class
-      if constexpr (requiresTokenMap<SdSeObject>()) {
+      if constexpr (requires { SdSeObject::tokenMap; }) {
         // The named elements scanning itself. The closing parenthesis is checked automatically.
         scaner->parse( SdSeObject::tokenMap, obj );
         }
@@ -460,22 +460,12 @@ struct SdSeGroup
       obj->epilog( scaner );
       }
 
-  private:
-    // Helper objects for conditional compilation
-
-    // To determine the presence of serialList
-    template <typename T> static auto requiresSerialList() -> decltype(T::serialList, std::true_type{}) { return {}; }
-    template <typename T> static auto requiresSerialList() -> std::false_type { return {}; }
-
-    // To determine the presence of tokenMap
-    template <typename T> static auto requiresTokenMap() -> decltype(T::tokenMap, std::true_type{}) { return {}; }
-    template <typename T> static auto requiresTokenMap() -> std::false_type { return {}; }
   };
 
 
 
 template <typename SdSeObject >
-class SdSeGroupValidable : SdSeGroup<SdSeObject>
+class SdSeGroupValidable : public SdSeGroup<SdSeObject>
   {
     bool mPresent = false; //!< Flag, true if this field present in file
   public:

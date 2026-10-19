@@ -46,7 +46,7 @@ Description
 #include "guider/SdGuiderDialog.h"
 #include "library/SdLibraryStorage.h"
 #include "library/SdLibraryIndicator.h"
-#include "import/kicad/SdScanerKiCad.h"
+#include "import/SdImportManager.h"
 
 
 #include <QSettings>
@@ -798,27 +798,12 @@ void SdWMain::cmFileOpen()
   {
   QString title = QFileDialog::getOpenFileName(this, tr("Open project file"), QString(),
                                                tr("SalixEDA Files (*%1 *%2);;"
-                                                  "SaliCAD files (*%3 *%4);;"
-                                                  "KiCad files (*.kicad_mod)").arg(SD_BASE_EXTENSION, SD_BINARY_EXTENSION)
+                                                  "SaliCAD files (*%3 *%4)").arg(SD_BASE_EXTENSION, SD_BINARY_EXTENSION)
                                                .arg( SD_SALICAD_EXTENSION, SD_SALICAD_BIN_EXTENSION ) );
 
   if( title.isEmpty() ) return;
 
-  if( title.endsWith(".kicad_mod") ) {
-    //Import from kicad
-    SdScanerKiCad reader;
-    //reader.readFile( "/home/usik/info/kicad/D_01005_0402Metric.kicad_mod" );
-    if( !reader.readFile( title ) ) {
-      QMessageBox::warning( this, tr("Error"), tr("Can't read file '%1'").arg(title) );
-      return;
-      }
-    SdProject *prj = new SdProject();
-    reader.parseTop( prj );
-
-    mWProjectList->fileOpen( title.left( title.length() - 10 ) + SD_BINARY_EXTENSION, prj );
-    }
-  else
-    mWProjectList->fileOpen( title );
+  mWProjectList->fileOpen( title );
   }
 
 
@@ -981,10 +966,36 @@ void SdWMain::cmFileImportPis()
 
 
 //Импорт в активный редактор
-void SdWMain::cmFileImport()
+void SdWMain::cmFileImport(int importIndex)
   {
-  if( activeEditor() )
-    activeEditor()->cmFileImport();
+  SdImportManager *im = SdImportManager::instance();
+  QStringList fileList = QFileDialog::getOpenFileNames( this, im->dialogTitle(importIndex), QString(), im->dialogFilter(importIndex) );
+  if( fileList.count() ) {
+    SdProject *prj = nullptr;
+    bool usedExisting = false;
+    if( im->useExistingProject(importIndex) ) {
+      //Extract existing project
+      if( mWProjectList->activeProject() != nullptr ) {
+        prj = mWProjectList->activeProject()->getProject();
+        usedExisting = true;
+        }
+      }
+    if( prj == nullptr )
+      //Create new project for import
+      prj = new SdProject();
+
+    if( im->import( importIndex, this, fileList, prj, usedExisting ) ) {
+      //Successfull import
+      if( !usedExisting )
+        mWProjectList->fileOpen( QString{}, prj );
+      }
+    else {
+      //Import fail
+      //Delete new project
+      if( !usedExisting )
+        delete prj;
+      }
+    }
   }
 
 
