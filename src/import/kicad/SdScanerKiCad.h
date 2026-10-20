@@ -33,7 +33,8 @@ class SdScanerKiCad;
 
 class SdScanerKiCad : public SdScanerSe
   {
-    double mPpm; //!< Conversion factor
+    SdProject *mDestProject; //!< Destignation project
+    double     mPpm;         //!< Conversion factor
   public:
     SdScanerKiCad();
 
@@ -50,6 +51,10 @@ class SdScanerKiCad : public SdScanerSe
     int tokenNeedAngle() { return tokenNeedValueDouble() * 1000.0; }
 
     void tokenNeedClose() { tokenNeed(')'); }
+
+  private:
+    void footprint( SdScanerSe* );
+    void symbolLib( SdScanerSe* );
   };
 
 

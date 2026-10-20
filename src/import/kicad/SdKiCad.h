@@ -15,12 +15,10 @@ Description
 #ifndef SDKICAD_H
 #define SDKICAD_H
 
-#include "SdScanerKiCad.h"
+#include "import/SdScanerSe.h"
 
-
-
-
-
+inline constexpr int SdKiCadFpScale = 1000;
+inline constexpr int SdKiCadFpAngleScale = 1000;
 
 
 /*
@@ -80,7 +78,7 @@ struct SdKiCadYesNo : public SdSeSelector<SdKiCadYesNo>
   {
     SdKiCadYesNo( bool v ) : SdSeSelector<SdKiCadYesNo>(v ? 1 : 0) {}
 
-    inline static const QMap<QString,int> selectorMap = {
+    inline static const SdSeSelectorMap selectorMap = {
       { "yes", 1 },
       { "no",  0 }
     };
@@ -99,34 +97,74 @@ struct SdKiCadStrokeType : public SdSeSelector<SdKiCadStrokeType>
       typeSolid,
       typeDashed,
       typeDotted,
-      typeDashDot
+      typeDashDot,
+      typeDashDotDot,
     };
 
-    inline static const QMap<QString,int> selectorMap = {
-      { "none",     typeNone },
-      { "solid",    typeSolid },
-      { "dashed",   typeDashed },
-      { "dotted",   typeDotted },
-      { "dash_dot", typeDashDot }
+    inline static const SdSeSelectorMap selectorMap = {
+      { "none",         typeNone },
+      { "solid",        typeSolid },
+      { "dashed",       typeDashed },
+      { "dotted",       typeDotted },
+      { "dash_dot",     typeDashDot },
+      { "dash_dot_dot", typeDashDotDot }
     };
+  };
+
+
+
+struct SdKiCadFillType : public SdSeSelector<SdKiCadFillType>
+  {
+    enum {
+      typeNone,
+      typeSolid
+    };
+
+    inline static const SdSeSelectorMap selectorMap = {
+      { "none",  typeNone },
+      { "solid", typeSolid }
+    };
+  };
+
+
+
+struct SdKiCadFpAttr : public SdSeSelector<SdKiCadFpAttr>
+  {
+    bool mExcludedFromPosFiles = false;
+    bool mExcludedFromBom      = false;
+    enum {
+      fpaNone,
+      fpaSmd,
+      fpaTroughHole,
+      fpaBoardOnly
+    };
+    inline static const QMap<QString,int> selectorMap = {
+      { "none",         fpaNone },
+      { "smd",          fpaSmd },
+      { "through_hole", fpaTroughHole },
+      { "board_only",   fpaBoardOnly }
+    };
+
+    inline static const SdSeTokenMap<SdKiCadFpAttr> tokenMap =
+    {
+      { "excluded_from_pos_files", sdSeParseFlag<SdKiCadFpAttr, &SdKiCadFpAttr::mExcludedFromPosFiles> },
+      { "excluded_from_bom",       sdSeParseFlag<SdKiCadFpAttr, &SdKiCadFpAttr::mExcludedFromBom> },
+    };
+
   };
 
 
 
 
 
-
-
-/*
-
-struct SdKiCadStroke : public SdKiCadGrouped<SdKiCadStroke>
+struct SdKiCadStroke : public SdSeGroup<SdKiCadStroke>
   {
-    SdKiCadCoord      mWidth;
-    SdKiCadStrokeType mType;
+    SdSeIntScaled<SdKiCadFpScale> mWidth;
+    SdKiCadStrokeType             mType;
 
-    inline static SdKiCadTokenMap<SdKiCadStroke> tokenMap = {
-      { "width", sdKiCad<SdKiCadStroke,&SdKiCadStroke::mWidth> },
-      { "type",  sdKiCad<SdKiCadStroke,&SdKiCadStroke::mType> }
+    inline static SdSeTokenMap<SdKiCadStroke> tokenMap = {
+      { "width", sdSeParse<SdKiCadStroke,&SdKiCadStroke::mWidth> },
+      { "type",  sdSeParse<SdKiCadStroke,&SdKiCadStroke::mType> }
     };
 
     bool isValid() const { return mWidth.isValid() && mType.isValid(); }
@@ -134,7 +172,7 @@ struct SdKiCadStroke : public SdKiCadGrouped<SdKiCadStroke>
 
 
 
-
+/*
 
 struct SdKiCadCircle : public SdKiCadGrouped<SdKiCadCircle>
   {
@@ -203,8 +241,6 @@ struct SdKiCadPad : public SdKiCadGrouped<SdKiCadPad>
 
 */
 
-inline constexpr int SdKiCadFpScale = 1000;
-inline constexpr int SdKiCadFpAngleScale = 1000;
 
 struct SdKiCadFpTextAt : public SdSeGroup<SdKiCadFpTextAt>
   {
@@ -279,6 +315,8 @@ struct SdKiCadFpEffects : public SdSeGroup<SdKiCadFpEffects>
       };
   };
 
+
+
 struct SdKiCadFpText : public SdSeGroup<SdKiCadFpText>
   {
     QString          mType;
@@ -301,6 +339,7 @@ struct SdKiCadFpText : public SdSeGroup<SdKiCadFpText>
       {"hide",    sdSeParse<SdKiCadFpText, &SdKiCadFpText::mHide>},
       {"effects", sdSeParse<SdKiCadFpText, &SdKiCadFpText::mEffects>},
       };
+
   };
 
 
@@ -308,19 +347,19 @@ struct SdKiCadFpText : public SdSeGroup<SdKiCadFpText>
 
 using SdKiCadFpSdPoint = SdSeSdPoint<SdKiCadFpScale>;
 
-/*
+
 struct SdKiCadFpLine : public SdSeGroup<SdKiCadFpLine>
   {
     SdKiCadFpSdPoint mStart;
     SdKiCadFpSdPoint mEnd;
-    SdKiCadStroke  mStroke;
-    SdKiCadString  mLayer;
+    SdKiCadStroke    mStroke;
+    SdSeString       mLayer;
 
-    inline static SdKiCadTokenMap<SdKiCadLine> tokenMap = {
-      { "start",  sdKiCad<SdKiCadLine,&SdKiCadLine::mStart> },
-      { "end",    sdKiCad<SdKiCadLine,&SdKiCadLine::mEnd> },
-      { "stroke", sdKiCad<SdKiCadLine,&SdKiCadLine::mStroke> },
-      { "layer",  sdKiCad<SdKiCadLine,&SdKiCadLine::mLayer> }
+    inline static SdSeTokenMap<SdKiCadFpLine> tokenMap = {
+      { "start",  sdSeParse<SdKiCadFpLine,&SdKiCadFpLine::mStart> },
+      { "end",    sdSeParse<SdKiCadFpLine,&SdKiCadFpLine::mEnd> },
+      { "stroke", sdSeParse<SdKiCadFpLine,&SdKiCadFpLine::mStroke> },
+      { "layer",  sdSeParse<SdKiCadFpLine,&SdKiCadFpLine::mLayer> }
     };
 
     bool isValid() const { return mStart.isValid() && mEnd.isValid() && mStroke.isValid() && mLayer.isValid(); }
@@ -328,7 +367,25 @@ struct SdKiCadFpLine : public SdSeGroup<SdKiCadFpLine>
 
 
 
+struct SdKiCadFpRect : public SdSeGroup<SdKiCadFpLine>
+  {
+    SdKiCadFpSdPoint mStart;
+    SdKiCadFpSdPoint mEnd;
+    SdKiCadStroke    mStroke;
+    SdSeString       mLayer;
+    SdKiCadFillType  mFillType;
 
+    inline static SdSeTokenMap<SdKiCadFpLine> tokenMap = {
+      { "start",  sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mStart> },
+      { "end",    sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mEnd> },
+      { "stroke", sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mStroke> },
+      { "layer",  sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mLayer> },
+      { "fill",   sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mFillType> }
+    };
+  };
+
+
+/*
 
 
 

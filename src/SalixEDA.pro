@@ -55,6 +55,7 @@ SOURCES += \
     import/iges/IgesEntitySurface.cpp \
     import/iges/IgesEntityTrimmedParametricSurface.cpp \
     import/kicad/SdImportKiCadLib.cpp \
+    import/kicad/SdKiCadFootprint.cpp \
     import/kicad/SdScanerKiCad.cpp \
     import/kicad/kicadCirclePart.cpp \
     import/kicad/kicadFootprint.cpp \
@@ -460,6 +461,9 @@ HEADERS  += \
     import/iges/IgesEntityTrimmedParametricSurface.h \
     import/kicad/SdImportKiCadLib.h \
     import/kicad/SdKiCad.h \
+    import/kicad/SdKiCadFootprint.h \
+    import/kicad/SdKiCadPart.h \
+    import/kicad/SdKiCadSymbolLib.h \
     import/kicad/SdScanerKiCad.h \
     import/nurbs/NurbsBasis.h \
     import/nurbs/NurbsConvexHull.h \

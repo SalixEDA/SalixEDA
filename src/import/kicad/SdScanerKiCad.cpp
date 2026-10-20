@@ -12,26 +12,33 @@ Web
 
 Description
 */
-#include "SdKiCad.h"
+#include "SdScanerKiCad.h"
 
 #include <QObject>
 
 
-/*
+
 void SdScanerKiCad::parseTop(SdProject *project)
   {
-  //Token map
-  static SdSeTokenMap
-      tokenMap( { { QString("footprint"), kicadFootprint },
-                  { QString("kicad_symbol_lib"), kicadSymbolLib }
-                } );
+  mDestProject = project;
 
-  //Parse full file
-  tokenNext();
-  while( !isEndOfScanOrError() )
-    parseContent( tokenMap, project );
   }
-*/
+
+
+
+void SdScanerKiCad::footprint(SdScanerSe *)
+  {
+
+  }
+
+
+
+
+void SdScanerKiCad::symbolLib(SdScanerSe *)
+  {
+
+  }
+
 
 
 

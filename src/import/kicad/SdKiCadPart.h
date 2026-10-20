@@ -1,0 +1,4 @@
+#ifndef SDKICADPART_H
+#define SDKICADPART_H
+
+#endif // SDKICADPART_H

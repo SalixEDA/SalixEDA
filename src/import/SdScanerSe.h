@@ -39,6 +39,10 @@ template <typename SdSeObject>
 using SdSeSerialList = QList<std::function<bool( SdScanerSe*, SdSeObject* )> >;
 
 
+using SdSeSelectorMap = QMap<QString, int>;
+
+
+
 //!
 //! \brief The SdScanerSe class Represents an S-expression scanner. The main function
 //! is the parse template, which accepts a map of handlers for possible record types.
@@ -151,6 +155,22 @@ template<typename SdSeObject, auto Member>
 void sdSeParseHandler( SdScanerSe* scaner, SdSeObject* obj )
   {
   (obj->*Member)( scaner );
+  }
+
+
+//Previous declaration
+class SdProject;
+
+//!
+//! \brief sdSeTopParse Helper template for top level parser
+//! \param scaner       Scanner
+//! \param project      Project into which place scanned objects
+//!
+template<typename SdSeTopParser>
+void sdSeTopParse( SdScanerSe *scaner, SdProject *project )
+  {
+  SdSeTopParser parser( project );
+  parser.scan( scaner );
   }
 
 
@@ -488,11 +508,23 @@ class SdSeDouble : public SdSeGroupValidable<SdSeDouble>
   };
 
 
+class SdSeInt : public SdSeGroupValidable<SdSeInt>
+  {
+    int mValue;
+  public:
+    SdSeInt( int v = 0 ) : mValue(v) {}
+
+    inline int value() const { return mValue; }
+
+    inline static SdSeSerialList<SdSeInt> serialList = { sdSeScanInt<SdSeInt,&SdSeInt::mValue> };
+  };
+
+
 
 template <int scale>
 class SdSeIntScaled : public SdSeGroupValidable<SdSeIntScaled<scale> >
   {
-    int  mValue   = 0;     //!< Value
+    int  mValue;     //!< Value
   public:
     SdSeIntScaled( int v = 0 ) : mValue(v) {}
 
@@ -590,10 +622,23 @@ class SdSeSelector : public SdSeGroupValidable<SdSeObject>
 
     void scan( SdScanerSe *scaner )
       {
+      // Derived class object
+      SdSeObject *obj = static_cast<SdSeObject*>(this);
+
       QString str = scaner->tokenNeedValue('n');
-      scaner->tokenNeed( ')' );
+      // Scan named elements if they exist. For this,
+      // the tokenMap must be declared in the derived class
+      if constexpr (requires { SdSeObject::tokenMap; }) {
+        // The named elements scanning itself. The closing parenthesis is checked automatically.
+        scaner->parse( SdSeObject::tokenMap, obj );
+        }
+      else {
+        // Explicitly check for the closing parenthesis
+        scaner->tokenNeed( ')' );
+        }
       mSelector =  SdSeObject::selectorMap.value(str, mSelector);
-      SdSeSelector<SdSeObject>::epilog( scaner );
+
+      obj->epilog( scaner );
       }
   };
 
