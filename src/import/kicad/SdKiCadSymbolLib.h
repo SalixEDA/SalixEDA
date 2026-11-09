@@ -10,6 +10,6 @@ class SdKiCadSymbolLib : public SdSeGroup<SdKiCadSymbolLib>
     SdProject *mDestProject;
   public:
     SdKiCadSymbolLib( SdProject *prj );
-  }
+  };
 
 #endif // SDKICADSYMBOLLIB_H

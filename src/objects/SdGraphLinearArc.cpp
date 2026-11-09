@@ -37,6 +37,17 @@ SdGraphLinearArc::SdGraphLinearArc(SdPoint center, SdPoint start, SdPoint stop, 
 
 
 
+SdGraphLinearArc::SdGraphLinearArc(SdPoint center, SdPoint start, SdPoint middle, SdPoint stop, const SdPropLine &propLine) :
+  SdGraphLinear( propLine ),
+  mCenter(center),
+  mStart(start),
+  mMiddle(middle),
+  mStop(stop)
+  {
+  }
+
+
+
 
 //!
 //! \brief cloneFrom Overrided function. We copy object from source

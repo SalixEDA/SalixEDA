@@ -56,6 +56,7 @@ SOURCES += \
     import/iges/IgesEntityTrimmedParametricSurface.cpp \
     import/kicad/SdImportKiCadLib.cpp \
     import/kicad/SdKiCadFootprint.cpp \
+    import/kicad/SdKiCadSymbolLib.cpp \
     import/kicad/SdScanerKiCad.cpp \
     import/kicad/kicadCirclePart.cpp \
     import/kicad/kicadFootprint.cpp \

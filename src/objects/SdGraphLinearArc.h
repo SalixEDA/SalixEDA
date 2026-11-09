@@ -31,6 +31,7 @@ class SdGraphLinearArc : public SdGraphLinear
   public:
     SdGraphLinearArc();
     SdGraphLinearArc( SdPoint center, SdPoint start, SdPoint stop, const SdPropLine &propLine );
+    SdGraphLinearArc( SdPoint center, SdPoint start, SdPoint middle, SdPoint stop, const SdPropLine &propLine );
 
 
     // SdObject interface

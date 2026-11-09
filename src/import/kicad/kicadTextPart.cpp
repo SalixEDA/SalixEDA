@@ -16,7 +16,7 @@ Description
 #include "../../objects/SdPItemPart.h"
 #include "../../objects/SdGraphText.h"
 #include "../../objects/SdGraphIdent.h"
-
+/*
 //TODO need to complete with graph text import from KiCad
 struct KiCadText
   {
@@ -83,3 +83,4 @@ void kicadTextPart( SdScanerKiCad *scaner, SdPItemPart *part )
     part->identGet()->updateIdent( textInfo.mOrg, r, &textInfo.mPropText );
     }
   }
+*/

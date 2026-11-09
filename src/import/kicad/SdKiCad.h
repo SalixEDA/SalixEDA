@@ -367,7 +367,7 @@ struct SdKiCadFpLine : public SdSeGroup<SdKiCadFpLine>
 
 
 
-struct SdKiCadFpRect : public SdSeGroup<SdKiCadFpLine>
+struct SdKiCadFpRect : public SdSeGroup<SdKiCadFpRect>
   {
     SdKiCadFpSdPoint mStart;
     SdKiCadFpSdPoint mEnd;
@@ -375,13 +375,55 @@ struct SdKiCadFpRect : public SdSeGroup<SdKiCadFpLine>
     SdSeString       mLayer;
     SdKiCadFillType  mFillType;
 
-    inline static SdSeTokenMap<SdKiCadFpLine> tokenMap = {
-      { "start",  sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mStart> },
-      { "end",    sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mEnd> },
-      { "stroke", sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mStroke> },
-      { "layer",  sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mLayer> },
-      { "fill",   sdSeParse<SdKiCadFpLine,&SdKiCadFpRect::mFillType> }
+    inline static SdSeTokenMap<SdKiCadFpRect> tokenMap = {
+      { "start",  sdSeParse<SdKiCadFpRect,&SdKiCadFpRect::mStart> },
+      { "end",    sdSeParse<SdKiCadFpRect,&SdKiCadFpRect::mEnd> },
+      { "stroke", sdSeParse<SdKiCadFpRect,&SdKiCadFpRect::mStroke> },
+      { "layer",  sdSeParse<SdKiCadFpRect,&SdKiCadFpRect::mLayer> },
+      { "fill",   sdSeParse<SdKiCadFpRect,&SdKiCadFpRect::mFillType> }
     };
+  };
+
+
+
+struct SdKiCadFpCircle : public SdSeGroup<SdKiCadFpCircle>
+  {
+    SdKiCadFpSdPoint mCenter;
+    SdKiCadFpSdPoint mEnd;
+    SdKiCadStroke    mStroke;
+    SdKiCadFillType  mFillType;
+    SdSeString       mLayer;
+
+    inline static SdSeTokenMap<SdKiCadFpCircle> tokenMap = {
+      { "center", sdSeParse<SdKiCadFpCircle,&SdKiCadFpCircle::mCenter> },
+      { "end",    sdSeParse<SdKiCadFpCircle,&SdKiCadFpCircle::mEnd> },
+      { "stroke", sdSeParse<SdKiCadFpCircle,&SdKiCadFpCircle::mStroke> },
+      { "fill",   sdSeParse<SdKiCadFpCircle,&SdKiCadFpCircle::mFillType> },
+      { "layer",  sdSeParse<SdKiCadFpCircle,&SdKiCadFpCircle::mLayer> }
+    };
+
+    bool isValid() const { return mCenter.isValid() && mEnd.isValid() && mStroke.isValid() && mLayer.isValid(); }
+  };
+
+
+
+struct SdKiCadFpArc : public SdSeGroup<SdKiCadFpArc>
+  {
+    SdSePoint     mStart;
+    SdSePoint     mMid;
+    SdSePoint     mEnd;
+    SdKiCadStroke mStroke;
+    SdSeString    mLayer;
+
+    inline static SdSeTokenMap<SdKiCadFpArc> tokenMap = {
+      { "start",  sdSeParse<SdKiCadFpArc,&SdKiCadFpArc::mStart> },
+      { "mid",    sdSeParse<SdKiCadFpArc,&SdKiCadFpArc::mMid> },
+      { "end",    sdSeParse<SdKiCadFpArc,&SdKiCadFpArc::mEnd> },
+      { "stroke", sdSeParse<SdKiCadFpArc,&SdKiCadFpArc::mStroke> },
+      { "layer",  sdSeParse<SdKiCadFpArc,&SdKiCadFpArc::mLayer> }
+    };
+
+    bool isValid() const { return mStart.isValid() && mMid.isValid() && mEnd.isValid() && mStroke.isValid() && mLayer.isValid(); }
   };
 
 

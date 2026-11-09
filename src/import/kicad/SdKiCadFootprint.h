@@ -5,6 +5,7 @@
 
 class SdProject;
 class SdPItemPart;
+struct SdPropLine;
 
 class SdKiCadFootprint : public SdSeGroup<SdKiCadFootprint>
   {
@@ -61,6 +62,9 @@ class SdKiCadFootprint : public SdSeGroup<SdKiCadFootprint>
       {"fp_pad",    sdSeParseHandler<SdKiCadFootprint, &SdKiCadFootprint::fp_pad>  },
     };
 
+    void fillPropLine( SdPropLine &prop, const SdKiCadStroke &stroke, const SdSeString &layer );
+
+    static QString layerMap( const QString &kiCadLayer );
   };
 
 #endif // SDKICADFOOTPRINT_H

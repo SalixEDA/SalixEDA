@@ -48,6 +48,13 @@ class SdPvInt : public SdPv<int,SdPvInt>
     void       setFromPhis( const QString &src, double ppm );
 
     //!
+    //! \brief setFromPhis Set logical value from physical string representation
+    //! \param src        Source physical string (e.g., "10.5 mm")
+    //! \param ppm        Pixels per millimeter conversion factor
+    //!
+    void       setFromPhis( double src, double ppm );
+
+    //!
     //! \brief json Write integer property to JSON writer
     //! \param key JSON key name
     //! \param js  JSON writer object

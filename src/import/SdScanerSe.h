@@ -128,7 +128,8 @@ class SdScanerSe : public SdScanerMultyline
 template<typename SdSeObject, auto Member>
 void sdSeParse( SdScanerSe* scaner, SdSeObject* obj )
   {
-  std::invoke(Member, obj).scan(scaner);
+  (obj->*Member).scan(scaner);
+  //std::invoke(Member, obj).scan(scaner);
   }
 
 
@@ -541,6 +542,8 @@ class SdSePoint : public SdSeGroupValidable<SdSePoint>
     double mY;
   public:
     inline QPointF point() const { return QPointF(mX,mY); }
+
+    inline QPoint  qPoint( int scale ) const { return QPoint( static_cast<int>( mX * static_cast<double>(scale) ), static_cast<int>( mY * static_cast<double>(scale) ) ); }
 
     inline static SdSeSerialList<SdSePoint> serialList = {
       sdSeScanDouble<SdSePoint,&SdSePoint::mX>,

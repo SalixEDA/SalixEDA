@@ -40,3 +40,16 @@ void SdPvInt::setFromPhis(const QString &src, double ppm)
   {
   mValue = SdUtil::phys2log(src,ppm);
   }
+
+
+
+
+//!
+//! \brief setFromPhis Set logical value from physical string representation
+//! \param src        Source physical string (e.g., "10.5 mm")
+//! \param ppm        Pixels per millimeter conversion factor
+//!
+void SdPvInt::setFromPhis(double src, double ppm)
+  {
+  mValue = SdUtil::phys2log(src,ppm);
+  }
