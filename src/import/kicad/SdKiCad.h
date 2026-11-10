@@ -17,6 +17,8 @@ Description
 
 #include "import/SdScanerSe.h"
 
+#include <QPolygon>
+
 inline constexpr int SdKiCadFpScale = 1000;
 inline constexpr int SdKiCadFpAngleScale = 1000;
 
@@ -257,7 +259,7 @@ struct SdKiCadFpTextAt : public SdSeGroup<SdKiCadFpTextAt>
     };
   };
 
-struct SdKiCadFpTextSize : public SdSeGroup<SdKiCadFpTextSize>
+struct SdKiCadFpTextSize : public SdSeGroupValidable<SdKiCadFpTextSize>
   {
     int mSizeW;
     int mSizeH;
@@ -284,10 +286,12 @@ struct SdKiCadFpTextFont : public SdSeGroup<SdKiCadFpTextFont>
       //Flags
       {"bold",      sdSeParseFlag<SdKiCadFpTextFont, &SdKiCadFpTextFont::mBold>},
       };
+
+    bool isValid() const { return mSize.isValid() && mThickness.isValid(); }
   };
 
 
-struct SdKiCadFpTextJustify : public SdSeGroup<SdKiCadFpTextJustify>
+struct SdKiCadFpTextJustify : public SdSeGroupValidable<SdKiCadFpTextJustify>
   {
     bool mLeft   = false;
     bool mRight  = false;
@@ -304,7 +308,7 @@ struct SdKiCadFpTextJustify : public SdSeGroup<SdKiCadFpTextJustify>
       };
   };
 
-struct SdKiCadFpEffects : public SdSeGroup<SdKiCadFpEffects>
+struct SdKiCadFpEffects : public SdSeGroupValidable<SdKiCadFpEffects>
   {
     SdKiCadFpTextFont    mFont;
     SdKiCadFpTextJustify mJustify;
@@ -406,6 +410,22 @@ struct SdKiCadFpCircle : public SdSeGroup<SdKiCadFpCircle>
   };
 
 
+struct SdKiCadFpPointList : public SdSeGroup<SdKiCadFpPointList>
+  {
+    QPolygon mPoints;
+
+    void xy( SdScanerSe *scaner )
+      {
+      SdKiCadFpSdPoint p;
+      p.scan( scaner );
+      mPoints.append( p.point() );
+      }
+
+    inline static SdSeTokenMap<SdKiCadFpPointList> tokenMap = {
+      { "xy", sdSeParseHandler<SdKiCadFpPointList, &SdKiCadFpPointList::xy> }
+    };
+  };
+
 
 struct SdKiCadFpArc : public SdSeGroup<SdKiCadFpArc>
   {
@@ -424,6 +444,25 @@ struct SdKiCadFpArc : public SdSeGroup<SdKiCadFpArc>
     };
 
     bool isValid() const { return mStart.isValid() && mMid.isValid() && mEnd.isValid() && mStroke.isValid() && mLayer.isValid(); }
+  };
+
+
+
+struct SdKiCadFpPoly : public SdSeGroup<SdKiCadFpPoly>
+  {
+    SdKiCadFpPointList mPts;
+    SdKiCadStroke      mStroke;
+    SdKiCadFillType    mFillType;
+    SdSeString         mLayer;
+
+    inline static SdSeTokenMap<SdKiCadFpPoly> tokenMap = {
+      { "pts",    sdSeParse<SdKiCadFpPoly,&SdKiCadFpPoly::mPts> },
+      { "stroke", sdSeParse<SdKiCadFpPoly,&SdKiCadFpPoly::mStroke> },
+      { "fill",   sdSeParse<SdKiCadFpPoly,&SdKiCadFpPoly::mFillType> },
+      { "layer",  sdSeParse<SdKiCadFpPoly,&SdKiCadFpPoly::mLayer> }
+    };
+
+    bool isValid() const { return !mPts.mPoints.isEmpty() && mLayer.isValid(); }
   };
 
 

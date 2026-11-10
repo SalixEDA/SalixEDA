@@ -6,19 +6,20 @@
 class SdProject;
 class SdPItemPart;
 struct SdPropLine;
+struct SdPropText;
 
 class SdKiCadFootprint : public SdSeGroup<SdKiCadFootprint>
   {
     SdProject   *mDestProject;
     SdPItemPart *mPart;
 
-    QString       mName;
-    SdSeInt       mVersion;
-    SdSeString    mGenerator;
-    SdSeString    mLayer;
-    SdSeString    mDescr;
-    SdSeString    mTags;
-    SdKiCadFpAttr mAttr;
+    QString          mName;
+    SdSeInt          mVersion;
+    SdSeStringOrName mGenerator;
+    SdSeString       mLayer;
+    SdSeString       mDescr;
+    SdSeString       mTags;
+    SdKiCadFpAttr    mAttr;
   public:
     SdKiCadFootprint( SdProject *prj );
 
@@ -63,6 +64,8 @@ class SdKiCadFootprint : public SdSeGroup<SdKiCadFootprint>
     };
 
     void fillPropLine( SdPropLine &prop, const SdKiCadStroke &stroke, const SdSeString &layer );
+
+    void fillPropText( SdPropText &prop, const SdKiCadFpEffects &effects, const SdSeStringOrName &layer );
 
     static QString layerMap( const QString &kiCadLayer );
   };

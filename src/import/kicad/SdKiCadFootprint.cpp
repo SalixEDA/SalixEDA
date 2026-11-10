@@ -7,6 +7,11 @@
 #include "objects/SdGraphLinearCircleFilled.h"
 #include "objects/SdGraphLinearRect.h"
 #include "objects/SdGraphLinearRectFilled.h"
+#include "objects/SdGraphLinearRegion.h"
+#include "objects/SdGraphLinearRegionFilled.h"
+#include "objects/SdGraphText.h"
+#include "objects/SdGraphIdent.h"
+#include "objects/SdGraphValue.h"
 
 
 SdKiCadFootprint::SdKiCadFootprint(SdProject *prj) :
@@ -36,10 +41,34 @@ void SdKiCadFootprint::epilog(SdScanerSe *)
     }
   }
 
+
+
+
 void SdKiCadFootprint::fp_text(SdScanerSe *scaner)
   {
   SdKiCadFpText fpText;
   fpText.scan( scaner );
+
+  SdPropText prop;
+  fillPropText( prop, fpText.mEffects, fpText.mLayer );
+
+  //Position and rotation
+  prop.mDir = SdPvAngle( fpText.mAt.mAngle );
+
+  SdPoint org( fpText.mAt.mPosX, fpText.mAt.mPosY );
+
+  if( fpText.mType == "reference" ) {
+    //Setup refId position and properties
+    mPart->identGet()->updateIdent( org, SdRect{}, &prop );
+    }
+  else if( fpText.mType == "value" ) {
+    //Setup value position and properties
+    mPart->valueGet()->updateValue( org, SdRect{}, &prop );
+    }
+  else {
+    //Insert simple text
+    mPart->insertChild( new SdGraphText( org, fpText.mText, SdRect(), prop ), nullptr );
+    }
   }
 
 
@@ -156,8 +185,29 @@ void SdKiCadFootprint::fp_arc(SdScanerSe *scaner)
 
 void SdKiCadFootprint::fp_poly(SdScanerSe *scaner)
   {
+  SdKiCadFpPoly fpPoly;
+  fpPoly.scan( scaner );
 
+  SdPropLine propLine;
+  fillPropLine( propLine, fpPoly.mStroke, fpPoly.mLayer );
+
+  SdPointList list;
+  for( const QPoint &pt : std::as_const(fpPoly.mPts.mPoints) )
+    list.append( pt );
+
+  if( list.count() < 2 )
+    return;
+
+  SdGraph *graph;
+  if( fpPoly.mFillType.isValid() && fpPoly.mFillType.selector() == SdKiCadFillType::typeSolid )
+    graph = new SdGraphLinearRegionFilled( list, propLine );
+  else
+    graph = new SdGraphLinearRegion( list, propLine );
+  mPart->insertChild( graph, nullptr );
   }
+
+
+
 
 void SdKiCadFootprint::fp_pad(SdScanerSe *scaner)
   {
@@ -186,6 +236,52 @@ void SdKiCadFootprint::fillPropLine(SdPropLine &prop, const SdKiCadStroke &strok
     prop.mType = dltSolid;
 
   prop.mLayer.set( layerMap(layer.string()) );
+  }
+
+
+
+
+void SdKiCadFootprint::fillPropText(SdPropText &prop, const SdKiCadFpEffects &effects, const SdSeStringOrName &layer)
+  {
+  //Layer
+  prop.mLayer.set( layerMap(layer.string()) );
+
+  //Default alignment: center/middle
+  prop.mHorz = dhjCenter;
+  prop.mVert = dvjMiddle;
+  prop.mMirror = 0;
+  prop.mFont = 0;
+  prop.mDir = 0;
+
+  //Font size: KiCad stores width/height in mm (scaled), SalixEDA uses text size
+  if( effects.isValid() && effects.mFont.isValid() && effects.mFont.mSize.isValid() ) {
+    int h = effects.mFont.mSize.mSizeH;
+    int w = effects.mFont.mSize.mSizeW;
+    prop.mSize = h > 0 ? h : w;
+    }
+  else
+    prop.mSize = 1000;
+
+  //Justification
+  if( effects.isValid() && effects.mJustify.isValid() ) {
+    const SdKiCadFpTextJustify &j = effects.mJustify;
+    if( j.mLeft )
+      prop.mHorz = dhjLeft;
+    else if( j.mRight )
+      prop.mHorz = dhjRight;
+    else
+      prop.mHorz = dhjCenter;
+
+    if( j.mTop )
+      prop.mVert = dvjTop;
+    else if( j.mBottom )
+      prop.mVert = dvjBottom;
+    else
+      prop.mVert = dvjMiddle;
+
+    if( j.mMirror )
+      prop.mMirror = 1;
+    }
   }
 
 
