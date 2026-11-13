@@ -70,7 +70,7 @@ QString gerberApertureRect( int w, int h ) {
 struct SdGerberApertureContext : public SdContext {
     QMap<QString,int> mApertureMap;
 
-    SdGerberApertureContext();
+    SdGerberApertureContext( const SdProjectItem *item );
     ~SdGerberApertureContext() override { delete mPainter; }
 
     // SdContext interface
@@ -85,8 +85,8 @@ struct SdGerberApertureContext : public SdContext {
   };
 
 
-SdGerberApertureContext::SdGerberApertureContext() :
-  SdContext( SdPoint(), new QPainter() )
+SdGerberApertureContext::SdGerberApertureContext(const SdProjectItem *item) :
+  SdContext( SdPoint(), new QPainter(), item )
   {
 
   }
@@ -170,8 +170,8 @@ class SdGerberContext : public SdContext {
     SdPoint           mPos;
     SdVectorFont      mVectorFont;      //!< Font to draw text by line segments
   public:
-    SdGerberContext( const QMap<QString,int> &apertureMap, QTextStream &os ) :
-      SdContext( SdPoint(), new QPainter() ),
+    SdGerberContext( const QMap<QString,int> &apertureMap, QTextStream &os, const SdProjectItem *item ) :
+      SdContext( SdPoint(), new QPainter(), item ),
       mApertureMap(apertureMap),
       mCurrentAperture(-1),
       mStream(os),
@@ -763,7 +763,7 @@ void SdPExportPlate_Gerber::generation(const QString fileName)
        // << "IR0*%\n";        //Поворот
 
     //Apertures accum
-    SdGerberApertureContext app;
+    SdGerberApertureContext app( mPlate );
     mPlate->forEach( dctAll, [&app] (SdObject *obj) -> bool {
       SdPtr<SdGraph> graph(obj);
       if( graph.isValid() )
@@ -782,7 +782,7 @@ void SdPExportPlate_Gerber::generation(const QString fileName)
     //qDebug() << "Gerber over" << over;
 
     //Define context [Образовать контекст]
-    SdGerberContext gc( app.mApertureMap, os );
+    SdGerberContext gc( app.mApertureMap, os, mPlate );
 
     //For grid of pcb's
     int columns = mGridEna->isChecked() ? mColumns->value() : 1;

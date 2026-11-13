@@ -26,22 +26,53 @@ Description
 
 class SdPItemPlate;
 
+struct SdPartPad
+  {
+    SdPoint     mOffset;  //!< Offset from pin anchor
+    SdPvStratum mSide;    //!< Side of pin location [Сторона расположения вывода]
+    SdPvString  mPinType; //!< Pin type for pad association [Тип вывода для привязки контактной площадки]
+
+    //!
+    //! \brief json Overloaded function to write object content into json writer
+    //! \param js   Json writer
+    //!
+    void json( SvJsonWriter &js ) const;
+
+    //!
+    //! \brief json Overloaded function to read object content from json reader
+    //! \param js   Json reader
+    //!
+    void json( const SdJsonReader &js);
+
+    //!
+    //! \brief swap Swap all part pin properties with another instance
+    //! \param other Other SdPropPartPin object to swap with
+    //!
+    void swap( SdPartPad &other );
+
+    void transform(const QTransform &map, SdPvAngle angle);
+  };
+
+using SdPartPadList = QList<SdPartPad>;
+
 class SdGraphPartPin : public SdGraph
   {
-    SdPoint       mOrigin;     //Pin origin
-    SdPropPartPin mPinProp;    //Pin properties
-    SdPoint       mNamePos;    //Pin name position
-    SdRect        mNameRect;   //Pin name over rect
-    SdPropText    mNameProp;   //Pin name properties
-    SdPoint       mNumberPos;  //Pin number position
-    SdRect        mNumberRect; //Pin number over rect
-    SdPropText    mNumberProp; //Pin number properties
-    QString       mNumber;     //Pin number
+    SdPoint       mOrigin;     //!< Pin origin anchor
+    SdPropPartPin mPinProp;    //!< Pin properties
+    SdPoint       mNamePos;    //!< Pin name position
+    SdRect        mNameRect;   //!< Pin name over rect
+    SdPropText    mNameProp;   //!< Pin name properties
+    SdPoint       mNumberPos;  //!< Pin number position
+    SdRect        mNumberRect; //!< Pin number over rect
+    SdPropText    mNumberProp; //!< Pin number properties
+    QString       mNumber;     //!< Pin number
+    SdPartPadList mPadList;    //!< List of addon geometry pad forms
 
     //Different pin part selection
-    bool          mPinSelect;  //Pin selected
-    bool          mNumSelect;  //Pin number selected
-    bool          mNamSelect;  //Pin name selected
+    bool          mPinSelect;  //!< Pin selected
+    bool          mNumSelect;  //!< Pin number selected
+    bool          mNamSelect;  //!< Pin name selected
+    QList<int>    mPadSelect;  //!< Addon pads selection
   public:
     SdGraphPartPin();
     SdGraphPartPin( SdPoint org, SdPoint numberPos, SdPoint namePos, const QString number );
@@ -57,6 +88,8 @@ class SdGraphPartPin : public SdGraph
     SdPvStratum getPinStratum( bool otherSide ) const;
 
     void        drawImp(SdContext *dc, const QString pinName, bool com );
+
+    const SdPartPadList &getPartPadList() const { return mPadList; }
 
     // SdObject interface
   public:

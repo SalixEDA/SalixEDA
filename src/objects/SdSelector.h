@@ -71,15 +71,16 @@ class SdSelector : public SdObject
     SdClass             contentClasses() const;
 
     //Clipboard functions
-    void                putToClipboard(const SdProject *project , double scale, SdWEditor::SdCopyFormat format );
+    void                putToClipboard(const SdProjectItem *item, double scale, SdWEditor::SdCopyFormat format );
     SdProject          *getFromClipboard();
 
     //!
     //! \brief storeSelectionToFile Store selection picture to file
+    //! \param item                 Graph item, owner of selected objects
     //! \param scale                Current scale factor for editor
     //! \param fname                File name for stored picture
     //!
-    void                storeSelectionToFile(double scale, const QString fname );
+    void                storeSelectionToFile(const SdProjectItem *item, double scale, const QString fname );
 
 
     //!

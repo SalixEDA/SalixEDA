@@ -44,8 +44,8 @@ class SdDxfContext : public SdContext {
     double            mScale;
     const QChar eolnChar = '\n';
   public:
-    SdDxfContext() :
-      SdContext( SdPoint(), new QPainter() ),
+    SdDxfContext( const SdProjectItem *item ) :
+      SdContext( SdPoint(), new QPainter(), item ),
       mScale(1.0)
       {
       mPos = SdPoint::farPoint();
@@ -455,7 +455,7 @@ SdPExport_Dxf::SdPExport_Dxf(SdProjectItem *item, int step, SdPMasterList *list,
 bool SdPExport_Dxf::validatePage()
   {
   //Build export data
-  SdDxfContext ctx;
+  SdDxfContext ctx( mProjectItem );
   ctx.putHeader();
   ctx.putPicture( mProjectItem );
 

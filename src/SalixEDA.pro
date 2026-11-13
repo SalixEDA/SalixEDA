@@ -149,6 +149,7 @@ SOURCES += \
     objects/SdGraphScriptRefMap.cpp \
     objects/SdJsonIO.cpp \
     objects/SdNetPinRef.cpp \
+    objects/SdParamMap.cpp \
     objects/SdPartImpRelativePosition.cpp \
     objects/SdPropDef.cpp \
     objects/SdPvAngle.cpp \
@@ -298,6 +299,7 @@ SOURCES += \
     objects/SdGraphPartPin.cpp \
     objects/SdGraphSymImp.cpp \
     objects/SdGraphPartImp.cpp \
+    objects/SdPartImpPin.cpp \
     objects/SdPItemPart.cpp \
     objects/SdPItemSymbol.cpp \
     objects/SdPItemComponent.cpp \
@@ -561,6 +563,7 @@ HEADERS  += \
     objects/SdGraphSymPinsMap.h \
     objects/SdJsonIO.h \
     objects/SdNetPinRef.h \
+    objects/SdParamMap.h \
     objects/SdPartImpInfo.h \
     objects/SdPartImpRelativePosition.h \
     objects/SdPropDef.h \
@@ -826,6 +829,7 @@ HEADERS  += \
     objects/SdGraphPartPin.h \
     objects/SdGraphSymImp.h \
     objects/SdGraphPartImp.h \
+    objects/SdPartImpPin.h \
     objects/SdPItemPart.h \
     objects/SdPItemSymbol.h \
     objects/SdPItemComponent.h \

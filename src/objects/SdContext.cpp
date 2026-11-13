@@ -18,25 +18,34 @@ Description
 #include "SdConverter.h"
 #include "SdEnvir.h"
 #include "SdConverterText.h"
+#include "SdProjectItem.h"
+#include "SdProject.h"
 #include <QPainter>
 #include <QFont>
 #include <QDebug>
 
 
-SdContext::SdContext(SdPoint grid, QPainter *painter) :
+SdContext::SdContext(SdPoint grid, QPainter *painter, const SdProjectItem *item) :
   mPainter(painter),
   mConverter(nullptr),
   mGrid(grid),
   mSelector(nullptr),
   mTransform(),
   mScaler(1.0),
-  mParamMap(nullptr),
   mAngle(0),
   mMirror(false),
   mPairLayer(false),
   mOverOn(false),      //True if overriding is on
   mZeroOn(false)       //True if overriding zero width line on
   {
+  if( item != nullptr ) {
+    //Push project of item into param stack
+    SdProject *prj = item->getProject();
+    if( prj != nullptr )
+      mParamMapStack.push( prj );
+    //Push project item itself
+    mParamMapStack.push( item );
+    }
   mShowFields = SdEnvir::instance()->mShowFields;
   }
 

@@ -44,6 +44,9 @@ class SdUtil
     //Convert physical point to int point
     static QPoint    phys2log( QPointF phys, double ppm );
 
+    //Convert mm to logical um of pcb
+    static int       mm2um( float phys ) { return static_cast<int>(phys * 1000.0); }
+
     //Convert textual representation of physical coord to double phys
     static double    str2phys( const QString src );
 

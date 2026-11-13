@@ -54,7 +54,7 @@ void SdPlateNetList::addNetSegment(SdGraphTraced *traced, const QString netName,
 //For each net build ratnet
 void SdPlateNetList::buildRatNet(SdRatNet *ratNet)
   {
-  for( SdPlateNet *net : mNetList )
+  for( SdPlateNet *net : std::as_const(mNetList) )
     net->buildRatNet( ratNet );
   }
 

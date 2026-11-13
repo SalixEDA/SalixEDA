@@ -30,30 +30,104 @@ class SdPItemPlate;
 class SdContext;
 class SdPad
   {
-    qint32    mCenterX;          //!< Center of circle or rectangle X coordinate
-    qint32    mCenterY;          //!< Center of circle or rectangle Y coordinate
-    qint32    mDiametrWidth;     //!< Diameter of circle or rectangle width
-    qint32    mHeight;           //!< Rectangle height (if -1 then circle)
-    qint32    mMaskThreshold;    //!< Mask threshold. Calculation: maskSize = size + mMaskThreshold
-    qint32    mStencilThreshold; //!< Stencil threshold. Calculation: stencilSize = size - mStencilThreshold
-    qint32    mStencilRows;      //!< Number of rows for stencil array
-    qint32    mStencilCols;      //!< Number of columns for stencil array
-    qint32    mStencilWidth;     //!< Width of individual stencil aperture
-    qint32    mStencilHeight;    //!< Height of individual stencil aperture
-    qint32    mHoleDiametr;      //!< Hole diameter (if zero then no hole)
-    qint32    mHoleLength;       //!< Length for slot holes (if zero then circular hole)
-    qint32    mAngle;            //!< Pad and hole rotation angle in 0.001 degrees.
-                                 //!< 0 is horizontal slot orientation. Positive values clockwise
-    qint32    mRoundRectRatio;   //!< Rounded rectangle ratio in hundredths (0 if not rounded)
-    bool      mEllipse;          //!< True for elliptical pad shape
+    qint32     mCenterX;          //!< Center of circle or rectangle X coordinate
+    qint32     mCenterY;          //!< Center of circle or rectangle Y coordinate
+    qint32     mDiametrWidth;     //!< Diameter of circle or rectangle width
+    qint32     mHeight;           //!< Rectangle height (if -1 then circle)
+    qint32     mMaskThreshold;    //!< Mask threshold. Calculation: maskSize = size + mMaskThreshold
+    qint32     mStencilThreshold; //!< Stencil threshold. Calculation: stencilSize = size - mStencilThreshold
+    qint32     mStencilRows;      //!< Number of rows for stencil array
+    qint32     mStencilCols;      //!< Number of columns for stencil array
+    qint32     mStencilWidth;     //!< Width of individual stencil aperture
+    qint32     mStencilHeight;    //!< Height of individual stencil aperture
+    qint32     mHoleDiametr;      //!< Hole diameter (if zero then no hole)
+    qint32     mHoleLength;       //!< Length for slot holes (if zero then circular hole)
+    qint32     mAngle;            //!< Pad and hole rotation angle in 0.001 degrees.
+                                  //!< 0 is horizontal slot orientation. Positive values clockwise
+    qint32     mRoundRectRatio;   //!< Rounded rectangle ratio in hundredths (0 if not rounded)
+    bool       mEllipse;          //!< True for elliptical pad shape
     //Not saved. Circle determine by mHeight = 0.
-    bool      mIsCircle;         //!< True for circular pad (legacy)
-    QPolygonF mCachePad;         //!< Cached polygon for pad
-    QPolygonF mCacheMask;        //!< Cached polygon for mask
-    QPolygonF mCacheStencil;     //!< Cached polygon for stencil
-    Sd3drModel mModel;           //!< 3D model representation
+    bool       mIsCircle;         //!< True for circular pad (legacy)
+    QPolygonF  mCachePad;         //!< Cached polygon for pad
+    QPolygonF  mCacheMask;        //!< Cached polygon for mask
+    QPolygonF  mCacheStencil;     //!< Cached polygon for stencil
+    Sd3drModel mModel;            //!< 3D model representation
   public:
     SdPad();
+
+
+    //!
+    //! \brief setCircle Setup circle pad without hole, mask and stencil
+    //! \param padDiam   Pad diameter in mm (0..100)
+    //! \param angle     Rotation angle in degrees
+    //! \param centerX   Center offset X in mm (-100..100)
+    //! \param centerY   Center offset Y in mm (-100..100)
+    //!
+    void        setCircle( float padDiam, float angle = 0.0, float centerX = 0.0, float centerY = 0.0 );
+
+    //!
+    //! \brief setEllipse Setup ellipse pad without hole, mask and stencil
+    //! \param padWidth   Pad width in mm (0..100)
+    //! \param padHeight  Pad height in mm (0..100)
+    //! \param angle      Rotation angle in degrees
+    //! \param centerX    Center offset X in mm (-100..100)
+    //! \param centerY    Center offset Y in mm (-100..100)
+    //!
+    void        setEllipse( float padWidth, float padHeight, float angle = 0.0, float centerX = 0.0, float centerY = 0.0 );
+
+    //!
+    //! \brief setRect    Setup rectangle pad without hole, mask and stencil
+    //! \param padWidth   Pad width in mm (0..100)
+    //! \param padHeight  Pad height in mm (0..100)
+    //! \param roundRatio Corner round ratio (0..0.5)
+    //! \param angle      Rotation angle in degrees
+    //! \param centerX    Center offset X in mm (-100..100)
+    //! \param centerY    Center offset Y in mm (-100..100)
+    //!
+    void        setRect( float padWidth, float padHeight, float roundRatio = 0.0, float angle = 0.0, float centerX = 0.0, float centerY = 0.0 );
+
+
+
+    //!
+    //! \brief addHole  Add or replace round hole
+    //! \param holeDiam Hole diameter in mm (0..10)
+    //!
+    void        addHole( float holeDiam );
+
+    //!
+    //! \brief addHoleSlot Add or replace slot hole
+    //! \param holeDiam    Hole diameter in mm (0..10)
+    //! \param slotLength  Slot length in mm (0..100)
+    //!
+    void        addHoleSlot( float holeDiam, float slotLength );
+
+
+
+    //!
+    //! \brief addMask       Add or replace solder mask
+    //! \param maskThreshold Mask clearance in mm (0..10)
+    //!
+    void        addMask( float maskThreshold );
+
+
+
+    //!
+    //! \brief addStencil    Add or replace single stencil aperture
+    //! \param maskThreshold Stencil clearance in mm (0..half of minimal pad size)
+    //!
+    void        addStencil( float maskThreshold );
+
+    //!
+    //! \brief addStencilArray Add or replace stencil aperture array
+    //! \param apertureWidth   Single aperture width in mm (>0 and < pad width / cols)
+    //! \param apertureHeight  Single aperture height in mm (>0 and < pad height / rows)
+    //! \param rows            Number of aperture rows (>=1)
+    //! \param cols            Number of aperture columns (>=1)
+    //!
+    void        addStencilArray( float apertureWidth, float apertureHeight, int rows, int cols );
+
+
+
 
     //!
     //! \brief draw Draws pad in 2D context
@@ -122,6 +196,12 @@ class SdPad
     void        parse( const QString nm );
 
     //!
+    //! \brief rotate Append angle of rotation to pad angle
+    //! \param angle  Angle of rotation
+    //!
+    void        rotate( int angle );
+
+    //!
     //! \brief clear Resets pad to default state
     //!
     void        clear();
@@ -145,6 +225,12 @@ class SdPad
     //!                     For legacy shapes or when mask/stencil absent, caches remain empty
     //!
     void        rebuildCache();
+
+  private:
+    //!
+    //! \brief rebuild3dModel Rebuilds 3d model representation of pad
+    //!
+    void        rebuild3dModel();
 
     //!
     //! \brief isEmpty Checks if pad is empty

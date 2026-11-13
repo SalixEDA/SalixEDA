@@ -23,6 +23,65 @@ Description
 
 #include <QMessageBox>
 
+
+//!
+//! \brief json Overloaded function to write object content into json writer
+//! \param js   Json writer
+//!
+void SdPartPad::json(SvJsonWriter &js) const
+  {
+  js.jsonPoint( QStringLiteral("Offset"), mOffset );
+  mPinType.json( QStringLiteral("PadType"), js );
+  mSide.json( js );
+  }
+
+
+
+
+//!
+//! \brief json Overloaded function to read object content from json reader
+//! \param js   Json reader
+//!
+void SdPartPad::json(const SdJsonReader &js)
+  {
+  js.jsonPoint( QStringLiteral("Offset"), mOffset );
+  mPinType.json( QStringLiteral("PadType"), js );
+  mSide.json( js );
+  }
+
+
+
+
+//!
+//! \brief swap Swap all part pin properties with another instance
+//! \param other Other SdPropPartPin object to swap with
+//!
+void SdPartPad::swap(SdPartPad &other)
+  {
+  mOffset.swap( other.mOffset );
+  mSide.swap( other.mSide );
+  mPinType.swap( other.mPinType );
+  }
+
+
+
+
+void SdPartPad::transform(const QTransform &map, SdPvAngle angle)
+  {
+  mOffset = map.map( mOffset );
+  if( !angle.isGrad0() ) {
+    SdPad pad;
+    pad.parse( mPinType.string() );
+    pad.rotate( angle.raw() );
+    mPinType = SdPvString( pad.name() );
+    }
+  }
+
+
+
+
+
+
 SdGraphPartPin::SdGraphPartPin() :
   SdGraph(),
   mPinSelect(false),  //Pin selected
@@ -124,6 +183,10 @@ void SdGraphPartPin::json(SdJsonWriter &js) const
   mNameProp.json( QStringLiteral("Name"), js );
   js.jsonString( QStringLiteral("Number"), mNumber );
   SdGraph::json( js );
+
+  //Addon pads we write only if pads presents
+  if( mPadList.count() )
+    js.jsonList( js, "AddonPads", mPadList );
   }
 
 
@@ -145,6 +208,10 @@ void SdGraphPartPin::json(const SdJsonReader &js)
   mNameProp.json( QStringLiteral("Name"), js );
   js.jsonString( QStringLiteral("Number"), mNumber );
   SdGraph::json( js );
+
+  //Addon pads
+  //If no pads presents in js, then mPadList will be empty list
+  js.jsonList( js, "AddonPads", mPadList );
   }
 
 
@@ -159,7 +226,7 @@ void SdGraphPartPin::json(const SdJsonReader &js)
 
 void SdGraphPartPin::saveState(SdUndo *undo)
   {
-  undo->prop( &mPinProp, &mOrigin, &mNumberProp, &mNumberPos, &mNumberRect, &mNumber, &mNameProp, &mNamePos, &mNameRect );
+  undo->prop( &mPinProp, &mOrigin, &mNumberProp, &mNumberPos, &mNumberRect, &mNumber, &mNameProp, &mNamePos, &mNameRect, &mPadList );
   }
 
 
@@ -171,6 +238,8 @@ void SdGraphPartPin::transform(const QTransform &map, SdPvAngle angle)
   if( mPinSelect ) mOrigin = map.map(mOrigin);
   if( mNamSelect ) { mNamePos = map.map(mNamePos); mNameProp.mDir += angle; }
   if( mNumSelect ) { mNumberPos = map.map(mNumberPos); mNumberProp.mDir += angle; }
+  for( int index : std::as_const(mPadSelect) )
+    mPadList[index].transform( map, angle );
   }
 
 

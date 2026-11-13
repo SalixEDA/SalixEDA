@@ -27,202 +27,10 @@ Description
 #include "SdContext.h"
 #include "SdSelector.h"
 #include "SdEnvir.h"
-#include "SdPlateNetList.h"
 #include "library/SdLibraryStorage.h"
 #include "SdJsonIO.h"
 
 #include <QDebug>
-
-
-//====================================================================================
-//Pin for part implementation
-SdPartImpPin::SdPartImpPin() :
-  mPin(nullptr),       //Original pin
-  mSection(nullptr)    //Schematic section where pin is located
-  {
-  }
-
-
-
-
-void SdPartImpPin::operator =(const SdPartImpPin &pin)
-  {
-  mPin       = pin.mPin;
-  mSection   = pin.mSection;
-  mPinName   = pin.mPinName;   //Part pin name
-  mPosition  = pin.mPosition;  //Pin position in plate context
-  }
-
-
-
-
-
-
-void SdPartImpPin::draw(SdContext *dc, SdPItemPlate *plate, SdPvStratum stratum ) const
-  {
-  //Draw pin pad
-  plate->drawPad( dc, mPin->getPinOrigin(), mPin->getPinType(), mStratum & stratum );
-  //Draw pin connection and also pin name and number
-  drawWithoutPad( dc );
-  }
-
-
-
-void SdPartImpPin::drawWithoutPad(SdContext *dc) const
-  {
-  //Draw standard pin (pin connection point, pin number and pin name)
-  mPin->drawImp( dc, mPinName, isConnected() );
-  }
-
-
-
-void SdPartImpPin::drawPad(SdContext *dc, SdPItemPlate *plate, SdPvStratum stratum, const QString highliteNet ) const
-  {
-  //Draw pin pad
-  if( !highliteNet.isEmpty() && getNetName() == highliteNet )
-    dc->setOverColor( SdEnvir::instance()->getSysColor(scTraseNet) );
-  plate->drawPad( dc, mPin->getPinOrigin(), mPin->getPinType(), mStratum & stratum );
-//  plate->drawPad( dc, mPosition, mPin->getPinType(), mStratum.stratum() & stratum );
-  dc->resetOverColor();
-  }
-
-
-
-
-bool SdPartImpPin::isConnected() const
-  {
-  return mSection != nullptr && mSection->isPinConnected(mPinName);
-  }
-
-
-
-
-QString SdPartImpPin::getNetName() const
-  {
-  if( mSection != nullptr )
-    return mSection->pinNetName( mPinName );
-  return QString();
-  }
-
-
-
-
-
-void SdPartImpPin::accumUsedPin(SdPadMap &map) const
-  {
-  if( !map.contains(mPin->getPinType()) )
-    //Append new pin-to-pad association with default pad
-    map.insert( mPin->getPinType(), SdEnvir::instance()->getPad(mPin->getPinType()) );
-  }
-
-
-
-
-void SdPartImpPin::accumBarriers(SdPItemPlate *plate, SdBarrierList &dest, SdPvStratum stratum, SdRuleId ruleId, int clearance, int halfWidth, QTransform t ) const
-  {
-
-  //Compare on stratum
-  if( mStratum.isIntersect(stratum) ) {
-    if( ruleId >= ruleLast )
-      clearance = 0;
-    else
-      clearance = qMax( clearance, plate->ruleForNet( getNetName(), ruleId ) );
-    SdBarrier bar;
-    bar.mNetName = getNetName();
-    bar.mPolygon = t.map( plate->getPadPolygon( mPin->getPinOrigin(), mPin->getPinType(), clearance + halfWidth) );
-    dest.append( bar );
-    }
-  }
-
-
-
-
-void SdPartImpPin::accumWindows(SdPItemPlate *plate, SdPolyWindowList &dest, SdPvStratum stratum, int gap, const QString netName, const QTransform &t) const
-  {
-  //Compare on stratum
-  if( mStratum.isIntersect(stratum) && netName != getNetName() )
-    //Stratum matched and net name other
-    plate->appendPadWindow( dest, mPin->getPinOrigin(), mPin->getPinType(), gap, t );
-  }
-
-
-
-
-//!
-//! \brief accumHoles Accum holes description into faceList
-//! \param plate      Plate throught which pads supported
-//! \param model      Model which accumulate coord vertexes
-//! \param faceList   Face list for holding holes (single face for single hole)
-//! \param stratum    Stratum for layers
-//! \param map        Map for holes conversion
-//!
-void SdPartImpPin::accumHoles(SdPItemPlate *plate, Sd3drModel &model, Sd3drFaceList &faceList, SdPvStratum stratum, const QMatrix4x4 &map) const
-  {
-  plate->appendPadHoles( mPin->getPinOrigin(), mPin->getPinType(), model, faceList, stratum, map );
-  }
-
-
-
-
-//!
-//! \brief json Overloaded function to write object content into json writer
-//! \param js   Json writer
-//!
-void SdPartImpPin::json(SdJsonWriter &js) const
-  {
-  //Original pin
-  js.jsonObjectPtr( QStringLiteral("Pin"), mPin );
-
-  //Section
-  js.jsonObjectPtr( QStringLiteral("Section"), mSection );
-
-  //Part pin name
-  js.jsonString( QStringLiteral("PinNam"), mPinName );
-
-  //Pin position in plate context
-  js.jsonPoint( QStringLiteral("Pos"), mPosition );
-  mStratum.json( js );
-  }
-
-
-
-
-//!
-//! \brief json Overloaded function to read object content from json reader
-//! \param js   Json reader
-//!
-void SdPartImpPin::json(const SdJsonReader &js)
-  {
-  //Original pin
-  js.jsonObjectPtr( QStringLiteral("Pin"), mPin );
-
-  //Section
-  js.jsonObjectPtr( QStringLiteral("Section"), mSection );
-
-  //Part pin name
-  js.jsonString( QStringLiteral("PinNam"), mPinName );
-
-  //Pin position in plate context
-  js.jsonPoint( QStringLiteral("Pos"), mPosition );
-  mStratum.json( js );
-  }
-
-
-
-
-
-
-
-
-QString SdPartImpPin::fromJson(SdJsonReaderProperty *map, const QJsonObject obj)
-  {
-  SdJsonReader js( obj, map );
-  json( js );
-  return obj.value( QStringLiteral("PinNum") ).toString();
-  }
-
-
-
 
 
 //====================================================================================
@@ -281,9 +89,9 @@ SdGraphPartImp::SdGraphPartImp(SdPoint org, const SdPropPartImp *prp, SdPItemPar
   mLogNumber(0),          //Logical part number (from 1)
   mOrigin(org),           //Position of Implement
   mPart(part),            //Part for this implementation
-  mComponent(comp),       //Component
-  mParamTable(param)           //Component params
+  mComponent(comp)        //Component
   {
+  mParamTable = param;           //Component params
   //Implement properties
   mProp = *prp;
   if( part ) {
@@ -557,14 +365,24 @@ QString SdGraphPartImp::paramGet(const QString key) const
 
 
 //Setup full param table
-void SdGraphPartImp::paramTableSet(const SdStringMap map, SdUndo *undo, SdGraphSymImp *symImp)
+void SdGraphPartImp::paramTableSet(const SdStringMap &map, SdUndo *undo)
+  {
+  paramTableSet( map, undo, nullptr );
+  }
+
+
+
+
+//Setup full param table
+void SdGraphPartImp::paramTableSet(const SdStringMap &map, SdUndo *undo, SdGraphSymImp *symImp)
   {
   //If there undo then save previous param table
   if( undo != nullptr )
-    undo->prop( &mParamTable );
+    undo->prop( &mParamTable ).post( [this]() { setDirtyFlagForParamMap(); } );
 
   //Setup new table
   mParamTable = map;
+  setDirtyFlagForParamMap();
 
   //Replace for all sections except calling section, because it already changed
   for( int i = 0; i < mSections.count(); i++ )
@@ -1283,8 +1101,7 @@ bool SdGraphPartImp::isPointOnNet(SdPoint p, SdPvStratum stratum, QString &netNa
 void SdGraphPartImp::accumNetSegments(SdPlateNetContainer *netContainer)
   {
   for( const SdPartImpPin &pin : std::as_const(mPins) )
-    if( pin.isConnected() )
-      netContainer->addNetSegment( this, pin.getNetName(), pin.mStratum, pin.mPosition, pin.mPosition );
+    pin.accumNetSegments( this, netContainer );
   }
 
 

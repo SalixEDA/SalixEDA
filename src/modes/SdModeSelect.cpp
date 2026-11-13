@@ -691,7 +691,7 @@ void SdModeSelect::storeSelectionToFile(const QString fname)
     mFragment.setOrigin( a );
 
     //Store to file
-    mFragment.storeSelectionToFile( mEditor->scaleGet(), fname );
+    mFragment.storeSelectionToFile( mObject, mEditor->scaleGet(), fname );
     }
   }
 
@@ -718,7 +718,7 @@ void SdModeSelect::copy( SdWEditor::SdCopyFormat format )
     mFragment.setOrigin( a );
 
     //Write to clipboard
-    mFragment.putToClipboard( mObject->getProject(), mEditor->scaleGet(), format );
+    mFragment.putToClipboard( mObject, mEditor->scaleGet(), format );
     }
   }
 

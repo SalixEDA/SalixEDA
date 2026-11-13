@@ -534,7 +534,7 @@ QImage SdProjectItem::drawImage(int width, int height, bool currentLayers)
 
     //Painter and context
     QPainter painter( &image );
-    SdContext context( SdPoint(1000,1000), &painter );
+    SdContext context( SdPoint(1000,1000), &painter, this );
     context.setShowFields( false );
     //View converter
     SdConverterView cv( QSize(width,height), fit.center(), scale, false );

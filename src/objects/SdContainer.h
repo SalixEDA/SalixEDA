@@ -21,7 +21,7 @@ Description
 
 #include "SdObject.h"
 #include "SdPoint.h"
-#include "library/SdStringMap.h"
+#include "SdParamMap.h"
 
 #include <QList>
 #include <QMap>
@@ -31,11 +31,10 @@ class SdContext;
 
 using SdObjectPtrList = QList<SdObjectPtr>;
 
-class SdContainer : public SdObject
+class SdContainer : public SdObject, public SdParamMap
   {
   protected:
     SdObjectPtrList  mChildList;  //!< List of child objects
-    SdStringMap      mParamTable; //!< Object parameters
   public:
     SdContainer();
     ~SdContainer() override;
@@ -84,25 +83,10 @@ class SdContainer : public SdObject
     SdObject    *behindPoint( quint64 classMask, SdPoint p, int *state );
 
 
-
-    //Params with local param table
-    //Test if param present in local table
-    bool         paramContains( const QString key ) const { return mParamTable.contains(key); }
-
-    //Get param value from local table
-    QString      paramGet( const QString key ) const { return mParamTable.value(key); }
-
-    //Set param value to local table
-    void         paramSet( const QString key, QString val, SdUndo *undo );
-
-    //Delete param from local table
-    void         paramDelete( const QString key, SdUndo *undo );
-
-    //Full local param table
-    SdStringMap  paramTable() const { return mParamTable; }
-
-    //Setup full param table
-    void         paramTableSet( const SdStringMap map, SdUndo *undo );
+    //!
+    //! \brief setDirtyFlagForParamMap Mark the owner state as modified after parameter changes
+    //!
+    virtual void setDirtyFlagForParamMap() override { setProjectDirtyFlag(); }
 
     //Return param value from hierarchy. We start from local table
     // if param present in local table - return it

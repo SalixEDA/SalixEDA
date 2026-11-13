@@ -11,11 +11,9 @@ Web
   www.SalixEDA.org
 
 Description
-  Any param in sheet
+  SdGraphParam - base class for graphical child objects with a local parameter table
 */
 #include "SdGraphParam.h"
-#include "SdContext.h"
-#include "SdSelector.h"
 #include "SdJsonIO.h"
 
 SdGraphParam::SdGraphParam() :
@@ -25,9 +23,9 @@ SdGraphParam::SdGraphParam() :
   }
 
 SdGraphParam::SdGraphParam(const SdStringMap &param) :
-  SdGraph(),
-  mParamTable(param)
+  SdGraph()
   {
+  mParamTable = param;
   }
 
 

@@ -31,6 +31,7 @@ History
   17.03.2023 v14 Append transfer binary void data with function jsonHex
   30.08.2023 v15 Append transfer QByteArray with function jsonHex
   16.02.2026 v16 Append quint32 and quint64 transfer as jsonHexNN
+  12.11.2026 v17 Append presents testing when QList reading
 */
 #ifndef SVJSONIO_H
 #define SVJSONIO_H
@@ -43,7 +44,7 @@ History
 #include <QMap>
 #include <QPoint>
 
-#define SV_JSON_VERSION 16
+#define SV_JSON_VERSION 17
 
 //!
 //! \brief The SvJsonWriter class Unificate json io class, through which json written
@@ -796,13 +797,15 @@ class SvJsonReader
     void jsonList( const SvJsonReaderImpl &sjs, const QString &key, QList<SvClass> &list ) const
       {
       list.clear();
-      QJsonArray ar = mObject.value( key ).toArray();
-      list.reserve( ar.count() );
-      for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
-        SvClass item;
-        SvJsonReaderImpl js( i->toObject(), sjs );
-        item.json( js );
-        list.append( item );
+      if( mObject.contains(key) ) {
+        QJsonArray ar = mObject.value( key ).toArray();
+        list.reserve( ar.count() );
+        for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
+          SvClass item;
+          SvJsonReaderImpl js( i->toObject(), sjs );
+          item.json( js );
+          list.append( item );
+          }
         }
       }
 
@@ -820,13 +823,15 @@ class SvJsonReader
       {
       qDeleteAll(list);
       list.clear();
-      QJsonArray ar = mObject.value( key ).toArray();
-      list.reserve( ar.count() );
-      for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
-        SvJsonReaderImpl js( i->toObject(), sjs );
-        SvClass *item = dynamic_cast<SvClass*>(SvClass::buildFromJson( js ));
-        if( item != nullptr )
-          list.append( item );
+      if( mObject.contains(key) ) {
+        QJsonArray ar = mObject.value( key ).toArray();
+        list.reserve( ar.count() );
+        for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
+          SvJsonReaderImpl js( i->toObject(), sjs );
+          SvClass *item = dynamic_cast<SvClass*>(SvClass::buildFromJson( js ));
+          if( item != nullptr )
+            list.append( item );
+          }
         }
       }
 
@@ -845,13 +850,15 @@ class SvJsonReader
       {
       qDeleteAll(list);
       list.clear();
-      QJsonArray ar = mObject.value( key ).toArray();
-      list.reserve( ar.count() );
-      for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
-        SvJsonReaderImpl js( i->toObject(), sjs );
-        SvClass *item = SvClass::buildFromJson( js );
-        if( postfixFun( item ) )
-          list.append( item );
+      if( mObject.contains(key) ) {
+        QJsonArray ar = mObject.value( key ).toArray();
+        list.reserve( ar.count() );
+        for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
+          SvJsonReaderImpl js( i->toObject(), sjs );
+          SvClass *item = SvClass::buildFromJson( js );
+          if( postfixFun( item ) )
+            list.append( item );
+          }
         }
       }
 
@@ -871,13 +878,15 @@ class SvJsonReader
       {
       qDeleteAll(list);
       list.clear();
-      QJsonArray ar = mObject.value( key ).toArray();
-      list.reserve( ar.count() );
-      for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
-        SvJsonReaderImpl js( i->toObject(), sjs );
-        SvClass *item = SvClass::buildPtrFromJson( js );
-        if( postfixFun( item ) )
-          list.append( item );
+      if( mObject.contains(key) ) {
+        QJsonArray ar = mObject.value( key ).toArray();
+        list.reserve( ar.count() );
+        for( auto i = ar.constBegin(); i != ar.constEnd(); i++ ) {
+          SvJsonReaderImpl js( i->toObject(), sjs );
+          SvClass *item = SvClass::buildPtrFromJson( js );
+          if( postfixFun( item ) )
+            list.append( item );
+          }
         }
       }
 

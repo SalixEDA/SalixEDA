@@ -18,6 +18,7 @@ Description
 #include "SdContext.h"
 #include "SdConverterView.h"
 #include "SdJsonIO.h"
+#include "SdProjectItem.h"
 #include "SvLib/SvTime2x.h"
 
 #include <QClipboard>
@@ -149,13 +150,15 @@ SdClass SdSelector::contentClasses() const
 
 
 
-void SdSelector::putToClipboard(const SdProject *project, double scale , SdWEditor::SdCopyFormat format)
+void SdSelector::putToClipboard(const SdProjectItem *item, double scale , SdWEditor::SdCopyFormat format)
   {
+  const SdProject *project = item->getProject();
+
   //Prepare Json object with project and selection
   SdJsonWriter js;
 
   //Write project
-  js.jsonBuildPtr( js, QStringLiteral("Project"), project );
+  js.jsonBuildPtr( js, QStringLiteral("Project"), item );
 
   //Write selection
   js.jsonLeavePtr( js, QStringLiteral("Selector"), this );
@@ -188,7 +191,7 @@ void SdSelector::putToClipboard(const SdProject *project, double scale , SdWEdit
     //Qt painter
     QPainter painter( &image );
     //Draw context
-    SdContext ctx( SdPoint(10,10), &painter );
+    SdContext ctx( SdPoint(10,10), &painter, item );
     //View converter
     SdConverterView view( s, r.center(), scale, false );
     ctx.setConverter( &view );
@@ -213,7 +216,7 @@ void SdSelector::putToClipboard(const SdProject *project, double scale , SdWEdit
     svgPainter.begin( &svgGenerator );
 
     //Draw context
-    SdContext svgCtx( SdPoint(10,10), &svgPainter );
+    SdContext svgCtx( SdPoint(10,10), &svgPainter, item );
     //View converter
     SdConverterView svgView( r.size(), r.center(), 1, false );
     svgCtx.setConverter( &svgView );
@@ -320,10 +323,11 @@ SdProject *SdSelector::getFromClipboard()
 
 //!
 //! \brief storeSelectionToFile Store selection picture to file
+//! \param item                 Graph item, owner of selected objects
 //! \param scale                Current scale factor for editor
 //! \param fname                File name for stored picture
 //!
-void SdSelector::storeSelectionToFile( double scale, const QString fname)
+void SdSelector::storeSelectionToFile(const SdProjectItem *item, double scale, const QString fname)
   {
   SdRect r = getOverRect();    //Охватывающий прямоугольник
   if( fname.endsWith( QStringLiteral(".svg") )  ) {
@@ -339,7 +343,7 @@ void SdSelector::storeSelectionToFile( double scale, const QString fname)
     svgPainter.begin( &svgGenerator );
 
     //Draw context
-    SdContext svgCtx( SdPoint(10,10), &svgPainter );
+    SdContext svgCtx( SdPoint(10,10), &svgPainter, item );
     svgCtx.setOverZeroWidth(2);
     //View converter
     SdConverterView svgView( r.size(), r.center(), 1, false );
@@ -368,7 +372,7 @@ void SdSelector::storeSelectionToFile( double scale, const QString fname)
     //Qt painter
     QPainter painter( &image );
     //Draw context
-    SdContext ctx( SdPoint(10,10), &painter );
+    SdContext ctx( SdPoint(10,10), &painter, item );
     //View converter
     SdConverterView view( s, r.center(), scale, false );
     ctx.setConverter( &view );

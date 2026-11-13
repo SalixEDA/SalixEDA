@@ -15,13 +15,12 @@ Description
 */
 #include "SdPad.h"
 #include "SdContext.h"
-#include "SdPItemPlate.h"
 #include "SdUtil.h"
 #include "SdEnvir.h"
-#include "Sd3dDraw.h"
-#include "objects/SdConverterText.h"
+#include "SdPvAngle.h"
 
 #include <QJsonObject>
+#include <QtGlobal>
 #include <math.h>
 
 SdPad::SdPad() :
@@ -44,6 +43,174 @@ SdPad::SdPad() :
   mIsCircle(true)
   {
 
+  }
+
+
+
+
+void SdPad::setCircle(float padDiam, float angle, float centerX, float centerY)
+  {
+  padDiam = qBound( 0.0f, padDiam, 100.0f );
+  centerX = qBound( -100.0f, centerX, 100.0f );
+  centerY = qBound( -100.0f, centerY, 100.0f );
+
+  mDiametrWidth = SdUtil::mm2um( padDiam );
+  mHeight = -1;
+  mIsCircle = true;
+  mEllipse = false;
+  mRoundRectRatio = 0;
+
+  mCenterX = SdUtil::mm2um( centerX );
+  mCenterY = SdUtil::mm2um( centerY );
+  mAngle = SdPvAngle::fromGrad( angle );
+
+  //No hole, mask and stencil
+  mHoleDiametr = 0;
+  mHoleLength = 0;
+  mMaskThreshold = 0;
+  mStencilThreshold = 0;
+  mStencilRows = 0;
+  mStencilCols = 0;
+  mStencilWidth = 0;
+  mStencilHeight = 0;
+  }
+
+
+
+
+void SdPad::setEllipse(float padWidth, float padHeight, float angle, float centerX, float centerY)
+  {
+  padWidth = qBound( 0.0f, padWidth, 100.0f );
+  padHeight = qBound( 0.0f, padHeight, 100.0f );
+  centerX = qBound( -100.0f, centerX, 100.0f );
+  centerY = qBound( -100.0f, centerY, 100.0f );
+
+  mDiametrWidth = SdUtil::mm2um( padWidth );
+  mHeight = SdUtil::mm2um( padHeight );
+  mIsCircle = false;
+  mEllipse = true;
+  mRoundRectRatio = 0;
+
+  mCenterX = SdUtil::mm2um( centerX );
+  mCenterY = SdUtil::mm2um( centerY );
+  mAngle = SdPvAngle::fromGrad( angle );
+
+  //No hole, mask and stencil
+  mHoleDiametr = 0;
+  mHoleLength = 0;
+  mMaskThreshold = 0;
+  mStencilThreshold = 0;
+  mStencilRows = 0;
+  mStencilCols = 0;
+  mStencilWidth = 0;
+  mStencilHeight = 0;
+  }
+
+
+
+
+void SdPad::setRect(float padWidth, float padHeight, float roundRatio, float angle, float centerX, float centerY)
+  {
+  padWidth = qBound( 0.0f, padWidth, 100.0f );
+  padHeight = qBound( 0.0f, padHeight, 100.0f );
+  roundRatio = qBound( 0.0f, roundRatio, 0.5f );
+  centerX = qBound( -100.0f, centerX, 100.0f );
+  centerY = qBound( -100.0f, centerY, 100.0f );
+
+  mDiametrWidth = SdUtil::mm2um( padWidth );
+  mHeight = SdUtil::mm2um( padHeight );
+  mIsCircle = false;
+  mEllipse = false;
+  mRoundRectRatio = SdUtil::mm2um( roundRatio );
+
+  mCenterX = SdUtil::mm2um( centerX );
+  mCenterY = SdUtil::mm2um( centerY );
+  mAngle = SdPvAngle::fromGrad( angle );
+
+  //No hole, mask and stencil
+  mHoleDiametr = 0;
+  mHoleLength = 0;
+  mMaskThreshold = 0;
+  mStencilThreshold = 0;
+  mStencilRows = 0;
+  mStencilCols = 0;
+  mStencilWidth = 0;
+  mStencilHeight = 0;
+  }
+
+
+
+
+void SdPad::addHole(float holeDiam)
+  {
+  holeDiam = qBound( 0.0f, holeDiam, 10.0f );
+
+  mHoleDiametr = SdUtil::mm2um( holeDiam );
+  mHoleLength = 0;
+  }
+
+
+
+
+void SdPad::addHoleSlot(float holeDiam, float slotLength)
+  {
+  holeDiam = qBound( 0.0f, holeDiam, 10.0f );
+  slotLength = qBound( 0.0f, slotLength, 100.0f );
+
+  mHoleDiametr = SdUtil::mm2um( holeDiam );
+  mHoleLength = SdUtil::mm2um( slotLength );
+  }
+
+
+
+
+void SdPad::addMask(float maskThreshold)
+  {
+  maskThreshold = qBound( 0.0f, maskThreshold, 10.0f );
+
+  mMaskThreshold = SdUtil::mm2um( maskThreshold );
+  }
+
+
+
+
+
+void SdPad::addStencil(float maskThreshold)
+  {
+  int minSize = mIsCircle ? mDiametrWidth : qMin( mDiametrWidth, mHeight );
+  int maxGap = minSize / 2.0f;
+
+  mStencilThreshold = qBound( 0, SdUtil::mm2um( maskThreshold ), maxGap );
+  mStencilRows = 0;
+  mStencilCols = 0;
+  mStencilWidth = 0;
+  mStencilHeight = 0;
+  }
+
+
+
+void SdPad::addStencilArray(float apertureWidth, float apertureHeight, int rows, int cols)
+  {
+  rows = qMax( 1, rows );
+  cols = qMax( 1, cols );
+
+  int padHeight = mIsCircle ? mDiametrWidth : mHeight;
+  int maxApertureWidth = mDiametrWidth / cols;
+  int maxApertureHeight = padHeight / rows;
+
+  if( maxApertureWidth > 1 )
+    mStencilWidth = qBound( 1, SdUtil::mm2um(apertureWidth), maxApertureWidth - 1 );
+  else
+    mStencilWidth = qMax( 0, maxApertureWidth );
+
+  if( maxApertureHeight > 1 )
+    mStencilHeight = qBound( 1, SdUtil::mm2um(apertureHeight), maxApertureHeight - 1 );
+  else
+    mStencilHeight = qMax( 0, maxApertureHeight );
+
+  mStencilRows = rows;
+  mStencilCols = cols;
+  mStencilThreshold = 0;
   }
 
 
@@ -635,62 +802,22 @@ void SdPad::parse(const QString nm)
     mStencilHeight = 0;
     }
 
-  //Rebuild caches for new settings
+  //Rebuild caches and 3d model for new settings
   rebuildCache();
+  rebuild3dModel();
+  }
 
-  // Note: 3D model generation will be handled separately
 
-  mModel.clear();
-  //Build 3d model for pad
-  //3d drawing mach different for hole or without hole
-  float radius = mDiametrWidth >> 1;
-  radius /= 1000.0;
 
-  // Build local transformation matrix
-  QMatrix4x4 localMat;
-
-  // Step 1: Offset by center (relative to pad origin)
-  if( mCenterX != 0 || mCenterY != 0 )
-    localMat.translate( QVector3D(QPointF(mCenterX,mCenterY) / 1000.0)  );
-
-  // Step 2: Rotate around Z axis if angle is non-zero
-  if( mAngle != 0 )
-    localMat.rotate( mAngle / 1000.0, 0, 0, 1 );  // Convert from 0.001 degrees
-
-  Sd3drBody body;
-  if( mHoleDiametr > 0 ) {
-    //Hole present
-    Sd3drFace hole3d = mModel.faceCircleSide( static_cast<float>(mHoleDiametr) / 2000.0, 40, localMat );
-    Sd3drFace pad3d;
-    if( mIsCircle )
-      pad3d = mModel.faceCircleSide( radius, 40, localMat );
-    else
-      pad3d = mModel.faceRectangleSide( static_cast<float>(mDiametrWidth) / 1000.0, static_cast<float>(mHeight) / 1000.0, 40, localMat );
-    //Top pad
-    body.faceAppend( mModel.faceListWall( pad3d, hole3d, true ) );
-    //Bottom pad
-    QMatrix4x4 shift;
-    shift.translate( 0, 0, -1.45 );
-    Sd3drFace botHole3d = mModel.faceDuplicate( hole3d, shift );
-    Sd3drFace botPad3d  = mModel.faceDuplicate( pad3d, shift );
-    body.faceAppend( mModel.faceListWall( botPad3d, botHole3d, true ) );
-    //Hole
-    body.faceAppend( mModel.faceListWall( hole3d, botHole3d, true ) );
-    }
-  else {
-    //Smd pad
-    Sd3drFace pad3d;
-    if( mIsCircle )
-      pad3d = mModel.faceCircle( radius, 10, localMat );
-    else
-      pad3d = mModel.faceRectangle( static_cast<float>(mDiametrWidth) / 1000.0, static_cast<float>(mHeight) / 1000.0, localMat );
-    body.faceAppend( pad3d );
-    }
-  body.colorSet( SdEnvir::instance()->getSysColor( sc3dPadTop ) );
-  Sd3drInstance inst;
-  inst.add( body );
-  inst.addCopy( QMatrix4x4() );
-  mModel.instanceAppend( inst );
+//!
+//! \brief rotate Append angle of rotation to pad angle
+//! \param angle  Angle of rotation
+//!
+void SdPad::rotate(int angle)
+  {
+  mAngle += angle;
+  mAngle %= 360000;
+  if( mAngle < 0 ) mAngle += 360000;
   }
 
 
@@ -804,6 +931,64 @@ void SdPad::rebuildCache()
 
   // Note: Rotation is not applied in cache - it will be applied during drawing/export
   // using the cached polygon as base
+  }
+
+
+
+
+void SdPad::rebuild3dModel()
+  {
+  mModel.clear();
+  //Build 3d model for pad
+  //3d drawing mach different for hole or without hole
+  float radius = mDiametrWidth >> 1;
+  radius /= 1000.0;
+
+  // Build local transformation matrix
+  QMatrix4x4 localMat;
+
+  // Step 1: Offset by center (relative to pad origin)
+  if( mCenterX != 0 || mCenterY != 0 )
+    localMat.translate( QVector3D(QPointF(mCenterX,mCenterY) / 1000.0)  );
+
+  // Step 2: Rotate around Z axis if angle is non-zero
+  if( mAngle != 0 )
+    localMat.rotate( mAngle / 1000.0, 0, 0, 1 );  // Convert from 0.001 degrees
+
+  Sd3drBody body;
+  if( mHoleDiametr > 0 ) {
+    //Hole present
+    Sd3drFace hole3d = mModel.faceCircleSide( static_cast<float>(mHoleDiametr) / 2000.0, 40, localMat );
+    Sd3drFace pad3d;
+    if( mIsCircle )
+      pad3d = mModel.faceCircleSide( radius, 40, localMat );
+    else
+      pad3d = mModel.faceRectangleSide( static_cast<float>(mDiametrWidth) / 1000.0, static_cast<float>(mHeight) / 1000.0, 40, localMat );
+    //Top pad
+    body.faceAppend( mModel.faceListWall( pad3d, hole3d, true ) );
+    //Bottom pad
+    QMatrix4x4 shift;
+    shift.translate( 0, 0, -1.45 );
+    Sd3drFace botHole3d = mModel.faceDuplicate( hole3d, shift );
+    Sd3drFace botPad3d  = mModel.faceDuplicate( pad3d, shift );
+    body.faceAppend( mModel.faceListWall( botPad3d, botHole3d, true ) );
+    //Hole
+    body.faceAppend( mModel.faceListWall( hole3d, botHole3d, true ) );
+    }
+  else {
+    //Smd pad
+    Sd3drFace pad3d;
+    if( mIsCircle )
+      pad3d = mModel.faceCircle( radius, 10, localMat );
+    else
+      pad3d = mModel.faceRectangle( static_cast<float>(mDiametrWidth) / 1000.0, static_cast<float>(mHeight) / 1000.0, localMat );
+    body.faceAppend( pad3d );
+    }
+  body.colorSet( SdEnvir::instance()->getSysColor( sc3dPadTop ) );
+  Sd3drInstance inst;
+  inst.add( body );
+  inst.addCopy( QMatrix4x4() );
+  mModel.instanceAppend( inst );
   }
 
 

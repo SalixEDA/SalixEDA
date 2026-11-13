@@ -74,13 +74,17 @@ class SdPvAngle : public SdPv<int,SdPvAngle>
 
     static SdPvAngle fromDouble( double angle ) { return SdPvAngle(angle * 1000.0); }
 
-  private:
     static constexpr int norm( int v )
       {
       v %= 360000;
       if( v <= -180000 ) v += 360000;
       if( v > 180000 ) v -= 360000;
       return v;
+      }
+
+    static constexpr int fromGrad( float grad )
+      {
+      return norm( static_cast<int>(grad * 1000.0) );
       }
   };
 

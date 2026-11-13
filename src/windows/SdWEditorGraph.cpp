@@ -706,7 +706,7 @@ void SdWEditorGraph::print(QPrinter &printer, SdRect wnd, int zeroWidth, bool co
 
   //Create painter, context and converter
   QPainter painter( &printer );
-  SdContext context( mGrid, &painter );
+  SdContext context( mGrid, &painter, getProjectItem() );
   SdConverterView cv( QSize(r.width(),r.height()), wnd.center(), scale, mirrorHorz );
   context.setConverter( &cv );
 
@@ -756,7 +756,7 @@ void SdWEditorGraph::paintProcess(bool viewer)
     mCashe.fill( SdEnvir::instance()->getSysColor(scGraphBack) );
 
     QPainter painter( &mCashe );
-    SdContext context( mGrid, &painter );
+    SdContext context( mGrid, &painter, getProjectItem() );
     context.setShowFields( showFields() );
     SdConverterView cv( s, mOrigin, mScale.scaleGet(), mMirrorHorz );
     context.setConverter( &cv );
@@ -860,7 +860,7 @@ void SdWEditorGraph::paintProcess(bool viewer)
   //Восстановить статическую часть
   painter.drawImage( QPoint(), mCashe );
 
-  SdContext context( mGrid, &painter );
+  SdContext context( mGrid, &painter, getProjectItem() );
   context.setShowFields( showFields() );
   SdConverterView cv( s, mOrigin, mScale.scaleGet(), mMirrorHorz );
   context.setConverter( &cv );

@@ -101,41 +101,6 @@ SdObject *SdContainer::behindPoint(quint64 classMask, SdPoint p, int *state)
 
 
 
-//Set param value to local table
-void SdContainer::paramSet(const QString key, QString val, SdUndo *undo)
-  {
-  if( undo != nullptr )
-    undo->stringMapItem( &mParamTable, key );
-  mParamTable.insert( key, val );
-  }
-
-
-
-
-
-
-
-//Delete param from local table
-void SdContainer::paramDelete(const QString key, SdUndo *undo)
-  {
-  if( undo != nullptr )
-    undo->stringMapItem( &mParamTable, key );
-  mParamTable.remove( key );
-  }
-
-
-
-
-
-
-//Setup full param table
-void SdContainer::paramTableSet(const SdStringMap map, SdUndo *undo)
-  {
-  if( undo != nullptr )
-    undo->prop( &mParamTable ).post( [this]() { setProjectDirtyFlag(); } );
-  mParamTable = map;
-  setProjectDirtyFlag();
-  }
 
 
 

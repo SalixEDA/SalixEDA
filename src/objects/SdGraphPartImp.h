@@ -17,12 +17,14 @@ Description
 #define SDGRAPHPARTIMP_H
 
 #include "SdGraphTraced.h"
+#include "SdPartImpPin.h"
 #include "SdPvStratum.h"
 #include "SdPadAssociation.h"
 #include "SdBarrier.h"
 #include "SdTextImplement.h"
 #include "SdPlateNetList.h"
 #include "SdPartImpInfo.h"
+#include "SdParamMap.h"
 
 #include <QMap>
 
@@ -31,60 +33,13 @@ Description
 
 class SdPItemPlate;
 class SdPItemPart;
-class SdGraphPartPin;
 class SdPItemSymbol;
 class SdPItemVariant;
 class SdGraphSymImp;
 class SdGraphSymPinsMap;
 class SdGraphRoadPin;
-struct SdJsonReaderProperty;
-
-//Part implementation pin [Ножка вхождения корпуса]
-struct SdPartImpPin {
-  SdGraphPartPin    *mPin;       //!< Original pin
-  SdGraphSymPinsMap *mSection;   //!< Schematic section where pin located
-  QString            mPinName;   //!< Part pin name
-  SdPoint            mPosition;  //!< Pin position in plate context
-  SdPvStratum        mStratum;   //!< Pin stratum
-
-  SdPartImpPin();
-
-  void        operator = ( const SdPartImpPin &pin );
-  void        draw(SdContext *dc , SdPItemPlate *plate, SdPvStratum stratum) const;
-  void        drawWithoutPad( SdContext *dc ) const;
-  void        drawPad(SdContext *dc , SdPItemPlate *plate, SdPvStratum stratum, const QString highliteNet) const;
-  bool        isConnected() const;
-  QString     getNetName() const;
-  void        accumUsedPin( SdPadMap &map ) const;
-  void        accumBarriers(SdPItemPlate *plate, SdBarrierList &dest, SdPvStratum stratum, SdRuleId ruleId, int clearance , int halfWidth, QTransform t) const;
-  void        accumWindows(SdPItemPlate *plate, SdPolyWindowList &dest, SdPvStratum stratum, int gap, const QString netName, const QTransform &t ) const;
-
-  //!
-  //! \brief accumHoles Accum holes description into faceList
-  //! \param plate      Plate throught which pads supported
-  //! \param model      Model which accumulate coord vertexes
-  //! \param faceList   Face list for holding holes (single face for single hole)
-  //! \param stratum    Stratum for layers
-  //! \param map        Map for holes conversion
-  //!
-  void        accumHoles( SdPItemPlate *plate, Sd3drModel &model, Sd3drFaceList &faceList, SdPvStratum stratum, const QMatrix4x4 &map ) const;
-
-  //!
-  //! \brief json Overloaded function to write object content into json writer
-  //! \param js   Json writer
-  //!
-  void        json( SdJsonWriter &js ) const;
-
-  //!
-  //! \brief json Overloaded function to read object content from json reader
-  //! \param js   Json reader
-  //!
-  void        json( const SdJsonReader &js );
-
-  QString     fromJson( SdJsonReaderProperty *map, const QJsonObject obj );
-  };
-
-typedef QMap<QString,SdPartImpPin> SdPartImpPinTable;
+class SdJsonWriter;
+class SdJsonReader;
 
 
 
@@ -92,8 +47,8 @@ typedef QMap<QString,SdPartImpPin> SdPartImpPinTable;
 
 //Information about section in part implementation
 struct SdPartImpSection {
-  SdPItemSymbol *mSymbol; //Symbol of this section
-  SdGraphSymImp *mSymImp; //Symbol implementation of this section
+  SdPItemSymbol *mSymbol; //!< Symbol of this section
+  SdGraphSymImp *mSymImp; //!< Symbol implementation of this section
 
   SdPartImpSection() : mSymbol(nullptr), mSymImp(nullptr) {}
 
@@ -125,7 +80,7 @@ typedef QList<SdPartImpSection> SdPartImpSectionTable;
 
 
 //Part implementation
-class SdGraphPartImp : public SdGraphTraced
+class SdGraphPartImp : public SdGraphTraced, public SdParamMap
   {
     int                    mLogNumber;   //!< Logical part number (from 1)
     SdPoint                mOrigin;      //!< Position of Implement
@@ -142,7 +97,6 @@ class SdGraphPartImp : public SdGraphTraced
     SdPartImpSectionTable  mSections;    //!< Part implement schematic sections list
     SdPItemPart           *mPart;        //!< Part for this implementation
     SdPItemVariant        *mComponent;   //!< Component with pack info
-    SdStringMap            mParamTable;  //!< Parameters
   public:
     SdGraphPartImp();
     SdGraphPartImp(SdPoint org, const SdPropPartImp *prp, SdPItemPart *part, SdPItemVariant *comp, const SdStringMap &param );
@@ -223,16 +177,19 @@ class SdGraphPartImp : public SdGraphTraced
     //Parameters
     //Params with local param table
     //Test if param present in local table
-    bool              paramContains( const QString key ) const;
+    virtual bool      paramContains( const QString key ) const override;
 
     //Get param value from local table
-    QString           paramGet( const QString key ) const;
-
-    //Full local param table
-    SdStringMap       paramTable() const { return mParamTable; }
+    virtual QString   paramGet( const QString key ) const override;
 
     //Setup full param table
-    void              paramTableSet( const SdStringMap map, SdUndo *undo, SdGraphSymImp *symImp );
+    virtual void      paramTableSet( const SdStringMap &map, SdUndo *undo ) override;
+    void              paramTableSet( const SdStringMap &map, SdUndo *undo, SdGraphSymImp *symImp );
+
+    //!
+    //! \brief setDirtyFlagForParamMap Mark the owner state as modified after parameter changes
+    //!
+    virtual void      setDirtyFlagForParamMap() override { setProjectDirtyFlag(); }
 
     //Get BOM item line
     QString           getBomItemLine() const;

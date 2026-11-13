@@ -26,13 +26,17 @@ Description
 #include "SdPolyWindowList.h"
 #include "SdSnapInfo.h"
 #include "SdScaler.h"
-#include "library/SdStringMap.h"
+#include "SdParamMap.h"
 
 #include <QPainter>
 #include <QTransform>
+#include <QStack>
+#include <functional>
 
 class SdConverter;
 class SdSelector;
+
+using SdParamMapStack = QStack<const SdParamMap*>;
 
 //Контекст вывода графической информации (средство рисования)
 class SdContext {
@@ -44,8 +48,9 @@ class SdContext {
     QTransform         mTransform;     //!< Transform matrix
     SdScaler           mScaler;        //!< Current scale
     QColor             mOverColor;     //!< Color for overriding default layers color
-    const SdStringMap *mParamMap;      //!< Local param map
+    //const SdStringMap *mParamMap;      //!< Local param map
     SdPvAngle          mAngle;         //!< Rotation angle
+    SdParamMapStack    mParamMapStack; //!< Local param map stack
     int                mZeroWidth;     //!< Width for zero width line
     bool               mMirror;        //!< Mirror flag
     bool               mPairLayer;     //!< True for paired layer
@@ -53,28 +58,68 @@ class SdContext {
     bool               mZeroOn;        //!< True if overriding zero width line on
     bool               mShowFields;    //!< True if show fields contents
   public:
-    SdContext(SdPoint grid, QPainter *painter);
+    class ParamMapGuard
+      {
+        SdContext *mContext;
+      public:
+        ParamMapGuard() = delete;
+        ParamMapGuard(const ParamMapGuard&) = delete;
+        ParamMapGuard(ParamMapGuard&&) = delete;
+        ParamMapGuard& operator=(const ParamMapGuard&) = delete;
+        ParamMapGuard& operator=(ParamMapGuard&&) = delete;
+
+        ParamMapGuard( SdContext *ctx, const SdParamMap *mp )
+          : mContext(ctx)
+          {
+          Q_ASSERT( ctx != nullptr );
+          Q_ASSERT( mp != nullptr );
+          mContext->mParamMapStack.push( mp );
+          }
+
+        ~ParamMapGuard()
+          {
+          mContext->mParamMapStack.pop();
+          }
+      };
+
+
+
+    SdContext(SdPoint grid, QPainter *painter, const SdProjectItem *item );
     virtual ~SdContext() {}
 
     //!
     //! \brief paramMapSet Set new param map for this context
     //! \param mp          New param map
     //!
-    void            paramMapSet( const SdStringMap *mp = nullptr ) { mParamMap = mp; }
+    //void            paramMapSet( const SdStringMap *mp = nullptr ) { mParamMap = mp; }
 
     //!
     //! \brief paramContains Check if param with key contained in param map of this context
     //! \param key           Key of checked param
     //! \return              true if param present in param map
     //!
-    bool            paramContains( const QString &key ) const { return mParamMap != nullptr && mParamMap->contains(key); }
+    bool            paramContains( const QString &key ) const
+      {
+      for( int index = mParamMapStack.size() - 1; index >= 0; --index )
+        if( mParamMapStack.at(index)->paramContains(key) )
+          return true;
+      return false;
+      }
 
     //!
     //! \brief paramGet Returns param from param map of this context
     //! \param key      Key of param
     //! \return         Value of param with this Key
     //!
-    QString         paramGet( const QString &key ) const { return mParamMap == nullptr ? QString{} : mParamMap->value(key); }
+    QString         paramGet( const QString &key ) const
+      {
+      for( int index = mParamMapStack.size() - 1; index >= 0; --index ) {
+        const SdParamMap *map = mParamMapStack.at(index);
+        if( map->paramContains(key) )
+          return map->paramGet( key );
+        }
+      return QString{};
+      }
 
 
 
@@ -166,8 +211,6 @@ class SdContext {
     //Check - is there layer visible
     bool     isVisible( SdLayer *layer ) { return convertLayer(layer)->isVisible(); }
   };
-
-
 
 
 #endif // SDCONTEXT_H
